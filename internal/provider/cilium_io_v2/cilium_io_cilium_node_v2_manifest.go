@@ -60,6 +60,7 @@ type CiliumIoCiliumNodeV2ManifestData struct {
 		Azure *struct {
 			Interface_name *string `tfsdk:"interface_name" json:"interface-name,omitempty"`
 		} `tfsdk:"azure" json:"azure,omitempty"`
+		Bootid     *string `tfsdk:"bootid" json:"bootid,omitempty"`
 		Encryption *struct {
 			Key *int64 `tfsdk:"key" json:"key,omitempty"`
 		} `tfsdk:"encryption" json:"encryption,omitempty"`
@@ -303,6 +304,14 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"bootid": schema.StringAttribute{
+						Description:         "BootID is a unique node identifier generated on boot",
+						MarkdownDescription: "BootID is a unique node identifier generated on boot",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"encryption": schema.SingleNestedAttribute{

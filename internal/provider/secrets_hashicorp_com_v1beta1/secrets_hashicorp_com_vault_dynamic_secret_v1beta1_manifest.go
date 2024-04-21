@@ -167,8 +167,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 				MarkdownDescription: "VaultDynamicSecretSpec defines the desired state of VaultDynamicSecret",
 				Attributes: map[string]schema.Attribute{
 					"allow_static_creds": schema.BoolAttribute{
-						Description:         "AllowStaticCreds should be set when syncing credentials that are periodically rotated by the Vault server, rather than created upon request. These secrets are sometimes referred to as 'static roles', or 'static credentials', with a request path that contains 'static-creds'.",
-						MarkdownDescription: "AllowStaticCreds should be set when syncing credentials that are periodically rotated by the Vault server, rather than created upon request. These secrets are sometimes referred to as 'static roles', or 'static credentials', with a request path that contains 'static-creds'.",
+						Description:         "AllowStaticCreds should be set when syncing credentials that are periodicallyrotated by the Vault server, rather than created upon request. These secretsare sometimes referred to as 'static roles', or 'static credentials', with arequest path that contains 'static-creds'.",
+						MarkdownDescription: "AllowStaticCreds should be set when syncing credentials that are periodicallyrotated by the Vault server, rather than created upon request. These secretsare sometimes referred to as 'static roles', or 'static credentials', with arequest path that contains 'static-creds'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -188,8 +188,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 							},
 
 							"create": schema.BoolAttribute{
-								Description:         "Create the destination Secret. If the Secret already exists this should be set to false.",
-								MarkdownDescription: "Create the destination Secret. If the Secret already exists this should be set to false.",
+								Description:         "Create the destination Secret.If the Secret already exists this should be set to false.",
+								MarkdownDescription: "Create the destination Secret.If the Secret already exists this should be set to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -213,28 +213,28 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 							},
 
 							"overwrite": schema.BoolAttribute{
-								Description:         "Overwrite the destination Secret if it exists and Create is true. This is useful when migrating to VSO from a previous secret deployment strategy.",
-								MarkdownDescription: "Overwrite the destination Secret if it exists and Create is true. This is useful when migrating to VSO from a previous secret deployment strategy.",
+								Description:         "Overwrite the destination Secret if it exists and Create is true. This isuseful when migrating to VSO from a previous secret deployment strategy.",
+								MarkdownDescription: "Overwrite the destination Secret if it exists and Create is true. This isuseful when migrating to VSO from a previous secret deployment strategy.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"transformation": schema.SingleNestedAttribute{
-								Description:         "Transformation provides configuration for transforming the secret data before it is stored in the Destination.",
-								MarkdownDescription: "Transformation provides configuration for transforming the secret data before it is stored in the Destination.",
+								Description:         "Transformation provides configuration for transforming the secret data beforeit is stored in the Destination.",
+								MarkdownDescription: "Transformation provides configuration for transforming the secret data beforeit is stored in the Destination.",
 								Attributes: map[string]schema.Attribute{
 									"exclude_raw": schema.BoolAttribute{
-										Description:         "ExcludeRaw data from the destination Secret. Exclusion policy can be set globally by including 'exclude-raw' in the '--global-transformation-options' command line flag. If set, the command line flag always takes precedence over this configuration.",
-										MarkdownDescription: "ExcludeRaw data from the destination Secret. Exclusion policy can be set globally by including 'exclude-raw' in the '--global-transformation-options' command line flag. If set, the command line flag always takes precedence over this configuration.",
+										Description:         "ExcludeRaw data from the destination Secret. Exclusion policy can be setglobally by including 'exclude-raw' in the '--global-transformation-options'command line flag. If set, the command line flag always takes precedence overthis configuration.",
+										MarkdownDescription: "ExcludeRaw data from the destination Secret. Exclusion policy can be setglobally by including 'exclude-raw' in the '--global-transformation-options'command line flag. If set, the command line flag always takes precedence overthis configuration.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"excludes": schema.ListAttribute{
-										Description:         "Excludes contains regex patterns used to filter top-level source secret data fields for exclusion from the final K8s Secret data. These pattern filters are never applied to templated fields as defined in Templates. They are always applied before any inclusion patterns. To exclude all source secret data fields, you can configure the single pattern '.*'.",
-										MarkdownDescription: "Excludes contains regex patterns used to filter top-level source secret data fields for exclusion from the final K8s Secret data. These pattern filters are never applied to templated fields as defined in Templates. They are always applied before any inclusion patterns. To exclude all source secret data fields, you can configure the single pattern '.*'.",
+										Description:         "Excludes contains regex patterns used to filter top-level source secret datafields for exclusion from the final K8s Secret data. These pattern filters arenever applied to templated fields as defined in Templates. They are alwaysapplied before any inclusion patterns. To exclude all source secret datafields, you can configure the single pattern '.*'.",
+										MarkdownDescription: "Excludes contains regex patterns used to filter top-level source secret datafields for exclusion from the final K8s Secret data. These pattern filters arenever applied to templated fields as defined in Templates. They are alwaysapplied before any inclusion patterns. To exclude all source secret datafields, you can configure the single pattern '.*'.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -242,8 +242,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 									},
 
 									"includes": schema.ListAttribute{
-										Description:         "Includes contains regex patterns used to filter top-level source secret data fields for inclusion in the final K8s Secret data. These pattern filters are never applied to templated fields as defined in Templates. They are always applied last.",
-										MarkdownDescription: "Includes contains regex patterns used to filter top-level source secret data fields for inclusion in the final K8s Secret data. These pattern filters are never applied to templated fields as defined in Templates. They are always applied last.",
+										Description:         "Includes contains regex patterns used to filter top-level source secret datafields for inclusion in the final K8s Secret data. These pattern filters arenever applied to templated fields as defined in Templates. They are alwaysapplied last.",
+										MarkdownDescription: "Includes contains regex patterns used to filter top-level source secret datafields for inclusion in the final K8s Secret data. These pattern filters arenever applied to templated fields as defined in Templates. They are alwaysapplied last.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -251,8 +251,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 									},
 
 									"templates": schema.SingleNestedAttribute{
-										Description:         "Templates maps a template name to its Template. Templates are always included in the rendered K8s Secret, and take precedence over templates defined in a SecretTransformation.",
-										MarkdownDescription: "Templates maps a template name to its Template. Templates are always included in the rendered K8s Secret, and take precedence over templates defined in a SecretTransformation.",
+										Description:         "Templates maps a template name to its Template. Templates are always includedin the rendered K8s Secret, and take precedence over templates defined in aSecretTransformation.",
+										MarkdownDescription: "Templates maps a template name to its Template. Templates are always includedin the rendered K8s Secret, and take precedence over templates defined in aSecretTransformation.",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
 												Description:         "Name of the Template",
@@ -263,8 +263,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 											},
 
 											"text": schema.StringAttribute{
-												Description:         "Text contains the Go text template format. The template references attributes from the data structure of the source secret. Refer to https://pkg.go.dev/text/template for more information.",
-												MarkdownDescription: "Text contains the Go text template format. The template references attributes from the data structure of the source secret. Refer to https://pkg.go.dev/text/template for more information.",
+												Description:         "Text contains the Go text template format. The templatereferences attributes from the data structure of the source secret.Refer to https://pkg.go.dev/text/template for more information.",
+												MarkdownDescription: "Text contains the Go text template format. The templatereferences attributes from the data structure of the source secret.Refer to https://pkg.go.dev/text/template for more information.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -276,21 +276,21 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 									},
 
 									"transformation_refs": schema.ListNestedAttribute{
-										Description:         "TransformationRefs contain references to template configuration from SecretTransformation.",
-										MarkdownDescription: "TransformationRefs contain references to template configuration from SecretTransformation.",
+										Description:         "TransformationRefs contain references to template configuration fromSecretTransformation.",
+										MarkdownDescription: "TransformationRefs contain references to template configuration fromSecretTransformation.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"ignore_excludes": schema.BoolAttribute{
-													Description:         "IgnoreExcludes controls whether to use the SecretTransformation's Excludes data key filters.",
-													MarkdownDescription: "IgnoreExcludes controls whether to use the SecretTransformation's Excludes data key filters.",
+													Description:         "IgnoreExcludes controls whether to use the SecretTransformation's Excludesdata key filters.",
+													MarkdownDescription: "IgnoreExcludes controls whether to use the SecretTransformation's Excludesdata key filters.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"ignore_includes": schema.BoolAttribute{
-													Description:         "IgnoreIncludes controls whether to use the SecretTransformation's Includes data key filters.",
-													MarkdownDescription: "IgnoreIncludes controls whether to use the SecretTransformation's Includes data key filters.",
+													Description:         "IgnoreIncludes controls whether to use the SecretTransformation's Includesdata key filters.",
+													MarkdownDescription: "IgnoreIncludes controls whether to use the SecretTransformation's Includesdata key filters.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -313,21 +313,21 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 												},
 
 												"template_refs": schema.ListNestedAttribute{
-													Description:         "TemplateRefs map to a Template found in this TransformationRef. If empty, then all templates from the SecretTransformation will be rendered to the K8s Secret.",
-													MarkdownDescription: "TemplateRefs map to a Template found in this TransformationRef. If empty, then all templates from the SecretTransformation will be rendered to the K8s Secret.",
+													Description:         "TemplateRefs map to a Template found in this TransformationRef. If empty, thenall templates from the SecretTransformation will be rendered to the K8s Secret.",
+													MarkdownDescription: "TemplateRefs map to a Template found in this TransformationRef. If empty, thenall templates from the SecretTransformation will be rendered to the K8s Secret.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"key_override": schema.StringAttribute{
-																Description:         "KeyOverride to the rendered template in the Destination secret. If Key is empty, then the Key from reference spec will be used. Set this to override the Key set from the reference spec.",
-																MarkdownDescription: "KeyOverride to the rendered template in the Destination secret. If Key is empty, then the Key from reference spec will be used. Set this to override the Key set from the reference spec.",
+																Description:         "KeyOverride to the rendered template in the Destination secret. If Key isempty, then the Key from reference spec will be used. Set this to override theKey set from the reference spec.",
+																MarkdownDescription: "KeyOverride to the rendered template in the Destination secret. If Key isempty, then the Key from reference spec will be used. Set this to override theKey set from the reference spec.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the Template in SecretTransformationSpec.Templates. the rendered secret data.",
-																MarkdownDescription: "Name of the Template in SecretTransformationSpec.Templates. the rendered secret data.",
+																Description:         "Name of the Template in SecretTransformationSpec.Templates.the rendered secret data.",
+																MarkdownDescription: "Name of the Template in SecretTransformationSpec.Templates.the rendered secret data.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -351,8 +351,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Type of Kubernetes Secret. Requires Create to be set to true. Defaults to Opaque.",
-								MarkdownDescription: "Type of Kubernetes Secret. Requires Create to be set to true. Defaults to Opaque.",
+								Description:         "Type of Kubernetes Secret. Requires Create to be set to true.Defaults to Opaque.",
+								MarkdownDescription: "Type of Kubernetes Secret. Requires Create to be set to true.Defaults to Opaque.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -380,8 +380,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 					},
 
 					"params": schema.MapAttribute{
-						Description:         "Params that can be passed when requesting credentials/secrets. When Params is set the configured RequestHTTPMethod will be ignored. See RequestHTTPMethod for more details. Please consult https://developer.hashicorp.com/vault/docs/secrets if you are uncertain about what 'params' should/can be set to.",
-						MarkdownDescription: "Params that can be passed when requesting credentials/secrets. When Params is set the configured RequestHTTPMethod will be ignored. See RequestHTTPMethod for more details. Please consult https://developer.hashicorp.com/vault/docs/secrets if you are uncertain about what 'params' should/can be set to.",
+						Description:         "Params that can be passed when requesting credentials/secrets.When Params is set the configured RequestHTTPMethod will beignored. See RequestHTTPMethod for more details.Please consult https://developer.hashicorp.com/vault/docs/secrets if you areuncertain about what 'params' should/can be set to.",
+						MarkdownDescription: "Params that can be passed when requesting credentials/secrets.When Params is set the configured RequestHTTPMethod will beignored. See RequestHTTPMethod for more details.Please consult https://developer.hashicorp.com/vault/docs/secrets if you areuncertain about what 'params' should/can be set to.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -389,16 +389,16 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 					},
 
 					"path": schema.StringAttribute{
-						Description:         "Path in Vault to get the credentials for, and is relative to Mount. Please consult https://developer.hashicorp.com/vault/docs/secrets if you are uncertain about what 'path' should be set to.",
-						MarkdownDescription: "Path in Vault to get the credentials for, and is relative to Mount. Please consult https://developer.hashicorp.com/vault/docs/secrets if you are uncertain about what 'path' should be set to.",
+						Description:         "Path in Vault to get the credentials for, and is relative to Mount.Please consult https://developer.hashicorp.com/vault/docs/secrets if you areuncertain about what 'path' should be set to.",
+						MarkdownDescription: "Path in Vault to get the credentials for, and is relative to Mount.Please consult https://developer.hashicorp.com/vault/docs/secrets if you areuncertain about what 'path' should be set to.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"refresh_after": schema.StringAttribute{
-						Description:         "RefreshAfter a period of time for VSO to sync the source secret data, in duration notation e.g. 30s, 1m, 24h. This value only needs to be set when syncing from a secret's engine that does not provide a lease TTL in its response. The value should be within the secret engine's configured ttl or max_ttl. The source secret's lease duration takes precedence over this configuration when it is greater than 0.",
-						MarkdownDescription: "RefreshAfter a period of time for VSO to sync the source secret data, in duration notation e.g. 30s, 1m, 24h. This value only needs to be set when syncing from a secret's engine that does not provide a lease TTL in its response. The value should be within the secret engine's configured ttl or max_ttl. The source secret's lease duration takes precedence over this configuration when it is greater than 0.",
+						Description:         "RefreshAfter a period of time for VSO to sync the source secret data, induration notation e.g. 30s, 1m, 24h. This value only needs to be set whensyncing from a secret's engine that does not provide a lease TTL in itsresponse. The value should be within the secret engine's configured ttl ormax_ttl. The source secret's lease duration takes precedence over thisconfiguration when it is greater than 0.",
+						MarkdownDescription: "RefreshAfter a period of time for VSO to sync the source secret data, induration notation e.g. 30s, 1m, 24h. This value only needs to be set whensyncing from a secret's engine that does not provide a lease TTL in itsresponse. The value should be within the secret engine's configured ttl ormax_ttl. The source secret's lease duration takes precedence over thisconfiguration when it is greater than 0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -408,8 +408,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 					},
 
 					"renewal_percent": schema.Int64Attribute{
-						Description:         "RenewalPercent is the percent out of 100 of the lease duration when the lease is renewed. Defaults to 67 percent plus jitter.",
-						MarkdownDescription: "RenewalPercent is the percent out of 100 of the lease duration when the lease is renewed. Defaults to 67 percent plus jitter.",
+						Description:         "RenewalPercent is the percent out of 100 of the lease duration when thelease is renewed. Defaults to 67 percent plus jitter.",
+						MarkdownDescription: "RenewalPercent is the percent out of 100 of the lease duration when thelease is renewed. Defaults to 67 percent plus jitter.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -420,8 +420,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 					},
 
 					"request_http_method": schema.StringAttribute{
-						Description:         "RequestHTTPMethod to use when syncing Secrets from Vault. Setting a value here is not typically required. If left unset the Operator will make requests using the GET method. In the case where Params are specified the Operator will use the PUT method. Please consult https://developer.hashicorp.com/vault/docs/secrets if you are uncertain about what method to use. Of note, the Vault client treats PUT and POST as being equivalent. The underlying Vault client implementation will always use the PUT method.",
-						MarkdownDescription: "RequestHTTPMethod to use when syncing Secrets from Vault. Setting a value here is not typically required. If left unset the Operator will make requests using the GET method. In the case where Params are specified the Operator will use the PUT method. Please consult https://developer.hashicorp.com/vault/docs/secrets if you are uncertain about what method to use. Of note, the Vault client treats PUT and POST as being equivalent. The underlying Vault client implementation will always use the PUT method.",
+						Description:         "RequestHTTPMethod to use when syncing Secrets from Vault.Setting a value here is not typically required.If left unset the Operator will make requests using the GET method.In the case where Params are specified the Operator will use the PUT method.Please consult https://developer.hashicorp.com/vault/docs/secrets if you areuncertain about what method to use.Of note, the Vault client treats PUT and POST as being equivalent.The underlying Vault client implementation will always use the PUT method.",
+						MarkdownDescription: "RequestHTTPMethod to use when syncing Secrets from Vault.Setting a value here is not typically required.If left unset the Operator will make requests using the GET method.In the case where Params are specified the Operator will use the PUT method.Please consult https://developer.hashicorp.com/vault/docs/secrets if you areuncertain about what method to use.Of note, the Vault client treats PUT and POST as being equivalent.The underlying Vault client implementation will always use the PUT method.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -439,8 +439,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 					},
 
 					"rollout_restart_targets": schema.ListNestedAttribute{
-						Description:         "RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret does not support dynamically reloading a rotated secret. In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator will trigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events. See RolloutRestartTarget for more details.",
-						MarkdownDescription: "RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret does not support dynamically reloading a rotated secret. In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator will trigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events. See RolloutRestartTarget for more details.",
+						Description:         "RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret doesnot support dynamically reloading a rotated secret.In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator willtrigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events.See RolloutRestartTarget for more details.",
+						MarkdownDescription: "RolloutRestartTargets should be configured whenever the application(s) consuming the Vault secret doesnot support dynamically reloading a rotated secret.In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator willtrigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events.See RolloutRestartTarget for more details.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"kind": schema.StringAttribute{
@@ -469,8 +469,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 					},
 
 					"vault_auth_ref": schema.StringAttribute{
-						Description:         "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace, eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default to namespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator will default to the 'default' VaultAuth, configured in the operator's namespace.",
-						MarkdownDescription: "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace, eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default to namespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator will default to the 'default' VaultAuth, configured in the operator's namespace.",
+						Description:         "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace,eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default tonamespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator willdefault to the 'default' VaultAuth, configured in the operator's namespace.",
+						MarkdownDescription: "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace,eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default tonamespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator willdefault to the 'default' VaultAuth, configured in the operator's namespace.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

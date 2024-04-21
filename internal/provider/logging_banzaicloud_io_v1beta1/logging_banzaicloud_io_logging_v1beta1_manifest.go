@@ -858,35 +858,38 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Vpc_id            *bool   `tfsdk:"vpc_id" json:"vpc_id,omitempty"`
 			} `tfsdk:"filter_aws" json:"filterAws,omitempty"`
 			FilterKubernetes *struct {
-				Annotations                 *string `tfsdk:"annotations" json:"Annotations,omitempty"`
-				Buffer_Size                 *string `tfsdk:"buffer__size" json:"Buffer_Size,omitempty"`
-				Cache_Use_Docker_Id         *string `tfsdk:"cache__use__docker__id" json:"Cache_Use_Docker_Id,omitempty"`
-				DNS_Retries                 *string `tfsdk:"dns__retries" json:"DNS_Retries,omitempty"`
-				DNS_Wait_Time               *string `tfsdk:"dns__wait__time" json:"DNS_Wait_Time,omitempty"`
-				Dummy_Meta                  *string `tfsdk:"dummy__meta" json:"Dummy_Meta,omitempty"`
-				K8S_Logging_Exclude         *string `tfsdk:"k8_s__logging__exclude" json:"K8S-Logging.Exclude,omitempty"`
-				K8S_Logging_Parser          *string `tfsdk:"k8_s__logging__parser" json:"K8S-Logging.Parser,omitempty"`
-				Keep_Log                    *string `tfsdk:"keep__log" json:"Keep_Log,omitempty"`
-				Kube_CA_File                *string `tfsdk:"kube_ca__file" json:"Kube_CA_File,omitempty"`
-				Kube_CA_Path                *string `tfsdk:"kube_ca__path" json:"Kube_CA_Path,omitempty"`
-				Kube_Meta_Cache_TTL         *string `tfsdk:"kube__meta__cache_ttl" json:"Kube_Meta_Cache_TTL,omitempty"`
-				Kube_Tag_Prefix             *string `tfsdk:"kube__tag__prefix" json:"Kube_Tag_Prefix,omitempty"`
-				Kube_Token_File             *string `tfsdk:"kube__token__file" json:"Kube_Token_File,omitempty"`
-				Kube_Token_TTL              *string `tfsdk:"kube__token_ttl" json:"Kube_Token_TTL,omitempty"`
-				Kube_URL                    *string `tfsdk:"kube__url" json:"Kube_URL,omitempty"`
-				Kube_meta_preload_cache_dir *string `tfsdk:"kube_meta_preload_cache_dir" json:"Kube_meta_preload_cache_dir,omitempty"`
-				Kubelet_Port                *string `tfsdk:"kubelet__port" json:"Kubelet_Port,omitempty"`
-				Labels                      *string `tfsdk:"labels" json:"Labels,omitempty"`
-				Match                       *string `tfsdk:"match" json:"Match,omitempty"`
-				Merge_Log                   *string `tfsdk:"merge__log" json:"Merge_Log,omitempty"`
-				Merge_Log_Key               *string `tfsdk:"merge__log__key" json:"Merge_Log_Key,omitempty"`
-				Merge_Log_Trim              *string `tfsdk:"merge__log__trim" json:"Merge_Log_Trim,omitempty"`
-				Merge_Parser                *string `tfsdk:"merge__parser" json:"Merge_Parser,omitempty"`
-				Regex_Parser                *string `tfsdk:"regex__parser" json:"Regex_Parser,omitempty"`
-				Use_Journal                 *string `tfsdk:"use__journal" json:"Use_Journal,omitempty"`
-				Use_Kubelet                 *string `tfsdk:"use__kubelet" json:"Use_Kubelet,omitempty"`
-				Tls_debug                   *string `tfsdk:"tls_debug" json:"tls.debug,omitempty"`
-				Tls_verify                  *string `tfsdk:"tls_verify" json:"tls.verify,omitempty"`
+				Annotations                   *string `tfsdk:"annotations" json:"Annotations,omitempty"`
+				Buffer_Size                   *string `tfsdk:"buffer__size" json:"Buffer_Size,omitempty"`
+				Cache_Use_Docker_Id           *string `tfsdk:"cache__use__docker__id" json:"Cache_Use_Docker_Id,omitempty"`
+				DNS_Retries                   *string `tfsdk:"dns__retries" json:"DNS_Retries,omitempty"`
+				DNS_Wait_Time                 *string `tfsdk:"dns__wait__time" json:"DNS_Wait_Time,omitempty"`
+				Dummy_Meta                    *string `tfsdk:"dummy__meta" json:"Dummy_Meta,omitempty"`
+				K8S_Logging_Exclude           *string `tfsdk:"k8_s__logging__exclude" json:"K8S-Logging.Exclude,omitempty"`
+				K8S_Logging_Parser            *string `tfsdk:"k8_s__logging__parser" json:"K8S-Logging.Parser,omitempty"`
+				Keep_Log                      *string `tfsdk:"keep__log" json:"Keep_Log,omitempty"`
+				Kube_CA_File                  *string `tfsdk:"kube_ca__file" json:"Kube_CA_File,omitempty"`
+				Kube_CA_Path                  *string `tfsdk:"kube_ca__path" json:"Kube_CA_Path,omitempty"`
+				Kube_Meta_Cache_TTL           *string `tfsdk:"kube__meta__cache_ttl" json:"Kube_Meta_Cache_TTL,omitempty"`
+				Kube_Tag_Prefix               *string `tfsdk:"kube__tag__prefix" json:"Kube_Tag_Prefix,omitempty"`
+				Kube_Token_File               *string `tfsdk:"kube__token__file" json:"Kube_Token_File,omitempty"`
+				Kube_Token_TTL                *string `tfsdk:"kube__token_ttl" json:"Kube_Token_TTL,omitempty"`
+				Kube_URL                      *string `tfsdk:"kube__url" json:"Kube_URL,omitempty"`
+				Kube_meta_preload_cache_dir   *string `tfsdk:"kube_meta_preload_cache_dir" json:"Kube_meta_preload_cache_dir,omitempty"`
+				Kubelet_Port                  *string `tfsdk:"kubelet__port" json:"Kubelet_Port,omitempty"`
+				Labels                        *string `tfsdk:"labels" json:"Labels,omitempty"`
+				Match                         *string `tfsdk:"match" json:"Match,omitempty"`
+				Merge_Log                     *string `tfsdk:"merge__log" json:"Merge_Log,omitempty"`
+				Merge_Log_Key                 *string `tfsdk:"merge__log__key" json:"Merge_Log_Key,omitempty"`
+				Merge_Log_Trim                *string `tfsdk:"merge__log__trim" json:"Merge_Log_Trim,omitempty"`
+				Merge_Parser                  *string `tfsdk:"merge__parser" json:"Merge_Parser,omitempty"`
+				Regex_Parser                  *string `tfsdk:"regex__parser" json:"Regex_Parser,omitempty"`
+				Use_Journal                   *string `tfsdk:"use__journal" json:"Use_Journal,omitempty"`
+				Use_Kubelet                   *string `tfsdk:"use__kubelet" json:"Use_Kubelet,omitempty"`
+				Kube_meta_namespace_cache_ttl *string `tfsdk:"kube_meta_namespace_cache_ttl" json:"kube_meta_namespace_cache_ttl,omitempty"`
+				Namespace_annotations         *string `tfsdk:"namespace_annotations" json:"namespace_annotations,omitempty"`
+				Namespace_labels              *string `tfsdk:"namespace_labels" json:"namespace_labels,omitempty"`
+				Tls_debug                     *string `tfsdk:"tls_debug" json:"tls.debug,omitempty"`
+				Tls_verify                    *string `tfsdk:"tls_verify" json:"tls.verify,omitempty"`
 			} `tfsdk:"filter_kubernetes" json:"filterKubernetes,omitempty"`
 			FilterModify *[]struct {
 				Conditions *[]struct {
@@ -4241,35 +4244,38 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					Vpc_id            *bool   `tfsdk:"vpc_id" json:"vpc_id,omitempty"`
 				} `tfsdk:"filter_aws" json:"filterAws,omitempty"`
 				FilterKubernetes *struct {
-					Annotations                 *string `tfsdk:"annotations" json:"Annotations,omitempty"`
-					Buffer_Size                 *string `tfsdk:"buffer__size" json:"Buffer_Size,omitempty"`
-					Cache_Use_Docker_Id         *string `tfsdk:"cache__use__docker__id" json:"Cache_Use_Docker_Id,omitempty"`
-					DNS_Retries                 *string `tfsdk:"dns__retries" json:"DNS_Retries,omitempty"`
-					DNS_Wait_Time               *string `tfsdk:"dns__wait__time" json:"DNS_Wait_Time,omitempty"`
-					Dummy_Meta                  *string `tfsdk:"dummy__meta" json:"Dummy_Meta,omitempty"`
-					K8S_Logging_Exclude         *string `tfsdk:"k8_s__logging__exclude" json:"K8S-Logging.Exclude,omitempty"`
-					K8S_Logging_Parser          *string `tfsdk:"k8_s__logging__parser" json:"K8S-Logging.Parser,omitempty"`
-					Keep_Log                    *string `tfsdk:"keep__log" json:"Keep_Log,omitempty"`
-					Kube_CA_File                *string `tfsdk:"kube_ca__file" json:"Kube_CA_File,omitempty"`
-					Kube_CA_Path                *string `tfsdk:"kube_ca__path" json:"Kube_CA_Path,omitempty"`
-					Kube_Meta_Cache_TTL         *string `tfsdk:"kube__meta__cache_ttl" json:"Kube_Meta_Cache_TTL,omitempty"`
-					Kube_Tag_Prefix             *string `tfsdk:"kube__tag__prefix" json:"Kube_Tag_Prefix,omitempty"`
-					Kube_Token_File             *string `tfsdk:"kube__token__file" json:"Kube_Token_File,omitempty"`
-					Kube_Token_TTL              *string `tfsdk:"kube__token_ttl" json:"Kube_Token_TTL,omitempty"`
-					Kube_URL                    *string `tfsdk:"kube__url" json:"Kube_URL,omitempty"`
-					Kube_meta_preload_cache_dir *string `tfsdk:"kube_meta_preload_cache_dir" json:"Kube_meta_preload_cache_dir,omitempty"`
-					Kubelet_Port                *string `tfsdk:"kubelet__port" json:"Kubelet_Port,omitempty"`
-					Labels                      *string `tfsdk:"labels" json:"Labels,omitempty"`
-					Match                       *string `tfsdk:"match" json:"Match,omitempty"`
-					Merge_Log                   *string `tfsdk:"merge__log" json:"Merge_Log,omitempty"`
-					Merge_Log_Key               *string `tfsdk:"merge__log__key" json:"Merge_Log_Key,omitempty"`
-					Merge_Log_Trim              *string `tfsdk:"merge__log__trim" json:"Merge_Log_Trim,omitempty"`
-					Merge_Parser                *string `tfsdk:"merge__parser" json:"Merge_Parser,omitempty"`
-					Regex_Parser                *string `tfsdk:"regex__parser" json:"Regex_Parser,omitempty"`
-					Use_Journal                 *string `tfsdk:"use__journal" json:"Use_Journal,omitempty"`
-					Use_Kubelet                 *string `tfsdk:"use__kubelet" json:"Use_Kubelet,omitempty"`
-					Tls_debug                   *string `tfsdk:"tls_debug" json:"tls.debug,omitempty"`
-					Tls_verify                  *string `tfsdk:"tls_verify" json:"tls.verify,omitempty"`
+					Annotations                   *string `tfsdk:"annotations" json:"Annotations,omitempty"`
+					Buffer_Size                   *string `tfsdk:"buffer__size" json:"Buffer_Size,omitempty"`
+					Cache_Use_Docker_Id           *string `tfsdk:"cache__use__docker__id" json:"Cache_Use_Docker_Id,omitempty"`
+					DNS_Retries                   *string `tfsdk:"dns__retries" json:"DNS_Retries,omitempty"`
+					DNS_Wait_Time                 *string `tfsdk:"dns__wait__time" json:"DNS_Wait_Time,omitempty"`
+					Dummy_Meta                    *string `tfsdk:"dummy__meta" json:"Dummy_Meta,omitempty"`
+					K8S_Logging_Exclude           *string `tfsdk:"k8_s__logging__exclude" json:"K8S-Logging.Exclude,omitempty"`
+					K8S_Logging_Parser            *string `tfsdk:"k8_s__logging__parser" json:"K8S-Logging.Parser,omitempty"`
+					Keep_Log                      *string `tfsdk:"keep__log" json:"Keep_Log,omitempty"`
+					Kube_CA_File                  *string `tfsdk:"kube_ca__file" json:"Kube_CA_File,omitempty"`
+					Kube_CA_Path                  *string `tfsdk:"kube_ca__path" json:"Kube_CA_Path,omitempty"`
+					Kube_Meta_Cache_TTL           *string `tfsdk:"kube__meta__cache_ttl" json:"Kube_Meta_Cache_TTL,omitempty"`
+					Kube_Tag_Prefix               *string `tfsdk:"kube__tag__prefix" json:"Kube_Tag_Prefix,omitempty"`
+					Kube_Token_File               *string `tfsdk:"kube__token__file" json:"Kube_Token_File,omitempty"`
+					Kube_Token_TTL                *string `tfsdk:"kube__token_ttl" json:"Kube_Token_TTL,omitempty"`
+					Kube_URL                      *string `tfsdk:"kube__url" json:"Kube_URL,omitempty"`
+					Kube_meta_preload_cache_dir   *string `tfsdk:"kube_meta_preload_cache_dir" json:"Kube_meta_preload_cache_dir,omitempty"`
+					Kubelet_Port                  *string `tfsdk:"kubelet__port" json:"Kubelet_Port,omitempty"`
+					Labels                        *string `tfsdk:"labels" json:"Labels,omitempty"`
+					Match                         *string `tfsdk:"match" json:"Match,omitempty"`
+					Merge_Log                     *string `tfsdk:"merge__log" json:"Merge_Log,omitempty"`
+					Merge_Log_Key                 *string `tfsdk:"merge__log__key" json:"Merge_Log_Key,omitempty"`
+					Merge_Log_Trim                *string `tfsdk:"merge__log__trim" json:"Merge_Log_Trim,omitempty"`
+					Merge_Parser                  *string `tfsdk:"merge__parser" json:"Merge_Parser,omitempty"`
+					Regex_Parser                  *string `tfsdk:"regex__parser" json:"Regex_Parser,omitempty"`
+					Use_Journal                   *string `tfsdk:"use__journal" json:"Use_Journal,omitempty"`
+					Use_Kubelet                   *string `tfsdk:"use__kubelet" json:"Use_Kubelet,omitempty"`
+					Kube_meta_namespace_cache_ttl *string `tfsdk:"kube_meta_namespace_cache_ttl" json:"kube_meta_namespace_cache_ttl,omitempty"`
+					Namespace_annotations         *string `tfsdk:"namespace_annotations" json:"namespace_annotations,omitempty"`
+					Namespace_labels              *string `tfsdk:"namespace_labels" json:"namespace_labels,omitempty"`
+					Tls_debug                     *string `tfsdk:"tls_debug" json:"tls.debug,omitempty"`
+					Tls_verify                    *string `tfsdk:"tls_verify" json:"tls.verify,omitempty"`
 				} `tfsdk:"filter_kubernetes" json:"filterKubernetes,omitempty"`
 				Flush          *int64 `tfsdk:"flush" json:"flush,omitempty"`
 				ForwardOptions *struct {
@@ -13377,6 +13383,30 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 									},
 
 									"use__kubelet": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"kube_meta_namespace_cache_ttl": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace_annotations": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace_labels": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -36285,6 +36315,30 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 												},
 
 												"use__kubelet": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kube_meta_namespace_cache_ttl": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace_annotations": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace_labels": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,

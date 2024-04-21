@@ -47,17 +47,172 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 		Agent *struct {
 			Ebpf *struct {
 				Advanced *struct {
-					Env *map[string]string `tfsdk:"env" json:"env,omitempty"`
+					Env        *map[string]string `tfsdk:"env" json:"env,omitempty"`
+					Scheduling *struct {
+						Affinity *struct {
+							NodeAffinity *struct {
+								PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+									Preference *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchFields *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+									} `tfsdk:"preference" json:"preference,omitempty"`
+									Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+								} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+								RequiredDuringSchedulingIgnoredDuringExecution *struct {
+									NodeSelectorTerms *[]struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchFields *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+									} `tfsdk:"node_selector_terms" json:"nodeSelectorTerms,omitempty"`
+								} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							} `tfsdk:"node_affinity" json:"nodeAffinity,omitempty"`
+							PodAffinity *struct {
+								PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+									PodAffinityTerm *struct {
+										LabelSelector *struct {
+											MatchExpressions *[]struct {
+												Key      *string   `tfsdk:"key" json:"key,omitempty"`
+												Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+												Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+											} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+											MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+										} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+										MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+										MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+										NamespaceSelector *struct {
+											MatchExpressions *[]struct {
+												Key      *string   `tfsdk:"key" json:"key,omitempty"`
+												Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+												Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+											} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+											MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+										} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+										Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+										TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+									} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
+									Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+								} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+								RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+									NamespaceSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+									Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+									TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+								} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							} `tfsdk:"pod_affinity" json:"podAffinity,omitempty"`
+							PodAntiAffinity *struct {
+								PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+									PodAffinityTerm *struct {
+										LabelSelector *struct {
+											MatchExpressions *[]struct {
+												Key      *string   `tfsdk:"key" json:"key,omitempty"`
+												Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+												Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+											} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+											MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+										} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+										MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+										MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+										NamespaceSelector *struct {
+											MatchExpressions *[]struct {
+												Key      *string   `tfsdk:"key" json:"key,omitempty"`
+												Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+												Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+											} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+											MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+										} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+										Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+										TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+									} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
+									Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+								} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+								RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+									NamespaceSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+									Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+									TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+								} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
+						} `tfsdk:"affinity" json:"affinity,omitempty"`
+						NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+						PriorityClassName *string            `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+						Tolerations       *[]struct {
+							Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+							Key               *string `tfsdk:"key" json:"key,omitempty"`
+							Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+							TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+							Value             *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"tolerations" json:"tolerations,omitempty"`
+					} `tfsdk:"scheduling" json:"scheduling,omitempty"`
 				} `tfsdk:"advanced" json:"advanced,omitempty"`
 				CacheActiveTimeout *string   `tfsdk:"cache_active_timeout" json:"cacheActiveTimeout,omitempty"`
 				CacheMaxFlows      *int64    `tfsdk:"cache_max_flows" json:"cacheMaxFlows,omitempty"`
 				ExcludeInterfaces  *[]string `tfsdk:"exclude_interfaces" json:"excludeInterfaces,omitempty"`
 				Features           *[]string `tfsdk:"features" json:"features,omitempty"`
-				ImagePullPolicy    *string   `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-				Interfaces         *[]string `tfsdk:"interfaces" json:"interfaces,omitempty"`
-				KafkaBatchSize     *int64    `tfsdk:"kafka_batch_size" json:"kafkaBatchSize,omitempty"`
-				LogLevel           *string   `tfsdk:"log_level" json:"logLevel,omitempty"`
-				Metrics            *struct {
+				FlowFilter         *struct {
+					Action      *string `tfsdk:"action" json:"action,omitempty"`
+					Cidr        *string `tfsdk:"cidr" json:"cidr,omitempty"`
+					DestPorts   *string `tfsdk:"dest_ports" json:"destPorts,omitempty"`
+					Direction   *string `tfsdk:"direction" json:"direction,omitempty"`
+					Enable      *bool   `tfsdk:"enable" json:"enable,omitempty"`
+					IcmpCode    *int64  `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
+					IcmpType    *int64  `tfsdk:"icmp_type" json:"icmpType,omitempty"`
+					PeerIP      *string `tfsdk:"peer_ip" json:"peerIP,omitempty"`
+					Ports       *string `tfsdk:"ports" json:"ports,omitempty"`
+					Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
+					SourcePorts *string `tfsdk:"source_ports" json:"sourcePorts,omitempty"`
+				} `tfsdk:"flow_filter" json:"flowFilter,omitempty"`
+				ImagePullPolicy *string   `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+				Interfaces      *[]string `tfsdk:"interfaces" json:"interfaces,omitempty"`
+				KafkaBatchSize  *int64    `tfsdk:"kafka_batch_size" json:"kafkaBatchSize,omitempty"`
+				LogLevel        *string   `tfsdk:"log_level" json:"logLevel,omitempty"`
+				Metrics         *struct {
 					Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
 					Server *struct {
 						Port *int64 `tfsdk:"port" json:"port,omitempty"`
@@ -108,10 +263,152 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 		} `tfsdk:"agent" json:"agent,omitempty"`
 		ConsolePlugin *struct {
 			Advanced *struct {
-				Args     *[]string          `tfsdk:"args" json:"args,omitempty"`
-				Env      *map[string]string `tfsdk:"env" json:"env,omitempty"`
-				Port     *int64             `tfsdk:"port" json:"port,omitempty"`
-				Register *bool              `tfsdk:"register" json:"register,omitempty"`
+				Args       *[]string          `tfsdk:"args" json:"args,omitempty"`
+				Env        *map[string]string `tfsdk:"env" json:"env,omitempty"`
+				Port       *int64             `tfsdk:"port" json:"port,omitempty"`
+				Register   *bool              `tfsdk:"register" json:"register,omitempty"`
+				Scheduling *struct {
+					Affinity *struct {
+						NodeAffinity *struct {
+							PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+								Preference *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchFields *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+								} `tfsdk:"preference" json:"preference,omitempty"`
+								Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+							} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							RequiredDuringSchedulingIgnoredDuringExecution *struct {
+								NodeSelectorTerms *[]struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchFields *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+								} `tfsdk:"node_selector_terms" json:"nodeSelectorTerms,omitempty"`
+							} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+						} `tfsdk:"node_affinity" json:"nodeAffinity,omitempty"`
+						PodAffinity *struct {
+							PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+								PodAffinityTerm *struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+									NamespaceSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+									Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+									TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+								} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
+								Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+							} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+								NamespaceSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+								Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+								TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+							} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+						} `tfsdk:"pod_affinity" json:"podAffinity,omitempty"`
+						PodAntiAffinity *struct {
+							PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+								PodAffinityTerm *struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+									NamespaceSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+									Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+									TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+								} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
+								Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+							} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+								NamespaceSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+								Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+								TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+							} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+						} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
+					} `tfsdk:"affinity" json:"affinity,omitempty"`
+					NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+					PriorityClassName *string            `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+					Tolerations       *[]struct {
+						Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+						Key               *string `tfsdk:"key" json:"key,omitempty"`
+						Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+						TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+						Value             *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"tolerations" json:"tolerations,omitempty"`
+				} `tfsdk:"scheduling" json:"scheduling,omitempty"`
 			} `tfsdk:"advanced" json:"advanced,omitempty"`
 			Autoscaler *struct {
 				MaxReplicas *int64 `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
@@ -425,6 +722,148 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 				HealthPort                     *int64             `tfsdk:"health_port" json:"healthPort,omitempty"`
 				Port                           *int64             `tfsdk:"port" json:"port,omitempty"`
 				ProfilePort                    *int64             `tfsdk:"profile_port" json:"profilePort,omitempty"`
+				Scheduling                     *struct {
+					Affinity *struct {
+						NodeAffinity *struct {
+							PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+								Preference *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchFields *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+								} `tfsdk:"preference" json:"preference,omitempty"`
+								Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+							} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							RequiredDuringSchedulingIgnoredDuringExecution *struct {
+								NodeSelectorTerms *[]struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchFields *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+								} `tfsdk:"node_selector_terms" json:"nodeSelectorTerms,omitempty"`
+							} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+						} `tfsdk:"node_affinity" json:"nodeAffinity,omitempty"`
+						PodAffinity *struct {
+							PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+								PodAffinityTerm *struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+									NamespaceSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+									Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+									TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+								} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
+								Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+							} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+								NamespaceSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+								Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+								TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+							} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+						} `tfsdk:"pod_affinity" json:"podAffinity,omitempty"`
+						PodAntiAffinity *struct {
+							PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+								PodAffinityTerm *struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+									NamespaceSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+									Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+									TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+								} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
+								Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+							} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+								NamespaceSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+								Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+								TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+							} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+						} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
+					} `tfsdk:"affinity" json:"affinity,omitempty"`
+					NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+					PriorityClassName *string            `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+					Tolerations       *[]struct {
+						Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+						Key               *string `tfsdk:"key" json:"key,omitempty"`
+						Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+						TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+						Value             *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"tolerations" json:"tolerations,omitempty"`
+				} `tfsdk:"scheduling" json:"scheduling,omitempty"`
 			} `tfsdk:"advanced" json:"advanced,omitempty"`
 			ClusterName             *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
 			ImagePullPolicy         *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
@@ -554,6 +993,13 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			SubnetLabels *struct {
+				CustomLabels *[]struct {
+					Cidrs *[]string `tfsdk:"cidrs" json:"cidrs,omitempty"`
+					Name  *string   `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"custom_labels" json:"customLabels,omitempty"`
+				OpenShiftAutoDetect *bool `tfsdk:"open_shift_auto_detect" json:"openShiftAutoDetect,omitempty"`
+			} `tfsdk:"subnet_labels" json:"subnetLabels,omitempty"`
 		} `tfsdk:"processor" json:"processor,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -620,28 +1066,983 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Defines the desired state of the FlowCollector resource. <br><br> *: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this feature is not officially supported by Red Hat. It might have been, for example, contributed by the community and accepted without a formal agreement for maintenance. The product maintainers might provide some support for these features as a best effort only.",
-				MarkdownDescription: "Defines the desired state of the FlowCollector resource. <br><br> *: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this feature is not officially supported by Red Hat. It might have been, for example, contributed by the community and accepted without a formal agreement for maintenance. The product maintainers might provide some support for these features as a best effort only.",
+				Description:         "Defines the desired state of the FlowCollector resource.<br><br>*: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this featureis not officially supported by Red Hat. It might have been, for example, contributed by the communityand accepted without a formal agreement for maintenance. The product maintainers might provide some supportfor these features as a best effort only.",
+				MarkdownDescription: "Defines the desired state of the FlowCollector resource.<br><br>*: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this featureis not officially supported by Red Hat. It might have been, for example, contributed by the communityand accepted without a formal agreement for maintenance. The product maintainers might provide some supportfor these features as a best effort only.",
 				Attributes: map[string]schema.Attribute{
 					"agent": schema.SingleNestedAttribute{
 						Description:         "Agent configuration for flows extraction.",
 						MarkdownDescription: "Agent configuration for flows extraction.",
 						Attributes: map[string]schema.Attribute{
 							"ebpf": schema.SingleNestedAttribute{
-								Description:         "'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type' is set to 'eBPF'.",
-								MarkdownDescription: "'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type' is set to 'eBPF'.",
+								Description:         "'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type'is set to 'eBPF'.",
+								MarkdownDescription: "'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type'is set to 'eBPF'.",
 								Attributes: map[string]schema.Attribute{
 									"advanced": schema.SingleNestedAttribute{
-										Description:         "'advanced' allows setting some aspects of the internal configuration of the eBPF agent. This section is aimed mostly for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
-										MarkdownDescription: "'advanced' allows setting some aspects of the internal configuration of the eBPF agent. This section is aimed mostly for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
+										Description:         "'advanced' allows setting some aspects of the internal configuration of the eBPF agent.This section is aimed mostly for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
+										MarkdownDescription: "'advanced' allows setting some aspects of the internal configuration of the eBPF agent.This section is aimed mostly for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
 										Attributes: map[string]schema.Attribute{
 											"env": schema.MapAttribute{
-												Description:         "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
-												MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
+												Description:         "'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
+												MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"scheduling": schema.SingleNestedAttribute{
+												Description:         "scheduling controls whether the pod will be scheduled or not.",
+												MarkdownDescription: "scheduling controls whether the pod will be scheduled or not.",
+												Attributes: map[string]schema.Attribute{
+													"affinity": schema.SingleNestedAttribute{
+														Description:         "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
+														MarkdownDescription: "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
+														Attributes: map[string]schema.Attribute{
+															"node_affinity": schema.SingleNestedAttribute{
+																Description:         "Describes node affinity scheduling rules for the pod.",
+																MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
+																Attributes: map[string]schema.Attribute{
+																	"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"preference": schema.SingleNestedAttribute{
+																					Description:         "A node selector term, associated with the corresponding weight.",
+																					MarkdownDescription: "A node selector term, associated with the corresponding weight.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "A list of node selector requirements by node's labels.",
+																							MarkdownDescription: "A list of node selector requirements by node's labels.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "The label key that the selector applies to.",
+																										MarkdownDescription: "The label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_fields": schema.ListNestedAttribute{
+																							Description:         "A list of node selector requirements by node's fields.",
+																							MarkdownDescription: "A list of node selector requirements by node's fields.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "The label key that the selector applies to.",
+																										MarkdownDescription: "The label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+																					},
+																					Required: true,
+																					Optional: false,
+																					Computed: false,
+																				},
+
+																				"weight": schema.Int64Attribute{
+																					Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+																					MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
+																		Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																		MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																		Attributes: map[string]schema.Attribute{
+																			"node_selector_terms": schema.ListNestedAttribute{
+																				Description:         "Required. A list of node selector terms. The terms are ORed.",
+																				MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "A list of node selector requirements by node's labels.",
+																							MarkdownDescription: "A list of node selector requirements by node's labels.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "The label key that the selector applies to.",
+																										MarkdownDescription: "The label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_fields": schema.ListNestedAttribute{
+																							Description:         "A list of node selector requirements by node's fields.",
+																							MarkdownDescription: "A list of node selector requirements by node's fields.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "The label key that the selector applies to.",
+																										MarkdownDescription: "The label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+																					},
+																				},
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"pod_affinity": schema.SingleNestedAttribute{
+																Description:         "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+																MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+																Attributes: map[string]schema.Attribute{
+																	"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"pod_affinity_term": schema.SingleNestedAttribute{
+																					Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																					MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+																					Attributes: map[string]schema.Attribute{
+																						"label_selector": schema.SingleNestedAttribute{
+																							Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																							MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																							Attributes: map[string]schema.Attribute{
+																								"match_expressions": schema.ListNestedAttribute{
+																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									NestedObject: schema.NestedAttributeObject{
+																										Attributes: map[string]schema.Attribute{
+																											"key": schema.StringAttribute{
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
+																												Required:            true,
+																												Optional:            false,
+																												Computed:            false,
+																											},
+
+																											"operator": schema.StringAttribute{
+																												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												Required:            true,
+																												Optional:            false,
+																												Computed:            false,
+																											},
+
+																											"values": schema.ListAttribute{
+																												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												ElementType:         types.StringType,
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																									},
+																									Required: false,
+																									Optional: true,
+																									Computed: false,
+																								},
+
+																								"match_labels": schema.MapAttribute{
+																									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_label_keys": schema.ListAttribute{
+																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"mismatch_label_keys": schema.ListAttribute{
+																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"namespace_selector": schema.SingleNestedAttribute{
+																							Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																							MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																							Attributes: map[string]schema.Attribute{
+																								"match_expressions": schema.ListNestedAttribute{
+																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									NestedObject: schema.NestedAttributeObject{
+																										Attributes: map[string]schema.Attribute{
+																											"key": schema.StringAttribute{
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
+																												Required:            true,
+																												Optional:            false,
+																												Computed:            false,
+																											},
+
+																											"operator": schema.StringAttribute{
+																												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												Required:            true,
+																												Optional:            false,
+																												Computed:            false,
+																											},
+
+																											"values": schema.ListAttribute{
+																												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												ElementType:         types.StringType,
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																									},
+																									Required: false,
+																									Optional: true,
+																									Computed: false,
+																								},
+
+																								"match_labels": schema.MapAttribute{
+																									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"namespaces": schema.ListAttribute{
+																							Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																							MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"topology_key": schema.StringAttribute{
+																							Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																							MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+																					},
+																					Required: true,
+																					Optional: false,
+																					Computed: false,
+																				},
+
+																				"weight": schema.Int64Attribute{
+																					Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																					MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																		Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																		MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"label_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"namespace_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"namespaces": schema.ListAttribute{
+																					Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"topology_key": schema.StringAttribute{
+																					Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"pod_anti_affinity": schema.SingleNestedAttribute{
+																Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+																MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+																Attributes: map[string]schema.Attribute{
+																	"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"pod_affinity_term": schema.SingleNestedAttribute{
+																					Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																					MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+																					Attributes: map[string]schema.Attribute{
+																						"label_selector": schema.SingleNestedAttribute{
+																							Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																							MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																							Attributes: map[string]schema.Attribute{
+																								"match_expressions": schema.ListNestedAttribute{
+																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									NestedObject: schema.NestedAttributeObject{
+																										Attributes: map[string]schema.Attribute{
+																											"key": schema.StringAttribute{
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
+																												Required:            true,
+																												Optional:            false,
+																												Computed:            false,
+																											},
+
+																											"operator": schema.StringAttribute{
+																												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												Required:            true,
+																												Optional:            false,
+																												Computed:            false,
+																											},
+
+																											"values": schema.ListAttribute{
+																												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												ElementType:         types.StringType,
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																									},
+																									Required: false,
+																									Optional: true,
+																									Computed: false,
+																								},
+
+																								"match_labels": schema.MapAttribute{
+																									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_label_keys": schema.ListAttribute{
+																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"mismatch_label_keys": schema.ListAttribute{
+																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"namespace_selector": schema.SingleNestedAttribute{
+																							Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																							MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																							Attributes: map[string]schema.Attribute{
+																								"match_expressions": schema.ListNestedAttribute{
+																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																									NestedObject: schema.NestedAttributeObject{
+																										Attributes: map[string]schema.Attribute{
+																											"key": schema.StringAttribute{
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
+																												Required:            true,
+																												Optional:            false,
+																												Computed:            false,
+																											},
+
+																											"operator": schema.StringAttribute{
+																												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												Required:            true,
+																												Optional:            false,
+																												Computed:            false,
+																											},
+
+																											"values": schema.ListAttribute{
+																												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																												ElementType:         types.StringType,
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																									},
+																									Required: false,
+																									Optional: true,
+																									Computed: false,
+																								},
+
+																								"match_labels": schema.MapAttribute{
+																									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"namespaces": schema.ListAttribute{
+																							Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																							MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"topology_key": schema.StringAttribute{
+																							Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																							MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+																					},
+																					Required: true,
+																					Optional: false,
+																					Computed: false,
+																				},
+
+																				"weight": schema.Int64Attribute{
+																					Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																					MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																		Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																		MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"label_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"namespace_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"namespaces": schema.ListAttribute{
+																					Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"topology_key": schema.StringAttribute{
+																					Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_selector": schema.MapAttribute{
+														Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+														MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"priority_class_name": schema.StringAttribute{
+														Description:         "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+														MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"tolerations": schema.ListNestedAttribute{
+														Description:         "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
+														MarkdownDescription: "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"effect": schema.StringAttribute{
+																	Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																	MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"key": schema.StringAttribute{
+																	Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																	MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"operator": schema.StringAttribute{
+																	Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+																	MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"toleration_seconds": schema.Int64Attribute{
+																	Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+																	MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																	MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 										Required: false,
@@ -650,8 +2051,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"cache_active_timeout": schema.StringAttribute{
-										Description:         "'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending. Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load, however you can expect higher memory consumption and an increased latency in the flow collection.",
-										MarkdownDescription: "'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending. Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load, however you can expect higher memory consumption and an increased latency in the flow collection.",
+										Description:         "'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.",
+										MarkdownDescription: "'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -661,8 +2062,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"cache_max_flows": schema.Int64Attribute{
-										Description:         "'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows. Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load, however you can expect higher memory consumption and an increased latency in the flow collection.",
-										MarkdownDescription: "'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows. Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load, however you can expect higher memory consumption and an increased latency in the flow collection.",
+										Description:         "'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.",
+										MarkdownDescription: "'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -672,8 +2073,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"exclude_interfaces": schema.ListAttribute{
-										Description:         "'excludeInterfaces' contains the interface names that are excluded from flow tracing. An entry enclosed by slashes, such as '/br-/', is matched as a regular expression. Otherwise it is matched as a case-sensitive string.",
-										MarkdownDescription: "'excludeInterfaces' contains the interface names that are excluded from flow tracing. An entry enclosed by slashes, such as '/br-/', is matched as a regular expression. Otherwise it is matched as a case-sensitive string.",
+										Description:         "'excludeInterfaces' contains the interface names that are excluded from flow tracing.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
+										MarkdownDescription: "'excludeInterfaces' contains the interface names that are excluded from flow tracing.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -681,12 +2082,118 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"features": schema.ListAttribute{
-										Description:         "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': enable the DNS tracking feature.<br> - 'FlowRTT': enable flow latency (RTT) calculations in the eBPF agent during TCP handshakes. This feature better works with 'sampling' set to 1.<br>",
-										MarkdownDescription: "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': enable the DNS tracking feature.<br> - 'FlowRTT': enable flow latency (RTT) calculations in the eBPF agent during TCP handshakes. This feature better works with 'sampling' set to 1.<br>",
+										Description:         "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (RTT) calculations in the eBPF agent during TCP handshakes. This feature better works with 'sampling' set to 1.<br>",
+										MarkdownDescription: "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (RTT) calculations in the eBPF agent during TCP handshakes. This feature better works with 'sampling' set to 1.<br>",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"flow_filter": schema.SingleNestedAttribute{
+										Description:         "'flowFilter' defines the eBPF agent configuration regarding flow filtering",
+										MarkdownDescription: "'flowFilter' defines the eBPF agent configuration regarding flow filtering",
+										Attributes: map[string]schema.Attribute{
+											"action": schema.StringAttribute{
+												Description:         "Action defines the action to perform on the flows that match the filter.",
+												MarkdownDescription: "Action defines the action to perform on the flows that match the filter.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Accept", "Reject"),
+												},
+											},
+
+											"cidr": schema.StringAttribute{
+												Description:         "CIDR defines the IP CIDR to filter flows by.Example: 10.10.10.0/24 or 100:100:100:100::/64",
+												MarkdownDescription: "CIDR defines the IP CIDR to filter flows by.Example: 10.10.10.0/24 or 100:100:100:100::/64",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"dest_ports": schema.StringAttribute{
+												Description:         "DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.",
+												MarkdownDescription: "DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"direction": schema.StringAttribute{
+												Description:         "Direction defines the direction to filter flows by.",
+												MarkdownDescription: "Direction defines the direction to filter flows by.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Ingress", "Egress"),
+												},
+											},
+
+											"enable": schema.BoolAttribute{
+												Description:         "Set 'enable' to 'true' to enable eBPF flow filtering feature.",
+												MarkdownDescription: "Set 'enable' to 'true' to enable eBPF flow filtering feature.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"icmp_code": schema.Int64Attribute{
+												Description:         "ICMPCode defines the ICMP code to filter flows by.",
+												MarkdownDescription: "ICMPCode defines the ICMP code to filter flows by.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"icmp_type": schema.Int64Attribute{
+												Description:         "ICMPType defines the ICMP type to filter flows by.",
+												MarkdownDescription: "ICMPType defines the ICMP type to filter flows by.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"peer_ip": schema.StringAttribute{
+												Description:         "PeerIP defines the IP address to filter flows by.Example: 10.10.10.10",
+												MarkdownDescription: "PeerIP defines the IP address to filter flows by.Example: 10.10.10.10",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ports": schema.StringAttribute{
+												Description:         "Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10",
+												MarkdownDescription: "Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"protocol": schema.StringAttribute{
+												Description:         "Protocol defines the protocol to filter flows by.",
+												MarkdownDescription: "Protocol defines the protocol to filter flows by.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("TCP", "UDP", "ICMP", "ICMPv6", "SCTP"),
+												},
+											},
+
+											"source_ports": schema.StringAttribute{
+												Description:         "SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.",
+												MarkdownDescription: "SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"image_pull_policy": schema.StringAttribute{
@@ -701,8 +2208,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"interfaces": schema.ListAttribute{
-										Description:         "'interfaces' contains the interface names from where flows are collected. If empty, the agent fetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces. An entry enclosed by slashes, such as '/br-/', is matched as a regular expression. Otherwise it is matched as a case-sensitive string.",
-										MarkdownDescription: "'interfaces' contains the interface names from where flows are collected. If empty, the agent fetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces. An entry enclosed by slashes, such as '/br-/', is matched as a regular expression. Otherwise it is matched as a case-sensitive string.",
+										Description:         "'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
+										MarkdownDescription: "'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -761,8 +2268,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														MarkdownDescription: "TLS configuration.",
 														Attributes: map[string]schema.Attribute{
 															"insecure_skip_verify": schema.BoolAttribute{
-																Description:         "'insecureSkipVerify' allows skipping client-side verification of the provided certificate. If set to 'true', the 'providedCaFile' field is ignored.",
-																MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the provided certificate. If set to 'true', the 'providedCaFile' field is ignored.",
+																Description:         "'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.",
+																MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -797,8 +2304,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 																	},
 
 																	"namespace": schema.StringAttribute{
-																		Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-																		MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																		Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																		MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -841,8 +2348,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 																	},
 
 																	"namespace": schema.StringAttribute{
-																		Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-																		MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																		Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																		MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -865,8 +2372,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Select the type of TLS configuration:<br> - 'Disabled' (default) to not configure TLS for the endpoint. - 'Provided' to manually provide cert file and a key file. - 'Auto' to use OpenShift auto generated certificate using annotations.",
-																MarkdownDescription: "Select the type of TLS configuration:<br> - 'Disabled' (default) to not configure TLS for the endpoint. - 'Provided' to manually provide cert file and a key file. - 'Auto' to use OpenShift auto generated certificate using annotations.",
+																Description:         "Select the type of TLS configuration:<br>- 'Disabled' (default) to not configure TLS for the endpoint.- 'Provided' to manually provide cert file and a key file. [Unsupported (*)].- 'Auto' to use OpenShift auto generated certificate using annotations.",
+																MarkdownDescription: "Select the type of TLS configuration:<br>- 'Disabled' (default) to not configure TLS for the endpoint.- 'Provided' to manually provide cert file and a key file. [Unsupported (*)].- 'Auto' to use OpenShift auto generated certificate using annotations.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -891,25 +2398,25 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"privileged": schema.BoolAttribute{
-										Description:         "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator sets granular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container. If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPF is in use, then you can turn on this mode for more global privileges. Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
-										MarkdownDescription: "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator sets granular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container. If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPF is in use, then you can turn on this mode for more global privileges. Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
+										Description:         "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator setsgranular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container.If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPFis in use, then you can turn on this mode for more global privileges.Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
+										MarkdownDescription: "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator setsgranular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container.If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPFis in use, then you can turn on this mode for more global privileges.Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "'resources' are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "'resources' are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -922,8 +2429,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -931,8 +2438,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -961,8 +2468,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"ipfix": schema.SingleNestedAttribute{
-								Description:         "'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type' is set to 'IPFIX'.",
-								MarkdownDescription: "'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type' is set to 'IPFIX'.",
+								Description:         "'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type'is set to 'IPFIX'.",
+								MarkdownDescription: "'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type'is set to 'IPFIX'.",
 								Attributes: map[string]schema.Attribute{
 									"cache_active_timeout": schema.StringAttribute{
 										Description:         "'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending.",
@@ -1004,8 +2511,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"force_sample_all": schema.BoolAttribute{
-										Description:         "'forceSampleAll' allows disabling sampling in the IPFIX-based flow reporter. It is not recommended to sample all the traffic with IPFIX, as it might generate cluster instability. If you REALLY want to do that, set this flag to 'true'. Use at your own risk. When it is set to 'true', the value of 'sampling' is ignored.",
-										MarkdownDescription: "'forceSampleAll' allows disabling sampling in the IPFIX-based flow reporter. It is not recommended to sample all the traffic with IPFIX, as it might generate cluster instability. If you REALLY want to do that, set this flag to 'true'. Use at your own risk. When it is set to 'true', the value of 'sampling' is ignored.",
+										Description:         "'forceSampleAll' allows disabling sampling in the IPFIX-based flow reporter.It is not recommended to sample all the traffic with IPFIX, as it might generate cluster instability.If you REALLY want to do that, set this flag to 'true'. Use at your own risk.When it is set to 'true', the value of 'sampling' is ignored.",
+										MarkdownDescription: "'forceSampleAll' allows disabling sampling in the IPFIX-based flow reporter.It is not recommended to sample all the traffic with IPFIX, as it might generate cluster instability.If you REALLY want to do that, set this flag to 'true'. Use at your own risk.When it is set to 'true', the value of 'sampling' is ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1045,8 +2552,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"sampling": schema.Int64Attribute{
-										Description:         "'sampling' is the sampling rate on the reporter. 100 means one flow on 100 is sent. To ensure cluster stability, it is not possible to set a value below 2. If you really want to sample every packet, which might impact the cluster stability, refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.",
-										MarkdownDescription: "'sampling' is the sampling rate on the reporter. 100 means one flow on 100 is sent. To ensure cluster stability, it is not possible to set a value below 2. If you really want to sample every packet, which might impact the cluster stability, refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.",
+										Description:         "'sampling' is the sampling rate on the reporter. 100 means one flow on 100 is sent.To ensure cluster stability, it is not possible to set a value below 2.If you really want to sample every packet, which might impact the cluster stability,refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.",
+										MarkdownDescription: "'sampling' is the sampling rate on the reporter. 100 means one flow on 100 is sent.To ensure cluster stability, it is not possible to set a value below 2.If you really want to sample every packet, which might impact the cluster stability,refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1061,8 +2568,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'eBPF' (default), to use NetObserv eBPF agent.<br> Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br> Setting 'IPFIX' is ignored and still use the eBPF Agent. Since there is only a single option here, this field will be remove in a future API version.",
-								MarkdownDescription: "'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'eBPF' (default), to use NetObserv eBPF agent.<br> Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br> Setting 'IPFIX' is ignored and still use the eBPF Agent. Since there is only a single option here, this field will be remove in a future API version.",
+								Description:         "'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'eBPF' (default), to use NetObserv eBPF agent.<br>Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br>Setting 'IPFIX' is ignored and still use the eBPF Agent.Since there is only a single option here, this field will be remove in a future API version.",
+								MarkdownDescription: "'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'eBPF' (default), to use NetObserv eBPF agent.<br>Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br>Setting 'IPFIX' is ignored and still use the eBPF Agent.Since there is only a single option here, this field will be remove in a future API version.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1081,12 +2588,12 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 						MarkdownDescription: "'consolePlugin' defines the settings related to the OpenShift Console plugin, when available.",
 						Attributes: map[string]schema.Attribute{
 							"advanced": schema.SingleNestedAttribute{
-								Description:         "'advanced' allows setting some aspects of the internal configuration of the console plugin. This section is aimed mostly for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
-								MarkdownDescription: "'advanced' allows setting some aspects of the internal configuration of the console plugin. This section is aimed mostly for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
+								Description:         "'advanced' allows setting some aspects of the internal configuration of the console plugin.This section is aimed mostly for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
+								MarkdownDescription: "'advanced' allows setting some aspects of the internal configuration of the console plugin.This section is aimed mostly for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
 								Attributes: map[string]schema.Attribute{
 									"args": schema.ListAttribute{
-										Description:         "'args' allows passing custom arguments to underlying components. Useful for overriding some parameters, such as an url or a configuration path, that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
-										MarkdownDescription: "'args' allows passing custom arguments to underlying components. Useful for overriding some parameters, such as an url or a configuration path, that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
+										Description:         "'args' allows passing custom arguments to underlying components. Useful for overridingsome parameters, such as an url or a configuration path, that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
+										MarkdownDescription: "'args' allows passing custom arguments to underlying components. Useful for overridingsome parameters, such as an url or a configuration path, that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1094,8 +2601,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"env": schema.MapAttribute{
-										Description:         "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
-										MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
+										Description:         "'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
+										MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1115,11 +2622,966 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"register": schema.BoolAttribute{
-										Description:         "'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator. When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command: 'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''",
-										MarkdownDescription: "'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator. When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command: 'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''",
+										Description:         "'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator.When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command:'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''",
+										MarkdownDescription: "'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator.When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command:'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"scheduling": schema.SingleNestedAttribute{
+										Description:         "scheduling controls whether the pod will be scheduled or not.",
+										MarkdownDescription: "scheduling controls whether the pod will be scheduled or not.",
+										Attributes: map[string]schema.Attribute{
+											"affinity": schema.SingleNestedAttribute{
+												Description:         "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
+												MarkdownDescription: "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
+												Attributes: map[string]schema.Attribute{
+													"node_affinity": schema.SingleNestedAttribute{
+														Description:         "Describes node affinity scheduling rules for the pod.",
+														MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
+														Attributes: map[string]schema.Attribute{
+															"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"preference": schema.SingleNestedAttribute{
+																			Description:         "A node selector term, associated with the corresponding weight.",
+																			MarkdownDescription: "A node selector term, associated with the corresponding weight.",
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "A list of node selector requirements by node's labels.",
+																					MarkdownDescription: "A list of node selector requirements by node's labels.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_fields": schema.ListNestedAttribute{
+																					Description:         "A list of node selector requirements by node's fields.",
+																					MarkdownDescription: "A list of node selector requirements by node's fields.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: true,
+																			Optional: false,
+																			Computed: false,
+																		},
+
+																		"weight": schema.Int64Attribute{
+																			Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+																			MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
+																Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																Attributes: map[string]schema.Attribute{
+																	"node_selector_terms": schema.ListNestedAttribute{
+																		Description:         "Required. A list of node selector terms. The terms are ORed.",
+																		MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "A list of node selector requirements by node's labels.",
+																					MarkdownDescription: "A list of node selector requirements by node's labels.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_fields": schema.ListNestedAttribute{
+																					Description:         "A list of node selector requirements by node's fields.",
+																					MarkdownDescription: "A list of node selector requirements by node's fields.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																		},
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"pod_affinity": schema.SingleNestedAttribute{
+														Description:         "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+														MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+														Attributes: map[string]schema.Attribute{
+															"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"pod_affinity_term": schema.SingleNestedAttribute{
+																			Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																			MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+																			Attributes: map[string]schema.Attribute{
+																				"label_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"namespace_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"namespaces": schema.ListAttribute{
+																					Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"topology_key": schema.StringAttribute{
+																					Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: true,
+																			Optional: false,
+																			Computed: false,
+																		},
+
+																		"weight": schema.Int64Attribute{
+																			Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																			MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"label_selector": schema.SingleNestedAttribute{
+																			Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																			MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "key is the label key that the selector applies to.",
+																								MarkdownDescription: "key is the label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_labels": schema.MapAttribute{
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace_selector": schema.SingleNestedAttribute{
+																			Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																			MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "key is the label key that the selector applies to.",
+																								MarkdownDescription: "key is the label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_labels": schema.MapAttribute{
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"namespaces": schema.ListAttribute{
+																			Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																			MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"topology_key": schema.StringAttribute{
+																			Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																			MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"pod_anti_affinity": schema.SingleNestedAttribute{
+														Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+														MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+														Attributes: map[string]schema.Attribute{
+															"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"pod_affinity_term": schema.SingleNestedAttribute{
+																			Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																			MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+																			Attributes: map[string]schema.Attribute{
+																				"label_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"namespace_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"namespaces": schema.ListAttribute{
+																					Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"topology_key": schema.StringAttribute{
+																					Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: true,
+																			Optional: false,
+																			Computed: false,
+																		},
+
+																		"weight": schema.Int64Attribute{
+																			Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																			MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"label_selector": schema.SingleNestedAttribute{
+																			Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																			MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "key is the label key that the selector applies to.",
+																								MarkdownDescription: "key is the label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_labels": schema.MapAttribute{
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace_selector": schema.SingleNestedAttribute{
+																			Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																			MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "key is the label key that the selector applies to.",
+																								MarkdownDescription: "key is the label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_labels": schema.MapAttribute{
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"namespaces": schema.ListAttribute{
+																			Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																			MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"topology_key": schema.StringAttribute{
+																			Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																			MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_selector": schema.MapAttribute{
+												Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+												MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"priority_class_name": schema.StringAttribute{
+												Description:         "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+												MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tolerations": schema.ListNestedAttribute{
+												Description:         "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
+												MarkdownDescription: "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"effect": schema.StringAttribute{
+															Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+															MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"toleration_seconds": schema.Int64Attribute{
+															Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+															MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -1140,61 +3602,61 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"metrics": schema.ListNestedAttribute{
-										Description:         "Metrics used by the pod autoscaler",
-										MarkdownDescription: "Metrics used by the pod autoscaler",
+										Description:         "Metrics used by the pod autoscaler. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2/",
+										MarkdownDescription: "Metrics used by the pod autoscaler. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2/",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"container_resource": schema.SingleNestedAttribute{
-													Description:         "containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.",
-													MarkdownDescription: "containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container": schema.StringAttribute{
-															Description:         "container is the name of the container in the pods of the scaling target",
-															MarkdownDescription: "container is the name of the container in the pods of the scaling target",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "name is the name of the resource in question.",
-															MarkdownDescription: "name is the name of the resource in question.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"target": schema.SingleNestedAttribute{
-															Description:         "target specifies the target value for the given metric",
-															MarkdownDescription: "target specifies the target value for the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"average_utilization": schema.Int64Attribute{
-																	Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-																	MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"average_value": schema.StringAttribute{
-																	Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-																	MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-																	MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "value is the target value of the metric (as a quantity).",
-																	MarkdownDescription: "value is the target value of the metric (as a quantity).",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1211,49 +3673,49 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"external": schema.SingleNestedAttribute{
-													Description:         "external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).",
-													MarkdownDescription: "external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"metric": schema.SingleNestedAttribute{
-															Description:         "metric identifies the target metric by name and selector",
-															MarkdownDescription: "metric identifies the target metric by name and selector",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "name is the name of the given metric",
-																	MarkdownDescription: "name is the name of the given metric",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"selector": schema.SingleNestedAttribute{
-																	Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
-																	MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1267,8 +3729,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1286,36 +3748,36 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"target": schema.SingleNestedAttribute{
-															Description:         "target specifies the target value for the given metric",
-															MarkdownDescription: "target specifies the target value for the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"average_utilization": schema.Int64Attribute{
-																	Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-																	MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"average_value": schema.StringAttribute{
-																	Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-																	MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-																	MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "value is the target value of the metric (as a quantity).",
-																	MarkdownDescription: "value is the target value of the metric (as a quantity).",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1332,32 +3794,32 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"object": schema.SingleNestedAttribute{
-													Description:         "object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).",
-													MarkdownDescription: "object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"described_object": schema.SingleNestedAttribute{
-															Description:         "describedObject specifies the descriptions of a object,such as kind,name apiVersion",
-															MarkdownDescription: "describedObject specifies the descriptions of a object,such as kind,name apiVersion",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
-																	Description:         "apiVersion is the API version of the referent",
-																	MarkdownDescription: "apiVersion is the API version of the referent",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-																	MarkdownDescription: "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1369,45 +3831,45 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"metric": schema.SingleNestedAttribute{
-															Description:         "metric identifies the target metric by name and selector",
-															MarkdownDescription: "metric identifies the target metric by name and selector",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "name is the name of the given metric",
-																	MarkdownDescription: "name is the name of the given metric",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"selector": schema.SingleNestedAttribute{
-																	Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
-																	MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1421,8 +3883,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1440,36 +3902,36 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"target": schema.SingleNestedAttribute{
-															Description:         "target specifies the target value for the given metric",
-															MarkdownDescription: "target specifies the target value for the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"average_utilization": schema.Int64Attribute{
-																	Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-																	MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"average_value": schema.StringAttribute{
-																	Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-																	MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-																	MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "value is the target value of the metric (as a quantity).",
-																	MarkdownDescription: "value is the target value of the metric (as a quantity).",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1486,49 +3948,49 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"pods": schema.SingleNestedAttribute{
-													Description:         "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.",
-													MarkdownDescription: "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"metric": schema.SingleNestedAttribute{
-															Description:         "metric identifies the target metric by name and selector",
-															MarkdownDescription: "metric identifies the target metric by name and selector",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "name is the name of the given metric",
-																	MarkdownDescription: "name is the name of the given metric",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"selector": schema.SingleNestedAttribute{
-																	Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
-																	MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1542,8 +4004,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1561,36 +4023,36 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"target": schema.SingleNestedAttribute{
-															Description:         "target specifies the target value for the given metric",
-															MarkdownDescription: "target specifies the target value for the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"average_utilization": schema.Int64Attribute{
-																	Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-																	MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"average_value": schema.StringAttribute{
-																	Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-																	MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-																	MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "value is the target value of the metric (as a quantity).",
-																	MarkdownDescription: "value is the target value of the metric (as a quantity).",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1607,48 +4069,48 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"resource": schema.SingleNestedAttribute{
-													Description:         "resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source.",
-													MarkdownDescription: "resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "name is the name of the resource in question.",
-															MarkdownDescription: "name is the name of the resource in question.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"target": schema.SingleNestedAttribute{
-															Description:         "target specifies the target value for the given metric",
-															MarkdownDescription: "target specifies the target value for the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"average_utilization": schema.Int64Attribute{
-																	Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-																	MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"average_value": schema.StringAttribute{
-																	Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-																	MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-																	MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "value is the target value of the metric (as a quantity).",
-																	MarkdownDescription: "value is the target value of the metric (as a quantity).",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1665,8 +4127,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
-													MarkdownDescription: "type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1679,16 +4141,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"min_replicas": schema.Int64Attribute{
-										Description:         "'minReplicas' is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
-										MarkdownDescription: "'minReplicas' is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
+										Description:         "'minReplicas' is the lower limit for the number of replicas to which the autoscalercan scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if thealpha feature gate HPAScaleToZero is enabled and at least one Object or Externalmetric is configured. Scaling is active as long as at least one metric value isavailable.",
+										MarkdownDescription: "'minReplicas' is the lower limit for the number of replicas to which the autoscalercan scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if thealpha feature gate HPAScaleToZero is enabled and at least one Object or Externalmetric is configured. Scaling is active as long as at least one metric value isavailable.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"status": schema.StringAttribute{
-										Description:         "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br> - 'Disabled' does not deploy an horizontal pod autoscaler.<br> - 'Enabled' deploys an horizontal pod autoscaler.<br>",
-										MarkdownDescription: "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br> - 'Disabled' does not deploy an horizontal pod autoscaler.<br> - 'Enabled' deploys an horizontal pod autoscaler.<br>",
+										Description:         "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br>- 'Disabled' does not deploy an horizontal pod autoscaler.<br>- 'Enabled' deploys an horizontal pod autoscaler.<br>",
+										MarkdownDescription: "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br>- 'Disabled' does not deploy an horizontal pod autoscaler.<br>- 'Enabled' deploys an horizontal pod autoscaler.<br>",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1703,8 +4165,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"enable": schema.BoolAttribute{
-								Description:         "Enables the console plugin deployment. 'spec.loki.enable' must also be 'true'",
-								MarkdownDescription: "Enables the console plugin deployment. 'spec.loki.enable' must also be 'true'",
+								Description:         "Enables the console plugin deployment.'spec.loki.enable' must also be 'true'",
+								MarkdownDescription: "Enables the console plugin deployment.'spec.loki.enable' must also be 'true'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1745,8 +4207,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"port_names": schema.MapAttribute{
-										Description:         "'portNames' defines additional port names to use in the console, for example, 'portNames: {'3100': 'loki'}'.",
-										MarkdownDescription: "'portNames' defines additional port names to use in the console, for example, 'portNames: {'3100': 'loki'}'.",
+										Description:         "'portNames' defines additional port names to use in the console,for example, 'portNames: {'3100': 'loki'}'.",
+										MarkdownDescription: "'portNames' defines additional port names to use in the console,for example, 'portNames: {'3100': 'loki'}'.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1772,8 +4234,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										},
 
 										"filter": schema.MapAttribute{
-											Description:         "'filter' is a set of keys and values to be set when this filter is selected. Each key can relate to a list of values using a coma-separated string, for example, 'filter: {'src_namespace': 'namespace1,namespace2'}'.",
-											MarkdownDescription: "'filter' is a set of keys and values to be set when this filter is selected. Each key can relate to a list of values using a coma-separated string, for example, 'filter: {'src_namespace': 'namespace1,namespace2'}'.",
+											Description:         "'filter' is a set of keys and values to be set when this filter is selected. Each key can relate to a list of values using a coma-separated string,for example, 'filter: {'src_namespace': 'namespace1,namespace2'}'.",
+											MarkdownDescription: "'filter' is a set of keys and values to be set when this filter is selected. Each key can relate to a list of values using a coma-separated string,for example, 'filter: {'src_namespace': 'namespace1,namespace2'}'.",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -1806,17 +4268,17 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "'resources', in terms of compute resources, required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "'resources', in terms of compute resources, required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "'resources', in terms of compute resources, required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "'resources', in terms of compute resources, required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1829,8 +4291,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1838,8 +4300,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1857,8 +4319,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 					},
 
 					"deployment_model": schema.StringAttribute{
-						Description:         "'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br> - 'Direct' (default) to make the flow processor listening directly from the agents.<br> - 'Kafka' to make flows sent to a Kafka pipeline before consumption by the processor.<br> Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).",
-						MarkdownDescription: "'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br> - 'Direct' (default) to make the flow processor listening directly from the agents.<br> - 'Kafka' to make flows sent to a Kafka pipeline before consumption by the processor.<br> Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).",
+						Description:         "'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br>- 'Direct' (default) to make the flow processor listening directly from the agents.<br>- 'Kafka' to make flows sent to a Kafka pipeline before consumption by the processor.<br>Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).",
+						MarkdownDescription: "'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br>- 'Direct' (default) to make the flow processor listening directly from the agents.<br>- 'Kafka' to make flows sent to a Kafka pipeline before consumption by the processor.<br>Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1945,8 +4407,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-															MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1989,8 +4451,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-															MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2061,8 +4523,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-															MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2093,8 +4555,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"insecure_skip_verify": schema.BoolAttribute{
-													Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
-													MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+													Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+													MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2129,8 +4591,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-															MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2224,8 +4686,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2268,8 +4730,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2340,8 +4802,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2372,8 +4834,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"insecure_skip_verify": schema.BoolAttribute{
-										Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
-										MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+										Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+										MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2408,8 +4870,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2454,8 +4916,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 						MarkdownDescription: "'loki', the flow store, client settings.",
 						Attributes: map[string]schema.Attribute{
 							"advanced": schema.SingleNestedAttribute{
-								Description:         "'advanced' allows setting some aspects of the internal configuration of the Loki clients. This section is aimed mostly for debugging and fine-grained performance optimizations.",
-								MarkdownDescription: "'advanced' allows setting some aspects of the internal configuration of the Loki clients. This section is aimed mostly for debugging and fine-grained performance optimizations.",
+								Description:         "'advanced' allows setting some aspects of the internal configuration of the Loki clients.This section is aimed mostly for debugging and fine-grained performance optimizations.",
+								MarkdownDescription: "'advanced' allows setting some aspects of the internal configuration of the Loki clients.This section is aimed mostly for debugging and fine-grained performance optimizations.",
 								Attributes: map[string]schema.Attribute{
 									"static_labels": schema.MapAttribute{
 										Description:         "'staticLabels' is a map of common labels to set on each flow in Loki storage.",
@@ -2507,8 +4969,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"loki_stack": schema.SingleNestedAttribute{
-								Description:         "Loki configuration for 'LokiStack' mode. This is useful for an easy loki-operator configuration. It is ignored for other modes.",
-								MarkdownDescription: "Loki configuration for 'LokiStack' mode. This is useful for an easy loki-operator configuration. It is ignored for other modes.",
+								Description:         "Loki configuration for 'LokiStack' mode. This is useful for an easy loki-operator configuration.It is ignored for other modes.",
+								MarkdownDescription: "Loki configuration for 'LokiStack' mode. This is useful for an easy loki-operator configuration.It is ignored for other modes.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of an existing LokiStack resource to use.",
@@ -2519,8 +4981,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace where this 'LokiStack' resource is located. If omited, it is assumed to be the same as 'spec.namespace'.",
-										MarkdownDescription: "Namespace where this 'LokiStack' resource is located. If omited, it is assumed to be the same as 'spec.namespace'.",
+										Description:         "Namespace where this 'LokiStack' resource is located. If omitted, it is assumed to be the same as 'spec.namespace'.",
+										MarkdownDescription: "Namespace where this 'LokiStack' resource is located. If omitted, it is assumed to be the same as 'spec.namespace'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2532,12 +4994,12 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"manual": schema.SingleNestedAttribute{
-								Description:         "Loki configuration for 'Manual' mode. This is the most flexible configuration. It is ignored for other modes.",
-								MarkdownDescription: "Loki configuration for 'Manual' mode. This is the most flexible configuration. It is ignored for other modes.",
+								Description:         "Loki configuration for 'Manual' mode. This is the most flexible configuration.It is ignored for other modes.",
+								MarkdownDescription: "Loki configuration for 'Manual' mode. This is the most flexible configuration.It is ignored for other modes.",
 								Attributes: map[string]schema.Attribute{
 									"auth_token": schema.StringAttribute{
-										Description:         "'authToken' describes the way to get a token to authenticate to Loki.<br> - 'Disabled' does not send any token with the request.<br> - 'Forward' forwards the user token for authorization.<br> - 'Host' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br> When using the Loki Operator, this must be set to 'Forward'.",
-										MarkdownDescription: "'authToken' describes the way to get a token to authenticate to Loki.<br> - 'Disabled' does not send any token with the request.<br> - 'Forward' forwards the user token for authorization.<br> - 'Host' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br> When using the Loki Operator, this must be set to 'Forward'.",
+										Description:         "'authToken' describes the way to get a token to authenticate to Loki.<br>- 'Disabled' does not send any token with the request.<br>- 'Forward' forwards the user token for authorization.<br>- 'Host' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br>When using the Loki Operator, this must be set to 'Forward'.",
+										MarkdownDescription: "'authToken' describes the way to get a token to authenticate to Loki.<br>- 'Disabled' does not send any token with the request.<br>- 'Forward' forwards the user token for authorization.<br>- 'Host' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br>When using the Loki Operator, this must be set to 'Forward'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2547,16 +5009,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"ingester_url": schema.StringAttribute{
-										Description:         "'ingesterUrl' is the address of an existing Loki ingester service to push the flows to. When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for example https://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
-										MarkdownDescription: "'ingesterUrl' is the address of an existing Loki ingester service to push the flows to. When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for example https://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
+										Description:         "'ingesterUrl' is the address of an existing Loki ingester service to push the flows to. When using the Loki Operator,set it to the Loki gateway service with the 'network' tenant set in path, for examplehttps://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
+										MarkdownDescription: "'ingesterUrl' is the address of an existing Loki ingester service to push the flows to. When using the Loki Operator,set it to the Loki gateway service with the 'network' tenant set in path, for examplehttps://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"querier_url": schema.StringAttribute{
-										Description:         "'querierUrl' specifies the address of the Loki querier service. When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for example https://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
-										MarkdownDescription: "'querierUrl' specifies the address of the Loki querier service. When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for example https://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
+										Description:         "'querierUrl' specifies the address of the Loki querier service.When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for examplehttps://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
+										MarkdownDescription: "'querierUrl' specifies the address of the Loki querier service.When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for examplehttps://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2595,8 +5057,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2627,8 +5089,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"insecure_skip_verify": schema.BoolAttribute{
-												Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
-												MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+												Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+												MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2663,8 +5125,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2692,16 +5154,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"status_url": schema.StringAttribute{
-										Description:         "'statusUrl' specifies the address of the Loki '/ready', '/metrics' and '/config' endpoints, in case it is different from the Loki querier URL. If empty, the 'querierUrl' value is used. This is useful to show error messages and some context in the frontend. When using the Loki Operator, set it to the Loki HTTP query frontend service, for example https://loki-query-frontend-http.netobserv.svc:3100/. 'statusTLS' configuration is used when 'statusUrl' is set.",
-										MarkdownDescription: "'statusUrl' specifies the address of the Loki '/ready', '/metrics' and '/config' endpoints, in case it is different from the Loki querier URL. If empty, the 'querierUrl' value is used. This is useful to show error messages and some context in the frontend. When using the Loki Operator, set it to the Loki HTTP query frontend service, for example https://loki-query-frontend-http.netobserv.svc:3100/. 'statusTLS' configuration is used when 'statusUrl' is set.",
+										Description:         "'statusUrl' specifies the address of the Loki '/ready', '/metrics' and '/config' endpoints, in case it is different from theLoki querier URL. If empty, the 'querierUrl' value is used.This is useful to show error messages and some context in the frontend.When using the Loki Operator, set it to the Loki HTTP query frontend service, for examplehttps://loki-query-frontend-http.netobserv.svc:3100/.'statusTLS' configuration is used when 'statusUrl' is set.",
+										MarkdownDescription: "'statusUrl' specifies the address of the Loki '/ready', '/metrics' and '/config' endpoints, in case it is different from theLoki querier URL. If empty, the 'querierUrl' value is used.This is useful to show error messages and some context in the frontend.When using the Loki Operator, set it to the Loki HTTP query frontend service, for examplehttps://loki-query-frontend-http.netobserv.svc:3100/.'statusTLS' configuration is used when 'statusUrl' is set.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tenant_id": schema.StringAttribute{
-										Description:         "'tenantID' is the Loki 'X-Scope-OrgID' that identifies the tenant for each request. When using the Loki Operator, set it to 'network', which corresponds to a special tenant mode.",
-										MarkdownDescription: "'tenantID' is the Loki 'X-Scope-OrgID' that identifies the tenant for each request. When using the Loki Operator, set it to 'network', which corresponds to a special tenant mode.",
+										Description:         "'tenantID' is the Loki 'X-Scope-OrgID' that identifies the tenant for each request.When using the Loki Operator, set it to 'network', which corresponds to a special tenant mode.",
+										MarkdownDescription: "'tenantID' is the Loki 'X-Scope-OrgID' that identifies the tenant for each request.When using the Loki Operator, set it to 'network', which corresponds to a special tenant mode.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2740,8 +5202,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2772,8 +5234,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"insecure_skip_verify": schema.BoolAttribute{
-												Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
-												MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+												Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+												MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2808,8 +5270,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2842,8 +5304,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"microservices": schema.SingleNestedAttribute{
-								Description:         "Loki configuration for 'Microservices' mode. Use this option when Loki is installed using the microservices deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#microservices-mode). It is ignored for other modes.",
-								MarkdownDescription: "Loki configuration for 'Microservices' mode. Use this option when Loki is installed using the microservices deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#microservices-mode). It is ignored for other modes.",
+								Description:         "Loki configuration for 'Microservices' mode.Use this option when Loki is installed using the microservices deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#microservices-mode).It is ignored for other modes.",
+								MarkdownDescription: "Loki configuration for 'Microservices' mode.Use this option when Loki is installed using the microservices deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#microservices-mode).It is ignored for other modes.",
 								Attributes: map[string]schema.Attribute{
 									"ingester_url": schema.StringAttribute{
 										Description:         "'ingesterUrl' is the address of an existing Loki ingester service to push the flows to.",
@@ -2902,8 +5364,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2934,8 +5396,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"insecure_skip_verify": schema.BoolAttribute{
-												Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
-												MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+												Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+												MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2970,8 +5432,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3004,8 +5466,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"mode": schema.StringAttribute{
-								Description:         "'mode' must be set according to the installation mode of Loki:<br> - Use 'LokiStack' when Loki is managed using the Loki Operator<br> - Use 'Monolithic' when Loki is installed as a monolithic workload<br> - Use 'Microservices' when Loki is installed as microservices, but without Loki Operator<br> - Use 'Manual' if none of the options above match your setup<br>",
-								MarkdownDescription: "'mode' must be set according to the installation mode of Loki:<br> - Use 'LokiStack' when Loki is managed using the Loki Operator<br> - Use 'Monolithic' when Loki is installed as a monolithic workload<br> - Use 'Microservices' when Loki is installed as microservices, but without Loki Operator<br> - Use 'Manual' if none of the options above match your setup<br>",
+								Description:         "'mode' must be set according to the installation mode of Loki:<br>- Use 'LokiStack' when Loki is managed using the Loki Operator<br>- Use 'Monolithic' when Loki is installed as a monolithic workload<br>- Use 'Microservices' when Loki is installed as microservices, but without Loki Operator<br>- Use 'Manual' if none of the options above match your setup<br>",
+								MarkdownDescription: "'mode' must be set according to the installation mode of Loki:<br>- Use 'LokiStack' when Loki is managed using the Loki Operator<br>- Use 'Monolithic' when Loki is installed as a monolithic workload<br>- Use 'Microservices' when Loki is installed as microservices, but without Loki Operator<br>- Use 'Manual' if none of the options above match your setup<br>",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3015,8 +5477,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"monolithic": schema.SingleNestedAttribute{
-								Description:         "Loki configuration for 'Monolithic' mode. Use this option when Loki is installed using the monolithic deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#monolithic-mode). It is ignored for other modes.",
-								MarkdownDescription: "Loki configuration for 'Monolithic' mode. Use this option when Loki is installed using the monolithic deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#monolithic-mode). It is ignored for other modes.",
+								Description:         "Loki configuration for 'Monolithic' mode.Use this option when Loki is installed using the monolithic deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#monolithic-mode).It is ignored for other modes.",
+								MarkdownDescription: "Loki configuration for 'Monolithic' mode.Use this option when Loki is installed using the monolithic deployment mode (https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/#monolithic-mode).It is ignored for other modes.",
 								Attributes: map[string]schema.Attribute{
 									"tenant_id": schema.StringAttribute{
 										Description:         "'tenantID' is the Loki 'X-Scope-OrgID' header that identifies the tenant for each request.",
@@ -3059,8 +5521,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3091,8 +5553,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"insecure_skip_verify": schema.BoolAttribute{
-												Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
-												MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+												Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+												MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3127,8 +5589,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+														MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3169,8 +5631,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"read_timeout": schema.StringAttribute{
-								Description:         "'readTimeout' is the maximum console plugin loki query total time limit. A timeout of zero means no timeout.",
-								MarkdownDescription: "'readTimeout' is the maximum console plugin loki query total time limit. A timeout of zero means no timeout.",
+								Description:         "'readTimeout' is the maximum console plugin loki query total time limit.A timeout of zero means no timeout.",
+								MarkdownDescription: "'readTimeout' is the maximum console plugin loki query total time limit.A timeout of zero means no timeout.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3196,8 +5658,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"write_timeout": schema.StringAttribute{
-								Description:         "'writeTimeout' is the maximum Loki time connection / request limit. A timeout of zero means no timeout.",
-								MarkdownDescription: "'writeTimeout' is the maximum Loki time connection / request limit. A timeout of zero means no timeout.",
+								Description:         "'writeTimeout' is the maximum Loki time connection / request limit.A timeout of zero means no timeout.",
+								MarkdownDescription: "'writeTimeout' is the maximum Loki time connection / request limit.A timeout of zero means no timeout.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3217,24 +5679,24 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 					},
 
 					"processor": schema.SingleNestedAttribute{
-						Description:         "'processor' defines the settings of the component that receives the flows from the agent, enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter.",
-						MarkdownDescription: "'processor' defines the settings of the component that receives the flows from the agent, enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter.",
+						Description:         "'processor' defines the settings of the component that receives the flows from the agent,enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter.",
+						MarkdownDescription: "'processor' defines the settings of the component that receives the flows from the agent,enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter.",
 						Attributes: map[string]schema.Attribute{
 							"add_zone": schema.BoolAttribute{
-								Description:         "'addZone' allows availability zone awareness by labelling flows with their source and destination zones. This feature requires the 'topology.kubernetes.io/zone' label to be set on nodes.",
-								MarkdownDescription: "'addZone' allows availability zone awareness by labelling flows with their source and destination zones. This feature requires the 'topology.kubernetes.io/zone' label to be set on nodes.",
+								Description:         "'addZone' allows availability zone awareness by labelling flows with their source and destination zones.This feature requires the 'topology.kubernetes.io/zone' label to be set on nodes.",
+								MarkdownDescription: "'addZone' allows availability zone awareness by labelling flows with their source and destination zones.This feature requires the 'topology.kubernetes.io/zone' label to be set on nodes.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"advanced": schema.SingleNestedAttribute{
-								Description:         "'advanced' allows setting some aspects of the internal configuration of the flow processor. This section is aimed mostly for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
-								MarkdownDescription: "'advanced' allows setting some aspects of the internal configuration of the flow processor. This section is aimed mostly for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
+								Description:         "'advanced' allows setting some aspects of the internal configuration of the flow processor.This section is aimed mostly for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
+								MarkdownDescription: "'advanced' allows setting some aspects of the internal configuration of the flow processor.This section is aimed mostly for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
 								Attributes: map[string]schema.Attribute{
 									"conversation_end_timeout": schema.StringAttribute{
-										Description:         "'conversationEndTimeout' is the time to wait after a network flow is received, to consider the conversation ended. This delay is ignored when a FIN packet is collected for TCP flows (see 'conversationTerminatingTimeout' instead).",
-										MarkdownDescription: "'conversationEndTimeout' is the time to wait after a network flow is received, to consider the conversation ended. This delay is ignored when a FIN packet is collected for TCP flows (see 'conversationTerminatingTimeout' instead).",
+										Description:         "'conversationEndTimeout' is the time to wait after a network flow is received, to consider the conversation ended.This delay is ignored when a FIN packet is collected for TCP flows (see 'conversationTerminatingTimeout' instead).",
+										MarkdownDescription: "'conversationEndTimeout' is the time to wait after a network flow is received, to consider the conversation ended.This delay is ignored when a FIN packet is collected for TCP flows (see 'conversationTerminatingTimeout' instead).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3273,8 +5735,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"env": schema.MapAttribute{
-										Description:         "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
-										MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
+										Description:         "'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
+										MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3294,8 +5756,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "Port of the flow collector (host port). By convention, some values are forbidden. It must be greater than 1024 and different from 4500, 4789 and 6081.",
-										MarkdownDescription: "Port of the flow collector (host port). By convention, some values are forbidden. It must be greater than 1024 and different from 4500, 4789 and 6081.",
+										Description:         "Port of the flow collector (host port).By convention, some values are forbidden. It must be greater than 1024 and different from4500, 4789 and 6081.",
+										MarkdownDescription: "Port of the flow collector (host port).By convention, some values are forbidden. It must be greater than 1024 and different from4500, 4789 and 6081.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3315,6 +5777,961 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											int64validator.AtLeast(0),
 											int64validator.AtMost(65535),
 										},
+									},
+
+									"scheduling": schema.SingleNestedAttribute{
+										Description:         "scheduling controls whether the pod will be scheduled or not.",
+										MarkdownDescription: "scheduling controls whether the pod will be scheduled or not.",
+										Attributes: map[string]schema.Attribute{
+											"affinity": schema.SingleNestedAttribute{
+												Description:         "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
+												MarkdownDescription: "If specified, the pod's scheduling constraints. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling",
+												Attributes: map[string]schema.Attribute{
+													"node_affinity": schema.SingleNestedAttribute{
+														Description:         "Describes node affinity scheduling rules for the pod.",
+														MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
+														Attributes: map[string]schema.Attribute{
+															"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"preference": schema.SingleNestedAttribute{
+																			Description:         "A node selector term, associated with the corresponding weight.",
+																			MarkdownDescription: "A node selector term, associated with the corresponding weight.",
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "A list of node selector requirements by node's labels.",
+																					MarkdownDescription: "A list of node selector requirements by node's labels.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_fields": schema.ListNestedAttribute{
+																					Description:         "A list of node selector requirements by node's fields.",
+																					MarkdownDescription: "A list of node selector requirements by node's fields.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: true,
+																			Optional: false,
+																			Computed: false,
+																		},
+
+																		"weight": schema.Int64Attribute{
+																			Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+																			MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
+																Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																Attributes: map[string]schema.Attribute{
+																	"node_selector_terms": schema.ListNestedAttribute{
+																		Description:         "Required. A list of node selector terms. The terms are ORed.",
+																		MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "A list of node selector requirements by node's labels.",
+																					MarkdownDescription: "A list of node selector requirements by node's labels.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_fields": schema.ListNestedAttribute{
+																					Description:         "A list of node selector requirements by node's fields.",
+																					MarkdownDescription: "A list of node selector requirements by node's fields.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																		},
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"pod_affinity": schema.SingleNestedAttribute{
+														Description:         "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+														MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+														Attributes: map[string]schema.Attribute{
+															"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"pod_affinity_term": schema.SingleNestedAttribute{
+																			Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																			MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+																			Attributes: map[string]schema.Attribute{
+																				"label_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"namespace_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"namespaces": schema.ListAttribute{
+																					Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"topology_key": schema.StringAttribute{
+																					Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: true,
+																			Optional: false,
+																			Computed: false,
+																		},
+
+																		"weight": schema.Int64Attribute{
+																			Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																			MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"label_selector": schema.SingleNestedAttribute{
+																			Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																			MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "key is the label key that the selector applies to.",
+																								MarkdownDescription: "key is the label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_labels": schema.MapAttribute{
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace_selector": schema.SingleNestedAttribute{
+																			Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																			MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "key is the label key that the selector applies to.",
+																								MarkdownDescription: "key is the label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_labels": schema.MapAttribute{
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"namespaces": schema.ListAttribute{
+																			Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																			MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"topology_key": schema.StringAttribute{
+																			Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																			MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"pod_anti_affinity": schema.SingleNestedAttribute{
+														Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+														MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+														Attributes: map[string]schema.Attribute{
+															"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"pod_affinity_term": schema.SingleNestedAttribute{
+																			Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																			MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+																			Attributes: map[string]schema.Attribute{
+																				"label_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"namespace_selector": schema.SingleNestedAttribute{
+																					Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"namespaces": schema.ListAttribute{
+																					Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"topology_key": schema.StringAttribute{
+																					Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: true,
+																			Optional: false,
+																			Computed: false,
+																		},
+
+																		"weight": schema.Int64Attribute{
+																			Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																			MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+																Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"label_selector": schema.SingleNestedAttribute{
+																			Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																			MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "key is the label key that the selector applies to.",
+																								MarkdownDescription: "key is the label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_labels": schema.MapAttribute{
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace_selector": schema.SingleNestedAttribute{
+																			Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																			MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																			Attributes: map[string]schema.Attribute{
+																				"match_expressions": schema.ListNestedAttribute{
+																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "key is the label key that the selector applies to.",
+																								MarkdownDescription: "key is the label key that the selector applies to.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"operator": schema.StringAttribute{
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"values": schema.ListAttribute{
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"match_labels": schema.MapAttribute{
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"namespaces": schema.ListAttribute{
+																			Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																			MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"topology_key": schema.StringAttribute{
+																			Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																			MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_selector": schema.MapAttribute{
+												Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+												MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"priority_class_name": schema.StringAttribute{
+												Description:         "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+												MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tolerations": schema.ListNestedAttribute{
+												Description:         "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
+												MarkdownDescription: "tolerations is a list of tolerations that allow the pod to schedule onto nodes with matching taints.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"effect": schema.StringAttribute{
+															Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+															MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"toleration_seconds": schema.Int64Attribute{
+															Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+															MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -3342,8 +6759,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"kafka_consumer_autoscaler": schema.SingleNestedAttribute{
-								Description:         "'kafkaConsumerAutoscaler' is the spec of a horizontal pod autoscaler to set up for 'flowlogs-pipeline-transformer', which consumes Kafka messages. This setting is ignored when Kafka is disabled.",
-								MarkdownDescription: "'kafkaConsumerAutoscaler' is the spec of a horizontal pod autoscaler to set up for 'flowlogs-pipeline-transformer', which consumes Kafka messages. This setting is ignored when Kafka is disabled.",
+								Description:         "'kafkaConsumerAutoscaler' is the spec of a horizontal pod autoscaler to set up for 'flowlogs-pipeline-transformer', which consumes Kafka messages.This setting is ignored when Kafka is disabled.",
+								MarkdownDescription: "'kafkaConsumerAutoscaler' is the spec of a horizontal pod autoscaler to set up for 'flowlogs-pipeline-transformer', which consumes Kafka messages.This setting is ignored when Kafka is disabled.",
 								Attributes: map[string]schema.Attribute{
 									"max_replicas": schema.Int64Attribute{
 										Description:         "'maxReplicas' is the upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.",
@@ -3354,61 +6771,61 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"metrics": schema.ListNestedAttribute{
-										Description:         "Metrics used by the pod autoscaler",
-										MarkdownDescription: "Metrics used by the pod autoscaler",
+										Description:         "Metrics used by the pod autoscaler. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2/",
+										MarkdownDescription: "Metrics used by the pod autoscaler. For documentation, refer to https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2/",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"container_resource": schema.SingleNestedAttribute{
-													Description:         "containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.",
-													MarkdownDescription: "containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container": schema.StringAttribute{
-															Description:         "container is the name of the container in the pods of the scaling target",
-															MarkdownDescription: "container is the name of the container in the pods of the scaling target",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "name is the name of the resource in question.",
-															MarkdownDescription: "name is the name of the resource in question.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"target": schema.SingleNestedAttribute{
-															Description:         "target specifies the target value for the given metric",
-															MarkdownDescription: "target specifies the target value for the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"average_utilization": schema.Int64Attribute{
-																	Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-																	MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"average_value": schema.StringAttribute{
-																	Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-																	MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-																	MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "value is the target value of the metric (as a quantity).",
-																	MarkdownDescription: "value is the target value of the metric (as a quantity).",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3425,49 +6842,49 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"external": schema.SingleNestedAttribute{
-													Description:         "external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).",
-													MarkdownDescription: "external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"metric": schema.SingleNestedAttribute{
-															Description:         "metric identifies the target metric by name and selector",
-															MarkdownDescription: "metric identifies the target metric by name and selector",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "name is the name of the given metric",
-																	MarkdownDescription: "name is the name of the given metric",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"selector": schema.SingleNestedAttribute{
-																	Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
-																	MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3481,8 +6898,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3500,36 +6917,36 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"target": schema.SingleNestedAttribute{
-															Description:         "target specifies the target value for the given metric",
-															MarkdownDescription: "target specifies the target value for the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"average_utilization": schema.Int64Attribute{
-																	Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-																	MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"average_value": schema.StringAttribute{
-																	Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-																	MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-																	MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "value is the target value of the metric (as a quantity).",
-																	MarkdownDescription: "value is the target value of the metric (as a quantity).",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3546,32 +6963,32 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"object": schema.SingleNestedAttribute{
-													Description:         "object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).",
-													MarkdownDescription: "object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"described_object": schema.SingleNestedAttribute{
-															Description:         "describedObject specifies the descriptions of a object,such as kind,name apiVersion",
-															MarkdownDescription: "describedObject specifies the descriptions of a object,such as kind,name apiVersion",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
-																	Description:         "apiVersion is the API version of the referent",
-																	MarkdownDescription: "apiVersion is the API version of the referent",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-																	MarkdownDescription: "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -3583,45 +7000,45 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"metric": schema.SingleNestedAttribute{
-															Description:         "metric identifies the target metric by name and selector",
-															MarkdownDescription: "metric identifies the target metric by name and selector",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "name is the name of the given metric",
-																	MarkdownDescription: "name is the name of the given metric",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"selector": schema.SingleNestedAttribute{
-																	Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
-																	MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3635,8 +7052,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3654,36 +7071,36 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"target": schema.SingleNestedAttribute{
-															Description:         "target specifies the target value for the given metric",
-															MarkdownDescription: "target specifies the target value for the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"average_utilization": schema.Int64Attribute{
-																	Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-																	MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"average_value": schema.StringAttribute{
-																	Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-																	MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-																	MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "value is the target value of the metric (as a quantity).",
-																	MarkdownDescription: "value is the target value of the metric (as a quantity).",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3700,49 +7117,49 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"pods": schema.SingleNestedAttribute{
-													Description:         "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.",
-													MarkdownDescription: "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"metric": schema.SingleNestedAttribute{
-															Description:         "metric identifies the target metric by name and selector",
-															MarkdownDescription: "metric identifies the target metric by name and selector",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "name is the name of the given metric",
-																	MarkdownDescription: "name is the name of the given metric",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"selector": schema.SingleNestedAttribute{
-																	Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
-																	MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3756,8 +7173,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3775,36 +7192,36 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 														},
 
 														"target": schema.SingleNestedAttribute{
-															Description:         "target specifies the target value for the given metric",
-															MarkdownDescription: "target specifies the target value for the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"average_utilization": schema.Int64Attribute{
-																	Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-																	MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"average_value": schema.StringAttribute{
-																	Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-																	MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-																	MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "value is the target value of the metric (as a quantity).",
-																	MarkdownDescription: "value is the target value of the metric (as a quantity).",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3821,48 +7238,48 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"resource": schema.SingleNestedAttribute{
-													Description:         "resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source.",
-													MarkdownDescription: "resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "name is the name of the resource in question.",
-															MarkdownDescription: "name is the name of the resource in question.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"target": schema.SingleNestedAttribute{
-															Description:         "target specifies the target value for the given metric",
-															MarkdownDescription: "target specifies the target value for the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"average_utilization": schema.Int64Attribute{
-																	Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-																	MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"average_value": schema.StringAttribute{
-																	Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-																	MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-																	MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "value is the target value of the metric (as a quantity).",
-																	MarkdownDescription: "value is the target value of the metric (as a quantity).",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3879,8 +7296,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
-													MarkdownDescription: "type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -3893,16 +7310,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"min_replicas": schema.Int64Attribute{
-										Description:         "'minReplicas' is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
-										MarkdownDescription: "'minReplicas' is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
+										Description:         "'minReplicas' is the lower limit for the number of replicas to which the autoscalercan scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if thealpha feature gate HPAScaleToZero is enabled and at least one Object or Externalmetric is configured. Scaling is active as long as at least one metric value isavailable.",
+										MarkdownDescription: "'minReplicas' is the lower limit for the number of replicas to which the autoscalercan scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if thealpha feature gate HPAScaleToZero is enabled and at least one Object or Externalmetric is configured. Scaling is active as long as at least one metric value isavailable.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"status": schema.StringAttribute{
-										Description:         "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br> - 'Disabled' does not deploy an horizontal pod autoscaler.<br> - 'Enabled' deploys an horizontal pod autoscaler.<br>",
-										MarkdownDescription: "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br> - 'Disabled' does not deploy an horizontal pod autoscaler.<br> - 'Enabled' deploys an horizontal pod autoscaler.<br>",
+										Description:         "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br>- 'Disabled' does not deploy an horizontal pod autoscaler.<br>- 'Enabled' deploys an horizontal pod autoscaler.<br>",
+										MarkdownDescription: "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br>- 'Disabled' does not deploy an horizontal pod autoscaler.<br>- 'Enabled' deploys an horizontal pod autoscaler.<br>",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3933,8 +7350,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"kafka_consumer_replicas": schema.Int64Attribute{
-								Description:         "'kafkaConsumerReplicas' defines the number of replicas (pods) to start for 'flowlogs-pipeline-transformer', which consumes Kafka messages. This setting is ignored when Kafka is disabled.",
-								MarkdownDescription: "'kafkaConsumerReplicas' defines the number of replicas (pods) to start for 'flowlogs-pipeline-transformer', which consumes Kafka messages. This setting is ignored when Kafka is disabled.",
+								Description:         "'kafkaConsumerReplicas' defines the number of replicas (pods) to start for 'flowlogs-pipeline-transformer', which consumes Kafka messages.This setting is ignored when Kafka is disabled.",
+								MarkdownDescription: "'kafkaConsumerReplicas' defines the number of replicas (pods) to start for 'flowlogs-pipeline-transformer', which consumes Kafka messages.This setting is ignored when Kafka is disabled.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3955,8 +7372,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"log_types": schema.StringAttribute{
-								Description:         "'logTypes' defines the desired record types to generate. Possible values are:<br> - 'Flows' (default) to export regular network flows<br> - 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br> - 'EndedConversations' to generate only ended conversations events<br> - 'All' to generate both network flows and all conversations events<br>",
-								MarkdownDescription: "'logTypes' defines the desired record types to generate. Possible values are:<br> - 'Flows' (default) to export regular network flows<br> - 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br> - 'EndedConversations' to generate only ended conversations events<br> - 'All' to generate both network flows and all conversations events<br>",
+								Description:         "'logTypes' defines the desired record types to generate. Possible values are:<br>- 'Flows' (default) to export regular network flows<br>- 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br>- 'EndedConversations' to generate only ended conversations events<br>- 'All' to generate both network flows and all conversations events<br>",
+								MarkdownDescription: "'logTypes' defines the desired record types to generate. Possible values are:<br>- 'Flows' (default) to export regular network flows<br>- 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br>- 'EndedConversations' to generate only ended conversations events<br>- 'All' to generate both network flows and all conversations events<br>",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3970,8 +7387,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 								MarkdownDescription: "'Metrics' define the processor configuration regarding metrics",
 								Attributes: map[string]schema.Attribute{
 									"disable_alerts": schema.ListAttribute{
-										Description:         "'disableAlerts' is a list of alerts that should be disabled. Possible values are:<br> 'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br> 'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>",
-										MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled. Possible values are:<br> 'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br> 'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>",
+										Description:         "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br>'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>",
+										MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br>'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3979,8 +7396,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"include_list": schema.ListAttribute{
-										Description:         "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
-										MarkdownDescription: "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
+										Description:         "'includeList' is a list of metric names to specify which ones to generate.The names correspond to the names in Prometheus without the prefix. For example,'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus.Note that the more metrics you add, the bigger is the impact on Prometheus workload resources.Metrics enabled by default are:'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled),'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled).More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
+										MarkdownDescription: "'includeList' is a list of metric names to specify which ones to generate.The names correspond to the names in Prometheus without the prefix. For example,'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus.Note that the more metrics you add, the bigger is the impact on Prometheus workload resources.Metrics enabled by default are:'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled),'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled).More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -4008,8 +7425,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												MarkdownDescription: "TLS configuration.",
 												Attributes: map[string]schema.Attribute{
 													"insecure_skip_verify": schema.BoolAttribute{
-														Description:         "'insecureSkipVerify' allows skipping client-side verification of the provided certificate. If set to 'true', the 'providedCaFile' field is ignored.",
-														MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the provided certificate. If set to 'true', the 'providedCaFile' field is ignored.",
+														Description:         "'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.",
+														MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4044,8 +7461,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4088,8 +7505,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-																MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4112,8 +7529,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"type": schema.StringAttribute{
-														Description:         "Select the type of TLS configuration:<br> - 'Disabled' (default) to not configure TLS for the endpoint. - 'Provided' to manually provide cert file and a key file. - 'Auto' to use OpenShift auto generated certificate using annotations.",
-														MarkdownDescription: "Select the type of TLS configuration:<br> - 'Disabled' (default) to not configure TLS for the endpoint. - 'Provided' to manually provide cert file and a key file. - 'Auto' to use OpenShift auto generated certificate using annotations.",
+														Description:         "Select the type of TLS configuration:<br>- 'Disabled' (default) to not configure TLS for the endpoint.- 'Provided' to manually provide cert file and a key file. [Unsupported (*)].- 'Auto' to use OpenShift auto generated certificate using annotations.",
+														MarkdownDescription: "Select the type of TLS configuration:<br>- 'Disabled' (default) to not configure TLS for the endpoint.- 'Provided' to manually provide cert file and a key file. [Unsupported (*)].- 'Auto' to use OpenShift auto generated certificate using annotations.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4146,17 +7563,17 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "'resources' are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "'resources' are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -4169,8 +7586,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -4178,9 +7595,54 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"subnet_labels": schema.SingleNestedAttribute{
+								Description:         "'SubnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'.",
+								MarkdownDescription: "'SubnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'.",
+								Attributes: map[string]schema.Attribute{
+									"custom_labels": schema.ListNestedAttribute{
+										Description:         "'customLabels' allows to customize subnets and IPs labelling, such as to identify cluster-external workloads or web services.If you enable 'openShiftAutoDetect', 'customLabels' can override the detected subnets in case they overlap.",
+										MarkdownDescription: "'customLabels' allows to customize subnets and IPs labelling, such as to identify cluster-external workloads or web services.If you enable 'openShiftAutoDetect', 'customLabels' can override the detected subnets in case they overlap.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"cidrs": schema.ListAttribute{
+													Description:         "List of CIDRs, such as '['1.2.3.4/32']'.",
+													MarkdownDescription: "List of CIDRs, such as '['1.2.3.4/32']'.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Label name, used to flag matching flows.",
+													MarkdownDescription: "Label name, used to flag matching flows.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"open_shift_auto_detect": schema.BoolAttribute{
+										Description:         "'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on theOpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detectexternal traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.",
+										MarkdownDescription: "'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on theOpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detectexternal traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

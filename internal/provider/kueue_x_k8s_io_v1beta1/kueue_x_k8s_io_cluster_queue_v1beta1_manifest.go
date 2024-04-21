@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -42,8 +43,14 @@ type KueueXK8SIoClusterQueueV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		AdmissionChecks   *[]string `tfsdk:"admission_checks" json:"admissionChecks,omitempty"`
-		Cohort            *string   `tfsdk:"cohort" json:"cohort,omitempty"`
+		AdmissionChecks         *[]string `tfsdk:"admission_checks" json:"admissionChecks,omitempty"`
+		AdmissionChecksStrategy *struct {
+			AdmissionChecks *[]struct {
+				Name      *string   `tfsdk:"name" json:"name,omitempty"`
+				OnFlavors *[]string `tfsdk:"on_flavors" json:"onFlavors,omitempty"`
+			} `tfsdk:"admission_checks" json:"admissionChecks,omitempty"`
+		} `tfsdk:"admission_checks_strategy" json:"admissionChecksStrategy,omitempty"`
+		Cohort            *string `tfsdk:"cohort" json:"cohort,omitempty"`
 		FlavorFungibility *struct {
 			WhenCanBorrow  *string `tfsdk:"when_can_borrow" json:"whenCanBorrow,omitempty"`
 			WhenCanPreempt *string `tfsdk:"when_can_preempt" json:"whenCanPreempt,omitempty"`
@@ -147,12 +154,49 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 				MarkdownDescription: "ClusterQueueSpec defines the desired state of ClusterQueue",
 				Attributes: map[string]schema.Attribute{
 					"admission_checks": schema.ListAttribute{
-						Description:         "admissionChecks lists the AdmissionChecks required by this ClusterQueue",
-						MarkdownDescription: "admissionChecks lists the AdmissionChecks required by this ClusterQueue",
+						Description:         "admissionChecks lists the AdmissionChecks required by this ClusterQueue.Cannot be used along with AdmissionCheckStrategy.",
+						MarkdownDescription: "admissionChecks lists the AdmissionChecks required by this ClusterQueue.Cannot be used along with AdmissionCheckStrategy.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"admission_checks_strategy": schema.SingleNestedAttribute{
+						Description:         "admissionCheckStrategy defines a list of strategies to determine which ResourceFlavors require AdmissionChecks.This property cannot be used in conjunction with the 'admissionChecks' property.",
+						MarkdownDescription: "admissionCheckStrategy defines a list of strategies to determine which ResourceFlavors require AdmissionChecks.This property cannot be used in conjunction with the 'admissionChecks' property.",
+						Attributes: map[string]schema.Attribute{
+							"admission_checks": schema.ListNestedAttribute{
+								Description:         "admissionChecks is a list of strategies for AdmissionChecks",
+								MarkdownDescription: "admissionChecks is a list of strategies for AdmissionChecks",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "name is an AdmissionCheck's name.",
+											MarkdownDescription: "name is an AdmissionCheck's name.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"on_flavors": schema.ListAttribute{
+											Description:         "onFlavors is a list of ResourceFlavors' names that this AdmissionCheck should run for.If empty, the AdmissionCheck will run for all workloads submitted to the ClusterQueue.",
+											MarkdownDescription: "onFlavors is a list of ResourceFlavors' names that this AdmissionCheck should run for.If empty, the AdmissionCheck will run for all workloads submitted to the ClusterQueue.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"cohort": schema.StringAttribute{
@@ -161,6 +205,10 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(253),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+						},
 					},
 
 					"flavor_fungibility": schema.SingleNestedAttribute{
@@ -308,8 +356,8 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"queueing_strategy": schema.StringAttribute{
-						Description:         "QueueingStrategy indicates the queueing strategy of the workloadsacross the queues in this ClusterQueue. This field is immutable.Current Supported Strategies:- StrictFIFO: workloads are ordered strictly by creation time.Older workloads that can't be admitted will block admitting newerworkloads even if they fit available quota.- BestEffortFIFO: workloads are ordered by creation time,however older workloads that can't be admitted will not blockadmitting newer workloads that fit existing quota.",
-						MarkdownDescription: "QueueingStrategy indicates the queueing strategy of the workloadsacross the queues in this ClusterQueue. This field is immutable.Current Supported Strategies:- StrictFIFO: workloads are ordered strictly by creation time.Older workloads that can't be admitted will block admitting newerworkloads even if they fit available quota.- BestEffortFIFO: workloads are ordered by creation time,however older workloads that can't be admitted will not blockadmitting newer workloads that fit existing quota.",
+						Description:         "QueueingStrategy indicates the queueing strategy of the workloadsacross the queues in this ClusterQueue.Current Supported Strategies:- StrictFIFO: workloads are ordered strictly by creation time.Older workloads that can't be admitted will block admitting newerworkloads even if they fit available quota.- BestEffortFIFO: workloads are ordered by creation time,however older workloads that can't be admitted will not blockadmitting newer workloads that fit existing quota.",
+						MarkdownDescription: "QueueingStrategy indicates the queueing strategy of the workloadsacross the queues in this ClusterQueue.Current Supported Strategies:- StrictFIFO: workloads are ordered strictly by creation time.Older workloads that can't be admitted will block admitting newerworkloads even if they fit available quota.- BestEffortFIFO: workloads are ordered by creation time,however older workloads that can't be admitted will not blockadmitting newer workloads that fit existing quota.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -343,6 +391,10 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(253),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+												},
 											},
 
 											"resources": schema.ListNestedAttribute{

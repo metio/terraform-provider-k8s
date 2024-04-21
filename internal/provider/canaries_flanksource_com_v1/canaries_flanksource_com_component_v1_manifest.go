@@ -47,13 +47,20 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 		} `tfsdk:"checks" json:"checks,omitempty"`
 		Components *map[string]string `tfsdk:"components" json:"components,omitempty"`
 		Configs    *[]struct {
-			Class       *string            `tfsdk:"class" json:"class,omitempty"`
-			External_id *string            `tfsdk:"external_id" json:"external_id,omitempty"`
-			Id          *[]string          `tfsdk:"id" json:"id,omitempty"`
-			Name        *string            `tfsdk:"name" json:"name,omitempty"`
-			Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-			Tags        *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
-			Type        *string            `tfsdk:"type" json:"type,omitempty"`
+			Agent         *string            `tfsdk:"agent" json:"agent,omitempty"`
+			Cache         *string            `tfsdk:"cache" json:"cache,omitempty"`
+			Class         *string            `tfsdk:"class" json:"class,omitempty"`
+			External_id   *string            `tfsdk:"external_id" json:"external_id,omitempty"`
+			FieldSelector *string            `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
+			Id            *string            `tfsdk:"id" json:"id,omitempty"`
+			LabelSelector *string            `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Statuses      *[]string          `tfsdk:"statuses" json:"statuses,omitempty"`
+			TagSelector   *string            `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
+			Tags          *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+			Type          *string            `tfsdk:"type" json:"type,omitempty"`
+			Types         *[]string          `tfsdk:"types" json:"types,omitempty"`
 		} `tfsdk:"configs" json:"configs,omitempty"`
 		ForEach *map[string]string `tfsdk:"for_each" json:"forEach,omitempty"`
 		Hidden  *bool              `tfsdk:"hidden" json:"hidden,omitempty"`
@@ -95,6 +102,7 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 			Name          *string   `tfsdk:"name" json:"name,omitempty"`
 			Namespace     *string   `tfsdk:"namespace" json:"namespace,omitempty"`
 			Statuses      *[]string `tfsdk:"statuses" json:"statuses,omitempty"`
+			TagSelector   *string   `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
 			Types         *[]string `tfsdk:"types" json:"types,omitempty"`
 		} `tfsdk:"selectors" json:"selectors,omitempty"`
 		Summary *struct {
@@ -215,15 +223,39 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 						MarkdownDescription: "Lookup and associate config items with this component",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"agent": schema.StringAttribute{
+									Description:         "Agent can be the agent id or the name of the agent. Additionally, the special 'self' value can be used to select resources without an agent.",
+									MarkdownDescription: "Agent can be the agent id or the name of the agent. Additionally, the special 'self' value can be used to select resources without an agent.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"cache": schema.StringAttribute{
+									Description:         "Cache directives 'no-cache' (should not fetch from cache but can be cached) 'no-store' (should not cache) 'max-age=X' (cache for X duration)",
+									MarkdownDescription: "Cache directives 'no-cache' (should not fetch from cache but can be cached) 'no-store' (should not cache) 'max-age=X' (cache for X duration)",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"class": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Deprecated. Use 'fieldSelector (config_class=)'",
+									MarkdownDescription: "Deprecated. Use 'fieldSelector (config_class=)'",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"external_id": schema.StringAttribute{
+									Description:         "Deprecated. Use 'fieldSelector (external_id=)'",
+									MarkdownDescription: "Deprecated. Use 'fieldSelector (external_id=)'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"field_selector": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
 									Required:            false,
@@ -231,10 +263,17 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Computed:            false,
 								},
 
-								"id": schema.ListAttribute{
+								"id": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"label_selector": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -256,7 +295,7 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Computed:            false,
 								},
 
-								"tags": schema.MapAttribute{
+								"statuses": schema.ListAttribute{
 									Description:         "",
 									MarkdownDescription: "",
 									ElementType:         types.StringType,
@@ -265,9 +304,35 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Computed:            false,
 								},
 
-								"type": schema.StringAttribute{
+								"tag_selector": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"tags": schema.MapAttribute{
+									Description:         "Deprecated. Use 'labelSelector'",
+									MarkdownDescription: "Deprecated. Use 'labelSelector'",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"type": schema.StringAttribute{
+									Description:         "Deprecated. Use 'types'",
+									MarkdownDescription: "Deprecated. Use 'types'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"types": schema.ListAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -573,6 +638,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Description:         "",
 									MarkdownDescription: "",
 									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"tag_selector": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

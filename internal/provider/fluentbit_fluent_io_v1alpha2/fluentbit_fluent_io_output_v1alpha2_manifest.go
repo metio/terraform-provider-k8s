@@ -685,6 +685,7 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 			JsonDateKey              *string `tfsdk:"json_date_key" json:"JsonDateKey,omitempty"`
 			LogKey                   *string `tfsdk:"log_key" json:"LogKey,omitempty"`
 			PreserveDataOrdering     *bool   `tfsdk:"preserve_data_ordering" json:"PreserveDataOrdering,omitempty"`
+			Profile                  *string `tfsdk:"profile" json:"Profile,omitempty"`
 			Region                   *string `tfsdk:"region" json:"Region,omitempty"`
 			RetryLimit               *int64  `tfsdk:"retry_limit" json:"RetryLimit,omitempty"`
 			RoleArn                  *string `tfsdk:"role_arn" json:"RoleArn,omitempty"`
@@ -5346,6 +5347,14 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 							"preserve_data_ordering": schema.BoolAttribute{
 								Description:         "Normally, when an upload request fails, there is a high chance for the last received chunk to be swapped with a later chunk, resulting in data shuffling. This feature prevents this shuffling by using a queue logic for uploads.",
 								MarkdownDescription: "Normally, when an upload request fails, there is a high chance for the last received chunk to be swapped with a later chunk, resulting in data shuffling. This feature prevents this shuffling by using a queue logic for uploads.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"profile": schema.StringAttribute{
+								Description:         "Option to specify an AWS Profile for credentials.",
+								MarkdownDescription: "Option to specify an AWS Profile for credentials.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

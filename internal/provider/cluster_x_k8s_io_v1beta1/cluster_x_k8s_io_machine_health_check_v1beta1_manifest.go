@@ -332,8 +332,8 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 								},
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

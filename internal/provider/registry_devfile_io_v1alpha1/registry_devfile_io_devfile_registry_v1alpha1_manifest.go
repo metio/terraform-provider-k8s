@@ -49,12 +49,15 @@ type RegistryDevfileIoDevfileRegistryV1Alpha1ManifestData struct {
 			MemoryLimit     *string `tfsdk:"memory_limit" json:"memoryLimit,omitempty"`
 		} `tfsdk:"devfile_index" json:"devfileIndex,omitempty"`
 		DevfileIndexImage *string `tfsdk:"devfile_index_image" json:"devfileIndexImage,omitempty"`
+		FullnameOverride  *string `tfsdk:"fullname_override" json:"fullnameOverride,omitempty"`
 		Headless          *bool   `tfsdk:"headless" json:"headless,omitempty"`
+		HostnameOverride  *string `tfsdk:"hostname_override" json:"hostnameOverride,omitempty"`
 		K8s               *struct {
 			IngressClass  *string `tfsdk:"ingress_class" json:"ingressClass,omitempty"`
 			IngressDomain *string `tfsdk:"ingress_domain" json:"ingressDomain,omitempty"`
 		} `tfsdk:"k8s" json:"k8s,omitempty"`
-		OciRegistry *struct {
+		NameOverride *string `tfsdk:"name_override" json:"nameOverride,omitempty"`
+		OciRegistry  *struct {
 			Image           *string `tfsdk:"image" json:"image,omitempty"`
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			MemoryLimit     *string `tfsdk:"memory_limit" json:"memoryLimit,omitempty"`
@@ -200,9 +203,25 @@ func (r *RegistryDevfileIoDevfileRegistryV1Alpha1Manifest) Schema(_ context.Cont
 						Computed:            false,
 					},
 
+					"fullname_override": schema.StringAttribute{
+						Description:         "Overrides the fully qualified app name of the devfile registry",
+						MarkdownDescription: "Overrides the fully qualified app name of the devfile registry",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"headless": schema.BoolAttribute{
 						Description:         "Sets the registry server deployment to run under headless mode",
 						MarkdownDescription: "Sets the registry server deployment to run under headless mode",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"hostname_override": schema.StringAttribute{
+						Description:         "Overrides the entire hostname and domain of the devfile registry ingress",
+						MarkdownDescription: "Overrides the entire hostname and domain of the devfile registry ingress",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -231,6 +250,14 @@ func (r *RegistryDevfileIoDevfileRegistryV1Alpha1Manifest) Schema(_ context.Cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"name_override": schema.StringAttribute{
+						Description:         "Overrides the app name of the devfile registry",
+						MarkdownDescription: "Overrides the app name of the devfile registry",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"oci_registry": schema.SingleNestedAttribute{

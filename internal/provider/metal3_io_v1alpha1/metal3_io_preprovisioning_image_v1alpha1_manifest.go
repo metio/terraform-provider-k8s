@@ -55,8 +55,8 @@ func (r *Metal3IoPreprovisioningImageV1Alpha1Manifest) Metadata(_ context.Contex
 
 func (r *Metal3IoPreprovisioningImageV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "PreprovisioningImage is the Schema for the preprovisioningimages API",
-		MarkdownDescription: "PreprovisioningImage is the Schema for the preprovisioningimages API",
+		Description:         "PreprovisioningImage is the Schema for the preprovisioningimages API.",
+		MarkdownDescription: "PreprovisioningImage is the Schema for the preprovisioningimages API.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -123,8 +123,8 @@ func (r *Metal3IoPreprovisioningImageV1Alpha1Manifest) Schema(_ context.Context,
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "PreprovisioningImageSpec defines the desired state of PreprovisioningImage",
-				MarkdownDescription: "PreprovisioningImageSpec defines the desired state of PreprovisioningImage",
+				Description:         "PreprovisioningImageSpec defines the desired state of PreprovisioningImage.",
+				MarkdownDescription: "PreprovisioningImageSpec defines the desired state of PreprovisioningImage.",
 				Attributes: map[string]schema.Attribute{
 					"accept_formats": schema.ListAttribute{
 						Description:         "acceptFormats is a list of acceptable image formats.",

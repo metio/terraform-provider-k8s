@@ -78,8 +78,6 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 		CpSubsystem *struct {
 			DataLoadTimeoutSeconds            *int64 `tfsdk:"data_load_timeout_seconds" json:"dataLoadTimeoutSeconds,omitempty"`
 			FailOnIndeterminateOperationState *bool  `tfsdk:"fail_on_indeterminate_operation_state" json:"failOnIndeterminateOperationState,omitempty"`
-			GroupSize                         *int64 `tfsdk:"group_size" json:"groupSize,omitempty"`
-			MemberCount                       *int64 `tfsdk:"member_count" json:"memberCount,omitempty"`
 			MissingCpMemberAutoRemovalSeconds *int64 `tfsdk:"missing_cp_member_auto_removal_seconds" json:"missingCpMemberAutoRemovalSeconds,omitempty"`
 			Pvc                               *struct {
 				AccessModes      *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
@@ -175,6 +173,7 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 			Size                    *string `tfsdk:"size" json:"size,omitempty"`
 		} `tfsdk:"native_memory" json:"nativeMemory,omitempty"`
 		Persistence *struct {
+			BaseDir                   *string `tfsdk:"base_dir" json:"baseDir,omitempty"`
 			ClusterDataRecoveryPolicy *string `tfsdk:"cluster_data_recovery_policy" json:"clusterDataRecoveryPolicy,omitempty"`
 			DataRecoveryTimeout       *int64  `tfsdk:"data_recovery_timeout" json:"dataRecoveryTimeout,omitempty"`
 			Pvc                       *struct {
@@ -189,6 +188,12 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 					SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"bucket_config" json:"bucketConfig,omitempty"`
 				HotBackupResourceName *string `tfsdk:"hot_backup_resource_name" json:"hotBackupResourceName,omitempty"`
+				LocalConfig           *struct {
+					BackupDir     *string `tfsdk:"backup_dir" json:"backupDir,omitempty"`
+					BackupFolder  *string `tfsdk:"backup_folder" json:"backupFolder,omitempty"`
+					BaseDir       *string `tfsdk:"base_dir" json:"baseDir,omitempty"`
+					PvcNamePrefix *string `tfsdk:"pvc_name_prefix" json:"pvcNamePrefix,omitempty"`
+				} `tfsdk:"local_config" json:"localConfig,omitempty"`
 			} `tfsdk:"restore" json:"restore,omitempty"`
 			StartupAction *string `tfsdk:"startup_action" json:"startupAction,omitempty"`
 		} `tfsdk:"persistence" json:"persistence,omitempty"`
@@ -692,6 +697,9 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
 							},
 
 							"fail_on_indeterminate_operation_state": schema.BoolAttribute{
@@ -699,22 +707,6 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 								MarkdownDescription: "FailOnIndeterminateOperationState indicated whether CP Subsystem operations use at-least-once and at-most-once execution guarantees.",
 								Required:            false,
 								Optional:            true,
-								Computed:            false,
-							},
-
-							"group_size": schema.Int64Attribute{
-								Description:         "GroupSize is the number of CP members to participate in each CP group. Allowed values are 3, 5, and 7.",
-								MarkdownDescription: "GroupSize is the number of CP members to participate in each CP group. Allowed values are 3, 5, and 7.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"member_count": schema.Int64Attribute{
-								Description:         "MemberCount is the number of CP members to initialize the CP Subsystem.",
-								MarkdownDescription: "MemberCount is the number of CP members to initialize the CP Subsystem.",
-								Required:            true,
-								Optional:            false,
 								Computed:            false,
 							},
 
@@ -761,16 +753,16 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"session_heartbeat_interval_seconds": schema.Int64Attribute{
-								Description:         "SessionHeartbeatIntervalSeconds Interval in seconds for the periodically committed CP session heartbeats. Must be greater than or equal to SessionTTLSeconds.",
-								MarkdownDescription: "SessionHeartbeatIntervalSeconds Interval in seconds for the periodically committed CP session heartbeats. Must be greater than or equal to SessionTTLSeconds.",
+								Description:         "SessionHeartbeatIntervalSeconds Interval in seconds for the periodically committed CP session heartbeats. Must be smaller than SessionTTLSeconds.",
+								MarkdownDescription: "SessionHeartbeatIntervalSeconds Interval in seconds for the periodically committed CP session heartbeats. Must be smaller than SessionTTLSeconds.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"session_ttl_seconds": schema.Int64Attribute{
-								Description:         "SessionTTLSeconds is the duration for a CP session to be kept alive after the last received heartbeat. Must be greater than or equal to SessionTTLSeconds.",
-								MarkdownDescription: "SessionTTLSeconds is the duration for a CP session to be kept alive after the last received heartbeat. Must be greater than or equal to SessionTTLSeconds.",
+								Description:         "SessionTTLSeconds is the duration for a CP session to be kept alive after the last received heartbeat. Must be greater than or equal to SessionHeartbeatIntervalSeconds and smaller than or equal to MissingCpMemberAutoRemovalSeconds.",
+								MarkdownDescription: "SessionTTLSeconds is the duration for a CP session to be kept alive after the last received heartbeat. Must be greater than or equal to SessionHeartbeatIntervalSeconds and smaller than or equal to MissingCpMemberAutoRemovalSeconds.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1418,6 +1410,14 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Description:         "Persistence configuration",
 						MarkdownDescription: "Persistence configuration",
 						Attributes: map[string]schema.Attribute{
+							"base_dir": schema.StringAttribute{
+								Description:         "BaseDir is deprecated. Use restore.localConfig to restore from a local backup.",
+								MarkdownDescription: "BaseDir is deprecated. Use restore.localConfig to restore from a local backup.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"cluster_data_recovery_policy": schema.StringAttribute{
 								Description:         "Configuration of the cluster recovery strategy.",
 								MarkdownDescription: "Configuration of the cluster recovery strategy.",
@@ -1517,6 +1517,53 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"local_config": schema.SingleNestedAttribute{
+										Description:         "Configuration to restore from local backup",
+										MarkdownDescription: "Configuration to restore from local backup",
+										Attributes: map[string]schema.Attribute{
+											"backup_dir": schema.StringAttribute{
+												Description:         "Local backup base directory",
+												MarkdownDescription: "Local backup base directory",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"backup_folder": schema.StringAttribute{
+												Description:         "Backup directory",
+												MarkdownDescription: "Backup directory",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"base_dir": schema.StringAttribute{
+												Description:         "Persistence base directory",
+												MarkdownDescription: "Persistence base directory",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"pvc_name_prefix": schema.StringAttribute{
+												Description:         "PVC name prefix used in existing PVCs",
+												MarkdownDescription: "PVC name prefix used in existing PVCs",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("persistence", "hot-restart-persistence"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,

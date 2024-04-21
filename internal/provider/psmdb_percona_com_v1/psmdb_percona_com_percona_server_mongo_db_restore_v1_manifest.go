@@ -48,24 +48,34 @@ type PsmdbPerconaComPerconaServerMongoDbrestoreV1ManifestData struct {
 			Azure *struct {
 				Container         *string `tfsdk:"container" json:"container,omitempty"`
 				CredentialsSecret *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
+				EndpointUrl       *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
 				Prefix            *string `tfsdk:"prefix" json:"prefix,omitempty"`
 			} `tfsdk:"azure" json:"azure,omitempty"`
-			Completed      *string   `tfsdk:"completed" json:"completed,omitempty"`
-			Destination    *string   `tfsdk:"destination" json:"destination,omitempty"`
-			Error          *string   `tfsdk:"error" json:"error,omitempty"`
-			LastTransition *string   `tfsdk:"last_transition" json:"lastTransition,omitempty"`
-			PbmName        *string   `tfsdk:"pbm_name" json:"pbmName,omitempty"`
-			PbmPod         *string   `tfsdk:"pbm_pod" json:"pbmPod,omitempty"`
-			ReplsetNames   *[]string `tfsdk:"replset_names" json:"replsetNames,omitempty"`
-			S3             *struct {
+			Completed            *string            `tfsdk:"completed" json:"completed,omitempty"`
+			Destination          *string            `tfsdk:"destination" json:"destination,omitempty"`
+			Error                *string            `tfsdk:"error" json:"error,omitempty"`
+			LastTransition       *string            `tfsdk:"last_transition" json:"lastTransition,omitempty"`
+			LatestRestorableTime *string            `tfsdk:"latest_restorable_time" json:"latestRestorableTime,omitempty"`
+			PbmName              *string            `tfsdk:"pbm_name" json:"pbmName,omitempty"`
+			PbmPod               *string            `tfsdk:"pbm_pod" json:"pbmPod,omitempty"`
+			PbmPods              *map[string]string `tfsdk:"pbm_pods" json:"pbmPods,omitempty"`
+			ReplsetNames         *[]string          `tfsdk:"replset_names" json:"replsetNames,omitempty"`
+			S3                   *struct {
 				Bucket                *string `tfsdk:"bucket" json:"bucket,omitempty"`
 				CredentialsSecret     *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
+				DebugLogLevels        *string `tfsdk:"debug_log_levels" json:"debugLogLevels,omitempty"`
 				EndpointUrl           *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
+				ForcePathStyle        *bool   `tfsdk:"force_path_style" json:"forcePathStyle,omitempty"`
 				InsecureSkipTLSVerify *bool   `tfsdk:"insecure_skip_tls_verify" json:"insecureSkipTLSVerify,omitempty"`
 				MaxUploadParts        *int64  `tfsdk:"max_upload_parts" json:"maxUploadParts,omitempty"`
 				Prefix                *string `tfsdk:"prefix" json:"prefix,omitempty"`
 				Region                *string `tfsdk:"region" json:"region,omitempty"`
-				ServerSideEncryption  *struct {
+				Retryer               *struct {
+					MaxRetryDelay *string `tfsdk:"max_retry_delay" json:"maxRetryDelay,omitempty"`
+					MinRetryDelay *string `tfsdk:"min_retry_delay" json:"minRetryDelay,omitempty"`
+					NumMaxRetries *int64  `tfsdk:"num_max_retries" json:"numMaxRetries,omitempty"`
+				} `tfsdk:"retryer" json:"retryer,omitempty"`
+				ServerSideEncryption *struct {
 					KmsKeyID             *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 					SseAlgorithm         *string `tfsdk:"sse_algorithm" json:"sseAlgorithm,omitempty"`
 					SseCustomerAlgorithm *string `tfsdk:"sse_customer_algorithm" json:"sseCustomerAlgorithm,omitempty"`
@@ -198,6 +208,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbrestoreV1Manifest) Schema(_ context.
 										Computed:            false,
 									},
 
+									"endpoint_url": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"prefix": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -249,6 +267,17 @@ func (r *PsmdbPerconaComPerconaServerMongoDbrestoreV1Manifest) Schema(_ context.
 								},
 							},
 
+							"latest_restorable_time": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									validators.DateTime64Validator(),
+								},
+							},
+
 							"pbm_name": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -260,6 +289,15 @@ func (r *PsmdbPerconaComPerconaServerMongoDbrestoreV1Manifest) Schema(_ context.
 							"pbm_pod": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"pbm_pods": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -294,7 +332,23 @@ func (r *PsmdbPerconaComPerconaServerMongoDbrestoreV1Manifest) Schema(_ context.
 										Computed:            false,
 									},
 
+									"debug_log_levels": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"endpoint_url": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"force_path_style": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -332,6 +386,39 @@ func (r *PsmdbPerconaComPerconaServerMongoDbrestoreV1Manifest) Schema(_ context.
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"retryer": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"max_retry_delay": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"min_retry_delay": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"num_max_retries": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"server_side_encryption": schema.SingleNestedAttribute{

@@ -50,6 +50,7 @@ type CamelApacheOrgBuildV1ManifestData struct {
 			NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			OperatorNamespace *string            `tfsdk:"operator_namespace" json:"operatorNamespace,omitempty"`
 			OrderStrategy     *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+			Platforms         *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 			RequestCPU        *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 			RequestMemory     *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 			Strategy          *string            `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -67,6 +68,7 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					OperatorNamespace *string            `tfsdk:"operator_namespace" json:"operatorNamespace,omitempty"`
 					OrderStrategy     *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+					Platforms         *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 					RequestCPU        *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 					RequestMemory     *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 					Strategy          *string            `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -96,6 +98,7 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					OperatorNamespace *string            `tfsdk:"operator_namespace" json:"operatorNamespace,omitempty"`
 					OrderStrategy     *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+					Platforms         *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 					RequestCPU        *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 					RequestMemory     *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 					Strategy          *string            `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -180,6 +183,10 @@ type CamelApacheOrgBuildV1ManifestData struct {
 				Runtime *struct {
 					ApplicationClass *string `tfsdk:"application_class" json:"applicationClass,omitempty"`
 					Capabilities     *struct {
+						BuildTimeProperties *[]struct {
+							Key   *string `tfsdk:"key" json:"key,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"build_time_properties" json:"buildTimeProperties,omitempty"`
 						Dependencies *[]struct {
 							ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
 							Classifier *string `tfsdk:"classifier" json:"classifier,omitempty"`
@@ -187,6 +194,11 @@ type CamelApacheOrgBuildV1ManifestData struct {
 							Type       *string `tfsdk:"type" json:"type,omitempty"`
 							Version    *string `tfsdk:"version" json:"version,omitempty"`
 						} `tfsdk:"dependencies" json:"dependencies,omitempty"`
+						Metadata          *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
+						RuntimeProperties *[]struct {
+							Key   *string `tfsdk:"key" json:"key,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"runtime_properties" json:"runtimeProperties,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
 					Dependencies *[]struct {
 						ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
@@ -227,6 +239,7 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					OperatorNamespace *string            `tfsdk:"operator_namespace" json:"operatorNamespace,omitempty"`
 					OrderStrategy     *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+					Platforms         *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 					RequestCPU        *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 					RequestMemory     *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 					Strategy          *string            `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -246,6 +259,7 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					OperatorNamespace *string            `tfsdk:"operator_namespace" json:"operatorNamespace,omitempty"`
 					OrderStrategy     *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+					Platforms         *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 					RequestCPU        *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 					RequestMemory     *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 					Strategy          *string            `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -275,6 +289,7 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					OperatorNamespace *string            `tfsdk:"operator_namespace" json:"operatorNamespace,omitempty"`
 					OrderStrategy     *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+					Platforms         *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 					RequestCPU        *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 					RequestMemory     *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 					Strategy          *string            `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -303,6 +318,7 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					OperatorNamespace *string            `tfsdk:"operator_namespace" json:"operatorNamespace,omitempty"`
 					OrderStrategy     *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+					Platforms         *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 					RequestCPU        *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 					RequestMemory     *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 					Strategy          *string            `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -387,6 +403,10 @@ type CamelApacheOrgBuildV1ManifestData struct {
 				Runtime *struct {
 					ApplicationClass *string `tfsdk:"application_class" json:"applicationClass,omitempty"`
 					Capabilities     *struct {
+						BuildTimeProperties *[]struct {
+							Key   *string `tfsdk:"key" json:"key,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"build_time_properties" json:"buildTimeProperties,omitempty"`
 						Dependencies *[]struct {
 							ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
 							Classifier *string `tfsdk:"classifier" json:"classifier,omitempty"`
@@ -394,6 +414,11 @@ type CamelApacheOrgBuildV1ManifestData struct {
 							Type       *string `tfsdk:"type" json:"type,omitempty"`
 							Version    *string `tfsdk:"version" json:"version,omitempty"`
 						} `tfsdk:"dependencies" json:"dependencies,omitempty"`
+						Metadata          *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
+						RuntimeProperties *[]struct {
+							Key   *string `tfsdk:"key" json:"key,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"runtime_properties" json:"runtimeProperties,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
 					Dependencies *[]struct {
 						ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
@@ -432,6 +457,7 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					OperatorNamespace *string            `tfsdk:"operator_namespace" json:"operatorNamespace,omitempty"`
 					OrderStrategy     *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+					Platforms         *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 					RequestCPU        *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 					RequestMemory     *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 					Strategy          *string            `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -450,6 +476,7 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					OperatorNamespace *string            `tfsdk:"operator_namespace" json:"operatorNamespace,omitempty"`
 					OrderStrategy     *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+					Platforms         *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 					RequestCPU        *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 					RequestMemory     *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 					Strategy          *string            `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -606,6 +633,15 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 								},
 							},
 
+							"platforms": schema.ListAttribute{
+								Description:         "The list of platforms used in order to build a container image.",
+								MarkdownDescription: "The list of platforms used in order to build a container image.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"request_cpu": schema.StringAttribute{
 								Description:         "The minimum amount of CPU required. Only used for 'pod' strategy",
 								MarkdownDescription: "The minimum amount of CPU required. Only used for 'pod' strategy",
@@ -668,8 +704,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"buildah": schema.SingleNestedAttribute{
-									Description:         "a BuildahTask, for Buildah strategy Deprecated: use spectrum, jib, s2i or a custom publishing strategy instead",
-									MarkdownDescription: "a BuildahTask, for Buildah strategy Deprecated: use spectrum, jib, s2i or a custom publishing strategy instead",
+									Description:         "a BuildahTask, for Buildah strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
+									MarkdownDescription: "a BuildahTask, for Buildah strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "base image layer",
@@ -734,6 +770,15 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													Validators: []validator.String{
 														stringvalidator.OneOf("dependencies", "fifo", "sequential"),
 													},
+												},
+
+												"platforms": schema.ListAttribute{
+													Description:         "The list of platforms used in order to build a container image.",
+													MarkdownDescription: "The list of platforms used in order to build a container image.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"request_cpu": schema.StringAttribute{
@@ -953,6 +998,15 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													Validators: []validator.String{
 														stringvalidator.OneOf("dependencies", "fifo", "sequential"),
 													},
+												},
+
+												"platforms": schema.ListAttribute{
+													Description:         "The list of platforms used in order to build a container image.",
+													MarkdownDescription: "The list of platforms used in order to build a container image.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"request_cpu": schema.StringAttribute{
@@ -1521,9 +1575,36 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													Description:         "features offered by this runtime",
 													MarkdownDescription: "features offered by this runtime",
 													Attributes: map[string]schema.Attribute{
+														"build_time_properties": schema.ListNestedAttribute{
+															Description:         "Set of required Camel build time properties",
+															MarkdownDescription: "Set of required Camel build time properties",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"value": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"dependencies": schema.ListNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "List of required Maven dependencies",
+															MarkdownDescription: "List of required Maven dependencies",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"artifact_id": schema.StringAttribute{
@@ -1567,8 +1648,44 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 																},
 															},
-															Required: true,
-															Optional: false,
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"metadata": schema.MapAttribute{
+															Description:         "Set of generic metadata",
+															MarkdownDescription: "Set of generic metadata",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"runtime_properties": schema.ListNestedAttribute{
+															Description:         "Set of required Camel runtime properties",
+															MarkdownDescription: "Set of required Camel runtime properties",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"value": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
 															Computed: false,
 														},
 													},
@@ -1878,6 +1995,15 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													},
 												},
 
+												"platforms": schema.ListAttribute{
+													Description:         "The list of platforms used in order to build a container image.",
+													MarkdownDescription: "The list of platforms used in order to build a container image.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"request_cpu": schema.StringAttribute{
 													Description:         "The minimum amount of CPU required. Only used for 'pod' strategy",
 													MarkdownDescription: "The minimum amount of CPU required. Only used for 'pod' strategy",
@@ -2024,6 +2150,15 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													},
 												},
 
+												"platforms": schema.ListAttribute{
+													Description:         "The list of platforms used in order to build a container image.",
+													MarkdownDescription: "The list of platforms used in order to build a container image.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"request_cpu": schema.StringAttribute{
 													Description:         "The minimum amount of CPU required. Only used for 'pod' strategy",
 													MarkdownDescription: "The minimum amount of CPU required. Only used for 'pod' strategy",
@@ -2143,8 +2278,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 								},
 
 								"kaniko": schema.SingleNestedAttribute{
-									Description:         "a KanikoTask, for Kaniko strategy Deprecated: use spectrum, jib, s2i or a custom publishing strategy instead",
-									MarkdownDescription: "a KanikoTask, for Kaniko strategy Deprecated: use spectrum, jib, s2i or a custom publishing strategy instead",
+									Description:         "a KanikoTask, for Kaniko strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
+									MarkdownDescription: "a KanikoTask, for Kaniko strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "base image layer",
@@ -2234,6 +2369,15 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													Validators: []validator.String{
 														stringvalidator.OneOf("dependencies", "fifo", "sequential"),
 													},
+												},
+
+												"platforms": schema.ListAttribute{
+													Description:         "The list of platforms used in order to build a container image.",
+													MarkdownDescription: "The list of platforms used in order to build a container image.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"request_cpu": schema.StringAttribute{
@@ -2445,6 +2589,15 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													Validators: []validator.String{
 														stringvalidator.OneOf("dependencies", "fifo", "sequential"),
 													},
+												},
+
+												"platforms": schema.ListAttribute{
+													Description:         "The list of platforms used in order to build a container image.",
+													MarkdownDescription: "The list of platforms used in order to build a container image.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"request_cpu": schema.StringAttribute{
@@ -3013,9 +3166,36 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													Description:         "features offered by this runtime",
 													MarkdownDescription: "features offered by this runtime",
 													Attributes: map[string]schema.Attribute{
+														"build_time_properties": schema.ListNestedAttribute{
+															Description:         "Set of required Camel build time properties",
+															MarkdownDescription: "Set of required Camel build time properties",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"value": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"dependencies": schema.ListNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "List of required Maven dependencies",
+															MarkdownDescription: "List of required Maven dependencies",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"artifact_id": schema.StringAttribute{
@@ -3059,8 +3239,44 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 																},
 															},
-															Required: true,
-															Optional: false,
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"metadata": schema.MapAttribute{
+															Description:         "Set of generic metadata",
+															MarkdownDescription: "Set of generic metadata",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"runtime_properties": schema.ListNestedAttribute{
+															Description:         "Set of required Camel runtime properties",
+															MarkdownDescription: "Set of required Camel runtime properties",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"value": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
 															Computed: false,
 														},
 													},
@@ -3353,6 +3569,15 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													},
 												},
 
+												"platforms": schema.ListAttribute{
+													Description:         "The list of platforms used in order to build a container image.",
+													MarkdownDescription: "The list of platforms used in order to build a container image.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"request_cpu": schema.StringAttribute{
 													Description:         "The minimum amount of CPU required. Only used for 'pod' strategy",
 													MarkdownDescription: "The minimum amount of CPU required. Only used for 'pod' strategy",
@@ -3423,8 +3648,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 								},
 
 								"spectrum": schema.SingleNestedAttribute{
-									Description:         "a SpectrumTask, for Spectrum strategy",
-									MarkdownDescription: "a SpectrumTask, for Spectrum strategy",
+									Description:         "a SpectrumTask, for Spectrum strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
+									MarkdownDescription: "a SpectrumTask, for Spectrum strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "base image layer",
@@ -3489,6 +3714,15 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													Validators: []validator.String{
 														stringvalidator.OneOf("dependencies", "fifo", "sequential"),
 													},
+												},
+
+												"platforms": schema.ListAttribute{
+													Description:         "The list of platforms used in order to build a container image.",
+													MarkdownDescription: "The list of platforms used in order to build a container image.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"request_cpu": schema.StringAttribute{

@@ -45,10 +45,9 @@ type MulticlusterCrdAntreaIoClusterSetV1Alpha2ManifestData struct {
 	Spec *struct {
 		ClusterID *string `tfsdk:"cluster_id" json:"clusterID,omitempty"`
 		Leaders   *[]struct {
-			ClusterID      *string `tfsdk:"cluster_id" json:"clusterID,omitempty"`
-			Secret         *string `tfsdk:"secret" json:"secret,omitempty"`
-			Server         *string `tfsdk:"server" json:"server,omitempty"`
-			ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+			ClusterID *string `tfsdk:"cluster_id" json:"clusterID,omitempty"`
+			Secret    *string `tfsdk:"secret" json:"secret,omitempty"`
+			Server    *string `tfsdk:"server" json:"server,omitempty"`
 		} `tfsdk:"leaders" json:"leaders,omitempty"`
 		Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -153,24 +152,16 @@ func (r *MulticlusterCrdAntreaIoClusterSetV1Alpha2Manifest) Schema(_ context.Con
 								},
 
 								"secret": schema.StringAttribute{
-									Description:         "Name of the Secret resource in the member cluster, which stores the token to access the leader cluster's API server.",
-									MarkdownDescription: "Name of the Secret resource in the member cluster, which stores the token to access the leader cluster's API server.",
+									Description:         "Name of the Secret resource in the member cluster, which storesthe token to access the leader cluster's API server.",
+									MarkdownDescription: "Name of the Secret resource in the member cluster, which storesthe token to access the leader cluster's API server.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"server": schema.StringAttribute{
-									Description:         "API server endpoint of the leader cluster. E.g. 'https://172.18.0.1:6443', 'https://example.com:6443'.",
-									MarkdownDescription: "API server endpoint of the leader cluster. E.g. 'https://172.18.0.1:6443', 'https://example.com:6443'.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"service_account": schema.StringAttribute{
-									Description:         "ServiceAccount in the leader cluster, from which the member cluster's token is generated. This is an optional field which helps admin to check which ServiceAccount is used by a member cluster to access the leader cluster.  DEPRECATED This field is planned to be removed in the future releases.",
-									MarkdownDescription: "ServiceAccount in the leader cluster, from which the member cluster's token is generated. This is an optional field which helps admin to check which ServiceAccount is used by a member cluster to access the leader cluster.  DEPRECATED This field is planned to be removed in the future releases.",
+									Description:         "API server endpoint of the leader cluster.E.g. 'https://172.18.0.1:6443', 'https://example.com:6443'.",
+									MarkdownDescription: "API server endpoint of the leader cluster.E.g. 'https://172.18.0.1:6443', 'https://example.com:6443'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -183,8 +174,8 @@ func (r *MulticlusterCrdAntreaIoClusterSetV1Alpha2Manifest) Schema(_ context.Con
 					},
 
 					"namespace": schema.StringAttribute{
-						Description:         "The leader cluster Namespace in which the ClusterSet is defined. Used in a member cluster.",
-						MarkdownDescription: "The leader cluster Namespace in which the ClusterSet is defined. Used in a member cluster.",
+						Description:         "The leader cluster Namespace in which the ClusterSet is defined.Used in a member cluster.",
+						MarkdownDescription: "The leader cluster Namespace in which the ClusterSet is defined.Used in a member cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

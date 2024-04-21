@@ -73,6 +73,10 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"config_map" json:"configMap,omitempty"`
+				GlobalReference *struct {
+					JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"global_reference" json:"globalReference,omitempty"`
 				ImageRegistry *struct {
 					ImageRegistryCredentials *struct {
 						AllowInsecureRegistry *bool     `tfsdk:"allow_insecure_registry" json:"allowInsecureRegistry,omitempty"`
@@ -177,12 +181,13 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"selector" json:"selector,omitempty"`
 				} `tfsdk:"clone_list" json:"cloneList,omitempty"`
-				Data        *map[string]string `tfsdk:"data" json:"data,omitempty"`
-				Kind        *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Name        *string            `tfsdk:"name" json:"name,omitempty"`
-				Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-				Synchronize *bool              `tfsdk:"synchronize" json:"synchronize,omitempty"`
-				Uid         *string            `tfsdk:"uid" json:"uid,omitempty"`
+				Data                           *map[string]string `tfsdk:"data" json:"data,omitempty"`
+				Kind                           *string            `tfsdk:"kind" json:"kind,omitempty"`
+				Name                           *string            `tfsdk:"name" json:"name,omitempty"`
+				Namespace                      *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+				OrphanDownstreamOnPolicyDelete *bool              `tfsdk:"orphan_downstream_on_policy_delete" json:"orphanDownstreamOnPolicyDelete,omitempty"`
+				Synchronize                    *bool              `tfsdk:"synchronize" json:"synchronize,omitempty"`
+				Uid                            *string            `tfsdk:"uid" json:"uid,omitempty"`
 			} `tfsdk:"generate" json:"generate,omitempty"`
 			ImageExtractors *map[string]string `tfsdk:"image_extractors" json:"imageExtractors,omitempty"`
 			Match           *struct {
@@ -275,6 +280,10 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						GlobalReference *struct {
+							JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"global_reference" json:"globalReference,omitempty"`
 						ImageRegistry *struct {
 							ImageRegistryCredentials *struct {
 								AllowInsecureRegistry *bool     `tfsdk:"allow_insecure_registry" json:"allowInsecureRegistry,omitempty"`
@@ -333,6 +342,10 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						GlobalReference *struct {
+							JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"global_reference" json:"globalReference,omitempty"`
 						ImageRegistry *struct {
 							ImageRegistryCredentials *struct {
 								AllowInsecureRegistry *bool     `tfsdk:"allow_insecure_registry" json:"allowInsecureRegistry,omitempty"`
@@ -443,6 +456,10 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						GlobalReference *struct {
+							JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"global_reference" json:"globalReference,omitempty"`
 						ImageRegistry *struct {
 							ImageRegistryCredentials *struct {
 								AllowInsecureRegistry *bool     `tfsdk:"allow_insecure_registry" json:"allowInsecureRegistry,omitempty"`
@@ -492,8 +509,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 								Cert      *string `tfsdk:"cert" json:"cert,omitempty"`
 								CertChain *string `tfsdk:"cert_chain" json:"certChain,omitempty"`
 								Ctlog     *struct {
-									IgnoreSCT *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
-									Pubkey    *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									IgnoreSCT    *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
+									Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 								} `tfsdk:"ctlog" json:"ctlog,omitempty"`
 								Rekor *struct {
 									IgnoreTlog *bool   `tfsdk:"ignore_tlog" json:"ignoreTlog,omitempty"`
@@ -504,8 +522,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Keyless *struct {
 								AdditionalExtensions *map[string]string `tfsdk:"additional_extensions" json:"additionalExtensions,omitempty"`
 								Ctlog                *struct {
-									IgnoreSCT *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
-									Pubkey    *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									IgnoreSCT    *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
+									Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 								} `tfsdk:"ctlog" json:"ctlog,omitempty"`
 								Issuer *string `tfsdk:"issuer" json:"issuer,omitempty"`
 								Rekor  *struct {
@@ -518,8 +537,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							} `tfsdk:"keyless" json:"keyless,omitempty"`
 							Keys *struct {
 								Ctlog *struct {
-									IgnoreSCT *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
-									Pubkey    *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									IgnoreSCT    *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
+									Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 								} `tfsdk:"ctlog" json:"ctlog,omitempty"`
 								Kms        *string `tfsdk:"kms" json:"kms,omitempty"`
 								PublicKeys *string `tfsdk:"public_keys" json:"publicKeys,omitempty"`
@@ -577,8 +597,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 								Cert      *string `tfsdk:"cert" json:"cert,omitempty"`
 								CertChain *string `tfsdk:"cert_chain" json:"certChain,omitempty"`
 								Ctlog     *struct {
-									IgnoreSCT *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
-									Pubkey    *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									IgnoreSCT    *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
+									Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 								} `tfsdk:"ctlog" json:"ctlog,omitempty"`
 								Rekor *struct {
 									IgnoreTlog *bool   `tfsdk:"ignore_tlog" json:"ignoreTlog,omitempty"`
@@ -589,8 +610,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Keyless *struct {
 								AdditionalExtensions *map[string]string `tfsdk:"additional_extensions" json:"additionalExtensions,omitempty"`
 								Ctlog                *struct {
-									IgnoreSCT *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
-									Pubkey    *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									IgnoreSCT    *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
+									Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 								} `tfsdk:"ctlog" json:"ctlog,omitempty"`
 								Issuer *string `tfsdk:"issuer" json:"issuer,omitempty"`
 								Rekor  *struct {
@@ -603,8 +625,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							} `tfsdk:"keyless" json:"keyless,omitempty"`
 							Keys *struct {
 								Ctlog *struct {
-									IgnoreSCT *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
-									Pubkey    *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									IgnoreSCT    *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
+									Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+									TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 								} `tfsdk:"ctlog" json:"ctlog,omitempty"`
 								Kms        *string `tfsdk:"kms" json:"kms,omitempty"`
 								PublicKeys *string `tfsdk:"public_keys" json:"publicKeys,omitempty"`
@@ -648,8 +671,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Cert      *string `tfsdk:"cert" json:"cert,omitempty"`
 							CertChain *string `tfsdk:"cert_chain" json:"certChain,omitempty"`
 							Ctlog     *struct {
-								IgnoreSCT *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
-								Pubkey    *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+								IgnoreSCT    *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
+								Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+								TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 							} `tfsdk:"ctlog" json:"ctlog,omitempty"`
 							Rekor *struct {
 								IgnoreTlog *bool   `tfsdk:"ignore_tlog" json:"ignoreTlog,omitempty"`
@@ -660,8 +684,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 						Keyless *struct {
 							AdditionalExtensions *map[string]string `tfsdk:"additional_extensions" json:"additionalExtensions,omitempty"`
 							Ctlog                *struct {
-								IgnoreSCT *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
-								Pubkey    *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+								IgnoreSCT    *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
+								Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+								TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 							} `tfsdk:"ctlog" json:"ctlog,omitempty"`
 							Issuer *string `tfsdk:"issuer" json:"issuer,omitempty"`
 							Rekor  *struct {
@@ -674,8 +699,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 						} `tfsdk:"keyless" json:"keyless,omitempty"`
 						Keys *struct {
 							Ctlog *struct {
-								IgnoreSCT *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
-								Pubkey    *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+								IgnoreSCT    *bool   `tfsdk:"ignore_sct" json:"ignoreSCT,omitempty"`
+								Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
+								TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 							} `tfsdk:"ctlog" json:"ctlog,omitempty"`
 							Kms        *string `tfsdk:"kms" json:"kms,omitempty"`
 							PublicKeys *string `tfsdk:"public_keys" json:"publicKeys,omitempty"`
@@ -723,6 +749,12 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 			} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 			Namespaces *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 		} `tfsdk:"validation_failure_action_overrides" json:"validationFailureActionOverrides,omitempty"`
+		WebhookConfiguration *struct {
+			MatchConditions *[]struct {
+				Expression *string `tfsdk:"expression" json:"expression,omitempty"`
+				Name       *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"match_conditions" json:"matchConditions,omitempty"`
+		} `tfsdk:"webhook_configuration" json:"webhookConfiguration,omitempty"`
 		WebhookTimeoutSeconds *int64 `tfsdk:"webhook_timeout_seconds" json:"webhookTimeoutSeconds,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -793,16 +825,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "Spec declares policy behaviors.",
 				Attributes: map[string]schema.Attribute{
 					"admission": schema.BoolAttribute{
-						Description:         "Admission controls if rules are applied during admission. Optional. Default value is 'true'.",
-						MarkdownDescription: "Admission controls if rules are applied during admission. Optional. Default value is 'true'.",
+						Description:         "Admission controls if rules are applied during admission.Optional. Default value is 'true'.",
+						MarkdownDescription: "Admission controls if rules are applied during admission.Optional. Default value is 'true'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"apply_rules": schema.StringAttribute{
-						Description:         "ApplyRules controls how rules in a policy are applied. Rule are processed in the order of declaration. When set to 'One' processing stops after a rule has been applied i.e. the rule matches and results in a pass, fail, or error. When set to 'All' all rules in the policy are processed. The default is 'All'.",
-						MarkdownDescription: "ApplyRules controls how rules in a policy are applied. Rule are processed in the order of declaration. When set to 'One' processing stops after a rule has been applied i.e. the rule matches and results in a pass, fail, or error. When set to 'All' all rules in the policy are processed. The default is 'All'.",
+						Description:         "ApplyRules controls how rules in a policy are applied. Rule are processed inthe order of declaration. When set to 'One' processing stops after a rule hasbeen applied i.e. the rule matches and results in a pass, fail, or error. Whenset to 'All' all rules in the policy are processed. The default is 'All'.",
+						MarkdownDescription: "ApplyRules controls how rules in a policy are applied. Rule are processed inthe order of declaration. When set to 'One' processing stops after a rule hasbeen applied i.e. the rule matches and results in a pass, fail, or error. Whenset to 'All' all rules in the policy are processed. The default is 'All'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -812,16 +844,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"background": schema.BoolAttribute{
-						Description:         "Background controls if rules are applied to existing resources during a background scan. Optional. Default value is 'true'. The value must be set to 'false' if the policy rule uses variables that are only available in the admission review request (e.g. user name).",
-						MarkdownDescription: "Background controls if rules are applied to existing resources during a background scan. Optional. Default value is 'true'. The value must be set to 'false' if the policy rule uses variables that are only available in the admission review request (e.g. user name).",
+						Description:         "Background controls if rules are applied to existing resources during a background scan.Optional. Default value is 'true'. The value must be set to 'false' if the policy ruleuses variables that are only available in the admission review request (e.g. user name).",
+						MarkdownDescription: "Background controls if rules are applied to existing resources during a background scan.Optional. Default value is 'true'. The value must be set to 'false' if the policy ruleuses variables that are only available in the admission review request (e.g. user name).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"failure_policy": schema.StringAttribute{
-						Description:         "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled. Rules within the same policy share the same failure behavior. Allowed values are Ignore or Fail. Defaults to Fail.",
-						MarkdownDescription: "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled. Rules within the same policy share the same failure behavior. Allowed values are Ignore or Fail. Defaults to Fail.",
+						Description:         "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled.Rules within the same policy share the same failure behavior.Allowed values are Ignore or Fail. Defaults to Fail.",
+						MarkdownDescription: "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled.Rules within the same policy share the same failure behavior.Allowed values are Ignore or Fail. Defaults to Fail.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -831,8 +863,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"generate_existing": schema.BoolAttribute{
-						Description:         "GenerateExisting controls whether to trigger generate rule in existing resources If is set to 'true' generate rule will be triggered and applied to existing matched resources. Defaults to 'false' if not specified.",
-						MarkdownDescription: "GenerateExisting controls whether to trigger generate rule in existing resources If is set to 'true' generate rule will be triggered and applied to existing matched resources. Defaults to 'false' if not specified.",
+						Description:         "GenerateExisting controls whether to trigger generate rule in existing resourcesIf is set to 'true' generate rule will be triggered and applied to existing matched resources.Defaults to 'false' if not specified.",
+						MarkdownDescription: "GenerateExisting controls whether to trigger generate rule in existing resourcesIf is set to 'true' generate rule will be triggered and applied to existing matched resources.Defaults to 'false' if not specified.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -847,34 +879,34 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"mutate_existing_on_policy_update": schema.BoolAttribute{
-						Description:         "MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events. Default value is 'false'.",
-						MarkdownDescription: "MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events. Default value is 'false'.",
+						Description:         "MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events.Default value is 'false'.",
+						MarkdownDescription: "MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events.Default value is 'false'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"rules": schema.ListNestedAttribute{
-						Description:         "Rules is a list of Rule instances. A Policy contains multiple rules and each rule can validate, mutate, or generate resources.",
-						MarkdownDescription: "Rules is a list of Rule instances. A Policy contains multiple rules and each rule can validate, mutate, or generate resources.",
+						Description:         "Rules is a list of Rule instances. A Policy contains multiple rules andeach rule can validate, mutate, or generate resources.",
+						MarkdownDescription: "Rules is a list of Rule instances. A Policy contains multiple rules andeach rule can validate, mutate, or generate resources.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"cel_preconditions": schema.ListNestedAttribute{
-									Description:         "CELPreconditions are used to determine if a policy rule should be applied by evaluating a set of CEL conditions. It can only be used with the validate.cel subrule",
-									MarkdownDescription: "CELPreconditions are used to determine if a policy rule should be applied by evaluating a set of CEL conditions. It can only be used with the validate.cel subrule",
+									Description:         "CELPreconditions are used to determine if a policy rule should be applied by evaluating aset of CEL conditions. It can only be used with the validate.cel subrule",
+									MarkdownDescription: "CELPreconditions are used to determine if a policy rule should be applied by evaluating aset of CEL conditions. It can only be used with the validate.cel subrule",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"expression": schema.StringAttribute{
-												Description:         "Expression represents the expression which will be evaluated by CEL. Must evaluate to bool. CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:  'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest). 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource. Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/  Required.",
-												MarkdownDescription: "Expression represents the expression which will be evaluated by CEL. Must evaluate to bool. CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:  'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest). 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource. Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/  Required.",
+												Description:         "Expression represents the expression which will be evaluated by CEL. Must evaluate to bool.CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:'object' - The object from the incoming request. The value is null for DELETE requests.'oldObject' - The existing object. The value is null for CREATE requests.'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest).'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.  See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the  request resource.Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/Required.",
+												MarkdownDescription: "Expression represents the expression which will be evaluated by CEL. Must evaluate to bool.CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:'object' - The object from the incoming request. The value is null for DELETE requests.'oldObject' - The existing object. The value is null for CREATE requests.'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest).'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.  See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the  request resource.Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/Required.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name is an identifier for this match condition, used for strategic merging of MatchConditions, as well as providing an identifier for logging purposes. A good name should be descriptive of the associated expression. Name must be a qualified name consisting of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or '123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]') with an optional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')  Required.",
-												MarkdownDescription: "Name is an identifier for this match condition, used for strategic merging of MatchConditions, as well as providing an identifier for logging purposes. A good name should be descriptive of the associated expression. Name must be a qualified name consisting of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or '123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]') with an optional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')  Required.",
+												Description:         "Name is an identifier for this match condition, used for strategic merging of MatchConditions,as well as providing an identifier for logging purposes. A good name should be descriptive ofthe associated expression.Name must be a qualified name consisting of alphanumeric characters, '-', '_' or '.', andmust start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or'123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]') with anoptional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')Required.",
+												MarkdownDescription: "Name is an identifier for this match condition, used for strategic merging of MatchConditions,as well as providing an identifier for logging purposes. A good name should be descriptive ofthe associated expression.Name must be a qualified name consisting of alphanumeric characters, '-', '_' or '.', andmust start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or'123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]') with anoptional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')Required.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -892,12 +924,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"api_call": schema.SingleNestedAttribute{
-												Description:         "APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry.",
-												MarkdownDescription: "APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry.",
+												Description:         "APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry.",
+												MarkdownDescription: "APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry.",
 												Attributes: map[string]schema.Attribute{
 													"data": schema.ListNestedAttribute{
-														Description:         "Data specifies the POST data sent to the server.",
-														MarkdownDescription: "Data specifies the POST data sent to the server.",
+														Description:         "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
+														MarkdownDescription: "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
@@ -924,16 +956,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"jmes_path": schema.StringAttribute{
-														Description:         "JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.",
-														MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.",
+														Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+														MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"method": schema.StringAttribute{
-														Description:         "Method is the HTTP request type (GET or POST).",
-														MarkdownDescription: "Method is the HTTP request type (GET or POST).",
+														Description:         "Method is the HTTP request type (GET or POST). Defaults to GET.",
+														MarkdownDescription: "Method is the HTTP request type (GET or POST). Defaults to GET.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -943,20 +975,20 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"service": schema.SingleNestedAttribute{
-														Description:         "Service is an API call to a JSON web service",
-														MarkdownDescription: "Service is an API call to a JSON web service",
+														Description:         "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
+														MarkdownDescription: "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
 														Attributes: map[string]schema.Attribute{
 															"ca_bundle": schema.StringAttribute{
-																Description:         "CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.",
-																MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.",
+																Description:         "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
+																MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"url": schema.StringAttribute{
-																Description:         "URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.",
-																MarkdownDescription: "URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.",
+																Description:         "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
+																MarkdownDescription: "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -968,8 +1000,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"url_path": schema.StringAttribute{
-														Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.",
-														MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.",
+														Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
+														MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1005,9 +1037,34 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 												Computed: false,
 											},
 
+											"global_reference": schema.SingleNestedAttribute{
+												Description:         "GlobalContextEntryReference is a reference to a cached global context entry.",
+												MarkdownDescription: "GlobalContextEntryReference is a reference to a cached global context entry.",
+												Attributes: map[string]schema.Attribute{
+													"jmes_path": schema.StringAttribute{
+														Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+														MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the global context entry",
+														MarkdownDescription: "Name of the global context entry",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image_registry": schema.SingleNestedAttribute{
-												Description:         "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details.",
-												MarkdownDescription: "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details.",
+												Description:         "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails.",
+												MarkdownDescription: "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails.",
 												Attributes: map[string]schema.Attribute{
 													"image_registry_credentials": schema.SingleNestedAttribute{
 														Description:         "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
@@ -1022,8 +1079,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"providers": schema.ListAttribute{
-																Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
-																MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+																Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
+																MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1031,8 +1088,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"secrets": schema.ListAttribute{
-																Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
-																MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+																Description:         "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
+																MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1045,16 +1102,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"jmes_path": schema.StringAttribute{
-														Description:         "JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.",
-														MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.",
+														Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.",
+														MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"reference": schema.StringAttribute{
-														Description:         "Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest",
-														MarkdownDescription: "Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest",
+														Description:         "Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest",
+														MarkdownDescription: "Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -1078,8 +1135,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "Variable defines an arbitrary JMESPath context variable that can be defined inline.",
 												Attributes: map[string]schema.Attribute{
 													"default": schema.MapAttribute{
-														Description:         "Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil",
-														MarkdownDescription: "Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil",
+														Description:         "Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil",
+														MarkdownDescription: "Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -1087,8 +1144,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"jmes_path": schema.StringAttribute{
-														Description:         "JMESPath is an optional JMESPath Expression that can be used to transform the variable.",
-														MarkdownDescription: "JMESPath is an optional JMESPath Expression that can be used to transform the variable.",
+														Description:         "JMESPath is an optional JMESPath Expression that can be used totransform the variable.",
+														MarkdownDescription: "JMESPath is an optional JMESPath Expression that can be used totransform the variable.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1115,8 +1172,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"exclude": schema.SingleNestedAttribute{
-									Description:         "ExcludeResources defines when this policy rule should not be applied. The exclude criteria can include resource information (e.g. kind, name, namespace, labels) and admission review request information like the name or role.",
-									MarkdownDescription: "ExcludeResources defines when this policy rule should not be applied. The exclude criteria can include resource information (e.g. kind, name, namespace, labels) and admission review request information like the name or role.",
+									Description:         "ExcludeResources defines when this policy rule should not be applied. The excludecriteria can include resource information (e.g. kind, name, namespace, labels)and admission review request information like the name or role.",
+									MarkdownDescription: "ExcludeResources defines when this policy rule should not be applied. The excludecriteria can include resource information (e.g. kind, name, namespace, labels)and admission review request information like the name or role.",
 									Attributes: map[string]schema.Attribute{
 										"all": schema.ListNestedAttribute{
 											Description:         "All allows specifying resources which will be ANDed",
@@ -1137,8 +1194,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "ResourceDescription contains information about the resource being created or modified.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
-																MarkdownDescription: "Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
+																Description:         "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
+																MarkdownDescription: "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1155,16 +1212,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
-																MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
+																Description:         "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
+																MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"names": schema.ListAttribute{
-																Description:         "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
-																MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+																Description:         "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+																MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1172,8 +1229,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"namespace_selector": schema.SingleNestedAttribute{
-																Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
-																MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+																Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
+																MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1189,16 +1246,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1212,8 +1269,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -1226,8 +1283,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"namespaces": schema.ListAttribute{
-																Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
-																MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+																Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+																MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1244,8 +1301,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"selector": schema.SingleNestedAttribute{
-																Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
-																MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+																Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
+																MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1261,16 +1318,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1284,8 +1341,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -1317,16 +1374,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"api_group": schema.StringAttribute{
-																	Description:         "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
-																	MarkdownDescription: "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+																	Description:         "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+																	MarkdownDescription: "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
-																	MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+																	Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+																	MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1341,8 +1398,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
-																	MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
+																	Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
+																	MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1379,8 +1436,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "ResourceDescription contains information about the resource being created or modified.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
-																MarkdownDescription: "Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
+																Description:         "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
+																MarkdownDescription: "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1397,16 +1454,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
-																MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
+																Description:         "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
+																MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"names": schema.ListAttribute{
-																Description:         "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
-																MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+																Description:         "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+																MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1414,8 +1471,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"namespace_selector": schema.SingleNestedAttribute{
-																Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
-																MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+																Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
+																MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1431,16 +1488,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1454,8 +1511,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -1468,8 +1525,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"namespaces": schema.ListAttribute{
-																Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
-																MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+																Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+																MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1486,8 +1543,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"selector": schema.SingleNestedAttribute{
-																Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
-																MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+																Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
+																MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1503,16 +1560,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1526,8 +1583,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -1559,16 +1616,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"api_group": schema.StringAttribute{
-																	Description:         "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
-																	MarkdownDescription: "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+																	Description:         "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+																	MarkdownDescription: "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
-																	MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+																	Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+																	MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1583,8 +1640,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
-																	MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
+																	Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
+																	MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1620,8 +1677,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"clone": schema.SingleNestedAttribute{
-											Description:         "Clone specifies the source resource used to populate each generated resource. At most one of Data or Clone can be specified. If neither are provided, the generated resource will be created with default data only.",
-											MarkdownDescription: "Clone specifies the source resource used to populate each generated resource. At most one of Data or Clone can be specified. If neither are provided, the generated resource will be created with default data only.",
+											Description:         "Clone specifies the source resource used to populate each generated resource.At most one of Data or Clone can be specified. If neither are provided, the generatedresource will be created with default data only.",
+											MarkdownDescription: "Clone specifies the source resource used to populate each generated resource.At most one of Data or Clone can be specified. If neither are provided, the generatedresource will be created with default data only.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "Name specifies name of the resource.",
@@ -1666,8 +1723,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"selector": schema.SingleNestedAttribute{
-													Description:         "Selector is a label selector. Label keys and values in 'matchLabels'. wildcard characters are not supported.",
-													MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels'. wildcard characters are not supported.",
+													Description:         "Selector is a label selector. Label keys and values in 'matchLabels'.wildcard characters are not supported.",
+													MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels'.wildcard characters are not supported.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1683,16 +1740,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -1706,8 +1763,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1725,8 +1782,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"data": schema.MapAttribute{
-											Description:         "Data provides the resource declaration used to populate each generated resource. At most one of Data or Clone must be specified. If neither are provided, the generated resource will be created with default data only.",
-											MarkdownDescription: "Data provides the resource declaration used to populate each generated resource. At most one of Data or Clone must be specified. If neither are provided, the generated resource will be created with default data only.",
+											Description:         "Data provides the resource declaration used to populate each generated resource.At most one of Data or Clone must be specified. If neither are provided, the generatedresource will be created with default data only.",
+											MarkdownDescription: "Data provides the resource declaration used to populate each generated resource.At most one of Data or Clone must be specified. If neither are provided, the generatedresource will be created with default data only.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1757,9 +1814,17 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"orphan_downstream_on_policy_delete": schema.BoolAttribute{
+											Description:         "OrphanDownstreamOnPolicyDelete controls whether generated resources should be deleted when the rule that generatedthem is deleted with synchronization enabled. This option is only applicable to generate rules of the data type.See https://kyverno.io/docs/writing-policies/generate/#data-examples.Defaults to 'false' if not specified.",
+											MarkdownDescription: "OrphanDownstreamOnPolicyDelete controls whether generated resources should be deleted when the rule that generatedthem is deleted with synchronization enabled. This option is only applicable to generate rules of the data type.See https://kyverno.io/docs/writing-policies/generate/#data-examples.Defaults to 'false' if not specified.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"synchronize": schema.BoolAttribute{
-											Description:         "Synchronize controls if generated resources should be kept in-sync with their source resource. If Synchronize is set to 'true' changes to generated resources will be overwritten with resource data from Data or the resource specified in the Clone declaration. Optional. Defaults to 'false' if not specified.",
-											MarkdownDescription: "Synchronize controls if generated resources should be kept in-sync with their source resource. If Synchronize is set to 'true' changes to generated resources will be overwritten with resource data from Data or the resource specified in the Clone declaration. Optional. Defaults to 'false' if not specified.",
+											Description:         "Synchronize controls if generated resources should be kept in-sync with their source resource.If Synchronize is set to 'true' changes to generated resources will be overwritten with resourcedata from Data or the resource specified in the Clone declaration.Optional. Defaults to 'false' if not specified.",
+											MarkdownDescription: "Synchronize controls if generated resources should be kept in-sync with their source resource.If Synchronize is set to 'true' changes to generated resources will be overwritten with resourcedata from Data or the resource specified in the Clone declaration.Optional. Defaults to 'false' if not specified.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1779,8 +1844,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"image_extractors": schema.MapAttribute{
-									Description:         "ImageExtractors defines a mapping from kinds to ImageExtractorConfigs. This config is only valid for verifyImages rules.",
-									MarkdownDescription: "ImageExtractors defines a mapping from kinds to ImageExtractorConfigs. This config is only valid for verifyImages rules.",
+									Description:         "ImageExtractors defines a mapping from kinds to ImageExtractorConfigs.This config is only valid for verifyImages rules.",
+									MarkdownDescription: "ImageExtractors defines a mapping from kinds to ImageExtractorConfigs.This config is only valid for verifyImages rules.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1788,8 +1853,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"match": schema.SingleNestedAttribute{
-									Description:         "MatchResources defines when this policy rule should be applied. The match criteria can include resource information (e.g. kind, name, namespace, labels) and admission review request information like the user name or role. At least one kind is required.",
-									MarkdownDescription: "MatchResources defines when this policy rule should be applied. The match criteria can include resource information (e.g. kind, name, namespace, labels) and admission review request information like the user name or role. At least one kind is required.",
+									Description:         "MatchResources defines when this policy rule should be applied. The matchcriteria can include resource information (e.g. kind, name, namespace, labels)and admission review request information like the user name or role.At least one kind is required.",
+									MarkdownDescription: "MatchResources defines when this policy rule should be applied. The matchcriteria can include resource information (e.g. kind, name, namespace, labels)and admission review request information like the user name or role.At least one kind is required.",
 									Attributes: map[string]schema.Attribute{
 										"all": schema.ListNestedAttribute{
 											Description:         "All allows specifying resources which will be ANDed",
@@ -1810,8 +1875,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "ResourceDescription contains information about the resource being created or modified.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
-																MarkdownDescription: "Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
+																Description:         "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
+																MarkdownDescription: "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1828,16 +1893,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
-																MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
+																Description:         "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
+																MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"names": schema.ListAttribute{
-																Description:         "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
-																MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+																Description:         "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+																MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1845,8 +1910,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"namespace_selector": schema.SingleNestedAttribute{
-																Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
-																MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+																Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
+																MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1862,16 +1927,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1885,8 +1950,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -1899,8 +1964,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"namespaces": schema.ListAttribute{
-																Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
-																MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+																Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+																MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1917,8 +1982,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"selector": schema.SingleNestedAttribute{
-																Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
-																MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+																Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
+																MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1934,16 +1999,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1957,8 +2022,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -1990,16 +2055,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"api_group": schema.StringAttribute{
-																	Description:         "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
-																	MarkdownDescription: "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+																	Description:         "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+																	MarkdownDescription: "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
-																	MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+																	Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+																	MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -2014,8 +2079,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
-																	MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
+																	Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
+																	MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2052,8 +2117,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "ResourceDescription contains information about the resource being created or modified.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
-																MarkdownDescription: "Annotations is a  map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
+																Description:         "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
+																MarkdownDescription: "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2070,16 +2135,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
-																MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
+																Description:         "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
+																MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"names": schema.ListAttribute{
-																Description:         "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
-																MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+																Description:         "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+																MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2087,8 +2152,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"namespace_selector": schema.SingleNestedAttribute{
-																Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
-																MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+																Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
+																MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2104,16 +2169,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2127,8 +2192,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -2141,8 +2206,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"namespaces": schema.ListAttribute{
-																Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
-																MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+																Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+																MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2159,8 +2224,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"selector": schema.SingleNestedAttribute{
-																Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
-																MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+																Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
+																MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2176,16 +2241,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2199,8 +2264,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -2232,16 +2297,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"api_group": schema.StringAttribute{
-																	Description:         "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
-																	MarkdownDescription: "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+																	Description:         "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+																	MarkdownDescription: "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
-																	MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+																	Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+																	MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -2256,8 +2321,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
-																	MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
+																	Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
+																	MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2295,12 +2360,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"api_call": schema.SingleNestedAttribute{
-																	Description:         "APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry.",
-																	MarkdownDescription: "APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry.",
+																	Description:         "APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry.",
+																	MarkdownDescription: "APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry.",
 																	Attributes: map[string]schema.Attribute{
 																		"data": schema.ListNestedAttribute{
-																			Description:         "Data specifies the POST data sent to the server.",
-																			MarkdownDescription: "Data specifies the POST data sent to the server.",
+																			Description:         "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
+																			MarkdownDescription: "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
@@ -2327,16 +2392,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"jmes_path": schema.StringAttribute{
-																			Description:         "JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.",
-																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.",
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"method": schema.StringAttribute{
-																			Description:         "Method is the HTTP request type (GET or POST).",
-																			MarkdownDescription: "Method is the HTTP request type (GET or POST).",
+																			Description:         "Method is the HTTP request type (GET or POST). Defaults to GET.",
+																			MarkdownDescription: "Method is the HTTP request type (GET or POST). Defaults to GET.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2346,20 +2411,20 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"service": schema.SingleNestedAttribute{
-																			Description:         "Service is an API call to a JSON web service",
-																			MarkdownDescription: "Service is an API call to a JSON web service",
+																			Description:         "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
+																			MarkdownDescription: "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
 																			Attributes: map[string]schema.Attribute{
 																				"ca_bundle": schema.StringAttribute{
-																					Description:         "CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.",
-																					MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.",
+																					Description:         "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
+																					MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"url": schema.StringAttribute{
-																					Description:         "URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.",
-																					MarkdownDescription: "URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.",
+																					Description:         "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
+																					MarkdownDescription: "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -2371,8 +2436,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"url_path": schema.StringAttribute{
-																			Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.",
-																			MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.",
+																			Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
+																			MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2408,9 +2473,34 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	Computed: false,
 																},
 
+																"global_reference": schema.SingleNestedAttribute{
+																	Description:         "GlobalContextEntryReference is a reference to a cached global context entry.",
+																	MarkdownDescription: "GlobalContextEntryReference is a reference to a cached global context entry.",
+																	Attributes: map[string]schema.Attribute{
+																		"jmes_path": schema.StringAttribute{
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the global context entry",
+																			MarkdownDescription: "Name of the global context entry",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"image_registry": schema.SingleNestedAttribute{
-																	Description:         "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details.",
-																	MarkdownDescription: "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details.",
+																	Description:         "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails.",
+																	MarkdownDescription: "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails.",
 																	Attributes: map[string]schema.Attribute{
 																		"image_registry_credentials": schema.SingleNestedAttribute{
 																			Description:         "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
@@ -2425,8 +2515,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"providers": schema.ListAttribute{
-																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
-																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
+																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2434,8 +2524,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"secrets": schema.ListAttribute{
-																					Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
-																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+																					Description:         "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
+																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2448,16 +2538,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"jmes_path": schema.StringAttribute{
-																			Description:         "JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.",
-																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.",
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"reference": schema.StringAttribute{
-																			Description:         "Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest",
-																			MarkdownDescription: "Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest",
+																			Description:         "Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest",
+																			MarkdownDescription: "Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -2481,8 +2571,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	MarkdownDescription: "Variable defines an arbitrary JMESPath context variable that can be defined inline.",
 																	Attributes: map[string]schema.Attribute{
 																		"default": schema.MapAttribute{
-																			Description:         "Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil",
-																			MarkdownDescription: "Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil",
+																			Description:         "Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2490,8 +2580,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"jmes_path": schema.StringAttribute{
-																			Description:         "JMESPath is an optional JMESPath Expression that can be used to transform the variable.",
-																			MarkdownDescription: "JMESPath is an optional JMESPath Expression that can be used to transform the variable.",
+																			Description:         "JMESPath is an optional JMESPath Expression that can be used totransform the variable.",
+																			MarkdownDescription: "JMESPath is an optional JMESPath Expression that can be used totransform the variable.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2527,16 +2617,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"list": schema.StringAttribute{
-														Description:         "List specifies a JMESPath expression that results in one or more elements to which the validation logic is applied.",
-														MarkdownDescription: "List specifies a JMESPath expression that results in one or more elements to which the validation logic is applied.",
+														Description:         "List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.",
+														MarkdownDescription: "List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"order": schema.StringAttribute{
-														Description:         "Order defines the iteration order on the list. Can be Ascending to iterate from first to last element or Descending to iterate in from last to first element.",
-														MarkdownDescription: "Order defines the iteration order on the list. Can be Ascending to iterate from first to last element or Descending to iterate in from last to first element.",
+														Description:         "Order defines the iteration order on the list.Can be Ascending to iterate from first to last element or Descending to iterate in from last to first element.",
+														MarkdownDescription: "Order defines the iteration order on the list.Can be Ascending to iterate from first to last element or Descending to iterate in from last to first element.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2546,8 +2636,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"patch_strategic_merge": schema.MapAttribute{
-														Description:         "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
-														MarkdownDescription: "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
+														Description:         "PatchStrategicMerge is a strategic merge patch used to modify resources.See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
+														MarkdownDescription: "PatchStrategicMerge is a strategic merge patch used to modify resources.See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -2555,20 +2645,20 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"patches_json6902": schema.StringAttribute{
-														Description:         "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
-														MarkdownDescription: "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
+														Description:         "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources.See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
+														MarkdownDescription: "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources.See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"preconditions": schema.SingleNestedAttribute{
-														Description:         "AnyAllConditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. See: https://kyverno.io/docs/writing-policies/preconditions/",
-														MarkdownDescription: "AnyAllConditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. See: https://kyverno.io/docs/writing-policies/preconditions/",
+														Description:         "AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/",
+														MarkdownDescription: "AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/",
 														Attributes: map[string]schema.Attribute{
 															"all": schema.ListNestedAttribute{
-																Description:         "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass",
-																MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass",
+																Description:         "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass",
+																MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.MapAttribute{
@@ -2589,8 +2679,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
-																			MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+																			Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																			MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2600,8 +2690,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"value": schema.MapAttribute{
-																			Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
-																			MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+																			Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																			MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2615,8 +2705,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"any": schema.ListNestedAttribute{
-																Description:         "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass",
-																MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass",
+																Description:         "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass",
+																MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.MapAttribute{
@@ -2637,8 +2727,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
-																			MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+																			Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																			MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2648,8 +2738,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"value": schema.MapAttribute{
-																			Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
-																			MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+																			Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																			MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2674,8 +2764,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"patch_strategic_merge": schema.MapAttribute{
-											Description:         "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
-											MarkdownDescription: "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
+											Description:         "PatchStrategicMerge is a strategic merge patch used to modify resources.See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
+											MarkdownDescription: "PatchStrategicMerge is a strategic merge patch used to modify resources.See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -2683,8 +2773,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"patches_json6902": schema.StringAttribute{
-											Description:         "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
-											MarkdownDescription: "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
+											Description:         "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources.See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
+											MarkdownDescription: "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources.See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2709,12 +2799,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"api_call": schema.SingleNestedAttribute{
-																	Description:         "APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry.",
-																	MarkdownDescription: "APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry.",
+																	Description:         "APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry.",
+																	MarkdownDescription: "APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry.",
 																	Attributes: map[string]schema.Attribute{
 																		"data": schema.ListNestedAttribute{
-																			Description:         "Data specifies the POST data sent to the server.",
-																			MarkdownDescription: "Data specifies the POST data sent to the server.",
+																			Description:         "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
+																			MarkdownDescription: "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
@@ -2741,16 +2831,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"jmes_path": schema.StringAttribute{
-																			Description:         "JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.",
-																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.",
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"method": schema.StringAttribute{
-																			Description:         "Method is the HTTP request type (GET or POST).",
-																			MarkdownDescription: "Method is the HTTP request type (GET or POST).",
+																			Description:         "Method is the HTTP request type (GET or POST). Defaults to GET.",
+																			MarkdownDescription: "Method is the HTTP request type (GET or POST). Defaults to GET.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2760,20 +2850,20 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"service": schema.SingleNestedAttribute{
-																			Description:         "Service is an API call to a JSON web service",
-																			MarkdownDescription: "Service is an API call to a JSON web service",
+																			Description:         "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
+																			MarkdownDescription: "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
 																			Attributes: map[string]schema.Attribute{
 																				"ca_bundle": schema.StringAttribute{
-																					Description:         "CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.",
-																					MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.",
+																					Description:         "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
+																					MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"url": schema.StringAttribute{
-																					Description:         "URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.",
-																					MarkdownDescription: "URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.",
+																					Description:         "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
+																					MarkdownDescription: "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -2785,8 +2875,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"url_path": schema.StringAttribute{
-																			Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.",
-																			MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.",
+																			Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
+																			MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2822,9 +2912,34 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	Computed: false,
 																},
 
+																"global_reference": schema.SingleNestedAttribute{
+																	Description:         "GlobalContextEntryReference is a reference to a cached global context entry.",
+																	MarkdownDescription: "GlobalContextEntryReference is a reference to a cached global context entry.",
+																	Attributes: map[string]schema.Attribute{
+																		"jmes_path": schema.StringAttribute{
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the global context entry",
+																			MarkdownDescription: "Name of the global context entry",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"image_registry": schema.SingleNestedAttribute{
-																	Description:         "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details.",
-																	MarkdownDescription: "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details.",
+																	Description:         "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails.",
+																	MarkdownDescription: "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails.",
 																	Attributes: map[string]schema.Attribute{
 																		"image_registry_credentials": schema.SingleNestedAttribute{
 																			Description:         "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
@@ -2839,8 +2954,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"providers": schema.ListAttribute{
-																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
-																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
+																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2848,8 +2963,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"secrets": schema.ListAttribute{
-																					Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
-																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+																					Description:         "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
+																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2862,16 +2977,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"jmes_path": schema.StringAttribute{
-																			Description:         "JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.",
-																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.",
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"reference": schema.StringAttribute{
-																			Description:         "Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest",
-																			MarkdownDescription: "Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest",
+																			Description:         "Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest",
+																			MarkdownDescription: "Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -2895,8 +3010,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	MarkdownDescription: "Variable defines an arbitrary JMESPath context variable that can be defined inline.",
 																	Attributes: map[string]schema.Attribute{
 																		"default": schema.MapAttribute{
-																			Description:         "Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil",
-																			MarkdownDescription: "Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil",
+																			Description:         "Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2904,8 +3019,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"jmes_path": schema.StringAttribute{
-																			Description:         "JMESPath is an optional JMESPath Expression that can be used to transform the variable.",
-																			MarkdownDescription: "JMESPath is an optional JMESPath Expression that can be used to transform the variable.",
+																			Description:         "JMESPath is an optional JMESPath Expression that can be used totransform the variable.",
+																			MarkdownDescription: "JMESPath is an optional JMESPath Expression that can be used totransform the variable.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2956,8 +3071,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"preconditions": schema.MapAttribute{
-														Description:         "Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. A direct list of conditions (without 'any' or 'all' statements is supported for backwards compatibility but will be deprecated in the next major release. See: https://kyverno.io/docs/writing-policies/preconditions/",
-														MarkdownDescription: "Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. A direct list of conditions (without 'any' or 'all' statements is supported for backwards compatibility but will be deprecated in the next major release. See: https://kyverno.io/docs/writing-policies/preconditions/",
+														Description:         "Preconditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements. A direct listof conditions (without 'any' or 'all' statements is supported for backwards compatibility butwill be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/preconditions/",
+														MarkdownDescription: "Preconditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements. A direct listof conditions (without 'any' or 'all' statements is supported for backwards compatibility butwill be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/preconditions/",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -2995,12 +3110,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"preconditions": schema.SingleNestedAttribute{
-									Description:         "Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. See: https://kyverno.io/docs/writing-policies/preconditions/",
-									MarkdownDescription: "Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. See: https://kyverno.io/docs/writing-policies/preconditions/",
+									Description:         "Preconditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/",
+									MarkdownDescription: "Preconditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/",
 									Attributes: map[string]schema.Attribute{
 										"all": schema.ListNestedAttribute{
-											Description:         "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass.",
-											MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass.",
+											Description:         "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass.",
+											MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"key": schema.MapAttribute{
@@ -3021,8 +3136,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
-														MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+														Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+														MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3032,8 +3147,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"value": schema.MapAttribute{
-														Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
-														MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+														Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+														MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -3047,8 +3162,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"any": schema.ListNestedAttribute{
-											Description:         "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass.",
-											MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass.",
+											Description:         "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass.",
+											MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"key": schema.MapAttribute{
@@ -3069,8 +3184,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
-														MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+														Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+														MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3080,8 +3195,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"value": schema.MapAttribute{
-														Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
-														MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+														Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+														MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -3100,8 +3215,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"skip_background_requests": schema.BoolAttribute{
-									Description:         "SkipBackgroundRequests bypasses admission requests that are sent by the background controller. The default value is set to 'true', it must be set to 'false' to apply generate and mutateExisting rules to those requests.",
-									MarkdownDescription: "SkipBackgroundRequests bypasses admission requests that are sent by the background controller. The default value is set to 'true', it must be set to 'false' to apply generate and mutateExisting rules to those requests.",
+									Description:         "SkipBackgroundRequests bypasses admission requests that are sent by the background controller.The default value is set to 'true', it must be set to 'false' to applygenerate and mutateExisting rules to those requests.",
+									MarkdownDescription: "SkipBackgroundRequests bypasses admission requests that are sent by the background controller.The default value is set to 'true', it must be set to 'false' to applygenerate and mutateExisting rules to those requests.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3112,8 +3227,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 									MarkdownDescription: "Validation is used to validate matching resources.",
 									Attributes: map[string]schema.Attribute{
 										"any_pattern": schema.MapAttribute{
-											Description:         "AnyPattern specifies list of validation patterns. At least one of the patterns must be satisfied for the validation rule to succeed.",
-											MarkdownDescription: "AnyPattern specifies list of validation patterns. At least one of the patterns must be satisfied for the validation rule to succeed.",
+											Description:         "AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.",
+											MarkdownDescription: "AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -3130,16 +3245,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "key specifies the audit annotation key. The audit annotation keys of a ValidatingAdmissionPolicy must be unique. The key must be a qualified name ([A-Za-z0-9][-A-Za-z0-9_.]*) no more than 63 bytes in length.  The key is combined with the resource name of the ValidatingAdmissionPolicy to construct an audit annotation key: '{ValidatingAdmissionPolicy name}/{key}'.  If an admission webhook uses the same resource name as this ValidatingAdmissionPolicy and the same audit annotation key, the annotation key will be identical. In this case, the first annotation written with the key will be included in the audit event and all subsequent annotations with the same key will be discarded.  Required.",
-																MarkdownDescription: "key specifies the audit annotation key. The audit annotation keys of a ValidatingAdmissionPolicy must be unique. The key must be a qualified name ([A-Za-z0-9][-A-Za-z0-9_.]*) no more than 63 bytes in length.  The key is combined with the resource name of the ValidatingAdmissionPolicy to construct an audit annotation key: '{ValidatingAdmissionPolicy name}/{key}'.  If an admission webhook uses the same resource name as this ValidatingAdmissionPolicy and the same audit annotation key, the annotation key will be identical. In this case, the first annotation written with the key will be included in the audit event and all subsequent annotations with the same key will be discarded.  Required.",
+																Description:         "key specifies the audit annotation key. The audit annotation keys ofa ValidatingAdmissionPolicy must be unique. The key must be a qualifiedname ([A-Za-z0-9][-A-Za-z0-9_.]*) no more than 63 bytes in length.The key is combined with the resource name of theValidatingAdmissionPolicy to construct an audit annotation key:'{ValidatingAdmissionPolicy name}/{key}'.If an admission webhook uses the same resource name as this ValidatingAdmissionPolicyand the same audit annotation key, the annotation key will be identical.In this case, the first annotation written with the key will be includedin the audit event and all subsequent annotations with the same keywill be discarded.Required.",
+																MarkdownDescription: "key specifies the audit annotation key. The audit annotation keys ofa ValidatingAdmissionPolicy must be unique. The key must be a qualifiedname ([A-Za-z0-9][-A-Za-z0-9_.]*) no more than 63 bytes in length.The key is combined with the resource name of theValidatingAdmissionPolicy to construct an audit annotation key:'{ValidatingAdmissionPolicy name}/{key}'.If an admission webhook uses the same resource name as this ValidatingAdmissionPolicyand the same audit annotation key, the annotation key will be identical.In this case, the first annotation written with the key will be includedin the audit event and all subsequent annotations with the same keywill be discarded.Required.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"value_expression": schema.StringAttribute{
-																Description:         "valueExpression represents the expression which is evaluated by CEL to produce an audit annotation value. The expression must evaluate to either a string or null value. If the expression evaluates to a string, the audit annotation is included with the string value. If the expression evaluates to null or empty string the audit annotation will be omitted. The valueExpression may be no longer than 5kb in length. If the result of the valueExpression is more than 10kb in length, it will be truncated to 10kb.  If multiple ValidatingAdmissionPolicyBinding resources match an API request, then the valueExpression will be evaluated for each binding. All unique values produced by the valueExpressions will be joined together in a comma-separated list.  Required.",
-																MarkdownDescription: "valueExpression represents the expression which is evaluated by CEL to produce an audit annotation value. The expression must evaluate to either a string or null value. If the expression evaluates to a string, the audit annotation is included with the string value. If the expression evaluates to null or empty string the audit annotation will be omitted. The valueExpression may be no longer than 5kb in length. If the result of the valueExpression is more than 10kb in length, it will be truncated to 10kb.  If multiple ValidatingAdmissionPolicyBinding resources match an API request, then the valueExpression will be evaluated for each binding. All unique values produced by the valueExpressions will be joined together in a comma-separated list.  Required.",
+																Description:         "valueExpression represents the expression which is evaluated by CEL toproduce an audit annotation value. The expression must evaluate to eithera string or null value. If the expression evaluates to a string, theaudit annotation is included with the string value. If the expressionevaluates to null or empty string the audit annotation will be omitted.The valueExpression may be no longer than 5kb in length.If the result of the valueExpression is more than 10kb in length, itwill be truncated to 10kb.If multiple ValidatingAdmissionPolicyBinding resources match anAPI request, then the valueExpression will be evaluated foreach binding. All unique values produced by the valueExpressionswill be joined together in a comma-separated list.Required.",
+																MarkdownDescription: "valueExpression represents the expression which is evaluated by CEL toproduce an audit annotation value. The expression must evaluate to eithera string or null value. If the expression evaluates to a string, theaudit annotation is included with the string value. If the expressionevaluates to null or empty string the audit annotation will be omitted.The valueExpression may be no longer than 5kb in length.If the result of the valueExpression is more than 10kb in length, itwill be truncated to 10kb.If multiple ValidatingAdmissionPolicyBinding resources match anAPI request, then the valueExpression will be evaluated foreach binding. All unique values produced by the valueExpressionswill be joined together in a comma-separated list.Required.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -3157,32 +3272,32 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"expression": schema.StringAttribute{
-																Description:         "Expression represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables:  - 'object' - The object from the incoming request. The value is null for DELETE requests. - 'oldObject' - The existing object. The value is null for CREATE requests. - 'request' - Attributes of the API request([ref](/pkg/apis/admission/types.go#AdmissionRequest)). - 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. - 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources. - 'variables' - Map of composited variables, from its name to its lazily evaluated value. For example, a variable named 'foo' can be accessed as 'variables.foo'. - 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz - 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource.  The 'apiVersion', 'kind', 'metadata.name' and 'metadata.generateName' are always accessible from the root of the object. No other metadata properties are accessible.  Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '__' escapes to '__underscores__' - '.' escapes to '__dot__' - '-' escapes to '__dash__' - '/' escapes to '__slash__' - Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are: 'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if', 'import', 'let', 'loop', 'package', 'namespace', 'return'. Examples: - Expression accessing a property named 'namespace': {'Expression': 'object.__namespace__ > 0'} - Expression accessing a property named 'x-prop': {'Expression': 'object.x__dash__prop > 0'} - Expression accessing a property named 'redact__d': {'Expression': 'object.redact__underscores__d > 0'}  Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type: - 'set': 'X + Y' performs a union where the array positions of all elements in 'X' are preserved and non-intersecting elements in 'Y' are appended, retaining their partial order. - 'map': 'X + Y' performs a merge where the array positions of all keys in 'X' are preserved but the values are overwritten by values in 'Y' when the key sets of 'X' and 'Y' intersect. Elements in 'Y' with non-intersecting keys are appended, retaining their partial order. Required.",
-																MarkdownDescription: "Expression represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables:  - 'object' - The object from the incoming request. The value is null for DELETE requests. - 'oldObject' - The existing object. The value is null for CREATE requests. - 'request' - Attributes of the API request([ref](/pkg/apis/admission/types.go#AdmissionRequest)). - 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. - 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources. - 'variables' - Map of composited variables, from its name to its lazily evaluated value. For example, a variable named 'foo' can be accessed as 'variables.foo'. - 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz - 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource.  The 'apiVersion', 'kind', 'metadata.name' and 'metadata.generateName' are always accessible from the root of the object. No other metadata properties are accessible.  Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '__' escapes to '__underscores__' - '.' escapes to '__dot__' - '-' escapes to '__dash__' - '/' escapes to '__slash__' - Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are: 'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if', 'import', 'let', 'loop', 'package', 'namespace', 'return'. Examples: - Expression accessing a property named 'namespace': {'Expression': 'object.__namespace__ > 0'} - Expression accessing a property named 'x-prop': {'Expression': 'object.x__dash__prop > 0'} - Expression accessing a property named 'redact__d': {'Expression': 'object.redact__underscores__d > 0'}  Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type: - 'set': 'X + Y' performs a union where the array positions of all elements in 'X' are preserved and non-intersecting elements in 'Y' are appended, retaining their partial order. - 'map': 'X + Y' performs a merge where the array positions of all keys in 'X' are preserved but the values are overwritten by values in 'Y' when the key sets of 'X' and 'Y' intersect. Elements in 'Y' with non-intersecting keys are appended, retaining their partial order. Required.",
+																Description:         "Expression represents the expression which will be evaluated by CEL.ref: https://github.com/google/cel-specCEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables:- 'object' - The object from the incoming request. The value is null for DELETE requests.- 'oldObject' - The existing object. The value is null for CREATE requests.- 'request' - Attributes of the API request([ref](/pkg/apis/admission/types.go#AdmissionRequest)).- 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind.- 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources.- 'variables' - Map of composited variables, from its name to its lazily evaluated value.  For example, a variable named 'foo' can be accessed as 'variables.foo'.- 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.  See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz- 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the  request resource.The 'apiVersion', 'kind', 'metadata.name' and 'metadata.generateName' are always accessible from the root of theobject. No other metadata properties are accessible.Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible.Accessible property names are escaped according to the following rules when accessed in the expression:- '__' escapes to '__underscores__'- '.' escapes to '__dot__'- '-' escapes to '__dash__'- '/' escapes to '__slash__'- Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are:	  'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if',	  'import', 'let', 'loop', 'package', 'namespace', 'return'.Examples:  - Expression accessing a property named 'namespace': {'Expression': 'object.__namespace__ > 0'}  - Expression accessing a property named 'x-prop': {'Expression': 'object.x__dash__prop > 0'}  - Expression accessing a property named 'redact__d': {'Expression': 'object.redact__underscores__d > 0'}Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1].Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type:  - 'set': 'X + Y' performs a union where the array positions of all elements in 'X' are preserved and    non-intersecting elements in 'Y' are appended, retaining their partial order.  - 'map': 'X + Y' performs a merge where the array positions of all keys in 'X' are preserved but the values    are overwritten by values in 'Y' when the key sets of 'X' and 'Y' intersect. Elements in 'Y' with    non-intersecting keys are appended, retaining their partial order.Required.",
+																MarkdownDescription: "Expression represents the expression which will be evaluated by CEL.ref: https://github.com/google/cel-specCEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables:- 'object' - The object from the incoming request. The value is null for DELETE requests.- 'oldObject' - The existing object. The value is null for CREATE requests.- 'request' - Attributes of the API request([ref](/pkg/apis/admission/types.go#AdmissionRequest)).- 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind.- 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources.- 'variables' - Map of composited variables, from its name to its lazily evaluated value.  For example, a variable named 'foo' can be accessed as 'variables.foo'.- 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.  See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz- 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the  request resource.The 'apiVersion', 'kind', 'metadata.name' and 'metadata.generateName' are always accessible from the root of theobject. No other metadata properties are accessible.Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible.Accessible property names are escaped according to the following rules when accessed in the expression:- '__' escapes to '__underscores__'- '.' escapes to '__dot__'- '-' escapes to '__dash__'- '/' escapes to '__slash__'- Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are:	  'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if',	  'import', 'let', 'loop', 'package', 'namespace', 'return'.Examples:  - Expression accessing a property named 'namespace': {'Expression': 'object.__namespace__ > 0'}  - Expression accessing a property named 'x-prop': {'Expression': 'object.x__dash__prop > 0'}  - Expression accessing a property named 'redact__d': {'Expression': 'object.redact__underscores__d > 0'}Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1].Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type:  - 'set': 'X + Y' performs a union where the array positions of all elements in 'X' are preserved and    non-intersecting elements in 'Y' are appended, retaining their partial order.  - 'map': 'X + Y' performs a merge where the array positions of all keys in 'X' are preserved but the values    are overwritten by values in 'Y' when the key sets of 'X' and 'Y' intersect. Elements in 'Y' with    non-intersecting keys are appended, retaining their partial order.Required.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"message": schema.StringAttribute{
-																Description:         "Message represents the message displayed when validation fails. The message is required if the Expression contains line breaks. The message must not contain line breaks. If unset, the message is 'failed rule: {Rule}'. e.g. 'must be a URL with the host matching spec.host' If the Expression contains line breaks. Message is required. The message must not contain line breaks. If unset, the message is 'failed Expression: {Expression}'.",
-																MarkdownDescription: "Message represents the message displayed when validation fails. The message is required if the Expression contains line breaks. The message must not contain line breaks. If unset, the message is 'failed rule: {Rule}'. e.g. 'must be a URL with the host matching spec.host' If the Expression contains line breaks. Message is required. The message must not contain line breaks. If unset, the message is 'failed Expression: {Expression}'.",
+																Description:         "Message represents the message displayed when validation fails. The message is required if the Expression containsline breaks. The message must not contain line breaks.If unset, the message is 'failed rule: {Rule}'.e.g. 'must be a URL with the host matching spec.host'If the Expression contains line breaks. Message is required.The message must not contain line breaks.If unset, the message is 'failed Expression: {Expression}'.",
+																MarkdownDescription: "Message represents the message displayed when validation fails. The message is required if the Expression containsline breaks. The message must not contain line breaks.If unset, the message is 'failed rule: {Rule}'.e.g. 'must be a URL with the host matching spec.host'If the Expression contains line breaks. Message is required.The message must not contain line breaks.If unset, the message is 'failed Expression: {Expression}'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"message_expression": schema.StringAttribute{
-																Description:         "messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, and the fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged. messageExpression has access to all the same variables as the 'expression' except for 'authorizer' and 'authorizer.requestResource'. Example: 'object.x must be less than max ('+string(params.max)+')'",
-																MarkdownDescription: "messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, and the fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged. messageExpression has access to all the same variables as the 'expression' except for 'authorizer' and 'authorizer.requestResource'. Example: 'object.x must be less than max ('+string(params.max)+')'",
+																Description:         "messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails.Since messageExpression is used as a failure message, it must evaluate to a string.If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails.If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is producedas if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a stringthat contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, andthe fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged.messageExpression has access to all the same variables as the 'expression' except for 'authorizer' and 'authorizer.requestResource'.Example:'object.x must be less than max ('+string(params.max)+')'",
+																MarkdownDescription: "messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails.Since messageExpression is used as a failure message, it must evaluate to a string.If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails.If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is producedas if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a stringthat contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, andthe fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged.messageExpression has access to all the same variables as the 'expression' except for 'authorizer' and 'authorizer.requestResource'.Example:'object.x must be less than max ('+string(params.max)+')'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"reason": schema.StringAttribute{
-																Description:         "Reason represents a machine-readable description of why this validation failed. If this is the first validation in the list to fail, this reason, as well as the corresponding HTTP response code, are used in the HTTP response to the client. The currently supported reasons are: 'Unauthorized', 'Forbidden', 'Invalid', 'RequestEntityTooLarge'. If not set, StatusReasonInvalid is used in the response to the client.",
-																MarkdownDescription: "Reason represents a machine-readable description of why this validation failed. If this is the first validation in the list to fail, this reason, as well as the corresponding HTTP response code, are used in the HTTP response to the client. The currently supported reasons are: 'Unauthorized', 'Forbidden', 'Invalid', 'RequestEntityTooLarge'. If not set, StatusReasonInvalid is used in the response to the client.",
+																Description:         "Reason represents a machine-readable description of why this validation failed.If this is the first validation in the list to fail, this reason, as well as thecorresponding HTTP response code, are used in theHTTP response to the client.The currently supported reasons are: 'Unauthorized', 'Forbidden', 'Invalid', 'RequestEntityTooLarge'.If not set, StatusReasonInvalid is used in the response to the client.",
+																MarkdownDescription: "Reason represents a machine-readable description of why this validation failed.If this is the first validation in the list to fail, this reason, as well as thecorresponding HTTP response code, are used in theHTTP response to the client.The currently supported reasons are: 'Unauthorized', 'Forbidden', 'Invalid', 'RequestEntityTooLarge'.If not set, StatusReasonInvalid is used in the response to the client.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3199,16 +3314,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													MarkdownDescription: "ParamKind is a tuple of Group Kind and Version.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "APIVersion is the API group version the resources belong to. In format of 'group/version'. Required.",
-															MarkdownDescription: "APIVersion is the API group version the resources belong to. In format of 'group/version'. Required.",
+															Description:         "APIVersion is the API group version the resources belong to.In format of 'group/version'.Required.",
+															MarkdownDescription: "APIVersion is the API group version the resources belong to.In format of 'group/version'.Required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"kind": schema.StringAttribute{
-															Description:         "Kind is the API kind the resources belong to. Required.",
-															MarkdownDescription: "Kind is the API kind the resources belong to. Required.",
+															Description:         "Kind is the API kind the resources belong to.Required.",
+															MarkdownDescription: "Kind is the API kind the resources belong to.Required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3224,32 +3339,32 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													MarkdownDescription: "ParamRef references a parameter resource.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "'name' is the name of the resource being referenced.  'name' and 'selector' are mutually exclusive properties. If one is set, the other must be unset.",
-															MarkdownDescription: "'name' is the name of the resource being referenced.  'name' and 'selector' are mutually exclusive properties. If one is set, the other must be unset.",
+															Description:         "'name' is the name of the resource being referenced.'name' and 'selector' are mutually exclusive properties. If one is set,the other must be unset.",
+															MarkdownDescription: "'name' is the name of the resource being referenced.'name' and 'selector' are mutually exclusive properties. If one is set,the other must be unset.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "namespace is the namespace of the referenced resource. Allows limiting the search for params to a specific namespace. Applies to both 'name' and 'selector' fields.  A per-namespace parameter may be used by specifying a namespace-scoped 'paramKind' in the policy and leaving this field empty.  - If 'paramKind' is cluster-scoped, this field MUST be unset. Setting this field results in a configuration error.  - If 'paramKind' is namespace-scoped, the namespace of the object being evaluated for admission will be used when this field is left unset. Take care that if this is left empty the binding must not match any cluster-scoped resources, which will result in an error.",
-															MarkdownDescription: "namespace is the namespace of the referenced resource. Allows limiting the search for params to a specific namespace. Applies to both 'name' and 'selector' fields.  A per-namespace parameter may be used by specifying a namespace-scoped 'paramKind' in the policy and leaving this field empty.  - If 'paramKind' is cluster-scoped, this field MUST be unset. Setting this field results in a configuration error.  - If 'paramKind' is namespace-scoped, the namespace of the object being evaluated for admission will be used when this field is left unset. Take care that if this is left empty the binding must not match any cluster-scoped resources, which will result in an error.",
+															Description:         "namespace is the namespace of the referenced resource. Allows limitingthe search for params to a specific namespace. Applies to both 'name' and'selector' fields.A per-namespace parameter may be used by specifying a namespace-scoped'paramKind' in the policy and leaving this field empty.- If 'paramKind' is cluster-scoped, this field MUST be unset. Setting thisfield results in a configuration error.- If 'paramKind' is namespace-scoped, the namespace of the object beingevaluated for admission will be used when this field is left unset. Takecare that if this is left empty the binding must not match any cluster-scopedresources, which will result in an error.",
+															MarkdownDescription: "namespace is the namespace of the referenced resource. Allows limitingthe search for params to a specific namespace. Applies to both 'name' and'selector' fields.A per-namespace parameter may be used by specifying a namespace-scoped'paramKind' in the policy and leaving this field empty.- If 'paramKind' is cluster-scoped, this field MUST be unset. Setting thisfield results in a configuration error.- If 'paramKind' is namespace-scoped, the namespace of the object beingevaluated for admission will be used when this field is left unset. Takecare that if this is left empty the binding must not match any cluster-scopedresources, which will result in an error.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"parameter_not_found_action": schema.StringAttribute{
-															Description:         "'parameterNotFoundAction' controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to 'Allow', then no matched parameters will be treated as successful validation by the binding. If set to 'Deny', then no matched parameters will be subject to the 'failurePolicy' of the policy.  Allowed values are 'Allow' or 'Deny' Default to 'Deny'",
-															MarkdownDescription: "'parameterNotFoundAction' controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to 'Allow', then no matched parameters will be treated as successful validation by the binding. If set to 'Deny', then no matched parameters will be subject to the 'failurePolicy' of the policy.  Allowed values are 'Allow' or 'Deny' Default to 'Deny'",
+															Description:         "'parameterNotFoundAction' controls the behavior of the binding when the resourceexists, and name or selector is valid, but there are no parametersmatched by the binding. If the value is set to 'Allow', then nomatched parameters will be treated as successful validation by the binding.If set to 'Deny', then no matched parameters will be subject to the'failurePolicy' of the policy.Allowed values are 'Allow' or 'Deny'Default to 'Deny'",
+															MarkdownDescription: "'parameterNotFoundAction' controls the behavior of the binding when the resourceexists, and name or selector is valid, but there are no parametersmatched by the binding. If the value is set to 'Allow', then nomatched parameters will be treated as successful validation by the binding.If set to 'Deny', then no matched parameters will be subject to the'failurePolicy' of the policy.Allowed values are 'Allow' or 'Deny'Default to 'Deny'",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"selector": schema.SingleNestedAttribute{
-															Description:         "selector can be used to match multiple param objects based on their labels. Supply selector: {} to match all resources of the ParamKind.  If multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together.  One of 'name' or 'selector' must be set, but 'name' and 'selector' are mutually exclusive properties. If one is set, the other must be unset.",
-															MarkdownDescription: "selector can be used to match multiple param objects based on their labels. Supply selector: {} to match all resources of the ParamKind.  If multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together.  One of 'name' or 'selector' must be set, but 'name' and 'selector' are mutually exclusive properties. If one is set, the other must be unset.",
+															Description:         "selector can be used to match multiple param objects based on their labels.Supply selector: {} to match all resources of the ParamKind.If multiple params are found, they are all evaluated with the policy expressionsand the results are ANDed together.One of 'name' or 'selector' must be set, but 'name' and 'selector' aremutually exclusive properties. If one is set, the other must be unset.",
+															MarkdownDescription: "selector can be used to match multiple param objects based on their labels.Supply selector: {} to match all resources of the ParamKind.If multiple params are found, they are all evaluated with the policy expressionsand the results are ANDed together.One of 'name' or 'selector' must be set, but 'name' and 'selector' aremutually exclusive properties. If one is set, the other must be unset.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3265,16 +3380,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3288,8 +3403,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3307,21 +3422,21 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"variables": schema.ListNestedAttribute{
-													Description:         "Variables contain definitions of variables that can be used in composition of other expressions. Each variable is defined as a named CEL expression. The variables defined here will be available under 'variables' in other expressions of the policy.",
-													MarkdownDescription: "Variables contain definitions of variables that can be used in composition of other expressions. Each variable is defined as a named CEL expression. The variables defined here will be available under 'variables' in other expressions of the policy.",
+													Description:         "Variables contain definitions of variables that can be used in composition of other expressions.Each variable is defined as a named CEL expression.The variables defined here will be available under 'variables' in other expressions of the policy.",
+													MarkdownDescription: "Variables contain definitions of variables that can be used in composition of other expressions.Each variable is defined as a named CEL expression.The variables defined here will be available under 'variables' in other expressions of the policy.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"expression": schema.StringAttribute{
-																Description:         "Expression is the expression that will be evaluated as the value of the variable. The CEL expression has access to the same identifiers as the CEL expressions in Validation.",
-																MarkdownDescription: "Expression is the expression that will be evaluated as the value of the variable. The CEL expression has access to the same identifiers as the CEL expressions in Validation.",
+																Description:         "Expression is the expression that will be evaluated as the value of the variable.The CEL expression has access to the same identifiers as the CEL expressions in Validation.",
+																MarkdownDescription: "Expression is the expression that will be evaluated as the value of the variable.The CEL expression has access to the same identifiers as the CEL expressions in Validation.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name is the name of the variable. The name must be a valid CEL identifier and unique among all variables. The variable can be accessed in other expressions through 'variables' For example, if name is 'foo', the variable will be available as 'variables.foo'",
-																MarkdownDescription: "Name is the name of the variable. The name must be a valid CEL identifier and unique among all variables. The variable can be accessed in other expressions through 'variables' For example, if name is 'foo', the variable will be available as 'variables.foo'",
+																Description:         "Name is the name of the variable. The name must be a valid CEL identifier and unique among all variables.The variable can be accessed in other expressions through 'variables'For example, if name is 'foo', the variable will be available as 'variables.foo'",
+																MarkdownDescription: "Name is the name of the variable. The name must be a valid CEL identifier and unique among all variables.The variable can be accessed in other expressions through 'variables'For example, if name is 'foo', the variable will be available as 'variables.foo'",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -3343,12 +3458,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											MarkdownDescription: "Deny defines conditions used to pass or fail a validation rule.",
 											Attributes: map[string]schema.Attribute{
 												"conditions": schema.SingleNestedAttribute{
-													Description:         "Multiple conditions can be declared under an 'any' or 'all' statement. See: https://kyverno.io/docs/writing-policies/validate/#deny-rules",
-													MarkdownDescription: "Multiple conditions can be declared under an 'any' or 'all' statement. See: https://kyverno.io/docs/writing-policies/validate/#deny-rules",
+													Description:         "Multiple conditions can be declared under an 'any' or 'all' statement.See: https://kyverno.io/docs/writing-policies/validate/#deny-rules",
+													MarkdownDescription: "Multiple conditions can be declared under an 'any' or 'all' statement.See: https://kyverno.io/docs/writing-policies/validate/#deny-rules",
 													Attributes: map[string]schema.Attribute{
 														"all": schema.ListNestedAttribute{
-															Description:         "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass.",
-															MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass.",
+															Description:         "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass.",
+															MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.MapAttribute{
@@ -3369,8 +3484,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
-																		MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+																		Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																		MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3380,8 +3495,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"value": schema.MapAttribute{
-																		Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
-																		MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+																		Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																		MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3395,8 +3510,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														},
 
 														"any": schema.ListNestedAttribute{
-															Description:         "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass.",
-															MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass.",
+															Description:         "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass.",
+															MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.MapAttribute{
@@ -3417,8 +3532,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
-																		MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+																		Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																		MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3428,8 +3543,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"value": schema.MapAttribute{
-																		Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
-																		MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+																		Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																		MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3458,8 +3573,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"any_pattern": schema.MapAttribute{
-														Description:         "AnyPattern specifies list of validation patterns. At least one of the patterns must be satisfied for the validation rule to succeed.",
-														MarkdownDescription: "AnyPattern specifies list of validation patterns. At least one of the patterns must be satisfied for the validation rule to succeed.",
+														Description:         "AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.",
+														MarkdownDescription: "AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -3472,12 +3587,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"api_call": schema.SingleNestedAttribute{
-																	Description:         "APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry.",
-																	MarkdownDescription: "APICall is an HTTP request to the Kubernetes API server, or other JSON web service. The data returned is stored in the context with the name for the context entry.",
+																	Description:         "APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry.",
+																	MarkdownDescription: "APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry.",
 																	Attributes: map[string]schema.Attribute{
 																		"data": schema.ListNestedAttribute{
-																			Description:         "Data specifies the POST data sent to the server.",
-																			MarkdownDescription: "Data specifies the POST data sent to the server.",
+																			Description:         "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
+																			MarkdownDescription: "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
@@ -3504,16 +3619,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"jmes_path": schema.StringAttribute{
-																			Description:         "JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.",
-																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used to transform the JSON response returned from the server. For example a JMESPath of 'items | length(@)' applied to the API server response for the URLPath '/apis/apps/v1/deployments' will return the total count of deployments across all namespaces.",
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"method": schema.StringAttribute{
-																			Description:         "Method is the HTTP request type (GET or POST).",
-																			MarkdownDescription: "Method is the HTTP request type (GET or POST).",
+																			Description:         "Method is the HTTP request type (GET or POST). Defaults to GET.",
+																			MarkdownDescription: "Method is the HTTP request type (GET or POST). Defaults to GET.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3523,20 +3638,20 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"service": schema.SingleNestedAttribute{
-																			Description:         "Service is an API call to a JSON web service",
-																			MarkdownDescription: "Service is an API call to a JSON web service",
+																			Description:         "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
+																			MarkdownDescription: "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
 																			Attributes: map[string]schema.Attribute{
 																				"ca_bundle": schema.StringAttribute{
-																					Description:         "CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.",
-																					MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.",
+																					Description:         "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
+																					MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"url": schema.StringAttribute{
-																					Description:         "URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.",
-																					MarkdownDescription: "URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.",
+																					Description:         "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
+																					MarkdownDescription: "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -3548,8 +3663,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"url_path": schema.StringAttribute{
-																			Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.",
-																			MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details.",
+																			Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
+																			MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3585,9 +3700,34 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	Computed: false,
 																},
 
+																"global_reference": schema.SingleNestedAttribute{
+																	Description:         "GlobalContextEntryReference is a reference to a cached global context entry.",
+																	MarkdownDescription: "GlobalContextEntryReference is a reference to a cached global context entry.",
+																	Attributes: map[string]schema.Attribute{
+																		"jmes_path": schema.StringAttribute{
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the global context entry",
+																			MarkdownDescription: "Name of the global context entry",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"image_registry": schema.SingleNestedAttribute{
-																	Description:         "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details.",
-																	MarkdownDescription: "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch image details.",
+																	Description:         "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails.",
+																	MarkdownDescription: "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails.",
 																	Attributes: map[string]schema.Attribute{
 																		"image_registry_credentials": schema.SingleNestedAttribute{
 																			Description:         "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
@@ -3602,8 +3742,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"providers": schema.ListAttribute{
-																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
-																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
+																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3611,8 +3751,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"secrets": schema.ListAttribute{
-																					Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
-																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+																					Description:         "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
+																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3625,16 +3765,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"jmes_path": schema.StringAttribute{
-																			Description:         "JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.",
-																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used to transform the ImageData struct returned as a result of processing the image reference.",
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"reference": schema.StringAttribute{
-																			Description:         "Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest",
-																			MarkdownDescription: "Reference is image reference to a container image in the registry. Example: ghcr.io/kyverno/kyverno:latest",
+																			Description:         "Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest",
+																			MarkdownDescription: "Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -3658,8 +3798,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	MarkdownDescription: "Variable defines an arbitrary JMESPath context variable that can be defined inline.",
 																	Attributes: map[string]schema.Attribute{
 																		"default": schema.MapAttribute{
-																			Description:         "Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil",
-																			MarkdownDescription: "Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil",
+																			Description:         "Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3667,8 +3807,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"jmes_path": schema.StringAttribute{
-																			Description:         "JMESPath is an optional JMESPath Expression that can be used to transform the variable.",
-																			MarkdownDescription: "JMESPath is an optional JMESPath Expression that can be used to transform the variable.",
+																			Description:         "JMESPath is an optional JMESPath Expression that can be used totransform the variable.",
+																			MarkdownDescription: "JMESPath is an optional JMESPath Expression that can be used totransform the variable.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3699,8 +3839,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Deny defines conditions used to pass or fail a validation rule.",
 														Attributes: map[string]schema.Attribute{
 															"conditions": schema.MapAttribute{
-																Description:         "Multiple conditions can be declared under an 'any' or 'all' statement. A direct list of conditions (without 'any' or 'all' statements) is also supported for backwards compatibility but will be deprecated in the next major release. See: https://kyverno.io/docs/writing-policies/validate/#deny-rules",
-																MarkdownDescription: "Multiple conditions can be declared under an 'any' or 'all' statement. A direct list of conditions (without 'any' or 'all' statements) is also supported for backwards compatibility but will be deprecated in the next major release. See: https://kyverno.io/docs/writing-policies/validate/#deny-rules",
+																Description:         "Multiple conditions can be declared under an 'any' or 'all' statement. A direct listof conditions (without 'any' or 'all' statements) is also supported for backwards compatibilitybut will be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/validate/#deny-rules",
+																MarkdownDescription: "Multiple conditions can be declared under an 'any' or 'all' statement. A direct listof conditions (without 'any' or 'all' statements) is also supported for backwards compatibilitybut will be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/validate/#deny-rules",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3713,8 +3853,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"element_scope": schema.BoolAttribute{
-														Description:         "ElementScope specifies whether to use the current list element as the scope for validation. Defaults to 'true' if not specified. When set to 'false', 'request.object' is used as the validation scope within the foreach block to allow referencing other elements in the subtree.",
-														MarkdownDescription: "ElementScope specifies whether to use the current list element as the scope for validation. Defaults to 'true' if not specified. When set to 'false', 'request.object' is used as the validation scope within the foreach block to allow referencing other elements in the subtree.",
+														Description:         "ElementScope specifies whether to use the current list element as the scope for validation. Defaults to 'true' if not specified.When set to 'false', 'request.object' is used as the validation scope within the foreachblock to allow referencing other elements in the subtree.",
+														MarkdownDescription: "ElementScope specifies whether to use the current list element as the scope for validation. Defaults to 'true' if not specified.When set to 'false', 'request.object' is used as the validation scope within the foreachblock to allow referencing other elements in the subtree.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3730,8 +3870,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"list": schema.StringAttribute{
-														Description:         "List specifies a JMESPath expression that results in one or more elements to which the validation logic is applied.",
-														MarkdownDescription: "List specifies a JMESPath expression that results in one or more elements to which the validation logic is applied.",
+														Description:         "List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.",
+														MarkdownDescription: "List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3747,12 +3887,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"preconditions": schema.SingleNestedAttribute{
-														Description:         "AnyAllConditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. See: https://kyverno.io/docs/writing-policies/preconditions/",
-														MarkdownDescription: "AnyAllConditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. See: https://kyverno.io/docs/writing-policies/preconditions/",
+														Description:         "AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/",
+														MarkdownDescription: "AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/",
 														Attributes: map[string]schema.Attribute{
 															"all": schema.ListNestedAttribute{
-																Description:         "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass",
-																MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass",
+																Description:         "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass",
+																MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.MapAttribute{
@@ -3773,8 +3913,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
-																			MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+																			Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																			MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3784,8 +3924,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"value": schema.MapAttribute{
-																			Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
-																			MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+																			Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																			MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3799,8 +3939,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"any": schema.ListNestedAttribute{
-																Description:         "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass",
-																MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass",
+																Description:         "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass",
+																MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.MapAttribute{
@@ -3821,8 +3961,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
-																			MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+																			Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																			MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3832,8 +3972,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"value": schema.MapAttribute{
-																			Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
-																			MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+																			Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																			MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3875,8 +4015,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"count": schema.Int64Attribute{
-																Description:         "Count specifies the required number of entries that must match. If the count is null, all entries must match (a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains a value N, then N must be less than or equal to the size of entries, and at least N entries must match.",
-																MarkdownDescription: "Count specifies the required number of entries that must match. If the count is null, all entries must match (a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains a value N, then N must be less than or equal to the size of entries, and at least N entries must match.",
+																Description:         "Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.",
+																MarkdownDescription: "Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3886,13 +4026,13 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"entries": schema.ListNestedAttribute{
-																Description:         "Entries contains the available attestors. An attestor can be a static key, attributes for keyless verification, or a nested attestor declaration.",
-																MarkdownDescription: "Entries contains the available attestors. An attestor can be a static key, attributes for keyless verification, or a nested attestor declaration.",
+																Description:         "Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration.",
+																MarkdownDescription: "Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"annotations": schema.MapAttribute{
-																			Description:         "Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.",
-																			MarkdownDescription: "Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.",
+																			Description:         "Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.",
+																			MarkdownDescription: "Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3929,12 +4069,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"ctlog": schema.SingleNestedAttribute{
-																					Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
-																					MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																					Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																					MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_sct": schema.BoolAttribute{
-																							Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
-																							MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																							Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
+																							MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -3947,6 +4087,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																							Optional:            true,
 																							Computed:            false,
 																						},
+
+																						"tsa_cert_chain": schema.StringAttribute{
+																							Description:         "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																							MarkdownDescription: "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
 																					},
 																					Required: false,
 																					Optional: true,
@@ -3954,8 +4102,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"rekor": schema.SingleNestedAttribute{
-																					Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
-																					MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																					Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																					MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_tlog": schema.BoolAttribute{
 																							Description:         "IgnoreTlog skips transparency log verification.",
@@ -3966,8 +4114,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						},
 
 																						"pubkey": schema.StringAttribute{
-																							Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
-																							MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																							Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																							MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -3976,8 +4124,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						"url": schema.StringAttribute{
 																							Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																							MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
-																							Required:            true,
-																							Optional:            false,
+																							Required:            false,
+																							Optional:            true,
 																							Computed:            false,
 																						},
 																					},
@@ -3992,8 +4140,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"keyless": schema.SingleNestedAttribute{
-																			Description:         "Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
-																			MarkdownDescription: "Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
+																			Description:         "Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
+																			MarkdownDescription: "Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
 																			Attributes: map[string]schema.Attribute{
 																				"additional_extensions": schema.MapAttribute{
 																					Description:         "AdditionalExtensions are certificate-extensions used for keyless signing.",
@@ -4005,12 +4153,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"ctlog": schema.SingleNestedAttribute{
-																					Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
-																					MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																					Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																					MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_sct": schema.BoolAttribute{
-																							Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
-																							MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																							Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
+																							MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4019,6 +4167,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						"pubkey": schema.StringAttribute{
 																							Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
 																							MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"tsa_cert_chain": schema.StringAttribute{
+																							Description:         "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																							MarkdownDescription: "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4038,8 +4194,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"rekor": schema.SingleNestedAttribute{
-																					Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
-																					MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																					Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																					MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_tlog": schema.BoolAttribute{
 																							Description:         "IgnoreTlog skips transparency log verification.",
@@ -4050,8 +4206,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						},
 
 																						"pubkey": schema.StringAttribute{
-																							Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
-																							MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																							Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																							MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4060,8 +4216,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						"url": schema.StringAttribute{
 																							Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																							MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
-																							Required:            true,
-																							Optional:            false,
+																							Required:            false,
+																							Optional:            true,
 																							Computed:            false,
 																						},
 																					},
@@ -4071,8 +4227,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"roots": schema.StringAttribute{
-																					Description:         "Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.",
-																					MarkdownDescription: "Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.",
+																					Description:         "Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.",
+																					MarkdownDescription: "Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4096,12 +4252,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			MarkdownDescription: "Keys specifies one or more public keys.",
 																			Attributes: map[string]schema.Attribute{
 																				"ctlog": schema.SingleNestedAttribute{
-																					Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
-																					MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																					Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																					MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_sct": schema.BoolAttribute{
-																							Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
-																							MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																							Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
+																							MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4114,6 +4270,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																							Optional:            true,
 																							Computed:            false,
 																						},
+
+																						"tsa_cert_chain": schema.StringAttribute{
+																							Description:         "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																							MarkdownDescription: "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
 																					},
 																					Required: false,
 																					Optional: true,
@@ -4121,24 +4285,24 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"kms": schema.StringAttribute{
-																					Description:         "KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md",
-																					MarkdownDescription: "KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md",
+																					Description:         "KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md",
+																					MarkdownDescription: "KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"public_keys": schema.StringAttribute{
-																					Description:         "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
-																					MarkdownDescription: "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
+																					Description:         "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
+																					MarkdownDescription: "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"rekor": schema.SingleNestedAttribute{
-																					Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
-																					MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																					Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																					MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_tlog": schema.BoolAttribute{
 																							Description:         "IgnoreTlog skips transparency log verification.",
@@ -4149,8 +4313,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						},
 
 																						"pubkey": schema.StringAttribute{
-																							Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
-																							MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																							Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																							MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4159,8 +4323,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						"url": schema.StringAttribute{
 																							Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																							MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
-																							Required:            true,
-																							Optional:            false,
+																							Required:            false,
+																							Optional:            true,
 																							Computed:            false,
 																						},
 																					},
@@ -4208,8 +4372,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"repository": schema.StringAttribute{
-																			Description:         "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.",
-																			MarkdownDescription: "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.",
+																			Description:         "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
+																			MarkdownDescription: "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4324,8 +4488,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"repository": schema.StringAttribute{
-													Description:         "Repository is an optional alternate OCI repository to use for resource bundle reference. The repository can be overridden per Attestor or Attestation.",
-													MarkdownDescription: "Repository is an optional alternate OCI repository to use for resource bundle reference. The repository can be overridden per Attestor or Attestation.",
+													Description:         "Repository is an optional alternate OCI repository to use for resource bundle reference.The repository can be overridden per Attestor or Attestation.",
+													MarkdownDescription: "Repository is an optional alternate OCI repository to use for resource bundle reference.The repository can be overridden per Attestor or Attestation.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4354,8 +4518,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"pod_security": schema.SingleNestedAttribute{
-											Description:         "PodSecurity applies exemptions for Kubernetes Pod Security admission by specifying exclusions for Pod Security Standards controls.",
-											MarkdownDescription: "PodSecurity applies exemptions for Kubernetes Pod Security admission by specifying exclusions for Pod Security Standards controls.",
+											Description:         "PodSecurity applies exemptions for Kubernetes Pod Security admissionby specifying exclusions for Pod Security Standards controls.",
+											MarkdownDescription: "PodSecurity applies exemptions for Kubernetes Pod Security admissionby specifying exclusions for Pod Security Standards controls.",
 											Attributes: map[string]schema.Attribute{
 												"exclude": schema.ListNestedAttribute{
 													Description:         "Exclude specifies the Pod Security Standard controls to be excluded.",
@@ -4363,8 +4527,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"control_name": schema.StringAttribute{
-																Description:         "ControlName specifies the name of the Pod Security Standard control. See: https://kubernetes.io/docs/concepts/security/pod-security-standards/",
-																MarkdownDescription: "ControlName specifies the name of the Pod Security Standard control. See: https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+																Description:         "ControlName specifies the name of the Pod Security Standard control.See: https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+																MarkdownDescription: "ControlName specifies the name of the Pod Security Standard control.See: https://kubernetes.io/docs/concepts/security/pod-security-standards/",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4374,8 +4538,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"images": schema.ListAttribute{
-																Description:         "Images selects matching containers and applies the container level PSS. Each image is the image name consisting of the registry address, repository, image, and tag. Empty list matches no containers, PSS checks are applied at the pod level only. Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
-																MarkdownDescription: "Images selects matching containers and applies the container level PSS. Each image is the image name consisting of the registry address, repository, image, and tag. Empty list matches no containers, PSS checks are applied at the pod level only. Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
+																Description:         "Images selects matching containers and applies the container level PSS.Each image is the image name consisting of the registry address, repository, image, and tag.Empty list matches no containers, PSS checks are applied at the pod level only.Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
+																MarkdownDescription: "Images selects matching containers and applies the container level PSS.Each image is the image name consisting of the registry address, repository, image, and tag.Empty list matches no containers, PSS checks are applied at the pod level only.Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4383,8 +4547,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"restricted_field": schema.StringAttribute{
-																Description:         "RestrictedField selects the field for the given Pod Security Standard control. When not set, all restricted fields for the control are selected.",
-																MarkdownDescription: "RestrictedField selects the field for the given Pod Security Standard control. When not set, all restricted fields for the control are selected.",
+																Description:         "RestrictedField selects the field for the given Pod Security Standard control.When not set, all restricted fields for the control are selected.",
+																MarkdownDescription: "RestrictedField selects the field for the given Pod Security Standard control.When not set, all restricted fields for the control are selected.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4406,8 +4570,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"level": schema.StringAttribute{
-													Description:         "Level defines the Pod Security Standard level to be applied to workloads. Allowed values are privileged, baseline, and restricted.",
-													MarkdownDescription: "Level defines the Pod Security Standard level to be applied to workloads. Allowed values are privileged, baseline, and restricted.",
+													Description:         "Level defines the Pod Security Standard level to be applied to workloads.Allowed values are privileged, baseline, and restricted.",
+													MarkdownDescription: "Level defines the Pod Security Standard level to be applied to workloads.Allowed values are privileged, baseline, and restricted.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4417,13 +4581,13 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"version": schema.StringAttribute{
-													Description:         "Version defines the Pod Security Standard versions that Kubernetes supports. Allowed values are v1.19, v1.20, v1.21, v1.22, v1.23, v1.24, v1.25, v1.26, latest. Defaults to latest.",
-													MarkdownDescription: "Version defines the Pod Security Standard versions that Kubernetes supports. Allowed values are v1.19, v1.20, v1.21, v1.22, v1.23, v1.24, v1.25, v1.26, latest. Defaults to latest.",
+													Description:         "Version defines the Pod Security Standard versions that Kubernetes supports.Allowed values are v1.19, v1.20, v1.21, v1.22, v1.23, v1.24, v1.25, v1.26, v1.27, v1.28, v1.29, latest. Defaults to latest.",
+													MarkdownDescription: "Version defines the Pod Security Standard versions that Kubernetes supports.Allowed values are v1.19, v1.20, v1.21, v1.22, v1.23, v1.24, v1.25, v1.26, v1.27, v1.28, v1.29, latest. Defaults to latest.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.OneOf("v1.19", "v1.20", "v1.21", "v1.22", "v1.23", "v1.24", "v1.25", "v1.26", "latest"),
+														stringvalidator.OneOf("v1.19", "v1.20", "v1.21", "v1.22", "v1.23", "v1.24", "v1.25", "v1.26", "v1.27", "v1.28", "v1.29", "latest"),
 													},
 												},
 											},
@@ -4443,8 +4607,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"attestations": schema.ListNestedAttribute{
-												Description:         "Attestations are optional checks for signed in-toto Statements used to verify the image. See https://github.com/in-toto/attestation. Kyverno fetches signed attestations from the OCI registry and decodes them into a list of Statement declarations.",
-												MarkdownDescription: "Attestations are optional checks for signed in-toto Statements used to verify the image. See https://github.com/in-toto/attestation. Kyverno fetches signed attestations from the OCI registry and decodes them into a list of Statement declarations.",
+												Description:         "Attestations are optional checks for signed in-toto Statements used to verify the image.See https://github.com/in-toto/attestation. Kyverno fetches signed attestations from theOCI registry and decodes them into a list of Statement declarations.",
+												MarkdownDescription: "Attestations are optional checks for signed in-toto Statements used to verify the image.See https://github.com/in-toto/attestation. Kyverno fetches signed attestations from theOCI registry and decodes them into a list of Statement declarations.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"attestors": schema.ListNestedAttribute{
@@ -4453,8 +4617,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"count": schema.Int64Attribute{
-																		Description:         "Count specifies the required number of entries that must match. If the count is null, all entries must match (a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains a value N, then N must be less than or equal to the size of entries, and at least N entries must match.",
-																		MarkdownDescription: "Count specifies the required number of entries that must match. If the count is null, all entries must match (a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains a value N, then N must be less than or equal to the size of entries, and at least N entries must match.",
+																		Description:         "Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.",
+																		MarkdownDescription: "Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4464,13 +4628,13 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"entries": schema.ListNestedAttribute{
-																		Description:         "Entries contains the available attestors. An attestor can be a static key, attributes for keyless verification, or a nested attestor declaration.",
-																		MarkdownDescription: "Entries contains the available attestors. An attestor can be a static key, attributes for keyless verification, or a nested attestor declaration.",
+																		Description:         "Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration.",
+																		MarkdownDescription: "Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"annotations": schema.MapAttribute{
-																					Description:         "Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.",
-																					MarkdownDescription: "Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.",
+																					Description:         "Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.",
+																					MarkdownDescription: "Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -4507,12 +4671,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						},
 
 																						"ctlog": schema.SingleNestedAttribute{
-																							Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
-																							MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																							Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																							MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_sct": schema.BoolAttribute{
-																									Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
-																									MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																									Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
+																									MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4525,6 +4689,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																									Optional:            true,
 																									Computed:            false,
 																								},
+
+																								"tsa_cert_chain": schema.StringAttribute{
+																									Description:         "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																									MarkdownDescription: "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
 																							},
 																							Required: false,
 																							Optional: true,
@@ -4532,8 +4704,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						},
 
 																						"rekor": schema.SingleNestedAttribute{
-																							Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
-																							MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																							Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																							MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_tlog": schema.BoolAttribute{
 																									Description:         "IgnoreTlog skips transparency log verification.",
@@ -4544,8 +4716,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																								},
 
 																								"pubkey": schema.StringAttribute{
-																									Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
-																									MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																									Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																									MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4554,8 +4726,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																								"url": schema.StringAttribute{
 																									Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																									MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
-																									Required:            true,
-																									Optional:            false,
+																									Required:            false,
+																									Optional:            true,
 																									Computed:            false,
 																								},
 																							},
@@ -4570,8 +4742,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"keyless": schema.SingleNestedAttribute{
-																					Description:         "Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
-																					MarkdownDescription: "Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
+																					Description:         "Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
+																					MarkdownDescription: "Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
 																					Attributes: map[string]schema.Attribute{
 																						"additional_extensions": schema.MapAttribute{
 																							Description:         "AdditionalExtensions are certificate-extensions used for keyless signing.",
@@ -4583,12 +4755,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						},
 
 																						"ctlog": schema.SingleNestedAttribute{
-																							Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
-																							MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																							Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																							MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_sct": schema.BoolAttribute{
-																									Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
-																									MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																									Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
+																									MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4597,6 +4769,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																								"pubkey": schema.StringAttribute{
 																									Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
 																									MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"tsa_cert_chain": schema.StringAttribute{
+																									Description:         "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																									MarkdownDescription: "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4616,8 +4796,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						},
 
 																						"rekor": schema.SingleNestedAttribute{
-																							Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
-																							MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																							Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																							MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_tlog": schema.BoolAttribute{
 																									Description:         "IgnoreTlog skips transparency log verification.",
@@ -4628,8 +4808,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																								},
 
 																								"pubkey": schema.StringAttribute{
-																									Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
-																									MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																									Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																									MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4638,8 +4818,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																								"url": schema.StringAttribute{
 																									Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																									MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
-																									Required:            true,
-																									Optional:            false,
+																									Required:            false,
+																									Optional:            true,
 																									Computed:            false,
 																								},
 																							},
@@ -4649,8 +4829,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						},
 
 																						"roots": schema.StringAttribute{
-																							Description:         "Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.",
-																							MarkdownDescription: "Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.",
+																							Description:         "Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.",
+																							MarkdownDescription: "Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4674,12 +4854,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					MarkdownDescription: "Keys specifies one or more public keys.",
 																					Attributes: map[string]schema.Attribute{
 																						"ctlog": schema.SingleNestedAttribute{
-																							Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
-																							MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																							Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																							MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_sct": schema.BoolAttribute{
-																									Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
-																									MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																									Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
+																									MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4692,6 +4872,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																									Optional:            true,
 																									Computed:            false,
 																								},
+
+																								"tsa_cert_chain": schema.StringAttribute{
+																									Description:         "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																									MarkdownDescription: "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
 																							},
 																							Required: false,
 																							Optional: true,
@@ -4699,24 +4887,24 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						},
 
 																						"kms": schema.StringAttribute{
-																							Description:         "KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md",
-																							MarkdownDescription: "KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md",
+																							Description:         "KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md",
+																							MarkdownDescription: "KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"public_keys": schema.StringAttribute{
-																							Description:         "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
-																							MarkdownDescription: "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
+																							Description:         "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
+																							MarkdownDescription: "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"rekor": schema.SingleNestedAttribute{
-																							Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
-																							MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																							Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																							MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_tlog": schema.BoolAttribute{
 																									Description:         "IgnoreTlog skips transparency log verification.",
@@ -4727,8 +4915,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																								},
 
 																								"pubkey": schema.StringAttribute{
-																									Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
-																									MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																									Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																									MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4737,8 +4925,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																								"url": schema.StringAttribute{
 																									Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																									MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
-																									Required:            true,
-																									Optional:            false,
+																									Required:            false,
+																									Optional:            true,
 																									Computed:            false,
 																								},
 																							},
@@ -4786,8 +4974,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"repository": schema.StringAttribute{
-																					Description:         "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.",
-																					MarkdownDescription: "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.",
+																					Description:         "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
+																					MarkdownDescription: "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4806,13 +4994,13 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														},
 
 														"conditions": schema.ListNestedAttribute{
-															Description:         "Conditions are used to verify attributes within a Predicate. If no Conditions are specified the attestation check is satisfied as long there are predicates that match the predicate type.",
-															MarkdownDescription: "Conditions are used to verify attributes within a Predicate. If no Conditions are specified the attestation check is satisfied as long there are predicates that match the predicate type.",
+															Description:         "Conditions are used to verify attributes within a Predicate. If no Conditions are specifiedthe attestation check is satisfied as long there are predicates that match the predicate type.",
+															MarkdownDescription: "Conditions are used to verify attributes within a Predicate. If no Conditions are specifiedthe attestation check is satisfied as long there are predicates that match the predicate type.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"all": schema.ListNestedAttribute{
-																		Description:         "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass",
-																		MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass",
+																		Description:         "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass",
+																		MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.MapAttribute{
@@ -4833,8 +5021,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
-																					MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+																					Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																					MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4844,8 +5032,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"value": schema.MapAttribute{
-																					Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
-																					MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+																					Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																					MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -4859,8 +5047,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"any": schema.ListNestedAttribute{
-																		Description:         "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass",
-																		MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass",
+																		Description:         "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass",
+																		MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.MapAttribute{
@@ -4881,8 +5069,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
-																					MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+																					Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																					MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4892,8 +5080,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"value": schema.MapAttribute{
-																					Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
-																					MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+																					Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																					MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -4940,8 +5128,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"count": schema.Int64Attribute{
-															Description:         "Count specifies the required number of entries that must match. If the count is null, all entries must match (a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains a value N, then N must be less than or equal to the size of entries, and at least N entries must match.",
-															MarkdownDescription: "Count specifies the required number of entries that must match. If the count is null, all entries must match (a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains a value N, then N must be less than or equal to the size of entries, and at least N entries must match.",
+															Description:         "Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.",
+															MarkdownDescription: "Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4951,13 +5139,13 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														},
 
 														"entries": schema.ListNestedAttribute{
-															Description:         "Entries contains the available attestors. An attestor can be a static key, attributes for keyless verification, or a nested attestor declaration.",
-															MarkdownDescription: "Entries contains the available attestors. An attestor can be a static key, attributes for keyless verification, or a nested attestor declaration.",
+															Description:         "Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration.",
+															MarkdownDescription: "Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"annotations": schema.MapAttribute{
-																		Description:         "Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.",
-																		MarkdownDescription: "Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.",
+																		Description:         "Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.",
+																		MarkdownDescription: "Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -4994,12 +5182,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			},
 
 																			"ctlog": schema.SingleNestedAttribute{
-																				Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
-																				MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																				Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																				MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_sct": schema.BoolAttribute{
-																						Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
-																						MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																						Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
+																						MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5012,6 +5200,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						Optional:            true,
 																						Computed:            false,
 																					},
+
+																					"tsa_cert_chain": schema.StringAttribute{
+																						Description:         "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																						MarkdownDescription: "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
 																				},
 																				Required: false,
 																				Optional: true,
@@ -5019,8 +5215,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			},
 
 																			"rekor": schema.SingleNestedAttribute{
-																				Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
-																				MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																				Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																				MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_tlog": schema.BoolAttribute{
 																						Description:         "IgnoreTlog skips transparency log verification.",
@@ -5031,8 +5227,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					},
 
 																					"pubkey": schema.StringAttribute{
-																						Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
-																						MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																						Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																						MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5041,8 +5237,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					"url": schema.StringAttribute{
 																						Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																						MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
-																						Required:            true,
-																						Optional:            false,
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -5057,8 +5253,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"keyless": schema.SingleNestedAttribute{
-																		Description:         "Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
-																		MarkdownDescription: "Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
+																		Description:         "Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
+																		MarkdownDescription: "Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md.",
 																		Attributes: map[string]schema.Attribute{
 																			"additional_extensions": schema.MapAttribute{
 																				Description:         "AdditionalExtensions are certificate-extensions used for keyless signing.",
@@ -5070,12 +5266,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			},
 
 																			"ctlog": schema.SingleNestedAttribute{
-																				Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
-																				MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																				Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																				MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_sct": schema.BoolAttribute{
-																						Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
-																						MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																						Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
+																						MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5084,6 +5280,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					"pubkey": schema.StringAttribute{
 																						Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
 																						MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"tsa_cert_chain": schema.StringAttribute{
+																						Description:         "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																						MarkdownDescription: "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5103,8 +5307,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			},
 
 																			"rekor": schema.SingleNestedAttribute{
-																				Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
-																				MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																				Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																				MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_tlog": schema.BoolAttribute{
 																						Description:         "IgnoreTlog skips transparency log verification.",
@@ -5115,8 +5319,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					},
 
 																					"pubkey": schema.StringAttribute{
-																						Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
-																						MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																						Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																						MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5125,8 +5329,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					"url": schema.StringAttribute{
 																						Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																						MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
-																						Required:            true,
-																						Optional:            false,
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -5136,8 +5340,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			},
 
 																			"roots": schema.StringAttribute{
-																				Description:         "Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.",
-																				MarkdownDescription: "Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.",
+																				Description:         "Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.",
+																				MarkdownDescription: "Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5161,12 +5365,12 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		MarkdownDescription: "Keys specifies one or more public keys.",
 																		Attributes: map[string]schema.Attribute{
 																			"ctlog": schema.SingleNestedAttribute{
-																				Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
-																				MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																				Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																				MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_sct": schema.BoolAttribute{
-																						Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
-																						MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																						Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
+																						MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificatetimestamp. Default is false. Set to true if this was opted out during signing.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5179,6 +5383,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						Optional:            true,
 																						Computed:            false,
 																					},
+
+																					"tsa_cert_chain": schema.StringAttribute{
+																						Description:         "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																						MarkdownDescription: "TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
 																				},
 																				Required: false,
 																				Optional: true,
@@ -5186,24 +5398,24 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			},
 
 																			"kms": schema.StringAttribute{
-																				Description:         "KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md",
-																				MarkdownDescription: "KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md",
+																				Description:         "KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md",
+																				MarkdownDescription: "KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"public_keys": schema.StringAttribute{
-																				Description:         "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
-																				MarkdownDescription: "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
+																				Description:         "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
+																				MarkdownDescription: "Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"rekor": schema.SingleNestedAttribute{
-																				Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
-																				MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																				Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
+																				MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_tlog": schema.BoolAttribute{
 																						Description:         "IgnoreTlog skips transparency log verification.",
@@ -5214,8 +5426,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					},
 
 																					"pubkey": schema.StringAttribute{
-																						Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
-																						MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																						Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																						MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor.If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5224,8 +5436,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					"url": schema.StringAttribute{
 																						Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																						MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
-																						Required:            true,
-																						Optional:            false,
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -5273,8 +5485,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	},
 
 																	"repository": schema.StringAttribute{
-																		Description:         "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.",
-																		MarkdownDescription: "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.",
+																		Description:         "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
+																		MarkdownDescription: "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5293,8 +5505,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"image_references": schema.ListAttribute{
-												Description:         "ImageReferences is a list of matching image reference patterns. At least one pattern in the list must match the image for the rule to apply. Each image reference consists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest). Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
-												MarkdownDescription: "ImageReferences is a list of matching image reference patterns. At least one pattern in the list must match the image for the rule to apply. Each image reference consists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest). Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
+												Description:         "ImageReferences is a list of matching image reference patterns. At least one pattern in thelist must match the image for the rule to apply. Each image reference consists of a registryaddress (defaults to docker.io), repository, image, and tag (defaults to latest).Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
+												MarkdownDescription: "ImageReferences is a list of matching image reference patterns. At least one pattern in thelist must match the image for the rule to apply. Each image reference consists of a registryaddress (defaults to docker.io), repository, image, and tag (defaults to latest).Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5314,8 +5526,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"providers": schema.ListAttribute{
-														Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
-														MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+														Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
+														MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -5323,8 +5535,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"secrets": schema.ListAttribute{
-														Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
-														MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+														Description:         "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
+														MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -5337,16 +5549,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"mutate_digest": schema.BoolAttribute{
-												Description:         "MutateDigest enables replacement of image tags with digests. Defaults to true.",
-												MarkdownDescription: "MutateDigest enables replacement of image tags with digests. Defaults to true.",
+												Description:         "MutateDigest enables replacement of image tags with digests.Defaults to true.",
+												MarkdownDescription: "MutateDigest enables replacement of image tags with digests.Defaults to true.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"repository": schema.StringAttribute{
-												Description:         "Repository is an optional alternate OCI repository to use for image signatures and attestations that match this rule. If specified Repository will override the default OCI image repository configured for the installation. The repository can also be overridden per Attestor or Attestation.",
-												MarkdownDescription: "Repository is an optional alternate OCI repository to use for image signatures and attestations that match this rule. If specified Repository will override the default OCI image repository configured for the installation. The repository can also be overridden per Attestor or Attestation.",
+												Description:         "Repository is an optional alternate OCI repository to use for image signatures and attestations that match this rule.If specified Repository will override the default OCI image repository configured for the installation.The repository can also be overridden per Attestor or Attestation.",
+												MarkdownDescription: "Repository is an optional alternate OCI repository to use for image signatures and attestations that match this rule.If specified Repository will override the default OCI image repository configured for the installation.The repository can also be overridden per Attestor or Attestation.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5361,8 +5573,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"skip_image_references": schema.ListAttribute{
-												Description:         "SkipImageReferences is a list of matching image reference patterns that should be skipped. At least one pattern in the list must match the image for the rule to be skipped. Each image reference consists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest). Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
-												MarkdownDescription: "SkipImageReferences is a list of matching image reference patterns that should be skipped. At least one pattern in the list must match the image for the rule to be skipped. Each image reference consists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest). Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
+												Description:         "SkipImageReferences is a list of matching image reference patterns that should be skipped.At least one pattern in the list must match the image for the rule to be skipped. Each image referenceconsists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest).Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
+												MarkdownDescription: "SkipImageReferences is a list of matching image reference patterns that should be skipped.At least one pattern in the list must match the image for the rule to be skipped. Each image referenceconsists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest).Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5370,8 +5582,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "Type specifies the method of signature validation. The allowed options are Cosign and Notary. By default Cosign is used if a type is not specified.",
-												MarkdownDescription: "Type specifies the method of signature validation. The allowed options are Cosign and Notary. By default Cosign is used if a type is not specified.",
+												Description:         "Type specifies the method of signature validation. The allowed optionsare Cosign and Notary. By default Cosign is used if a type is not specified.",
+												MarkdownDescription: "Type specifies the method of signature validation. The allowed optionsare Cosign and Notary. By default Cosign is used if a type is not specified.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5417,27 +5629,27 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"use_server_side_apply": schema.BoolAttribute{
-						Description:         "UseServerSideApply controls whether to use server-side apply for generate rules If is set to 'true' create & update for generate rules will use apply instead of create/update. Defaults to 'false' if not specified.",
-						MarkdownDescription: "UseServerSideApply controls whether to use server-side apply for generate rules If is set to 'true' create & update for generate rules will use apply instead of create/update. Defaults to 'false' if not specified.",
+						Description:         "UseServerSideApply controls whether to use server-side apply for generate rulesIf is set to 'true' create & update for generate rules will use apply instead of create/update.Defaults to 'false' if not specified.",
+						MarkdownDescription: "UseServerSideApply controls whether to use server-side apply for generate rulesIf is set to 'true' create & update for generate rules will use apply instead of create/update.Defaults to 'false' if not specified.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"validation_failure_action": schema.StringAttribute{
-						Description:         "ValidationFailureAction defines if a validation policy rule violation should block the admission review request (enforce), or allow (audit) the admission review request and report an error in a policy report. Optional. Allowed values are audit or enforce. The default value is 'Audit'.",
-						MarkdownDescription: "ValidationFailureAction defines if a validation policy rule violation should block the admission review request (enforce), or allow (audit) the admission review request and report an error in a policy report. Optional. Allowed values are audit or enforce. The default value is 'Audit'.",
+						Description:         "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce. The default value is 'Audit'.",
+						MarkdownDescription: "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce. The default value is 'Audit'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("Audit", "Enforce"),
+							stringvalidator.OneOf("audit", "enforce", "Audit", "Enforce"),
 						},
 					},
 
 					"validation_failure_action_overrides": schema.ListNestedAttribute{
-						Description:         "ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureAction namespace-wise. It overrides ValidationFailureAction for the specified namespaces.",
-						MarkdownDescription: "ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureAction namespace-wise. It overrides ValidationFailureAction for the specified namespaces.",
+						Description:         "ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces.",
+						MarkdownDescription: "ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
@@ -5447,13 +5659,13 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.OneOf("Audit", "Enforce"),
+										stringvalidator.OneOf("audit", "enforce", "Audit", "Enforce"),
 									},
 								},
 
 								"namespace_selector": schema.SingleNestedAttribute{
-									Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-									MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+									Description:         "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
+									MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -5469,16 +5681,16 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"values": schema.ListAttribute{
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -5492,8 +5704,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"match_labels": schema.MapAttribute{
-											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -5520,9 +5732,45 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 						Computed: false,
 					},
 
+					"webhook_configuration": schema.SingleNestedAttribute{
+						Description:         "WebhookConfiguration specifies the custom configuration for Kubernetes admission webhookconfiguration.Requires Kubernetes 1.27 or later.",
+						MarkdownDescription: "WebhookConfiguration specifies the custom configuration for Kubernetes admission webhookconfiguration.Requires Kubernetes 1.27 or later.",
+						Attributes: map[string]schema.Attribute{
+							"match_conditions": schema.ListNestedAttribute{
+								Description:         "MatchCondition configures admission webhook matchConditions.",
+								MarkdownDescription: "MatchCondition configures admission webhook matchConditions.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"expression": schema.StringAttribute{
+											Description:         "Expression represents the expression which will be evaluated by CEL. Must evaluate to bool.CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:'object' - The object from the incoming request. The value is null for DELETE requests.'oldObject' - The existing object. The value is null for CREATE requests.'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest).'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.  See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the  request resource.Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/Required.",
+											MarkdownDescription: "Expression represents the expression which will be evaluated by CEL. Must evaluate to bool.CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:'object' - The object from the incoming request. The value is null for DELETE requests.'oldObject' - The existing object. The value is null for CREATE requests.'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest).'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.  See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the  request resource.Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/Required.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name is an identifier for this match condition, used for strategic merging of MatchConditions,as well as providing an identifier for logging purposes. A good name should be descriptive ofthe associated expression.Name must be a qualified name consisting of alphanumeric characters, '-', '_' or '.', andmust start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or'123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]') with anoptional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')Required.",
+											MarkdownDescription: "Name is an identifier for this match condition, used for strategic merging of MatchConditions,as well as providing an identifier for logging purposes. A good name should be descriptive ofthe associated expression.Name must be a qualified name consisting of alphanumeric characters, '-', '_' or '.', andmust start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or'123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]') with anoptional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')Required.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"webhook_timeout_seconds": schema.Int64Attribute{
-						Description:         "WebhookTimeoutSeconds specifies the maximum time in seconds allowed to apply this policy. After the configured time expires, the admission request may fail, or may simply ignore the policy results, based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.",
-						MarkdownDescription: "WebhookTimeoutSeconds specifies the maximum time in seconds allowed to apply this policy. After the configured time expires, the admission request may fail, or may simply ignore the policy results, based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.",
+						Description:         "WebhookTimeoutSeconds specifies the maximum time in seconds allowed to apply this policy.After the configured time expires, the admission request may fail, or may simply ignore the policy results,based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.",
+						MarkdownDescription: "WebhookTimeoutSeconds specifies the maximum time in seconds allowed to apply this policy.After the configured time expires, the admission request may fail, or may simply ignore the policy results,based on the failure policy. The default timeout is 10s, the value must be between 1 and 30 seconds.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

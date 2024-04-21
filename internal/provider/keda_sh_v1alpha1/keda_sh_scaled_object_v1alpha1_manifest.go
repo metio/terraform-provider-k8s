@@ -80,11 +80,12 @@ type KedaShScaledObjectV1Alpha1ManifestData struct {
 			FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
 			Replicas         *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		} `tfsdk:"fallback" json:"fallback,omitempty"`
-		IdleReplicaCount *int64 `tfsdk:"idle_replica_count" json:"idleReplicaCount,omitempty"`
-		MaxReplicaCount  *int64 `tfsdk:"max_replica_count" json:"maxReplicaCount,omitempty"`
-		MinReplicaCount  *int64 `tfsdk:"min_replica_count" json:"minReplicaCount,omitempty"`
-		PollingInterval  *int64 `tfsdk:"polling_interval" json:"pollingInterval,omitempty"`
-		ScaleTargetRef   *struct {
+		IdleReplicaCount      *int64 `tfsdk:"idle_replica_count" json:"idleReplicaCount,omitempty"`
+		InitialCooldownPeriod *int64 `tfsdk:"initial_cooldown_period" json:"initialCooldownPeriod,omitempty"`
+		MaxReplicaCount       *int64 `tfsdk:"max_replica_count" json:"maxReplicaCount,omitempty"`
+		MinReplicaCount       *int64 `tfsdk:"min_replica_count" json:"minReplicaCount,omitempty"`
+		PollingInterval       *int64 `tfsdk:"polling_interval" json:"pollingInterval,omitempty"`
+		ScaleTargetRef        *struct {
 			ApiVersion             *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			EnvSourceContainerName *string `tfsdk:"env_source_container_name" json:"envSourceContainerName,omitempty"`
 			Kind                   *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -419,6 +420,14 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"idle_replica_count": schema.Int64Attribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"initial_cooldown_period": schema.Int64Attribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,

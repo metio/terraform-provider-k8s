@@ -61,6 +61,7 @@ type SchedulingVolcanoShQueueV1Beta1ManifestData struct {
 		Guarantee *struct {
 			Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
 		} `tfsdk:"guarantee" json:"guarantee,omitempty"`
+		Parent      *string `tfsdk:"parent" json:"parent,omitempty"`
 		Reclaimable *bool   `tfsdk:"reclaimable" json:"reclaimable,omitempty"`
 		Type        *string `tfsdk:"type" json:"type,omitempty"`
 		Weight      *int64  `tfsdk:"weight" json:"weight,omitempty"`
@@ -256,6 +257,14 @@ func (r *SchedulingVolcanoShQueueV1Beta1Manifest) Schema(_ context.Context, _ da
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"parent": schema.StringAttribute{
+						Description:         "Parent define the parent of queue",
+						MarkdownDescription: "Parent define the parent of queue",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"reclaimable": schema.BoolAttribute{

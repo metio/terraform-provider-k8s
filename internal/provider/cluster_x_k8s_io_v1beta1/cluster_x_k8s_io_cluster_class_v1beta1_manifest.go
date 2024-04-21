@@ -143,6 +143,10 @@ type ClusterXK8SIoClusterClassV1Beta1ManifestData struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"patches" json:"patches,omitempty"`
 		Variables *[]struct {
+			Metadata *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			} `tfsdk:"metadata" json:"metadata,omitempty"`
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
 			Required *bool   `tfsdk:"required" json:"required,omitempty"`
 			Schema   *struct {
@@ -1030,6 +1034,33 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "Variables defines the variables which can be configuredin the Cluster topology and are then used in patches.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"metadata": schema.SingleNestedAttribute{
+									Description:         "Metadata is the metadata of a variable.It can be used to add additional data for higher level tools toa ClusterClassVariable.",
+									MarkdownDescription: "Metadata is the metadata of a variable.It can be used to add additional data for higher level tools toa ClusterClassVariable.",
+									Attributes: map[string]schema.Attribute{
+										"annotations": schema.MapAttribute{
+											Description:         "Annotations is an unstructured key value map that can be used to store andretrieve arbitrary metadata.They are not queryable.",
+											MarkdownDescription: "Annotations is an unstructured key value map that can be used to store andretrieve arbitrary metadata.They are not queryable.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"labels": schema.MapAttribute{
+											Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) variables.",
+											MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) variables.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "Name of the variable.",
 									MarkdownDescription: "Name of the variable.",

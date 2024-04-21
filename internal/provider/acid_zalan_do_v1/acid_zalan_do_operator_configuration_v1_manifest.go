@@ -120,6 +120,7 @@ type AcidZalanDoOperatorConfigurationV1ManifestData struct {
 			Node_readiness_label                     *map[string]string `tfsdk:"node_readiness_label" json:"node_readiness_label,omitempty"`
 			Node_readiness_label_merge               *string            `tfsdk:"node_readiness_label_merge" json:"node_readiness_label_merge,omitempty"`
 			Oauth_token_secret_name                  *string            `tfsdk:"oauth_token_secret_name" json:"oauth_token_secret_name,omitempty"`
+			Pdb_master_label_selector                *bool              `tfsdk:"pdb_master_label_selector" json:"pdb_master_label_selector,omitempty"`
 			Pdb_name_format                          *string            `tfsdk:"pdb_name_format" json:"pdb_name_format,omitempty"`
 			Persistent_volume_claim_retention_policy *struct {
 				When_deleted *string `tfsdk:"when_deleted" json:"when_deleted,omitempty"`
@@ -931,6 +932,14 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 							},
 
 							"oauth_token_secret_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"pdb_master_label_selector": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

@@ -1865,6 +1865,10 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 				VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 			} `tfsdk:"wal_volume_claim_spec" json:"walVolumeClaimSpec,omitempty"`
 		} `tfsdk:"instances" json:"instances,omitempty"`
+		Metadata *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		} `tfsdk:"metadata" json:"metadata,omitempty"`
 		Openshift *bool `tfsdk:"openshift" json:"openshift,omitempty"`
 		Patroni   *struct {
 			DynamicConfiguration       *map[string]string `tfsdk:"dynamic_configuration" json:"dynamicConfiguration,omitempty"`
@@ -14643,6 +14647,33 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 						},
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"metadata": schema.SingleNestedAttribute{
+						Description:         "Metadata contains metadata for custom resources",
+						MarkdownDescription: "Metadata contains metadata for custom resources",
+						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

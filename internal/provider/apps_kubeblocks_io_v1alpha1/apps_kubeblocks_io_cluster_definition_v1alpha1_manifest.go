@@ -45,6 +45,12 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		ComponentDefs *[]struct {
+			BuiltinMonitorContainer *struct {
+				MetricsPath *string `tfsdk:"metrics_path" json:"metricsPath,omitempty"`
+				MetricsPort *string `tfsdk:"metrics_port" json:"metricsPort,omitempty"`
+				Name        *string `tfsdk:"name" json:"name,omitempty"`
+				Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
+			} `tfsdk:"builtin_monitor_container" json:"builtinMonitorContainer,omitempty"`
 			CharacterType   *string `tfsdk:"character_type" json:"characterType,omitempty"`
 			ComponentDefRef *[]struct {
 				ComponentDefName *string `tfsdk:"component_def_name" json:"componentDefName,omitempty"`
@@ -64,6 +70,7 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 				AsEnvFrom                *[]string `tfsdk:"as_env_from" json:"asEnvFrom,omitempty"`
 				ConstraintRef            *string   `tfsdk:"constraint_ref" json:"constraintRef,omitempty"`
 				DefaultMode              *int64    `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+				InjectEnvTo              *[]string `tfsdk:"inject_env_to" json:"injectEnvTo,omitempty"`
 				Keys                     *[]string `tfsdk:"keys" json:"keys,omitempty"`
 				LegacyRenderedConfigSpec *struct {
 					Namespace   *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -120,13 +127,6 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 				FilePathPattern *string `tfsdk:"file_path_pattern" json:"filePathPattern,omitempty"`
 				Name            *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"log_configs" json:"logConfigs,omitempty"`
-			Monitor *struct {
-				BuiltIn        *bool `tfsdk:"built_in" json:"builtIn,omitempty"`
-				ExporterConfig *struct {
-					ScrapePath *string `tfsdk:"scrape_path" json:"scrapePath,omitempty"`
-					ScrapePort *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
-				} `tfsdk:"exporter_config" json:"exporterConfig,omitempty"`
-			} `tfsdk:"monitor" json:"monitor,omitempty"`
 			Name    *string `tfsdk:"name" json:"name,omitempty"`
 			PodSpec *struct {
 				ActiveDeadlineSeconds *int64 `tfsdk:"active_deadline_seconds" json:"activeDeadlineSeconds,omitempty"`
@@ -1491,7 +1491,8 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 					ServiceVersion *string `tfsdk:"service_version" json:"serviceVersion,omitempty"`
 				} `tfsdk:"service_ref_declaration_specs" json:"serviceRefDeclarationSpecs,omitempty"`
 			} `tfsdk:"service_ref_declarations" json:"serviceRefDeclarations,omitempty"`
-			StatefulSpec *struct {
+			SidecarContainerSpecs *map[string]string `tfsdk:"sidecar_container_specs" json:"sidecarContainerSpecs,omitempty"`
+			StatefulSpec          *struct {
 				LlPodManagementPolicy *string `tfsdk:"ll_pod_management_policy" json:"llPodManagementPolicy,omitempty"`
 				LlUpdateStrategy      *struct {
 					RollingUpdate *struct {
@@ -1580,7 +1581,20 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 			WorkloadType *string `tfsdk:"workload_type" json:"workloadType,omitempty"`
 		} `tfsdk:"component_defs" json:"componentDefs,omitempty"`
 		ConnectionCredential *map[string]string `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
-		Type                 *string            `tfsdk:"type" json:"type,omitempty"`
+		Topologies           *[]struct {
+			Components *[]struct {
+				CompDef *string `tfsdk:"comp_def" json:"compDef,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"components" json:"components,omitempty"`
+			Default *bool   `tfsdk:"default" json:"default,omitempty"`
+			Name    *string `tfsdk:"name" json:"name,omitempty"`
+			Orders  *struct {
+				Provision *[]string `tfsdk:"provision" json:"provision,omitempty"`
+				Terminate *[]string `tfsdk:"terminate" json:"terminate,omitempty"`
+				Update    *[]string `tfsdk:"update" json:"update,omitempty"`
+			} `tfsdk:"orders" json:"orders,omitempty"`
+		} `tfsdk:"topologies" json:"topologies,omitempty"`
+		Type *string `tfsdk:"type" json:"type,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -1590,8 +1604,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Metadata(_ context.C
 
 func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ClusterDefinition is the Schema for the clusterdefinitions API",
-		MarkdownDescription: "ClusterDefinition is the Schema for the clusterdefinitions API",
+		Description:         "ClusterDefinition is the Schema for the ClusterDefinition API",
+		MarkdownDescription: "ClusterDefinition is the Schema for the ClusterDefinition API",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -1646,14 +1660,58 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterDefinitionSpec defines the desired state of ClusterDefinition",
-				MarkdownDescription: "ClusterDefinitionSpec defines the desired state of ClusterDefinition",
+				Description:         "ClusterDefinitionSpec defines the desired state of ClusterDefinition.",
+				MarkdownDescription: "ClusterDefinitionSpec defines the desired state of ClusterDefinition.",
 				Attributes: map[string]schema.Attribute{
 					"component_defs": schema.ListNestedAttribute{
-						Description:         "Provides the definitions for the cluster components.",
-						MarkdownDescription: "Provides the definitions for the cluster components.",
+						Description:         "Provides the definitions for the cluster components.  Deprecated since v0.9. Components should now be individually defined using ComponentDefinition and collectively referenced via 'topology.components'. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+						MarkdownDescription: "Provides the definitions for the cluster components.  Deprecated since v0.9. Components should now be individually defined using ComponentDefinition and collectively referenced via 'topology.components'. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"builtin_monitor_container": schema.SingleNestedAttribute{
+									Description:         "Defines the built-in metrics exporter container.",
+									MarkdownDescription: "Defines the built-in metrics exporter container.",
+									Attributes: map[string]schema.Attribute{
+										"metrics_path": schema.StringAttribute{
+											Description:         "Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+											MarkdownDescription: "Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"metrics_port": schema.StringAttribute{
+											Description:         "Specifies the port name to scrape for metrics.",
+											MarkdownDescription: "Specifies the port name to scrape for metrics.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Specifies the name of the built-in metrics exporter container.",
+											MarkdownDescription: "Specifies the name of the built-in metrics exporter container.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"protocol": schema.StringAttribute{
+											Description:         "Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
+											MarkdownDescription: "Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("http", "https"),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"character_type": schema.StringAttribute{
 									Description:         "Defines well-known database component name, such as mongos(mongodb), proxy(redis), mariadb(mysql).",
 									MarkdownDescription: "Defines well-known database component name, such as mongos(mongodb), proxy(redis), mariadb(mysql).",
@@ -1766,8 +1824,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"as_env_from": schema.ListAttribute{
-												Description:         "An optional field where the list of containers will be injected into EnvFrom.",
-												MarkdownDescription: "An optional field where the list of containers will be injected into EnvFrom.",
+												Description:         "Deprecated: AsEnvFrom has been deprecated since 0.9.0 and will be removed in 0.10.0 Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.  Note: The field name 'asEnvFrom' may be changed to 'injectEnvTo' in future versions for better clarity.",
+												MarkdownDescription: "Deprecated: AsEnvFrom has been deprecated since 0.9.0 and will be removed in 0.10.0 Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.  Note: The field name 'asEnvFrom' may be changed to 'injectEnvTo' in future versions for better clarity.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1775,8 +1833,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"constraint_ref": schema.StringAttribute{
-												Description:         "An optional field that defines the name of the referenced configuration constraints object.",
-												MarkdownDescription: "An optional field that defines the name of the referenced configuration constraints object.",
+												Description:         "Specifies the name of the referenced configuration constraints object.",
+												MarkdownDescription: "Specifies the name of the referenced configuration constraints object.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1787,16 +1845,25 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"default_mode": schema.Int64Attribute{
-												Description:         "Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-												MarkdownDescription: "Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												Description:         "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												MarkdownDescription: "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"inject_env_to": schema.ListAttribute{
+												Description:         "Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.",
+												MarkdownDescription: "Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.",
+												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"keys": schema.ListAttribute{
-												Description:         "Defines a list of keys. If left empty, ConfigConstraint applies to all keys in the configmap.",
-												MarkdownDescription: "Defines a list of keys. If left empty, ConfigConstraint applies to all keys in the configmap.",
+												Description:         "Specifies the configuration files within the ConfigMap that support dynamic updates.  A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart.  If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.",
+												MarkdownDescription: "Specifies the configuration files within the ConfigMap that support dynamic updates.  A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart.  If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1804,8 +1871,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"legacy_rendered_config_spec": schema.SingleNestedAttribute{
-												Description:         "An optional field that defines the secondary rendered config spec.",
-												MarkdownDescription: "An optional field that defines the secondary rendered config spec.",
+												Description:         "Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'.",
+												MarkdownDescription: "Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'.",
 												Attributes: map[string]schema.Attribute{
 													"namespace": schema.StringAttribute{
 														Description:         "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
@@ -1872,8 +1939,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"re_render_resource_types": schema.ListAttribute{
-												Description:         "An optional field defines which resources change trigger re-render config.",
-												MarkdownDescription: "An optional field defines which resources change trigger re-render config.",
+												Description:         "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
+												MarkdownDescription: "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2204,8 +2271,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"file_path_pattern": schema.StringAttribute{
-												Description:         "Indicates the path to the log file using a pattern, it corresponds to the variable (log path) in the database kernel.",
-												MarkdownDescription: "Indicates the path to the log file using a pattern, it corresponds to the variable (log path) in the database kernel.",
+												Description:         "Specifies the paths or patterns identifying where the log files are stored. This field allows the system to locate and manage log files effectively.  Examples:  - /home/postgres/pgdata/pgroot/data/log/postgresql-* - /data/mysql/log/mysqld-error.log",
+												MarkdownDescription: "Specifies the paths or patterns identifying where the log files are stored. This field allows the system to locate and manage log files effectively.  Examples:  - /home/postgres/pgdata/pgroot/data/log/postgresql-* - /data/mysql/log/mysqld-error.log",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -2215,8 +2282,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Specifies the type of log, such as 'slow' for a MySQL slow log file.",
-												MarkdownDescription: "Specifies the type of log, such as 'slow' for a MySQL slow log file.",
+												Description:         "Specifies a descriptive label for the log type, such as 'slow' for a MySQL slow log file. It provides a clear identification of the log's purpose and content.",
+												MarkdownDescription: "Specifies a descriptive label for the log type, such as 'slow' for a MySQL slow log file. It provides a clear identification of the log's purpose and content.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -2224,51 +2291,6 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 													stringvalidator.LengthAtMost(128),
 												},
 											},
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"monitor": schema.SingleNestedAttribute{
-									Description:         "Specify the config that how to monitor the component.",
-									MarkdownDescription: "Specify the config that how to monitor the component.",
-									Attributes: map[string]schema.Attribute{
-										"built_in": schema.BoolAttribute{
-											Description:         "To enable the built-in monitoring. When set to true, monitoring metrics will be automatically scraped. When set to false, the provider is expected to configure the ExporterConfig and manage the Sidecar container.",
-											MarkdownDescription: "To enable the built-in monitoring. When set to true, monitoring metrics will be automatically scraped. When set to false, the provider is expected to configure the ExporterConfig and manage the Sidecar container.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"exporter_config": schema.SingleNestedAttribute{
-											Description:         "Provided by the provider and contains the necessary information for the Time Series Database. This field is only valid when BuiltIn is set to false.",
-											MarkdownDescription: "Provided by the provider and contains the necessary information for the Time Series Database. This field is only valid when BuiltIn is set to false.",
-											Attributes: map[string]schema.Attribute{
-												"scrape_path": schema.StringAttribute{
-													Description:         "Specifies the URL path that the exporter uses for the Time Series Database to scrape metrics.",
-													MarkdownDescription: "Specifies the URL path that the exporter uses for the Time Series Database to scrape metrics.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.LengthAtMost(128),
-													},
-												},
-
-												"scrape_port": schema.StringAttribute{
-													Description:         "Defines the port that the exporter uses for the Time Series Database to scrape metrics.",
-													MarkdownDescription: "Defines the port that the exporter uses for the Time Series Database to scrape metrics.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
 										},
 									},
 									Required: false,
@@ -10946,8 +10968,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 								},
 
 								"rsm_spec": schema.SingleNestedAttribute{
-									Description:         "Defines workload spec of this component. From KB 0.7.0, RSM(ReplicatedStateMachineSpec) will be the underlying CR which powers all kinds of workload in KB. RSM is an enhanced stateful workload extension dedicated for heavy-state workloads like databases.",
-									MarkdownDescription: "Defines workload spec of this component. From KB 0.7.0, RSM(ReplicatedStateMachineSpec) will be the underlying CR which powers all kinds of workload in KB. RSM is an enhanced stateful workload extension dedicated for heavy-state workloads like databases.",
+									Description:         "Defines workload spec of this component. From KB 0.7.0, RSM(InstanceSetSpec) will be the underlying CR which powers all kinds of workload in KB. RSM is an enhanced stateful workload extension dedicated for heavy-state workloads like databases.",
+									MarkdownDescription: "Defines workload spec of this component. From KB 0.7.0, RSM(InstanceSetSpec) will be the underlying CR which powers all kinds of workload in KB. RSM is an enhanced stateful workload extension dedicated for heavy-state workloads like databases.",
 									Attributes: map[string]schema.Attribute{
 										"member_update_strategy": schema.StringAttribute{
 											Description:         "Describes the strategy for updating Members (Pods).  - 'Serial': Updates Members sequentially to ensure minimum component downtime. - 'BestEffortParallel': Updates Members in parallel to ensure minimum component write downtime. - 'Parallel': Forces parallel updates.",
@@ -11105,8 +11127,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 												},
 
 												"switchover_action": schema.SingleNestedAttribute{
-													Description:         "Specifies the environment variables that can be used in all following Actions: - KB_RSM_USERNAME: Represents the username part of the credential - KB_RSM_PASSWORD: Represents the password part of the credential - KB_RSM_LEADER_HOST: Represents the leader host - KB_RSM_TARGET_HOST: Represents the target host - KB_RSM_SERVICE_PORT: Represents the service port  Defines the action to perform a switchover. If the Image is not configured, the latest [BusyBox](https://busybox.net/) image will be used.",
-													MarkdownDescription: "Specifies the environment variables that can be used in all following Actions: - KB_RSM_USERNAME: Represents the username part of the credential - KB_RSM_PASSWORD: Represents the password part of the credential - KB_RSM_LEADER_HOST: Represents the leader host - KB_RSM_TARGET_HOST: Represents the target host - KB_RSM_SERVICE_PORT: Represents the service port  Defines the action to perform a switchover. If the Image is not configured, the latest [BusyBox](https://busybox.net/) image will be used.",
+													Description:         "Specifies the environment variables that can be used in all following Actions: - KB_ITS_USERNAME: Represents the username part of the credential - KB_ITS_PASSWORD: Represents the password part of the credential - KB_ITS_LEADER_HOST: Represents the leader host - KB_ITS_TARGET_HOST: Represents the target host - KB_ITS_SERVICE_PORT: Represents the service port  Defines the action to perform a switchover. If the Image is not configured, the latest [BusyBox](https://busybox.net/) image will be used.",
+													MarkdownDescription: "Specifies the environment variables that can be used in all following Actions: - KB_ITS_USERNAME: Represents the username part of the credential - KB_ITS_PASSWORD: Represents the password part of the credential - KB_ITS_LEADER_HOST: Represents the leader host - KB_ITS_TARGET_HOST: Represents the target host - KB_ITS_SERVICE_PORT: Represents the service port  Defines the action to perform a switchover. If the Image is not configured, the latest [BusyBox](https://busybox.net/) image will be used.",
 													Attributes: map[string]schema.Attribute{
 														"args": schema.ListAttribute{
 															Description:         "Additional parameters used to perform specific statements. This field is optional.",
@@ -11157,8 +11179,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 												},
 
 												"custom_handler": schema.ListNestedAttribute{
-													Description:         "Defines a custom method for role probing. If the BuiltinHandler meets the requirement, use it instead. Actions defined here are executed in series. Upon completion of all actions, the final output should be a single string representing the role name defined in spec.Roles. The latest [BusyBox](https://busybox.net/) image will be used if Image is not configured. Environment variables can be used in Command: - v_KB_RSM_LAST_STDOUT: stdout from the last action, watch for 'v_' prefix - KB_RSM_USERNAME: username part of the credential - KB_RSM_PASSWORD: password part of the credential",
-													MarkdownDescription: "Defines a custom method for role probing. If the BuiltinHandler meets the requirement, use it instead. Actions defined here are executed in series. Upon completion of all actions, the final output should be a single string representing the role name defined in spec.Roles. The latest [BusyBox](https://busybox.net/) image will be used if Image is not configured. Environment variables can be used in Command: - v_KB_RSM_LAST_STDOUT: stdout from the last action, watch for 'v_' prefix - KB_RSM_USERNAME: username part of the credential - KB_RSM_PASSWORD: password part of the credential",
+													Description:         "Defines a custom method for role probing. If the BuiltinHandler meets the requirement, use it instead. Actions defined here are executed in series. Upon completion of all actions, the final output should be a single string representing the role name defined in spec.Roles. The latest [BusyBox](https://busybox.net/) image will be used if Image is not configured. Environment variables can be used in Command: - v_KB_ITS_LAST_STDOUT: stdout from the last action, watch for 'v_' prefix - KB_ITS_USERNAME: username part of the credential - KB_ITS_PASSWORD: password part of the credential",
+													MarkdownDescription: "Defines a custom method for role probing. If the BuiltinHandler meets the requirement, use it instead. Actions defined here are executed in series. Upon completion of all actions, the final output should be a single string representing the role name defined in spec.Roles. The latest [BusyBox](https://busybox.net/) image will be used if Image is not configured. Environment variables can be used in Command: - v_KB_ITS_LAST_STDOUT: stdout from the last action, watch for 'v_' prefix - KB_ITS_USERNAME: username part of the credential - KB_ITS_PASSWORD: password part of the credential",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"args": schema.ListAttribute{
@@ -11321,8 +11343,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"default_mode": schema.Int64Attribute{
-												Description:         "Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-												MarkdownDescription: "Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												Description:         "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												MarkdownDescription: "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -11451,16 +11473,16 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Specifies the name of the service reference declaration.  The service reference may originate from an external service that is not part of KubeBlocks, or from services provided by other KubeBlocks Cluster objects. The specific type of service reference is determined by the binding declaration when a Cluster is created.",
-												MarkdownDescription: "Specifies the name of the service reference declaration.  The service reference may originate from an external service that is not part of KubeBlocks, or from services provided by other KubeBlocks Cluster objects. The specific type of service reference is determined by the binding declaration when a Cluster is created.",
+												Description:         "Specifies the name of the ServiceRefDeclaration.",
+												MarkdownDescription: "Specifies the name of the ServiceRefDeclaration.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"service_ref_declaration_specs": schema.ListNestedAttribute{
-												Description:         "Represents a collection of service descriptions for a service reference declaration.  Each ServiceRefDeclarationSpec defines a service Kind and Version. When multiple ServiceRefDeclarationSpecs are defined, it implies that the ServiceRefDeclaration can be any one of the specified ServiceRefDeclarationSpecs.  For instance, when the ServiceRefDeclaration is declared to require an OLTP database, which can be either MySQL or PostgreSQL, a ServiceRefDeclarationSpec for MySQL and another for PostgreSQL can be defined. When referencing the service within the cluster, as long as the serviceKind and serviceVersion match either MySQL or PostgreSQL, it can be used.",
-												MarkdownDescription: "Represents a collection of service descriptions for a service reference declaration.  Each ServiceRefDeclarationSpec defines a service Kind and Version. When multiple ServiceRefDeclarationSpecs are defined, it implies that the ServiceRefDeclaration can be any one of the specified ServiceRefDeclarationSpecs.  For instance, when the ServiceRefDeclaration is declared to require an OLTP database, which can be either MySQL or PostgreSQL, a ServiceRefDeclarationSpec for MySQL and another for PostgreSQL can be defined. When referencing the service within the cluster, as long as the serviceKind and serviceVersion match either MySQL or PostgreSQL, it can be used.",
+												Description:         "Defines a list of constraints and requirements for services that can be bound to this ServiceRefDeclaration upon Cluster creation. Each ServiceRefDeclarationSpec defines a ServiceKind and ServiceVersion, outlining the acceptable service types and versions that are compatible.  This flexibility allows a ServiceRefDeclaration to be fulfilled by any one of the provided specs. For example, if it requires an OLTP database, specs for both MySQL and PostgreSQL are listed, either MySQL or PostgreSQL services can be used when binding.",
+												MarkdownDescription: "Defines a list of constraints and requirements for services that can be bound to this ServiceRefDeclaration upon Cluster creation. Each ServiceRefDeclarationSpec defines a ServiceKind and ServiceVersion, outlining the acceptable service types and versions that are compatible.  This flexibility allows a ServiceRefDeclaration to be fulfilled by any one of the provided specs. For example, if it requires an OLTP database, specs for both MySQL and PostgreSQL are listed, either MySQL or PostgreSQL services can be used when binding.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"service_kind": schema.StringAttribute{
@@ -11489,6 +11511,15 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"sidecar_container_specs": schema.MapAttribute{
+									Description:         "Defines the sidecar containers that will be attached to the component's main container.",
+									MarkdownDescription: "Defines the sidecar containers that will be attached to the component's main container.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"stateful_spec": schema.SingleNestedAttribute{
@@ -11843,8 +11874,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 																	},
 
 																	"deletion": schema.StringAttribute{
-																		Description:         "Defines the statement required to delete an existing account. Typically used in conjunction with the creation statement to delete an account before recreating it. For example, one might use a 'drop user if exists' statement followed by a 'create user' statement to ensure a fresh account. Deprecated: This field is deprecated and the update statement should be used instead.",
-																		MarkdownDescription: "Defines the statement required to delete an existing account. Typically used in conjunction with the creation statement to delete an account before recreating it. For example, one might use a 'drop user if exists' statement followed by a 'create user' statement to ensure a fresh account. Deprecated: This field is deprecated and the update statement should be used instead.",
+																		Description:         "Defines the statement required to delete an existing account. Typically used in conjunction with the creation statement to delete an account before recreating it. For example, one might use a 'drop user if exists' statement followed by a 'create user' statement to ensure a fresh account.  Deprecated: This field is deprecated and the update statement should be used instead.",
+																		MarkdownDescription: "Defines the statement required to delete an existing account. Typically used in conjunction with the creation statement to delete an account before recreating it. For example, one might use a 'drop user if exists' statement followed by a 'create user' statement to ensure a fresh account.  Deprecated: This field is deprecated and the update statement should be used instead.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -12095,23 +12126,123 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 								},
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
 					"connection_credential": schema.MapAttribute{
-						Description:         "Connection credential template used for creating a connection credential secret for cluster objects.  Built-in objects are:  - '$(RANDOM_PASSWD)' random 8 characters. - '$(STRONG_RANDOM_PASSWD)' random 16 characters, with mixed cases, digits and symbols. - '$(UUID)' generate a random UUID v4 string. - '$(UUID_B64)' generate a random UUID v4 BASE64 encoded string. - '$(UUID_STR_B64)' generate a random UUID v4 string then BASE64 encoded. - '$(UUID_HEX)' generate a random UUID v4 HEX representation. - '$(HEADLESS_SVC_FQDN)' headless service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME)-headless.$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_FQDN)' service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME).$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_PORT_{PORT-NAME})' is ServicePort's port value with specified port name, i.e, a servicePort JSON struct: '{'name': 'mysql', 'targetPort': 'mysqlContainerPort', 'port': 3306}', and '$(SVC_PORT_mysql)' in the connection credential value is 3306.",
-						MarkdownDescription: "Connection credential template used for creating a connection credential secret for cluster objects.  Built-in objects are:  - '$(RANDOM_PASSWD)' random 8 characters. - '$(STRONG_RANDOM_PASSWD)' random 16 characters, with mixed cases, digits and symbols. - '$(UUID)' generate a random UUID v4 string. - '$(UUID_B64)' generate a random UUID v4 BASE64 encoded string. - '$(UUID_STR_B64)' generate a random UUID v4 string then BASE64 encoded. - '$(UUID_HEX)' generate a random UUID v4 HEX representation. - '$(HEADLESS_SVC_FQDN)' headless service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME)-headless.$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_FQDN)' service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME).$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_PORT_{PORT-NAME})' is ServicePort's port value with specified port name, i.e, a servicePort JSON struct: '{'name': 'mysql', 'targetPort': 'mysqlContainerPort', 'port': 3306}', and '$(SVC_PORT_mysql)' in the connection credential value is 3306.",
+						Description:         "Connection credential template used for creating a connection credential secret for cluster objects.  Built-in objects are:  - '$(RANDOM_PASSWD)' random 8 characters. - '$(STRONG_RANDOM_PASSWD)' random 16 characters, with mixed cases, digits and symbols. - '$(UUID)' generate a random UUID v4 string. - '$(UUID_B64)' generate a random UUID v4 BASE64 encoded string. - '$(UUID_STR_B64)' generate a random UUID v4 string then BASE64 encoded. - '$(UUID_HEX)' generate a random UUID v4 HEX representation. - '$(HEADLESS_SVC_FQDN)' headless service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME)-headless.$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_FQDN)' service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME).$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_PORT_{PORT-NAME})' is ServicePort's port value with specified port name, i.e, a servicePort JSON struct: '{'name': 'mysql', 'targetPort': 'mysqlContainerPort', 'port': 3306}', and '$(SVC_PORT_mysql)' in the connection credential value is 3306.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+						MarkdownDescription: "Connection credential template used for creating a connection credential secret for cluster objects.  Built-in objects are:  - '$(RANDOM_PASSWD)' random 8 characters. - '$(STRONG_RANDOM_PASSWD)' random 16 characters, with mixed cases, digits and symbols. - '$(UUID)' generate a random UUID v4 string. - '$(UUID_B64)' generate a random UUID v4 BASE64 encoded string. - '$(UUID_STR_B64)' generate a random UUID v4 string then BASE64 encoded. - '$(UUID_HEX)' generate a random UUID v4 HEX representation. - '$(HEADLESS_SVC_FQDN)' headless service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME)-headless.$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_FQDN)' service FQDN placeholder, value pattern is '$(CLUSTER_NAME)-$(1ST_COMP_NAME).$(NAMESPACE).svc', where 1ST_COMP_NAME is the 1st component that provide 'ClusterDefinition.spec.componentDefs[].service' attribute; - '$(SVC_PORT_{PORT-NAME})' is ServicePort's port value with specified port name, i.e, a servicePort JSON struct: '{'name': 'mysql', 'targetPort': 'mysqlContainerPort', 'port': 3306}', and '$(SVC_PORT_mysql)' in the connection credential value is 3306.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
+					"topologies": schema.ListNestedAttribute{
+						Description:         "Topologies defines all possible topologies within the cluster.",
+						MarkdownDescription: "Topologies defines all possible topologies within the cluster.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"components": schema.ListNestedAttribute{
+									Description:         "Components specifies the components in the topology.",
+									MarkdownDescription: "Components specifies the components in the topology.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"comp_def": schema.StringAttribute{
+												Description:         "Specifies the name or prefix of the ComponentDefinition custom resource(CR) that defines the Component's characteristics and behavior.  When a prefix is used, the system selects the ComponentDefinition CR with the latest version that matches the prefix. This approach allows:  1. Precise selection by providing the exact name of a ComponentDefinition CR. 2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a prefix.  Once set, this field cannot be updated.",
+												MarkdownDescription: "Specifies the name or prefix of the ComponentDefinition custom resource(CR) that defines the Component's characteristics and behavior.  When a prefix is used, the system selects the ComponentDefinition CR with the latest version that matches the prefix. This approach allows:  1. Precise selection by providing the exact name of a ComponentDefinition CR. 2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a prefix.  Once set, this field cannot be updated.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(64),
+												},
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Defines the unique identifier of the component within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number.  Cannot be updated once set.",
+												MarkdownDescription: "Defines the unique identifier of the component within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number.  Cannot be updated once set.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(16),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
+												},
+											},
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+
+								"default": schema.BoolAttribute{
+									Description:         "Default indicates whether this topology serves as the default configuration. When set to true, this topology is automatically used unless another is explicitly specified.",
+									MarkdownDescription: "Default indicates whether this topology serves as the default configuration. When set to true, this topology is automatically used unless another is explicitly specified.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name is the unique identifier for the cluster topology. Cannot be updated.",
+									MarkdownDescription: "Name is the unique identifier for the cluster topology. Cannot be updated.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(32),
+									},
+								},
+
+								"orders": schema.SingleNestedAttribute{
+									Description:         "Specifies the sequence in which components within a cluster topology are started, stopped, and upgraded. This ordering is crucial for maintaining the correct dependencies and operational flow across components.",
+									MarkdownDescription: "Specifies the sequence in which components within a cluster topology are started, stopped, and upgraded. This ordering is crucial for maintaining the correct dependencies and operational flow across components.",
+									Attributes: map[string]schema.Attribute{
+										"provision": schema.ListAttribute{
+											Description:         "Specifies the order for creating and initializing components. This is designed for components that depend on one another. Components without dependencies can be grouped together.  Components that can be provisioned independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											MarkdownDescription: "Specifies the order for creating and initializing components. This is designed for components that depend on one another. Components without dependencies can be grouped together.  Components that can be provisioned independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"terminate": schema.ListAttribute{
+											Description:         "Outlines the order for stopping and deleting components. This sequence is designed for components that require a graceful shutdown or have interdependencies.  Components that can be terminated independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											MarkdownDescription: "Outlines the order for stopping and deleting components. This sequence is designed for components that require a graceful shutdown or have interdependencies.  Components that can be terminated independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"update": schema.ListAttribute{
+											Description:         "Update determines the order for updating components' specifications, such as image upgrades or resource scaling. This sequence is designed for components that have dependencies or require specific update procedures.  Components that can be updated independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											MarkdownDescription: "Update determines the order for updating components' specifications, such as image upgrades or resource scaling. This sequence is designed for components that have dependencies or require specific update procedures.  Components that can be updated independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"type": schema.StringAttribute{
-						Description:         "Specifies the well-known application cluster type, such as mysql, redis, or mongodb.",
-						MarkdownDescription: "Specifies the well-known application cluster type, such as mysql, redis, or mongodb.",
+						Description:         "Specifies the well-known database type, such as mysql, redis, or mongodb.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+						MarkdownDescription: "Specifies the well-known database type, such as mysql, redis, or mongodb.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

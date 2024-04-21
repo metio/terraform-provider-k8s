@@ -73,6 +73,7 @@ type EverestPerconaComDatabaseClusterV1Alpha1ManifestData struct {
 		} `tfsdk:"data_source" json:"dataSource,omitempty"`
 		Engine *struct {
 			Config    *string `tfsdk:"config" json:"config,omitempty"`
+			CrVersion *string `tfsdk:"cr_version" json:"crVersion,omitempty"`
 			Replicas  *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources *struct {
 				Cpu    *string `tfsdk:"cpu" json:"cpu,omitempty"`
@@ -376,6 +377,14 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 							"config": schema.StringAttribute{
 								Description:         "Config is the engine configuration",
 								MarkdownDescription: "Config is the engine configuration",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cr_version": schema.StringAttribute{
+								Description:         "CRVersion is the desired version of the CR to use with theunderlying operator.If unspecified, everest-operator will use the same version as the operator.NOTE: Updating this property post installation may lead to a restart of the cluster.",
+								MarkdownDescription: "CRVersion is the desired version of the CR to use with theunderlying operator.If unspecified, everest-operator will use the same version as the operator.NOTE: Updating this property post installation may lead to a restart of the cluster.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

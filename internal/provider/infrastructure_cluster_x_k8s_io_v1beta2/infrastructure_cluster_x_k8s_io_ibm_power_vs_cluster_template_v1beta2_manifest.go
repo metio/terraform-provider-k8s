@@ -197,12 +197,12 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 						MarkdownDescription: "IBMPowerVSClusterTemplateResource describes the data needed to create an IBMPowerVSCluster from a template.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-								MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+								Description:         "Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+								MarkdownDescription: "Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
+										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -210,8 +210,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
+										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -253,8 +253,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"cos_instance": schema.SingleNestedAttribute{
-										Description:         "cosInstance contains options to configure a supporting IBM Cloud COS bucket for this cluster - currently used for nodes requiring Ignition (https://coreos.github.io/ignition/) for bootstrapping (requires BootstrapFormatIgnition feature flag to be enabled). when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource and Ignition is set, then 1. CosInstance.Name should be set not setting will result in webhook error. 2. CosInstance.BucketName should be set not setting will result in webhook error. 3. CosInstance.BucketRegion should be set not setting will result in webhook error.",
-										MarkdownDescription: "cosInstance contains options to configure a supporting IBM Cloud COS bucket for this cluster - currently used for nodes requiring Ignition (https://coreos.github.io/ignition/) for bootstrapping (requires BootstrapFormatIgnition feature flag to be enabled). when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource and Ignition is set, then 1. CosInstance.Name should be set not setting will result in webhook error. 2. CosInstance.BucketName should be set not setting will result in webhook error. 3. CosInstance.BucketRegion should be set not setting will result in webhook error.",
+										Description:         "cosInstance contains options to configure a supporting IBM Cloud COS bucket for thiscluster - currently used for nodes requiring Ignition(https://coreos.github.io/ignition/) for bootstrapping (requiresBootstrapFormatIgnition feature flag to be enabled).when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource and Ignition is set, then1. CosInstance.Name should be set not setting will result in webhook error.2. CosInstance.BucketName should be set not setting will result in webhook error.3. CosInstance.BucketRegion should be set not setting will result in webhook error.",
+										MarkdownDescription: "cosInstance contains options to configure a supporting IBM Cloud COS bucket for thiscluster - currently used for nodes requiring Ignition(https://coreos.github.io/ignition/) for bootstrapping (requiresBootstrapFormatIgnition feature flag to be enabled).when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource and Ignition is set, then1. CosInstance.Name should be set not setting will result in webhook error.2. CosInstance.BucketName should be set not setting will result in webhook error.3. CosInstance.BucketRegion should be set not setting will result in webhook error.",
 										Attributes: map[string]schema.Attribute{
 											"bucket_name": schema.StringAttribute{
 												Description:         "bucketName is IBM cloud COS bucket name",
@@ -273,8 +273,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "name defines name of IBM cloud COS instance to be created. when IBMPowerVSCluster.Ignition is set",
-												MarkdownDescription: "name defines name of IBM cloud COS instance to be created. when IBMPowerVSCluster.Ignition is set",
+												Description:         "name defines name of IBM cloud COS instance to be created.when IBMPowerVSCluster.Ignition is set",
+												MarkdownDescription: "name defines name of IBM cloud COS instance to be created.when IBMPowerVSCluster.Ignition is set",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -291,8 +291,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"dhcp_server": schema.SingleNestedAttribute{
-										Description:         "dhcpServer is contains the configuration to be used while creating a new DHCP server in PowerVS workspace. when the field is omitted, CLUSTER_NAME will be used as DHCPServer.Name and DHCP server will be created. it will automatically create network with name DHCPSERVER<DHCPServer.Name>_Private in PowerVS workspace.",
-										MarkdownDescription: "dhcpServer is contains the configuration to be used while creating a new DHCP server in PowerVS workspace. when the field is omitted, CLUSTER_NAME will be used as DHCPServer.Name and DHCP server will be created. it will automatically create network with name DHCPSERVER<DHCPServer.Name>_Private in PowerVS workspace.",
+										Description:         "dhcpServer is contains the configuration to be used while creating a new DHCP server in PowerVS workspace.when the field is omitted, CLUSTER_NAME will be used as DHCPServer.Name and DHCP server will be created.it will automatically create network with name DHCPSERVER<DHCPServer.Name>_Private in PowerVS workspace.",
+										MarkdownDescription: "dhcpServer is contains the configuration to be used while creating a new DHCP server in PowerVS workspace.when the field is omitted, CLUSTER_NAME will be used as DHCPServer.Name and DHCP server will be created.it will automatically create network with name DHCPSERVER<DHCPServer.Name>_Private in PowerVS workspace.",
 										Attributes: map[string]schema.Attribute{
 											"cidr": schema.StringAttribute{
 												Description:         "Optional cidr for DHCP private network",
@@ -360,8 +360,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"load_balancers": schema.ListNestedAttribute{
-										Description:         "loadBalancers is optional configuration for configuring loadbalancers to control plane or data plane nodes. when omitted system will create a default public loadbalancer with name CLUSTER_NAME-loadbalancer. when specified a vpc loadbalancer will be created and controlPlaneEndpoint will be set with associated hostname of loadbalancer. ControlPlaneEndpoint will be set with associated hostname of public loadbalancer. when LoadBalancers[].ID is set, its expected that there exist a loadbalancer with ID or else system will give error. when LoadBalancers[].Name is set, system will first check for loadbalancer with Name, if not exist system will create new loadbalancer. For each loadbalancer a default backed pool and front listener will be configured with port 6443.",
-										MarkdownDescription: "loadBalancers is optional configuration for configuring loadbalancers to control plane or data plane nodes. when omitted system will create a default public loadbalancer with name CLUSTER_NAME-loadbalancer. when specified a vpc loadbalancer will be created and controlPlaneEndpoint will be set with associated hostname of loadbalancer. ControlPlaneEndpoint will be set with associated hostname of public loadbalancer. when LoadBalancers[].ID is set, its expected that there exist a loadbalancer with ID or else system will give error. when LoadBalancers[].Name is set, system will first check for loadbalancer with Name, if not exist system will create new loadbalancer. For each loadbalancer a default backed pool and front listener will be configured with port 6443.",
+										Description:         "loadBalancers is optional configuration for configuring loadbalancers to control plane or data plane nodes.when omitted system will create a default public loadbalancer with name CLUSTER_NAME-loadbalancer.when specified a vpc loadbalancer will be created and controlPlaneEndpoint will be set with associated hostname of loadbalancer.ControlPlaneEndpoint will be set with associated hostname of public loadbalancer.when LoadBalancers[].ID is set, its expected that there exist a loadbalancer with ID or else system will give error.when LoadBalancers[].Name is set, system will first check for loadbalancer with Name, if not exist system will create new loadbalancer.For each loadbalancer a default backed pool and front listener will be configured with port 6443.",
+										MarkdownDescription: "loadBalancers is optional configuration for configuring loadbalancers to control plane or data plane nodes.when omitted system will create a default public loadbalancer with name CLUSTER_NAME-loadbalancer.when specified a vpc loadbalancer will be created and controlPlaneEndpoint will be set with associated hostname of loadbalancer.ControlPlaneEndpoint will be set with associated hostname of public loadbalancer.when LoadBalancers[].ID is set, its expected that there exist a loadbalancer with ID or else system will give error.when LoadBalancers[].Name is set, system will first check for loadbalancer with Name, if not exist system will create new loadbalancer.For each loadbalancer a default backed pool and front listener will be configured with port 6443.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"additional_listeners": schema.ListNestedAttribute{
@@ -393,6 +393,11 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(64),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[-0-9a-z_]+$`), ""),
+													},
 												},
 
 												"name": schema.StringAttribute{
@@ -402,7 +407,9 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
 														stringvalidator.LengthAtMost(63),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
 													},
 												},
 
@@ -421,8 +428,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"network": schema.SingleNestedAttribute{
-										Description:         "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service. Network.RegEx is not yet supported and system will ignore the value.",
-										MarkdownDescription: "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service. Network.RegEx is not yet supported and system will ignore the value.",
+										Description:         "Network is the reference to the Network to use for this cluster.when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used.the DHCP service created network will have the following name format1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private.2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private.when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error.when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service.Network.RegEx is not yet supported and system will ignore the value.",
+										MarkdownDescription: "Network is the reference to the Network to use for this cluster.when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used.the DHCP service created network will have the following name format1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private.2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private.when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error.when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service.Network.RegEx is not yet supported and system will ignore the value.",
 										Attributes: map[string]schema.Attribute{
 											"id": schema.StringAttribute{
 												Description:         "ID of resource",
@@ -447,8 +454,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 											},
 
 											"regex": schema.StringAttribute{
-												Description:         "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
-												MarkdownDescription: "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												Description:         "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												MarkdownDescription: "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -463,8 +470,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"resource_group": schema.SingleNestedAttribute{
-										Description:         "resourceGroup name under which the resources will be created. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, 1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error. ServiceInstance.ID and ServiceInstance.Regex is not yet supported and system will ignore the value.",
-										MarkdownDescription: "resourceGroup name under which the resources will be created. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, 1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error. ServiceInstance.ID and ServiceInstance.Regex is not yet supported and system will ignore the value.",
+										Description:         "resourceGroup name under which the resources will be created.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error.ServiceInstance.ID and ServiceInstance.Regex is not yet supported and system will ignore the value.",
+										MarkdownDescription: "resourceGroup name under which the resources will be created.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error.ServiceInstance.ID and ServiceInstance.Regex is not yet supported and system will ignore the value.",
 										Attributes: map[string]schema.Attribute{
 											"id": schema.StringAttribute{
 												Description:         "ID of resource",
@@ -489,8 +496,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 											},
 
 											"regex": schema.StringAttribute{
-												Description:         "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
-												MarkdownDescription: "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												Description:         "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												MarkdownDescription: "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -505,8 +512,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"service_instance": schema.SingleNestedAttribute{
-										Description:         "serviceInstance is the reference to the Power VS server workspace on which the server instance(VM) will be created. Power VS server workspace is a container for all Power VS instances at a specific geographic region. serviceInstance can be created via IBM Cloud catalog or CLI. supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. More detail about Power VS service instance. https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server when omitted system will dynamically create the service instance with name CLUSTER_NAME-serviceInstance. when ServiceInstance.ID is set, its expected that there exist a service instance in PowerVS workspace with id or else system will give error. when ServiceInstance.Name is set, system will first check for service instance with Name in PowerVS workspace, if not exist system will create new instance. ServiceInstance.Regex is not yet supported not yet supported and system will ignore the value.",
-										MarkdownDescription: "serviceInstance is the reference to the Power VS server workspace on which the server instance(VM) will be created. Power VS server workspace is a container for all Power VS instances at a specific geographic region. serviceInstance can be created via IBM Cloud catalog or CLI. supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. More detail about Power VS service instance. https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server when omitted system will dynamically create the service instance with name CLUSTER_NAME-serviceInstance. when ServiceInstance.ID is set, its expected that there exist a service instance in PowerVS workspace with id or else system will give error. when ServiceInstance.Name is set, system will first check for service instance with Name in PowerVS workspace, if not exist system will create new instance. ServiceInstance.Regex is not yet supported not yet supported and system will ignore the value.",
+										Description:         "serviceInstance is the reference to the Power VS server workspace on which the server instance(VM) will be created.Power VS server workspace is a container for all Power VS instances at a specific geographic region.serviceInstance can be created via IBM Cloud catalog or CLI.supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli.More detail about Power VS service instance.https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-serverwhen omitted system will dynamically create the service instance with name CLUSTER_NAME-serviceInstance.when ServiceInstance.ID is set, its expected that there exist a service instance in PowerVS workspace with id or else system will give error.when ServiceInstance.Name is set, system will first check for service instance with Name in PowerVS workspace, if not exist system will create new instance.ServiceInstance.Regex is not yet supported not yet supported and system will ignore the value.",
+										MarkdownDescription: "serviceInstance is the reference to the Power VS server workspace on which the server instance(VM) will be created.Power VS server workspace is a container for all Power VS instances at a specific geographic region.serviceInstance can be created via IBM Cloud catalog or CLI.supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli.More detail about Power VS service instance.https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-serverwhen omitted system will dynamically create the service instance with name CLUSTER_NAME-serviceInstance.when ServiceInstance.ID is set, its expected that there exist a service instance in PowerVS workspace with id or else system will give error.when ServiceInstance.Name is set, system will first check for service instance with Name in PowerVS workspace, if not exist system will create new instance.ServiceInstance.Regex is not yet supported not yet supported and system will ignore the value.",
 										Attributes: map[string]schema.Attribute{
 											"id": schema.StringAttribute{
 												Description:         "ID of resource",
@@ -531,8 +538,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 											},
 
 											"regex": schema.StringAttribute{
-												Description:         "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
-												MarkdownDescription: "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												Description:         "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												MarkdownDescription: "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -547,16 +554,16 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"service_instance_id": schema.StringAttribute{
-										Description:         "ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed. Deprecated: use ServiceInstance instead",
-										MarkdownDescription: "ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed. Deprecated: use ServiceInstance instead",
+										Description:         "ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed.Deprecated: use ServiceInstance instead",
+										MarkdownDescription: "ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed.Deprecated: use ServiceInstance instead",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"transit_gateway": schema.SingleNestedAttribute{
-										Description:         "transitGateway contains information about IBM Cloud TransitGateway IBM Cloud TransitGateway helps in establishing network connectivity between IBM Cloud Power VS and VPC infrastructure more information about TransitGateway can be found here https://www.ibm.com/products/transit-gateway. when TransitGateway.ID is set, its expected that there exist a TransitGateway with ID or else system will give error. when TransitGateway.Name is set, system will first check for TransitGateway with Name, if not exist system will create new TransitGateway.",
-										MarkdownDescription: "transitGateway contains information about IBM Cloud TransitGateway IBM Cloud TransitGateway helps in establishing network connectivity between IBM Cloud Power VS and VPC infrastructure more information about TransitGateway can be found here https://www.ibm.com/products/transit-gateway. when TransitGateway.ID is set, its expected that there exist a TransitGateway with ID or else system will give error. when TransitGateway.Name is set, system will first check for TransitGateway with Name, if not exist system will create new TransitGateway.",
+										Description:         "transitGateway contains information about IBM Cloud TransitGatewayIBM Cloud TransitGateway helps in establishing network connectivity between IBM Cloud Power VS and VPC infrastructuremore information about TransitGateway can be found here https://www.ibm.com/products/transit-gateway.when TransitGateway.ID is set, its expected that there exist a TransitGateway with ID or else system will give error.when TransitGateway.Name is set, system will first check for TransitGateway with Name, if not exist system will create new TransitGateway.",
+										MarkdownDescription: "transitGateway contains information about IBM Cloud TransitGatewayIBM Cloud TransitGateway helps in establishing network connectivity between IBM Cloud Power VS and VPC infrastructuremore information about TransitGateway can be found here https://www.ibm.com/products/transit-gateway.when TransitGateway.ID is set, its expected that there exist a TransitGateway with ID or else system will give error.when TransitGateway.Name is set, system will first check for TransitGateway with Name, if not exist system will create new TransitGateway.",
 										Attributes: map[string]schema.Attribute{
 											"id": schema.StringAttribute{
 												Description:         "id of resource.",
@@ -572,6 +579,11 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(63),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$`), ""),
+												},
 											},
 										},
 										Required: false,
@@ -580,8 +592,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"vpc": schema.SingleNestedAttribute{
-										Description:         "vpc contains information about IBM Cloud VPC resources. when omitted system will dynamically create the VPC with name CLUSTER_NAME-vpc. when VPC.ID is set, its expected that there exist a VPC with ID or else system will give error. when VPC.Name is set, system will first check for VPC with Name, if not exist system will create new VPC. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, 1. it is expected to set the VPC.Region, not setting will result in webhook error.",
-										MarkdownDescription: "vpc contains information about IBM Cloud VPC resources. when omitted system will dynamically create the VPC with name CLUSTER_NAME-vpc. when VPC.ID is set, its expected that there exist a VPC with ID or else system will give error. when VPC.Name is set, system will first check for VPC with Name, if not exist system will create new VPC. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, 1. it is expected to set the VPC.Region, not setting will result in webhook error.",
+										Description:         "vpc contains information about IBM Cloud VPC resources.when omitted system will dynamically create the VPC with name CLUSTER_NAME-vpc.when VPC.ID is set, its expected that there exist a VPC with ID or else system will give error.when VPC.Name is set, system will first check for VPC with Name, if not exist system will create new VPC.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the VPC.Region, not setting will result in webhook error.",
+										MarkdownDescription: "vpc contains information about IBM Cloud VPC resources.when omitted system will dynamically create the VPC with name CLUSTER_NAME-vpc.when VPC.ID is set, its expected that there exist a VPC with ID or else system will give error.when VPC.Name is set, system will first check for VPC with Name, if not exist system will create new VPC.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the VPC.Region, not setting will result in webhook error.",
 										Attributes: map[string]schema.Attribute{
 											"id": schema.StringAttribute{
 												Description:         "id of resource.",
@@ -591,6 +603,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 												Computed:            false,
 												Validators: []validator.String{
 													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(64),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[-0-9a-z_]+$`), ""),
 												},
 											},
 
@@ -602,12 +616,14 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 												Computed:            false,
 												Validators: []validator.String{
 													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(63),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
 												},
 											},
 
 											"region": schema.StringAttribute{
-												Description:         "region of IBM Cloud VPC. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, it is expected to set the region, not setting will result in webhook error.",
-												MarkdownDescription: "region of IBM Cloud VPC. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, it is expected to set the region, not setting will result in webhook error.",
+												Description:         "region of IBM Cloud VPC.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,it is expected to set the region, not setting will result in webhook error.",
+												MarkdownDescription: "region of IBM Cloud VPC.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,it is expected to set the region, not setting will result in webhook error.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -619,8 +635,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"vpc_subnets": schema.ListNestedAttribute{
-										Description:         "vpcSubnets contains information about IBM Cloud VPC Subnet resources. when omitted system will create the subnets in all the zone corresponding to VPC.Region, with name CLUSTER_NAME-vpcsubnet-ZONE_NAME. possible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server. when VPCSubnets[].ID is set, its expected that there exist a subnet with ID or else system will give error. when VPCSubnets[].Zone is not set, a random zone is picked from available zones of VPC.Region. when VPCSubnets[].Name is not set, system will set name as CLUSTER_NAME-vpcsubnet-INDEX. if subnet with name VPCSubnets[].Name not found, system will create new subnet in VPCSubnets[].Zone.",
-										MarkdownDescription: "vpcSubnets contains information about IBM Cloud VPC Subnet resources. when omitted system will create the subnets in all the zone corresponding to VPC.Region, with name CLUSTER_NAME-vpcsubnet-ZONE_NAME. possible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server. when VPCSubnets[].ID is set, its expected that there exist a subnet with ID or else system will give error. when VPCSubnets[].Zone is not set, a random zone is picked from available zones of VPC.Region. when VPCSubnets[].Name is not set, system will set name as CLUSTER_NAME-vpcsubnet-INDEX. if subnet with name VPCSubnets[].Name not found, system will create new subnet in VPCSubnets[].Zone.",
+										Description:         "vpcSubnets contains information about IBM Cloud VPC Subnet resources.when omitted system will create the subnets in all the zone corresponding to VPC.Region, with name CLUSTER_NAME-vpcsubnet-ZONE_NAME.possible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server.when VPCSubnets[].ID is set, its expected that there exist a subnet with ID or else system will give error.when VPCSubnets[].Zone is not set, a random zone is picked from available zones of VPC.Region.when VPCSubnets[].Name is not set, system will set name as CLUSTER_NAME-vpcsubnet-INDEX.if subnet with name VPCSubnets[].Name not found, system will create new subnet in VPCSubnets[].Zone.",
+										MarkdownDescription: "vpcSubnets contains information about IBM Cloud VPC Subnet resources.when omitted system will create the subnets in all the zone corresponding to VPC.Region, with name CLUSTER_NAME-vpcsubnet-ZONE_NAME.possible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server.when VPCSubnets[].ID is set, its expected that there exist a subnet with ID or else system will give error.when VPCSubnets[].Zone is not set, a random zone is picked from available zones of VPC.Region.when VPCSubnets[].Name is not set, system will set name as CLUSTER_NAME-vpcsubnet-INDEX.if subnet with name VPCSubnets[].Name not found, system will create new subnet in VPCSubnets[].Zone.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"cidr": schema.StringAttribute{
@@ -637,6 +653,11 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(64),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[-0-9a-z_]+$`), ""),
+													},
 												},
 
 												"name": schema.StringAttribute{
@@ -645,6 +666,11 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(63),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
+													},
 												},
 
 												"zone": schema.StringAttribute{
@@ -662,8 +688,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"zone": schema.StringAttribute{
-										Description:         "zone is the name of Power VS zone where the cluster will be created possible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, 1. it is expected to set the zone, not setting will result in webhook error. 2. the zone should have PER capabilities, or else system will give error.",
-										MarkdownDescription: "zone is the name of Power VS zone where the cluster will be created possible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, 1. it is expected to set the zone, not setting will result in webhook error. 2. the zone should have PER capabilities, or else system will give error.",
+										Description:         "zone is the name of Power VS zone where the cluster will be createdpossible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the zone, not setting will result in webhook error.2. the zone should have PER capabilities, or else system will give error.",
+										MarkdownDescription: "zone is the name of Power VS zone where the cluster will be createdpossible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server.when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource,1. it is expected to set the zone, not setting will result in webhook error.2. the zone should have PER capabilities, or else system will give error.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

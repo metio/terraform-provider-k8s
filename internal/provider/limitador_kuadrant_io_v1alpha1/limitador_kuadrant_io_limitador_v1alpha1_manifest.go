@@ -217,14 +217,18 @@ type LimitadorKuadrantIoLimitadorV1Alpha1ManifestData struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"config_secret_ref" json:"configSecretRef,omitempty"`
 				Options *struct {
-					Flush_period *int64 `tfsdk:"flush_period" json:"flush-period,omitempty"`
-					Max_cached   *int64 `tfsdk:"max_cached" json:"max-cached,omitempty"`
-					Ratio        *int64 `tfsdk:"ratio" json:"ratio,omitempty"`
-					Ttl          *int64 `tfsdk:"ttl" json:"ttl,omitempty"`
+					Flush_period     *int64 `tfsdk:"flush_period" json:"flush-period,omitempty"`
+					Max_cached       *int64 `tfsdk:"max_cached" json:"max-cached,omitempty"`
+					Ratio            *int64 `tfsdk:"ratio" json:"ratio,omitempty"`
+					Response_timeout *int64 `tfsdk:"response_timeout" json:"response-timeout,omitempty"`
+					Ttl              *int64 `tfsdk:"ttl" json:"ttl,omitempty"`
 				} `tfsdk:"options" json:"options,omitempty"`
 			} `tfsdk:"redis_cached" json:"redis-cached,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
 		Telemetry *string `tfsdk:"telemetry" json:"telemetry,omitempty"`
+		Tracing   *struct {
+			Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+		} `tfsdk:"tracing" json:"tracing,omitempty"`
 		Verbosity *int64  `tfsdk:"verbosity" json:"verbosity,omitempty"`
 		Version   *string `tfsdk:"version" json:"version,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -1448,6 +1452,14 @@ func (r *LimitadorKuadrantIoLimitadorV1Alpha1Manifest) Schema(_ context.Context,
 												Computed:            false,
 											},
 
+											"response_timeout": schema.Int64Attribute{
+												Description:         "ResponseTimeout defines the timeout for Redis commands in milliseconds [default: 350]",
+												MarkdownDescription: "ResponseTimeout defines the timeout for Redis commands in milliseconds [default: 350]",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"ttl": schema.Int64Attribute{
 												Description:         "TTL for cached counters in milliseconds [default: 5000]",
 												MarkdownDescription: "TTL for cached counters in milliseconds [default: 5000]",
@@ -1480,6 +1492,23 @@ func (r *LimitadorKuadrantIoLimitadorV1Alpha1Manifest) Schema(_ context.Context,
 						Validators: []validator.String{
 							stringvalidator.OneOf("basic", "exhaustive"),
 						},
+					},
+
+					"tracing": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"endpoint": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"verbosity": schema.Int64Attribute{

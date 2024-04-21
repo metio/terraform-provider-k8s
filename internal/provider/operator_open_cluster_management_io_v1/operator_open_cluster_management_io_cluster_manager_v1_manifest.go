@@ -98,6 +98,7 @@ type OperatorOpenClusterManagementIoClusterManagerV1ManifestData struct {
 				Feature *string `tfsdk:"feature" json:"feature,omitempty"`
 				Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
 			} `tfsdk:"feature_gates" json:"featureGates,omitempty"`
+			WorkDriver *string `tfsdk:"work_driver" json:"workDriver,omitempty"`
 		} `tfsdk:"work_configuration" json:"workConfiguration,omitempty"`
 		WorkImagePullSpec *string `tfsdk:"work_image_pull_spec" json:"workImagePullSpec,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -537,6 +538,17 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"work_driver": schema.StringAttribute{
+								Description:         "WorkDriver represents the type of work driver. Possible values are 'kube', 'mqtt', or 'grpc'. If not provided, the default value is 'kube'. If set to non-'kube' drivers, the klusterlet need to use the same driver. and the driver configuration must be provided in a secret named 'work-driver-config' in the namespace where the cluster manager is running, adhering to the following structure: config.yaml: | <driver-config-in-yaml>  For detailed driver configuration, please refer to the sdk-go documentation: https://github.com/open-cluster-management-io/sdk-go/blob/main/pkg/cloudevents/README.md#supported-protocols-and-drivers",
+								MarkdownDescription: "WorkDriver represents the type of work driver. Possible values are 'kube', 'mqtt', or 'grpc'. If not provided, the default value is 'kube'. If set to non-'kube' drivers, the klusterlet need to use the same driver. and the driver configuration must be provided in a secret named 'work-driver-config' in the namespace where the cluster manager is running, adhering to the following structure: config.yaml: | <driver-config-in-yaml>  For detailed driver configuration, please refer to the sdk-go documentation: https://github.com/open-cluster-management-io/sdk-go/blob/main/pkg/cloudevents/README.md#supported-protocols-and-drivers",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("kube", "mqtt", "grpc"),
+								},
 							},
 						},
 						Required: false,

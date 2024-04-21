@@ -232,6 +232,10 @@ type OpentelemetryIoInstrumentationV1Alpha1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"env" json:"env,omitempty"`
+			Extensions *[]struct {
+				Dir   *string `tfsdk:"dir" json:"dir,omitempty"`
+				Image *string `tfsdk:"image" json:"image,omitempty"`
+			} `tfsdk:"extensions" json:"extensions,omitempty"`
 			Image     *string `tfsdk:"image" json:"image,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
@@ -1667,6 +1671,33 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"extensions": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"dir": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"image": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
 										},
 									},
 								},

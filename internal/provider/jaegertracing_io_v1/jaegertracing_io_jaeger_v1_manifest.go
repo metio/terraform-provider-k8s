@@ -966,7 +966,8 @@ type JaegertracingIoJaegerV1ManifestData struct {
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
 			MetricsStorage *struct {
-				Type *string `tfsdk:"type" json:"type,omitempty"`
+				Server_url *string `tfsdk:"server_url" json:"server-url,omitempty"`
+				Type       *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"metrics_storage" json:"metricsStorage,omitempty"`
 			Options           *map[string]string `tfsdk:"options" json:"options,omitempty"`
 			PriorityClassName *string            `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
@@ -3371,7 +3372,8 @@ type JaegertracingIoJaegerV1ManifestData struct {
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
 			MetricsStorage *struct {
-				Type *string `tfsdk:"type" json:"type,omitempty"`
+				Server_url *string `tfsdk:"server_url" json:"server-url,omitempty"`
+				Type       *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"metrics_storage" json:"metricsStorage,omitempty"`
 			NodePort          *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 			NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
@@ -12291,6 +12293,14 @@ func (r *JaegertracingIoJaegerV1Manifest) Schema(_ context.Context, _ datasource
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"server_url": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"type": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -28460,6 +28470,14 @@ func (r *JaegertracingIoJaegerV1Manifest) Schema(_ context.Context, _ datasource
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"server_url": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"type": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",

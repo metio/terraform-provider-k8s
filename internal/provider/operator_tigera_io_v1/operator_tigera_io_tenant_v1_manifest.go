@@ -182,8 +182,8 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"control_plane_replicas": schema.Int64Attribute{
-						Description:         "ControlPlaneReplicas defines how many replicas of the control plane core components will be deployed in the Tenant's namespace. Defaults to the controlPlaneReplicas in Installation CR",
-						MarkdownDescription: "ControlPlaneReplicas defines how many replicas of the control plane core components will be deployed in the Tenant's namespace. Defaults to the controlPlaneReplicas in Installation CR",
+						Description:         "ControlPlaneReplicas defines how many replicas of the control plane core components will be deployedin the Tenant's namespace. Defaults to the controlPlaneReplicas in Installation CR",
+						MarkdownDescription: "ControlPlaneReplicas defines how many replicas of the control plane core components will be deployedin the Tenant's namespace. Defaults to the controlPlaneReplicas in Installation CR",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -206,13 +206,13 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 												MarkdownDescription: "Spec is the Dashboard job's PodSpec.",
 												Attributes: map[string]schema.Attribute{
 													"containers": schema.ListNestedAttribute{
-														Description:         "Containers is a list of dashboards job containers. If specified, this overrides the specified Dashboard job containers. If omitted, the Dashboard job will use its default values for its containers.",
-														MarkdownDescription: "Containers is a list of dashboards job containers. If specified, this overrides the specified Dashboard job containers. If omitted, the Dashboard job will use its default values for its containers.",
+														Description:         "Containers is a list of dashboards job containers.If specified, this overrides the specified Dashboard job containers.If omitted, the Dashboard job will use its default values for its containers.",
+														MarkdownDescription: "Containers is a list of dashboards job containers.If specified, this overrides the specified Dashboard job containers.If omitted, the Dashboard job will use its default values for its containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the Dashboard Job container by name.",
-																	MarkdownDescription: "Name is an enum which identifies the Dashboard Job container by name.",
+																	Description:         "Name is an enum which identifies the Dashboard Job container by name.Supported values are: dashboards-installer",
+																	MarkdownDescription: "Name is an enum which identifies the Dashboard Job container by name.Supported values are: dashboards-installer",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -222,17 +222,17 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Dashboard Job container's resources. If omitted, the Dashboard Job will use its default value for this container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Dashboard Job container's resources. If omitted, the Dashboard Job will use its default value for this container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Dashboard Job container's resources.If omitted, the Dashboard Job will use its default value for this container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Dashboard Job container's resources.If omitted, the Dashboard Job will use its default value for this container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -245,8 +245,8 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -254,8 +254,8 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -294,8 +294,8 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"elastic": schema.SingleNestedAttribute{
-						Description:         "Elastic configures per-tenant ElasticSearch and Kibana parameters. This field is required for clusters using external ES.",
-						MarkdownDescription: "Elastic configures per-tenant ElasticSearch and Kibana parameters. This field is required for clusters using external ES.",
+						Description:         "Elastic configures per-tenant ElasticSearch and Kibana parameters.This field is required for clusters using external ES.",
+						MarkdownDescription: "Elastic configures per-tenant ElasticSearch and Kibana parameters.This field is required for clusters using external ES.",
 						Attributes: map[string]schema.Attribute{
 							"kibana_url": schema.StringAttribute{
 								Description:         "",
@@ -340,8 +340,8 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"base_index_name": schema.StringAttribute{
-									Description:         "BaseIndexName defines the name of the index that will be used to store data (this name excludes the numerical identifier suffix)",
-									MarkdownDescription: "BaseIndexName defines the name of the index that will be used to store data (this name excludes the numerical identifier suffix)",
+									Description:         "BaseIndexName defines the name of the indexthat will be used to store data (this nameexcludes the numerical identifier suffix)",
+									MarkdownDescription: "BaseIndexName defines the name of the indexthat will be used to store data (this nameexcludes the numerical identifier suffix)",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -381,13 +381,13 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 												MarkdownDescription: "Spec is the linseed Deployment's PodSpec.",
 												Attributes: map[string]schema.Attribute{
 													"containers": schema.ListNestedAttribute{
-														Description:         "Containers is a list of linseed containers. If specified, this overrides the specified linseed Deployment containers. If omitted, the linseed Deployment will use its default values for its containers.",
-														MarkdownDescription: "Containers is a list of linseed containers. If specified, this overrides the specified linseed Deployment containers. If omitted, the linseed Deployment will use its default values for its containers.",
+														Description:         "Containers is a list of linseed containers.If specified, this overrides the specified linseed Deployment containers.If omitted, the linseed Deployment will use its default values for its containers.",
+														MarkdownDescription: "Containers is a list of linseed containers.If specified, this overrides the specified linseed Deployment containers.If omitted, the linseed Deployment will use its default values for its containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the linseed Deployment container by name.",
-																	MarkdownDescription: "Name is an enum which identifies the linseed Deployment container by name.",
+																	Description:         "Name is an enum which identifies the linseed Deployment container by name.Supported values are: tigera-linseed",
+																	MarkdownDescription: "Name is an enum which identifies the linseed Deployment container by name.Supported values are: tigera-linseed",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -397,17 +397,17 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named linseed Deployment container's resources. If omitted, the linseed Deployment will use its default value for this container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named linseed Deployment container's resources. If omitted, the linseed Deployment will use its default value for this container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named linseed Deployment container's resources.If omitted, the linseed Deployment will use its default value for this container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named linseed Deployment container's resources.If omitted, the linseed Deployment will use its default value for this container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -420,8 +420,8 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -429,8 +429,8 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -449,13 +449,13 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 													},
 
 													"init_containers": schema.ListNestedAttribute{
-														Description:         "InitContainers is a list of linseed init containers. If specified, this overrides the specified linseed Deployment init containers. If omitted, the linseed Deployment will use its default values for its init containers.",
-														MarkdownDescription: "InitContainers is a list of linseed init containers. If specified, this overrides the specified linseed Deployment init containers. If omitted, the linseed Deployment will use its default values for its init containers.",
+														Description:         "InitContainers is a list of linseed init containers.If specified, this overrides the specified linseed Deployment init containers.If omitted, the linseed Deployment will use its default values for its init containers.",
+														MarkdownDescription: "InitContainers is a list of linseed init containers.If specified, this overrides the specified linseed Deployment init containers.If omitted, the linseed Deployment will use its default values for its init containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the linseed Deployment init container by name.",
-																	MarkdownDescription: "Name is an enum which identifies the linseed Deployment init container by name.",
+																	Description:         "Name is an enum which identifies the linseed Deployment init container by name.Supported values are: tigera-secure-linseed-token-tls-key-cert-provisioner,tigera-secure-linseed-cert-key-cert-provisioner",
+																	MarkdownDescription: "Name is an enum which identifies the linseed Deployment init container by name.Supported values are: tigera-secure-linseed-token-tls-key-cert-provisioner,tigera-secure-linseed-cert-key-cert-provisioner",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -465,17 +465,17 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named linseed Deployment init container's resources. If omitted, the linseed Deployment will use its default value for this init container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named linseed Deployment init container's resources. If omitted, the linseed Deployment will use its default value for this init container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named linseed Deployment init container's resources.If omitted, the linseed Deployment will use its default value for this init container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named linseed Deployment init container's resources.If omitted, the linseed Deployment will use its default value for this init container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -488,8 +488,8 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -497,8 +497,8 @@ func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasourc
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,

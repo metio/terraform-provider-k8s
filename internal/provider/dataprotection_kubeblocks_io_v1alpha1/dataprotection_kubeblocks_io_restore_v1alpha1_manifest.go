@@ -47,8 +47,9 @@ type DataprotectionKubeblocksIoRestoreV1Alpha1ManifestData struct {
 	Spec *struct {
 		BackoffLimit *int64 `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
 		Backup       *struct {
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Name             *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace        *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			SourceTargetName *string `tfsdk:"source_target_name" json:"sourceTargetName,omitempty"`
 		} `tfsdk:"backup" json:"backup,omitempty"`
 		ContainerResources *struct {
 			Claims *[]struct {
@@ -63,6 +64,12 @@ type DataprotectionKubeblocksIoRestoreV1Alpha1ManifestData struct {
 				MountPath    *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 				VolumeSource *string `tfsdk:"volume_source" json:"volumeSource,omitempty"`
 			} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
+			RequiredPolicyForAllPodSelection *struct {
+				DataRestorePolicy *string `tfsdk:"data_restore_policy" json:"dataRestorePolicy,omitempty"`
+				SourceOfOneToMany *struct {
+					TargetPodName *string `tfsdk:"target_pod_name" json:"targetPodName,omitempty"`
+				} `tfsdk:"source_of_one_to_many" json:"sourceOfOneToMany,omitempty"`
+			} `tfsdk:"required_policy_for_all_pod_selection" json:"requiredPolicyForAllPodSelection,omitempty"`
 			SchedulingSpec *struct {
 				Affinity *struct {
 					NodeAffinity *struct {
@@ -328,6 +335,12 @@ type DataprotectionKubeblocksIoRestoreV1Alpha1ManifestData struct {
 				} `tfsdk:"target" json:"target,omitempty"`
 			} `tfsdk:"exec_action" json:"execAction,omitempty"`
 			JobAction *struct {
+				RequiredPolicyForAllPodSelection *struct {
+					DataRestorePolicy *string `tfsdk:"data_restore_policy" json:"dataRestorePolicy,omitempty"`
+					SourceOfOneToMany *struct {
+						TargetPodName *string `tfsdk:"target_pod_name" json:"targetPodName,omitempty"`
+					} `tfsdk:"source_of_one_to_many" json:"sourceOfOneToMany,omitempty"`
+				} `tfsdk:"required_policy_for_all_pod_selection" json:"requiredPolicyForAllPodSelection,omitempty"`
 				Target *struct {
 					PodSelector *struct {
 						MatchExpressions *[]struct {
@@ -336,6 +349,7 @@ type DataprotectionKubeblocksIoRestoreV1Alpha1ManifestData struct {
 							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						Strategy    *string            `tfsdk:"strategy" json:"strategy,omitempty"`
 					} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
 					VolumeMounts *[]struct {
 						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
@@ -483,6 +497,14 @@ func (r *DataprotectionKubeblocksIoRestoreV1Alpha1Manifest) Schema(_ context.Con
 								Optional:            false,
 								Computed:            false,
 							},
+
+							"source_target_name": schema.StringAttribute{
+								Description:         "Specifies the source target for restoration, identified by its name.",
+								MarkdownDescription: "Specifies the source target for restoration, identified by its name.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: true,
 						Optional: false,
@@ -566,6 +588,40 @@ func (r *DataprotectionKubeblocksIoRestoreV1Alpha1Manifest) Schema(_ context.Con
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"required_policy_for_all_pod_selection": schema.SingleNestedAttribute{
+								Description:         "Specifies the restore policy, which is required when the pod selection strategy for the source target is 'All'. This field is ignored if the pod selection strategy is 'Any'. optional",
+								MarkdownDescription: "Specifies the restore policy, which is required when the pod selection strategy for the source target is 'All'. This field is ignored if the pod selection strategy is 'Any'. optional",
+								Attributes: map[string]schema.Attribute{
+									"data_restore_policy": schema.StringAttribute{
+										Description:         "Specifies the data restore policy. Options include: - OneToMany: Enables restoration of all volumes from a single data copy of the original target instance. The 'sourceOfOneToMany' field must be set when using this policy. - OneToOne: Restricts data restoration such that each data piece can only be restored to a single target instance. This is the default policy. When the number of target instances specified for restoration surpasses the count of original backup target instances.",
+										MarkdownDescription: "Specifies the data restore policy. Options include: - OneToMany: Enables restoration of all volumes from a single data copy of the original target instance. The 'sourceOfOneToMany' field must be set when using this policy. - OneToOne: Restricts data restoration such that each data piece can only be restored to a single target instance. This is the default policy. When the number of target instances specified for restoration surpasses the count of original backup target instances.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"source_of_one_to_many": schema.SingleNestedAttribute{
+										Description:         "Specifies the name of the source target pod. This field is mandatory when the DataRestorePolicy is configured to 'OneToMany'.",
+										MarkdownDescription: "Specifies the name of the source target pod. This field is mandatory when the DataRestorePolicy is configured to 'OneToMany'.",
+										Attributes: map[string]schema.Attribute{
+											"target_pod_name": schema.StringAttribute{
+												Description:         "Specifies the name of the source target pod.",
+												MarkdownDescription: "Specifies the name of the source target pod.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -2355,9 +2411,43 @@ func (r *DataprotectionKubeblocksIoRestoreV1Alpha1Manifest) Schema(_ context.Con
 								Description:         "Specifies the configuration for a job action.",
 								MarkdownDescription: "Specifies the configuration for a job action.",
 								Attributes: map[string]schema.Attribute{
+									"required_policy_for_all_pod_selection": schema.SingleNestedAttribute{
+										Description:         "Specifies the restore policy, which is required when the pod selection strategy for the source target is 'All'. This field is ignored if the pod selection strategy is 'Any'. optional",
+										MarkdownDescription: "Specifies the restore policy, which is required when the pod selection strategy for the source target is 'All'. This field is ignored if the pod selection strategy is 'Any'. optional",
+										Attributes: map[string]schema.Attribute{
+											"data_restore_policy": schema.StringAttribute{
+												Description:         "Specifies the data restore policy. Options include: - OneToMany: Enables restoration of all volumes from a single data copy of the original target instance. The 'sourceOfOneToMany' field must be set when using this policy. - OneToOne: Restricts data restoration such that each data piece can only be restored to a single target instance. This is the default policy. When the number of target instances specified for restoration surpasses the count of original backup target instances.",
+												MarkdownDescription: "Specifies the data restore policy. Options include: - OneToMany: Enables restoration of all volumes from a single data copy of the original target instance. The 'sourceOfOneToMany' field must be set when using this policy. - OneToOne: Restricts data restoration such that each data piece can only be restored to a single target instance. This is the default policy. When the number of target instances specified for restoration surpasses the count of original backup target instances.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"source_of_one_to_many": schema.SingleNestedAttribute{
+												Description:         "Specifies the name of the source target pod. This field is mandatory when the DataRestorePolicy is configured to 'OneToMany'.",
+												MarkdownDescription: "Specifies the name of the source target pod. This field is mandatory when the DataRestorePolicy is configured to 'OneToMany'.",
+												Attributes: map[string]schema.Attribute{
+													"target_pod_name": schema.StringAttribute{
+														Description:         "Specifies the name of the source target pod.",
+														MarkdownDescription: "Specifies the name of the source target pod.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"target": schema.SingleNestedAttribute{
-										Description:         "Defines the pod that needs to be executed for the job action. A pod that meets the conditions will be selected for execution.",
-										MarkdownDescription: "Defines the pod that needs to be executed for the job action. A pod that meets the conditions will be selected for execution.",
+										Description:         "Defines the pods that needs to be executed for the job action.",
+										MarkdownDescription: "Defines the pods that needs to be executed for the job action.",
 										Attributes: map[string]schema.Attribute{
 											"pod_selector": schema.SingleNestedAttribute{
 												Description:         "Selects one of the pods, identified by labels, to build the job spec. This includes mounting required volumes and injecting built-in environment variables of the selected pod.",
@@ -2406,6 +2496,17 @@ func (r *DataprotectionKubeblocksIoRestoreV1Alpha1Manifest) Schema(_ context.Con
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"strategy": schema.StringAttribute{
+														Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+														MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All"),
+														},
 													},
 												},
 												Required: true,

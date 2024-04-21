@@ -309,7 +309,7 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Manifest) Schema(_ context.Context
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("cosign"),
+									stringvalidator.OneOf("cosign", "notation"),
 								},
 							},
 

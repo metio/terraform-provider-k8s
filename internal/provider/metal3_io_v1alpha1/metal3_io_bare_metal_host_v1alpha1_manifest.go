@@ -216,8 +216,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "BareMetalHostSpec defines the desired state of BareMetalHost",
-				MarkdownDescription: "BareMetalHostSpec defines the desired state of BareMetalHost",
+				Description:         "BareMetalHostSpec defines the desired state of BareMetalHost.",
+				MarkdownDescription: "BareMetalHostSpec defines the desired state of BareMetalHost.",
 				Attributes: map[string]schema.Attribute{
 					"architecture": schema.StringAttribute{
 						Description:         "CPU architecture of the host, e.g. 'x86_64' or 'aarch64'. If unset, eventually populated by inspection.",
@@ -445,13 +445,13 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"checksum_type": schema.StringAttribute{
-								Description:         "ChecksumType is the checksum algorithm for the image. e.g md5, sha256, sha512",
-								MarkdownDescription: "ChecksumType is the checksum algorithm for the image. e.g md5, sha256, sha512",
+								Description:         "ChecksumType is the checksum algorithm for the image, e.g md5, sha256 or sha512. The special value 'auto' can be used to detect the algorithm from the checksum. If missing, MD5 is used. If in doubt, use 'auto'.",
+								MarkdownDescription: "ChecksumType is the checksum algorithm for the image, e.g md5, sha256 or sha512. The special value 'auto' can be used to detect the algorithm from the checksum. If missing, MD5 is used. If in doubt, use 'auto'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("md5", "sha256", "sha512"),
+									stringvalidator.OneOf("md5", "sha256", "sha512", "auto"),
 								},
 							},
 

@@ -499,8 +499,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 				MarkdownDescription: "ObjectStoreSpec represent the spec of a pool",
 				Attributes: map[string]schema.Attribute{
 					"allow_users_in_namespaces": schema.ListAttribute{
-						Description:         "The list of allowed namespaces in addition to the object store namespace where ceph object store users may be created. Specify '*' to allow all namespaces, otherwise list individual namespaces that are to be allowed. This is useful for applications that need object store credentials to be created in their own namespace, where neither OBCs nor COSI is being used to create buckets. The default is empty.",
-						MarkdownDescription: "The list of allowed namespaces in addition to the object store namespace where ceph object store users may be created. Specify '*' to allow all namespaces, otherwise list individual namespaces that are to be allowed. This is useful for applications that need object store credentials to be created in their own namespace, where neither OBCs nor COSI is being used to create buckets. The default is empty.",
+						Description:         "The list of allowed namespaces in addition to the object store namespacewhere ceph object store users may be created. Specify '*' to allow allnamespaces, otherwise list individual namespaces that are to be allowed.This is useful for applications that need object store credentialsto be created in their own namespace, where neither OBCs nor COSIis being used to create buckets. The default is empty.",
+						MarkdownDescription: "The list of allowed namespaces in addition to the object store namespacewhere ceph object store users may be created. Specify '*' to allow allnamespaces, otherwise list individual namespaces that are to be allowed.This is useful for applications that need object store credentialsto be created in their own namespace, where neither OBCs nor COSIis being used to create buckets. The default is empty.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -520,8 +520,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"compression_mode": schema.StringAttribute{
-								Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
-								MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
+								Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters",
+								MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -567,8 +567,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"coding_chunks": schema.Int64Attribute{
-										Description:         "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
-										MarkdownDescription: "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
+										Description:         "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
+										MarkdownDescription: "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -578,8 +578,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"data_chunks": schema.Int64Attribute{
-										Description:         "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
-										MarkdownDescription: "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
+										Description:         "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
+										MarkdownDescription: "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -693,8 +693,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 								MarkdownDescription: "The quota settings",
 								Attributes: map[string]schema.Attribute{
 									"max_bytes": schema.Int64Attribute{
-										Description:         "MaxBytes represents the quota in bytes Deprecated in favor of MaxSize",
-										MarkdownDescription: "MaxBytes represents the quota in bytes Deprecated in favor of MaxSize",
+										Description:         "MaxBytes represents the quota in bytesDeprecated in favor of MaxSize",
+										MarkdownDescription: "MaxBytes represents the quota in bytesDeprecated in favor of MaxSize",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -887,16 +887,16 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"disable_multisite_sync_traffic": schema.BoolAttribute{
-								Description:         "DisableMultisiteSyncTraffic, when true, prevents this object store's gateways from transmitting multisite replication data. Note that this value does not affect whether gateways receive multisite replication traffic: see ObjectZone.spec.customEndpoints for that. If false or unset, this object store's gateways will be able to transmit multisite replication data.",
-								MarkdownDescription: "DisableMultisiteSyncTraffic, when true, prevents this object store's gateways from transmitting multisite replication data. Note that this value does not affect whether gateways receive multisite replication traffic: see ObjectZone.spec.customEndpoints for that. If false or unset, this object store's gateways will be able to transmit multisite replication data.",
+								Description:         "DisableMultisiteSyncTraffic, when true, prevents this object store's gateways fromtransmitting multisite replication data. Note that this value does not affect whethergateways receive multisite replication traffic: see ObjectZone.spec.customEndpoints for that.If false or unset, this object store's gateways will be able to transmit multisitereplication data.",
+								MarkdownDescription: "DisableMultisiteSyncTraffic, when true, prevents this object store's gateways fromtransmitting multisite replication data. Note that this value does not affect whethergateways receive multisite replication traffic: see ObjectZone.spec.customEndpoints for that.If false or unset, this object store's gateways will be able to transmit multisitereplication data.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"external_rgw_endpoints": schema.ListNestedAttribute{
-								Description:         "ExternalRgwEndpoints points to external RGW endpoint(s). Multiple endpoints can be given, but for stability of ObjectBucketClaims, we highly recommend that users give only a single external RGW endpoint that is a load balancer that sends requests to the multiple RGWs.",
-								MarkdownDescription: "ExternalRgwEndpoints points to external RGW endpoint(s). Multiple endpoints can be given, but for stability of ObjectBucketClaims, we highly recommend that users give only a single external RGW endpoint that is a load balancer that sends requests to the multiple RGWs.",
+								Description:         "ExternalRgwEndpoints points to external RGW endpoint(s). Multiple endpoints can be given, butfor stability of ObjectBucketClaims, we highly recommend that users give only a singleexternal RGW endpoint that is a load balancer that sends requests to the multiple RGWs.",
+								MarkdownDescription: "ExternalRgwEndpoints points to external RGW endpoint(s). Multiple endpoints can be given, butfor stability of ObjectBucketClaims, we highly recommend that users give only a singleexternal RGW endpoint that is a load balancer that sends requests to the multiple RGWs.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"hostname": schema.StringAttribute{
@@ -908,8 +908,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"ip": schema.StringAttribute{
-											Description:         "The IP of this endpoint. As a legacy behavior, this supports being given a DNS-adressable hostname as well.",
-											MarkdownDescription: "The IP of this endpoint. As a legacy behavior, this supports being given a DNS-adressable hostname as well.",
+											Description:         "The IP of this endpoint. As a legacy behavior, this supports being given a DNS-addressable hostname as well.",
+											MarkdownDescription: "The IP of this endpoint. As a legacy behavior, this supports being given a DNS-addressable hostname as well.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2018,13 +2018,13 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 								MarkdownDescription: "The resource requirements for the rgw pods",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2037,8 +2037,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2046,8 +2046,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2076,8 +2076,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 								MarkdownDescription: "The configuration related to add/set on each rgw service.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "The annotations-related configuration to add/set on each rgw service. nullable optional",
-										MarkdownDescription: "The annotations-related configuration to add/set on each rgw service. nullable optional",
+										Description:         "The annotations-related configuration to add/set on each rgw service.nullableoptional",
+										MarkdownDescription: "The annotations-related configuration to add/set on each rgw service.nullableoptional",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2119,16 +2119,16 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"probe": schema.SingleNestedAttribute{
-										Description:         "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
-										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
+										Description:         "Probe describes a health check to be performed against a container to determine whether it isalive or ready to receive traffic.",
+										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it isalive or ready to receive traffic.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Exec specifies the action to take.",
 												MarkdownDescription: "Exec specifies the action to take.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
-														Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-														MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -2141,8 +2141,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"failure_threshold": schema.Int64Attribute{
-												Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-												MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+												Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+												MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2161,8 +2161,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"service": schema.StringAttribute{
-														Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-														MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+														Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+														MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2178,8 +2178,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 												MarkdownDescription: "HTTPGet specifies the http request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
-														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-														MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+														MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2191,8 +2191,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -2221,16 +2221,16 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"port": schema.StringAttribute{
-														Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-														MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"scheme": schema.StringAttribute{
-														Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-														MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+														Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+														MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2242,24 +2242,24 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"initial_delay_seconds": schema.Int64Attribute{
-												Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-												MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"period_seconds": schema.Int64Attribute{
-												Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-												MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+												Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+												MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"success_threshold": schema.Int64Attribute{
-												Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-												MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+												Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+												MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2278,8 +2278,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"port": schema.StringAttribute{
-														Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-														MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -2299,8 +2299,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
-												Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-												MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2329,16 +2329,16 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"probe": schema.SingleNestedAttribute{
-										Description:         "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
-										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
+										Description:         "Probe describes a health check to be performed against a container to determine whether it isalive or ready to receive traffic.",
+										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it isalive or ready to receive traffic.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
 												Description:         "Exec specifies the action to take.",
 												MarkdownDescription: "Exec specifies the action to take.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
-														Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-														MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -2351,8 +2351,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"failure_threshold": schema.Int64Attribute{
-												Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-												MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+												Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+												MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2371,8 +2371,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"service": schema.StringAttribute{
-														Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-														MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+														Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
+														MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2388,8 +2388,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 												MarkdownDescription: "HTTPGet specifies the http request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
-														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-														MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+														MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2401,8 +2401,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -2431,16 +2431,16 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"port": schema.StringAttribute{
-														Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-														MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"scheme": schema.StringAttribute{
-														Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-														MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+														Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
+														MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2452,24 +2452,24 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"initial_delay_seconds": schema.Int64Attribute{
-												Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-												MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												Description:         "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"period_seconds": schema.Int64Attribute{
-												Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-												MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+												Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+												MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"success_threshold": schema.Int64Attribute{
-												Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-												MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+												Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+												MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2488,8 +2488,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"port": schema.StringAttribute{
-														Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-														MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -2509,8 +2509,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
-												Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-												MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												Description:         "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												MarkdownDescription: "Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2536,8 +2536,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 						MarkdownDescription: "Hosting settings for the object store",
 						Attributes: map[string]schema.Attribute{
 							"dns_names": schema.ListAttribute{
-								Description:         "A list of DNS names in which bucket can be accessed via virtual host path. These names need to valid according RFC-1123. Each domain requires wildcard support like ingress loadbalancer. Do not include the wildcard itself in the list of hostnames (e.g. use 'mystore.example.com' instead of '*.mystore.example.com'). Add all hostnames including user-created Kubernetes Service endpoints to the list. CephObjectStore Service Endpoints and CephObjectZone customEndpoints are automatically added to the list. The feature is supported only for Ceph v18 and later versions.",
-								MarkdownDescription: "A list of DNS names in which bucket can be accessed via virtual host path. These names need to valid according RFC-1123. Each domain requires wildcard support like ingress loadbalancer. Do not include the wildcard itself in the list of hostnames (e.g. use 'mystore.example.com' instead of '*.mystore.example.com'). Add all hostnames including user-created Kubernetes Service endpoints to the list. CephObjectStore Service Endpoints and CephObjectZone customEndpoints are automatically added to the list. The feature is supported only for Ceph v18 and later versions.",
+								Description:         "A list of DNS names in which bucket can be accessed via virtual host path. These names need to valid according RFC-1123.Each domain requires wildcard support like ingress loadbalancer.Do not include the wildcard itself in the list of hostnames (e.g. use 'mystore.example.com' instead of '*.mystore.example.com').Add all hostnames including user-created Kubernetes Service endpoints to the list.CephObjectStore Service Endpoints and CephObjectZone customEndpoints are automatically added to the list.The feature is supported only for Ceph v18 and later versions.",
+								MarkdownDescription: "A list of DNS names in which bucket can be accessed via virtual host path. These names need to valid according RFC-1123.Each domain requires wildcard support like ingress loadbalancer.Do not include the wildcard itself in the list of hostnames (e.g. use 'mystore.example.com' instead of '*.mystore.example.com').Add all hostnames including user-created Kubernetes Service endpoints to the list.CephObjectStore Service Endpoints and CephObjectZone customEndpoints are automatically added to the list.The feature is supported only for Ceph v18 and later versions.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -2562,8 +2562,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"compression_mode": schema.StringAttribute{
-								Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
-								MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
+								Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters",
+								MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2609,8 +2609,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"coding_chunks": schema.Int64Attribute{
-										Description:         "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
-										MarkdownDescription: "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
+										Description:         "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
+										MarkdownDescription: "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -2620,8 +2620,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"data_chunks": schema.Int64Attribute{
-										Description:         "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
-										MarkdownDescription: "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
+										Description:         "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
+										MarkdownDescription: "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -2735,8 +2735,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 								MarkdownDescription: "The quota settings",
 								Attributes: map[string]schema.Attribute{
 									"max_bytes": schema.Int64Attribute{
-										Description:         "MaxBytes represents the quota in bytes Deprecated in favor of MaxSize",
-										MarkdownDescription: "MaxBytes represents the quota in bytes Deprecated in favor of MaxSize",
+										Description:         "MaxBytes represents the quota in bytesDeprecated in favor of MaxSize",
+										MarkdownDescription: "MaxBytes represents the quota in bytesDeprecated in favor of MaxSize",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

@@ -76,10 +76,11 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 			TlsAlternateAccess                   *string   `tfsdk:"tls_alternate_access" json:"tlsAlternateAccess,omitempty"`
 			TlsFabric                            *string   `tfsdk:"tls_fabric" json:"tlsFabric,omitempty"`
 		} `tfsdk:"aerospike_network_policy" json:"aerospikeNetworkPolicy,omitempty"`
-		Image              *string   `tfsdk:"image" json:"image,omitempty"`
-		K8sNodeBlockList   *[]string `tfsdk:"k8s_node_block_list" json:"k8sNodeBlockList,omitempty"`
-		MaxUnavailable     *string   `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
-		OperatorClientCert *struct {
+		EnableDynamicConfigUpdate *bool     `tfsdk:"enable_dynamic_config_update" json:"enableDynamicConfigUpdate,omitempty"`
+		Image                     *string   `tfsdk:"image" json:"image,omitempty"`
+		K8sNodeBlockList          *[]string `tfsdk:"k8s_node_block_list" json:"k8sNodeBlockList,omitempty"`
+		MaxUnavailable            *string   `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+		OperatorClientCert        *struct {
 			CertPathInOperator *struct {
 				CaCertsPath    *string `tfsdk:"ca_certs_path" json:"caCertsPath,omitempty"`
 				ClientCertPath *string `tfsdk:"client_cert_path" json:"clientCertPath,omitempty"`
@@ -1346,6 +1347,7 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 				Zone *string `tfsdk:"zone" json:"zone,omitempty"`
 			} `tfsdk:"racks" json:"racks,omitempty"`
 			RollingUpdateBatchSize *string `tfsdk:"rolling_update_batch_size" json:"rollingUpdateBatchSize,omitempty"`
+			ScaleDownBatchSize     *string `tfsdk:"scale_down_batch_size" json:"scaleDownBatchSize,omitempty"`
 		} `tfsdk:"rack_config" json:"rackConfig,omitempty"`
 		RosterNodeBlockList *[]string `tfsdk:"roster_node_block_list" json:"rosterNodeBlockList,omitempty"`
 		SeedsFinderServices *struct {
@@ -1796,6 +1798,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"enable_dynamic_config_update": schema.BoolAttribute{
+						Description:         "EnableDynamicConfigUpdate enables dynamic config update flow of the operator. If enabled, operator will try to update the Aerospike config dynamically. In case of inconsistent state during dynamic config update, operator falls back to rolling restart.",
+						MarkdownDescription: "EnableDynamicConfigUpdate enables dynamic config update flow of the operator. If enabled, operator will try to update the Aerospike config dynamically. In case of inconsistent state during dynamic config update, operator falls back to rolling restart.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"image": schema.StringAttribute{
@@ -10397,8 +10407,16 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 							},
 
 							"rolling_update_batch_size": schema.StringAttribute{
-								Description:         "RollingUpdateBatchSize is the percentage/number of rack pods that will be restarted simultaneously",
-								MarkdownDescription: "RollingUpdateBatchSize is the percentage/number of rack pods that will be restarted simultaneously",
+								Description:         "RollingUpdateBatchSize is the percentage/number of rack pods that can be restarted simultaneously",
+								MarkdownDescription: "RollingUpdateBatchSize is the percentage/number of rack pods that can be restarted simultaneously",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"scale_down_batch_size": schema.StringAttribute{
+								Description:         "ScaleDownBatchSize is the percentage/number of rack pods that can be scaled down simultaneously",
+								MarkdownDescription: "ScaleDownBatchSize is the percentage/number of rack pods that can be scaled down simultaneously",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -68,9 +68,10 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 				SpotMarketOptions *struct {
 					MaxPrice *string `tfsdk:"max_price" json:"maxPrice,omitempty"`
 				} `tfsdk:"spot_market_options" json:"spotMarketOptions,omitempty"`
-				Subnets *[]string `tfsdk:"subnets" json:"subnets,omitempty"`
-				Type    *string   `tfsdk:"type" json:"type,omitempty"`
-				Zones   *[]string `tfsdk:"zones" json:"zones,omitempty"`
+				Subnets  *[]string          `tfsdk:"subnets" json:"subnets,omitempty"`
+				Type     *string            `tfsdk:"type" json:"type,omitempty"`
+				UserTags *map[string]string `tfsdk:"user_tags" json:"userTags,omitempty"`
+				Zones    *[]string          `tfsdk:"zones" json:"zones,omitempty"`
 			} `tfsdk:"aws" json:"aws,omitempty"`
 			Azure *struct {
 				OsDisk *struct {
@@ -92,8 +93,9 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 				Zones *[]string `tfsdk:"zones" json:"zones,omitempty"`
 			} `tfsdk:"azure" json:"azure,omitempty"`
 			Gcp *struct {
-				NetworkProjectID *string `tfsdk:"network_project_id" json:"networkProjectID,omitempty"`
-				OsDisk           *struct {
+				NetworkProjectID  *string `tfsdk:"network_project_id" json:"networkProjectID,omitempty"`
+				OnHostMaintenance *string `tfsdk:"on_host_maintenance" json:"onHostMaintenance,omitempty"`
+				OsDisk            *struct {
 					DiskSizeGB    *int64  `tfsdk:"disk_size_gb" json:"diskSizeGB,omitempty"`
 					DiskType      *string `tfsdk:"disk_type" json:"diskType,omitempty"`
 					EncryptionKey *struct {
@@ -404,6 +406,15 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 										Computed:            false,
 									},
 
+									"user_tags": schema.MapAttribute{
+										Description:         "UserTags contains the user defined tags to be supplied for the ec2 instance. Note that these will be merged with ClusterDeployment.Spec.Platform.AWS.UserTags, with this field taking precedence when keys collide.",
+										MarkdownDescription: "UserTags contains the user defined tags to be supplied for the ec2 instance. Note that these will be merged with ClusterDeployment.Spec.Platform.AWS.UserTags, with this field taking precedence when keys collide.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"zones": schema.ListAttribute{
 										Description:         "Zones is list of availability zones that can be used.",
 										MarkdownDescription: "Zones is list of availability zones that can be used.",
@@ -559,6 +570,17 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"on_host_maintenance": schema.StringAttribute{
+										Description:         "OnHostMaintenance determines the behavior when a maintenance event occurs that might cause the instance to reboot. This is required to be set to 'Terminate' if you want to provision machine with attached GPUs. Otherwise, allowed values are 'Migrate' and 'Terminate'. If omitted, the platform chooses a default, which is subject to change over time, currently that default is 'Migrate'.",
+										MarkdownDescription: "OnHostMaintenance determines the behavior when a maintenance event occurs that might cause the instance to reboot. This is required to be set to 'Terminate' if you want to provision machine with attached GPUs. Otherwise, allowed values are 'Migrate' and 'Terminate'. If omitted, the platform chooses a default, which is subject to change over time, currently that default is 'Migrate'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Migrate", "Terminate"),
+										},
 									},
 
 									"os_disk": schema.SingleNestedAttribute{

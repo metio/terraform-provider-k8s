@@ -872,6 +872,7 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 		} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
 		Ports *[]struct {
 			AppProtocol *string `tfsdk:"app_protocol" json:"appProtocol,omitempty"`
+			HostPort    *int64  `tfsdk:"host_port" json:"hostPort,omitempty"`
 			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			NodePort    *int64  `tfsdk:"node_port" json:"nodePort,omitempty"`
 			Port        *int64  `tfsdk:"port" json:"port,omitempty"`
@@ -7180,6 +7181,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"app_protocol": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"host_port": schema.Int64Attribute{
 									Description:         "",
 									MarkdownDescription: "",
 									Required:            false,

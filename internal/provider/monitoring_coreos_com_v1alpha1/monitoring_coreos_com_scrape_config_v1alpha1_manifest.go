@@ -265,6 +265,101 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 			RefreshInterval *string   `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
 			Type            *string   `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"dns_sd_configs" json:"dnsSDConfigs,omitempty"`
+		DockerSDConfigs *[]struct {
+			Authorization *struct {
+				Credentials *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"credentials" json:"credentials,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"authorization" json:"authorization,omitempty"`
+			BasicAuth *struct {
+				Password *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"password" json:"password,omitempty"`
+				Username *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"username" json:"username,omitempty"`
+			} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
+			EnableHTTP2 *bool `tfsdk:"enable_http2" json:"enableHTTP2,omitempty"`
+			Filters     *[]struct {
+				Name   *string   `tfsdk:"name" json:"name,omitempty"`
+				Values *[]string `tfsdk:"values" json:"values,omitempty"`
+			} `tfsdk:"filters" json:"filters,omitempty"`
+			FollowRedirects    *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+			Host               *string `tfsdk:"host" json:"host,omitempty"`
+			HostNetworkingHost *string `tfsdk:"host_networking_host" json:"hostNetworkingHost,omitempty"`
+			NoProxy            *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			Oauth2             *struct {
+				ClientId *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"client_id" json:"clientId,omitempty"`
+				ClientSecret *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+			Port               *int64 `tfsdk:"port" json:"port,omitempty"`
+			ProxyConnectHeader *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			TlsConfig            *struct {
+				Ca *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"ca" json:"ca,omitempty"`
+				Cert *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"cert" json:"cert,omitempty"`
+				InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+				KeySecret          *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+		} `tfsdk:"docker_sd_configs" json:"dockerSDConfigs,omitempty"`
 		Ec2SDConfigs *[]struct {
 			AccessKey *struct {
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -286,7 +381,96 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 			} `tfsdk:"secret_key" json:"secretKey,omitempty"`
 		} `tfsdk:"ec2_sd_configs" json:"ec2SDConfigs,omitempty"`
 		EnableCompression *bool `tfsdk:"enable_compression" json:"enableCompression,omitempty"`
-		FileSDConfigs     *[]struct {
+		EurekaSDConfigs   *[]struct {
+			Authorization *struct {
+				Credentials *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"credentials" json:"credentials,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"authorization" json:"authorization,omitempty"`
+			BasicAuth *struct {
+				Password *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"password" json:"password,omitempty"`
+				Username *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"username" json:"username,omitempty"`
+			} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
+			EnableHTTP2     *bool   `tfsdk:"enable_http2" json:"enableHTTP2,omitempty"`
+			FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+			NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			Oauth2          *struct {
+				ClientId *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"client_id" json:"clientId,omitempty"`
+				ClientSecret *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+			ProxyConnectHeader *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Server               *string `tfsdk:"server" json:"server,omitempty"`
+			TlsConfig            *struct {
+				Ca *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"ca" json:"ca,omitempty"`
+				Cert *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"cert" json:"cert,omitempty"`
+				InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+				KeySecret          *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+		} `tfsdk:"eureka_sd_configs" json:"eurekaSDConfigs,omitempty"`
+		FileSDConfigs *[]struct {
 			Files           *[]string `tfsdk:"files" json:"files,omitempty"`
 			RefreshInterval *string   `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
 		} `tfsdk:"file_sd_configs" json:"fileSDConfigs,omitempty"`
@@ -298,6 +482,96 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 			TagSeparator    *string `tfsdk:"tag_separator" json:"tagSeparator,omitempty"`
 			Zone            *string `tfsdk:"zone" json:"zone,omitempty"`
 		} `tfsdk:"gce_sd_configs" json:"gceSDConfigs,omitempty"`
+		HetznerSDConfigs *[]struct {
+			Authorization *struct {
+				Credentials *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"credentials" json:"credentials,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"authorization" json:"authorization,omitempty"`
+			BasicAuth *struct {
+				Password *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"password" json:"password,omitempty"`
+				Username *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"username" json:"username,omitempty"`
+			} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
+			EnableHTTP2     *bool   `tfsdk:"enable_http2" json:"enableHTTP2,omitempty"`
+			FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+			NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			Oauth2          *struct {
+				ClientId *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"client_id" json:"clientId,omitempty"`
+				ClientSecret *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+			Port               *int64 `tfsdk:"port" json:"port,omitempty"`
+			ProxyConnectHeader *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Role                 *string `tfsdk:"role" json:"role,omitempty"`
+			TlsConfig            *struct {
+				Ca *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"ca" json:"ca,omitempty"`
+				Cert *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"cert" json:"cert,omitempty"`
+				InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+				KeySecret          *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+		} `tfsdk:"hetzner_sd_configs" json:"hetznerSDConfigs,omitempty"`
 		HonorLabels     *bool `tfsdk:"honor_labels" json:"honorLabels,omitempty"`
 		HonorTimestamps *bool `tfsdk:"honor_timestamps" json:"honorTimestamps,omitempty"`
 		HttpSDConfigs   *[]struct {
@@ -467,6 +741,97 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"kubernetes_sd_configs" json:"kubernetesSDConfigs,omitempty"`
+		KumaSDConfigs *[]struct {
+			Authorization *struct {
+				Credentials *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"credentials" json:"credentials,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"authorization" json:"authorization,omitempty"`
+			BasicAuth *struct {
+				Password *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"password" json:"password,omitempty"`
+				Username *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"username" json:"username,omitempty"`
+			} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
+			ClientID        *string `tfsdk:"client_id" json:"clientID,omitempty"`
+			EnableHTTP2     *bool   `tfsdk:"enable_http2" json:"enableHTTP2,omitempty"`
+			FetchTimeout    *string `tfsdk:"fetch_timeout" json:"fetchTimeout,omitempty"`
+			FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+			NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			Oauth2          *struct {
+				ClientId *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"client_id" json:"clientId,omitempty"`
+				ClientSecret *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+			ProxyConnectHeader *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Server               *string `tfsdk:"server" json:"server,omitempty"`
+			TlsConfig            *struct {
+				Ca *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"ca" json:"ca,omitempty"`
+				Cert *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"cert" json:"cert,omitempty"`
+				InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+				KeySecret          *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+		} `tfsdk:"kuma_sd_configs" json:"kumaSDConfigs,omitempty"`
 		LabelLimit            *int64 `tfsdk:"label_limit" json:"labelLimit,omitempty"`
 		LabelNameLengthLimit  *int64 `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
 		LabelValueLengthLimit *int64 `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
@@ -612,8 +977,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Metadata(_ context.Con
 
 func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ScrapeConfig defines a namespaced Prometheus scrape_config to be aggregated across multiple namespaces into the Prometheus configuration.",
-		MarkdownDescription: "ScrapeConfig defines a namespaced Prometheus scrape_config to be aggregated across multiple namespaces into the Prometheus configuration.",
+		Description:         "ScrapeConfig defines a namespaced Prometheus scrape_config to be aggregated acrossmultiple namespaces into the Prometheus configuration.",
+		MarkdownDescription: "ScrapeConfig defines a namespaced Prometheus scrape_config to be aggregated acrossmultiple namespaces into the Prometheus configuration.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -700,8 +1065,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -721,8 +1086,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-								MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+								Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+								MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -739,8 +1104,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authentication_method": schema.StringAttribute{
-									Description:         "# The authentication method, either OAuth or ManagedIdentity. See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview",
-									MarkdownDescription: "# The authentication method, either OAuth or ManagedIdentity. See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview",
+									Description:         "# The authentication method, either OAuth or ManagedIdentity.See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview",
+									MarkdownDescription: "# The authentication method, either OAuth or ManagedIdentity.See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -770,8 +1135,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -799,8 +1164,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"port": schema.Int64Attribute{
-									Description:         "The port to scrape metrics from. If using the public IP address, this must instead be specified in the relabeling rule.",
-									MarkdownDescription: "The port to scrape metrics from. If using the public IP address, this must instead be specified in the relabeling rule.",
+									Description:         "The port to scrape metrics from. If using the public IP address, this mustinstead be specified in the relabeling rule.",
+									MarkdownDescription: "The port to scrape metrics from. If using the public IP address, this mustinstead be specified in the relabeling rule.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -855,8 +1220,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "BasicAuth information to use on every scrape request.",
 						Attributes: map[string]schema.Attribute{
 							"password": schema.SingleNestedAttribute{
-								Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-								MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+								Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+								MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -867,8 +1232,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -888,8 +1253,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 							},
 
 							"username": schema.SingleNestedAttribute{
-								Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-								MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+								Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+								MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -900,8 +1265,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -931,8 +1296,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"allow_stale": schema.BoolAttribute{
-									Description:         "Allow stale Consul results (see https://www.consul.io/api/features/consistency.html). Will reduce load on Consul. If unset, Prometheus uses its default value.",
-									MarkdownDescription: "Allow stale Consul results (see https://www.consul.io/api/features/consistency.html). Will reduce load on Consul. If unset, Prometheus uses its default value.",
+									Description:         "Allow stale Consul results (see https://www.consul.io/api/features/consistency.html). Will reduce load on Consul.If unset, Prometheus uses its default value.",
+									MarkdownDescription: "Allow stale Consul results (see https://www.consul.io/api/features/consistency.html). Will reduce load on Consul.If unset, Prometheus uses its default value.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -955,8 +1320,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -976,8 +1341,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+											Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -989,12 +1354,12 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"basic_auth": schema.SingleNestedAttribute{
-									Description:         "BasicAuth information to authenticate against the Consul Server. More info: https://prometheus.io/docs/operating/configuration/#endpoints",
-									MarkdownDescription: "BasicAuth information to authenticate against the Consul Server. More info: https://prometheus.io/docs/operating/configuration/#endpoints",
+									Description:         "BasicAuth information to authenticate against the Consul Server.More info: https://prometheus.io/docs/operating/configuration/#endpoints",
+									MarkdownDescription: "BasicAuth information to authenticate against the Consul Server.More info: https://prometheus.io/docs/operating/configuration/#endpoints",
 									Attributes: map[string]schema.Attribute{
 										"password": schema.SingleNestedAttribute{
-											Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-											MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+											Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1005,8 +1370,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1026,8 +1391,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"username": schema.SingleNestedAttribute{
-											Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-											MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+											Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1038,8 +1403,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1072,16 +1437,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"enable_http2": schema.BoolAttribute{
-									Description:         "Whether to enable HTTP2. If unset, Prometheus uses its default value.",
-									MarkdownDescription: "Whether to enable HTTP2. If unset, Prometheus uses its default value.",
+									Description:         "Whether to enable HTTP2.If unset, Prometheus uses its default value.",
+									MarkdownDescription: "Whether to enable HTTP2.If unset, Prometheus uses its default value.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"follow_redirects": schema.BoolAttribute{
-									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects. If unset, Prometheus uses its default value.",
-									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects. If unset, Prometheus uses its default value.",
+									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects.If unset, Prometheus uses its default value.",
+									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects.If unset, Prometheus uses its default value.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1096,8 +1461,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"no_proxy": schema.StringAttribute{
-									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.  It requires Prometheus >= v2.43.0.",
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1117,8 +1482,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									MarkdownDescription: "Optional OAuth 2.0 configuration.",
 									Attributes: map[string]schema.Attribute{
 										"client_id": schema.SingleNestedAttribute{
-											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 											Attributes: map[string]schema.Attribute{
 												"config_map": schema.SingleNestedAttribute{
 													Description:         "ConfigMap containing data to use for the targets.",
@@ -1133,8 +1498,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1166,8 +1531,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1192,8 +1557,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"client_secret": schema.SingleNestedAttribute{
-											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1204,8 +1569,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1225,8 +1590,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"endpoint_params": schema.MapAttribute{
-											Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+											Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1267,8 +1632,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"proxy_connect_header": schema.SingleNestedAttribute{
-									Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.  It requires Prometheus >= v2.43.0.",
+									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1279,8 +1644,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1300,16 +1665,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
-									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). If unset, Prometheus uses its default value.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). If unset, Prometheus uses its default value.  It requires Prometheus >= v2.43.0.",
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"proxy_url": schema.StringAttribute{
-									Description:         "'proxyURL' defines the HTTP proxy server to use.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.  It requires Prometheus >= v2.43.0.",
+									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1319,8 +1684,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"refresh_interval": schema.StringAttribute{
-									Description:         "The time after which the provided names are refreshed. On large setup it might be a good idea to increase this value because the catalog will change all the time. If unset, Prometheus uses its default value.",
-									MarkdownDescription: "The time after which the provided names are refreshed. On large setup it might be a good idea to increase this value because the catalog will change all the time. If unset, Prometheus uses its default value.",
+									Description:         "The time after which the provided names are refreshed.On large setup it might be a good idea to increase this value because the catalog will change all the time.If unset, Prometheus uses its default value.",
+									MarkdownDescription: "The time after which the provided names are refreshed.On large setup it might be a good idea to increase this value because the catalog will change all the time.If unset, Prometheus uses its default value.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1361,8 +1726,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"tag_separator": schema.StringAttribute{
-									Description:         "The string by which Consul tags are joined into the tag label. If unset, Prometheus uses its default value.",
-									MarkdownDescription: "The string by which Consul tags are joined into the tag label. If unset, Prometheus uses its default value.",
+									Description:         "The string by which Consul tags are joined into the tag label.If unset, Prometheus uses its default value.",
+									MarkdownDescription: "The string by which Consul tags are joined into the tag label.If unset, Prometheus uses its default value.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1398,8 +1763,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1431,8 +1796,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1473,8 +1838,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1506,8 +1871,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1552,8 +1917,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1598,8 +1963,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1630,8 +1995,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authorization": schema.SingleNestedAttribute{
-									Description:         "Authorization header configuration to authenticate against the DigitalOcean API. Cannot be set at the same time as 'oauth2'.",
-									MarkdownDescription: "Authorization header configuration to authenticate against the DigitalOcean API. Cannot be set at the same time as 'oauth2'.",
+									Description:         "Authorization header configuration to authenticate against the DigitalOcean API.Cannot be set at the same time as 'oauth2'.",
+									MarkdownDescription: "Authorization header configuration to authenticate against the DigitalOcean API.Cannot be set at the same time as 'oauth2'.",
 									Attributes: map[string]schema.Attribute{
 										"credentials": schema.SingleNestedAttribute{
 											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -1646,8 +2011,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1667,8 +2032,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+											Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1696,20 +2061,20 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"no_proxy": schema.StringAttribute{
-									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.  It requires Prometheus >= v2.43.0.",
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"oauth2": schema.SingleNestedAttribute{
-									Description:         "Optional OAuth 2.0 configuration. Cannot be set at the same time as 'authorization'.",
-									MarkdownDescription: "Optional OAuth 2.0 configuration. Cannot be set at the same time as 'authorization'.",
+									Description:         "Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization'.",
+									MarkdownDescription: "Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization'.",
 									Attributes: map[string]schema.Attribute{
 										"client_id": schema.SingleNestedAttribute{
-											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 											Attributes: map[string]schema.Attribute{
 												"config_map": schema.SingleNestedAttribute{
 													Description:         "ConfigMap containing data to use for the targets.",
@@ -1724,8 +2089,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1757,8 +2122,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1783,8 +2148,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"client_secret": schema.SingleNestedAttribute{
-											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1795,8 +2160,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1816,8 +2181,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"endpoint_params": schema.MapAttribute{
-											Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+											Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1858,8 +2223,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"proxy_connect_header": schema.SingleNestedAttribute{
-									Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.  It requires Prometheus >= v2.43.0.",
+									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1870,8 +2235,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1891,16 +2256,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
-									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). If unset, Prometheus uses its default value.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). If unset, Prometheus uses its default value.  It requires Prometheus >= v2.43.0.",
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"proxy_url": schema.StringAttribute{
-									Description:         "'proxyURL' defines the HTTP proxy server to use.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.  It requires Prometheus >= v2.43.0.",
+									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1941,8 +2306,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1974,8 +2339,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2016,8 +2381,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2049,8 +2414,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2095,8 +2460,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2149,16 +2514,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"port": schema.Int64Attribute{
-									Description:         "The port number used if the query type is not SRV Ignored for SRV records",
-									MarkdownDescription: "The port number used if the query type is not SRV Ignored for SRV records",
+									Description:         "The port number used if the query type is not SRVIgnored for SRV records",
+									MarkdownDescription: "The port number used if the query type is not SRVIgnored for SRV records",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"refresh_interval": schema.StringAttribute{
-									Description:         "RefreshInterval configures the time after which the provided names are refreshed. If not set, Prometheus uses its default value.",
-									MarkdownDescription: "RefreshInterval configures the time after which the provided names are refreshed. If not set, Prometheus uses its default value.",
+									Description:         "RefreshInterval configures the time after which the provided names are refreshed.If not set, Prometheus uses its default value.",
+									MarkdownDescription: "RefreshInterval configures the time after which the provided names are refreshed.If not set, Prometheus uses its default value.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2168,14 +2533,646 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "The type of DNS query to perform. One of SRV, A, AAAA, MX or NS. If not set, Prometheus uses its default value.  When set to NS, It requires Prometheus >= 2.49.0.",
-									MarkdownDescription: "The type of DNS query to perform. One of SRV, A, AAAA, MX or NS. If not set, Prometheus uses its default value.  When set to NS, It requires Prometheus >= 2.49.0.",
+									Description:         "The type of DNS query to perform. One of SRV, A, AAAA, MX or NS.If not set, Prometheus uses its default value.When set to NS, It requires Prometheus >= 2.49.0.",
+									MarkdownDescription: "The type of DNS query to perform. One of SRV, A, AAAA, MX or NS.If not set, Prometheus uses its default value.When set to NS, It requires Prometheus >= 2.49.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.OneOf("SRV", "A", "AAAA", "MX", "NS"),
 									},
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"docker_sd_configs": schema.ListNestedAttribute{
+						Description:         "DockerSDConfigs defines a list of Docker service discovery configurations.",
+						MarkdownDescription: "DockerSDConfigs defines a list of Docker service discovery configurations.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"authorization": schema.SingleNestedAttribute{
+									Description:         "Authorization header configuration to authenticate against the Docker API.Cannot be set at the same time as 'oauth2'.",
+									MarkdownDescription: "Authorization header configuration to authenticate against the Docker API.Cannot be set at the same time as 'oauth2'.",
+									Attributes: map[string]schema.Attribute{
+										"credentials": schema.SingleNestedAttribute{
+											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"basic_auth": schema.SingleNestedAttribute{
+									Description:         "BasicAuth information to use on every scrape request.",
+									MarkdownDescription: "BasicAuth information to use on every scrape request.",
+									Attributes: map[string]schema.Attribute{
+										"password": schema.SingleNestedAttribute{
+											Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"username": schema.SingleNestedAttribute{
+											Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"enable_http2": schema.BoolAttribute{
+									Description:         "Whether to enable HTTP2.",
+									MarkdownDescription: "Whether to enable HTTP2.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"filters": schema.ListNestedAttribute{
+									Description:         "Optional filters to limit the discovery process to a subset of the available resources.",
+									MarkdownDescription: "Optional filters to limit the discovery process to a subset of the available resources.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"values": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"follow_redirects": schema.BoolAttribute{
+									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects.",
+									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"host": schema.StringAttribute{
+									Description:         "Address of the docker daemon",
+									MarkdownDescription: "Address of the docker daemon",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+
+								"host_networking_host": schema.StringAttribute{
+									Description:         "The host to use if the container is in host networking mode.",
+									MarkdownDescription: "The host to use if the container is in host networking mode.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"no_proxy": schema.StringAttribute{
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"oauth2": schema.SingleNestedAttribute{
+									Description:         "Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization'.",
+									MarkdownDescription: "Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization'.",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"endpoint_params": schema.MapAttribute{
+											Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scopes": schema.ListAttribute{
+											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "'tokenURL' configures the URL to fetch the token from.",
+											MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"port": schema.Int64Attribute{
+									Description:         "The port to scrape metrics from.",
+									MarkdownDescription: "The port to scrape metrics from.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_connect_header": schema.SingleNestedAttribute{
+									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from.  Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"proxy_from_environment": schema.BoolAttribute{
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_url": schema.StringAttribute{
+									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+									},
+								},
+
+								"refresh_interval": schema.StringAttribute{
+									Description:         "Time after which the container is refreshed.",
+									MarkdownDescription: "Time after which the container is refreshed.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+									},
+								},
+
+								"tls_config": schema.SingleNestedAttribute{
+									Description:         "TLS configuration applying to the target HTTP endpoint.",
+									MarkdownDescription: "TLS configuration applying to the target HTTP endpoint.",
+									Attributes: map[string]schema.Attribute{
+										"ca": schema.SingleNestedAttribute{
+											Description:         "Certificate authority used when verifying server certificates.",
+											MarkdownDescription: "Certificate authority used when verifying server certificates.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"cert": schema.SingleNestedAttribute{
+											Description:         "Client certificate to present when doing client-authentication.",
+											MarkdownDescription: "Client certificate to present when doing client-authentication.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"insecure_skip_verify": schema.BoolAttribute{
+											Description:         "Disable target certificate validation.",
+											MarkdownDescription: "Disable target certificate validation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_secret": schema.SingleNestedAttribute{
+											Description:         "Secret containing the client key file for the targets.",
+											MarkdownDescription: "Secret containing the client key file for the targets.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"server_name": schema.StringAttribute{
+											Description:         "Used to verify the hostname for the targets.",
+											MarkdownDescription: "Used to verify the hostname for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 							},
 						},
@@ -2202,8 +3199,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2223,8 +3220,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"filters": schema.ListNestedAttribute{
-									Description:         "Filters can be used optionally to filter the instance list by other criteria. Available filter criteria can be found here: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html Filter API documentation: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Filter.html",
-									MarkdownDescription: "Filters can be used optionally to filter the instance list by other criteria. Available filter criteria can be found here: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html Filter API documentation: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Filter.html",
+									Description:         "Filters can be used optionally to filter the instance list by other criteria.Available filter criteria can be found here:https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.htmlFilter API documentation: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Filter.html",
+									MarkdownDescription: "Filters can be used optionally to filter the instance list by other criteria.Available filter criteria can be found here:https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.htmlFilter API documentation: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Filter.html",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
@@ -2251,8 +3248,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"port": schema.Int64Attribute{
-									Description:         "The port to scrape metrics from. If using the public IP address, this must instead be specified in the relabeling rule.",
-									MarkdownDescription: "The port to scrape metrics from. If using the public IP address, this must instead be specified in the relabeling rule.",
+									Description:         "The port to scrape metrics from. If using the public IP address, this mustinstead be specified in the relabeling rule.",
+									MarkdownDescription: "The port to scrape metrics from. If using the public IP address, this mustinstead be specified in the relabeling rule.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2298,8 +3295,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2325,11 +3322,599 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"enable_compression": schema.BoolAttribute{
-						Description:         "When false, Prometheus will request uncompressed response from the scraped target.  It requires Prometheus >= v2.49.0.  If unset, Prometheus uses true by default.",
-						MarkdownDescription: "When false, Prometheus will request uncompressed response from the scraped target.  It requires Prometheus >= v2.49.0.  If unset, Prometheus uses true by default.",
+						Description:         "When false, Prometheus will request uncompressed response from the scraped target.It requires Prometheus >= v2.49.0.If unset, Prometheus uses true by default.",
+						MarkdownDescription: "When false, Prometheus will request uncompressed response from the scraped target.It requires Prometheus >= v2.49.0.If unset, Prometheus uses true by default.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"eureka_sd_configs": schema.ListNestedAttribute{
+						Description:         "EurekaSDConfigs defines a list of Eureka service discovery configurations.",
+						MarkdownDescription: "EurekaSDConfigs defines a list of Eureka service discovery configurations.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"authorization": schema.SingleNestedAttribute{
+									Description:         "Authorization header to use on every scrape request.",
+									MarkdownDescription: "Authorization header to use on every scrape request.",
+									Attributes: map[string]schema.Attribute{
+										"credentials": schema.SingleNestedAttribute{
+											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"basic_auth": schema.SingleNestedAttribute{
+									Description:         "BasicAuth information to use on every scrape request.",
+									MarkdownDescription: "BasicAuth information to use on every scrape request.",
+									Attributes: map[string]schema.Attribute{
+										"password": schema.SingleNestedAttribute{
+											Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"username": schema.SingleNestedAttribute{
+											Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"enable_http2": schema.BoolAttribute{
+									Description:         "Whether to enable HTTP2.",
+									MarkdownDescription: "Whether to enable HTTP2.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"follow_redirects": schema.BoolAttribute{
+									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects.",
+									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"no_proxy": schema.StringAttribute{
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"oauth2": schema.SingleNestedAttribute{
+									Description:         "Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization' or 'basic_auth'.",
+									MarkdownDescription: "Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization' or 'basic_auth'.",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"endpoint_params": schema.MapAttribute{
+											Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scopes": schema.ListAttribute{
+											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "'tokenURL' configures the URL to fetch the token from.",
+											MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"proxy_connect_header": schema.SingleNestedAttribute{
+									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from.  Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"proxy_from_environment": schema.BoolAttribute{
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_url": schema.StringAttribute{
+									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+									},
+								},
+
+								"refresh_interval": schema.StringAttribute{
+									Description:         "Refresh interval to re-read the instance list.",
+									MarkdownDescription: "Refresh interval to re-read the instance list.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+									},
+								},
+
+								"server": schema.StringAttribute{
+									Description:         "The URL to connect to the Eureka server.",
+									MarkdownDescription: "The URL to connect to the Eureka server.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+
+								"tls_config": schema.SingleNestedAttribute{
+									Description:         "TLS configuration applying to the target HTTP endpoint.",
+									MarkdownDescription: "TLS configuration applying to the target HTTP endpoint.",
+									Attributes: map[string]schema.Attribute{
+										"ca": schema.SingleNestedAttribute{
+											Description:         "Certificate authority used when verifying server certificates.",
+											MarkdownDescription: "Certificate authority used when verifying server certificates.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"cert": schema.SingleNestedAttribute{
+											Description:         "Client certificate to present when doing client-authentication.",
+											MarkdownDescription: "Client certificate to present when doing client-authentication.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"insecure_skip_verify": schema.BoolAttribute{
+											Description:         "Disable target certificate validation.",
+											MarkdownDescription: "Disable target certificate validation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_secret": schema.SingleNestedAttribute{
+											Description:         "Secret containing the client key file for the targets.",
+											MarkdownDescription: "Secret containing the client key file for the targets.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"server_name": schema.StringAttribute{
+											Description:         "Used to verify the hostname for the targets.",
+											MarkdownDescription: "Used to verify the hostname for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"file_sd_configs": schema.ListNestedAttribute{
@@ -2338,8 +3923,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"files": schema.ListAttribute{
-									Description:         "List of files to be used for file discovery. Recommendation: use absolute paths. While relative paths work, the prometheus-operator project makes no guarantees about the working directory where the configuration file is stored. Files must be mounted using Prometheus.ConfigMaps or Prometheus.Secrets.",
-									MarkdownDescription: "List of files to be used for file discovery. Recommendation: use absolute paths. While relative paths work, the prometheus-operator project makes no guarantees about the working directory where the configuration file is stored. Files must be mounted using Prometheus.ConfigMaps or Prometheus.Secrets.",
+									Description:         "List of files to be used for file discovery. Recommendation: use absolute paths. While relative paths work, theprometheus-operator project makes no guarantees about the working directory where the configuration file isstored.Files must be mounted using Prometheus.ConfigMaps or Prometheus.Secrets.",
+									MarkdownDescription: "List of files to be used for file discovery. Recommendation: use absolute paths. While relative paths work, theprometheus-operator project makes no guarantees about the working directory where the configuration file isstored.Files must be mounted using Prometheus.ConfigMaps or Prometheus.Secrets.",
 									ElementType:         types.StringType,
 									Required:            true,
 									Optional:            false,
@@ -2369,16 +3954,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"filter": schema.StringAttribute{
-									Description:         "Filter can be used optionally to filter the instance list by other criteria Syntax of this filter is described in the filter query parameter section: https://cloud.google.com/compute/docs/reference/latest/instances/list",
-									MarkdownDescription: "Filter can be used optionally to filter the instance list by other criteria Syntax of this filter is described in the filter query parameter section: https://cloud.google.com/compute/docs/reference/latest/instances/list",
+									Description:         "Filter can be used optionally to filter the instance list by other criteriaSyntax of this filter is described in the filter query parameter section:https://cloud.google.com/compute/docs/reference/latest/instances/list",
+									MarkdownDescription: "Filter can be used optionally to filter the instance list by other criteriaSyntax of this filter is described in the filter query parameter section:https://cloud.google.com/compute/docs/reference/latest/instances/list",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"port": schema.Int64Attribute{
-									Description:         "The port to scrape metrics from. If using the public IP address, this must instead be specified in the relabeling rule.",
-									MarkdownDescription: "The port to scrape metrics from. If using the public IP address, this must instead be specified in the relabeling rule.",
+									Description:         "The port to scrape metrics from. If using the public IP address, this mustinstead be specified in the relabeling rule.",
+									MarkdownDescription: "The port to scrape metrics from. If using the public IP address, this mustinstead be specified in the relabeling rule.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2431,30 +4016,14 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						Computed: false,
 					},
 
-					"honor_labels": schema.BoolAttribute{
-						Description:         "HonorLabels chooses the metric's labels on collisions with target labels.",
-						MarkdownDescription: "HonorLabels chooses the metric's labels on collisions with target labels.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
-					"honor_timestamps": schema.BoolAttribute{
-						Description:         "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
-						MarkdownDescription: "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
-					"http_sd_configs": schema.ListNestedAttribute{
-						Description:         "HTTPSDConfigs defines a list of HTTP service discovery configurations.",
-						MarkdownDescription: "HTTPSDConfigs defines a list of HTTP service discovery configurations.",
+					"hetzner_sd_configs": schema.ListNestedAttribute{
+						Description:         "HetznerSDConfigs defines a list of Hetzner service discovery configurations.",
+						MarkdownDescription: "HetznerSDConfigs defines a list of Hetzner service discovery configurations.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authorization": schema.SingleNestedAttribute{
-									Description:         "Authorization header configuration to authenticate against the target HTTP endpoint.",
-									MarkdownDescription: "Authorization header configuration to authenticate against the target HTTP endpoint.",
+									Description:         "Authorization header configuration, required when role is hcloud.Role robot does not support bearer token authentication.",
+									MarkdownDescription: "Authorization header configuration, required when role is hcloud.Role robot does not support bearer token authentication.",
 									Attributes: map[string]schema.Attribute{
 										"credentials": schema.SingleNestedAttribute{
 											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -2469,8 +4038,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2490,8 +4059,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+											Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2503,12 +4072,12 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"basic_auth": schema.SingleNestedAttribute{
-									Description:         "BasicAuth information to authenticate against the target HTTP endpoint. More info: https://prometheus.io/docs/operating/configuration/#endpoints",
-									MarkdownDescription: "BasicAuth information to authenticate against the target HTTP endpoint. More info: https://prometheus.io/docs/operating/configuration/#endpoints",
+									Description:         "BasicAuth information to use on every scrape request, required when role is robot.Role hcloud does not support basic auth.",
+									MarkdownDescription: "BasicAuth information to use on every scrape request, required when role is robot.Role hcloud does not support basic auth.",
 									Attributes: map[string]schema.Attribute{
 										"password": schema.SingleNestedAttribute{
-											Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-											MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+											Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2519,8 +4088,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2540,8 +4109,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"username": schema.SingleNestedAttribute{
-											Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-											MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+											Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2552,8 +4121,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2577,84 +4146,37 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Computed: false,
 								},
 
+								"enable_http2": schema.BoolAttribute{
+									Description:         "Whether to enable HTTP2.",
+									MarkdownDescription: "Whether to enable HTTP2.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"follow_redirects": schema.BoolAttribute{
+									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects.",
+									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"no_proxy": schema.StringAttribute{
-									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.  It requires Prometheus >= v2.43.0.",
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
-								"proxy_connect_header": schema.SingleNestedAttribute{
-									Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.  It requires Prometheus >= v2.43.0.",
+								"oauth2": schema.SingleNestedAttribute{
+									Description:         "Optional OAuth 2.0 configuration.Cannot be used at the same time as 'basic_auth' or 'authorization'.",
+									MarkdownDescription: "Optional OAuth 2.0 configuration.Cannot be used at the same time as 'basic_auth' or 'authorization'.",
 									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret or its key must be defined",
-											MarkdownDescription: "Specify whether the Secret or its key must be defined",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"proxy_from_environment": schema.BoolAttribute{
-									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). If unset, Prometheus uses its default value.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). If unset, Prometheus uses its default value.  It requires Prometheus >= v2.43.0.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"proxy_url": schema.StringAttribute{
-									Description:         "'proxyURL' defines the HTTP proxy server to use.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.  It requires Prometheus >= v2.43.0.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-									},
-								},
-
-								"refresh_interval": schema.StringAttribute{
-									Description:         "RefreshInterval configures the refresh interval at which Prometheus will re-query the endpoint to update the target list.",
-									MarkdownDescription: "RefreshInterval configures the refresh interval at which Prometheus will re-query the endpoint to update the target list.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
-									},
-								},
-
-								"tls_config": schema.SingleNestedAttribute{
-									Description:         "TLS configuration applying to the target HTTP endpoint.",
-									MarkdownDescription: "TLS configuration applying to the target HTTP endpoint.",
-									Attributes: map[string]schema.Attribute{
-										"ca": schema.SingleNestedAttribute{
-											Description:         "Certificate authority used when verifying server certificates.",
-											MarkdownDescription: "Certificate authority used when verifying server certificates.",
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 											Attributes: map[string]schema.Attribute{
 												"config_map": schema.SingleNestedAttribute{
 													Description:         "ConfigMap containing data to use for the targets.",
@@ -2669,8 +4191,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2702,8 +4224,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"endpoint_params": schema.MapAttribute{
+											Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scopes": schema.ListAttribute{
+											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "'tokenURL' configures the URL to fetch the token from.",
+											MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"port": schema.Int64Attribute{
+									Description:         "The port to scrape metrics from.",
+									MarkdownDescription: "The port to scrape metrics from.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_connect_header": schema.SingleNestedAttribute{
+									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from.  Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"proxy_from_environment": schema.BoolAttribute{
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_url": schema.StringAttribute{
+									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+									},
+								},
+
+								"refresh_interval": schema.StringAttribute{
+									Description:         "The time after which the servers are refreshed.",
+									MarkdownDescription: "The time after which the servers are refreshed.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+									},
+								},
+
+								"role": schema.StringAttribute{
+									Description:         "The Hetzner role of entities that should be discovered.",
+									MarkdownDescription: "The Hetzner role of entities that should be discovered.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("hcloud", "Hcloud", "robot", "Robot"),
+									},
+								},
+
+								"tls_config": schema.SingleNestedAttribute{
+									Description:         "TLS configuration to use on every scrape request.",
+									MarkdownDescription: "TLS configuration to use on every scrape request.",
+									Attributes: map[string]schema.Attribute{
+										"ca": schema.SingleNestedAttribute{
+											Description:         "Certificate authority used when verifying server certificates.",
+											MarkdownDescription: "Certificate authority used when verifying server certificates.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2744,8 +4494,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2777,8 +4527,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2823,8 +4573,439 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"server_name": schema.StringAttribute{
+											Description:         "Used to verify the hostname for the targets.",
+											MarkdownDescription: "Used to verify the hostname for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"honor_labels": schema.BoolAttribute{
+						Description:         "HonorLabels chooses the metric's labels on collisions with target labels.",
+						MarkdownDescription: "HonorLabels chooses the metric's labels on collisions with target labels.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"honor_timestamps": schema.BoolAttribute{
+						Description:         "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
+						MarkdownDescription: "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"http_sd_configs": schema.ListNestedAttribute{
+						Description:         "HTTPSDConfigs defines a list of HTTP service discovery configurations.",
+						MarkdownDescription: "HTTPSDConfigs defines a list of HTTP service discovery configurations.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"authorization": schema.SingleNestedAttribute{
+									Description:         "Authorization header configuration to authenticate against the target HTTP endpoint.",
+									MarkdownDescription: "Authorization header configuration to authenticate against the target HTTP endpoint.",
+									Attributes: map[string]schema.Attribute{
+										"credentials": schema.SingleNestedAttribute{
+											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"basic_auth": schema.SingleNestedAttribute{
+									Description:         "BasicAuth information to authenticate against the target HTTP endpoint.More info: https://prometheus.io/docs/operating/configuration/#endpoints",
+									MarkdownDescription: "BasicAuth information to authenticate against the target HTTP endpoint.More info: https://prometheus.io/docs/operating/configuration/#endpoints",
+									Attributes: map[string]schema.Attribute{
+										"password": schema.SingleNestedAttribute{
+											Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"username": schema.SingleNestedAttribute{
+											Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"no_proxy": schema.StringAttribute{
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_connect_header": schema.SingleNestedAttribute{
+									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from.  Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"proxy_from_environment": schema.BoolAttribute{
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_url": schema.StringAttribute{
+									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+									},
+								},
+
+								"refresh_interval": schema.StringAttribute{
+									Description:         "RefreshInterval configures the refresh interval at which Prometheus will re-query theendpoint to update the target list.",
+									MarkdownDescription: "RefreshInterval configures the refresh interval at which Prometheus will re-query theendpoint to update the target list.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+									},
+								},
+
+								"tls_config": schema.SingleNestedAttribute{
+									Description:         "TLS configuration applying to the target HTTP endpoint.",
+									MarkdownDescription: "TLS configuration applying to the target HTTP endpoint.",
+									Attributes: map[string]schema.Attribute{
+										"ca": schema.SingleNestedAttribute{
+											Description:         "Certificate authority used when verifying server certificates.",
+											MarkdownDescription: "Certificate authority used when verifying server certificates.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"cert": schema.SingleNestedAttribute{
+											Description:         "Client certificate to present when doing client-authentication.",
+											MarkdownDescription: "Client certificate to present when doing client-authentication.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"insecure_skip_verify": schema.BoolAttribute{
+											Description:         "Disable target certificate validation.",
+											MarkdownDescription: "Disable target certificate validation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_secret": schema.SingleNestedAttribute{
+											Description:         "Secret containing the client key file for the targets.",
+											MarkdownDescription: "Secret containing the client key file for the targets.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2875,8 +5056,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"keep_dropped_targets": schema.Int64Attribute{
-						Description:         "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
-						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
+						Description:         "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2888,20 +5069,20 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"api_server": schema.StringAttribute{
-									Description:         "The API server address consisting of a hostname or IP address followed by an optional port number. If left empty, Prometheus is assumed to run inside of the cluster. It will discover API servers automatically and use the pod's CA certificate and bearer token file at /var/run/secrets/kubernetes.io/serviceaccount/.",
-									MarkdownDescription: "The API server address consisting of a hostname or IP address followed by an optional port number. If left empty, Prometheus is assumed to run inside of the cluster. It will discover API servers automatically and use the pod's CA certificate and bearer token file at /var/run/secrets/kubernetes.io/serviceaccount/.",
+									Description:         "The API server address consisting of a hostname or IP address followedby an optional port number.If left empty, Prometheus is assumed to run insideof the cluster. It will discover API servers automatically and use the pod'sCA certificate and bearer token file at /var/run/secrets/kubernetes.io/serviceaccount/.",
+									MarkdownDescription: "The API server address consisting of a hostname or IP address followedby an optional port number.If left empty, Prometheus is assumed to run insideof the cluster. It will discover API servers automatically and use the pod'sCA certificate and bearer token file at /var/run/secrets/kubernetes.io/serviceaccount/.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"attach_metadata": schema.SingleNestedAttribute{
-									Description:         "Optional metadata to attach to discovered targets. It requires Prometheus >= v2.35.0 for 'pod' role and Prometheus >= v2.37.0 for 'endpoints' and 'endpointslice' roles.",
-									MarkdownDescription: "Optional metadata to attach to discovered targets. It requires Prometheus >= v2.35.0 for 'pod' role and Prometheus >= v2.37.0 for 'endpoints' and 'endpointslice' roles.",
+									Description:         "Optional metadata to attach to discovered targets.It requires Prometheus >= v2.35.0 for 'pod' role andPrometheus >= v2.37.0 for 'endpoints' and 'endpointslice' roles.",
+									MarkdownDescription: "Optional metadata to attach to discovered targets.It requires Prometheus >= v2.35.0 for 'pod' role andPrometheus >= v2.37.0 for 'endpoints' and 'endpointslice' roles.",
 									Attributes: map[string]schema.Attribute{
 										"node": schema.BoolAttribute{
-											Description:         "Attaches node metadata to discovered targets. When set to true, Prometheus must have the 'get' permission on the 'Nodes' objects. Only valid for Pod, Endpoint and Endpointslice roles.",
-											MarkdownDescription: "Attaches node metadata to discovered targets. When set to true, Prometheus must have the 'get' permission on the 'Nodes' objects. Only valid for Pod, Endpoint and Endpointslice roles.",
+											Description:         "Attaches node metadata to discovered targets.When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.Only valid for Pod, Endpoint and Endpointslice roles.",
+											MarkdownDescription: "Attaches node metadata to discovered targets.When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.Only valid for Pod, Endpoint and Endpointslice roles.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2913,8 +5094,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"authorization": schema.SingleNestedAttribute{
-									Description:         "Authorization header to use on every scrape request. Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
-									MarkdownDescription: "Authorization header to use on every scrape request. Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
+									Description:         "Authorization header to use on every scrape request.Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
+									MarkdownDescription: "Authorization header to use on every scrape request.Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
 									Attributes: map[string]schema.Attribute{
 										"credentials": schema.SingleNestedAttribute{
 											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -2929,8 +5110,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2950,8 +5131,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
-											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+											Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2963,12 +5144,12 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"basic_auth": schema.SingleNestedAttribute{
-									Description:         "BasicAuth information to use on every scrape request. Cannot be set at the same time as 'authorization', or 'oauth2'.",
-									MarkdownDescription: "BasicAuth information to use on every scrape request. Cannot be set at the same time as 'authorization', or 'oauth2'.",
+									Description:         "BasicAuth information to use on every scrape request.Cannot be set at the same time as 'authorization', or 'oauth2'.",
+									MarkdownDescription: "BasicAuth information to use on every scrape request.Cannot be set at the same time as 'authorization', or 'oauth2'.",
 									Attributes: map[string]schema.Attribute{
 										"password": schema.SingleNestedAttribute{
-											Description:         "'password' specifies a key of a Secret containing the password for authentication.",
-											MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+											Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2979,8 +5160,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3000,8 +5181,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"username": schema.SingleNestedAttribute{
-											Description:         "'username' specifies a key of a Secret containing the username for authentication.",
-											MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+											Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3012,8 +5193,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3058,8 +5239,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									MarkdownDescription: "Optional namespace discovery. If omitted, Prometheus discovers targets across all namespaces.",
 									Attributes: map[string]schema.Attribute{
 										"names": schema.ListAttribute{
-											Description:         "List of namespaces where to watch for resources. If empty and 'ownNamespace' isn't true, Prometheus watches for resources in all namespaces.",
-											MarkdownDescription: "List of namespaces where to watch for resources. If empty and 'ownNamespace' isn't true, Prometheus watches for resources in all namespaces.",
+											Description:         "List of namespaces where to watch for resources.If empty and 'ownNamespace' isn't true, Prometheus watches for resources in all namespaces.",
+											MarkdownDescription: "List of namespaces where to watch for resources.If empty and 'ownNamespace' isn't true, Prometheus watches for resources in all namespaces.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -3080,20 +5261,20 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"no_proxy": schema.StringAttribute{
-									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.  It requires Prometheus >= v2.43.0.",
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"oauth2": schema.SingleNestedAttribute{
-									Description:         "Optional OAuth 2.0 configuration. Cannot be set at the same time as 'authorization', or 'basicAuth'.",
-									MarkdownDescription: "Optional OAuth 2.0 configuration. Cannot be set at the same time as 'authorization', or 'basicAuth'.",
+									Description:         "Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'.",
+									MarkdownDescription: "Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'.",
 									Attributes: map[string]schema.Attribute{
 										"client_id": schema.SingleNestedAttribute{
-											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
-											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 											Attributes: map[string]schema.Attribute{
 												"config_map": schema.SingleNestedAttribute{
 													Description:         "ConfigMap containing data to use for the targets.",
@@ -3108,8 +5289,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3141,8 +5322,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3167,8 +5348,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"client_secret": schema.SingleNestedAttribute{
-											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
-											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3179,8 +5360,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3200,8 +5381,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"endpoint_params": schema.MapAttribute{
-											Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
-											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+											Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -3234,8 +5415,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"proxy_connect_header": schema.SingleNestedAttribute{
-									Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.  It requires Prometheus >= v2.43.0.",
+									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3246,8 +5427,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3267,16 +5448,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
-									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). If unset, Prometheus uses its default value.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). If unset, Prometheus uses its default value.  It requires Prometheus >= v2.43.0.",
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"proxy_url": schema.StringAttribute{
-									Description:         "'proxyURL' defines the HTTP proxy server to use.  It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.  It requires Prometheus >= v2.43.0.",
+									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3355,8 +5536,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3388,8 +5569,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3430,8 +5611,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3463,8 +5644,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3509,8 +5690,615 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"server_name": schema.StringAttribute{
+											Description:         "Used to verify the hostname for the targets.",
+											MarkdownDescription: "Used to verify the hostname for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"kuma_sd_configs": schema.ListNestedAttribute{
+						Description:         "KumaSDConfigs defines a list of Kuma service discovery configurations.",
+						MarkdownDescription: "KumaSDConfigs defines a list of Kuma service discovery configurations.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"authorization": schema.SingleNestedAttribute{
+									Description:         "Authorization header to use on every scrape request.",
+									MarkdownDescription: "Authorization header to use on every scrape request.",
+									Attributes: map[string]schema.Attribute{
+										"credentials": schema.SingleNestedAttribute{
+											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"basic_auth": schema.SingleNestedAttribute{
+									Description:         "BasicAuth information to use on every scrape request.",
+									MarkdownDescription: "BasicAuth information to use on every scrape request.",
+									Attributes: map[string]schema.Attribute{
+										"password": schema.SingleNestedAttribute{
+											Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"username": schema.SingleNestedAttribute{
+											Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"client_id": schema.StringAttribute{
+									Description:         "Client id is used by Kuma Control Plane to compute Monitoring Assignment for specific Prometheus backend.",
+									MarkdownDescription: "Client id is used by Kuma Control Plane to compute Monitoring Assignment for specific Prometheus backend.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"enable_http2": schema.BoolAttribute{
+									Description:         "Whether to enable HTTP2.",
+									MarkdownDescription: "Whether to enable HTTP2.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"fetch_timeout": schema.StringAttribute{
+									Description:         "The time after which the monitoring assignments are refreshed.",
+									MarkdownDescription: "The time after which the monitoring assignments are refreshed.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+									},
+								},
+
+								"follow_redirects": schema.BoolAttribute{
+									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects.",
+									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"no_proxy": schema.StringAttribute{
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"oauth2": schema.SingleNestedAttribute{
+									Description:         "Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'.",
+									MarkdownDescription: "Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'.",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"endpoint_params": schema.MapAttribute{
+											Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scopes": schema.ListAttribute{
+											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "'tokenURL' configures the URL to fetch the token from.",
+											MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"proxy_connect_header": schema.SingleNestedAttribute{
+									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from.  Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"proxy_from_environment": schema.BoolAttribute{
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_url": schema.StringAttribute{
+									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+									},
+								},
+
+								"refresh_interval": schema.StringAttribute{
+									Description:         "The time to wait between polling update requests.",
+									MarkdownDescription: "The time to wait between polling update requests.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+									},
+								},
+
+								"server": schema.StringAttribute{
+									Description:         "Address of the Kuma Control Plane's MADS xDS server.",
+									MarkdownDescription: "Address of the Kuma Control Plane's MADS xDS server.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+
+								"tls_config": schema.SingleNestedAttribute{
+									Description:         "TLS configuration to use on every scrape request",
+									MarkdownDescription: "TLS configuration to use on every scrape request",
+									Attributes: map[string]schema.Attribute{
+										"ca": schema.SingleNestedAttribute{
+											Description:         "Certificate authority used when verifying server certificates.",
+											MarkdownDescription: "Certificate authority used when verifying server certificates.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"cert": schema.SingleNestedAttribute{
+											Description:         "Client certificate to present when doing client-authentication.",
+											MarkdownDescription: "Client certificate to present when doing client-authentication.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"insecure_skip_verify": schema.BoolAttribute{
+											Description:         "Disable target certificate validation.",
+											MarkdownDescription: "Disable target certificate validation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_secret": schema.SingleNestedAttribute{
+											Description:         "Secret containing the client key file for the targets.",
+											MarkdownDescription: "Secret containing the client key file for the targets.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3549,24 +6337,24 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"label_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						Description:         "Per-scrape limit on number of labels that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_name_length_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_value_length_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample.Only valid in Prometheus versions 2.27.0 and newer.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -3578,8 +6366,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
-									Description:         "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
-									MarkdownDescription: "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
+									Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+									MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3589,8 +6377,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"modulus": schema.Int64Attribute{
-									Description:         "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
-									MarkdownDescription: "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
+									Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+									MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3605,8 +6393,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"replacement": schema.StringAttribute{
-									Description:         "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
-									MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
+									Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+									MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3621,8 +6409,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"source_labels": schema.ListAttribute{
-									Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
-									MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+									Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+									MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -3630,8 +6418,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"target_label": schema.StringAttribute{
-									Description:         "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
-									MarkdownDescription: "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
+									Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+									MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3652,8 +6440,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"no_proxy": schema.StringAttribute{
-						Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.  It requires Prometheus >= v2.43.0.",
-						MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.  It requires Prometheus >= v2.43.0.",
+						Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+						MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -3665,8 +6453,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"all_tenants": schema.BoolAttribute{
-									Description:         "Whether the service discovery should list all instances for all projects. It is only relevant for the 'instance' role and usually requires admin permissions.",
-									MarkdownDescription: "Whether the service discovery should list all instances for all projects. It is only relevant for the 'instance' role and usually requires admin permissions.",
+									Description:         "Whether the service discovery should list all instances for all projects.It is only relevant for the 'instance' role and usually requires admin permissions.",
+									MarkdownDescription: "Whether the service discovery should list all instances for all projects.It is only relevant for the 'instance' role and usually requires admin permissions.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3681,16 +6469,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"application_credential_name": schema.StringAttribute{
-									Description:         "The ApplicationCredentialID or ApplicationCredentialName fields are required if using an application credential to authenticate. Some providers allow you to create an application credential to authenticate rather than a password.",
-									MarkdownDescription: "The ApplicationCredentialID or ApplicationCredentialName fields are required if using an application credential to authenticate. Some providers allow you to create an application credential to authenticate rather than a password.",
+									Description:         "The ApplicationCredentialID or ApplicationCredentialName fields arerequired if using an application credential to authenticate. Some providersallow you to create an application credential to authenticate rather than apassword.",
+									MarkdownDescription: "The ApplicationCredentialID or ApplicationCredentialName fields arerequired if using an application credential to authenticate. Some providersallow you to create an application credential to authenticate rather than apassword.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"application_credential_secret": schema.SingleNestedAttribute{
-									Description:         "The applicationCredentialSecret field is required if using an application credential to authenticate.",
-									MarkdownDescription: "The applicationCredentialSecret field is required if using an application credential to authenticate.",
+									Description:         "The applicationCredentialSecret field is required if using an applicationcredential to authenticate.",
+									MarkdownDescription: "The applicationCredentialSecret field is required if using an applicationcredential to authenticate.",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3701,8 +6489,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3741,24 +6529,24 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"domain_name": schema.StringAttribute{
-									Description:         "At most one of domainId and domainName must be provided if using username with Identity V3. Otherwise, either are optional.",
-									MarkdownDescription: "At most one of domainId and domainName must be provided if using username with Identity V3. Otherwise, either are optional.",
+									Description:         "At most one of domainId and domainName must be provided if using usernamewith Identity V3. Otherwise, either are optional.",
+									MarkdownDescription: "At most one of domainId and domainName must be provided if using usernamewith Identity V3. Otherwise, either are optional.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"identity_endpoint": schema.StringAttribute{
-									Description:         "IdentityEndpoint specifies the HTTP endpoint that is required to work with the Identity API of the appropriate version.",
-									MarkdownDescription: "IdentityEndpoint specifies the HTTP endpoint that is required to work with the Identity API of the appropriate version.",
+									Description:         "IdentityEndpoint specifies the HTTP endpoint that is required to work withthe Identity API of the appropriate version.",
+									MarkdownDescription: "IdentityEndpoint specifies the HTTP endpoint that is required to work withthe Identity API of the appropriate version.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"password": schema.SingleNestedAttribute{
-									Description:         "Password for the Identity V2 and V3 APIs. Consult with your provider's control panel to discover your account's preferred method of authentication.",
-									MarkdownDescription: "Password for the Identity V2 and V3 APIs. Consult with your provider's control panel to discover your account's preferred method of authentication.",
+									Description:         "Password for the Identity V2 and V3 APIs. Consult with your provider'scontrol panel to discover your account's preferred method of authentication.",
+									MarkdownDescription: "Password for the Identity V2 and V3 APIs. Consult with your provider'scontrol panel to discover your account's preferred method of authentication.",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3769,8 +6557,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3790,24 +6578,24 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"port": schema.Int64Attribute{
-									Description:         "The port to scrape metrics from. If using the public IP address, this must instead be specified in the relabeling rule.",
-									MarkdownDescription: "The port to scrape metrics from. If using the public IP address, this must instead be specified in the relabeling rule.",
+									Description:         "The port to scrape metrics from. If using the public IP address, this mustinstead be specified in the relabeling rule.",
+									MarkdownDescription: "The port to scrape metrics from. If using the public IP address, this mustinstead be specified in the relabeling rule.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"project_id": schema.StringAttribute{
-									Description:         "ProjectID",
-									MarkdownDescription: "ProjectID",
+									Description:         " ProjectID",
+									MarkdownDescription: " ProjectID",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"project_name": schema.StringAttribute{
-									Description:         "The ProjectId and ProjectName fields are optional for the Identity V2 API. Some providers allow you to specify a ProjectName instead of the ProjectId. Some require both. Your provider's authentication policies will determine how these fields influence authentication.",
-									MarkdownDescription: "The ProjectId and ProjectName fields are optional for the Identity V2 API. Some providers allow you to specify a ProjectName instead of the ProjectId. Some require both. Your provider's authentication policies will determine how these fields influence authentication.",
+									Description:         "The ProjectId and ProjectName fields are optional for the Identity V2 API.Some providers allow you to specify a ProjectName instead of the ProjectId.Some require both. Your provider's authentication policies will determinehow these fields influence authentication.",
+									MarkdownDescription: "The ProjectId and ProjectName fields are optional for the Identity V2 API.Some providers allow you to specify a ProjectName instead of the ProjectId.Some require both. Your provider's authentication policies will determinehow these fields influence authentication.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3867,8 +6655,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3900,8 +6688,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3942,8 +6730,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3975,8 +6763,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4021,8 +6809,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4063,8 +6851,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"username": schema.StringAttribute{
-									Description:         "Username is required if using Identity V2 API. Consult with your provider's control panel to discover your account's username. In Identity V3, either userid or a combination of username and domainId or domainName are needed",
-									MarkdownDescription: "Username is required if using Identity V2 API. Consult with your provider's control panel to discover your account's username. In Identity V3, either userid or a combination of username and domainId or domainName are needed",
+									Description:         "Username is required if using Identity V2 API. Consult with your provider'scontrol panel to discover your account's username.In Identity V3, either userid or a combination of usernameand domainId or domainName are needed",
+									MarkdownDescription: "Username is required if using Identity V2 API. Consult with your provider'scontrol panel to discover your account's username.In Identity V3, either userid or a combination of usernameand domainId or domainName are needed",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4086,8 +6874,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"proxy_connect_header": schema.SingleNestedAttribute{
-						Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.  It requires Prometheus >= v2.43.0.",
-						MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.  It requires Prometheus >= v2.43.0.",
+						Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+						MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4098,8 +6886,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4119,16 +6907,16 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"proxy_from_environment": schema.BoolAttribute{
-						Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). If unset, Prometheus uses its default value.  It requires Prometheus >= v2.43.0.",
-						MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). If unset, Prometheus uses its default value.  It requires Prometheus >= v2.43.0.",
+						Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+						MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"proxy_url": schema.StringAttribute{
-						Description:         "'proxyURL' defines the HTTP proxy server to use.  It requires Prometheus >= v2.43.0.",
-						MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.  It requires Prometheus >= v2.43.0.",
+						Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+						MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -4138,13 +6926,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"relabelings": schema.ListNestedAttribute{
-						Description:         "RelabelConfigs defines how to rewrite the target's labels before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
-						MarkdownDescription: "RelabelConfigs defines how to rewrite the target's labels before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+						Description:         "RelabelConfigs defines how to rewrite the target's labels before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+						MarkdownDescription: "RelabelConfigs defines how to rewrite the target's labels before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
-									Description:         "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
-									MarkdownDescription: "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
+									Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+									MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4154,8 +6942,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"modulus": schema.Int64Attribute{
-									Description:         "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
-									MarkdownDescription: "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
+									Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+									MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4170,8 +6958,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"replacement": schema.StringAttribute{
-									Description:         "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
-									MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
+									Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+									MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4186,8 +6974,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"source_labels": schema.ListAttribute{
-									Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
-									MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+									Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+									MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -4195,8 +6983,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"target_label": schema.StringAttribute{
-									Description:         "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
-									MarkdownDescription: "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
+									Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+									MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4217,8 +7005,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"scheme": schema.StringAttribute{
-						Description:         "Configures the protocol scheme used for requests. If empty, Prometheus uses HTTP by default.",
-						MarkdownDescription: "Configures the protocol scheme used for requests. If empty, Prometheus uses HTTP by default.",
+						Description:         "Configures the protocol scheme used for requests.If empty, Prometheus uses HTTP by default.",
+						MarkdownDescription: "Configures the protocol scheme used for requests.If empty, Prometheus uses HTTP by default.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -4250,8 +7038,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"scrape_protocols": schema.ListAttribute{
-						Description:         "The protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
-						MarkdownDescription: "The protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
+						Description:         "The protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.",
+						MarkdownDescription: "The protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -4327,8 +7115,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4360,8 +7148,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4402,8 +7190,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4435,8 +7223,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4481,8 +7269,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4515,8 +7303,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"track_timestamps_staleness": schema.BoolAttribute{
-						Description:         "TrackTimestampsStaleness whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false. It requires Prometheus >= v2.48.0.",
-						MarkdownDescription: "TrackTimestampsStaleness whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false. It requires Prometheus >= v2.48.0.",
+						Description:         "TrackTimestampsStaleness whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.",
+						MarkdownDescription: "TrackTimestampsStaleness whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

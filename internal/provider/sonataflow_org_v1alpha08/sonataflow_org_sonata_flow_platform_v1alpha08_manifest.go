@@ -138,6 +138,24 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 				} `tfsdk:"service_ref" json:"serviceRef,omitempty"`
 			} `tfsdk:"postgresql" json:"postgresql,omitempty"`
 		} `tfsdk:"persistence" json:"persistence,omitempty"`
+		Properties *struct {
+			Flow *[]struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"flow" json:"flow,omitempty"`
+		} `tfsdk:"properties" json:"properties,omitempty"`
 		Services *struct {
 			DataIndex *struct {
 				Enabled     *bool `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -3222,8 +3240,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 					},
 
 					"persistence": schema.SingleNestedAttribute{
-						Description:         "Persistence defines the platform persistence configuration. When this field is set, the configuration is used as the persistence for platform services and sonataflow instances that don't provide one of their own.",
-						MarkdownDescription: "Persistence defines the platform persistence configuration. When this field is set, the configuration is used as the persistence for platform services and sonataflow instances that don't provide one of their own.",
+						Description:         "Persistence defines the platform persistence configuration. When this field is set, the configuration is used as the persistence for platform services and SonataFlow instances that don't provide one of their own.",
+						MarkdownDescription: "Persistence defines the platform persistence configuration. When this field is set, the configuration is used as the persistence for platform services and SonataFlow instances that don't provide one of their own.",
 						Attributes: map[string]schema.Attribute{
 							"postgresql": schema.SingleNestedAttribute{
 								Description:         "Connect configured services to a postgresql database.",
@@ -3309,6 +3327,117 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"properties": schema.SingleNestedAttribute{
+						Description:         "Properties defines the property set for a given actor in the current context. For example, the workflow managed properties. One can define here a set of properties for SonataFlow deployments that will be reused across every workflow deployment.  These properties MAY NOT be propagated to a SonataFlowClusterPlatform since PropertyVarSource can only refer local context sources.",
+						MarkdownDescription: "Properties defines the property set for a given actor in the current context. For example, the workflow managed properties. One can define here a set of properties for SonataFlow deployments that will be reused across every workflow deployment.  These properties MAY NOT be propagated to a SonataFlowClusterPlatform since PropertyVarSource can only refer local context sources.",
+						Attributes: map[string]schema.Attribute{
+							"flow": schema.ListNestedAttribute{
+								Description:         "Properties that will be added to the SonataFlow managed configMaps in the current context.",
+								MarkdownDescription: "Properties that will be added to the SonataFlow managed configMaps in the current context.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "The property name",
+											MarkdownDescription: "The property name",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Defaults to ''.",
+											MarkdownDescription: "Defaults to ''.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "Source for the property's value. Cannot be used if value is not empty.",
+											MarkdownDescription: "Source for the property's value. Cannot be used if value is not empty.",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a key of a ConfigMap.",
+													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a key of a secret in the flow's namespace",
+													MarkdownDescription: "Selects a key of a secret in the flow's namespace",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
 									},
 								},
 								Required: false,

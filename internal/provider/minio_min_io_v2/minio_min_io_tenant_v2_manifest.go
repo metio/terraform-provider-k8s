@@ -9422,8 +9422,8 @@ func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.Sche
 								"name": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 

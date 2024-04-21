@@ -166,6 +166,7 @@ type LoggingBanzaicloudIoOutputV1Beta1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"client_key_pass" json:"client_key_pass,omitempty"`
+			Compression_level                *string `tfsdk:"compression_level" json:"compression_level,omitempty"`
 			Content_type                     *string `tfsdk:"content_type" json:"content_type,omitempty"`
 			Custom_headers                   *string `tfsdk:"custom_headers" json:"custom_headers,omitempty"`
 			Customize_template               *string `tfsdk:"customize_template" json:"customize_template,omitempty"`
@@ -815,6 +816,7 @@ type LoggingBanzaicloudIoOutputV1Beta1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"client_key_pass" json:"client_key_pass,omitempty"`
+			Compression_level                         *string `tfsdk:"compression_level" json:"compression_level,omitempty"`
 			Content_type                              *string `tfsdk:"content_type" json:"content_type,omitempty"`
 			Custom_headers                            *string `tfsdk:"custom_headers" json:"custom_headers,omitempty"`
 			Customize_template                        *string `tfsdk:"customize_template" json:"customize_template,omitempty"`
@@ -4331,6 +4333,14 @@ func (r *LoggingBanzaicloudIoOutputV1Beta1Manifest) Schema(_ context.Context, _ 
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"compression_level": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"content_type": schema.StringAttribute{
@@ -8752,6 +8762,14 @@ func (r *LoggingBanzaicloudIoOutputV1Beta1Manifest) Schema(_ context.Context, _ 
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"compression_level": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"content_type": schema.StringAttribute{

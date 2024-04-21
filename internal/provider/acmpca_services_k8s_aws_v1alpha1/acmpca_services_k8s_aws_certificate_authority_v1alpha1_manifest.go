@@ -121,7 +121,6 @@ type AcmpcaServicesK8SAwsCertificateAuthorityV1Alpha1ManifestData struct {
 				Title                      *string `tfsdk:"title" json:"title,omitempty"`
 			} `tfsdk:"subject" json:"subject,omitempty"`
 		} `tfsdk:"certificate_authority_configuration" json:"certificateAuthorityConfiguration,omitempty"`
-		CertificateAuthorityType   *string `tfsdk:"certificate_authority_type" json:"certificateAuthorityType,omitempty"`
 		KeyStorageSecurityStandard *string `tfsdk:"key_storage_security_standard" json:"keyStorageSecurityStandard,omitempty"`
 		RevocationConfiguration    *struct {
 			CrlConfiguration *struct {
@@ -140,6 +139,7 @@ type AcmpcaServicesK8SAwsCertificateAuthorityV1Alpha1ManifestData struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
+		Type      *string `tfsdk:"type" json:"type,omitempty"`
 		UsageMode *string `tfsdk:"usage_mode" json:"usageMode,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -767,14 +767,6 @@ func (r *AcmpcaServicesK8SAwsCertificateAuthorityV1Alpha1Manifest) Schema(_ cont
 						Computed: false,
 					},
 
-					"certificate_authority_type": schema.StringAttribute{
-						Description:         "The type of the certificate authority.",
-						MarkdownDescription: "The type of the certificate authority.",
-						Required:            true,
-						Optional:            false,
-						Computed:            false,
-					},
-
 					"key_storage_security_standard": schema.StringAttribute{
 						Description:         "Specifies a cryptographic key management compliance standard used for handlingCA keys.Default: FIPS_140_2_LEVEL_3_OR_HIGHERSome Amazon Web Services Regions do not support the default. When creatinga CA in these Regions, you must provide FIPS_140_2_LEVEL_2_OR_HIGHER as theargument for KeyStorageSecurityStandard. Failure to do this results in anInvalidArgsException with the message, 'A certificate authority cannot becreated in this region with the specified security standard.'For information about security standard support in various Regions, see Storageand security compliance of Amazon Web Services Private CA private keys (https://docs.aws.amazon.com/privateca/latest/userguide/data-protection.html#private-keys).",
 						MarkdownDescription: "Specifies a cryptographic key management compliance standard used for handlingCA keys.Default: FIPS_140_2_LEVEL_3_OR_HIGHERSome Amazon Web Services Regions do not support the default. When creatinga CA in these Regions, you must provide FIPS_140_2_LEVEL_2_OR_HIGHER as theargument for KeyStorageSecurityStandard. Failure to do this results in anInvalidArgsException with the message, 'A certificate authority cannot becreated in this region with the specified security standard.'For information about security standard support in various Regions, see Storageand security compliance of Amazon Web Services Private CA private keys (https://docs.aws.amazon.com/privateca/latest/userguide/data-protection.html#private-keys).",
@@ -891,6 +883,14 @@ func (r *AcmpcaServicesK8SAwsCertificateAuthorityV1Alpha1Manifest) Schema(_ cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"type": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"usage_mode": schema.StringAttribute{

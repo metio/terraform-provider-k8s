@@ -17,6 +17,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -198,6 +199,11 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(64),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[-0-9a-z_]+$`), ""),
+								},
 							},
 
 							"name": schema.StringAttribute{
@@ -207,7 +213,9 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
 									stringvalidator.LengthAtMost(63),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
 								},
 							},
 

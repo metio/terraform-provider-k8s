@@ -77,9 +77,10 @@ type AnywhereEksAmazonawsComClusterV1Alpha1ManifestData struct {
 			} `tfsdk:"services" json:"services,omitempty"`
 		} `tfsdk:"cluster_network" json:"clusterNetwork,omitempty"`
 		ControlPlaneConfiguration *struct {
-			CertSans *[]string `tfsdk:"cert_sans" json:"certSans,omitempty"`
-			Count    *int64    `tfsdk:"count" json:"count,omitempty"`
-			Endpoint *struct {
+			ApiServerExtraArgs *map[string]string `tfsdk:"api_server_extra_args" json:"apiServerExtraArgs,omitempty"`
+			CertSans           *[]string          `tfsdk:"cert_sans" json:"certSans,omitempty"`
+			Count              *int64             `tfsdk:"count" json:"count,omitempty"`
+			Endpoint           *struct {
 				Host *string `tfsdk:"host" json:"host,omitempty"`
 			} `tfsdk:"endpoint" json:"endpoint,omitempty"`
 			Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -511,6 +512,15 @@ func (r *AnywhereEksAmazonawsComClusterV1Alpha1Manifest) Schema(_ context.Contex
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"api_server_extra_args": schema.MapAttribute{
+								Description:         "APIServerExtraArgs defines the flags to configure for the API server.",
+								MarkdownDescription: "APIServerExtraArgs defines the flags to configure for the API server.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"cert_sans": schema.ListAttribute{
 								Description:         "CertSANs is a slice of domain names or IPs to be added as Subject Name Alternatives of the Kube API Servers Certificate.",
 								MarkdownDescription: "CertSANs is a slice of domain names or IPs to be added as Subject Name Alternatives of the Kube API Servers Certificate.",

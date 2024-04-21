@@ -167,8 +167,8 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "Specification of the desired behavior of a GitLab Runner instance",
 				Attributes: map[string]schema.Attribute{
 					"azure": schema.SingleNestedAttribute{
-						Description:         "options used to setup Azure blob storage as GitLab Runner Cache",
-						MarkdownDescription: "options used to setup Azure blob storage as GitLab Runner Cache",
+						Description:         "options used to setup Azure blobstorage as GitLab Runner Cache",
+						MarkdownDescription: "options used to setup Azure blobstorage as GitLab Runner Cache",
 						Attributes: map[string]schema.Attribute{
 							"container": schema.StringAttribute{
 								Description:         "Name of the Azure container in which the cache will be stored",
@@ -179,16 +179,16 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"credentials": schema.StringAttribute{
-								Description:         "Credentials secret contains 'accountName' and 'privateKey' used to authenticate against Azure blob storage",
-								MarkdownDescription: "Credentials secret contains 'accountName' and 'privateKey' used to authenticate against Azure blob storage",
+								Description:         "Credentials secret contains 'accountName' and 'privateKey'used to authenticate against Azure blob storage",
+								MarkdownDescription: "Credentials secret contains 'accountName' and 'privateKey'used to authenticate against Azure blob storage",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"storage_domain": schema.StringAttribute{
-								Description:         "The domain name of the Azure blob storage e.g. blob.core.windows.net",
-								MarkdownDescription: "The domain name of the Azure blob storage e.g. blob.core.windows.net",
+								Description:         "The domain name of the Azure blob storagee.g. blob.core.windows.net",
+								MarkdownDescription: "The domain name of the Azure blob storagee.g. blob.core.windows.net",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -200,16 +200,16 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"build_image": schema.StringAttribute{
-						Description:         "The name of the default image to use to run build jobs, when none is specified",
-						MarkdownDescription: "The name of the default image to use to run build jobs, when none is specified",
+						Description:         "The name of the default image to use to runbuild jobs, when none is specified",
+						MarkdownDescription: "The name of the default image to use to runbuild jobs, when none is specified",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ca": schema.StringAttribute{
-						Description:         "Name of tls secret containing the custom certificate authority (CA) certificates",
-						MarkdownDescription: "Name of tls secret containing the custom certificate authority (CA) certificates",
+						Description:         "Name of tls secret containing the custom certificateauthority (CA) certificates",
+						MarkdownDescription: "Name of tls secret containing the custom certificateauthority (CA) certificates",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -232,8 +232,8 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"cache_type": schema.StringAttribute{
-						Description:         "Type of cache used for Runner artifacts Options are: gcs, s3, azure",
-						MarkdownDescription: "Type of cache used for Runner artifacts Options are: gcs, s3, azure",
+						Description:         "Type of cache used for Runner artifactsOptions are: gcs, s3, azure",
+						MarkdownDescription: "Type of cache used for Runner artifactsOptions are: gcs, s3, azure",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -248,32 +248,32 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"concurrent": schema.Int64Attribute{
-						Description:         "Option to limit the number of jobs globally that can run concurrently. The operator sets this to 10, if not specified",
-						MarkdownDescription: "Option to limit the number of jobs globally that can run concurrently. The operator sets this to 10, if not specified",
+						Description:         "Option to limit the number of jobs globally that can run concurrently.The operator sets this to 10, if not specified",
+						MarkdownDescription: "Option to limit the number of jobs globally that can run concurrently.The operator sets this to 10, if not specified",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"config": schema.StringAttribute{
-						Description:         "allow user to provide configmap name containing the user provided config.toml",
-						MarkdownDescription: "allow user to provide configmap name containing the user provided config.toml",
+						Description:         "allow user to provide configmap namecontaining the user provided config.toml",
+						MarkdownDescription: "allow user to provide configmap namecontaining the user provided config.toml",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"env": schema.StringAttribute{
-						Description:         "Accepts configmap name. Provides user mechanism to inject environment variables in the GitLab Runner pod via the key value pairs in the ConfigMap",
-						MarkdownDescription: "Accepts configmap name. Provides user mechanism to inject environment variables in the GitLab Runner pod via the key value pairs in the ConfigMap",
+						Description:         "Accepts configmap name. Provides user mechanism to inject environmentvariables in the GitLab Runner pod via the key value pairs in the ConfigMap",
+						MarkdownDescription: "Accepts configmap name. Provides user mechanism to inject environmentvariables in the GitLab Runner pod via the key value pairs in the ConfigMap",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"gcs": schema.SingleNestedAttribute{
-						Description:         "options used to setup GCS (Google Container Storage) as GitLab Runner Cache",
-						MarkdownDescription: "options used to setup GCS (Google Container Storage) as GitLab Runner Cache",
+						Description:         "options used to setup GCS (GoogleContainer Storage) as GitLab Runner Cache",
+						MarkdownDescription: "options used to setup GCS (GoogleContainer Storage) as GitLab Runner Cache",
 						Attributes: map[string]schema.Attribute{
 							"bucket": schema.StringAttribute{
 								Description:         "Name of the bucket in which the cache will be stored",
@@ -305,8 +305,8 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"gitlab_url": schema.StringAttribute{
-						Description:         "The fully qualified domain name for the GitLab instance. For example, https://gitlab.example.com",
-						MarkdownDescription: "The fully qualified domain name for the GitLab instance. For example, https://gitlab.example.com",
+						Description:         "The fully qualified domain name for the GitLab instance.For example, https://gitlab.example.com",
+						MarkdownDescription: "The fully qualified domain name for the GitLab instance.For example, https://gitlab.example.com",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -321,16 +321,16 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"image_pull_policy": schema.StringAttribute{
-						Description:         "ImagePullPolicy sets the Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
-						MarkdownDescription: "ImagePullPolicy sets the Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+						Description:         "ImagePullPolicy sets the Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+						MarkdownDescription: "ImagePullPolicy sets the Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"interval": schema.Int64Attribute{
-						Description:         "Option to define the number of seconds between checks for new jobs. This is set to a default of 30s by operator if not set",
-						MarkdownDescription: "Option to define the number of seconds between checks for new jobs. This is set to a default of 30s by operator if not set",
+						Description:         "Option to define the number of seconds between checks for new jobs.This is set to a default of 30s by operator if not set",
+						MarkdownDescription: "Option to define the number of seconds between checks for new jobs.This is set to a default of 30s by operator if not set",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -358,24 +358,24 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 								},
 
 								"patch": schema.StringAttribute{
-									Description:         "A JSON or YAML format string that describes the changes which must be applied to the final PodSpec object before it is generated. You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.",
-									MarkdownDescription: "A JSON or YAML format string that describes the changes which must be applied to the final PodSpec object before it is generated. You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.",
+									Description:         "A JSON or YAML format string that describes the changes which must be appliedto the final PodSpec object before it is generated.You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.",
+									MarkdownDescription: "A JSON or YAML format string that describes the changes which must be appliedto the final PodSpec object before it is generated.You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"patch_file": schema.StringAttribute{
-									Description:         "Path to the file that defines the changes to apply to the final PodSpec object before it is generated. The file must be a JSON or YAML file. You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.",
-									MarkdownDescription: "Path to the file that defines the changes to apply to the final PodSpec object before it is generated. The file must be a JSON or YAML file. You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.",
+									Description:         "Path to the file that defines the changes to apply to the final PodSpec object before it is generated.The file must be a JSON or YAML file.You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.",
+									MarkdownDescription: "Path to the file that defines the changes to apply to the final PodSpec object before it is generated.The file must be a JSON or YAML file.You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"patch_type": schema.StringAttribute{
-									Description:         "The strategy the runner uses to apply the specified changes to the PodSpec object generated by GitLab Runner. The accepted values are merge, json, and strategic (default value).",
-									MarkdownDescription: "The strategy the runner uses to apply the specified changes to the PodSpec object generated by GitLab Runner. The accepted values are merge, json, and strategic (default value).",
+									Description:         "The strategy the runner uses to apply the specified changes to the PodSpec object generated by GitLab Runner.The accepted values are merge, json, and strategic (default value).",
+									MarkdownDescription: "The strategy the runner uses to apply the specified changes to the PodSpec object generated by GitLab Runner.The accepted values are merge, json, and strategic (default value).",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -396,8 +396,8 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"run_untagged": schema.BoolAttribute{
-						Description:         "Specify if jobs without tags should be run. If not specified, runner will default to true if no tags were specified. In other case it will default to false.",
-						MarkdownDescription: "Specify if jobs without tags should be run. If not specified, runner will default to true if no tags were specified. In other case it will default to false.",
+						Description:         "Specify if jobs without tags should be run.If not specified, runner will default to true if no tags were specified.In other case it will default to false.",
+						MarkdownDescription: "Specify if jobs without tags should be run.If not specified, runner will default to true if no tags were specified.In other case it will default to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -412,8 +412,8 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"s3": schema.SingleNestedAttribute{
-						Description:         "options used to setup S3 object store as GitLab Runner Cache",
-						MarkdownDescription: "options used to setup S3 object store as GitLab Runner Cache",
+						Description:         "options used to setup S3object store as GitLab Runner Cache",
+						MarkdownDescription: "options used to setup S3object store as GitLab Runner Cache",
 						Attributes: map[string]schema.Attribute{
 							"bucket": schema.StringAttribute{
 								Description:         "Name of the bucket in which the cache will be stored",
@@ -424,8 +424,8 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"credentials": schema.StringAttribute{
-								Description:         "Name of the secret containing the 'accesskey' and 'secretkey' used to access the object storage",
-								MarkdownDescription: "Name of the secret containing the 'accesskey' and 'secretkey' used to access the object storage",
+								Description:         "Name of the secret containing the'accesskey' and 'secretkey' used to access the object storage",
+								MarkdownDescription: "Name of the secret containing the'accesskey' and 'secretkey' used to access the object storage",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -461,16 +461,16 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"serviceaccount": schema.StringAttribute{
-						Description:         "allow user to override service account used by GitLab Runner",
-						MarkdownDescription: "allow user to override service account used by GitLab Runner",
+						Description:         "allow user to override service accountused by GitLab Runner",
+						MarkdownDescription: "allow user to override service accountused by GitLab Runner",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tags": schema.StringAttribute{
-						Description:         "List of comma separated tags to be applied to the runner More info: https://docs.gitlab.com/ee/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner",
-						MarkdownDescription: "List of comma separated tags to be applied to the runner More info: https://docs.gitlab.com/ee/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner",
+						Description:         "List of comma separated tags to be applied to the runnerMore info: https://docs.gitlab.com/ee/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner",
+						MarkdownDescription: "List of comma separated tags to be applied to the runnerMore info: https://docs.gitlab.com/ee/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

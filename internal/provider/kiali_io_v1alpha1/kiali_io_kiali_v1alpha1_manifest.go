@@ -159,7 +159,6 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 			Service_annotations *map[string]string   `tfsdk:"service_annotations" json:"service_annotations,omitempty"`
 			Service_type        *string              `tfsdk:"service_type" json:"service_type,omitempty"`
 			Tolerations         *[]map[string]string `tfsdk:"tolerations" json:"tolerations,omitempty"`
-			Verbose_mode        *string              `tfsdk:"verbose_mode" json:"verbose_mode,omitempty"`
 			Version_label       *string              `tfsdk:"version_label" json:"version_label,omitempty"`
 			View_only_mode      *bool                `tfsdk:"view_only_mode" json:"view_only_mode,omitempty"`
 		} `tfsdk:"deployment" json:"deployment,omitempty"`
@@ -284,18 +283,22 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 					Use_kiali_token      *bool   `tfsdk:"use_kiali_token" json:"use_kiali_token,omitempty"`
 					Username             *string `tfsdk:"username" json:"username,omitempty"`
 				} `tfsdk:"auth" json:"auth,omitempty"`
-				Enabled                *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-				Grpc_port              *int64             `tfsdk:"grpc_port" json:"grpc_port,omitempty"`
-				Health_check_url       *string            `tfsdk:"health_check_url" json:"health_check_url,omitempty"`
-				In_cluster_url         *string            `tfsdk:"in_cluster_url" json:"in_cluster_url,omitempty"`
-				Is_core                *bool              `tfsdk:"is_core" json:"is_core,omitempty"`
-				Namespace_selector     *bool              `tfsdk:"namespace_selector" json:"namespace_selector,omitempty"`
-				Provider               *string            `tfsdk:"provider" json:"provider,omitempty"`
-				Query_scope            *map[string]string `tfsdk:"query_scope" json:"query_scope,omitempty"`
-				Query_timeout          *int64             `tfsdk:"query_timeout" json:"query_timeout,omitempty"`
-				Url                    *string            `tfsdk:"url" json:"url,omitempty"`
-				Use_grpc               *bool              `tfsdk:"use_grpc" json:"use_grpc,omitempty"`
-				Whitelist_istio_system *[]string          `tfsdk:"whitelist_istio_system" json:"whitelist_istio_system,omitempty"`
+				Enabled            *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				Grpc_port          *int64             `tfsdk:"grpc_port" json:"grpc_port,omitempty"`
+				Health_check_url   *string            `tfsdk:"health_check_url" json:"health_check_url,omitempty"`
+				In_cluster_url     *string            `tfsdk:"in_cluster_url" json:"in_cluster_url,omitempty"`
+				Is_core            *bool              `tfsdk:"is_core" json:"is_core,omitempty"`
+				Namespace_selector *bool              `tfsdk:"namespace_selector" json:"namespace_selector,omitempty"`
+				Provider           *string            `tfsdk:"provider" json:"provider,omitempty"`
+				Query_scope        *map[string]string `tfsdk:"query_scope" json:"query_scope,omitempty"`
+				Query_timeout      *int64             `tfsdk:"query_timeout" json:"query_timeout,omitempty"`
+				Tempo_config       *struct {
+					Datasource_uid *string `tfsdk:"datasource_uid" json:"datasource_uid,omitempty"`
+					Org_id         *string `tfsdk:"org_id" json:"org_id,omitempty"`
+				} `tfsdk:"tempo_config" json:"tempo_config,omitempty"`
+				Url                    *string   `tfsdk:"url" json:"url,omitempty"`
+				Use_grpc               *bool     `tfsdk:"use_grpc" json:"use_grpc,omitempty"`
+				Whitelist_istio_system *[]string `tfsdk:"whitelist_istio_system" json:"whitelist_istio_system,omitempty"`
 			} `tfsdk:"tracing" json:"tracing,omitempty"`
 		} `tfsdk:"external_services" json:"external_services,omitempty"`
 		Health_config *struct {
@@ -1362,14 +1365,6 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Computed:            false,
 							},
 
-							"verbose_mode": schema.StringAttribute{
-								Description:         "DEPRECATED! Determines which priority levels of log messages Kiali will output. Use 'deployment.logger' settings instead.",
-								MarkdownDescription: "DEPRECATED! Determines which priority levels of log messages Kiali will output. Use 'deployment.logger' settings instead.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"version_label": schema.StringAttribute{
 								Description:         "Kiali resources will be assigned a 'version' label when they are deployed.This setting determines what value those 'version' labels will have.When empty, its default will be determined as follows,* If 'deployment.image_version' is 'latest', 'version_label' will be fixed to 'master'.* If 'deployment.image_version' is 'lastrelease', 'version_label' will be fixed to the last Kiali release version string.* If 'deployment.image_version' is anything else, 'version_label' will be that value, too.",
 								MarkdownDescription: "Kiali resources will be assigned a 'version' label when they are deployed.This setting determines what value those 'version' labels will have.When empty, its default will be determined as follows,* If 'deployment.image_version' is 'latest', 'version_label' will be fixed to 'master'.* If 'deployment.image_version' is 'lastrelease', 'version_label' will be fixed to the last Kiali release version string.* If 'deployment.image_version' is anything else, 'version_label' will be that value, too.",
@@ -2313,6 +2308,31 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"tempo_config": schema.SingleNestedAttribute{
+										Description:         "Settings used to configure the access url to the Tempo Datasource in Grafana.",
+										MarkdownDescription: "Settings used to configure the access url to the Tempo Datasource in Grafana.",
+										Attributes: map[string]schema.Attribute{
+											"datasource_uid": schema.StringAttribute{
+												Description:         "The unique identifier (uid) of the Tempo datasource in Grafana.",
+												MarkdownDescription: "The unique identifier (uid) of the Tempo datasource in Grafana.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"org_id": schema.StringAttribute{
+												Description:         "The Id of the organization that the dashboard is in. Default to 1 (the first and default organization).",
+												MarkdownDescription: "The Id of the organization that the dashboard is in. Default to 1 (the first and default organization).",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"url": schema.StringAttribute{

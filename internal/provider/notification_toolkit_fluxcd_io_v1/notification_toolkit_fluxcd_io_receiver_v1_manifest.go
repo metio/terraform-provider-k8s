@@ -253,7 +253,7 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Manifest) Schema(_ context.Context
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("generic", "generic-hmac", "github", "gitlab", "bitbucket", "harbor", "dockerhub", "quay", "gcr", "nexus", "acr"),
+							stringvalidator.OneOf("generic", "generic-hmac", "github", "gitlab", "bitbucket", "harbor", "dockerhub", "quay", "gcr", "nexus", "acr", "cdevents"),
 						},
 					},
 				},

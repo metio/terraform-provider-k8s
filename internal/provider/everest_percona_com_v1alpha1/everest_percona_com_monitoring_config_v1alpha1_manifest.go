@@ -49,7 +49,8 @@ type EverestPerconaComMonitoringConfigV1Alpha1ManifestData struct {
 			Image *string `tfsdk:"image" json:"image,omitempty"`
 			Url   *string `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"pmm" json:"pmm,omitempty"`
-		Type *string `tfsdk:"type" json:"type,omitempty"`
+		Type      *string `tfsdk:"type" json:"type,omitempty"`
+		VerifyTLS *bool   `tfsdk:"verify_tls" json:"verifyTLS,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -181,6 +182,14 @@ func (r *EverestPerconaComMonitoringConfigV1Alpha1Manifest) Schema(_ context.Con
 						Validators: []validator.String{
 							stringvalidator.OneOf("pmm"),
 						},
+					},
+
+					"verify_tls": schema.BoolAttribute{
+						Description:         "VerifyTLS is set to ensure TLS/SSL verification.If unspecified, the default value is true.",
+						MarkdownDescription: "VerifyTLS is set to ensure TLS/SSL verification.If unspecified, the default value is true.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

@@ -180,8 +180,8 @@ func (r *MulticlusterCrdAntreaIoClusterSetV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"members": schema.ListNestedAttribute{
-						Description:         "Members include member clusters known to the leader clusters. Used in leader cluster.",
-						MarkdownDescription: "Members include member clusters known to the leader clusters. Used in leader cluster.",
+						Description:         "Members include member clusters known to the leader clusters.Used in leader cluster.",
+						MarkdownDescription: "Members include member clusters known to the leader clusters.Used in leader cluster.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"cluster_id": schema.StringAttribute{
@@ -223,8 +223,8 @@ func (r *MulticlusterCrdAntreaIoClusterSetV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"namespace": schema.StringAttribute{
-						Description:         "The leader cluster Namespace in which the ClusterSet is defined. Used in member cluster.",
-						MarkdownDescription: "The leader cluster Namespace in which the ClusterSet is defined. Used in member cluster.",
+						Description:         "The leader cluster Namespace in which the ClusterSet is defined.Used in member cluster.",
+						MarkdownDescription: "The leader cluster Namespace in which the ClusterSet is defined.Used in member cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

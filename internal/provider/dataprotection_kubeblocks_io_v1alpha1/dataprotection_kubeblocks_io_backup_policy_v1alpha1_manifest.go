@@ -92,6 +92,7 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 					UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
 				} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
+				Name        *string `tfsdk:"name" json:"name,omitempty"`
 				PodSelector *struct {
 					MatchExpressions *[]struct {
 						Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -126,6 +127,38 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				Volumes *[]string `tfsdk:"volumes" json:"volumes,omitempty"`
 			} `tfsdk:"target_volumes" json:"targetVolumes,omitempty"`
+			Targets *[]struct {
+				ConnectionCredential *struct {
+					HostKey     *string `tfsdk:"host_key" json:"hostKey,omitempty"`
+					PasswordKey *string `tfsdk:"password_key" json:"passwordKey,omitempty"`
+					PortKey     *string `tfsdk:"port_key" json:"portKey,omitempty"`
+					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+					UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
+				} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
+				Name        *string `tfsdk:"name" json:"name,omitempty"`
+				PodSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					Strategy    *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+				} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
+				Resources *struct {
+					Excluded *[]string `tfsdk:"excluded" json:"excluded,omitempty"`
+					Included *[]string `tfsdk:"included" json:"included,omitempty"`
+					Selector *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"selector" json:"selector,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+				ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+			} `tfsdk:"targets" json:"targets,omitempty"`
 		} `tfsdk:"backup_methods" json:"backupMethods,omitempty"`
 		BackupRepoName   *string `tfsdk:"backup_repo_name" json:"backupRepoName,omitempty"`
 		EncryptionConfig *struct {
@@ -145,6 +178,7 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 				SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
 			} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
+			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			PodSelector *struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -168,6 +202,38 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 			} `tfsdk:"resources" json:"resources,omitempty"`
 			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
 		} `tfsdk:"target" json:"target,omitempty"`
+		Targets *[]struct {
+			ConnectionCredential *struct {
+				HostKey     *string `tfsdk:"host_key" json:"hostKey,omitempty"`
+				PasswordKey *string `tfsdk:"password_key" json:"passwordKey,omitempty"`
+				PortKey     *string `tfsdk:"port_key" json:"portKey,omitempty"`
+				SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+				UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
+			} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
+			Name        *string `tfsdk:"name" json:"name,omitempty"`
+			PodSelector *struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				Strategy    *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+			} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
+			Resources *struct {
+				Excluded *[]string `tfsdk:"excluded" json:"excluded,omitempty"`
+				Included *[]string `tfsdk:"included" json:"included,omitempty"`
+				Selector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"selector" json:"selector,omitempty"`
+			} `tfsdk:"resources" json:"resources,omitempty"`
+			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		} `tfsdk:"targets" json:"targets,omitempty"`
 		UseKopia *bool `tfsdk:"use_kopia" json:"useKopia,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -564,6 +630,14 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											Computed: false,
 										},
 
+										"name": schema.StringAttribute{
+											Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+											MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"pod_selector": schema.SingleNestedAttribute{
 											Description:         "Used to find the target pod. The volumes of the target pod will be backed up.",
 											MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
@@ -614,8 +688,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"strategy": schema.StringAttribute{
-													Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: Any: select any one pod that match the labelsSelector.  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector.",
-													MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: Any: select any one pod that match the labelsSelector.  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector.",
+													Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+													MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -799,6 +873,231 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									Optional: true,
 									Computed: false,
 								},
+
+								"targets": schema.ListNestedAttribute{
+									Description:         "Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively.",
+									MarkdownDescription: "Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"connection_credential": schema.SingleNestedAttribute{
+												Description:         "Specifies the connection credential to connect to the target database cluster.",
+												MarkdownDescription: "Specifies the connection credential to connect to the target database cluster.",
+												Attributes: map[string]schema.Attribute{
+													"host_key": schema.StringAttribute{
+														Description:         "Specifies the map key of the host in the connection credential secret.",
+														MarkdownDescription: "Specifies the map key of the host in the connection credential secret.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"password_key": schema.StringAttribute{
+														Description:         "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+														MarkdownDescription: "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port_key": schema.StringAttribute{
+														Description:         "Specifies the map key of the port in the connection credential secret.",
+														MarkdownDescription: "Specifies the map key of the port in the connection credential secret.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"secret_name": schema.StringAttribute{
+														Description:         "Refers to the Secret object that contains the connection credential.",
+														MarkdownDescription: "Refers to the Secret object that contains the connection credential.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
+														},
+													},
+
+													"username_key": schema.StringAttribute{
+														Description:         "Specifies the map key of the user in the connection credential secret.",
+														MarkdownDescription: "Specifies the map key of the user in the connection credential secret.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+												MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"pod_selector": schema.SingleNestedAttribute{
+												Description:         "Used to find the target pod. The volumes of the target pod will be backed up.",
+												MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
+												Attributes: map[string]schema.Attribute{
+													"match_expressions": schema.ListNestedAttribute{
+														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "key is the label key that the selector applies to.",
+																	MarkdownDescription: "key is the label key that the selector applies to.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"operator": schema.StringAttribute{
+																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"values": schema.ListAttribute{
+																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"match_labels": schema.MapAttribute{
+														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"strategy": schema.StringAttribute{
+														Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+														MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Any", "All"),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"resources": schema.SingleNestedAttribute{
+												Description:         "Specifies the kubernetes resources to back up.",
+												MarkdownDescription: "Specifies the kubernetes resources to back up.",
+												Attributes: map[string]schema.Attribute{
+													"excluded": schema.ListAttribute{
+														Description:         "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
+														MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"included": schema.ListAttribute{
+														Description:         "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
+														MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"selector": schema.SingleNestedAttribute{
+														Description:         "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
+														MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
+														Attributes: map[string]schema.Attribute{
+															"match_expressions": schema.ListNestedAttribute{
+																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "key is the label key that the selector applies to.",
+																			MarkdownDescription: "key is the label key that the selector applies to.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"operator": schema.StringAttribute{
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"values": schema.ListAttribute{
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": schema.MapAttribute{
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service_account_name": schema.StringAttribute{
+												Description:         "Specifies the service account to run the backup workload.",
+												MarkdownDescription: "Specifies the service account to run the backup workload.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
 							},
 						},
 						Required: true,
@@ -934,6 +1233,14 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 								Computed: false,
 							},
 
+							"name": schema.StringAttribute{
+								Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+								MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"pod_selector": schema.SingleNestedAttribute{
 								Description:         "Used to find the target pod. The volumes of the target pod will be backed up.",
 								MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
@@ -984,8 +1291,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									},
 
 									"strategy": schema.StringAttribute{
-										Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: Any: select any one pod that match the labelsSelector.  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector.",
-										MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: Any: select any one pod that match the labelsSelector.  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector.",
+										Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+										MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1088,8 +1395,233 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"targets": schema.ListNestedAttribute{
+						Description:         "Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively. optional",
+						MarkdownDescription: "Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively. optional",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"connection_credential": schema.SingleNestedAttribute{
+									Description:         "Specifies the connection credential to connect to the target database cluster.",
+									MarkdownDescription: "Specifies the connection credential to connect to the target database cluster.",
+									Attributes: map[string]schema.Attribute{
+										"host_key": schema.StringAttribute{
+											Description:         "Specifies the map key of the host in the connection credential secret.",
+											MarkdownDescription: "Specifies the map key of the host in the connection credential secret.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"password_key": schema.StringAttribute{
+											Description:         "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+											MarkdownDescription: "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"port_key": schema.StringAttribute{
+											Description:         "Specifies the map key of the port in the connection credential secret.",
+											MarkdownDescription: "Specifies the map key of the port in the connection credential secret.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret_name": schema.StringAttribute{
+											Description:         "Refers to the Secret object that contains the connection credential.",
+											MarkdownDescription: "Refers to the Secret object that contains the connection credential.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
+											},
+										},
+
+										"username_key": schema.StringAttribute{
+											Description:         "Specifies the map key of the user in the connection credential secret.",
+											MarkdownDescription: "Specifies the map key of the user in the connection credential secret.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+									MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"pod_selector": schema.SingleNestedAttribute{
+									Description:         "Used to find the target pod. The volumes of the target pod will be backed up.",
+									MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
+									Attributes: map[string]schema.Attribute{
+										"match_expressions": schema.ListNestedAttribute{
+											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+											MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "key is the label key that the selector applies to.",
+														MarkdownDescription: "key is the label key that the selector applies to.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"operator": schema.StringAttribute{
+														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"values": schema.ListAttribute{
+														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"match_labels": schema.MapAttribute{
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"strategy": schema.StringAttribute{
+											Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+											MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are:  - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Any", "All"),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"resources": schema.SingleNestedAttribute{
+									Description:         "Specifies the kubernetes resources to back up.",
+									MarkdownDescription: "Specifies the kubernetes resources to back up.",
+									Attributes: map[string]schema.Attribute{
+										"excluded": schema.ListAttribute{
+											Description:         "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
+											MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"included": schema.ListAttribute{
+											Description:         "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
+											MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"selector": schema.SingleNestedAttribute{
+											Description:         "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
+											MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
+											Attributes: map[string]schema.Attribute{
+												"match_expressions": schema.ListNestedAttribute{
+													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "key is the label key that the selector applies to.",
+																MarkdownDescription: "key is the label key that the selector applies to.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"values": schema.ListAttribute{
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"match_labels": schema.MapAttribute{
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"service_account_name": schema.StringAttribute{
+									Description:         "Specifies the service account to run the backup workload.",
+									MarkdownDescription: "Specifies the service account to run the backup workload.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

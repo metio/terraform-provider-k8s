@@ -183,8 +183,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsmachineTemplateV1Beta1Manifest) Sc
 											},
 
 											"regex": schema.StringAttribute{
-												Description:         "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
-												MarkdownDescription: "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												Description:         "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												MarkdownDescription: "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -199,12 +199,12 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsmachineTemplateV1Beta1Manifest) Sc
 									},
 
 									"image_ref": schema.SingleNestedAttribute{
-										Description:         "ImageRef is an optional reference to a provider-specific resource that holds the details for provisioning the Image for a Cluster.",
-										MarkdownDescription: "ImageRef is an optional reference to a provider-specific resource that holds the details for provisioning the Image for a Cluster.",
+										Description:         "ImageRef is an optional reference to a provider-specific resource that holdsthe details for provisioning the Image for a Cluster.",
+										MarkdownDescription: "ImageRef is an optional reference to a provider-specific resource that holdsthe details for provisioning the Image for a Cluster.",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -250,8 +250,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsmachineTemplateV1Beta1Manifest) Sc
 											},
 
 											"regex": schema.StringAttribute{
-												Description:         "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
-												MarkdownDescription: "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												Description:         "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												MarkdownDescription: "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

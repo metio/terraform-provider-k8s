@@ -54,6 +54,7 @@ type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
 				NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 				OperatorNamespace *string            `tfsdk:"operator_namespace" json:"operatorNamespace,omitempty"`
 				OrderStrategy     *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+				Platforms         *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 				RequestCPU        *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 				RequestMemory     *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 				Strategy          *string            `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -161,6 +162,7 @@ type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
 				MavenProfiles         *[]string          `tfsdk:"maven_profiles" json:"mavenProfiles,omitempty"`
 				NodeSelector          *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 				OrderStrategy         *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+				Platforms             *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 				Properties            *[]string          `tfsdk:"properties" json:"properties,omitempty"`
 				RequestCPU            *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 				RequestMemory         *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
@@ -222,8 +224,8 @@ type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
 				Configuration               *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
 				Enabled                     *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 				ProgressDeadlineSeconds     *int64             `tfsdk:"progress_deadline_seconds" json:"progressDeadlineSeconds,omitempty"`
-				RollingUpdateMaxSurge       *int64             `tfsdk:"rolling_update_max_surge" json:"rollingUpdateMaxSurge,omitempty"`
-				RollingUpdateMaxUnavailable *int64             `tfsdk:"rolling_update_max_unavailable" json:"rollingUpdateMaxUnavailable,omitempty"`
+				RollingUpdateMaxSurge       *string            `tfsdk:"rolling_update_max_surge" json:"rollingUpdateMaxSurge,omitempty"`
+				RollingUpdateMaxUnavailable *string            `tfsdk:"rolling_update_max_unavailable" json:"rollingUpdateMaxUnavailable,omitempty"`
 				Strategy                    *string            `tfsdk:"strategy" json:"strategy,omitempty"`
 			} `tfsdk:"deployment" json:"deployment,omitempty"`
 			Environment *struct {
@@ -359,12 +361,13 @@ type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
 				Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
 			} `tfsdk:"master" json:"master,omitempty"`
 			Mount *struct {
-				Configs       *[]string          `tfsdk:"configs" json:"configs,omitempty"`
-				Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
-				Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-				HotReload     *bool              `tfsdk:"hot_reload" json:"hotReload,omitempty"`
-				Resources     *[]string          `tfsdk:"resources" json:"resources,omitempty"`
-				Volumes       *[]string          `tfsdk:"volumes" json:"volumes,omitempty"`
+				Configs                          *[]string          `tfsdk:"configs" json:"configs,omitempty"`
+				Configuration                    *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+				Enabled                          *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				HotReload                        *bool              `tfsdk:"hot_reload" json:"hotReload,omitempty"`
+				Resources                        *[]string          `tfsdk:"resources" json:"resources,omitempty"`
+				ScanKameletsImplicitLabelSecrets *bool              `tfsdk:"scan_kamelets_implicit_label_secrets" json:"scanKameletsImplicitLabelSecrets,omitempty"`
+				Volumes                          *[]string          `tfsdk:"volumes" json:"volumes,omitempty"`
 			} `tfsdk:"mount" json:"mount,omitempty"`
 			Openapi *struct {
 				Configmaps    *[]string          `tfsdk:"configmaps" json:"configmaps,omitempty"`
@@ -553,8 +556,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 							},
 
 							"base_image": schema.StringAttribute{
-								Description:         "a base image that can be used as base layer for all images. It can be useful if you want to provide some custom base image with further utility softwares",
-								MarkdownDescription: "a base image that can be used as base layer for all images. It can be useful if you want to provide some custom base image with further utility softwares",
+								Description:         "a base image that can be used as base layer for all images. It can be useful if you want to provide some custom base image with further utility software",
+								MarkdownDescription: "a base image that can be used as base layer for all images. It can be useful if you want to provide some custom base image with further utility software",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -623,6 +626,15 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 										Validators: []validator.String{
 											stringvalidator.OneOf("dependencies", "fifo", "sequential"),
 										},
+									},
+
+									"platforms": schema.ListAttribute{
+										Description:         "The list of platforms used in order to build a container image.",
+										MarkdownDescription: "The list of platforms used in order to build a container image.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"request_cpu": schema.StringAttribute{
@@ -1369,6 +1381,15 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 										},
 									},
 
+									"platforms": schema.ListAttribute{
+										Description:         "The list of manifest platforms to use to build a container image (default 'linux/amd64').",
+										MarkdownDescription: "The list of manifest platforms to use to build a container image (default 'linux/amd64').",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"properties": schema.ListAttribute{
 										Description:         "A list of properties to be provided to the build task",
 										MarkdownDescription: "A list of properties to be provided to the build task",
@@ -1415,8 +1436,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"tasks_filter": schema.StringAttribute{
-										Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
-										MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
+										Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
+										MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1502,8 +1523,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"runtime_version": schema.StringAttribute{
-										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.",
-										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.",
+										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
+										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1840,7 +1861,7 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 										Computed:            false,
 									},
 
-									"rolling_update_max_surge": schema.Int64Attribute{
+									"rolling_update_max_surge": schema.StringAttribute{
 										Description:         "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.",
 										MarkdownDescription: "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.",
 										Required:            false,
@@ -1848,7 +1869,7 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 										Computed:            false,
 									},
 
-									"rolling_update_max_unavailable": schema.Int64Attribute{
+									"rolling_update_max_unavailable": schema.StringAttribute{
 										Description:         "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.",
 										MarkdownDescription: "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.",
 										Required:            false,
@@ -2902,8 +2923,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"hot_reload": schema.BoolAttribute{
-										Description:         "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account.",
-										MarkdownDescription: "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account.",
+										Description:         "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also for changes in metadata.",
+										MarkdownDescription: "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also for changes in metadata.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2913,6 +2934,14 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 										Description:         "A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path",
 										MarkdownDescription: "A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"scan_kamelets_implicit_label_secrets": schema.BoolAttribute{
+										Description:         "Deprecated: include your properties in an explicit property file backed by a secret. Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'. These secrets are mounted to the application and treated as plain properties file with their key/value list (ie .spec.data['camel.my-property'] = my-value) (default 'true').",
+										MarkdownDescription: "Deprecated: include your properties in an explicit property file backed by a secret. Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'. These secrets are mounted to the application and treated as plain properties file with their key/value list (ie .spec.data['camel.my-property'] = my-value) (default 'true').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3058,8 +3087,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "The configuration of Platform trait",
 								Attributes: map[string]schema.Attribute{
 									"auto": schema.BoolAttribute{
-										Description:         "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift only).",
-										MarkdownDescription: "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift only).",
+										Description:         "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift or when a registry address is set). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+										MarkdownDescription: "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift or when a registry address is set). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3075,8 +3104,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"create_default": schema.BoolAttribute{
-										Description:         "To create a default (empty) platform when the platform is missing.",
-										MarkdownDescription: "To create a default (empty) platform when the platform is missing.",
+										Description:         "To create a default (empty) platform when the platform is missing. Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+										MarkdownDescription: "To create a default (empty) platform when the platform is missing. Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3091,8 +3120,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"global": schema.BoolAttribute{
-										Description:         "Indicates if the platform should be created globally in the case of global operator (default true).",
-										MarkdownDescription: "Indicates if the platform should be created globally in the case of global operator (default true).",
+										Description:         "Indicates if the platform should be created globally in the case of global operator (default true). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+										MarkdownDescription: "Indicates if the platform should be created globally in the case of global operator (default true). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3283,8 +3312,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 							},
 
 							"registry": schema.SingleNestedAttribute{
-								Description:         "The configuration of Registry trait",
-								MarkdownDescription: "The configuration of Registry trait",
+								Description:         "The configuration of Registry trait Deprecated: use jvm trait or read documentation.",
+								MarkdownDescription: "The configuration of Registry trait Deprecated: use jvm trait or read documentation.",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
 										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",

@@ -56,8 +56,8 @@ func (r *VeleroIoDownloadRequestV1Manifest) Metadata(_ context.Context, request 
 
 func (r *VeleroIoDownloadRequestV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "DownloadRequest is a request to download an artifact from backup object storage, such as a backup log file.",
-		MarkdownDescription: "DownloadRequest is a request to download an artifact from backup object storage, such as a backup log file.",
+		Description:         "DownloadRequest is a request to download an artifact from backup object storage, such as a backuplog file.",
+		MarkdownDescription: "DownloadRequest is a request to download an artifact from backup object storage, such as a backuplog file.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -138,7 +138,7 @@ func (r *VeleroIoDownloadRequestV1Manifest) Schema(_ context.Context, _ datasour
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("BackupLog", "BackupContents", "BackupVolumeSnapshots", "BackupItemOperations", "BackupResourceList", "BackupResults", "RestoreLog", "RestoreResults", "RestoreResourceList", "RestoreItemOperations", "CSIBackupVolumeSnapshots", "CSIBackupVolumeSnapshotContents", "BackupVolumeInfos"),
+									stringvalidator.OneOf("BackupLog", "BackupContents", "BackupVolumeSnapshots", "BackupItemOperations", "BackupResourceList", "BackupResults", "RestoreLog", "RestoreResults", "RestoreResourceList", "RestoreItemOperations", "CSIBackupVolumeSnapshots", "CSIBackupVolumeSnapshotContents", "BackupVolumeInfos", "RestoreVolumeInfo"),
 								},
 							},
 

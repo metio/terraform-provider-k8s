@@ -48,13 +48,14 @@ type TestsTestkubeIoTestExecutionV1ManifestData struct {
 			Args                  *[]string `tfsdk:"args" json:"args,omitempty"`
 			ArgsMode              *string   `tfsdk:"args_mode" json:"argsMode,omitempty"`
 			ArtifactRequest       *struct {
-				Dirs                   *[]string `tfsdk:"dirs" json:"dirs,omitempty"`
-				Masks                  *[]string `tfsdk:"masks" json:"masks,omitempty"`
-				OmitFolderPerExecution *bool     `tfsdk:"omit_folder_per_execution" json:"omitFolderPerExecution,omitempty"`
-				SharedBetweenPods      *bool     `tfsdk:"shared_between_pods" json:"sharedBetweenPods,omitempty"`
-				StorageBucket          *string   `tfsdk:"storage_bucket" json:"storageBucket,omitempty"`
-				StorageClassName       *string   `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-				VolumeMountPath        *string   `tfsdk:"volume_mount_path" json:"volumeMountPath,omitempty"`
+				Dirs                       *[]string `tfsdk:"dirs" json:"dirs,omitempty"`
+				Masks                      *[]string `tfsdk:"masks" json:"masks,omitempty"`
+				OmitFolderPerExecution     *bool     `tfsdk:"omit_folder_per_execution" json:"omitFolderPerExecution,omitempty"`
+				SharedBetweenPods          *bool     `tfsdk:"shared_between_pods" json:"sharedBetweenPods,omitempty"`
+				StorageBucket              *string   `tfsdk:"storage_bucket" json:"storageBucket,omitempty"`
+				StorageClassName           *string   `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+				UseDefaultStorageClassName *bool     `tfsdk:"use_default_storage_class_name" json:"useDefaultStorageClassName,omitempty"`
+				VolumeMountPath            *string   `tfsdk:"volume_mount_path" json:"volumeMountPath,omitempty"`
 			} `tfsdk:"artifact_request" json:"artifactRequest,omitempty"`
 			Command         *[]string `tfsdk:"command" json:"command,omitempty"`
 			CronJobTemplate *string   `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
@@ -310,16 +311,24 @@ func (r *TestsTestkubeIoTestExecutionV1Manifest) Schema(_ context.Context, _ dat
 									"storage_class_name": schema.StringAttribute{
 										Description:         "artifact storage class name for container executor",
 										MarkdownDescription: "artifact storage class name for container executor",
-										Required:            true,
-										Optional:            false,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"use_default_storage_class_name": schema.BoolAttribute{
+										Description:         "whether to use default storage class name",
+										MarkdownDescription: "whether to use default storage class name",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 
 									"volume_mount_path": schema.StringAttribute{
 										Description:         "artifact volume mount path for container executor",
 										MarkdownDescription: "artifact volume mount path for container executor",
-										Required:            true,
-										Optional:            false,
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 								},

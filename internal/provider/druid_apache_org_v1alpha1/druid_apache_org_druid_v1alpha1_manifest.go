@@ -1540,6 +1540,7 @@ type DruidApacheOrgDruidV1Alpha1ManifestData struct {
 					VolumePath        *string `tfsdk:"volume_path" json:"volumePath,omitempty"`
 				} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 			} `tfsdk:"volumes" json:"volumes,omitempty"`
+			WorkloadAnnotations *map[string]string `tfsdk:"workload_annotations" json:"workloadAnnotations,omitempty"`
 		} `tfsdk:"nodes" json:"nodes,omitempty"`
 		PodAnnotations      *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
 		PodLabels           *map[string]string `tfsdk:"pod_labels" json:"podLabels,omitempty"`
@@ -2076,7 +2077,8 @@ type DruidApacheOrgDruidV1Alpha1ManifestData struct {
 				VolumePath        *string `tfsdk:"volume_path" json:"volumePath,omitempty"`
 			} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 		} `tfsdk:"volumes" json:"volumes,omitempty"`
-		Zookeeper *struct {
+		WorkloadAnnotations *map[string]string `tfsdk:"workload_annotations" json:"workloadAnnotations,omitempty"`
+		Zookeeper           *struct {
 			Spec *string `tfsdk:"spec" json:"spec,omitempty"`
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"zookeeper" json:"zookeeper,omitempty"`
@@ -12215,6 +12217,15 @@ func (r *DruidApacheOrgDruidV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Optional: true,
 								Computed: false,
 							},
+
+							"workload_annotations": schema.MapAttribute{
+								Description:         "WorkloadAnnotations annotations to be populated in StatefulSet or Deployment spec.",
+								MarkdownDescription: "WorkloadAnnotations annotations to be populated in StatefulSet or Deployment spec.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: true,
 						Optional: false,
@@ -15882,6 +15893,15 @@ func (r *DruidApacheOrgDruidV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"workload_annotations": schema.MapAttribute{
+						Description:         "WorkloadAnnotations annotations to be populated in StatefulSet or Deployment spec. if the same key is specified at both the DruidNodeSpec level and DruidSpec level, the DruidNodeSpec WorkloadAnnotations will take precedence.",
+						MarkdownDescription: "WorkloadAnnotations annotations to be populated in StatefulSet or Deployment spec. if the same key is specified at both the DruidNodeSpec level and DruidSpec level, the DruidNodeSpec WorkloadAnnotations will take precedence.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"zookeeper": schema.SingleNestedAttribute{

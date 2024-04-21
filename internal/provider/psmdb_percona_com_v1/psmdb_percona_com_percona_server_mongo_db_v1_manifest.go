@@ -45,7 +45,25 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 	Spec *struct {
 		AllowUnsafeConfigurations *bool `tfsdk:"allow_unsafe_configurations" json:"allowUnsafeConfigurations,omitempty"`
 		Backup                    *struct {
-			Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Annotations   *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Configuration *struct {
+				BackupOptions *struct {
+					OplogSpanMin *float64           `tfsdk:"oplog_span_min" json:"oplogSpanMin,omitempty"`
+					Priority     *map[string]string `tfsdk:"priority" json:"priority,omitempty"`
+					Timeouts     *struct {
+						StartingStatus *int64 `tfsdk:"starting_status" json:"startingStatus,omitempty"`
+					} `tfsdk:"timeouts" json:"timeouts,omitempty"`
+				} `tfsdk:"backup_options" json:"backupOptions,omitempty"`
+				RestoreOptions *struct {
+					BatchSize           *int64             `tfsdk:"batch_size" json:"batchSize,omitempty"`
+					DownloadChunkMb     *int64             `tfsdk:"download_chunk_mb" json:"downloadChunkMb,omitempty"`
+					MaxDownloadBufferMb *int64             `tfsdk:"max_download_buffer_mb" json:"maxDownloadBufferMb,omitempty"`
+					MongodLocation      *string            `tfsdk:"mongod_location" json:"mongodLocation,omitempty"`
+					MongodLocationMap   *map[string]string `tfsdk:"mongod_location_map" json:"mongodLocationMap,omitempty"`
+					NumDownloadWorkers  *int64             `tfsdk:"num_download_workers" json:"numDownloadWorkers,omitempty"`
+					NumInsertionWorkers *int64             `tfsdk:"num_insertion_workers" json:"numInsertionWorkers,omitempty"`
+				} `tfsdk:"restore_options" json:"restoreOptions,omitempty"`
+			} `tfsdk:"configuration" json:"configuration,omitempty"`
 			ContainerSecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				Capabilities             *struct {
@@ -126,17 +144,25 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 				Azure *struct {
 					Container         *string `tfsdk:"container" json:"container,omitempty"`
 					CredentialsSecret *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
+					EndpointUrl       *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
 					Prefix            *string `tfsdk:"prefix" json:"prefix,omitempty"`
 				} `tfsdk:"azure" json:"azure,omitempty"`
 				S3 *struct {
 					Bucket                *string `tfsdk:"bucket" json:"bucket,omitempty"`
 					CredentialsSecret     *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
+					DebugLogLevels        *string `tfsdk:"debug_log_levels" json:"debugLogLevels,omitempty"`
 					EndpointUrl           *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
+					ForcePathStyle        *bool   `tfsdk:"force_path_style" json:"forcePathStyle,omitempty"`
 					InsecureSkipTLSVerify *bool   `tfsdk:"insecure_skip_tls_verify" json:"insecureSkipTLSVerify,omitempty"`
 					MaxUploadParts        *int64  `tfsdk:"max_upload_parts" json:"maxUploadParts,omitempty"`
 					Prefix                *string `tfsdk:"prefix" json:"prefix,omitempty"`
 					Region                *string `tfsdk:"region" json:"region,omitempty"`
-					ServerSideEncryption  *struct {
+					Retryer               *struct {
+						MaxRetryDelay *string `tfsdk:"max_retry_delay" json:"maxRetryDelay,omitempty"`
+						MinRetryDelay *string `tfsdk:"min_retry_delay" json:"minRetryDelay,omitempty"`
+						NumMaxRetries *int64  `tfsdk:"num_max_retries" json:"numMaxRetries,omitempty"`
+					} `tfsdk:"retryer" json:"retryer,omitempty"`
+					ServerSideEncryption *struct {
 						KmsKeyID             *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 						SseAlgorithm         *string `tfsdk:"sse_algorithm" json:"sseAlgorithm,omitempty"`
 						SseCustomerAlgorithm *string `tfsdk:"sse_customer_algorithm" json:"sseCustomerAlgorithm,omitempty"`
@@ -1169,6 +1195,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 				Enabled                  *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 				ExposeType               *string            `tfsdk:"expose_type" json:"exposeType,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+				NodePort                 *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 				ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 				ServiceLabels            *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
 			} `tfsdk:"expose" json:"expose,omitempty"`
@@ -2925,6 +2952,8 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 		SchedulerName *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 		Secrets       *struct {
 			EncryptionKey *string `tfsdk:"encryption_key" json:"encryptionKey,omitempty"`
+			LdapSecret    *string `tfsdk:"ldap_secret" json:"ldapSecret,omitempty"`
+			Sse           *string `tfsdk:"sse" json:"sse,omitempty"`
 			Ssl           *string `tfsdk:"ssl" json:"ssl,omitempty"`
 			SslInternal   *string `tfsdk:"ssl_internal" json:"sslInternal,omitempty"`
 			Users         *string `tfsdk:"users" json:"users,omitempty"`
@@ -3885,6 +3914,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					Enabled                  *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 					ExposeType               *string            `tfsdk:"expose_type" json:"exposeType,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+					NodePort                 *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 					ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 					ServiceLabels            *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
 				} `tfsdk:"expose" json:"expose,omitempty"`
@@ -5808,6 +5838,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 				Expose *struct {
 					ExposeType               *string            `tfsdk:"expose_type" json:"exposeType,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+					NodePort                 *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 					ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 					ServiceLabels            *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
 					ServicePerPod            *bool              `tfsdk:"service_per_pod" json:"servicePerPod,omitempty"`
@@ -6553,9 +6584,23 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 			} `tfsdk:"mongos" json:"mongos,omitempty"`
 		} `tfsdk:"sharding" json:"sharding,omitempty"`
 		Tls *struct {
-			CertValidityDuration *string `tfsdk:"cert_validity_duration" json:"certValidityDuration,omitempty"`
+			AllowInvalidCertificates *bool   `tfsdk:"allow_invalid_certificates" json:"allowInvalidCertificates,omitempty"`
+			CertValidityDuration     *string `tfsdk:"cert_validity_duration" json:"certValidityDuration,omitempty"`
+			IssuerConf               *struct {
+				Group *string `tfsdk:"group" json:"group,omitempty"`
+				Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"issuer_conf" json:"issuerConf,omitempty"`
+			Mode *string `tfsdk:"mode" json:"mode,omitempty"`
 		} `tfsdk:"tls" json:"tls,omitempty"`
-		Unmanaged      *bool   `tfsdk:"unmanaged" json:"unmanaged,omitempty"`
+		Unmanaged   *bool `tfsdk:"unmanaged" json:"unmanaged,omitempty"`
+		UnsafeFlags *struct {
+			BackupIfUnhealthy      *bool `tfsdk:"backup_if_unhealthy" json:"backupIfUnhealthy,omitempty"`
+			MongosSize             *bool `tfsdk:"mongos_size" json:"mongosSize,omitempty"`
+			ReplsetSize            *bool `tfsdk:"replset_size" json:"replsetSize,omitempty"`
+			TerminationGracePeriod *bool `tfsdk:"termination_grace_period" json:"terminationGracePeriod,omitempty"`
+			Tls                    *bool `tfsdk:"tls" json:"tls,omitempty"`
+		} `tfsdk:"unsafe_flags" json:"unsafeFlags,omitempty"`
 		UpdateStrategy *string `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		UpgradeOptions *struct {
 			Apply                  *string `tfsdk:"apply" json:"apply,omitempty"`
@@ -6662,6 +6707,124 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"configuration": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"backup_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"oplog_span_min": schema.Float64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"priority": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"timeouts": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"starting_status": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"restore_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"batch_size": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"download_chunk_mb": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"max_download_buffer_mb": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"mongod_location": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"mongod_location_map": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"num_download_workers": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"num_insertion_workers": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"container_security_context": schema.SingleNestedAttribute{
@@ -7215,6 +7378,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Computed:            false,
 											},
 
+											"endpoint_url": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"prefix": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -7248,7 +7419,23 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Computed:            false,
 											},
 
+											"debug_log_levels": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"endpoint_url": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"force_path_style": schema.BoolAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -7286,6 +7473,39 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"retryer": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"max_retry_delay": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"min_retry_delay": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"num_max_retries": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"server_side_encryption": schema.SingleNestedAttribute{
@@ -14256,6 +14476,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											Description:         "",
 											MarkdownDescription: "",
 											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"node_port": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -26064,6 +26292,22 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 								Computed:            false,
 							},
 
+							"ldap_secret": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"sse": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"ssl": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -32511,6 +32755,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"node_port": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -45442,6 +45694,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Computed:            false,
 											},
 
+											"node_port": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"service_annotations": schema.MapAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -50455,7 +50715,56 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"allow_invalid_certificates": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"cert_validity_duration": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"issuer_conf": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"group": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"kind": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"mode": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -50474,6 +50783,55 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"unsafe_flags": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"backup_if_unhealthy": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"mongos_size": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"replset_size": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"termination_grace_period": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tls": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"update_strategy": schema.StringAttribute{

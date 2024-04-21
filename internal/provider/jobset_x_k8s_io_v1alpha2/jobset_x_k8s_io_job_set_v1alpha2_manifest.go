@@ -7,6 +7,7 @@ package jobset_x_k8s_io_v1alpha2
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -46,9 +47,11 @@ type JobsetXK8SIoJobSetV1Alpha2ManifestData struct {
 		FailurePolicy *struct {
 			MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
 		} `tfsdk:"failure_policy" json:"failurePolicy,omitempty"`
-		Network *struct {
-			EnableDNSHostnames *bool   `tfsdk:"enable_dns_hostnames" json:"enableDNSHostnames,omitempty"`
-			Subdomain          *string `tfsdk:"subdomain" json:"subdomain,omitempty"`
+		ManagedBy *string `tfsdk:"managed_by" json:"managedBy,omitempty"`
+		Network   *struct {
+			EnableDNSHostnames       *bool   `tfsdk:"enable_dns_hostnames" json:"enableDNSHostnames,omitempty"`
+			PublishNotReadyAddresses *bool   `tfsdk:"publish_not_ready_addresses" json:"publishNotReadyAddresses,omitempty"`
+			Subdomain                *string `tfsdk:"subdomain" json:"subdomain,omitempty"`
 		} `tfsdk:"network" json:"network,omitempty"`
 		ReplicatedJobs *[]struct {
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -1390,7 +1393,8 @@ type JobsetXK8SIoJobSetV1Alpha2ManifestData struct {
 			Operator             *string   `tfsdk:"operator" json:"operator,omitempty"`
 			TargetReplicatedJobs *[]string `tfsdk:"target_replicated_jobs" json:"targetReplicatedJobs,omitempty"`
 		} `tfsdk:"success_policy" json:"successPolicy,omitempty"`
-		Suspend *bool `tfsdk:"suspend" json:"suspend,omitempty"`
+		Suspend                 *bool  `tfsdk:"suspend" json:"suspend,omitempty"`
+		TtlSecondsAfterFinished *int64 `tfsdk:"ttl_seconds_after_finished" json:"ttlSecondsAfterFinished,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -1488,6 +1492,14 @@ func (r *JobsetXK8SIoJobSetV1Alpha2Manifest) Schema(_ context.Context, _ datasou
 						Computed: false,
 					},
 
+					"managed_by": schema.StringAttribute{
+						Description:         "ManagedBy is used to indicate the controller or entity that manages a JobSet",
+						MarkdownDescription: "ManagedBy is used to indicate the controller or entity that manages a JobSet",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"network": schema.SingleNestedAttribute{
 						Description:         "Network defines the networking options for the jobset.",
 						MarkdownDescription: "Network defines the networking options for the jobset.",
@@ -1495,6 +1507,14 @@ func (r *JobsetXK8SIoJobSetV1Alpha2Manifest) Schema(_ context.Context, _ datasou
 							"enable_dns_hostnames": schema.BoolAttribute{
 								Description:         "EnableDNSHostnames allows pods to be reached via their hostnames.Pods will be reachable using the fully qualified pod hostname:<jobSet.name>-<spec.replicatedJob.name>-<job-index>-<pod-index>.<subdomain>",
 								MarkdownDescription: "EnableDNSHostnames allows pods to be reached via their hostnames.Pods will be reachable using the fully qualified pod hostname:<jobSet.name>-<spec.replicatedJob.name>-<job-index>-<pod-index>.<subdomain>",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"publish_not_ready_addresses": schema.BoolAttribute{
+								Description:         "Indicates if DNS records of pods should be published before the pods are ready.Defaults to True.",
+								MarkdownDescription: "Indicates if DNS records of pods should be published before the pods are ready.Defaults to True.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -10499,6 +10519,17 @@ func (r *JobsetXK8SIoJobSetV1Alpha2Manifest) Schema(_ context.Context, _ datasou
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"ttl_seconds_after_finished": schema.Int64Attribute{
+						Description:         "TTLSecondsAfterFinished limits the lifetime of a JobSet that has finishedexecution (either Complete or Failed). If this field is set,TTLSecondsAfterFinished after the JobSet finishes, it is eligible to beautomatically deleted. When the JobSet is being deleted, its lifecycleguarantees (e.g. finalizers) will be honored. If this field is unset,the JobSet won't be automatically deleted. If this field is set to zero,the JobSet becomes eligible to be deleted immediately after it finishes.",
+						MarkdownDescription: "TTLSecondsAfterFinished limits the lifetime of a JobSet that has finishedexecution (either Complete or Failed). If this field is set,TTLSecondsAfterFinished after the JobSet finishes, it is eligible to beautomatically deleted. When the JobSet is being deleted, its lifecycleguarantees (e.g. finalizers) will be honored. If this field is unset,the JobSet won't be automatically deleted. If this field is set to zero,the JobSet becomes eligible to be deleted immediately after it finishes.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
 				},
 				Required: false,

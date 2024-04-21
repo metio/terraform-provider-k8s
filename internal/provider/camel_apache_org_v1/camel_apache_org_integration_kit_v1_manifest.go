@@ -43,6 +43,7 @@ type CamelApacheOrgIntegrationKitV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Capabilities  *[]string `tfsdk:"capabilities" json:"capabilities,omitempty"`
 		Configuration *[]struct {
 			Type  *string `tfsdk:"type" json:"type,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
@@ -80,6 +81,7 @@ type CamelApacheOrgIntegrationKitV1ManifestData struct {
 				MavenProfiles         *[]string          `tfsdk:"maven_profiles" json:"mavenProfiles,omitempty"`
 				NodeSelector          *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 				OrderStrategy         *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+				Platforms             *[]string          `tfsdk:"platforms" json:"platforms,omitempty"`
 				Properties            *[]string          `tfsdk:"properties" json:"properties,omitempty"`
 				RequestCPU            *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 				RequestMemory         *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
@@ -191,6 +193,15 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 				Description:         "the desired configuration",
 				MarkdownDescription: "the desired configuration",
 				Attributes: map[string]schema.Attribute{
+					"capabilities": schema.ListAttribute{
+						Description:         "features offered by the IntegrationKit",
+						MarkdownDescription: "features offered by the IntegrationKit",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"configuration": schema.ListNestedAttribute{
 						Description:         "Deprecated: Use camel trait (camel.properties) to manage properties Use mount trait (mount.configs) to manage configs Use mount trait (mount.resources) to manage resources Use mount trait (mount.volumes) to manage volumes configuration used by the kit",
 						MarkdownDescription: "Deprecated: Use camel trait (camel.properties) to manage properties Use mount trait (mount.configs) to manage configs Use mount trait (mount.resources) to manage resources Use mount trait (mount.volumes) to manage volumes configuration used by the kit",
@@ -484,6 +495,15 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 										},
 									},
 
+									"platforms": schema.ListAttribute{
+										Description:         "The list of manifest platforms to use to build a container image (default 'linux/amd64').",
+										MarkdownDescription: "The list of manifest platforms to use to build a container image (default 'linux/amd64').",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"properties": schema.ListAttribute{
 										Description:         "A list of properties to be provided to the build task",
 										MarkdownDescription: "A list of properties to be provided to the build task",
@@ -530,8 +550,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tasks_filter": schema.StringAttribute{
-										Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
-										MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
+										Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
+										MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -617,8 +637,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"runtime_version": schema.StringAttribute{
-										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.",
-										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.",
+										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
+										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -690,8 +710,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"registry": schema.SingleNestedAttribute{
-								Description:         "The Registry trait sets up Maven to use the Image registry as a Maven repository.",
-								MarkdownDescription: "The Registry trait sets up Maven to use the Image registry as a Maven repository.",
+								Description:         "The Registry trait sets up Maven to use the Image registry as a Maven repository. Deprecated: use jvm trait or read documentation.",
+								MarkdownDescription: "The Registry trait sets up Maven to use the Image registry as a Maven repository. Deprecated: use jvm trait or read documentation.",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
 										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",

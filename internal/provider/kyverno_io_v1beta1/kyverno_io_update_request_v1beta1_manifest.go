@@ -201,8 +201,8 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 										MarkdownDescription: "AdmissionRequest describes the admission.Attributes for the admission request.",
 										Attributes: map[string]schema.Attribute{
 											"dry_run": schema.BoolAttribute{
-												Description:         "DryRun indicates that modifications will definitely not be persisted for this request. Defaults to false.",
-												MarkdownDescription: "DryRun indicates that modifications will definitely not be persisted for this request. Defaults to false.",
+												Description:         "DryRun indicates that modifications will definitely not be persisted for this request.Defaults to false.",
+												MarkdownDescription: "DryRun indicates that modifications will definitely not be persisted for this request.Defaults to false.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -242,8 +242,8 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name is the name of the object as presented in the request.  On a CREATE operation, the client may omit name and rely on the server to generate the name.  If that is the case, this field will contain an empty string.",
-												MarkdownDescription: "Name is the name of the object as presented in the request.  On a CREATE operation, the client may omit name and rely on the server to generate the name.  If that is the case, this field will contain an empty string.",
+												Description:         "Name is the name of the object as presented in the request.  On a CREATE operation, the client may omit name andrely on the server to generate the name.  If that is the case, this field will contain an empty string.",
+												MarkdownDescription: "Name is the name of the object as presented in the request.  On a CREATE operation, the client may omit name andrely on the server to generate the name.  If that is the case, this field will contain an empty string.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -276,16 +276,16 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"operation": schema.StringAttribute{
-												Description:         "Operation is the operation being performed. This may be different than the operation requested. e.g. a patch can result in either a CREATE or UPDATE Operation.",
-												MarkdownDescription: "Operation is the operation being performed. This may be different than the operation requested. e.g. a patch can result in either a CREATE or UPDATE Operation.",
+												Description:         "Operation is the operation being performed. This may be different than the operationrequested. e.g. a patch can result in either a CREATE or UPDATE Operation.",
+												MarkdownDescription: "Operation is the operation being performed. This may be different than the operationrequested. e.g. a patch can result in either a CREATE or UPDATE Operation.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"options": schema.MapAttribute{
-												Description:         "Options is the operation option structure of the operation being performed. e.g. 'meta.k8s.io/v1.DeleteOptions' or 'meta.k8s.io/v1.CreateOptions'. This may be different than the options the caller provided. e.g. for a patch request the performed Operation might be a CREATE, in which case the Options will a 'meta.k8s.io/v1.CreateOptions' even though the caller provided 'meta.k8s.io/v1.PatchOptions'.",
-												MarkdownDescription: "Options is the operation option structure of the operation being performed. e.g. 'meta.k8s.io/v1.DeleteOptions' or 'meta.k8s.io/v1.CreateOptions'. This may be different than the options the caller provided. e.g. for a patch request the performed Operation might be a CREATE, in which case the Options will a 'meta.k8s.io/v1.CreateOptions' even though the caller provided 'meta.k8s.io/v1.PatchOptions'.",
+												Description:         "Options is the operation option structure of the operation being performed.e.g. 'meta.k8s.io/v1.DeleteOptions' or 'meta.k8s.io/v1.CreateOptions'. This may bedifferent than the options the caller provided. e.g. for a patch request the performedOperation might be a CREATE, in which case the Options will a'meta.k8s.io/v1.CreateOptions' even though the caller provided 'meta.k8s.io/v1.PatchOptions'.",
+												MarkdownDescription: "Options is the operation option structure of the operation being performed.e.g. 'meta.k8s.io/v1.DeleteOptions' or 'meta.k8s.io/v1.CreateOptions'. This may bedifferent than the options the caller provided. e.g. for a patch request the performedOperation might be a CREATE, in which case the Options will a'meta.k8s.io/v1.CreateOptions' even though the caller provided 'meta.k8s.io/v1.PatchOptions'.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -293,8 +293,8 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"request_kind": schema.SingleNestedAttribute{
-												Description:         "RequestKind is the fully-qualified type of the original API request (for example, v1.Pod or autoscaling.v1.Scale). If this is specified and differs from the value in 'kind', an equivalent match and conversion was performed.  For example, if deployments can be modified via apps/v1 and apps/v1beta1, and a webhook registered a rule of 'apiGroups:['apps'], apiVersions:['v1'], resources: ['deployments']' and 'matchPolicy: Equivalent', an API request to apps/v1beta1 deployments would be converted and sent to the webhook with 'kind: {group:'apps', version:'v1', kind:'Deployment'}' (matching the rule the webhook registered for), and 'requestKind: {group:'apps', version:'v1beta1', kind:'Deployment'}' (indicating the kind of the original API request).  See documentation for the 'matchPolicy' field in the webhook configuration type for more details.",
-												MarkdownDescription: "RequestKind is the fully-qualified type of the original API request (for example, v1.Pod or autoscaling.v1.Scale). If this is specified and differs from the value in 'kind', an equivalent match and conversion was performed.  For example, if deployments can be modified via apps/v1 and apps/v1beta1, and a webhook registered a rule of 'apiGroups:['apps'], apiVersions:['v1'], resources: ['deployments']' and 'matchPolicy: Equivalent', an API request to apps/v1beta1 deployments would be converted and sent to the webhook with 'kind: {group:'apps', version:'v1', kind:'Deployment'}' (matching the rule the webhook registered for), and 'requestKind: {group:'apps', version:'v1beta1', kind:'Deployment'}' (indicating the kind of the original API request).  See documentation for the 'matchPolicy' field in the webhook configuration type for more details.",
+												Description:         "RequestKind is the fully-qualified type of the original API request (for example, v1.Pod or autoscaling.v1.Scale).If this is specified and differs from the value in 'kind', an equivalent match and conversion was performed.For example, if deployments can be modified via apps/v1 and apps/v1beta1, and a webhook registered a rule of'apiGroups:['apps'], apiVersions:['v1'], resources: ['deployments']' and 'matchPolicy: Equivalent',an API request to apps/v1beta1 deployments would be converted and sent to the webhookwith 'kind: {group:'apps', version:'v1', kind:'Deployment'}' (matching the rule the webhook registered for),and 'requestKind: {group:'apps', version:'v1beta1', kind:'Deployment'}' (indicating the kind of the original API request).See documentation for the 'matchPolicy' field in the webhook configuration type for more details.",
+												MarkdownDescription: "RequestKind is the fully-qualified type of the original API request (for example, v1.Pod or autoscaling.v1.Scale).If this is specified and differs from the value in 'kind', an equivalent match and conversion was performed.For example, if deployments can be modified via apps/v1 and apps/v1beta1, and a webhook registered a rule of'apiGroups:['apps'], apiVersions:['v1'], resources: ['deployments']' and 'matchPolicy: Equivalent',an API request to apps/v1beta1 deployments would be converted and sent to the webhookwith 'kind: {group:'apps', version:'v1', kind:'Deployment'}' (matching the rule the webhook registered for),and 'requestKind: {group:'apps', version:'v1beta1', kind:'Deployment'}' (indicating the kind of the original API request).See documentation for the 'matchPolicy' field in the webhook configuration type for more details.",
 												Attributes: map[string]schema.Attribute{
 													"group": schema.StringAttribute{
 														Description:         "",
@@ -326,8 +326,8 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"request_resource": schema.SingleNestedAttribute{
-												Description:         "RequestResource is the fully-qualified resource of the original API request (for example, v1.pods). If this is specified and differs from the value in 'resource', an equivalent match and conversion was performed.  For example, if deployments can be modified via apps/v1 and apps/v1beta1, and a webhook registered a rule of 'apiGroups:['apps'], apiVersions:['v1'], resources: ['deployments']' and 'matchPolicy: Equivalent', an API request to apps/v1beta1 deployments would be converted and sent to the webhook with 'resource: {group:'apps', version:'v1', resource:'deployments'}' (matching the resource the webhook registered for), and 'requestResource: {group:'apps', version:'v1beta1', resource:'deployments'}' (indicating the resource of the original API request).  See documentation for the 'matchPolicy' field in the webhook configuration type.",
-												MarkdownDescription: "RequestResource is the fully-qualified resource of the original API request (for example, v1.pods). If this is specified and differs from the value in 'resource', an equivalent match and conversion was performed.  For example, if deployments can be modified via apps/v1 and apps/v1beta1, and a webhook registered a rule of 'apiGroups:['apps'], apiVersions:['v1'], resources: ['deployments']' and 'matchPolicy: Equivalent', an API request to apps/v1beta1 deployments would be converted and sent to the webhook with 'resource: {group:'apps', version:'v1', resource:'deployments'}' (matching the resource the webhook registered for), and 'requestResource: {group:'apps', version:'v1beta1', resource:'deployments'}' (indicating the resource of the original API request).  See documentation for the 'matchPolicy' field in the webhook configuration type.",
+												Description:         "RequestResource is the fully-qualified resource of the original API request (for example, v1.pods).If this is specified and differs from the value in 'resource', an equivalent match and conversion was performed.For example, if deployments can be modified via apps/v1 and apps/v1beta1, and a webhook registered a rule of'apiGroups:['apps'], apiVersions:['v1'], resources: ['deployments']' and 'matchPolicy: Equivalent',an API request to apps/v1beta1 deployments would be converted and sent to the webhookwith 'resource: {group:'apps', version:'v1', resource:'deployments'}' (matching the resource the webhook registered for),and 'requestResource: {group:'apps', version:'v1beta1', resource:'deployments'}' (indicating the resource of the original API request).See documentation for the 'matchPolicy' field in the webhook configuration type.",
+												MarkdownDescription: "RequestResource is the fully-qualified resource of the original API request (for example, v1.pods).If this is specified and differs from the value in 'resource', an equivalent match and conversion was performed.For example, if deployments can be modified via apps/v1 and apps/v1beta1, and a webhook registered a rule of'apiGroups:['apps'], apiVersions:['v1'], resources: ['deployments']' and 'matchPolicy: Equivalent',an API request to apps/v1beta1 deployments would be converted and sent to the webhookwith 'resource: {group:'apps', version:'v1', resource:'deployments'}' (matching the resource the webhook registered for),and 'requestResource: {group:'apps', version:'v1beta1', resource:'deployments'}' (indicating the resource of the original API request).See documentation for the 'matchPolicy' field in the webhook configuration type.",
 												Attributes: map[string]schema.Attribute{
 													"group": schema.StringAttribute{
 														Description:         "",
@@ -359,8 +359,8 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"request_sub_resource": schema.StringAttribute{
-												Description:         "RequestSubResource is the name of the subresource of the original API request, if any (for example, 'status' or 'scale') If this is specified and differs from the value in 'subResource', an equivalent match and conversion was performed. See documentation for the 'matchPolicy' field in the webhook configuration type.",
-												MarkdownDescription: "RequestSubResource is the name of the subresource of the original API request, if any (for example, 'status' or 'scale') If this is specified and differs from the value in 'subResource', an equivalent match and conversion was performed. See documentation for the 'matchPolicy' field in the webhook configuration type.",
+												Description:         "RequestSubResource is the name of the subresource of the original API request, if any (for example, 'status' or 'scale')If this is specified and differs from the value in 'subResource', an equivalent match and conversion was performed.See documentation for the 'matchPolicy' field in the webhook configuration type.",
+												MarkdownDescription: "RequestSubResource is the name of the subresource of the original API request, if any (for example, 'status' or 'scale')If this is specified and differs from the value in 'subResource', an equivalent match and conversion was performed.See documentation for the 'matchPolicy' field in the webhook configuration type.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -408,8 +408,8 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"uid": schema.StringAttribute{
-												Description:         "UID is an identifier for the individual request/response. It allows us to distinguish instances of requests which are otherwise identical (parallel requests, requests when earlier requests did not modify etc) The UID is meant to track the round trip (request/response) between the KAS and the WebHook, not the user request. It is suitable for correlating log entries between the webhook and apiserver, for either auditing or debugging.",
-												MarkdownDescription: "UID is an identifier for the individual request/response. It allows us to distinguish instances of requests which are otherwise identical (parallel requests, requests when earlier requests did not modify etc) The UID is meant to track the round trip (request/response) between the KAS and the WebHook, not the user request. It is suitable for correlating log entries between the webhook and apiserver, for either auditing or debugging.",
+												Description:         "UID is an identifier for the individual request/response. It allows us to distinguish instances of requests which areotherwise identical (parallel requests, requests when earlier requests did not modify etc)The UID is meant to track the round trip (request/response) between the KAS and the WebHook, not the user request.It is suitable for correlating log entries between the webhook and apiserver, for either auditing or debugging.",
+												MarkdownDescription: "UID is an identifier for the individual request/response. It allows us to distinguish instances of requests which areotherwise identical (parallel requests, requests when earlier requests did not modify etc)The UID is meant to track the round trip (request/response) between the KAS and the WebHook, not the user request.It is suitable for correlating log entries between the webhook and apiserver, for either auditing or debugging.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -438,8 +438,8 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"uid": schema.StringAttribute{
-														Description:         "A unique value that identifies this user across time. If this user is deleted and another user by the same name is added, they will have different UIDs.",
-														MarkdownDescription: "A unique value that identifies this user across time. If this user is deleted and another user by the same name is added, they will have different UIDs.",
+														Description:         "A unique value that identifies this user across time. If this user isdeleted and another user by the same name is added, they will havedifferent UIDs.",
+														MarkdownDescription: "A unique value that identifies this user across time. If this user isdeleted and another user by the same name is added, they will havedifferent UIDs.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -521,8 +521,8 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"uid": schema.StringAttribute{
-												Description:         "A unique value that identifies this user across time. If this user is deleted and another user by the same name is added, they will have different UIDs.",
-												MarkdownDescription: "A unique value that identifies this user across time. If this user is deleted and another user by the same name is added, they will have different UIDs.",
+												Description:         "A unique value that identifies this user across time. If this user isdeleted and another user by the same name is added, they will havedifferent UIDs.",
+												MarkdownDescription: "A unique value that identifies this user across time. If this user isdeleted and another user by the same name is added, they will havedifferent UIDs.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -636,8 +636,8 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"synchronize": schema.BoolAttribute{
-						Description:         "Synchronize represents the sync behavior of the corresponding rule Optional. Defaults to 'false' if not specified.",
-						MarkdownDescription: "Synchronize represents the sync behavior of the corresponding rule Optional. Defaults to 'false' if not specified.",
+						Description:         "Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.",
+						MarkdownDescription: "Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

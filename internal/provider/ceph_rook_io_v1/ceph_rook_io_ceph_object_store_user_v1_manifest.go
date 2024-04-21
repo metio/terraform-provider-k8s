@@ -371,8 +371,8 @@ func (r *CephRookIoCephObjectStoreUserV1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"max_size": schema.StringAttribute{
-								Description:         "Maximum size limit of all objects across all the user's buckets See https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity for more info.",
-								MarkdownDescription: "Maximum size limit of all objects across all the user's buckets See https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity for more info.",
+								Description:         "Maximum size limit of all objects across all the user's bucketsSee https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity for more info.",
+								MarkdownDescription: "Maximum size limit of all objects across all the user's bucketsSee https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity for more info.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

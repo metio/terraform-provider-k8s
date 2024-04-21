@@ -55,12 +55,11 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"key_ref" json:"keyRef,omitempty"`
 		} `tfsdk:"license" json:"license,omitempty"`
-		PodSecurityPolicyName *string `tfsdk:"pod_security_policy_name" json:"podSecurityPolicyName,omitempty"`
-		ReplicationFactor     *int64  `tfsdk:"replication_factor" json:"replicationFactor,omitempty"`
-		RetentionPeriod       *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
-		ServiceAccountName    *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
-		UseStrictSecurity     *bool   `tfsdk:"use_strict_security" json:"useStrictSecurity,omitempty"`
-		Vminsert              *struct {
+		ReplicationFactor  *int64  `tfsdk:"replication_factor" json:"replicationFactor,omitempty"`
+		RetentionPeriod    *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
+		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		UseStrictSecurity  *bool   `tfsdk:"use_strict_security" json:"useStrictSecurity,omitempty"`
+		Vminsert           *struct {
 			Affinity                *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
 			ClusterNativeListenPort *string              `tfsdk:"cluster_native_listen_port" json:"clusterNativeListenPort,omitempty"`
 			ConfigMaps              *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
@@ -94,7 +93,6 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 			LogFormat           *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
 			LogLevel            *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
 			MinReadySeconds     *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
-			Name                *string            `tfsdk:"name" json:"name,omitempty"`
 			NodeSelector        *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PodDisruptionBudget *struct {
 				MaxUnavailable *string            `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -136,7 +134,8 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					Name        *string            `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"metadata" json:"metadata,omitempty"`
-				Spec *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+				Spec         *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+				UseAsDefault *bool              `tfsdk:"use_as_default" json:"useAsDefault,omitempty"`
 			} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
 			StartupProbe                  *map[string]string `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 			TerminationGracePeriodSeconds *int64             `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
@@ -240,7 +239,6 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 			LogFormat        *string              `tfsdk:"log_format" json:"logFormat,omitempty"`
 			LogLevel         *string              `tfsdk:"log_level" json:"logLevel,omitempty"`
 			MinReadySeconds  *int64               `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
-			Name             *string              `tfsdk:"name" json:"name,omitempty"`
 			NodeSelector     *map[string]string   `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PersistentVolume *struct {
 				DisableMountSubPath *bool `tfsdk:"disable_mount_sub_path" json:"disableMountSubPath,omitempty"`
@@ -287,7 +285,8 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					Name        *string            `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"metadata" json:"metadata,omitempty"`
-				Spec *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+				Spec         *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+				UseAsDefault *bool              `tfsdk:"use_as_default" json:"useAsDefault,omitempty"`
 			} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
 			StartupProbe *map[string]string `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 			Storage      *struct {
@@ -452,7 +451,6 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 			MaintenanceInsertNodeIDs *[]string            `tfsdk:"maintenance_insert_node_i_ds" json:"maintenanceInsertNodeIDs,omitempty"`
 			MaintenanceSelectNodeIDs *[]string            `tfsdk:"maintenance_select_node_i_ds" json:"maintenanceSelectNodeIDs,omitempty"`
 			MinReadySeconds          *int64               `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
-			Name                     *string              `tfsdk:"name" json:"name,omitempty"`
 			NodeSelector             *map[string]string   `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PodDisruptionBudget      *struct {
 				MaxUnavailable *string            `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -491,7 +489,8 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					Name        *string            `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"metadata" json:"metadata,omitempty"`
-				Spec *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+				Spec         *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+				UseAsDefault *bool              `tfsdk:"use_as_default" json:"useAsDefault,omitempty"`
 			} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
 			StartupProbe *map[string]string `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 			Storage      *struct {
@@ -753,14 +752,6 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 						Computed: false,
 					},
 
-					"pod_security_policy_name": schema.StringAttribute{
-						Description:         "PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.",
-						MarkdownDescription: "PodSecurityPolicyName - defines name for podSecurityPolicyin case of empty value, prefixedName will be used.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"replication_factor": schema.Int64Attribute{
 						Description:         "ReplicationFactor defines how many copies of data make amongdistinct storage nodes",
 						MarkdownDescription: "ReplicationFactor defines how many copies of data make amongdistinct storage nodes",
@@ -815,8 +806,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"config_maps": schema.ListAttribute{
-								Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
-								MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
+								Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the VMInsertobject, which shall be mounted into the VMInsert Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
+								MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the VMInsertobject, which shall be mounted into the VMInsert Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -904,8 +895,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"extra_envs": schema.ListAttribute{
-								Description:         "ExtraEnvs that will be added to VMSelect pod",
-								MarkdownDescription: "ExtraEnvs that will be added to VMSelect pod",
+								Description:         "ExtraEnvs that will be added to VMInsert pod",
+								MarkdownDescription: "ExtraEnvs that will be added to VMInsert pod",
 								ElementType:         types.MapType{ElemType: types.StringType},
 								Required:            false,
 								Optional:            true,
@@ -963,8 +954,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"init_containers": schema.ListAttribute{
-								Description:         "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMSelect configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.",
-								MarkdownDescription: "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMSelect configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.",
+								Description:         "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMInsert configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.",
+								MarkdownDescription: "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMInsert configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.",
 								ElementType:         types.MapType{ElemType: types.StringType},
 								Required:            false,
 								Optional:            true,
@@ -1022,8 +1013,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"log_format": schema.StringAttribute{
-								Description:         "LogFormat for VMSelect to be configured with.default or json",
-								MarkdownDescription: "LogFormat for VMSelect to be configured with.default or json",
+								Description:         "LogFormat for VMInsert to be configured with.default or json",
+								MarkdownDescription: "LogFormat for VMInsert to be configured with.default or json",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1033,8 +1024,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"log_level": schema.StringAttribute{
-								Description:         "LogLevel for VMSelect to be configured with.",
-								MarkdownDescription: "LogLevel for VMSelect to be configured with.",
+								Description:         "LogLevel for VMInsert to be configured with.",
+								MarkdownDescription: "LogLevel for VMInsert to be configured with.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1046,14 +1037,6 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							"min_ready_seconds": schema.Int64Attribute{
 								Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state",
 								MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"name": schema.StringAttribute{
-								Description:         "Name is deprecated and will be removed at 0.22.0 release",
-								MarkdownDescription: "Name is deprecated and will be removed at 0.22.0 release",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1103,8 +1086,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"pod_metadata": schema.SingleNestedAttribute{
-								Description:         "PodMetadata configures Labels and Annotations which are propagated to the VMSelect pods.",
-								MarkdownDescription: "PodMetadata configures Labels and Annotations which are propagated to the VMSelect pods.",
+								Description:         "PodMetadata configures Labels and Annotations which are propagated to the VMInsert pods.",
+								MarkdownDescription: "PodMetadata configures Labels and Annotations which are propagated to the VMInsert pods.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
@@ -1285,8 +1268,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"secrets": schema.ListAttribute{
-								Description:         "Secrets is a list of Secrets in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.",
-								MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.",
+								Description:         "Secrets is a list of Secrets in the same namespace as the VMInsertobject, which shall be mounted into the VMInsert Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.",
+								MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the VMInsertobject, which shall be mounted into the VMInsert Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1356,6 +1339,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
+										Computed:            false,
+									},
+
+									"use_as_default": schema.BoolAttribute{
+										Description:         "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+										MarkdownDescription: "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 								},
@@ -1453,8 +1444,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"volume_mounts": schema.ListNestedAttribute{
-								Description:         "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMSelect container,that are generated as a result of StorageSpec objects.",
-								MarkdownDescription: "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMSelect container,that are generated as a result of StorageSpec objects.",
+								Description:         "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMInsert container,that are generated as a result of StorageSpec objects.",
+								MarkdownDescription: "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMInsert container,that are generated as a result of StorageSpec objects.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"mount_path": schema.StringAttribute{
@@ -2119,14 +2110,6 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Computed:            false,
 							},
 
-							"name": schema.StringAttribute{
-								Description:         "Name is deprecated and will be removed at 0.22.0 release",
-								MarkdownDescription: "Name is deprecated and will be removed at 0.22.0 release",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"node_selector": schema.MapAttribute{
 								Description:         "NodeSelector Define which Nodes the Pods are scheduled on.",
 								MarkdownDescription: "NodeSelector Define which Nodes the Pods are scheduled on.",
@@ -2458,6 +2441,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
+										Computed:            false,
+									},
+
+									"use_as_default": schema.BoolAttribute{
+										Description:         "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+										MarkdownDescription: "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 								},
@@ -3434,8 +3425,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"config_maps": schema.ListAttribute{
-								Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
-								MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
+								Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the VMStorageobject, which shall be mounted into the VMStorage Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
+								MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the VMStorageobject, which shall be mounted into the VMStorage Pods.The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -3523,8 +3514,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"extra_envs": schema.ListAttribute{
-								Description:         "ExtraEnvs that will be added to VMSelect pod",
-								MarkdownDescription: "ExtraEnvs that will be added to VMSelect pod",
+								Description:         "ExtraEnvs that will be added to VMStorage pod",
+								MarkdownDescription: "ExtraEnvs that will be added to VMStorage pod",
 								ElementType:         types.MapType{ElemType: types.StringType},
 								Required:            false,
 								Optional:            true,
@@ -3573,8 +3564,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"init_containers": schema.ListAttribute{
-								Description:         "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMSelect configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.",
-								MarkdownDescription: "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMSelect configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.",
+								Description:         "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMStorage configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.",
+								MarkdownDescription: "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the VMStorage configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.",
 								ElementType:         types.MapType{ElemType: types.StringType},
 								Required:            false,
 								Optional:            true,
@@ -3591,8 +3582,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"log_format": schema.StringAttribute{
-								Description:         "LogFormat for VMSelect to be configured with.default or json",
-								MarkdownDescription: "LogFormat for VMSelect to be configured with.default or json",
+								Description:         "LogFormat for VMStorage to be configured with.default or json",
+								MarkdownDescription: "LogFormat for VMStorage to be configured with.default or json",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3602,8 +3593,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"log_level": schema.StringAttribute{
-								Description:         "LogLevel for VMSelect to be configured with.",
-								MarkdownDescription: "LogLevel for VMSelect to be configured with.",
+								Description:         "LogLevel for VMStorage to be configured with.",
+								MarkdownDescription: "LogLevel for VMStorage to be configured with.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3633,14 +3624,6 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							"min_ready_seconds": schema.Int64Attribute{
 								Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state",
 								MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"name": schema.StringAttribute{
-								Description:         "Name is deprecated and will be removed at 0.22.0 release",
-								MarkdownDescription: "Name is deprecated and will be removed at 0.22.0 release",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3690,8 +3673,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"pod_metadata": schema.SingleNestedAttribute{
-								Description:         "PodMetadata configures Labels and Annotations which are propagated to the VMSelect pods.",
-								MarkdownDescription: "PodMetadata configures Labels and Annotations which are propagated to the VMSelect pods.",
+								Description:         "PodMetadata configures Labels and Annotations which are propagated to the VMStorage pods.",
+								MarkdownDescription: "PodMetadata configures Labels and Annotations which are propagated to the VMStorage pods.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
@@ -3855,8 +3838,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"secrets": schema.ListAttribute{
-								Description:         "Secrets is a list of Secrets in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.",
-								MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the VMSelectobject, which shall be mounted into the VMSelect Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.",
+								Description:         "Secrets is a list of Secrets in the same namespace as the VMStorageobject, which shall be mounted into the VMStorage Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.",
+								MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the VMStorageobject, which shall be mounted into the VMStorage Pods.The Secrets are mounted into /etc/vm/secrets/<secret-name>.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -3926,6 +3909,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
+										Computed:            false,
+									},
+
+									"use_as_default": schema.BoolAttribute{
+										Description:         "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+										MarkdownDescription: "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 								},
@@ -4382,8 +4373,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 									},
 
 									"log_format": schema.StringAttribute{
-										Description:         "LogFormat for VMSelect to be configured with.default or json",
-										MarkdownDescription: "LogFormat for VMSelect to be configured with.default or json",
+										Description:         "LogFormat for VMBackup to be configured with.default or json",
+										MarkdownDescription: "LogFormat for VMBackup to be configured with.default or json",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4393,8 +4384,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 									},
 
 									"log_level": schema.StringAttribute{
-										Description:         "LogLevel for VMSelect to be configured with.",
-										MarkdownDescription: "LogLevel for VMSelect to be configured with.",
+										Description:         "LogLevel for VMBackup to be configured with.",
+										MarkdownDescription: "LogLevel for VMBackup to be configured with.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4580,8 +4571,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"volume_mounts": schema.ListNestedAttribute{
-								Description:         "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMSelect container,that are generated as a result of StorageSpec objects.",
-								MarkdownDescription: "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMSelect container,that are generated as a result of StorageSpec objects.",
+								Description:         "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMStorage container,that are generated as a result of StorageSpec objects.",
+								MarkdownDescription: "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMStorage container,that are generated as a result of StorageSpec objects.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"mount_path": schema.StringAttribute{

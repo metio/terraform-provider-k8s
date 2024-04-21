@@ -104,14 +104,16 @@ type K8SNginxOrgPolicyV1ManifestData struct {
 			ApPolicy    *string `tfsdk:"ap_policy" json:"apPolicy,omitempty"`
 			Enable      *bool   `tfsdk:"enable" json:"enable,omitempty"`
 			SecurityLog *struct {
-				ApLogConf *string `tfsdk:"ap_log_conf" json:"apLogConf,omitempty"`
-				Enable    *bool   `tfsdk:"enable" json:"enable,omitempty"`
-				LogDest   *string `tfsdk:"log_dest" json:"logDest,omitempty"`
+				ApLogBundle *string `tfsdk:"ap_log_bundle" json:"apLogBundle,omitempty"`
+				ApLogConf   *string `tfsdk:"ap_log_conf" json:"apLogConf,omitempty"`
+				Enable      *bool   `tfsdk:"enable" json:"enable,omitempty"`
+				LogDest     *string `tfsdk:"log_dest" json:"logDest,omitempty"`
 			} `tfsdk:"security_log" json:"securityLog,omitempty"`
 			SecurityLogs *[]struct {
-				ApLogConf *string `tfsdk:"ap_log_conf" json:"apLogConf,omitempty"`
-				Enable    *bool   `tfsdk:"enable" json:"enable,omitempty"`
-				LogDest   *string `tfsdk:"log_dest" json:"logDest,omitempty"`
+				ApLogBundle *string `tfsdk:"ap_log_bundle" json:"apLogBundle,omitempty"`
+				ApLogConf   *string `tfsdk:"ap_log_conf" json:"apLogConf,omitempty"`
+				Enable      *bool   `tfsdk:"enable" json:"enable,omitempty"`
+				LogDest     *string `tfsdk:"log_dest" json:"logDest,omitempty"`
 			} `tfsdk:"security_logs" json:"securityLogs,omitempty"`
 		} `tfsdk:"waf" json:"waf,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -628,6 +630,14 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								Description:         "SecurityLog defines the security log of a WAF policy.",
 								MarkdownDescription: "SecurityLog defines the security log of a WAF policy.",
 								Attributes: map[string]schema.Attribute{
+									"ap_log_bundle": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"ap_log_conf": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -662,6 +672,14 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"ap_log_bundle": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"ap_log_conf": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",

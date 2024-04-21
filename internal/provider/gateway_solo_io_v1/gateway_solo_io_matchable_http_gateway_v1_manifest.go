@@ -574,6 +574,7 @@ type GatewaySoloIoMatchableHttpGatewayV1ManifestData struct {
 					RequestTimeout *string `tfsdk:"request_timeout" json:"requestTimeout,omitempty"`
 				} `tfsdk:"ratelimit_server" json:"ratelimitServer,omitempty"`
 				Router *struct {
+					DynamicStats         *bool `tfsdk:"dynamic_stats" json:"dynamicStats,omitempty"`
 					SuppressEnvoyHeaders *bool `tfsdk:"suppress_envoy_headers" json:"suppressEnvoyHeaders,omitempty"`
 				} `tfsdk:"router" json:"router,omitempty"`
 				SanitizeClusterHeader *bool `tfsdk:"sanitize_cluster_header" json:"sanitizeClusterHeader,omitempty"`
@@ -4381,6 +4382,14 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"dynamic_stats": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"suppress_envoy_headers": schema.BoolAttribute{
 												Description:         "",
 												MarkdownDescription: "",

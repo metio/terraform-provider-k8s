@@ -233,8 +233,9 @@ type OperatorKnativeDevKnativeEventingV1Beta1ManifestData struct {
 			URL *string `tfsdk:"url" json:"URL,omitempty"`
 		} `tfsdk:"manifests" json:"manifests,omitempty"`
 		PodDisruptionBudgets *[]struct {
-			MinAvailable *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
-			Name         *string `tfsdk:"name" json:"name,omitempty"`
+			MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+			MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
+			Name           *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"pod_disruption_budgets" json:"podDisruptionBudgets,omitempty"`
 		Registry *struct {
 			Default          *string `tfsdk:"default" json:"default,omitempty"`
@@ -1805,6 +1806,14 @@ func (r *OperatorKnativeDevKnativeEventingV1Beta1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "A mapping of podDisruptionBudget name to override",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"max_unavailable": schema.StringAttribute{
+									Description:         "An eviction is allowed if at most 'maxUnavailable' pods selected by 'selector' are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with 'minAvailable'.",
+									MarkdownDescription: "An eviction is allowed if at most 'maxUnavailable' pods selected by 'selector' are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with 'minAvailable'.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"min_available": schema.StringAttribute{
 									Description:         "An eviction is allowed if at least 'minAvailable' pods selected by 'selector' will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying '100%'.",
 									MarkdownDescription: "An eviction is allowed if at least 'minAvailable' pods selected by 'selector' will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying '100%'.",
