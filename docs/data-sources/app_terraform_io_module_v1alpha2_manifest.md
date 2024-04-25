@@ -3,7 +3,7 @@
 page_title: "k8s_app_terraform_io_module_v1alpha2_manifest Data Source - terraform-provider-k8s"
 subcategory: "app.terraform.io"
 description: |-
-  Module is the Schema for the modules APIModule implements the API-driven Run WorkflowMore information:  -
+  Module is the Schema for the modules APIModule implements the API-driven Run WorkflowMore information:  - https://developer.hashicorp.com/terraform/cloud-docs/run/api
 ---
 
 # k8s_app_terraform_io_module_v1alpha2_manifest (Data Source)

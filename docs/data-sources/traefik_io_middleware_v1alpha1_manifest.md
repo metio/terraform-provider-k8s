@@ -3,7 +3,7 @@
 page_title: "k8s_traefik_io_middleware_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  Middleware is the CRD implementation of a Traefik Middleware.More info:
+  Middleware is the CRD implementation of a Traefik Middleware.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/overview/
 ---
 
 # k8s_traefik_io_middleware_v1alpha1_manifest (Data Source)

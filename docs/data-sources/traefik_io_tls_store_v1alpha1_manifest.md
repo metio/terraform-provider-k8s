@@ -3,7 +3,7 @@
 page_title: "k8s_traefik_io_tls_store_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  TLSStore is the CRD implementation of a Traefik TLS Store.For the time being, only the TLSStore named default is supported.This means that you cannot have two stores that are named default in different Kubernetes namespaces.More info:
+  TLSStore is the CRD implementation of a Traefik TLS Store.For the time being, only the TLSStore named default is supported.This means that you cannot have two stores that are named default in different Kubernetes namespaces.More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores
 ---
 
 # k8s_traefik_io_tls_store_v1alpha1_manifest (Data Source)

@@ -3,7 +3,7 @@
 page_title: "k8s_traefik_io_traefik_service_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info:
+  TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice
 ---
 
 # k8s_traefik_io_traefik_service_v1alpha1_manifest (Data Source)

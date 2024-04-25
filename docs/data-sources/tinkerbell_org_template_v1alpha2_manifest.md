@@ -3,7 +3,7 @@
 page_title: "k8s_tinkerbell_org_template_v1alpha2_manifest Data Source - terraform-provider-k8s"
 subcategory: "tinkerbell.org"
 description: |-
-  Template defines a set of actions to be run on a target machine. The template is renderedprior to execution where it is exposed to Hardware and user defined data. Most fields within theTemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name.See  for more details.
+  Template defines a set of actions to be run on a target machine. The template is renderedprior to execution where it is exposed to Hardware and user defined data. Most fields within theTemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name.See https://pkg.go.dev/text/template for more details.
 ---
 
 # k8s_tinkerbell_org_template_v1alpha2_manifest (Data Source)

@@ -3,7 +3,7 @@
 page_title: "k8s_persistent_volume_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "core"
 description: |-
-  PersistentVolume (PV) is a storage resource provisioned by an administrator. It is analogous to a node. More info:
+  PersistentVolume (PV) is a storage resource provisioned by an administrator. It is analogous to a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes
 ---
 
 # k8s_persistent_volume_v1_manifest (Data Source)
