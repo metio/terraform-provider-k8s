@@ -3,7 +3,7 @@
 page_title: "k8s_kyverno_io_policy_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "kyverno.io"
 description: |-
-  Policy declares validation, mutation, and generation behaviors for matching resources.See:  for more information.
+  Policy declares validation, mutation, and generation behaviors for matching resources.See: https://kyverno.io/docs/writing-policies/ for more information.
 ---
 
 # k8s_kyverno_io_policy_v1_manifest (Data Source)

@@ -3,7 +3,7 @@
 page_title: "k8s_app_kiegroup_org_kogito_infra_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "app.kiegroup.org"
 description: |-
-  KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service.  It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index).  Please refer to the Kogito Operator documentation () for more information.
+  KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service.  It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index).  Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.
 ---
 
 # k8s_app_kiegroup_org_kogito_infra_v1beta1_manifest (Data Source)

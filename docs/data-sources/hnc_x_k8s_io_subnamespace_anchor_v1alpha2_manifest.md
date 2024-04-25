@@ -3,7 +3,7 @@
 page_title: "k8s_hnc_x_k8s_io_subnamespace_anchor_v1alpha2_manifest Data Source - terraform-provider-k8s"
 subcategory: "hnc.x-k8s.io"
 description: |-
-  SubnamespaceAnchor is the Schema for the subnamespace API. See details at .
+  SubnamespaceAnchor is the Schema for the subnamespace API. See details at http://bit.ly/hnc-self-serve-ux.
 ---
 
 # k8s_hnc_x_k8s_io_subnamespace_anchor_v1alpha2_manifest (Data Source)
