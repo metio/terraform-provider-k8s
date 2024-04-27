@@ -63,6 +63,7 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 		} `tfsdk:"alternator" json:"alternator,omitempty"`
 		AutomaticOrphanedNodeCleanup *bool `tfsdk:"automatic_orphaned_node_cleanup" json:"automaticOrphanedNodeCleanup,omitempty"`
 		Backups                      *[]struct {
+			Cron             *string   `tfsdk:"cron" json:"cron,omitempty"`
 			Dc               *[]string `tfsdk:"dc" json:"dc,omitempty"`
 			Interval         *string   `tfsdk:"interval" json:"interval,omitempty"`
 			Keyspace         *[]string `tfsdk:"keyspace" json:"keyspace,omitempty"`
@@ -73,6 +74,7 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 			Retention        *int64    `tfsdk:"retention" json:"retention,omitempty"`
 			SnapshotParallel *[]string `tfsdk:"snapshot_parallel" json:"snapshotParallel,omitempty"`
 			StartDate        *string   `tfsdk:"start_date" json:"startDate,omitempty"`
+			Timezone         *string   `tfsdk:"timezone" json:"timezone,omitempty"`
 			UploadParallel   *[]string `tfsdk:"upload_parallel" json:"uploadParallel,omitempty"`
 		} `tfsdk:"backups" json:"backups,omitempty"`
 		Cpuset     *bool `tfsdk:"cpuset" json:"cpuset,omitempty"`
@@ -622,6 +624,7 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 			ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
 		} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
 		Repairs *[]struct {
+			Cron                *string   `tfsdk:"cron" json:"cron,omitempty"`
 			Dc                  *[]string `tfsdk:"dc" json:"dc,omitempty"`
 			FailFast            *bool     `tfsdk:"fail_fast" json:"failFast,omitempty"`
 			Host                *string   `tfsdk:"host" json:"host,omitempty"`
@@ -633,6 +636,7 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 			Parallel            *int64    `tfsdk:"parallel" json:"parallel,omitempty"`
 			SmallTableThreshold *string   `tfsdk:"small_table_threshold" json:"smallTableThreshold,omitempty"`
 			StartDate           *string   `tfsdk:"start_date" json:"startDate,omitempty"`
+			Timezone            *string   `tfsdk:"timezone" json:"timezone,omitempty"`
 		} `tfsdk:"repairs" json:"repairs,omitempty"`
 		Repository *string   `tfsdk:"repository" json:"repository,omitempty"`
 		ScyllaArgs *string   `tfsdk:"scylla_args" json:"scyllaArgs,omitempty"`
@@ -852,6 +856,14 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "backups specifies backup tasks in Scylla Manager. When Scylla Manager is not installed, these will be ignored.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"cron": schema.StringAttribute{
+									Description:         "cron specifies the task schedule as a cron expression. It supports an extended syntax including @monthly, @weekly, @daily, @midnight, @hourly, @every X[h|m|s].",
+									MarkdownDescription: "cron specifies the task schedule as a cron expression. It supports an extended syntax including @monthly, @weekly, @daily, @midnight, @hourly, @every X[h|m|s].",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"dc": schema.ListAttribute{
 									Description:         "dc is a list of datacenter glob patterns, e.g. 'dc1,!otherdc*' used to specify the DCs to include or exclude from backup.",
 									MarkdownDescription: "dc is a list of datacenter glob patterns, e.g. 'dc1,!otherdc*' used to specify the DCs to include or exclude from backup.",
@@ -932,6 +944,14 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 								"start_date": schema.StringAttribute{
 									Description:         "startDate specifies the task start date expressed in the RFC3339 format or now[+duration], e.g. now+3d2h10m, valid units are d, h, m, s.",
 									MarkdownDescription: "startDate specifies the task start date expressed in the RFC3339 format or now[+duration], e.g. now+3d2h10m, valid units are d, h, m, s.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"timezone": schema.StringAttribute{
+									Description:         "timezone specifies the timezone of cron field.",
+									MarkdownDescription: "timezone specifies the timezone of cron field.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4604,6 +4624,14 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "repairs specify repair tasks in Scylla Manager. When Scylla Manager is not installed, these will be ignored.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"cron": schema.StringAttribute{
+									Description:         "cron specifies the task schedule as a cron expression. It supports an extended syntax including @monthly, @weekly, @daily, @midnight, @hourly, @every X[h|m|s].",
+									MarkdownDescription: "cron specifies the task schedule as a cron expression. It supports an extended syntax including @monthly, @weekly, @daily, @midnight, @hourly, @every X[h|m|s].",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"dc": schema.ListAttribute{
 									Description:         "dc is a list of datacenter glob patterns, e.g. 'dc1', '!otherdc*' used to specify the DCs to include or exclude from backup.",
 									MarkdownDescription: "dc is a list of datacenter glob patterns, e.g. 'dc1', '!otherdc*' used to specify the DCs to include or exclude from backup.",
@@ -4689,6 +4717,14 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 								"start_date": schema.StringAttribute{
 									Description:         "startDate specifies the task start date expressed in the RFC3339 format or now[+duration], e.g. now+3d2h10m, valid units are d, h, m, s.",
 									MarkdownDescription: "startDate specifies the task start date expressed in the RFC3339 format or now[+duration], e.g. now+3d2h10m, valid units are d, h, m, s.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"timezone": schema.StringAttribute{
+									Description:         "timezone specifies the timezone of cron field.",
+									MarkdownDescription: "timezone specifies the timezone of cron field.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

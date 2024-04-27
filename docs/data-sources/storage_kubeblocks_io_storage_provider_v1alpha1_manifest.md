@@ -3,12 +3,12 @@
 page_title: "k8s_storage_kubeblocks_io_storage_provider_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "storage.kubeblocks.io"
 description: |-
-  StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file.
+  StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file.  Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group, will be removed in v0.11.
 ---
 
 # k8s_storage_kubeblocks_io_storage_provider_v1alpha1_manifest (Data Source)
 
-StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file.
+StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file.  Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group, will be removed in v0.11.
 
 ## Example Usage
 

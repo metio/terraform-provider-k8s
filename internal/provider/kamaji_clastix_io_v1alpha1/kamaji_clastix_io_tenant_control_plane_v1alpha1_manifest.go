@@ -1042,7 +1042,11 @@ type KamajiClastixIoTenantControlPlaneV1Alpha1ManifestData struct {
 					Kine              *[]string `tfsdk:"kine" json:"kine,omitempty"`
 					Scheduler         *[]string `tfsdk:"scheduler" json:"scheduler,omitempty"`
 				} `tfsdk:"extra_args" json:"extraArgs,omitempty"`
-				NodeSelector     *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				NodeSelector          *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				PodAdditionalMetadata *struct {
+					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				} `tfsdk:"pod_additional_metadata" json:"podAdditionalMetadata,omitempty"`
 				RegistrySettings *struct {
 					ApiServerImage         *string `tfsdk:"api_server_image" json:"apiServerImage,omitempty"`
 					ControllerManagerImage *string `tfsdk:"controller_manager_image" json:"controllerManagerImage,omitempty"`
@@ -1081,8 +1085,9 @@ type KamajiClastixIoTenantControlPlaneV1Alpha1ManifestData struct {
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"scheduler" json:"scheduler,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
-				RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
-				Strategy         *struct {
+				RuntimeClassName   *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
+				ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+				Strategy           *struct {
 					RollingUpdate *struct {
 						MaxSurge       *string `tfsdk:"max_surge" json:"maxSurge,omitempty"`
 						MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -7897,6 +7902,33 @@ func (r *KamajiClastixIoTenantControlPlaneV1Alpha1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
+									"pod_additional_metadata": schema.SingleNestedAttribute{
+										Description:         "AdditionalMetadata defines which additional metadata, such as labels and annotations, must be attached to the created resource.",
+										MarkdownDescription: "AdditionalMetadata defines which additional metadata, such as labels and annotations, must be attached to the created resource.",
+										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"registry_settings": schema.SingleNestedAttribute{
 										Description:         "RegistrySettings allows to override the default images for the given Tenant Control Plane instance.It could be used to point to a different container registry rather than the public one.",
 										MarkdownDescription: "RegistrySettings allows to override the default images for the given Tenant Control Plane instance.It could be used to point to a different container registry rather than the public one.",
@@ -8150,6 +8182,14 @@ func (r *KamajiClastixIoTenantControlPlaneV1Alpha1Manifest) Schema(_ context.Con
 									"runtime_class_name": schema.StringAttribute{
 										Description:         "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run the Tenant Control Plane pod. If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class",
 										MarkdownDescription: "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run the Tenant Control Plane pod. If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"service_account_name": schema.StringAttribute{
+										Description:         "ServiceAccountName allows to specify the service account to be mounted to the pods of the Control plane deployment",
+										MarkdownDescription: "ServiceAccountName allows to specify the service account to be mounted to the pods of the Control plane deployment",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

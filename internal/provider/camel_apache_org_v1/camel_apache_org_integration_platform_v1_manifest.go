@@ -1353,8 +1353,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"maven_profiles": schema.ListAttribute{
-										Description:         "A list of references pointing to configmaps/secrets that contains a maven profile. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
-										MarkdownDescription: "A list of references pointing to configmaps/secrets that contains a maven profile. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
+										Description:         "A list of references pointing to configmaps/secrets that contains a maven profile. This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
+										MarkdownDescription: "A list of references pointing to configmaps/secrets that contains a maven profile. This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1573,8 +1573,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"image": schema.StringAttribute{
-										Description:         "The main container image",
-										MarkdownDescription: "The main container image",
+										Description:         "The main container image to use for the Integration. When using this parameter the operator will create a synthetic IntegrationKit which won't be able to execute traits requiring CamelCatalog. If the container image you're using is coming from an IntegrationKit, use instead Integration '.spec.integrationKit' parameter. If you're moving the Integration across environments, you will also need to create an 'external' IntegrationKit.",
+										MarkdownDescription: "The main container image to use for the Integration. When using this parameter the operator will create a synthetic IntegrationKit which won't be able to execute traits requiring CamelCatalog. If the container image you're using is coming from an IntegrationKit, use instead Integration '.spec.integrationKit' parameter. If you're moving the Integration across environments, you will also need to create an 'external' IntegrationKit.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

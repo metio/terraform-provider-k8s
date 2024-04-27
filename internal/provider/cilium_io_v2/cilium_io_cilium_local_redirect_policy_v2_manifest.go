@@ -79,6 +79,7 @@ type CiliumIoCiliumLocalRedirectPolicyV2ManifestData struct {
 				} `tfsdk:"to_ports" json:"toPorts,omitempty"`
 			} `tfsdk:"service_matcher" json:"serviceMatcher,omitempty"`
 		} `tfsdk:"redirect_frontend" json:"redirectFrontend,omitempty"`
+		SkipRedirectFromBackend *bool `tfsdk:"skip_redirect_from_backend" json:"skipRedirectFromBackend,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -417,6 +418,14 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"skip_redirect_from_backend": schema.BoolAttribute{
+						Description:         "SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is.  The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s).  Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.",
+						MarkdownDescription: "SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is.  The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s).  Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

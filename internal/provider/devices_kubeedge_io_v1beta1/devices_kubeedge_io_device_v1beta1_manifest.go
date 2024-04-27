@@ -74,6 +74,13 @@ type DevicesKubeedgeIoDeviceV1Beta1ManifestData struct {
 							Tag         *map[string]string `tfsdk:"tag" json:"tag,omitempty"`
 						} `tfsdk:"influxdb2_data_config" json:"influxdb2DataConfig,omitempty"`
 					} `tfsdk:"influxdb2" json:"influxdb2,omitempty"`
+					Mysql *struct {
+						MysqlClientConfig *struct {
+							Addr     *string `tfsdk:"addr" json:"addr,omitempty"`
+							Database *string `tfsdk:"database" json:"database,omitempty"`
+							UserName *string `tfsdk:"user_name" json:"userName,omitempty"`
+						} `tfsdk:"mysql_client_config" json:"mysqlClientConfig,omitempty"`
+					} `tfsdk:"mysql" json:"mysql,omitempty"`
 					Redis *struct {
 						RedisClientConfig *struct {
 							Addr         *string `tfsdk:"addr" json:"addr,omitempty"`
@@ -252,8 +259,8 @@ func (r *DevicesKubeedgeIoDeviceV1Beta1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Required: The device property name to be accessed. It must be unique.",
-									MarkdownDescription: "Required: The device property name to be accessed. It must be unique.",
+									Description:         "Required: The device property name to be accessed. It must be unique. Note: If you need to use the built-in stream data processing function, you need to define Name as saveFrame or saveVideo",
+									MarkdownDescription: "Required: The device property name to be accessed. It must be unique. Note: If you need to use the built-in stream data processing function, you need to define Name as saveFrame or saveVideo",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -362,6 +369,48 @@ func (r *DevicesKubeedgeIoDeviceV1Beta1Manifest) Schema(_ context.Context, _ dat
 																	Description:         "the tag of device data",
 																	MarkdownDescription: "the tag of device data",
 																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"mysql": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"mysql_client_config": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"addr": schema.StringAttribute{
+																	Description:         "mysql address,like localhost:3306",
+																	MarkdownDescription: "mysql address,like localhost:3306",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"database": schema.StringAttribute{
+																	Description:         "database name",
+																	MarkdownDescription: "database name",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"user_name": schema.StringAttribute{
+																	Description:         "user name",
+																	MarkdownDescription: "user name",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,

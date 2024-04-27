@@ -256,11 +256,9 @@ Optional:
 <a id="nestedatt--spec--tools_image_spec--tool_configs"></a>
 ### Nested Schema for `spec.tools_image_spec.tool_configs`
 
-Required:
-
-- `command` (List of String) Specifies the command to be executed by the init container.
-
 Optional:
 
+- `as_container_image` (Boolean) Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml reloadToolsImage: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''
+- `command` (List of String) Specifies the command to be executed by the init container.
 - `image` (String) Specifies the tool container image.
 - `name` (String) Specifies the name of the init container.

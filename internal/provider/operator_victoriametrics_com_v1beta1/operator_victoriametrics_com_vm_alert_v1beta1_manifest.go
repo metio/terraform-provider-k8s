@@ -3128,8 +3128,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 							},
 
 							"use_as_default": schema.BoolAttribute{
-								Description:         "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
-								MarkdownDescription: "UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication",
+								Description:         "UseAsDefault applies changes from given service definition to the main object ServiceChanging from headless service to clusterIP or loadbalancer may break cross-component communication",
+								MarkdownDescription: "UseAsDefault applies changes from given service definition to the main object ServiceChanging from headless service to clusterIP or loadbalancer may break cross-component communication",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

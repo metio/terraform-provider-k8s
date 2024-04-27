@@ -193,8 +193,8 @@ func (r *ExternaldnsK8SIoDnsendpointV1Alpha1Manifest) Schema(_ context.Context, 
 								},
 
 								"record_type": schema.StringAttribute{
-									Description:         "RecordType type of record, e.g. CNAME, A, SRV, TXT etc",
-									MarkdownDescription: "RecordType type of record, e.g. CNAME, A, SRV, TXT etc",
+									Description:         "RecordType type of record, e.g. CNAME, A, AAAA, SRV, TXT etc",
+									MarkdownDescription: "RecordType type of record, e.g. CNAME, A, AAAA, SRV, TXT etc",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

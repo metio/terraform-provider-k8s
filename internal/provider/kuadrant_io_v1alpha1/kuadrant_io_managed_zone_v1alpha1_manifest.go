@@ -134,16 +134,16 @@ func (r *KuadrantIoManagedZoneV1Alpha1Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "ManagedZoneSpec defines the desired state of ManagedZone",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
-						Description:         "Description for this ManagedZone",
-						MarkdownDescription: "Description for this ManagedZone",
+						Description:         "description for this ManagedZone",
+						MarkdownDescription: "description for this ManagedZone",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"dns_provider_secret_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "dnsProviderSecretRef reference to a secret containing credentials to access a dns provider.",
+						MarkdownDescription: "dnsProviderSecretRef reference to a secret containing credentials to access a dns provider.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "",
@@ -159,8 +159,8 @@ func (r *KuadrantIoManagedZoneV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"domain_name": schema.StringAttribute{
-						Description:         "Domain name of this ManagedZone",
-						MarkdownDescription: "Domain name of this ManagedZone",
+						Description:         "domainName of this ManagedZone",
+						MarkdownDescription: "domainName of this ManagedZone",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -170,16 +170,16 @@ func (r *KuadrantIoManagedZoneV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"id": schema.StringAttribute{
-						Description:         "ID is the provider assigned id of this  zone (i.e. route53.HostedZone.ID).",
-						MarkdownDescription: "ID is the provider assigned id of this  zone (i.e. route53.HostedZone.ID).",
+						Description:         "id is the provider assigned id of this  zone (i.e. route53.HostedZone.ID).",
+						MarkdownDescription: "id is the provider assigned id of this  zone (i.e. route53.HostedZone.ID).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"parent_managed_zone": schema.SingleNestedAttribute{
-						Description:         "Reference to another managed zone that this managed zone belongs to.",
-						MarkdownDescription: "Reference to another managed zone that this managed zone belongs to.",
+						Description:         "parentManagedZone reference to another managed zone that this managed zone belongs to.",
+						MarkdownDescription: "parentManagedZone reference to another managed zone that this managed zone belongs to.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "'name' is the name of the managed zone. Required",

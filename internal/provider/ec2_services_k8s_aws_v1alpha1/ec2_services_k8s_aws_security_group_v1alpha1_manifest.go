@@ -61,13 +61,23 @@ type Ec2ServicesK8SAwsSecurityGroupV1Alpha1ManifestData struct {
 			} `tfsdk:"prefix_list_i_ds" json:"prefixListIDs,omitempty"`
 			ToPort           *int64 `tfsdk:"to_port" json:"toPort,omitempty"`
 			UserIDGroupPairs *[]struct {
-				Description            *string `tfsdk:"description" json:"description,omitempty"`
-				GroupID                *string `tfsdk:"group_id" json:"groupID,omitempty"`
-				GroupName              *string `tfsdk:"group_name" json:"groupName,omitempty"`
+				Description *string `tfsdk:"description" json:"description,omitempty"`
+				GroupID     *string `tfsdk:"group_id" json:"groupID,omitempty"`
+				GroupName   *string `tfsdk:"group_name" json:"groupName,omitempty"`
+				GroupRef    *struct {
+					From *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"from" json:"from,omitempty"`
+				} `tfsdk:"group_ref" json:"groupRef,omitempty"`
 				PeeringStatus          *string `tfsdk:"peering_status" json:"peeringStatus,omitempty"`
 				UserID                 *string `tfsdk:"user_id" json:"userID,omitempty"`
 				VpcID                  *string `tfsdk:"vpc_id" json:"vpcID,omitempty"`
 				VpcPeeringConnectionID *string `tfsdk:"vpc_peering_connection_id" json:"vpcPeeringConnectionID,omitempty"`
+				VpcRef                 *struct {
+					From *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"from" json:"from,omitempty"`
+				} `tfsdk:"vpc_ref" json:"vpcRef,omitempty"`
 			} `tfsdk:"user_id_group_pairs" json:"userIDGroupPairs,omitempty"`
 		} `tfsdk:"egress_rules" json:"egressRules,omitempty"`
 		IngressRules *[]struct {
@@ -87,13 +97,23 @@ type Ec2ServicesK8SAwsSecurityGroupV1Alpha1ManifestData struct {
 			} `tfsdk:"prefix_list_i_ds" json:"prefixListIDs,omitempty"`
 			ToPort           *int64 `tfsdk:"to_port" json:"toPort,omitempty"`
 			UserIDGroupPairs *[]struct {
-				Description            *string `tfsdk:"description" json:"description,omitempty"`
-				GroupID                *string `tfsdk:"group_id" json:"groupID,omitempty"`
-				GroupName              *string `tfsdk:"group_name" json:"groupName,omitempty"`
+				Description *string `tfsdk:"description" json:"description,omitempty"`
+				GroupID     *string `tfsdk:"group_id" json:"groupID,omitempty"`
+				GroupName   *string `tfsdk:"group_name" json:"groupName,omitempty"`
+				GroupRef    *struct {
+					From *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"from" json:"from,omitempty"`
+				} `tfsdk:"group_ref" json:"groupRef,omitempty"`
 				PeeringStatus          *string `tfsdk:"peering_status" json:"peeringStatus,omitempty"`
 				UserID                 *string `tfsdk:"user_id" json:"userID,omitempty"`
 				VpcID                  *string `tfsdk:"vpc_id" json:"vpcID,omitempty"`
 				VpcPeeringConnectionID *string `tfsdk:"vpc_peering_connection_id" json:"vpcPeeringConnectionID,omitempty"`
+				VpcRef                 *struct {
+					From *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"from" json:"from,omitempty"`
+				} `tfsdk:"vpc_ref" json:"vpcRef,omitempty"`
 			} `tfsdk:"user_id_group_pairs" json:"userIDGroupPairs,omitempty"`
 		} `tfsdk:"ingress_rules" json:"ingressRules,omitempty"`
 		Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -334,6 +354,32 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"group_ref": schema.SingleNestedAttribute{
+												Description:         "Reference field for GroupName",
+												MarkdownDescription: "Reference field for GroupName",
+												Attributes: map[string]schema.Attribute{
+													"from": schema.SingleNestedAttribute{
+														Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+														MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"peering_status": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -364,6 +410,32 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"vpc_ref": schema.SingleNestedAttribute{
+												Description:         "Reference field for VPCID",
+												MarkdownDescription: "Reference field for VPCID",
+												Attributes: map[string]schema.Attribute{
+													"from": schema.SingleNestedAttribute{
+														Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+														MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 									},
@@ -517,6 +589,32 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"group_ref": schema.SingleNestedAttribute{
+												Description:         "Reference field for GroupName",
+												MarkdownDescription: "Reference field for GroupName",
+												Attributes: map[string]schema.Attribute{
+													"from": schema.SingleNestedAttribute{
+														Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+														MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"peering_status": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -547,6 +645,32 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"vpc_ref": schema.SingleNestedAttribute{
+												Description:         "Reference field for VPCID",
+												MarkdownDescription: "Reference field for VPCID",
+												Attributes: map[string]schema.Attribute{
+													"from": schema.SingleNestedAttribute{
+														Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+														MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 									},

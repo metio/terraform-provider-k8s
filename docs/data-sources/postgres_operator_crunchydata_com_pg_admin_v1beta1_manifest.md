@@ -68,6 +68,7 @@ Optional:
 - `priority_class_name` (String) Priority class name for the PGAdmin pod. Changing this value causes PGAdmin pod to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/
 - `resources` (Attributes) Resource requirements for the PGAdmin container. (see [below for nested schema](#nestedatt--spec--resources))
 - `server_groups` (Attributes List) ServerGroups for importing PostgresClusters to pgAdmin. To create a pgAdmin with no selectors, leave this field empty. A pgAdmin created with no 'ServerGroups' will not automatically add any servers through discovery. PostgresClusters can still be added manually. (see [below for nested schema](#nestedatt--spec--server_groups))
+- `service_name` (String) ServiceName will be used as the name of a ClusterIP service pointing to the pgAdmin pod and port. If the service already exists, PGO will update the service. For more information about services reference the Kubernetes and CrunchyData documentation. https://kubernetes.io/docs/concepts/services-networking/service/
 - `tolerations` (Attributes List) Tolerations of the PGAdmin pod. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration (see [below for nested schema](#nestedatt--spec--tolerations))
 - `users` (Attributes List) pgAdmin users that are managed via the PGAdmin spec. Users can still be added via the pgAdmin GUI, but those users will not show up here. (see [below for nested schema](#nestedatt--spec--users))
 
@@ -732,8 +733,21 @@ Optional:
 
 Required:
 
+- `password_ref` (Attributes) A reference to the secret that holds the user's password. (see [below for nested schema](#nestedatt--spec--users--password_ref))
 - `username` (String) The username for User in pgAdmin. Must be unique in the pgAdmin's users list.
 
 Optional:
 
 - `role` (String) Role determines whether the user has admin privileges or not. Defaults to User. Valid options are Administrator and User.
+
+<a id="nestedatt--spec--users--password_ref"></a>
+### Nested Schema for `spec.users.password_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined

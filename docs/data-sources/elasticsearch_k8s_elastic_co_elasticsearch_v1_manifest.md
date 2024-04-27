@@ -3543,6 +3543,7 @@ Optional:
 
 Optional:
 
+- `disable_elastic_user` (Boolean) DisableElasticUser disables the default elastic user that is created by ECK.
 - `file_realm` (Attributes List) FileRealm to propagate to the Elasticsearch cluster. (see [below for nested schema](#nestedatt--spec--auth--file_realm))
 - `roles` (Attributes List) Roles to propagate to the Elasticsearch cluster. (see [below for nested schema](#nestedatt--spec--auth--roles))
 

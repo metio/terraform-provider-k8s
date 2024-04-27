@@ -2893,7 +2893,7 @@ Optional:
 - `incremental_image_build` (Boolean) Use the incremental image build option, to reuse existing containers (default 'true')
 - `limit_cpu` (String) When using 'pod' strategy, the maximum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
 - `limit_memory` (String) When using 'pod' strategy, the maximum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
-- `maven_profiles` (List of String) A list of references pointing to configmaps/secrets that contains a maven profile. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).
+- `maven_profiles` (List of String) A list of references pointing to configmaps/secrets that contains a maven profile. This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).
 - `node_selector` (Map of String) Defines a set of nodes the builder pod is eligible to be scheduled on, based on labels on the node.
 - `order_strategy` (String) The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')
 - `platforms` (List of String) The list of manifest platforms to use to build a container image (default 'linux/amd64').
@@ -2930,7 +2930,7 @@ Optional:
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `expose` (Boolean) Can be used to enable/disable exposure via kubernetes Service.
-- `image` (String) The main container image
+- `image` (String) The main container image to use for the Integration. When using this parameter the operator will create a synthetic IntegrationKit which won't be able to execute traits requiring CamelCatalog. If the container image you're using is coming from an IntegrationKit, use instead Integration '.spec.integrationKit' parameter. If you're moving the Integration across environments, you will also need to create an 'external' IntegrationKit.
 - `image_pull_policy` (String) The pull policy: Always|Never|IfNotPresent
 - `limit_cpu` (String) The maximum amount of CPU required.
 - `limit_memory` (String) The maximum amount of memory required.

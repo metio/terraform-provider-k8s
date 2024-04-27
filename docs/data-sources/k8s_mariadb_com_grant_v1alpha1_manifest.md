@@ -63,7 +63,7 @@ Optional:
 
 - `database` (String) Database to use in the Grant.
 - `grant_option` (Boolean) GrantOption to use in the Grant.
-- `host` (String) Host to use in the Grant.
+- `host` (String) Host to use in the Grant. It can be localhost, an IP or '%'.
 - `requeue_interval` (String) RequeueInterval is used to perform requeue reconcilizations.
 - `retry_interval` (String) RetryInterval is the interval used to perform retries.
 - `table` (String) Table to use in the Grant.

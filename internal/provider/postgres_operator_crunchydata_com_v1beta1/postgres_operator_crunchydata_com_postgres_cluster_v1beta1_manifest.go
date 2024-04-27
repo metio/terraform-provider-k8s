@@ -17792,6 +17792,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
+										stringvalidator.LengthAtMost(200),
 										stringvalidator.RegexMatches(regexp.MustCompile(`^[^;]*$`), ""),
 									},
 								},

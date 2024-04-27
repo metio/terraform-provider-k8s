@@ -268,6 +268,7 @@ type PostgresOperatorCrunchydataComPgadminV1Beta1ManifestData struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"postgres_cluster_selector" json:"postgresClusterSelector,omitempty"`
 		} `tfsdk:"server_groups" json:"serverGroups,omitempty"`
+		ServiceName *string `tfsdk:"service_name" json:"serviceName,omitempty"`
 		Tolerations *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
@@ -276,6 +277,11 @@ type PostgresOperatorCrunchydataComPgadminV1Beta1ManifestData struct {
 			Value             *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		Users *[]struct {
+			PasswordRef *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"password_ref" json:"passwordRef,omitempty"`
 			Role     *string `tfsdk:"role" json:"role,omitempty"`
 			Username *string `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"users" json:"users,omitempty"`
@@ -1845,6 +1851,14 @@ func (r *PostgresOperatorCrunchydataComPgadminV1Beta1Manifest) Schema(_ context.
 						Computed: false,
 					},
 
+					"service_name": schema.StringAttribute{
+						Description:         "ServiceName will be used as the name of a ClusterIP service pointing to the pgAdmin pod and port. If the service already exists, PGO will update the service. For more information about services reference the Kubernetes and CrunchyData documentation. https://kubernetes.io/docs/concepts/services-networking/service/",
+						MarkdownDescription: "ServiceName will be used as the name of a ClusterIP service pointing to the pgAdmin pod and port. If the service already exists, PGO will update the service. For more information about services reference the Kubernetes and CrunchyData documentation. https://kubernetes.io/docs/concepts/services-networking/service/",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"tolerations": schema.ListNestedAttribute{
 						Description:         "Tolerations of the PGAdmin pod. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration",
 						MarkdownDescription: "Tolerations of the PGAdmin pod. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration",
@@ -1901,6 +1915,39 @@ func (r *PostgresOperatorCrunchydataComPgadminV1Beta1Manifest) Schema(_ context.
 						MarkdownDescription: "pgAdmin users that are managed via the PGAdmin spec. Users can still be added via the pgAdmin GUI, but those users will not show up here.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"password_ref": schema.SingleNestedAttribute{
+									Description:         "A reference to the secret that holds the user's password.",
+									MarkdownDescription: "A reference to the secret that holds the user's password.",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from.  Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+
 								"role": schema.StringAttribute{
 									Description:         "Role determines whether the user has admin privileges or not. Defaults to User. Valid options are Administrator and User.",
 									MarkdownDescription: "Role determines whether the user has admin privileges or not. Defaults to User. Valid options are Administrator and User.",

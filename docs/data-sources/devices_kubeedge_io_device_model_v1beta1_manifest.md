@@ -67,6 +67,6 @@ Optional:
 - `description` (String) The device property description.
 - `maximum` (String)
 - `minimum` (String)
-- `name` (String) Required: The device property name.
-- `type` (String) Required: Type of device property, ENUM: INT,FLOAT,DOUBLE,STRING,BOOLEAN,BYTES
+- `name` (String) Required: The device property name. Note: If you need to use the built-in stream data processing function, you need to define Name as saveFrame or saveVideo
+- `type` (String) Required: Type of device property, ENUM: INT,FLOAT,DOUBLE,STRING,BOOLEAN,BYTES,STREAM
 - `unit` (String) The unit of the property

@@ -53,13 +53,24 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `managed_zone` (Attributes) managedZone is a reference to a ManagedZone instance to which this record will publish its endpoints. (see [below for nested schema](#nestedatt--spec--managed_zone))
+
 Optional:
 
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--endpoints))
+- `endpoints` (Attributes List) endpoints is a list of endpoints that will be published into the dns provider. (see [below for nested schema](#nestedatt--spec--endpoints))
 - `health_check` (Attributes) HealthCheckSpec configures health checks in the DNS provider. By default this health check will be applied to each unique DNS A Record for the listeners assigned to the target gateway (see [below for nested schema](#nestedatt--spec--health_check))
-- `managed_zone` (Attributes) ManagedZoneReference holds a reference to a ManagedZone (see [below for nested schema](#nestedatt--spec--managed_zone))
-- `owner_id` (String) OwnerID is a unique string used to identify all endpoints created by this kuadrant
-- `root_host` (String) rootHost is the single root for all endpoints in a DNSRecord. If rootHost is set, it is expected all defined endpoints are children 	of or equal to this rootHost
+- `owner_id` (String) ownerID is a unique string used to identify the owner of this record.
+- `root_host` (String) rootHost is the single root for all endpoints in a DNSRecord. If rootHost is set, it is expected all defined endpoints are children of or equal to this rootHost
+
+<a id="nestedatt--spec--managed_zone"></a>
+### Nested Schema for `spec.managed_zone`
+
+Required:
+
+- `name` (String) 'name' is the name of the managed zone. Required
+
 
 <a id="nestedatt--spec--endpoints"></a>
 ### Nested Schema for `spec.endpoints`
@@ -93,11 +104,3 @@ Optional:
 - `failure_threshold` (Number)
 - `port` (Number)
 - `protocol` (String)
-
-
-<a id="nestedatt--spec--managed_zone"></a>
-### Nested Schema for `spec.managed_zone`
-
-Required:
-
-- `name` (String) 'name' is the name of the managed zone. Required

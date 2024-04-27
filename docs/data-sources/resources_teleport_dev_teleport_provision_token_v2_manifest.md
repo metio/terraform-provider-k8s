@@ -79,7 +79,7 @@ Optional:
 - `aws_account` (String) AWSAccount is the AWS account ID.
 - `aws_arn` (String) AWSARN is used for the IAM join method, the AWS identity of joining nodes must match this ARN. Supports wildcards '*' and '?'.
 - `aws_regions` (List of String) AWSRegions is used for the EC2 join method and is a list of AWS regions a node is allowed to join from.
-- `aws_role` (String) AWSRole is used for the EC2 join method and is the the ARN of the AWS role that the auth server will assume in order to call the ec2 API.
+- `aws_role` (String) AWSRole is used for the EC2 join method and is the ARN of the AWS role that the auth server will assume in order to call the ec2 API.
 
 
 <a id="nestedatt--spec--azure"></a>

@@ -74,6 +74,7 @@ type InstanaIoInstanaAgentV1ManifestData struct {
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
 			KeysSecret        *string `tfsdk:"keys_secret" json:"keysSecret,omitempty"`
 			ListenAddress     *string `tfsdk:"listen_address" json:"listenAddress,omitempty"`
+			MinReadySeconds   *int64  `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
 			Mode              *string `tfsdk:"mode" json:"mode,omitempty"`
 			Pod               *struct {
 				Affinity *struct {
@@ -262,8 +263,9 @@ type InstanaIoInstanaAgentV1ManifestData struct {
 		Config_files *map[string]string `tfsdk:"config_files" json:"config.files,omitempty"`
 		K8s_sensor   *struct {
 			Deployment *struct {
-				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
-				Pod     *struct {
+				Enabled         *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+				MinReadySeconds *int64 `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+				Pod             *struct {
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"pod" json:"pod,omitempty"`
@@ -281,8 +283,9 @@ type InstanaIoInstanaAgentV1ManifestData struct {
 		} `tfsdk:"k8s_sensor" json:"k8s_sensor,omitempty"`
 		Kubernetes *struct {
 			Deployment *struct {
-				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
-				Pod     *struct {
+				Enabled         *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+				MinReadySeconds *int64 `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+				Pod             *struct {
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"pod" json:"pod,omitempty"`
@@ -612,6 +615,14 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 							"listen_address": schema.StringAttribute{
 								Description:         "ListenAddress is the IP addresses the Agent HTTP server will listen on. Normally this will just be localhost ('127.0.0.1'), the pod public IP and any container runtime bridge interfaces. Set 'listenAddress: *' for making the Agent listen on all network interfaces.",
 								MarkdownDescription: "ListenAddress is the IP addresses the Agent HTTP server will listen on. Normally this will just be localhost ('127.0.0.1'), the pod public IP and any container runtime bridge interfaces. Set 'listenAddress: *' for making the Agent listen on all network interfaces.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"min_ready_seconds": schema.Int64Attribute{
+								Description:         "The minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available",
+								MarkdownDescription: "The minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1906,6 +1917,14 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 										Computed:            false,
 									},
 
+									"min_ready_seconds": schema.Int64Attribute{
+										Description:         "The minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available",
+										MarkdownDescription: "The minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pod": schema.SingleNestedAttribute{
 										Description:         "Override pod resource requirements for the Kubernetes Sensor pods.",
 										MarkdownDescription: "Override pod resource requirements for the Kubernetes Sensor pods.",
@@ -2022,6 +2041,14 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 									"enabled": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"min_ready_seconds": schema.Int64Attribute{
+										Description:         "The minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available",
+										MarkdownDescription: "The minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

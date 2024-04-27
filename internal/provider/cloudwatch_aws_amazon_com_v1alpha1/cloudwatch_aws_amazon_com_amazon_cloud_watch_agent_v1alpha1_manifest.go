@@ -1320,6 +1320,7 @@ type CloudwatchAwsAmazonComAmazonCloudWatchAgentV1Alpha1ManifestData struct {
 				VolumePath        *string `tfsdk:"volume_path" json:"volumePath,omitempty"`
 			} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 		} `tfsdk:"volumes" json:"volumes,omitempty"`
+		WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -9961,6 +9962,14 @@ func (r *CloudwatchAwsAmazonComAmazonCloudWatchAgentV1Alpha1Manifest) Schema(_ c
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"working_dir": schema.StringAttribute{
+						Description:         "WorkingDir represents Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
+						MarkdownDescription: "WorkingDir represents Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

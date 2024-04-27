@@ -1283,6 +1283,7 @@ func allResources() []func() resource.Resource {
 		//image_toolkit_fluxcd_io_v1beta1.NewImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource,
 		//image_toolkit_fluxcd_io_v1beta2.NewImageToolkitFluxcdIoImagePolicyV1Beta2Resource,
 		//image_toolkit_fluxcd_io_v1beta2.NewImageToolkitFluxcdIoImageRepositoryV1Beta2Resource,
+		//image_toolkit_fluxcd_io_v1beta2.NewImageToolkitFluxcdIoImageUpdateAutomationV1Beta2Resource,
 		//imaging_ingestion_alvearie_org_v1alpha1.NewImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Resource,
 		//imaging_ingestion_alvearie_org_v1alpha1.NewImagingIngestionAlvearieOrgDicomEventDrivenIngestionV1Alpha1Resource,
 		//imaging_ingestion_alvearie_org_v1alpha1.NewImagingIngestionAlvearieOrgDicomInstanceBindingV1Alpha1Resource,

@@ -110,10 +110,12 @@ Optional:
 - `affinity` (Attributes) If specified, the Tenant Control Plane pod's scheduling constraints.More info: https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/ (see [below for nested schema](#nestedatt--spec--control_plane--deployment--affinity))
 - `extra_args` (Attributes) ExtraArgs allows adding additional arguments to the Control Plane components,such as kube-apiserver, controller-manager, and scheduler. WARNING - This optioncan override existing parameters and cause components to misbehave in unxpected ways.Only modify if you know what you are doing. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--extra_args))
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+- `pod_additional_metadata` (Attributes) AdditionalMetadata defines which additional metadata, such as labels and annotations, must be attached to the created resource. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--pod_additional_metadata))
 - `registry_settings` (Attributes) RegistrySettings allows to override the default images for the given Tenant Control Plane instance.It could be used to point to a different container registry rather than the public one. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--registry_settings))
 - `replicas` (Number)
 - `resources` (Attributes) Resources defines the amount of memory and CPU to allocate to each component of the Control Plane(kube-apiserver, controller-manager, and scheduler). (see [below for nested schema](#nestedatt--spec--control_plane--deployment--resources))
 - `runtime_class_name` (String) RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run the Tenant Control Plane pod. If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
+- `service_account_name` (String) ServiceAccountName allows to specify the service account to be mounted to the pods of the Control plane deployment
 - `strategy` (Attributes) Strategy describes how to replace existing pods with new ones for the given Tenant Control Plane.Default value is set to Rolling Update, with a blue/green strategy. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--strategy))
 - `tolerations` (Attributes List) If specified, the Tenant Control Plane pod's tolerations.More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/ (see [below for nested schema](#nestedatt--spec--control_plane--deployment--tolerations))
 - `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how the Tenant Control Plane pods ought to spread across topologydomains. Scheduler will schedule pods in a way which abides by the constraints.In case of nil underlying LabelSelector, the Kamaji one for the given Tenant Control Plane will be used.All topologySpreadConstraints are ANDed. (see [below for nested schema](#nestedatt--spec--control_plane--deployment--topology_spread_constraints))
@@ -2639,6 +2641,15 @@ Optional:
 - `controller_manager` (List of String)
 - `kine` (List of String) Available only if Kamaji is running using Kine as backing storage.
 - `scheduler` (List of String)
+
+
+<a id="nestedatt--spec--control_plane--deployment--pod_additional_metadata"></a>
+### Nested Schema for `spec.control_plane.deployment.pod_additional_metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `labels` (Map of String)
 
 
 <a id="nestedatt--spec--control_plane--deployment--registry_settings"></a>

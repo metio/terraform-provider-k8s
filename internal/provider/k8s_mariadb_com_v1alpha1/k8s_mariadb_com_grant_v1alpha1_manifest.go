@@ -158,8 +158,8 @@ func (r *K8SMariadbComGrantV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"host": schema.StringAttribute{
-						Description:         "Host to use in the Grant.",
-						MarkdownDescription: "Host to use in the Grant.",
+						Description:         "Host to use in the Grant. It can be localhost, an IP or '%'.",
+						MarkdownDescription: "Host to use in the Grant. It can be localhost, an IP or '%'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

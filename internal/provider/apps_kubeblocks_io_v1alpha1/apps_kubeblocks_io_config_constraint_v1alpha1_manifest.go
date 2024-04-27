@@ -112,9 +112,10 @@ type AppsKubeblocksIoConfigConstraintV1Alpha1ManifestData struct {
 		ToolsImageSpec   *struct {
 			MountPoint  *string `tfsdk:"mount_point" json:"mountPoint,omitempty"`
 			ToolConfigs *[]struct {
-				Command *[]string `tfsdk:"command" json:"command,omitempty"`
-				Image   *string   `tfsdk:"image" json:"image,omitempty"`
-				Name    *string   `tfsdk:"name" json:"name,omitempty"`
+				AsContainerImage *bool     `tfsdk:"as_container_image" json:"asContainerImage,omitempty"`
+				Command          *[]string `tfsdk:"command" json:"command,omitempty"`
+				Image            *string   `tfsdk:"image" json:"image,omitempty"`
+				Name             *string   `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"tool_configs" json:"toolConfigs,omitempty"`
 		} `tfsdk:"tools_image_spec" json:"toolsImageSpec,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -668,12 +669,20 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 								MarkdownDescription: "Specifies a list of settings of init containers that prepare tools for dynamic reload.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"as_container_image": schema.BoolAttribute{
+											Description:         "Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml reloadToolsImage: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''",
+											MarkdownDescription: "Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml reloadToolsImage: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"command": schema.ListAttribute{
 											Description:         "Specifies the command to be executed by the init container.",
 											MarkdownDescription: "Specifies the command to be executed by the init container.",
 											ElementType:         types.StringType,
-											Required:            true,
-											Optional:            false,
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 

@@ -326,6 +326,18 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 		} `tfsdk:"env_from" json:"envFrom,omitempty"`
+		GuiKubernetesService *struct {
+			AllocateLoadBalancerNodePorts *bool     `tfsdk:"allocate_load_balancer_node_ports" json:"allocateLoadBalancerNodePorts,omitempty"`
+			ExternalTrafficPolicy         *string   `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+			LoadBalancerIP                *string   `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
+			LoadBalancerSourceRanges      *[]string `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+			Metadata                      *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			} `tfsdk:"metadata" json:"metadata,omitempty"`
+			SessionAffinity *string `tfsdk:"session_affinity" json:"sessionAffinity,omitempty"`
+			Type            *string `tfsdk:"type" json:"type,omitempty"`
+		} `tfsdk:"gui_kubernetes_service" json:"guiKubernetesService,omitempty"`
 		Image            *string `tfsdk:"image" json:"image,omitempty"`
 		ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 		ImagePullSecrets *[]struct {
@@ -4073,6 +4085,94 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Computed: false,
 					},
 
+					"gui_kubernetes_service": schema.SingleNestedAttribute{
+						Description:         "GuiKubernetesService defines a template for a Kubernetes Service object to connect to MaxScale's GUI.",
+						MarkdownDescription: "GuiKubernetesService defines a template for a Kubernetes Service object to connect to MaxScale's GUI.",
+						Attributes: map[string]schema.Attribute{
+							"allocate_load_balancer_node_ports": schema.BoolAttribute{
+								Description:         "AllocateLoadBalancerNodePorts Service field.",
+								MarkdownDescription: "AllocateLoadBalancerNodePorts Service field.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"external_traffic_policy": schema.StringAttribute{
+								Description:         "ExternalTrafficPolicy Service field.",
+								MarkdownDescription: "ExternalTrafficPolicy Service field.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_ip": schema.StringAttribute{
+								Description:         "LoadBalancerIP Service field.",
+								MarkdownDescription: "LoadBalancerIP Service field.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_source_ranges": schema.ListAttribute{
+								Description:         "LoadBalancerSourceRanges Service field.",
+								MarkdownDescription: "LoadBalancerSourceRanges Service field.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"metadata": schema.SingleNestedAttribute{
+								Description:         "Metadata to be added to the Service metadata.",
+								MarkdownDescription: "Metadata to be added to the Service metadata.",
+								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "Annotations to be added to children resources.",
+										MarkdownDescription: "Annotations to be added to children resources.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"labels": schema.MapAttribute{
+										Description:         "Labels to be added to children resources.",
+										MarkdownDescription: "Labels to be added to children resources.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"session_affinity": schema.StringAttribute{
+								Description:         "SessionAffinity Service field.",
+								MarkdownDescription: "SessionAffinity Service field.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"type": schema.StringAttribute{
+								Description:         "Type is the Service type. One of 'ClusterIP', 'NodePort' or 'LoadBalancer'. If not defined, it defaults to 'ClusterIP'.",
+								MarkdownDescription: "Type is the Service type. One of 'ClusterIP', 'NodePort' or 'LoadBalancer'. If not defined, it defaults to 'ClusterIP'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("ClusterIP", "NodePort", "LoadBalancer"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"image": schema.StringAttribute{
 						Description:         "Image name to be used by the MaxScale instances. The supported format is '<image>:<tag>'.Only MaxScale official images are supported.",
 						MarkdownDescription: "Image name to be used by the MaxScale instances. The supported format is '<image>:<tag>'.Only MaxScale official images are supported.",
@@ -5106,8 +5206,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"kubernetes_service": schema.SingleNestedAttribute{
-						Description:         "Service defines templates to configure the Kubernetes Service object.",
-						MarkdownDescription: "Service defines templates to configure the Kubernetes Service object.",
+						Description:         "KubernetesService defines a template for a Kubernetes Service object to connect to MaxScale.",
+						MarkdownDescription: "KubernetesService defines a template for a Kubernetes Service object to connect to MaxScale.",
 						Attributes: map[string]schema.Attribute{
 							"allocate_load_balancer_node_ports": schema.BoolAttribute{
 								Description:         "AllocateLoadBalancerNodePorts Service field.",

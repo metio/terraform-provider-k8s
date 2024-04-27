@@ -3,12 +3,12 @@
 page_title: "k8s_apps_kubeblocks_io_ops_definition_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apps.kubeblocks.io"
 description: |-
-  OpsDefinition is the Schema for the opsdefinitions API
+  OpsDefinition is the Schema for the OpsDefinitions API.
 ---
 
 # k8s_apps_kubeblocks_io_ops_definition_v1alpha1_manifest (Data Source)
 
-OpsDefinition is the Schema for the opsdefinitions API
+OpsDefinition is the Schema for the OpsDefinitions API.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_apps_kubeblocks_io_ops_definition_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) OpsDefinitionSpec defines the desired state of OpsDefinition (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) OpsDefinitionSpec defines the desired state of OpsDefinition. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -54,42 +54,42 @@ Optional:
 
 Required:
 
-- `actions` (Attributes List) The actions to be executed in the opsRequest are performed sequentially. (see [below for nested schema](#nestedatt--spec--actions))
+- `actions` (Attributes List) Specifies a list of OpsAction where each customized action is executed sequentially. (see [below for nested schema](#nestedatt--spec--actions))
 
 Optional:
 
-- `component_definition_refs` (Attributes List) Specifies the types of componentDefinitions supported by the operation. It can reference certain variables of the componentDefinition. If set, any component not meeting these conditions will be intercepted. (see [below for nested schema](#nestedatt--spec--component_definition_refs))
-- `parameters_schema` (Attributes) Describes the schema used for validation, pruning, and defaulting. (see [below for nested schema](#nestedatt--spec--parameters_schema))
-- `pre_conditions` (Attributes List) Specifies the preconditions that must be met to run the actions for the operation. if set, it will check the condition before the component run this operation. (see [below for nested schema](#nestedatt--spec--pre_conditions))
-- `target_pod_templates` (Attributes List) Defines the targetPodTemplate to be referenced by the action. (see [below for nested schema](#nestedatt--spec--target_pod_templates))
+- `component_definition_refs` (Attributes List) Specifies a list of ComponentDefinition for Components associated with this OpsDefinition. It also includes connection credentials (address and account) for each Component. (see [below for nested schema](#nestedatt--spec--component_definition_refs))
+- `parameters_schema` (Attributes) Specifies the schema for validating the data types and value ranges of parameters in OpsActions before their usage. (see [below for nested schema](#nestedatt--spec--parameters_schema))
+- `pre_conditions` (Attributes List) Specifies the preconditions that must be met to run the actions for the operation. if set, it will check the condition before the Component runs this operation. Example: '''yaml preConditions: - rule: expression: '{{ eq .component.status.phase 'Running' }}' message: Component is not in Running status. ''' (see [below for nested schema](#nestedatt--spec--pre_conditions))
+- `target_pod_templates` (Attributes List) Specifies a list of TargetPodTemplate, each designed to select a specific Pod and extract selected runtime info from its PodSpec. The extracted information, such as environment variables, volumes and tolerations, are then injected into Jobs or Pods that execute the OpsActions defined in 'actions'. (see [below for nested schema](#nestedatt--spec--target_pod_templates))
 
 <a id="nestedatt--spec--actions"></a>
 ### Nested Schema for `spec.actions`
 
 Required:
 
-- `name` (String) action name.
+- `name` (String) Specifies the name of the OpsAction.
 
 Optional:
 
-- `exec` (Attributes) Represents the exec action. This will call the kubectl exec interface. (see [below for nested schema](#nestedatt--spec--actions--exec))
-- `failure_policy` (String) failurePolicy is the failure policy of the action. valid values Fail and Ignore. - Fail: if the action failed, the opsRequest will be failed. - Ignore: opsRequest will ignore the failure if the action is failed.
-- `parameters` (List of String) Refers to the parameter of the ParametersSchema. The parameter will be used in the action. If it is a 'workload' and 'exec' Action, they will be injected into the corresponding environment variable. If it is a 'resourceModifier' Action, parameter can be referenced using $() in completionProbe.matchExpressions and JsonPatches[*].Value.
-- `resource_modifier` (Attributes) Specifies the resource modifier to update the custom resource. (see [below for nested schema](#nestedatt--spec--actions--resource_modifier))
-- `workload` (Attributes) Indicates the workload action and a corresponding workload will be created to execute this action. (see [below for nested schema](#nestedatt--spec--actions--workload))
+- `exec` (Attributes) Specifies the configuration for a 'exec' action. It creates a Pod and invokes a 'kubectl exec' to run command inside a specified container with the target Pod. (see [below for nested schema](#nestedatt--spec--actions--exec))
+- `failure_policy` (String) Specifies the failure policy of the OpsAction. Valid values are:  - 'Fail': Marks the entire OpsRequest as failed if the action fails. - 'Ignore': The OpsRequest continues processing despite the failure of the action.
+- `parameters` (List of String) Specifies the parameters for the OpsAction. Their usage varies based on the action type:  - For 'workload' or 'exec' actions, parameters are injected as environment variables. - For 'resourceModifier' actions, parameter can be referenced using $() in fields 'resourceModifier.completionProbe.matchExpressions' and 'resourceModifier.jsonPatches[*].value'.
+- `resource_modifier` (Attributes) Specifies the configuration for a 'resourceModifier' action. This action allows for modifications to existing K8s objects.  Note: This feature has not been implemented yet. (see [below for nested schema](#nestedatt--spec--actions--resource_modifier))
+- `workload` (Attributes) Specifies the configuration for a 'workload' action. This action leads to the creation of a K8s workload, such as a Pod or Job, to execute specified tasks. (see [below for nested schema](#nestedatt--spec--actions--workload))
 
 <a id="nestedatt--spec--actions--exec"></a>
 ### Nested Schema for `spec.actions.exec`
 
 Required:
 
-- `command` (List of String) The command to execute.
-- `target_pod_template` (String) Refers to the spec.targetPodTemplates. Defines the target pods that need to execute exec actions.
+- `command` (List of String) The command to be executed via 'kubectl exec --'.
+- `target_pod_template` (String) Specifies a TargetPodTemplate defined in the 'opsDefinition.spec.targetPodTemplates'.
 
 Optional:
 
-- `backoff_limit` (Number) Specifies the number of retries before marking the action as failed.
-- `container_name` (String) The name of the container in the target pod to execute the command. If not set, the first container is used.
+- `backoff_limit` (Number) Specifies the number of retries allowed before marking the action as failed.
+- `container_name` (String) The name of the container in the target pod where the command should be executed. This corresponds to the '-c {containerName}' option in 'kubectl exec'.  If not set, the first container is used.
 
 
 <a id="nestedatt--spec--actions--resource_modifier"></a>
@@ -97,9 +97,9 @@ Optional:
 
 Required:
 
-- `completion_probe` (Attributes) Provides a method to check if the action has been completed. (see [below for nested schema](#nestedatt--spec--actions--resource_modifier--completion_probe))
-- `json_patches` (Attributes List) Defines the set of patches that are used to perform updates on the resource object. (see [below for nested schema](#nestedatt--spec--actions--resource_modifier--json_patches))
-- `resource` (Attributes) Refers to the Kubernetes objects that are required to be updated. (see [below for nested schema](#nestedatt--spec--actions--resource_modifier--resource))
+- `completion_probe` (Attributes) Specifies a method to determine if the action has been completed.  Note: This feature has not been implemented yet. (see [below for nested schema](#nestedatt--spec--actions--resource_modifier--completion_probe))
+- `json_patches` (Attributes List) Specifies a list of patches for modifying the object. (see [below for nested schema](#nestedatt--spec--actions--resource_modifier--json_patches))
+- `resource` (Attributes) Specifies the K8s object that is to be updated. (see [below for nested schema](#nestedatt--spec--actions--resource_modifier--resource))
 
 <a id="nestedatt--spec--actions--resource_modifier--completion_probe"></a>
 ### Nested Schema for `spec.actions.resource_modifier.completion_probe`
@@ -111,19 +111,19 @@ Required:
 Optional:
 
 - `initial_delay_seconds` (Number) Specifies the number of seconds to wait after the resource has been patched before initiating completion probes. The default value is 5 seconds, with a minimum value of 1.
-- `period_seconds` (Number) Indicates the frequency (in seconds) at which the probe should be performed. The default value is 5 seconds, with a minimum value of 1.
-- `timeout_seconds` (Number) Defines the number of seconds after which the probe times out. The default value is 60 seconds, with a minimum value of 1.
+- `period_seconds` (Number) Specifies the frequency (in seconds) at which the probe should be performed. The default value is 5 seconds, with a minimum value of 1.
+- `timeout_seconds` (Number) Specifies the number of seconds after which the probe times out. The default value is 60 seconds, with a minimum value of 1.
 
 <a id="nestedatt--spec--actions--resource_modifier--resource--match_expressions"></a>
 ### Nested Schema for `spec.actions.resource_modifier.resource.match_expressions`
 
 Required:
 
-- `success` (String) Defines a success condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, using '{{ eq .spec.replicas 1 }}'
+- `success` (String) Specifies a success condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, using '{{ eq .spec.replicas 1 }}'
 
 Optional:
 
-- `failure` (String) Defines a failure condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, you can use '{{ eq .spec.replicas 1 }}'.
+- `failure` (String) Specifies a failure condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, you can use '{{ eq .spec.replicas 1 }}'.
 
 
 
@@ -132,9 +132,9 @@ Optional:
 
 Required:
 
-- `op` (String) Represents the type of JSON patch operation. It supports the following values: 'add', 'remove', 'replace'.
-- `path` (String) Represents the json patch path.
-- `value` (String) Represents the value to be used in the JSON patch operation.
+- `op` (String) Specifies the type of JSON patch operation. It supports the following values: 'add', 'remove', 'replace'.
+- `path` (String) Specifies the json patch path.
+- `value` (String) Specifies the value to be used in the JSON patch operation.
 
 
 <a id="nestedatt--spec--actions--resource_modifier--resource"></a>
@@ -142,7 +142,7 @@ Required:
 
 Required:
 
-- `api_group` (String) Defines the group for the resource being referenced. If not specified, the referenced Kind must belong to the core API group. For all third-party types, this is mandatory.
+- `api_group` (String) Specifies the group for the resource being referenced. If not specified, the referenced Kind must belong to the core API group. For all third-party types, this is mandatory.
 - `kind` (String) Specifies the type of resource being referenced.
 - `name` (String) Indicates the name of the resource being referenced.
 
@@ -153,13 +153,13 @@ Required:
 
 Required:
 
-- `pod_spec` (Attributes) Represents the pod spec of the workload. (see [below for nested schema](#nestedatt--spec--actions--workload--pod_spec))
-- `type` (String) Defines the workload type of the action. Valid values include 'Job' and 'Pod'. 'Job' creates a job to execute the action. 'Pod' creates a pod to execute the action. Note that unlike jobs, if a pod is manually deleted, it will not consume backoffLimit times.
+- `pod_spec` (Attributes) Specifies the PodSpec of the 'workload' action. (see [below for nested schema](#nestedatt--spec--actions--workload--pod_spec))
+- `type` (String) Defines the workload type of the action. Valid values include 'Job' and 'Pod'.  - 'Job': Creates a Job to execute the action. - 'Pod': Creates a Pod to execute the action. Note: unlike Jobs, manually deleting a Pod does not affect the 'backoffLimit'.
 
 Optional:
 
-- `backoff_limit` (Number) Specifies the number of retries before marking the action as failed.
-- `target_pod_template` (String) Refers to the spec.targetPodTemplates. This field defines the target pod for the current action.
+- `backoff_limit` (Number) Specifies the number of retries allowed before marking the action as failed.
+- `target_pod_template` (String) Specifies a TargetPodTemplate defined in the 'opsDefinition.spec.targetPodTemplates'.
 
 <a id="nestedatt--spec--actions--workload--pod_spec"></a>
 ### Nested Schema for `spec.actions.workload.pod_spec`
@@ -3364,12 +3364,12 @@ Optional:
 
 Required:
 
-- `name` (String) Refers to the name of the component definition. This is a required field with a maximum length of 32 characters.
+- `name` (String) Specifies the name of the ComponentDefinition.
 
 Optional:
 
-- `account_name` (String) Represents the account name of the component. If provided, the account username and password will be injected into the job environment variables 'KB_ACCOUNT_USERNAME' and 'KB_ACCOUNT_PASSWORD'.
-- `service_name` (String) References the name of the service. If provided, the service name and ports will be mapped to the job environment variables 'KB_COMP_SVC_NAME' and 'KB_COMP_SVC_PORT_$(portName)'. Note that the portName will replace the characters '-' with '_' and convert to uppercase.
+- `account_name` (String) Specifies the account name associated with the Component. If set, the corresponding account username and password are injected into containers' environment variables 'KB_ACCOUNT_USERNAME' and 'KB_ACCOUNT_PASSWORD'.
+- `service_name` (String) Specifies the name of the Service. If set, the service name is injected as the 'KB_COMP_SVC_NAME' environment variable in the containers, and each service port is mapped to a corresponding environment variable named 'KB_COMP_SVC_PORT_$(portName)'. The 'portName' is transformed by replacing '-' with '_' and converting to uppercase.
 
 
 <a id="nestedatt--spec--parameters_schema"></a>
@@ -3377,7 +3377,7 @@ Optional:
 
 Optional:
 
-- `open_apiv3_schema` (Map of String) Defines the OpenAPI v3 schema used for the parameter schema. The supported property types include: - string - number - integer - array: Note that only items of string type are supported.
+- `open_apiv3_schema` (Map of String) Defines the schema for parameters using the OpenAPI v3. The supported property types include: - string - number - integer - array: Note that only items of string type are supported.
 
 
 <a id="nestedatt--spec--pre_conditions"></a>
@@ -3385,15 +3385,15 @@ Optional:
 
 Optional:
 
-- `rule` (Attributes) Defines the conditions under which the operation can be executed. (see [below for nested schema](#nestedatt--spec--pre_conditions--rule))
+- `rule` (Attributes) Specifies the conditions that must be met for the operation to execute. (see [below for nested schema](#nestedatt--spec--pre_conditions--rule))
 
 <a id="nestedatt--spec--pre_conditions--rule"></a>
 ### Nested Schema for `spec.pre_conditions.rule`
 
 Required:
 
-- `expression` (String) Defines how the operation can be executed using a Go template expression. Should return either 'true' or 'false'. The built-in objects available for use in the expression include: - 'params': These are the input parameters. - 'cluster': This is the referenced cluster object. - 'component': This is the referenced component object.
-- `message` (String) Reported if the rule is not matched.
+- `expression` (String) Specifies a Go template expression that determines how the operation can be executed. The return value must be either 'true' or 'false'. Available built-in objects that can be referenced in the expression include:  - 'params': Input parameters. - 'cluster': The referenced Cluster object. - 'component': The referenced Component object.
+- `message` (String) Specifies the error or status message reported if the 'expression' does not evaluate to 'true'.
 
 
 
@@ -3402,21 +3402,21 @@ Required:
 
 Required:
 
-- `name` (String) Represents the template name.
-- `pod_selector` (Attributes) Used to identify the target pod. (see [below for nested schema](#nestedatt--spec--target_pod_templates--pod_selector))
+- `name` (String) Specifies the name of the TargetPodTemplate.
+- `pod_selector` (Attributes) Used to select the target Pod from which environment variables and volumes are extracted from its PodSpec. (see [below for nested schema](#nestedatt--spec--target_pod_templates--pod_selector))
 
 Optional:
 
-- `vars` (Attributes List) Defines the environment variables that need to be referenced from the target component pod, and will be injected into the pod's containers. (see [below for nested schema](#nestedatt--spec--target_pod_templates--vars))
-- `volume_mounts` (Attributes List) Specifies the mount points for the volumes defined in the 'Volumes' section for the action pod. (see [below for nested schema](#nestedatt--spec--target_pod_templates--volume_mounts))
+- `vars` (Attributes List) Specifies a list of environment variables to be extracted from a selected Pod, and injected into the containers executing each OpsAction. (see [below for nested schema](#nestedatt--spec--target_pod_templates--vars))
+- `volume_mounts` (Attributes List) Specifies a list of volumes, along with their respective mount points, that are to be extracted from a selected Pod, and mounted onto the containers executing each OpsAction. This allows the containers to access shared or persistent data necessary for the operation. (see [below for nested schema](#nestedatt--spec--target_pod_templates--volume_mounts))
 
 <a id="nestedatt--spec--target_pod_templates--pod_selector"></a>
 ### Nested Schema for `spec.target_pod_templates.pod_selector`
 
 Optional:
 
-- `availability` (String) Indicates the desired availability status of the pods to be selected. valid values: - 'Available': selects only available pods and terminates the action if none are found. - 'PreferredAvailable': prioritizes the selection of available pods。 - 'None': there are no requirements for the availability of pods.
-- `role` (String) Specifies the role of the target pod.
+- `availability` (String) Specifies the pod selection criteria based on their availability: - 'Available': Only selects available pods, and terminates the action if none are found. - 'PreferredAvailable': Prioritizes available pods but considers others if none available. - 'None': No availability requirements.
+- `role` (String) Specifies the role of the target Pod.
 - `selection_policy` (String) Defines the policy for selecting the target pod when multiple pods match the podSelector. It can be either 'Any' (select any one pod that matches the podSelector) or 'All' (select all pods that match the podSelector).
 
 
@@ -3425,8 +3425,8 @@ Optional:
 
 Required:
 
-- `name` (String) Specifies the name of the variable. This must be a C_IDENTIFIER.
-- `value_from` (Attributes) Defines the source for the variable's value. (see [below for nested schema](#nestedatt--spec--target_pod_templates--vars--value_from))
+- `name` (String) Specifies the name of the environment variable to be injected into Pods executing OpsActions. It must conform to the C_IDENTIFIER format, which includes only alphanumeric characters and underscores, and cannot begin with a digit.
+- `value_from` (Attributes) Specifies the source of the environment variable's value. (see [below for nested schema](#nestedatt--spec--target_pod_templates--vars--value_from))
 
 <a id="nestedatt--spec--target_pod_templates--vars--value_from"></a>
 ### Nested Schema for `spec.target_pod_templates.vars.value_from`
@@ -3434,18 +3434,18 @@ Required:
 Optional:
 
 - `env_ref` (Attributes) Specifies a reference to a specific environment variable within a container. Used to specify the source of the variable, which can be either 'env' or 'envFrom'. (see [below for nested schema](#nestedatt--spec--target_pod_templates--vars--value_from--env_ref))
-- `field_path` (String) Represents the JSONPath of the target pod. This is used to specify the exact location of the data within the JSON structure of the pod.
+- `field_path` (String) Represents the JSONPath expression pointing to the specific data within the JSON structure of the target Pod. It is used to extract precise data locations for operations on the Pod.
 
 <a id="nestedatt--spec--target_pod_templates--vars--value_from--env_ref"></a>
 ### Nested Schema for `spec.target_pod_templates.vars.value_from.env_ref`
 
 Required:
 
-- `env_name` (String) Defines the name of the environment variable.
+- `env_name` (String) Defines the name of the environment variable. This name can originate from an 'env' entry or be a data key from an 'envFrom' source.
 
 Optional:
 
-- `container_name` (String) Specifies the name of the container as defined in the componentDefinition or as injected by the kubeBlocks controller. If not specified, the first container will be used by default.
+- `container_name` (String) Specifies the container name in the target Pod. If not specified, the first container will be used by default.
 
 
 

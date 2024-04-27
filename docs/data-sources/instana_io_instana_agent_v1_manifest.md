@@ -120,6 +120,7 @@ Optional:
 - `key` (String) Key is the secret token which your agent uses to authenticate to Instana's servers.
 - `keys_secret` (String) Rather than specifying the Key and optionally the DownloadKey, you can 'bring your own secret' creating it in the namespace in which you install the 'instana-agent' and specify its name in the 'KeysSecret' field. The secret you create must contain a field called 'key' and optionally one called 'downloadKey', which contain, respectively, the values you'd otherwise set in '.agent.key' and 'agent.downloadKey'.
 - `listen_address` (String) ListenAddress is the IP addresses the Agent HTTP server will listen on. Normally this will just be localhost ('127.0.0.1'), the pod public IP and any container runtime bridge interfaces. Set 'listenAddress: *' for making the Agent listen on all network interfaces.
+- `min_ready_seconds` (Number) The minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available
 - `mode` (String) Set agent mode, possible options are APM, INFRASTRUCTURE or AWS. KUBERNETES should not be used but instead enabled via 'kubernetes.deployment.enabled: true'.
 - `pod` (Attributes) Override Agent Pod specific settings such as annotations, labels and resources. (see [below for nested schema](#nestedatt--spec--agent--pod))
 - `proxy_host` (String) proxyHost sets the INSTANA_AGENT_PROXY_HOST environment variable.
@@ -629,6 +630,7 @@ Optional:
 Optional:
 
 - `enabled` (Boolean)
+- `min_ready_seconds` (Number) The minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available
 - `pod` (Attributes) Override pod resource requirements for the Kubernetes Sensor pods. (see [below for nested schema](#nestedatt--spec--k8s_sensor--deployment--pod))
 - `replicas` (Number) Specify the number of replicas for the Kubernetes Sensor.
 
@@ -676,6 +678,7 @@ Optional:
 Optional:
 
 - `enabled` (Boolean)
+- `min_ready_seconds` (Number) The minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available
 - `pod` (Attributes) Override pod resource requirements for the Kubernetes Sensor pods. (see [below for nested schema](#nestedatt--spec--kubernetes--deployment--pod))
 - `replicas` (Number) Specify the number of replicas for the Kubernetes Sensor.
 

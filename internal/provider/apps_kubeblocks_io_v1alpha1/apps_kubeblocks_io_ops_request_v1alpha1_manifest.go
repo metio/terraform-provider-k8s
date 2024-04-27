@@ -57,8 +57,8 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 		ClusterRef *string `tfsdk:"cluster_ref" json:"clusterRef,omitempty"`
 		CustomSpec *struct {
 			Components *[]struct {
-				Name       *string `tfsdk:"name" json:"name,omitempty"`
-				Parameters *[]struct {
+				ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
+				Parameters    *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"parameters" json:"parameters,omitempty"`
@@ -139,62 +139,19 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 					Value             *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 				VolumeClaimTemplates *[]struct {
-					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
-					Metadata   *struct {
-						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-						Finalizers  *[]string          `tfsdk:"finalizers" json:"finalizers,omitempty"`
-						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-						Name        *string            `tfsdk:"name" json:"name,omitempty"`
-						Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-					} `tfsdk:"metadata" json:"metadata,omitempty"`
+					Name *string `tfsdk:"name" json:"name,omitempty"`
 					Spec *struct {
-						AccessModes *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
-						DataSource  *struct {
-							ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-							Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-							Name     *string `tfsdk:"name" json:"name,omitempty"`
-						} `tfsdk:"data_source" json:"dataSource,omitempty"`
-						DataSourceRef *struct {
-							ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-							Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
-							Name      *string `tfsdk:"name" json:"name,omitempty"`
-							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-						} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
-						Resources *struct {
+						AccessModes *map[string]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
+						Resources   *struct {
 							Claims *[]struct {
 								Name *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
-						Selector *struct {
-							MatchExpressions *[]struct {
-								Key      *string   `tfsdk:"key" json:"key,omitempty"`
-								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-						} `tfsdk:"selector" json:"selector,omitempty"`
 						StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
 						VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-						VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 					} `tfsdk:"spec" json:"spec,omitempty"`
-					Status *struct {
-						AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
-						AllocatedResourceStatuses *map[string]string `tfsdk:"allocated_resource_statuses" json:"allocatedResourceStatuses,omitempty"`
-						AllocatedResources        *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
-						Capacity                  *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
-						Conditions                *[]struct {
-							LastProbeTime      *string `tfsdk:"last_probe_time" json:"lastProbeTime,omitempty"`
-							LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
-							Message            *string `tfsdk:"message" json:"message,omitempty"`
-							Reason             *string `tfsdk:"reason" json:"reason,omitempty"`
-							Status             *string `tfsdk:"status" json:"status,omitempty"`
-							Type               *string `tfsdk:"type" json:"type,omitempty"`
-						} `tfsdk:"conditions" json:"conditions,omitempty"`
-						Phase *string `tfsdk:"phase" json:"phase,omitempty"`
-					} `tfsdk:"status" json:"status,omitempty"`
 				} `tfsdk:"volume_claim_templates" json:"volumeClaimTemplates,omitempty"`
 				VolumeMounts *[]struct {
 					MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
@@ -563,10 +520,10 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 			} `tfsdk:"point_in_time" json:"pointInTime,omitempty"`
 		} `tfsdk:"restore_from" json:"restoreFrom,omitempty"`
 		RestoreSpec *struct {
-			BackupName                  *string `tfsdk:"backup_name" json:"backupName,omitempty"`
-			EffectiveCommonComponentDef *bool   `tfsdk:"effective_common_component_def" json:"effectiveCommonComponentDef,omitempty"`
-			RestoreTimeStr              *string `tfsdk:"restore_time_str" json:"restoreTimeStr,omitempty"`
-			VolumeRestorePolicy         *string `tfsdk:"volume_restore_policy" json:"volumeRestorePolicy,omitempty"`
+			BackupName                        *string `tfsdk:"backup_name" json:"backupName,omitempty"`
+			DoReadyRestoreAfterClusterRunning *bool   `tfsdk:"do_ready_restore_after_cluster_running" json:"doReadyRestoreAfterClusterRunning,omitempty"`
+			RestoreTimeStr                    *string `tfsdk:"restore_time_str" json:"restoreTimeStr,omitempty"`
+			VolumeRestorePolicy               *string `tfsdk:"volume_restore_policy" json:"volumeRestorePolicy,omitempty"`
 		} `tfsdk:"restore_spec" json:"restoreSpec,omitempty"`
 		ScriptSpec *struct {
 			ComponentName *string   `tfsdk:"component_name" json:"componentName,omitempty"`
@@ -610,7 +567,14 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 		} `tfsdk:"upgrade" json:"upgrade,omitempty"`
 		VerticalScaling *[]map[string]string `tfsdk:"vertical_scaling" json:"verticalScaling,omitempty"`
 		VolumeExpansion *[]struct {
-			ComponentName        *string `tfsdk:"component_name" json:"componentName,omitempty"`
+			ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
+			Instances     *[]struct {
+				Name                 *string `tfsdk:"name" json:"name,omitempty"`
+				VolumeClaimTemplates *[]struct {
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Storage *string `tfsdk:"storage" json:"storage,omitempty"`
+				} `tfsdk:"volume_claim_templates" json:"volumeClaimTemplates,omitempty"`
+			} `tfsdk:"instances" json:"instances,omitempty"`
 			VolumeClaimTemplates *[]struct {
 				Name    *string `tfsdk:"name" json:"name,omitempty"`
 				Storage *string `tfsdk:"storage" json:"storage,omitempty"`
@@ -697,36 +661,36 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 				MarkdownDescription: "OpsRequestSpec defines the desired state of OpsRequest",
 				Attributes: map[string]schema.Attribute{
 					"backup_spec": schema.SingleNestedAttribute{
-						Description:         "Defines how to backup the cluster.",
-						MarkdownDescription: "Defines how to backup the cluster.",
+						Description:         "Specifies the parameters to backup a Cluster.",
+						MarkdownDescription: "Specifies the parameters to backup a Cluster.",
 						Attributes: map[string]schema.Attribute{
 							"backup_method": schema.StringAttribute{
-								Description:         "Defines the backup method that is defined in backupPolicy.",
-								MarkdownDescription: "Defines the backup method that is defined in backupPolicy.",
+								Description:         "Specifies the name of BackupMethod. The specified BackupMethod must be defined in the BackupPolicy.",
+								MarkdownDescription: "Specifies the name of BackupMethod. The specified BackupMethod must be defined in the BackupPolicy.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"backup_name": schema.StringAttribute{
-								Description:         "Specifies the name of the backup.",
-								MarkdownDescription: "Specifies the name of the backup.",
+								Description:         "Specifies the name of the Backup custom resource.",
+								MarkdownDescription: "Specifies the name of the Backup custom resource.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"backup_policy_name": schema.StringAttribute{
-								Description:         "Indicates the backupPolicy applied to perform this backup.",
-								MarkdownDescription: "Indicates the backupPolicy applied to perform this backup.",
+								Description:         "Indicates the name of the BackupPolicy applied to perform this Backup.",
+								MarkdownDescription: "Indicates the name of the BackupPolicy applied to perform this Backup.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"deletion_policy": schema.StringAttribute{
-								Description:         "Determines whether the backup contents stored in backup repository should be deleted when the backup custom resource is deleted. Supported values are 'Retain' and 'Delete'. - 'Retain' means that the backup content and its physical snapshot on backup repository are kept. - 'Delete' means that the backup content and its physical snapshot on backup repository are deleted.",
-								MarkdownDescription: "Determines whether the backup contents stored in backup repository should be deleted when the backup custom resource is deleted. Supported values are 'Retain' and 'Delete'. - 'Retain' means that the backup content and its physical snapshot on backup repository are kept. - 'Delete' means that the backup content and its physical snapshot on backup repository are deleted.",
+								Description:         "Determines whether the backup contents stored in backup repository should be deleted when the Backup custom resource is deleted. Supported values are 'Retain' and 'Delete'. - 'Retain' means that the backup content and its physical snapshot on backup repository are kept. - 'Delete' means that the backup content and its physical snapshot on backup repository are deleted.",
+								MarkdownDescription: "Determines whether the backup contents stored in backup repository should be deleted when the Backup custom resource is deleted. Supported values are 'Retain' and 'Delete'. - 'Retain' means that the backup content and its physical snapshot on backup repository are kept. - 'Delete' means that the backup content and its physical snapshot on backup repository are deleted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -736,16 +700,16 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"parent_backup_name": schema.StringAttribute{
-								Description:         "If backupType is incremental, parentBackupName is required.",
-								MarkdownDescription: "If backupType is incremental, parentBackupName is required.",
+								Description:         "If the specified BackupMethod is incremental, 'parentBackupName' is required.",
+								MarkdownDescription: "If the specified BackupMethod is incremental, 'parentBackupName' is required.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"retention_period": schema.StringAttribute{
-								Description:         "Determines a duration up to which the backup should be kept. Controller will remove all backups that are older than the RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the backups of last 30 days. Sample duration format:  - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m  You can also combine the above durations. For example: 30d12h30m. If not set, the backup will be kept forever.",
-								MarkdownDescription: "Determines a duration up to which the backup should be kept. Controller will remove all backups that are older than the RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the backups of last 30 days. Sample duration format:  - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m  You can also combine the above durations. For example: 30d12h30m. If not set, the backup will be kept forever.",
+								Description:         "Determines the duration for which the Backup custom resources should be retained.  The controller will automatically remove all Backup objects that are older than the specified RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the Backup objects of last 30 days. Sample duration format:  - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m  You can also combine the above durations. For example: 30d12h30m. If not set, the Backup objects will be kept forever.  If the 'deletionPolicy' is set to 'Delete', then the associated backup data will also be deleted along with the Backup object. Otherwise, only the Backup custom resource will be deleted.",
+								MarkdownDescription: "Determines the duration for which the Backup custom resources should be retained.  The controller will automatically remove all Backup objects that are older than the specified RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the Backup objects of last 30 days. Sample duration format:  - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m  You can also combine the above durations. For example: 30d12h30m. If not set, the Backup objects will be kept forever.  If the 'deletionPolicy' is set to 'Delete', then the associated backup data will also be deleted along with the Backup object. Otherwise, only the Backup custom resource will be deleted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -757,41 +721,41 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"cancel": schema.BoolAttribute{
-						Description:         "Defines the action to cancel the 'Pending/Creating/Running' opsRequest, supported types: 'VerticalScaling/HorizontalScaling'. Once set to true, this opsRequest will be canceled and modifying this property again will not take effect.",
-						MarkdownDescription: "Defines the action to cancel the 'Pending/Creating/Running' opsRequest, supported types: 'VerticalScaling/HorizontalScaling'. Once set to true, this opsRequest will be canceled and modifying this property again will not take effect.",
+						Description:         "Indicates whether the current operation should be canceled and terminated gracefully if it's in the 'Pending', 'Creating', or 'Running' state.  This field applies only to 'VerticalScaling' and 'HorizontalScaling' opsRequests.  Note: Setting 'cancel' to true is irreversible; further modifications to this field are ineffective.",
+						MarkdownDescription: "Indicates whether the current operation should be canceled and terminated gracefully if it's in the 'Pending', 'Creating', or 'Running' state.  This field applies only to 'VerticalScaling' and 'HorizontalScaling' opsRequests.  Note: Setting 'cancel' to true is irreversible; further modifications to this field are ineffective.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"cluster_ref": schema.StringAttribute{
-						Description:         "References the cluster object.",
-						MarkdownDescription: "References the cluster object.",
+						Description:         "Specifies the name of the Cluster resource that this operation is targeting.",
+						MarkdownDescription: "Specifies the name of the Cluster resource that this operation is targeting.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"custom_spec": schema.SingleNestedAttribute{
-						Description:         "Specifies a custom operation as defined by OpsDefinition.",
-						MarkdownDescription: "Specifies a custom operation as defined by OpsDefinition.",
+						Description:         "Specifies a custom operation defined by OpsDefinition.",
+						MarkdownDescription: "Specifies a custom operation defined by OpsDefinition.",
 						Attributes: map[string]schema.Attribute{
 							"components": schema.ListNestedAttribute{
-								Description:         "Defines which components need to perform the actions defined by this OpsDefinition. At least one component is required. The components are identified by their name and can be merged or retained.",
-								MarkdownDescription: "Defines which components need to perform the actions defined by this OpsDefinition. At least one component is required. The components are identified by their name and can be merged or retained.",
+								Description:         "Specifies the components and their parameters for executing custom actions as defined in OpsDefinition. Requires at least one component.",
+								MarkdownDescription: "Specifies the components and their parameters for executing custom actions as defined in OpsDefinition. Requires at least one component.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
-										"name": schema.StringAttribute{
-											Description:         "Specifies the unique identifier of the cluster component",
-											MarkdownDescription: "Specifies the unique identifier of the cluster component",
+										"component_name": schema.StringAttribute{
+											Description:         "Specifies the name of the Component.",
+											MarkdownDescription: "Specifies the name of the Component.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"parameters": schema.ListNestedAttribute{
-											Description:         "Represents the parameters for this operation as declared in the opsDefinition.spec.parametersSchema.",
-											MarkdownDescription: "Represents the parameters for this operation as declared in the opsDefinition.spec.parametersSchema.",
+											Description:         "Specifies the parameters that match the schema specified in the 'opsDefinition.spec.parametersSchema'.",
+											MarkdownDescription: "Specifies the parameters that match the schema specified in the 'opsDefinition.spec.parametersSchema'.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
@@ -823,24 +787,24 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"ops_definition_ref": schema.StringAttribute{
-								Description:         "Is a reference to an OpsDefinition.",
-								MarkdownDescription: "Is a reference to an OpsDefinition.",
+								Description:         "Specifies the name of the OpsDefinition.",
+								MarkdownDescription: "Specifies the name of the OpsDefinition.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"parallelism": schema.StringAttribute{
-								Description:         "Defines the execution concurrency. By default, all incoming Components will be executed simultaneously. The value can be an absolute number (e.g., 5) or a percentage of desired components (e.g., 10%). The absolute number is calculated from the percentage by rounding up. For instance, if the percentage value is 10% and the components length is 1, the calculated number will be rounded up to 1.",
-								MarkdownDescription: "Defines the execution concurrency. By default, all incoming Components will be executed simultaneously. The value can be an absolute number (e.g., 5) or a percentage of desired components (e.g., 10%). The absolute number is calculated from the percentage by rounding up. For instance, if the percentage value is 10% and the components length is 1, the calculated number will be rounded up to 1.",
+								Description:         "Specifies the maximum number of components to be operated on concurrently to mitigate performance impact on clusters with multiple components.  It accepts an absolute number (e.g., 5) or a percentage of components to execute in parallel (e.g., '10%'). Percentages are rounded up to the nearest whole number of components. For example, if '10%' results in less than one, it rounds up to 1.  When unspecified, all components are processed simultaneously by default.  Note: This feature is not implemented yet.",
+								MarkdownDescription: "Specifies the maximum number of components to be operated on concurrently to mitigate performance impact on clusters with multiple components.  It accepts an absolute number (e.g., 5) or a percentage of components to execute in parallel (e.g., '10%'). Percentages are rounded up to the nearest whole number of components. For example, if '10%' results in less than one, it rounds up to 1.  When unspecified, all components are processed simultaneously by default.  Note: This feature is not implemented yet.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"service_account_name": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Specifies the name of the ServiceAccount to be used for executing the custom operation.",
+								MarkdownDescription: "Specifies the name of the ServiceAccount to be used for executing the custom operation.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -852,26 +816,26 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"expose": schema.ListNestedAttribute{
-						Description:         "Defines services the component needs to expose.",
-						MarkdownDescription: "Defines services the component needs to expose.",
+						Description:         "Lists Expose objects, each specifying a Component and its services to be exposed.",
+						MarkdownDescription: "Lists Expose objects, each specifying a Component and its services to be exposed.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"component_name": schema.StringAttribute{
-									Description:         "Specifies the name of the cluster component.",
-									MarkdownDescription: "Specifies the name of the cluster component.",
-									Required:            true,
-									Optional:            false,
+									Description:         "Specifies the name of the Component.",
+									MarkdownDescription: "Specifies the name of the Component.",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 
 								"services": schema.ListNestedAttribute{
-									Description:         "A list of services that are to be exposed or removed. If componentNamem is not specified, each 'OpsService' in the list must specify ports and selectors.",
-									MarkdownDescription: "A list of services that are to be exposed or removed. If componentNamem is not specified, each 'OpsService' in the list must specify ports and selectors.",
+									Description:         "Specifies a list of OpsService. When an OpsService is exposed, a corresponding ClusterService will be added to 'cluster.spec.services'. On the other hand, when an OpsService is unexposed, the corresponding ClusterService will be removed from 'cluster.spec.services'.  Note: If 'componentName' is not specified, the 'ports' and 'selector' fields must be provided in each OpsService definition.",
+									MarkdownDescription: "Specifies a list of OpsService. When an OpsService is exposed, a corresponding ClusterService will be added to 'cluster.spec.services'. On the other hand, when an OpsService is unexposed, the corresponding ClusterService will be removed from 'cluster.spec.services'.  Note: If 'componentName' is not specified, the 'ports' and 'selector' fields must be provided in each OpsService definition.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"annotations": schema.MapAttribute{
-												Description:         "Contains cloud provider related parameters if ServiceType is LoadBalancer. More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.",
-												MarkdownDescription: "Contains cloud provider related parameters if ServiceType is LoadBalancer. More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.",
+												Description:         "Contains cloud provider related parameters if ServiceType is LoadBalancer.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.",
+												MarkdownDescription: "Contains cloud provider related parameters if ServiceType is LoadBalancer.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -879,8 +843,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"ip_families": schema.ListAttribute{
-												Description:         "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'.  This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName.  This field may hold a maximum of two entries (dual-stack families, in either order).  These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.",
-												MarkdownDescription: "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'.  This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName.  This field may hold a maximum of two entries (dual-stack families, in either order).  These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.",
+												Description:         "A list of IP families (e.g., IPv4, IPv6) assigned to this Service.  Usually assigned automatically based on the cluster configuration and the 'ipFamilyPolicy' field. If specified manually, the requested IP family must be available in the cluster and allowed by the 'ipFamilyPolicy'. If the requested IP family is not available or not allowed, the Service creation will fail.  Valid values:  - 'IPv4' - 'IPv6'  This field may hold a maximum of two entries (dual-stack families, in either order).  Common combinations of 'ipFamilies' and 'ipFamilyPolicy' are:  - ipFamilies=[] + ipFamilyPolicy='PreferDualStack' : The Service prefers dual-stack but can fall back to single-stack if the cluster does not support dual-stack. The IP family is automatically assigned based on the cluster configuration. - ipFamilies=['IPV4','IPV6'] + ipFamilyPolicy='RequiredDualStack' : The Service requires dual-stack and will only be created if the cluster supports both IPv4 and IPv6. The primary IP family is IPV4. - ipFamilies=['IPV6','IPV4'] + ipFamilyPolicy='RequiredDualStack' : The Service requires dual-stack and will only be created if the cluster supports both IPv4 and IPv6. The primary IP family is IPV6. - ipFamilies=['IPV4'] + ipFamilyPolicy='SingleStack' : The Service uses a single-stack with IPv4 only. - ipFamilies=['IPV6'] + ipFamilyPolicy='SingleStack' : The Service uses a single-stack with IPv6 only.",
+												MarkdownDescription: "A list of IP families (e.g., IPv4, IPv6) assigned to this Service.  Usually assigned automatically based on the cluster configuration and the 'ipFamilyPolicy' field. If specified manually, the requested IP family must be available in the cluster and allowed by the 'ipFamilyPolicy'. If the requested IP family is not available or not allowed, the Service creation will fail.  Valid values:  - 'IPv4' - 'IPv6'  This field may hold a maximum of two entries (dual-stack families, in either order).  Common combinations of 'ipFamilies' and 'ipFamilyPolicy' are:  - ipFamilies=[] + ipFamilyPolicy='PreferDualStack' : The Service prefers dual-stack but can fall back to single-stack if the cluster does not support dual-stack. The IP family is automatically assigned based on the cluster configuration. - ipFamilies=['IPV4','IPV6'] + ipFamilyPolicy='RequiredDualStack' : The Service requires dual-stack and will only be created if the cluster supports both IPv4 and IPv6. The primary IP family is IPV4. - ipFamilies=['IPV6','IPV4'] + ipFamilyPolicy='RequiredDualStack' : The Service requires dual-stack and will only be created if the cluster supports both IPv4 and IPv6. The primary IP family is IPV6. - ipFamilies=['IPV4'] + ipFamilyPolicy='SingleStack' : The Service uses a single-stack with IPv4 only. - ipFamilies=['IPV6'] + ipFamilyPolicy='SingleStack' : The Service uses a single-stack with IPv6 only.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -888,24 +852,24 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"ip_family_policy": schema.StringAttribute{
-												Description:         "IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.",
-												MarkdownDescription: "IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.",
+												Description:         "Specifies whether the Service should use a single IP family (SingleStack) or two IP families (DualStack).  Possible values:  - 'SingleStack' (default) : The Service uses a single IP family. If no value is provided, IPFamilyPolicy defaults to SingleStack. - 'PreferDualStack' : The Service prefers to use two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. - 'RequiredDualStack' : The Service requires two IP families on dual-stack configured clusters. If the cluster is not configured for dual-stack, the Service creation fails.",
+												MarkdownDescription: "Specifies whether the Service should use a single IP family (SingleStack) or two IP families (DualStack).  Possible values:  - 'SingleStack' (default) : The Service uses a single IP family. If no value is provided, IPFamilyPolicy defaults to SingleStack. - 'PreferDualStack' : The Service prefers to use two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. - 'RequiredDualStack' : The Service requires two IP families on dual-stack configured clusters. If the cluster is not configured for dual-stack, the Service creation fails.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Specifies the name of the service. This name is used by others to refer to this service (e.g., connection credential). Note: This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the service. This name is used by others to refer to this service (e.g., connection credential). Note: This field cannot be updated.",
+												Description:         "Specifies the name of the Service. This name is used to set 'clusterService.name'.  Note: This field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the Service. This name is used to set 'clusterService.name'.  Note: This field cannot be updated.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"ports": schema.ListNestedAttribute{
-												Description:         "Lists the ports that are exposed by this service. If not provided, the default Services Ports defined in the ClusterDefinition or ComponentDefinition that are neither of NodePort nor LoadBalancer service type will be used. If there is no corresponding Service defined in the ClusterDefinition or ComponentDefinition, the expose operation will fail. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
-												MarkdownDescription: "Lists the ports that are exposed by this service. If not provided, the default Services Ports defined in the ClusterDefinition or ComponentDefinition that are neither of NodePort nor LoadBalancer service type will be used. If there is no corresponding Service defined in the ClusterDefinition or ComponentDefinition, the expose operation will fail. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												Description:         "Specifies Port definitions that are to be exposed by a ClusterService.  If not specified, the Port definitions from non-NodePort and non-LoadBalancer type ComponentService defined in the ComponentDefinition ('componentDefinition.spec.services') will be used. If no matching ComponentService is found, the expose operation will fail.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports",
+												MarkdownDescription: "Specifies Port definitions that are to be exposed by a ClusterService.  If not specified, the Port definitions from non-NodePort and non-LoadBalancer type ComponentService defined in the ComponentDefinition ('componentDefinition.spec.services') will be used. If no matching ComponentService is found, the expose operation will fail.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"app_protocol": schema.StringAttribute{
@@ -963,16 +927,16 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"role_selector": schema.StringAttribute{
-												Description:         "Allows you to specify a defined role as a selector for the service, extending the ServiceSpec.Selector.",
-												MarkdownDescription: "Allows you to specify a defined role as a selector for the service, extending the ServiceSpec.Selector.",
+												Description:         "Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
+												MarkdownDescription: "Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"selector": schema.MapAttribute{
-												Description:         "Routes service traffic to pods with label keys and values matching this selector. If empty or not present, the service is assumed to have an external process managing its endpoints, which Kubernetes will not modify. This only applies to types ClusterIP, NodePort, and LoadBalancer and is ignored if type is ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/",
-												MarkdownDescription: "Routes service traffic to pods with label keys and values matching this selector. If empty or not present, the service is assumed to have an external process managing its endpoints, which Kubernetes will not modify. This only applies to types ClusterIP, NodePort, and LoadBalancer and is ignored if type is ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/",
+												Description:         "Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
+												MarkdownDescription: "Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -980,8 +944,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"service_type": schema.StringAttribute{
-												Description:         "Determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
-												MarkdownDescription: "Determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
+												Description:         "Determines how the Service is exposed. Defaults to 'ClusterIP'. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP': allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort': builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer': builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for the expose operation.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
+												MarkdownDescription: "Determines how the Service is exposed. Defaults to 'ClusterIP'. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP': allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort': builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer': builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for the expose operation.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -994,8 +958,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 								},
 
 								"switch": schema.StringAttribute{
-									Description:         "Controls the expose operation. If set to Enable, the corresponding service will be exposed. Conversely, if set to Disable, the service will be removed.",
-									MarkdownDescription: "Controls the expose operation. If set to Enable, the corresponding service will be exposed. Conversely, if set to Disable, the service will be removed.",
+									Description:         "Indicates whether the services will be exposed. 'Enable' exposes the services. while 'Disable' removes the exposed Service.",
+									MarkdownDescription: "Indicates whether the services will be exposed. 'Enable' exposes the services. while 'Disable' removes the exposed Service.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -1011,29 +975,29 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"force": schema.BoolAttribute{
-						Description:         "Indicates if pre-checks should be bypassed, allowing the opsRequest to execute immediately. If set to true, pre-checks are skipped except for 'Start' type. Particularly useful when concurrent execution of VerticalScaling and HorizontalScaling opsRequests is required, achievable through the use of the Force flag.",
-						MarkdownDescription: "Indicates if pre-checks should be bypassed, allowing the opsRequest to execute immediately. If set to true, pre-checks are skipped except for 'Start' type. Particularly useful when concurrent execution of VerticalScaling and HorizontalScaling opsRequests is required, achievable through the use of the Force flag.",
+						Description:         "Instructs the system to bypass pre-checks (including cluster state checks and customized pre-conditions hooks) and immediately execute the opsRequest, except for the opsRequest of 'Start' type, which will still undergo pre-checks even if 'force' is true.  This is useful for concurrent execution of 'VerticalScaling' and 'HorizontalScaling' opsRequests. By setting 'force' to true, you can bypass the default checks and demand these opsRequests to run simultaneously.  Note: Once set, the 'force' field is immutable and cannot be updated.",
+						MarkdownDescription: "Instructs the system to bypass pre-checks (including cluster state checks and customized pre-conditions hooks) and immediately execute the opsRequest, except for the opsRequest of 'Start' type, which will still undergo pre-checks even if 'force' is true.  This is useful for concurrent execution of 'VerticalScaling' and 'HorizontalScaling' opsRequests. By setting 'force' to true, you can bypass the default checks and demand these opsRequests to run simultaneously.  Note: Once set, the 'force' field is immutable and cannot be updated.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"horizontal_scaling": schema.ListNestedAttribute{
-						Description:         "Defines what component need to horizontal scale the specified replicas.",
-						MarkdownDescription: "Defines what component need to horizontal scale the specified replicas.",
+						Description:         "Lists HorizontalScaling objects, each specifying scaling requirements for a Component, including desired total replica counts, configurations for new instances, modifications for existing instances, and instance downscaling options.",
+						MarkdownDescription: "Lists HorizontalScaling objects, each specifying scaling requirements for a Component, including desired total replica counts, configurations for new instances, modifications for existing instances, and instance downscaling options.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"component_name": schema.StringAttribute{
-									Description:         "Specifies the name of the cluster component.",
-									MarkdownDescription: "Specifies the name of the cluster component.",
+									Description:         "Specifies the name of the Component.",
+									MarkdownDescription: "Specifies the name of the Component.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"instances": schema.ListNestedAttribute{
-									Description:         "Specifies instances to be added and/or deleted for the workloads. Name and Replicas should be provided. Other fields will simply be ignored. The Replicas will be overridden if an existing InstanceTemplate is matched by Name. Or the InstanceTemplate will be added as a new one.",
-									MarkdownDescription: "Specifies instances to be added and/or deleted for the workloads. Name and Replicas should be provided. Other fields will simply be ignored. The Replicas will be overridden if an existing InstanceTemplate is matched by Name. Or the InstanceTemplate will be added as a new one.",
+									Description:         "Contains a list of InstanceTemplate objects. Each InstanceTemplate object allows for modifying replica counts or specifying configurations for new instances during scaling.  The field supports two main use cases:  - Modifying replica count: Specify the desired replica count for existing instances with a particular configuration using Name and Replicas fields. To modify the replica count, the Name and Replicas fields of the InstanceTemplate object should be provided. Only these fields are used for matching and adjusting replicas; other fields are ignored. The Replicas value overrides any existing count. - Configuring new instances: Define the configuration for new instances added during scaling, including resource requirements, labels, annotations, etc. New instances are created based on the provided InstanceTemplate.",
+									MarkdownDescription: "Contains a list of InstanceTemplate objects. Each InstanceTemplate object allows for modifying replica counts or specifying configurations for new instances during scaling.  The field supports two main use cases:  - Modifying replica count: Specify the desired replica count for existing instances with a particular configuration using Name and Replicas fields. To modify the replica count, the Name and Replicas fields of the InstanceTemplate object should be provided. Only these fields are used for matching and adjusting replicas; other fields are ignored. The Replicas value overrides any existing count. - Configuring new instances: Define the configuration for new instances added during scaling, including resource requirements, labels, annotations, etc. New instances are created based on the provided InstanceTemplate.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"annotations": schema.MapAttribute{
@@ -1364,164 +1328,30 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 												MarkdownDescription: "Defines VolumeClaimTemplates to override. Add new or override existing volume claim templates.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
-														"api_version": schema.StringAttribute{
-															Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-															MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-															Required:            false,
-															Optional:            true,
+														"name": schema.StringAttribute{
+															Description:         "Refers to the name of a volumeMount defined in either:  - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated)  The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
+															MarkdownDescription: "Refers to the name of a volumeMount defined in either:  - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated)  The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
-														},
-
-														"kind": schema.StringAttribute{
-															Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-															MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"metadata": schema.SingleNestedAttribute{
-															Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-															MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-															Attributes: map[string]schema.Attribute{
-																"annotations": schema.MapAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	ElementType:         types.StringType,
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"finalizers": schema.ListAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	ElementType:         types.StringType,
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"labels": schema.MapAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	ElementType:         types.StringType,
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"namespace": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
 														},
 
 														"spec": schema.SingleNestedAttribute{
-															Description:         "spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-															MarkdownDescription: "spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+															Description:         "Defines the desired characteristics of a PersistentVolumeClaim that will be created for the volume with the mount name specified in the 'name' field.  When a Pod is created for this ClusterComponent, a new PVC will be created based on the specification defined in the 'spec' field. The PVC will be associated with the volume mount specified by the 'name' field.",
+															MarkdownDescription: "Defines the desired characteristics of a PersistentVolumeClaim that will be created for the volume with the mount name specified in the 'name' field.  When a Pod is created for this ClusterComponent, a new PVC will be created based on the specification defined in the 'spec' field. The PVC will be associated with the volume mount specified by the 'name' field.",
 															Attributes: map[string]schema.Attribute{
-																"access_modes": schema.ListAttribute{
-																	Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-																	MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+																"access_modes": schema.MapAttribute{
+																	Description:         "Contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1.",
+																	MarkdownDescription: "Contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
-																"data_source": schema.SingleNestedAttribute{
-																	Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
-																	MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_group": schema.StringAttribute{
-																			Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-																			MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"kind": schema.StringAttribute{
-																			Description:         "Kind is the type of resource being referenced",
-																			MarkdownDescription: "Kind is the type of resource being referenced",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name is the name of resource being referenced",
-																			MarkdownDescription: "Name is the name of resource being referenced",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"data_source_ref": schema.SingleNestedAttribute{
-																	Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-																	MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-																	Attributes: map[string]schema.Attribute{
-																		"api_group": schema.StringAttribute{
-																			Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-																			MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"kind": schema.StringAttribute{
-																			Description:         "Kind is the type of resource being referenced",
-																			MarkdownDescription: "Kind is the type of resource being referenced",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "Name is the name of resource being referenced",
-																			MarkdownDescription: "Name is the name of resource being referenced",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"namespace": schema.StringAttribute{
-																			Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-																			MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-																	MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																	Description:         "Represents the minimum resources the volume should have. If the RecoverVolumeExpansionFailure feature is enabled, users are allowed to specify resource requirements that are lower than the previous value but must still be higher than the capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources.",
+																	MarkdownDescription: "Represents the minimum resources the volume should have. If the RecoverVolumeExpansionFailure feature is enabled, users are allowed to specify resource requirements that are lower than the previous value but must still be higher than the capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
 																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
@@ -1565,197 +1395,17 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 																	Computed: false,
 																},
 
-																"selector": schema.SingleNestedAttribute{
-																	Description:         "selector is a label query over volumes to consider for binding.",
-																	MarkdownDescription: "selector is a label query over volumes to consider for binding.",
-																	Attributes: map[string]schema.Attribute{
-																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			NestedObject: schema.NestedAttributeObject{
-																				Attributes: map[string]schema.Attribute{
-																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
-																						Required:            true,
-																						Optional:            false,
-																						Computed:            false,
-																					},
-
-																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						Required:            true,
-																						Optional:            false,
-																						Computed:            false,
-																					},
-
-																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						ElementType:         types.StringType,
-																						Required:            false,
-																						Optional:            true,
-																						Computed:            false,
-																					},
-																				},
-																			},
-																			Required: false,
-																			Optional: true,
-																			Computed: false,
-																		},
-
-																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			ElementType:         types.StringType,
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
 																"storage_class_name": schema.StringAttribute{
-																	Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-																	MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																	Description:         "The name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1.",
+																	MarkdownDescription: "The name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"volume_mode": schema.StringAttribute{
-																	Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-																	MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"volume_name": schema.StringAttribute{
-																	Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
-																	MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-
-														"status": schema.SingleNestedAttribute{
-															Description:         "status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-															MarkdownDescription: "status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-															Attributes: map[string]schema.Attribute{
-																"access_modes": schema.ListAttribute{
-																	Description:         "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-																	MarkdownDescription: "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-																	ElementType:         types.StringType,
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"allocated_resource_statuses": schema.MapAttribute{
-																	Description:         "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-																	MarkdownDescription: "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-																	ElementType:         types.StringType,
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"allocated_resources": schema.MapAttribute{
-																	Description:         "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-																	MarkdownDescription: "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-																	ElementType:         types.StringType,
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"capacity": schema.MapAttribute{
-																	Description:         "capacity represents the actual resources of the underlying volume.",
-																	MarkdownDescription: "capacity represents the actual resources of the underlying volume.",
-																	ElementType:         types.StringType,
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"conditions": schema.ListNestedAttribute{
-																	Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
-																	MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
-																	NestedObject: schema.NestedAttributeObject{
-																		Attributes: map[string]schema.Attribute{
-																			"last_probe_time": schema.StringAttribute{
-																				Description:         "lastProbeTime is the time we probed the condition.",
-																				MarkdownDescription: "lastProbeTime is the time we probed the condition.",
-																				Required:            false,
-																				Optional:            true,
-																				Computed:            false,
-																				Validators: []validator.String{
-																					validators.DateTime64Validator(),
-																				},
-																			},
-
-																			"last_transition_time": schema.StringAttribute{
-																				Description:         "lastTransitionTime is the time the condition transitioned from one status to another.",
-																				MarkdownDescription: "lastTransitionTime is the time the condition transitioned from one status to another.",
-																				Required:            false,
-																				Optional:            true,
-																				Computed:            false,
-																				Validators: []validator.String{
-																					validators.DateTime64Validator(),
-																				},
-																			},
-
-																			"message": schema.StringAttribute{
-																				Description:         "message is the human-readable message indicating details about last transition.",
-																				MarkdownDescription: "message is the human-readable message indicating details about last transition.",
-																				Required:            false,
-																				Optional:            true,
-																				Computed:            false,
-																			},
-
-																			"reason": schema.StringAttribute{
-																				Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
-																				MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
-																				Required:            false,
-																				Optional:            true,
-																				Computed:            false,
-																			},
-
-																			"status": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
-																				Required:            true,
-																				Optional:            false,
-																				Computed:            false,
-																			},
-
-																			"type": schema.StringAttribute{
-																				Description:         "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-																				MarkdownDescription: "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-																				Required:            true,
-																				Optional:            false,
-																				Computed:            false,
-																			},
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"phase": schema.StringAttribute{
-																	Description:         "phase represents the current phase of PersistentVolumeClaim.",
-																	MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
+																	Description:         "Defines what type of volume is required by the claim, either Block or Filesystem.",
+																	MarkdownDescription: "Defines what type of volume is required by the claim, either Block or Filesystem.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3815,8 +3465,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 								},
 
 								"offline_instances": schema.ListAttribute{
-									Description:         "Specifies instances to be scaled in with dedicated names in the list.",
-									MarkdownDescription: "Specifies instances to be scaled in with dedicated names in the list.",
+									Description:         "Specifies the names of instances to be scaled down. This provides control over which specific instances are targeted for termination when reducing the replica count.",
+									MarkdownDescription: "Specifies the names of instances to be scaled down. This provides control over which specific instances are targeted for termination when reducing the replica count.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -3824,8 +3474,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 								},
 
 								"replicas": schema.Int64Attribute{
-									Description:         "Specifies the number of replicas for the workloads.",
-									MarkdownDescription: "Specifies the number of replicas for the workloads.",
+									Description:         "Specifies the number of total replicas.",
+									MarkdownDescription: "Specifies the number of total replicas.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -3841,29 +3491,29 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"rebuild_from": schema.ListNestedAttribute{
-						Description:         "Specifies the instances that require re-creation.",
-						MarkdownDescription: "Specifies the instances that require re-creation.",
+						Description:         "Specifies the parameters to rebuild some instances. Rebuilding an instance involves restoring its data from a backup or another database replica. The instances being rebuilt usually serve as standby in the cluster. Hence rebuilding instances is often also referred to as 'standby reconstruction'.",
+						MarkdownDescription: "Specifies the parameters to rebuild some instances. Rebuilding an instance involves restoring its data from a backup or another database replica. The instances being rebuilt usually serve as standby in the cluster. Hence rebuilding instances is often also referred to as 'standby reconstruction'.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"backup_name": schema.StringAttribute{
-									Description:         "Indicates the name of the backup from which to recover. Currently, only a full physical backup is supported unless your component only has one replica. Such as 'xtrabackup' is full physical backup for mysql and 'mysqldump' is not. And if no specified backupName, the instance will be recreated with empty 'PersistentVolumes'.",
-									MarkdownDescription: "Indicates the name of the backup from which to recover. Currently, only a full physical backup is supported unless your component only has one replica. Such as 'xtrabackup' is full physical backup for mysql and 'mysqldump' is not. And if no specified backupName, the instance will be recreated with empty 'PersistentVolumes'.",
+									Description:         "Indicates the name of the Backup custom resource from which to recover the instance. Defaults to an empty PersistentVolume if unspecified.  Note: - Only full physical backups are supported for multi-replica Components (e.g., 'xtrabackup' for MySQL). - Logical backups (e.g., 'mysqldump' for MySQL) are unsupported in the current version.",
+									MarkdownDescription: "Indicates the name of the Backup custom resource from which to recover the instance. Defaults to an empty PersistentVolume if unspecified.  Note: - Only full physical backups are supported for multi-replica Components (e.g., 'xtrabackup' for MySQL). - Logical backups (e.g., 'mysqldump' for MySQL) are unsupported in the current version.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"component_name": schema.StringAttribute{
-									Description:         "Specifies the name of the cluster component.",
-									MarkdownDescription: "Specifies the name of the cluster component.",
+									Description:         "Specifies the name of the Component.",
+									MarkdownDescription: "Specifies the name of the Component.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"env_for_restore": schema.MapAttribute{
-									Description:         "List of environment variables to set in the container for restore. These will be merged with the env of Backup and ActionSet.  The priority of merging is as follows: 'Restore env > Backup env > ActionSet env'.",
-									MarkdownDescription: "List of environment variables to set in the container for restore. These will be merged with the env of Backup and ActionSet.  The priority of merging is as follows: 'Restore env > Backup env > ActionSet env'.",
+									Description:         "Defines container environment variables for the restore process. merged with the ones specified in the Backup and ActionSet resources.  Merge priority: Restore env > Backup env > ActionSet env.  Purpose: Some databases require different configurations when being restored as a standby compared to being restored as a primary. For example, when restoring MySQL as a replica, you need to set 'skip_slave_start='ON'' for 5.7 or 'skip_replica_start='ON'' for 8.0. Allowing environment variables to be passed in makes it more convenient to control these behavioral differences during the restore process.",
+									MarkdownDescription: "Defines container environment variables for the restore process. merged with the ones specified in the Backup and ActionSet resources.  Merge priority: Restore env > Backup env > ActionSet env.  Purpose: Some databases require different configurations when being restored as a standby compared to being restored as a primary. For example, when restoring MySQL as a replica, you need to set 'skip_slave_start='ON'' for 5.7 or 'skip_replica_start='ON'' for 8.0. Allowing environment variables to be passed in makes it more convenient to control these behavioral differences during the restore process.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -3871,8 +3521,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 								},
 
 								"instances": schema.ListNestedAttribute{
-									Description:         "Defines the instances that need to be rebuilt.",
-									MarkdownDescription: "Defines the instances that need to be rebuilt.",
+									Description:         "Specifies the instances (Pods) that need to be rebuilt, typically operating as standbys.",
+									MarkdownDescription: "Specifies the instances (Pods) that need to be rebuilt, typically operating as standbys.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
@@ -3904,46 +3554,46 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"reconfigure": schema.SingleNestedAttribute{
-						Description:         "Deprecated: replace by reconfigures. Defines the variables that need to input when updating configuration.",
-						MarkdownDescription: "Deprecated: replace by reconfigures. Defines the variables that need to input when updating configuration.",
+						Description:         "Specifies a component and its configuration updates.  This field is deprecated and replaced by 'reconfigures'.",
+						MarkdownDescription: "Specifies a component and its configuration updates.  This field is deprecated and replaced by 'reconfigures'.",
 						Attributes: map[string]schema.Attribute{
 							"component_name": schema.StringAttribute{
-								Description:         "Specifies the name of the cluster component.",
-								MarkdownDescription: "Specifies the name of the cluster component.",
+								Description:         "Specifies the name of the Component.",
+								MarkdownDescription: "Specifies the name of the Component.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"configurations": schema.ListNestedAttribute{
-								Description:         "Specifies the components that will perform the operation.",
-								MarkdownDescription: "Specifies the components that will perform the operation.",
+								Description:         "Contains a list of ConfigurationItem objects, specifying the Component's configuration template name, upgrade policy, and parameter key-value pairs to be updated.",
+								MarkdownDescription: "Contains a list of ConfigurationItem objects, specifying the Component's configuration template name, upgrade policy, and parameter key-value pairs to be updated.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"keys": schema.ListNestedAttribute{
-											Description:         "Sets the parameters to be updated. It should contain at least one item. The keys are merged and retained during patch operations.",
-											MarkdownDescription: "Sets the parameters to be updated. It should contain at least one item. The keys are merged and retained during patch operations.",
+											Description:         "Sets the configuration files and their associated parameters that need to be updated. It should contain at least one item.",
+											MarkdownDescription: "Sets the configuration files and their associated parameters that need to be updated. It should contain at least one item.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"file_content": schema.StringAttribute{
-														Description:         "Represents the content of the configuration file. This field is used to update the entire content of the file.",
-														MarkdownDescription: "Represents the content of the configuration file. This field is used to update the entire content of the file.",
+														Description:         "Specifies the content of the entire configuration file. This field is used to update the complete configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.",
+														MarkdownDescription: "Specifies the content of the entire configuration file. This field is used to update the complete configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"key": schema.StringAttribute{
-														Description:         "Represents the unique identifier for the ConfigMap.",
-														MarkdownDescription: "Represents the unique identifier for the ConfigMap.",
+														Description:         "Represents a key in the configuration template(as ConfigMap). Each key in the ConfigMap corresponds to a specific configuration file.",
+														MarkdownDescription: "Represents a key in the configuration template(as ConfigMap). Each key in the ConfigMap corresponds to a specific configuration file.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"parameters": schema.ListNestedAttribute{
-														Description:         "Defines a list of key-value pairs for a single configuration file. These parameters are used to update the specified configuration settings.",
-														MarkdownDescription: "Defines a list of key-value pairs for a single configuration file. These parameters are used to update the specified configuration settings.",
+														Description:         "Specifies a list of key-value pairs representing parameters and their corresponding values within a single configuration file. This field is used to override or set the values of parameters without modifying the entire configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.",
+														MarkdownDescription: "Specifies a list of key-value pairs representing parameters and their corresponding values within a single configuration file. This field is used to override or set the values of parameters without modifying the entire configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
@@ -3987,8 +3637,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 										},
 
 										"policy": schema.StringAttribute{
-											Description:         "Defines the upgrade policy for the configuration. This field is optional.",
-											MarkdownDescription: "Defines the upgrade policy for the configuration. This field is optional.",
+											Description:         "Defines the upgrade policy for the configuration.",
+											MarkdownDescription: "Defines the upgrade policy for the configuration.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4009,47 +3659,47 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"reconfigures": schema.ListNestedAttribute{
-						Description:         "Defines the variables that need to input when updating configuration.",
-						MarkdownDescription: "Defines the variables that need to input when updating configuration.",
+						Description:         "Lists Reconfigure objects, each specifying a Component and its configuration updates.",
+						MarkdownDescription: "Lists Reconfigure objects, each specifying a Component and its configuration updates.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"component_name": schema.StringAttribute{
-									Description:         "Specifies the name of the cluster component.",
-									MarkdownDescription: "Specifies the name of the cluster component.",
+									Description:         "Specifies the name of the Component.",
+									MarkdownDescription: "Specifies the name of the Component.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"configurations": schema.ListNestedAttribute{
-									Description:         "Specifies the components that will perform the operation.",
-									MarkdownDescription: "Specifies the components that will perform the operation.",
+									Description:         "Contains a list of ConfigurationItem objects, specifying the Component's configuration template name, upgrade policy, and parameter key-value pairs to be updated.",
+									MarkdownDescription: "Contains a list of ConfigurationItem objects, specifying the Component's configuration template name, upgrade policy, and parameter key-value pairs to be updated.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"keys": schema.ListNestedAttribute{
-												Description:         "Sets the parameters to be updated. It should contain at least one item. The keys are merged and retained during patch operations.",
-												MarkdownDescription: "Sets the parameters to be updated. It should contain at least one item. The keys are merged and retained during patch operations.",
+												Description:         "Sets the configuration files and their associated parameters that need to be updated. It should contain at least one item.",
+												MarkdownDescription: "Sets the configuration files and their associated parameters that need to be updated. It should contain at least one item.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"file_content": schema.StringAttribute{
-															Description:         "Represents the content of the configuration file. This field is used to update the entire content of the file.",
-															MarkdownDescription: "Represents the content of the configuration file. This field is used to update the entire content of the file.",
+															Description:         "Specifies the content of the entire configuration file. This field is used to update the complete configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.",
+															MarkdownDescription: "Specifies the content of the entire configuration file. This field is used to update the complete configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"key": schema.StringAttribute{
-															Description:         "Represents the unique identifier for the ConfigMap.",
-															MarkdownDescription: "Represents the unique identifier for the ConfigMap.",
+															Description:         "Represents a key in the configuration template(as ConfigMap). Each key in the ConfigMap corresponds to a specific configuration file.",
+															MarkdownDescription: "Represents a key in the configuration template(as ConfigMap). Each key in the ConfigMap corresponds to a specific configuration file.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"parameters": schema.ListNestedAttribute{
-															Description:         "Defines a list of key-value pairs for a single configuration file. These parameters are used to update the specified configuration settings.",
-															MarkdownDescription: "Defines a list of key-value pairs for a single configuration file. These parameters are used to update the specified configuration settings.",
+															Description:         "Specifies a list of key-value pairs representing parameters and their corresponding values within a single configuration file. This field is used to override or set the values of parameters without modifying the entire configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.",
+															MarkdownDescription: "Specifies a list of key-value pairs representing parameters and their corresponding values within a single configuration file. This field is used to override or set the values of parameters without modifying the entire configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
@@ -4093,8 +3743,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"policy": schema.StringAttribute{
-												Description:         "Defines the upgrade policy for the configuration. This field is optional.",
-												MarkdownDescription: "Defines the upgrade policy for the configuration. This field is optional.",
+												Description:         "Defines the upgrade policy for the configuration.",
+												MarkdownDescription: "Defines the upgrade policy for the configuration.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4116,13 +3766,13 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"restart": schema.ListNestedAttribute{
-						Description:         "Restarts the specified components.",
-						MarkdownDescription: "Restarts the specified components.",
+						Description:         "Lists Components to be restarted.",
+						MarkdownDescription: "Lists Components to be restarted.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"component_name": schema.StringAttribute{
-									Description:         "Specifies the name of the cluster component.",
-									MarkdownDescription: "Specifies the name of the cluster component.",
+									Description:         "Specifies the name of the Component.",
+									MarkdownDescription: "Specifies the name of the Component.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -4139,8 +3789,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "Cluster RestoreFrom backup or point in time.",
 						Attributes: map[string]schema.Attribute{
 							"backup": schema.ListNestedAttribute{
-								Description:         "Refers to the backup name and component name used for restoration. Supports recovery of multiple components.",
-								MarkdownDescription: "Refers to the backup name and component name used for restoration. Supports recovery of multiple components.",
+								Description:         "Refers to the backup name and component name used for restoration. Supports recovery of multiple Components.",
+								MarkdownDescription: "Refers to the backup name and component name used for restoration. Supports recovery of multiple Components.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"ref": schema.SingleNestedAttribute{
@@ -4225,36 +3875,36 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"restore_spec": schema.SingleNestedAttribute{
-						Description:         "Defines how to restore the cluster. Note that this restore operation will roll back cluster services.",
-						MarkdownDescription: "Defines how to restore the cluster. Note that this restore operation will roll back cluster services.",
+						Description:         "Specifies the parameters to restore a Cluster. Note that this restore operation will roll back cluster services.",
+						MarkdownDescription: "Specifies the parameters to restore a Cluster. Note that this restore operation will roll back cluster services.",
 						Attributes: map[string]schema.Attribute{
 							"backup_name": schema.StringAttribute{
-								Description:         "Specifies the name of the backup.",
-								MarkdownDescription: "Specifies the name of the backup.",
+								Description:         "Specifies the name of the Backup custom resource.",
+								MarkdownDescription: "Specifies the name of the Backup custom resource.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
-							"effective_common_component_def": schema.BoolAttribute{
-								Description:         "Indicates if this backup will be restored for all components which refer to common ComponentDefinition.",
-								MarkdownDescription: "Indicates if this backup will be restored for all components which refer to common ComponentDefinition.",
+							"do_ready_restore_after_cluster_running": schema.BoolAttribute{
+								Description:         "If set to true, the recovery process in the PostReady phase will be performed after the cluster is running successfully. otherwise, it will be performed after component is running.",
+								MarkdownDescription: "If set to true, the recovery process in the PostReady phase will be performed after the cluster is running successfully. otherwise, it will be performed after component is running.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"restore_time_str": schema.StringAttribute{
-								Description:         "Defines the point in time to restore.",
-								MarkdownDescription: "Defines the point in time to restore.",
+								Description:         "Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'",
+								MarkdownDescription: "Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"volume_restore_policy": schema.StringAttribute{
-								Description:         "Specifies the volume claim restore policy, support values: [Serial, Parallel]",
-								MarkdownDescription: "Specifies the volume claim restore policy, support values: [Serial, Parallel]",
+								Description:         "Specifies the policy for restoring volume claims of a Component's Pods. It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once). Support values:  - 'Serial' - 'Parallel'",
+								MarkdownDescription: "Specifies the policy for restoring volume claims of a Component's Pods. It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once). Support values:  - 'Serial' - 'Parallel'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4269,28 +3919,28 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"script_spec": schema.SingleNestedAttribute{
-						Description:         "Defines the script to be executed.",
-						MarkdownDescription: "Defines the script to be executed.",
+						Description:         "Specifies the image and scripts for executing engine-specific operations such as creating databases or users. It supports limited engines including MySQL, PostgreSQL, Redis, MongoDB.  ScriptSpec has been replaced by the more versatile OpsDefinition. It is recommended to use OpsDefinition instead. ScriptSpec is deprecated and will be removed in a future version.",
+						MarkdownDescription: "Specifies the image and scripts for executing engine-specific operations such as creating databases or users. It supports limited engines including MySQL, PostgreSQL, Redis, MongoDB.  ScriptSpec has been replaced by the more versatile OpsDefinition. It is recommended to use OpsDefinition instead. ScriptSpec is deprecated and will be removed in a future version.",
 						Attributes: map[string]schema.Attribute{
 							"component_name": schema.StringAttribute{
-								Description:         "Specifies the name of the cluster component.",
-								MarkdownDescription: "Specifies the name of the cluster component.",
+								Description:         "Specifies the name of the Component.",
+								MarkdownDescription: "Specifies the name of the Component.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Specifies the image to be used for the exec command. By default, the image of kubeblocks-datascript is used.",
-								MarkdownDescription: "Specifies the image to be used for the exec command. By default, the image of kubeblocks-datascript is used.",
+								Description:         "Specifies the image to be used to execute scripts.  By default, the image 'apecloud/kubeblocks-datascript:latest' is used.",
+								MarkdownDescription: "Specifies the image to be used to execute scripts.  By default, the image 'apecloud/kubeblocks-datascript:latest' is used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"script": schema.ListAttribute{
-								Description:         "Defines the script to be executed.",
-								MarkdownDescription: "Defines the script to be executed.",
+								Description:         "Defines the content of scripts to be executed.  All scripts specified in this field will be executed in the order they are provided.  Note: this field cannot be modified once set.",
+								MarkdownDescription: "Defines the content of scripts to be executed.  All scripts specified in this field will be executed in the order they are provided.  Note: this field cannot be modified once set.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -4298,12 +3948,12 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"script_from": schema.SingleNestedAttribute{
-								Description:         "Defines the script to be executed from a configMap or secret.",
-								MarkdownDescription: "Defines the script to be executed from a configMap or secret.",
+								Description:         "Specifies the sources of the scripts to be executed. Each script can be imported either from a ConfigMap or a Secret.  All scripts obtained from the sources specified in this field will be executed after any scripts provided in the 'script' field.  Execution order: 1. Scripts provided in the 'script' field, in the order of the scripts listed. 2. Scripts imported from ConfigMaps, in the order of the sources listed. 3. Scripts imported from Secrets, in the order of the sources listed.  Note: this field cannot be modified once set.",
+								MarkdownDescription: "Specifies the sources of the scripts to be executed. Each script can be imported either from a ConfigMap or a Secret.  All scripts obtained from the sources specified in this field will be executed after any scripts provided in the 'script' field.  Execution order: 1. Scripts provided in the 'script' field, in the order of the scripts listed. 2. Scripts imported from ConfigMaps, in the order of the sources listed. 3. Scripts imported from Secrets, in the order of the sources listed.  Note: this field cannot be modified once set.",
 								Attributes: map[string]schema.Attribute{
 									"config_map_ref": schema.ListNestedAttribute{
-										Description:         "Specifies the configMap that is to be executed.",
-										MarkdownDescription: "Specifies the configMap that is to be executed.",
+										Description:         "A list of ConfigMapKeySelector objects, each specifies a ConfigMap and a key containing the script.  Note: This field cannot be modified once set.",
+										MarkdownDescription: "A list of ConfigMapKeySelector objects, each specifies a ConfigMap and a key containing the script.  Note: This field cannot be modified once set.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
@@ -4337,8 +3987,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 									},
 
 									"secret_ref": schema.ListNestedAttribute{
-										Description:         "Specifies the secret that is to be executed.",
-										MarkdownDescription: "Specifies the secret that is to be executed.",
+										Description:         "A list of SecretKeySelector objects, each specifies a Secret and a key containing the script.  Note: This field cannot be modified once set.",
+										MarkdownDescription: "A list of SecretKeySelector objects, each specifies a Secret and a key containing the script.  Note: This field cannot be modified once set.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
@@ -4414,8 +4064,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"selector": schema.SingleNestedAttribute{
-								Description:         "By default, KubeBlocks will execute the script on the primary pod with role=leader. Exceptions exist, such as Redis, which does not synchronize account information between primary and secondary. In such cases, the script needs to be executed on all pods matching the selector. Indicates the components on which the script is executed.",
-								MarkdownDescription: "By default, KubeBlocks will execute the script on the primary pod with role=leader. Exceptions exist, such as Redis, which does not synchronize account information between primary and secondary. In such cases, the script needs to be executed on all pods matching the selector. Indicates the components on which the script is executed.",
+								Description:         "Specifies the labels used to select the Pods on which the script should be executed.  By default, the script is executed on the Pod associated with the service named '{clusterName}-{componentName}', which typically routes to the Pod with the primary/leader role.  However, some Components, such as Redis, do not synchronize account information between primary and secondary Pods. In these cases, the script must be executed on all replica Pods matching the selector.  Note: this field cannot be modified once set.",
+								MarkdownDescription: "Specifies the labels used to select the Pods on which the script should be executed.  By default, the script is executed on the Pod associated with the service named '{clusterName}-{componentName}', which typically routes to the Pod with the primary/leader role.  However, some Components, such as Redis, do not synchronize account information between primary and secondary Pods. In these cases, the script must be executed on all replica Pods matching the selector.  Note: this field cannot be modified once set.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4473,21 +4123,21 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"switchover": schema.ListNestedAttribute{
-						Description:         "Switches over the specified components.",
-						MarkdownDescription: "Switches over the specified components.",
+						Description:         "Lists Switchover objects, each specifying a Component to perform the switchover operation.",
+						MarkdownDescription: "Lists Switchover objects, each specifying a Component to perform the switchover operation.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"component_name": schema.StringAttribute{
-									Description:         "Specifies the name of the cluster component.",
-									MarkdownDescription: "Specifies the name of the cluster component.",
+									Description:         "Specifies the name of the Component.",
+									MarkdownDescription: "Specifies the name of the Component.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"instance_name": schema.StringAttribute{
-									Description:         "Utilized to designate the candidate primary or leader instance for the switchover process. If assigned '*', it signifies that no specific primary or leader is designated for the switchover, and the switchoverAction defined in 'clusterDefinition.componentDefs[x].switchoverSpec.withoutCandidate' will be executed.  It is mandatory that 'clusterDefinition.componentDefs[x].switchoverSpec.withoutCandidate' is not left blank.  If assigned a valid instance name other than '*', it signifies that a specific candidate primary or leader is designated for the switchover. The value can be retrieved using 'kbcli cluster list-instances', any other value is considered invalid.  In this scenario, the 'switchoverAction' defined in clusterDefinition.componentDefs[x].switchoverSpec.withCandidate will be executed, and it is mandatory that clusterDefinition.componentDefs[x].switchoverSpec.withCandidate is not left blank.",
-									MarkdownDescription: "Utilized to designate the candidate primary or leader instance for the switchover process. If assigned '*', it signifies that no specific primary or leader is designated for the switchover, and the switchoverAction defined in 'clusterDefinition.componentDefs[x].switchoverSpec.withoutCandidate' will be executed.  It is mandatory that 'clusterDefinition.componentDefs[x].switchoverSpec.withoutCandidate' is not left blank.  If assigned a valid instance name other than '*', it signifies that a specific candidate primary or leader is designated for the switchover. The value can be retrieved using 'kbcli cluster list-instances', any other value is considered invalid.  In this scenario, the 'switchoverAction' defined in clusterDefinition.componentDefs[x].switchoverSpec.withCandidate will be executed, and it is mandatory that clusterDefinition.componentDefs[x].switchoverSpec.withCandidate is not left blank.",
+									Description:         "Specifies the instance to become the primary or leader during a switchover operation.  The value of 'instanceName' can be either:  1. '*' (wildcard value): - Indicates no specific instance is designated as the primary or leader. - Executes the switchover action from 'clusterDefinition.componentDefs[*].switchoverSpec.withoutCandidate'. - 'clusterDefinition.componentDefs[x].switchoverSpec.withoutCandidate' must be defined when using '*'.  2. A valid instance name (pod name): - Designates a specific instance (pod) as the primary or leader. - The name must match one of the pods in the component. Any non-valid pod name is considered invalid. - Executes the switchover action from 'clusterDefinition.componentDefs[*].switchoverSpec.withCandidate'. - 'clusterDefinition.componentDefs[*].switchoverSpec.withCandidate' must be defined when specifying a valid instance name.",
+									MarkdownDescription: "Specifies the instance to become the primary or leader during a switchover operation.  The value of 'instanceName' can be either:  1. '*' (wildcard value): - Indicates no specific instance is designated as the primary or leader. - Executes the switchover action from 'clusterDefinition.componentDefs[*].switchoverSpec.withoutCandidate'. - 'clusterDefinition.componentDefs[x].switchoverSpec.withoutCandidate' must be defined when using '*'.  2. A valid instance name (pod name): - Designates a specific instance (pod) as the primary or leader. - The name must match one of the pods in the component. Any non-valid pod name is considered invalid. - Executes the switchover action from 'clusterDefinition.componentDefs[*].switchoverSpec.withCandidate'. - 'clusterDefinition.componentDefs[*].switchoverSpec.withCandidate' must be defined when specifying a valid instance name.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -4500,24 +4150,24 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"ttl_seconds_after_succeed": schema.Int64Attribute{
-						Description:         "OpsRequest will be deleted after TTLSecondsAfterSucceed second when OpsRequest.status.phase is Succeed.",
-						MarkdownDescription: "OpsRequest will be deleted after TTLSecondsAfterSucceed second when OpsRequest.status.phase is Succeed.",
+						Description:         "Specifies the duration in seconds that an OpsRequest will remain in the system after successfully completing (when 'opsRequest.status.phase' is 'Succeed') before automatic deletion.",
+						MarkdownDescription: "Specifies the duration in seconds that an OpsRequest will remain in the system after successfully completing (when 'opsRequest.status.phase' is 'Succeed') before automatic deletion.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ttl_seconds_before_abort": schema.Int64Attribute{
-						Description:         "OpsRequest will wait at most TTLSecondsBeforeAbort seconds for start-conditions to be met. If not specified, the default value is 0, which means that the start-conditions must be met immediately.",
-						MarkdownDescription: "OpsRequest will wait at most TTLSecondsBeforeAbort seconds for start-conditions to be met. If not specified, the default value is 0, which means that the start-conditions must be met immediately.",
+						Description:         "Specifies the maximum number of seconds the OpsRequest will wait for its start conditions to be met before aborting. If set to 0 (default), the start conditions must be met immediately for the OpsRequest to proceed.",
+						MarkdownDescription: "Specifies the maximum number of seconds the OpsRequest will wait for its start conditions to be met before aborting. If set to 0 (default), the start conditions must be met immediately for the OpsRequest to proceed.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "Defines the operation type.",
-						MarkdownDescription: "Defines the operation type.",
+						Description:         "Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover', 'VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore', 'Expose', 'DataScript', 'RebuildInstance', 'Custom'.  Note: This field is immutable once set.",
+						MarkdownDescription: "Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover', 'VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore', 'Expose', 'DataScript', 'RebuildInstance', 'Custom'.  Note: This field is immutable once set.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -4527,12 +4177,12 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"upgrade": schema.SingleNestedAttribute{
-						Description:         "Specifies the cluster version by specifying clusterVersionRef.",
-						MarkdownDescription: "Specifies the cluster version by specifying clusterVersionRef.",
+						Description:         "Specifies the desired new version of the Cluster.  Note: This field is immutable once set.",
+						MarkdownDescription: "Specifies the desired new version of the Cluster.  Note: This field is immutable once set.",
 						Attributes: map[string]schema.Attribute{
 							"cluster_version_ref": schema.StringAttribute{
-								Description:         "A reference to the name of the ClusterVersion.",
-								MarkdownDescription: "A reference to the name of the ClusterVersion.",
+								Description:         "Specifies the name of the target ClusterVersion for the upgrade.  This field is deprecated since v0.9 because ClusterVersion is deprecated.",
+								MarkdownDescription: "Specifies the name of the target ClusterVersion for the upgrade.  This field is deprecated since v0.9 because ClusterVersion is deprecated.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -4544,8 +4194,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"vertical_scaling": schema.ListAttribute{
-						Description:         "Note: Quantity struct can not do immutable check by CEL. Defines what component need to vertical scale the specified compute resources.",
-						MarkdownDescription: "Note: Quantity struct can not do immutable check by CEL. Defines what component need to vertical scale the specified compute resources.",
+						Description:         "Lists VerticalScaling objects, each specifying a component and its desired compute resources for vertical scaling.",
+						MarkdownDescription: "Lists VerticalScaling objects, each specifying a component and its desired compute resources for vertical scaling.",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
@@ -4553,34 +4203,80 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"volume_expansion": schema.ListNestedAttribute{
-						Description:         "Note: Quantity struct can not do immutable check by CEL. Defines what component and volumeClaimTemplate need to expand the specified storage.",
-						MarkdownDescription: "Note: Quantity struct can not do immutable check by CEL. Defines what component and volumeClaimTemplate need to expand the specified storage.",
+						Description:         "Lists VolumeExpansion objects, each specifying a component and its corresponding volumeClaimTemplates that requires storage expansion.",
+						MarkdownDescription: "Lists VolumeExpansion objects, each specifying a component and its corresponding volumeClaimTemplates that requires storage expansion.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"component_name": schema.StringAttribute{
-									Description:         "Specifies the name of the cluster component.",
-									MarkdownDescription: "Specifies the name of the cluster component.",
+									Description:         "Specifies the name of the Component.",
+									MarkdownDescription: "Specifies the name of the Component.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
-								"volume_claim_templates": schema.ListNestedAttribute{
-									Description:         "volumeClaimTemplates specifies the storage size and volumeClaimTemplate name.",
-									MarkdownDescription: "volumeClaimTemplates specifies the storage size and volumeClaimTemplate name.",
+								"instances": schema.ListNestedAttribute{
+									Description:         "Specifies the instance template that need to volume expand.",
+									MarkdownDescription: "Specifies the instance template that need to volume expand.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "A reference to the volumeClaimTemplate name from the cluster components.",
-												MarkdownDescription: "A reference to the volumeClaimTemplate name from the cluster components.",
+												Description:         "Refer to the instance template name of the component or sharding.",
+												MarkdownDescription: "Refer to the instance template name of the component or sharding.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"volume_claim_templates": schema.ListNestedAttribute{
+												Description:         "volumeClaimTemplates specifies the storage size and volumeClaimTemplate name.",
+												MarkdownDescription: "volumeClaimTemplates specifies the storage size and volumeClaimTemplate name.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Specify the name of the volumeClaimTemplate in the Component. The specified name must match one of the volumeClaimTemplates defined in the 'clusterComponentSpec.volumeClaimTemplates' field.",
+															MarkdownDescription: "Specify the name of the volumeClaimTemplate in the Component. The specified name must match one of the volumeClaimTemplates defined in the 'clusterComponentSpec.volumeClaimTemplates' field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"storage": schema.StringAttribute{
+															Description:         "Specifies the desired storage size for the volume.",
+															MarkdownDescription: "Specifies the desired storage size for the volume.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"volume_claim_templates": schema.ListNestedAttribute{
+									Description:         "Specifies a list of OpsRequestVolumeClaimTemplate objects, defining the volumeClaimTemplates that are used to expand the storage and the desired storage size for each one.",
+									MarkdownDescription: "Specifies a list of OpsRequestVolumeClaimTemplate objects, defining the volumeClaimTemplates that are used to expand the storage and the desired storage size for each one.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "Specify the name of the volumeClaimTemplate in the Component. The specified name must match one of the volumeClaimTemplates defined in the 'clusterComponentSpec.volumeClaimTemplates' field.",
+												MarkdownDescription: "Specify the name of the volumeClaimTemplate in the Component. The specified name must match one of the volumeClaimTemplates defined in the 'clusterComponentSpec.volumeClaimTemplates' field.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"storage": schema.StringAttribute{
-												Description:         "Specifies the requested storage size for the volume.",
-												MarkdownDescription: "Specifies the requested storage size for the volume.",
+												Description:         "Specifies the desired storage size for the volume.",
+												MarkdownDescription: "Specifies the desired storage size for the volume.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,

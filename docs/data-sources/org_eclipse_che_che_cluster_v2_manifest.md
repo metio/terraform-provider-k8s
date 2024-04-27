@@ -224,9 +224,9 @@ Optional:
 Optional:
 
 - `credentials_secret_name` (String) The secret name that contains 'user' and 'password' for a proxy server. The secret must have a 'app.kubernetes.io/part-of=che.eclipse.org' label.
-- `non_proxy_hosts` (List of String) A list of hosts that can be reached directly, bypassing the proxy. Specify wild card domain use the following form '.<DOMAIN>', for example:    - localhost    - my.host.com    - 123.42.12.32 Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining 'nonProxyHosts' in a custom resource leads to merging non-proxy hosts lists from the cluster proxy configuration, and the ones defined in the custom resources. See the following page: https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html.
+- `non_proxy_hosts` (List of String) A list of hosts that can be reached directly, bypassing the proxy. Specify wild card domain use the following form '.<DOMAIN>', for example:    - localhost    - my.host.com    - 123.42.12.32 Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining 'nonProxyHosts' in a custom resource leads to merging non-proxy hosts lists from the cluster proxy configuration, and the ones defined in the custom resources. See the following page: https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html.
 - `port` (String) Proxy server port.
-- `url` (String) URL (protocol+hostname) of the proxy server. Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining 'url' in a custom resource leads to overriding the cluster proxy configuration. See the following page: https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html.
+- `url` (String) URL (protocol+hostname) of the proxy server. Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining 'url' in a custom resource leads to overriding the cluster proxy configuration. See the following page: https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html.
 
 
 

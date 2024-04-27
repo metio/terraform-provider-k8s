@@ -70,6 +70,7 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 			Expression       *string `tfsdk:"expression" json:"expression,omitempty"`
 			FallbackDuration *string `tfsdk:"fallback_duration" json:"fallbackDuration,omitempty"`
 			RecoveryDuration *string `tfsdk:"recovery_duration" json:"recoveryDuration,omitempty"`
+			ResponseCode     *int64  `tfsdk:"response_code" json:"responseCode,omitempty"`
 		} `tfsdk:"circuit_breaker" json:"circuitBreaker,omitempty"`
 		Compress *struct {
 			ExcludedContentTypes *[]string `tfsdk:"excluded_content_types" json:"excludedContentTypes,omitempty"`
@@ -515,6 +516,14 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							"recovery_duration": schema.StringAttribute{
 								Description:         "RecoveryDuration is the duration for which the circuit breaker will try to recover (as soon as it is in recovering state).",
 								MarkdownDescription: "RecoveryDuration is the duration for which the circuit breaker will try to recover (as soon as it is in recovering state).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"response_code": schema.Int64Attribute{
+								Description:         "ResponseCode is the status code that the circuit breaker will return while it is in the open state.",
+								MarkdownDescription: "ResponseCode is the status code that the circuit breaker will return while it is in the open state.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1282,8 +1291,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"ip_allow_list": schema.SingleNestedAttribute{
-						Description:         "IPAllowList holds the IP allowlist middleware configuration.This middleware accepts / refuses requests based on the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/ipallowlist/",
-						MarkdownDescription: "IPAllowList holds the IP allowlist middleware configuration.This middleware accepts / refuses requests based on the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/ipallowlist/",
+						Description:         "IPAllowList holds the IP allowlist middleware configuration.This middleware limits allowed requests based on the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/ipallowlist/",
+						MarkdownDescription: "IPAllowList holds the IP allowlist middleware configuration.This middleware limits allowed requests based on the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/ipallowlist/",
 						Attributes: map[string]schema.Attribute{
 							"ip_strategy": schema.SingleNestedAttribute{
 								Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/ipallowlist/#ipstrategy",
@@ -1364,8 +1373,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"source_range": schema.ListAttribute{
-								Description:         "SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation).",
-								MarkdownDescription: "SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation).",
+								Description:         "SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation). Required.",
+								MarkdownDescription: "SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation). Required.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

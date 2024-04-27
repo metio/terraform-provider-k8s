@@ -78,6 +78,7 @@ Optional:
 - `metric_relabelings` (Attributes List) MetricRelabelConfigs to apply to samples before ingestion. (see [below for nested schema](#nestedatt--spec--metric_relabelings))
 - `metrics_path` (String) MetricsPath HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. /metrics).
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `nomad_sd_configs` (Attributes List) NomadSDConfigs defines a list of Nomad service discovery configurations. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs))
 - `openstack_sd_configs` (Attributes List) OpenStackSDConfigs defines a list of OpenStack service discovery configurations. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs))
 - `params` (Map of List of String) Optional HTTP URL parameters
 - `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--proxy_connect_header))
@@ -2253,6 +2254,260 @@ Optional:
 - `separator` (String) Separator is the string between concatenated SourceLabels.
 - `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
 - `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
+
+
+<a id="nestedatt--spec--nomad_sd_configs"></a>
+### Nested Schema for `spec.nomad_sd_configs`
+
+Required:
+
+- `server` (String)
+
+Optional:
+
+- `allow_stale` (Boolean) The information to access the Nomad API. It is to be definedas the Nomad documentation requires.
+- `authorization` (Attributes) Authorization header to use on every scrape request. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--authorization))
+- `basic_auth` (Attributes) BasicAuth information to use on every scrape request. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--basic_auth))
+- `enable_http2` (Boolean) Whether to enable HTTP2.
+- `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
+- `namespace` (String)
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization' or 'basic_auth'. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2))
+- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--proxy_connect_header))
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `refresh_interval` (String) Duration is a valid time duration that can be parsed by Prometheus model.ParseDuration() function.Supported units: y, w, d, h, m, s, msExamples: '30s', '1m', '1h20m15s', '15d'
+- `region` (String)
+- `tag_separator` (String)
+- `tls_config` (Attributes) TLS configuration applying to the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config))
+
+<a id="nestedatt--spec--nomad_sd_configs--authorization"></a>
+### Nested Schema for `spec.nomad_sd_configs.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--authorization--credentials))
+- `type` (String) Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'
+
+<a id="nestedatt--spec--nomad_sd_configs--authorization--credentials"></a>
+### Nested Schema for `spec.nomad_sd_configs.authorization.credentials`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--nomad_sd_configs--basic_auth"></a>
+### Nested Schema for `spec.nomad_sd_configs.basic_auth`
+
+Optional:
+
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password forauthentication. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username forauthentication. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--basic_auth--username))
+
+<a id="nestedatt--spec--nomad_sd_configs--basic_auth--password"></a>
+### Nested Schema for `spec.nomad_sd_configs.basic_auth.password`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--nomad_sd_configs--basic_auth--username"></a>
+### Nested Schema for `spec.nomad_sd_configs.basic_auth.username`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--nomad_sd_configs--oauth2"></a>
+### Nested Schema for `spec.nomad_sd_configs.oauth2`
+
+Required:
+
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2client's secret. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
+
+Optional:
+
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
+
+<a id="nestedatt--spec--nomad_sd_configs--oauth2--client_id"></a>
+### Nested Schema for `spec.nomad_sd_configs.oauth2.client_id`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2--scopes--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2--scopes--secret))
+
+<a id="nestedatt--spec--nomad_sd_configs--oauth2--scopes--config_map"></a>
+### Nested Schema for `spec.nomad_sd_configs.oauth2.scopes.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--nomad_sd_configs--oauth2--scopes--secret"></a>
+### Nested Schema for `spec.nomad_sd_configs.oauth2.scopes.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--nomad_sd_configs--oauth2--client_secret"></a>
+### Nested Schema for `spec.nomad_sd_configs.oauth2.client_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--nomad_sd_configs--proxy_connect_header"></a>
+### Nested Schema for `spec.nomad_sd_configs.proxy_connect_header`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--nomad_sd_configs--tls_config"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--key_secret))
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--ca"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--server_name--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--server_name--secret))
+
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--server_name--config_map"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.server_name.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--server_name--secret"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.server_name.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--cert"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--server_name--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--tls_config--server_name--secret))
+
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--server_name--config_map"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.server_name.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--server_name--secret"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.server_name.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--nomad_sd_configs--tls_config--key_secret"></a>
+### Nested Schema for `spec.nomad_sd_configs.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
 
 
 <a id="nestedatt--spec--openstack_sd_configs"></a>

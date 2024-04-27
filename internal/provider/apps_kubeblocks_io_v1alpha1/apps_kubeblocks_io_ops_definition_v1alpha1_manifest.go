@@ -1367,8 +1367,8 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Metadata(_ context.Conte
 
 func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "OpsDefinition is the Schema for the opsdefinitions API",
-		MarkdownDescription: "OpsDefinition is the Schema for the opsdefinitions API",
+		Description:         "OpsDefinition is the Schema for the OpsDefinitions API.",
+		MarkdownDescription: "OpsDefinition is the Schema for the OpsDefinitions API.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -1423,21 +1423,21 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "OpsDefinitionSpec defines the desired state of OpsDefinition",
-				MarkdownDescription: "OpsDefinitionSpec defines the desired state of OpsDefinition",
+				Description:         "OpsDefinitionSpec defines the desired state of OpsDefinition.",
+				MarkdownDescription: "OpsDefinitionSpec defines the desired state of OpsDefinition.",
 				Attributes: map[string]schema.Attribute{
 					"actions": schema.ListNestedAttribute{
-						Description:         "The actions to be executed in the opsRequest are performed sequentially.",
-						MarkdownDescription: "The actions to be executed in the opsRequest are performed sequentially.",
+						Description:         "Specifies a list of OpsAction where each customized action is executed sequentially.",
+						MarkdownDescription: "Specifies a list of OpsAction where each customized action is executed sequentially.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"exec": schema.SingleNestedAttribute{
-									Description:         "Represents the exec action. This will call the kubectl exec interface.",
-									MarkdownDescription: "Represents the exec action. This will call the kubectl exec interface.",
+									Description:         "Specifies the configuration for a 'exec' action. It creates a Pod and invokes a 'kubectl exec' to run command inside a specified container with the target Pod.",
+									MarkdownDescription: "Specifies the configuration for a 'exec' action. It creates a Pod and invokes a 'kubectl exec' to run command inside a specified container with the target Pod.",
 									Attributes: map[string]schema.Attribute{
 										"backoff_limit": schema.Int64Attribute{
-											Description:         "Specifies the number of retries before marking the action as failed.",
-											MarkdownDescription: "Specifies the number of retries before marking the action as failed.",
+											Description:         "Specifies the number of retries allowed before marking the action as failed.",
+											MarkdownDescription: "Specifies the number of retries allowed before marking the action as failed.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1447,8 +1447,8 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 										},
 
 										"command": schema.ListAttribute{
-											Description:         "The command to execute.",
-											MarkdownDescription: "The command to execute.",
+											Description:         "The command to be executed via 'kubectl exec --'.",
+											MarkdownDescription: "The command to be executed via 'kubectl exec --'.",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -1456,16 +1456,16 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 										},
 
 										"container_name": schema.StringAttribute{
-											Description:         "The name of the container in the target pod to execute the command. If not set, the first container is used.",
-											MarkdownDescription: "The name of the container in the target pod to execute the command. If not set, the first container is used.",
+											Description:         "The name of the container in the target pod where the command should be executed. This corresponds to the '-c {containerName}' option in 'kubectl exec'.  If not set, the first container is used.",
+											MarkdownDescription: "The name of the container in the target pod where the command should be executed. This corresponds to the '-c {containerName}' option in 'kubectl exec'.  If not set, the first container is used.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"target_pod_template": schema.StringAttribute{
-											Description:         "Refers to the spec.targetPodTemplates. Defines the target pods that need to execute exec actions.",
-											MarkdownDescription: "Refers to the spec.targetPodTemplates. Defines the target pods that need to execute exec actions.",
+											Description:         "Specifies a TargetPodTemplate defined in the 'opsDefinition.spec.targetPodTemplates'.",
+											MarkdownDescription: "Specifies a TargetPodTemplate defined in the 'opsDefinition.spec.targetPodTemplates'.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -1477,16 +1477,16 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 								},
 
 								"failure_policy": schema.StringAttribute{
-									Description:         "failurePolicy is the failure policy of the action. valid values Fail and Ignore. - Fail: if the action failed, the opsRequest will be failed. - Ignore: opsRequest will ignore the failure if the action is failed.",
-									MarkdownDescription: "failurePolicy is the failure policy of the action. valid values Fail and Ignore. - Fail: if the action failed, the opsRequest will be failed. - Ignore: opsRequest will ignore the failure if the action is failed.",
+									Description:         "Specifies the failure policy of the OpsAction. Valid values are:  - 'Fail': Marks the entire OpsRequest as failed if the action fails. - 'Ignore': The OpsRequest continues processing despite the failure of the action.",
+									MarkdownDescription: "Specifies the failure policy of the OpsAction. Valid values are:  - 'Fail': Marks the entire OpsRequest as failed if the action fails. - 'Ignore': The OpsRequest continues processing despite the failure of the action.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "action name.",
-									MarkdownDescription: "action name.",
+									Description:         "Specifies the name of the OpsAction.",
+									MarkdownDescription: "Specifies the name of the OpsAction.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -1496,8 +1496,8 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 								},
 
 								"parameters": schema.ListAttribute{
-									Description:         "Refers to the parameter of the ParametersSchema. The parameter will be used in the action. If it is a 'workload' and 'exec' Action, they will be injected into the corresponding environment variable. If it is a 'resourceModifier' Action, parameter can be referenced using $() in completionProbe.matchExpressions and JsonPatches[*].Value.",
-									MarkdownDescription: "Refers to the parameter of the ParametersSchema. The parameter will be used in the action. If it is a 'workload' and 'exec' Action, they will be injected into the corresponding environment variable. If it is a 'resourceModifier' Action, parameter can be referenced using $() in completionProbe.matchExpressions and JsonPatches[*].Value.",
+									Description:         "Specifies the parameters for the OpsAction. Their usage varies based on the action type:  - For 'workload' or 'exec' actions, parameters are injected as environment variables. - For 'resourceModifier' actions, parameter can be referenced using $() in fields 'resourceModifier.completionProbe.matchExpressions' and 'resourceModifier.jsonPatches[*].value'.",
+									MarkdownDescription: "Specifies the parameters for the OpsAction. Their usage varies based on the action type:  - For 'workload' or 'exec' actions, parameters are injected as environment variables. - For 'resourceModifier' actions, parameter can be referenced using $() in fields 'resourceModifier.completionProbe.matchExpressions' and 'resourceModifier.jsonPatches[*].value'.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1505,12 +1505,12 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 								},
 
 								"resource_modifier": schema.SingleNestedAttribute{
-									Description:         "Specifies the resource modifier to update the custom resource.",
-									MarkdownDescription: "Specifies the resource modifier to update the custom resource.",
+									Description:         "Specifies the configuration for a 'resourceModifier' action. This action allows for modifications to existing K8s objects.  Note: This feature has not been implemented yet.",
+									MarkdownDescription: "Specifies the configuration for a 'resourceModifier' action. This action allows for modifications to existing K8s objects.  Note: This feature has not been implemented yet.",
 									Attributes: map[string]schema.Attribute{
 										"completion_probe": schema.SingleNestedAttribute{
-											Description:         "Provides a method to check if the action has been completed.",
-											MarkdownDescription: "Provides a method to check if the action has been completed.",
+											Description:         "Specifies a method to determine if the action has been completed.  Note: This feature has not been implemented yet.",
+											MarkdownDescription: "Specifies a method to determine if the action has been completed.  Note: This feature has not been implemented yet.",
 											Attributes: map[string]schema.Attribute{
 												"initial_delay_seconds": schema.Int64Attribute{
 													Description:         "Specifies the number of seconds to wait after the resource has been patched before initiating completion probes. The default value is 5 seconds, with a minimum value of 1.",
@@ -1528,16 +1528,16 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 													MarkdownDescription: "Executes expressions regularly, based on the value of PeriodSeconds, to determine if the action has been completed.",
 													Attributes: map[string]schema.Attribute{
 														"failure": schema.StringAttribute{
-															Description:         "Defines a failure condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, you can use '{{ eq .spec.replicas 1 }}'.",
-															MarkdownDescription: "Defines a failure condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, you can use '{{ eq .spec.replicas 1 }}'.",
+															Description:         "Specifies a failure condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, you can use '{{ eq .spec.replicas 1 }}'.",
+															MarkdownDescription: "Specifies a failure condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, you can use '{{ eq .spec.replicas 1 }}'.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"success": schema.StringAttribute{
-															Description:         "Defines a success condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, using '{{ eq .spec.replicas 1 }}'",
-															MarkdownDescription: "Defines a success condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, using '{{ eq .spec.replicas 1 }}'",
+															Description:         "Specifies a success condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, using '{{ eq .spec.replicas 1 }}'",
+															MarkdownDescription: "Specifies a success condition for an action using a Go template expression. Should evaluate to either 'true' or 'false'. The current resource object is parsed into the Go template. for example, using '{{ eq .spec.replicas 1 }}'",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1549,8 +1549,8 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 												},
 
 												"period_seconds": schema.Int64Attribute{
-													Description:         "Indicates the frequency (in seconds) at which the probe should be performed. The default value is 5 seconds, with a minimum value of 1.",
-													MarkdownDescription: "Indicates the frequency (in seconds) at which the probe should be performed. The default value is 5 seconds, with a minimum value of 1.",
+													Description:         "Specifies the frequency (in seconds) at which the probe should be performed. The default value is 5 seconds, with a minimum value of 1.",
+													MarkdownDescription: "Specifies the frequency (in seconds) at which the probe should be performed. The default value is 5 seconds, with a minimum value of 1.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1560,8 +1560,8 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 												},
 
 												"timeout_seconds": schema.Int64Attribute{
-													Description:         "Defines the number of seconds after which the probe times out. The default value is 60 seconds, with a minimum value of 1.",
-													MarkdownDescription: "Defines the number of seconds after which the probe times out. The default value is 60 seconds, with a minimum value of 1.",
+													Description:         "Specifies the number of seconds after which the probe times out. The default value is 60 seconds, with a minimum value of 1.",
+													MarkdownDescription: "Specifies the number of seconds after which the probe times out. The default value is 60 seconds, with a minimum value of 1.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1576,13 +1576,13 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 										},
 
 										"json_patches": schema.ListNestedAttribute{
-											Description:         "Defines the set of patches that are used to perform updates on the resource object.",
-											MarkdownDescription: "Defines the set of patches that are used to perform updates on the resource object.",
+											Description:         "Specifies a list of patches for modifying the object.",
+											MarkdownDescription: "Specifies a list of patches for modifying the object.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"op": schema.StringAttribute{
-														Description:         "Represents the type of JSON patch operation. It supports the following values: 'add', 'remove', 'replace'.",
-														MarkdownDescription: "Represents the type of JSON patch operation. It supports the following values: 'add', 'remove', 'replace'.",
+														Description:         "Specifies the type of JSON patch operation. It supports the following values: 'add', 'remove', 'replace'.",
+														MarkdownDescription: "Specifies the type of JSON patch operation. It supports the following values: 'add', 'remove', 'replace'.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -1592,16 +1592,16 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 													},
 
 													"path": schema.StringAttribute{
-														Description:         "Represents the json patch path.",
-														MarkdownDescription: "Represents the json patch path.",
+														Description:         "Specifies the json patch path.",
+														MarkdownDescription: "Specifies the json patch path.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"value": schema.StringAttribute{
-														Description:         "Represents the value to be used in the JSON patch operation.",
-														MarkdownDescription: "Represents the value to be used in the JSON patch operation.",
+														Description:         "Specifies the value to be used in the JSON patch operation.",
+														MarkdownDescription: "Specifies the value to be used in the JSON patch operation.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -1614,12 +1614,12 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 										},
 
 										"resource": schema.SingleNestedAttribute{
-											Description:         "Refers to the Kubernetes objects that are required to be updated.",
-											MarkdownDescription: "Refers to the Kubernetes objects that are required to be updated.",
+											Description:         "Specifies the K8s object that is to be updated.",
+											MarkdownDescription: "Specifies the K8s object that is to be updated.",
 											Attributes: map[string]schema.Attribute{
 												"api_group": schema.StringAttribute{
-													Description:         "Defines the group for the resource being referenced. If not specified, the referenced Kind must belong to the core API group. For all third-party types, this is mandatory.",
-													MarkdownDescription: "Defines the group for the resource being referenced. If not specified, the referenced Kind must belong to the core API group. For all third-party types, this is mandatory.",
+													Description:         "Specifies the group for the resource being referenced. If not specified, the referenced Kind must belong to the core API group. For all third-party types, this is mandatory.",
+													MarkdownDescription: "Specifies the group for the resource being referenced. If not specified, the referenced Kind must belong to the core API group. For all third-party types, this is mandatory.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1652,12 +1652,12 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 								},
 
 								"workload": schema.SingleNestedAttribute{
-									Description:         "Indicates the workload action and a corresponding workload will be created to execute this action.",
-									MarkdownDescription: "Indicates the workload action and a corresponding workload will be created to execute this action.",
+									Description:         "Specifies the configuration for a 'workload' action. This action leads to the creation of a K8s workload, such as a Pod or Job, to execute specified tasks.",
+									MarkdownDescription: "Specifies the configuration for a 'workload' action. This action leads to the creation of a K8s workload, such as a Pod or Job, to execute specified tasks.",
 									Attributes: map[string]schema.Attribute{
 										"backoff_limit": schema.Int64Attribute{
-											Description:         "Specifies the number of retries before marking the action as failed.",
-											MarkdownDescription: "Specifies the number of retries before marking the action as failed.",
+											Description:         "Specifies the number of retries allowed before marking the action as failed.",
+											MarkdownDescription: "Specifies the number of retries allowed before marking the action as failed.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1667,8 +1667,8 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 										},
 
 										"pod_spec": schema.SingleNestedAttribute{
-											Description:         "Represents the pod spec of the workload.",
-											MarkdownDescription: "Represents the pod spec of the workload.",
+											Description:         "Specifies the PodSpec of the 'workload' action.",
+											MarkdownDescription: "Specifies the PodSpec of the 'workload' action.",
 											Attributes: map[string]schema.Attribute{
 												"active_deadline_seconds": schema.Int64Attribute{
 													Description:         "Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.",
@@ -9951,16 +9951,16 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 										},
 
 										"target_pod_template": schema.StringAttribute{
-											Description:         "Refers to the spec.targetPodTemplates. This field defines the target pod for the current action.",
-											MarkdownDescription: "Refers to the spec.targetPodTemplates. This field defines the target pod for the current action.",
+											Description:         "Specifies a TargetPodTemplate defined in the 'opsDefinition.spec.targetPodTemplates'.",
+											MarkdownDescription: "Specifies a TargetPodTemplate defined in the 'opsDefinition.spec.targetPodTemplates'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "Defines the workload type of the action. Valid values include 'Job' and 'Pod'. 'Job' creates a job to execute the action. 'Pod' creates a pod to execute the action. Note that unlike jobs, if a pod is manually deleted, it will not consume backoffLimit times.",
-											MarkdownDescription: "Defines the workload type of the action. Valid values include 'Job' and 'Pod'. 'Job' creates a job to execute the action. 'Pod' creates a pod to execute the action. Note that unlike jobs, if a pod is manually deleted, it will not consume backoffLimit times.",
+											Description:         "Defines the workload type of the action. Valid values include 'Job' and 'Pod'.  - 'Job': Creates a Job to execute the action. - 'Pod': Creates a Pod to execute the action. Note: unlike Jobs, manually deleting a Pod does not affect the 'backoffLimit'.",
+											MarkdownDescription: "Defines the workload type of the action. Valid values include 'Job' and 'Pod'.  - 'Job': Creates a Job to execute the action. - 'Pod': Creates a Pod to execute the action. Note: unlike Jobs, manually deleting a Pod does not affect the 'backoffLimit'.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -9981,21 +9981,21 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"component_definition_refs": schema.ListNestedAttribute{
-						Description:         "Specifies the types of componentDefinitions supported by the operation. It can reference certain variables of the componentDefinition. If set, any component not meeting these conditions will be intercepted.",
-						MarkdownDescription: "Specifies the types of componentDefinitions supported by the operation. It can reference certain variables of the componentDefinition. If set, any component not meeting these conditions will be intercepted.",
+						Description:         "Specifies a list of ComponentDefinition for Components associated with this OpsDefinition. It also includes connection credentials (address and account) for each Component.",
+						MarkdownDescription: "Specifies a list of ComponentDefinition for Components associated with this OpsDefinition. It also includes connection credentials (address and account) for each Component.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"account_name": schema.StringAttribute{
-									Description:         "Represents the account name of the component. If provided, the account username and password will be injected into the job environment variables 'KB_ACCOUNT_USERNAME' and 'KB_ACCOUNT_PASSWORD'.",
-									MarkdownDescription: "Represents the account name of the component. If provided, the account username and password will be injected into the job environment variables 'KB_ACCOUNT_USERNAME' and 'KB_ACCOUNT_PASSWORD'.",
+									Description:         "Specifies the account name associated with the Component. If set, the corresponding account username and password are injected into containers' environment variables 'KB_ACCOUNT_USERNAME' and 'KB_ACCOUNT_PASSWORD'.",
+									MarkdownDescription: "Specifies the account name associated with the Component. If set, the corresponding account username and password are injected into containers' environment variables 'KB_ACCOUNT_USERNAME' and 'KB_ACCOUNT_PASSWORD'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Refers to the name of the component definition. This is a required field with a maximum length of 32 characters.",
-									MarkdownDescription: "Refers to the name of the component definition. This is a required field with a maximum length of 32 characters.",
+									Description:         "Specifies the name of the ComponentDefinition.",
+									MarkdownDescription: "Specifies the name of the ComponentDefinition.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -10005,8 +10005,8 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 								},
 
 								"service_name": schema.StringAttribute{
-									Description:         "References the name of the service. If provided, the service name and ports will be mapped to the job environment variables 'KB_COMP_SVC_NAME' and 'KB_COMP_SVC_PORT_$(portName)'. Note that the portName will replace the characters '-' with '_' and convert to uppercase.",
-									MarkdownDescription: "References the name of the service. If provided, the service name and ports will be mapped to the job environment variables 'KB_COMP_SVC_NAME' and 'KB_COMP_SVC_PORT_$(portName)'. Note that the portName will replace the characters '-' with '_' and convert to uppercase.",
+									Description:         "Specifies the name of the Service. If set, the service name is injected as the 'KB_COMP_SVC_NAME' environment variable in the containers, and each service port is mapped to a corresponding environment variable named 'KB_COMP_SVC_PORT_$(portName)'. The 'portName' is transformed by replacing '-' with '_' and converting to uppercase.",
+									MarkdownDescription: "Specifies the name of the Service. If set, the service name is injected as the 'KB_COMP_SVC_NAME' environment variable in the containers, and each service port is mapped to a corresponding environment variable named 'KB_COMP_SVC_PORT_$(portName)'. The 'portName' is transformed by replacing '-' with '_' and converting to uppercase.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -10019,12 +10019,12 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"parameters_schema": schema.SingleNestedAttribute{
-						Description:         "Describes the schema used for validation, pruning, and defaulting.",
-						MarkdownDescription: "Describes the schema used for validation, pruning, and defaulting.",
+						Description:         "Specifies the schema for validating the data types and value ranges of parameters in OpsActions before their usage.",
+						MarkdownDescription: "Specifies the schema for validating the data types and value ranges of parameters in OpsActions before their usage.",
 						Attributes: map[string]schema.Attribute{
 							"open_apiv3_schema": schema.MapAttribute{
-								Description:         "Defines the OpenAPI v3 schema used for the parameter schema. The supported property types include: - string - number - integer - array: Note that only items of string type are supported.",
-								MarkdownDescription: "Defines the OpenAPI v3 schema used for the parameter schema. The supported property types include: - string - number - integer - array: Note that only items of string type are supported.",
+								Description:         "Defines the schema for parameters using the OpenAPI v3. The supported property types include: - string - number - integer - array: Note that only items of string type are supported.",
+								MarkdownDescription: "Defines the schema for parameters using the OpenAPI v3. The supported property types include: - string - number - integer - array: Note that only items of string type are supported.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -10037,25 +10037,25 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"pre_conditions": schema.ListNestedAttribute{
-						Description:         "Specifies the preconditions that must be met to run the actions for the operation. if set, it will check the condition before the component run this operation.",
-						MarkdownDescription: "Specifies the preconditions that must be met to run the actions for the operation. if set, it will check the condition before the component run this operation.",
+						Description:         "Specifies the preconditions that must be met to run the actions for the operation. if set, it will check the condition before the Component runs this operation. Example: '''yaml preConditions: - rule: expression: '{{ eq .component.status.phase 'Running' }}' message: Component is not in Running status. '''",
+						MarkdownDescription: "Specifies the preconditions that must be met to run the actions for the operation. if set, it will check the condition before the Component runs this operation. Example: '''yaml preConditions: - rule: expression: '{{ eq .component.status.phase 'Running' }}' message: Component is not in Running status. '''",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"rule": schema.SingleNestedAttribute{
-									Description:         "Defines the conditions under which the operation can be executed.",
-									MarkdownDescription: "Defines the conditions under which the operation can be executed.",
+									Description:         "Specifies the conditions that must be met for the operation to execute.",
+									MarkdownDescription: "Specifies the conditions that must be met for the operation to execute.",
 									Attributes: map[string]schema.Attribute{
 										"expression": schema.StringAttribute{
-											Description:         "Defines how the operation can be executed using a Go template expression. Should return either 'true' or 'false'. The built-in objects available for use in the expression include: - 'params': These are the input parameters. - 'cluster': This is the referenced cluster object. - 'component': This is the referenced component object.",
-											MarkdownDescription: "Defines how the operation can be executed using a Go template expression. Should return either 'true' or 'false'. The built-in objects available for use in the expression include: - 'params': These are the input parameters. - 'cluster': This is the referenced cluster object. - 'component': This is the referenced component object.",
+											Description:         "Specifies a Go template expression that determines how the operation can be executed. The return value must be either 'true' or 'false'. Available built-in objects that can be referenced in the expression include:  - 'params': Input parameters. - 'cluster': The referenced Cluster object. - 'component': The referenced Component object.",
+											MarkdownDescription: "Specifies a Go template expression that determines how the operation can be executed. The return value must be either 'true' or 'false'. Available built-in objects that can be referenced in the expression include:  - 'params': Input parameters. - 'cluster': The referenced Cluster object. - 'component': The referenced Component object.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"message": schema.StringAttribute{
-											Description:         "Reported if the rule is not matched.",
-											MarkdownDescription: "Reported if the rule is not matched.",
+											Description:         "Specifies the error or status message reported if the 'expression' does not evaluate to 'true'.",
+											MarkdownDescription: "Specifies the error or status message reported if the 'expression' does not evaluate to 'true'.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -10073,13 +10073,13 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"target_pod_templates": schema.ListNestedAttribute{
-						Description:         "Defines the targetPodTemplate to be referenced by the action.",
-						MarkdownDescription: "Defines the targetPodTemplate to be referenced by the action.",
+						Description:         "Specifies a list of TargetPodTemplate, each designed to select a specific Pod and extract selected runtime info from its PodSpec. The extracted information, such as environment variables, volumes and tolerations, are then injected into Jobs or Pods that execute the OpsActions defined in 'actions'.",
+						MarkdownDescription: "Specifies a list of TargetPodTemplate, each designed to select a specific Pod and extract selected runtime info from its PodSpec. The extracted information, such as environment variables, volumes and tolerations, are then injected into Jobs or Pods that execute the OpsActions defined in 'actions'.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Represents the template name.",
-									MarkdownDescription: "Represents the template name.",
+									Description:         "Specifies the name of the TargetPodTemplate.",
+									MarkdownDescription: "Specifies the name of the TargetPodTemplate.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -10089,12 +10089,12 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 								},
 
 								"pod_selector": schema.SingleNestedAttribute{
-									Description:         "Used to identify the target pod.",
-									MarkdownDescription: "Used to identify the target pod.",
+									Description:         "Used to select the target Pod from which environment variables and volumes are extracted from its PodSpec.",
+									MarkdownDescription: "Used to select the target Pod from which environment variables and volumes are extracted from its PodSpec.",
 									Attributes: map[string]schema.Attribute{
 										"availability": schema.StringAttribute{
-											Description:         "Indicates the desired availability status of the pods to be selected. valid values: - 'Available': selects only available pods and terminates the action if none are found. - 'PreferredAvailable': prioritizes the selection of available pods。 - 'None': there are no requirements for the availability of pods.",
-											MarkdownDescription: "Indicates the desired availability status of the pods to be selected. valid values: - 'Available': selects only available pods and terminates the action if none are found. - 'PreferredAvailable': prioritizes the selection of available pods。 - 'None': there are no requirements for the availability of pods.",
+											Description:         "Specifies the pod selection criteria based on their availability: - 'Available': Only selects available pods, and terminates the action if none are found. - 'PreferredAvailable': Prioritizes available pods but considers others if none available. - 'None': No availability requirements.",
+											MarkdownDescription: "Specifies the pod selection criteria based on their availability: - 'Available': Only selects available pods, and terminates the action if none are found. - 'PreferredAvailable': Prioritizes available pods but considers others if none available. - 'None': No availability requirements.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -10104,8 +10104,8 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 										},
 
 										"role": schema.StringAttribute{
-											Description:         "Specifies the role of the target pod.",
-											MarkdownDescription: "Specifies the role of the target pod.",
+											Description:         "Specifies the role of the target Pod.",
+											MarkdownDescription: "Specifies the role of the target Pod.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -10128,37 +10128,37 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 								},
 
 								"vars": schema.ListNestedAttribute{
-									Description:         "Defines the environment variables that need to be referenced from the target component pod, and will be injected into the pod's containers.",
-									MarkdownDescription: "Defines the environment variables that need to be referenced from the target component pod, and will be injected into the pod's containers.",
+									Description:         "Specifies a list of environment variables to be extracted from a selected Pod, and injected into the containers executing each OpsAction.",
+									MarkdownDescription: "Specifies a list of environment variables to be extracted from a selected Pod, and injected into the containers executing each OpsAction.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Specifies the name of the variable. This must be a C_IDENTIFIER.",
-												MarkdownDescription: "Specifies the name of the variable. This must be a C_IDENTIFIER.",
+												Description:         "Specifies the name of the environment variable to be injected into Pods executing OpsActions. It must conform to the C_IDENTIFIER format, which includes only alphanumeric characters and underscores, and cannot begin with a digit.",
+												MarkdownDescription: "Specifies the name of the environment variable to be injected into Pods executing OpsActions. It must conform to the C_IDENTIFIER format, which includes only alphanumeric characters and underscores, and cannot begin with a digit.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"value_from": schema.SingleNestedAttribute{
-												Description:         "Defines the source for the variable's value.",
-												MarkdownDescription: "Defines the source for the variable's value.",
+												Description:         "Specifies the source of the environment variable's value.",
+												MarkdownDescription: "Specifies the source of the environment variable's value.",
 												Attributes: map[string]schema.Attribute{
 													"env_ref": schema.SingleNestedAttribute{
 														Description:         "Specifies a reference to a specific environment variable within a container. Used to specify the source of the variable, which can be either 'env' or 'envFrom'.",
 														MarkdownDescription: "Specifies a reference to a specific environment variable within a container. Used to specify the source of the variable, which can be either 'env' or 'envFrom'.",
 														Attributes: map[string]schema.Attribute{
 															"container_name": schema.StringAttribute{
-																Description:         "Specifies the name of the container as defined in the componentDefinition or as injected by the kubeBlocks controller. If not specified, the first container will be used by default.",
-																MarkdownDescription: "Specifies the name of the container as defined in the componentDefinition or as injected by the kubeBlocks controller. If not specified, the first container will be used by default.",
+																Description:         "Specifies the container name in the target Pod. If not specified, the first container will be used by default.",
+																MarkdownDescription: "Specifies the container name in the target Pod. If not specified, the first container will be used by default.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"env_name": schema.StringAttribute{
-																Description:         "Defines the name of the environment variable.",
-																MarkdownDescription: "Defines the name of the environment variable.",
+																Description:         "Defines the name of the environment variable. This name can originate from an 'env' entry or be a data key from an 'envFrom' source.",
+																MarkdownDescription: "Defines the name of the environment variable. This name can originate from an 'env' entry or be a data key from an 'envFrom' source.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -10170,8 +10170,8 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 													},
 
 													"field_path": schema.StringAttribute{
-														Description:         "Represents the JSONPath of the target pod. This is used to specify the exact location of the data within the JSON structure of the pod.",
-														MarkdownDescription: "Represents the JSONPath of the target pod. This is used to specify the exact location of the data within the JSON structure of the pod.",
+														Description:         "Represents the JSONPath expression pointing to the specific data within the JSON structure of the target Pod. It is used to extract precise data locations for operations on the Pod.",
+														MarkdownDescription: "Represents the JSONPath expression pointing to the specific data within the JSON structure of the target Pod. It is used to extract precise data locations for operations on the Pod.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -10189,8 +10189,8 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 								},
 
 								"volume_mounts": schema.ListNestedAttribute{
-									Description:         "Specifies the mount points for the volumes defined in the 'Volumes' section for the action pod.",
-									MarkdownDescription: "Specifies the mount points for the volumes defined in the 'Volumes' section for the action pod.",
+									Description:         "Specifies a list of volumes, along with their respective mount points, that are to be extracted from a selected Pod, and mounted onto the containers executing each OpsAction. This allows the containers to access shared or persistent data necessary for the operation.",
+									MarkdownDescription: "Specifies a list of volumes, along with their respective mount points, that are to be extracted from a selected Pod, and mounted onto the containers executing each OpsAction. This allows the containers to access shared or persistent data necessary for the operation.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"mount_path": schema.StringAttribute{

@@ -540,6 +540,7 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 				} `tfsdk:"security_context" json:"securityContext,omitempty"`
 				ServiceAccount        *string            `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 				ServiceAnnotations    *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
+				ServiceLabels         *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
 				ShareProcessNamespace *bool              `tfsdk:"share_process_namespace" json:"shareProcessNamespace,omitempty"`
 				Sidecars              *[]struct {
 					Args    *[]string `tfsdk:"args" json:"args,omitempty"`
@@ -5139,6 +5140,15 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 									},
 
 									"service_annotations": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"service_labels": schema.MapAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										ElementType:         types.StringType,

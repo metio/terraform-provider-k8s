@@ -141,8 +141,6 @@ Optional:
 
 Optional:
 
-- `auth_timeout` (Number) The amount of time in seconds Kiali will wait for a response from the OpenShift API server when requesting authentication results.
-- `client_id_prefix` (String) The Route resource name and OAuthClient resource name will have this value as its prefix. This value normally should never change. The installer will ensure this value is set correctly.
 - `token_inactivity_timeout` (Number) Timeout that overrides the default OpenShift token inactivity timeout. This value represents the maximum amount of time in seconds that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. If 0, the Kiali tokens never timeout. OpenShift may have a minimum allowed value - see the OpenShift documentation specific for the version of OpenShift you are using. WARNING: existing tokens will not be affected by changing this setting.
 - `token_max_age` (Number) A time duration in seconds that overrides the default OpenShift access token max age. If 0 then there will be no expiration of tokens.
 

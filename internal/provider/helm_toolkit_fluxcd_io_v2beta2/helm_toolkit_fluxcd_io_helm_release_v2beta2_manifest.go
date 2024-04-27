@@ -508,7 +508,7 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest) Schema(_ context.Context
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("OCIRepository"),
+									stringvalidator.OneOf("OCIRepository", "HelmChart"),
 								},
 							},
 

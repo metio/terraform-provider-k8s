@@ -2135,6 +2135,25 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
 			ValueFrom *struct {
+				ComponentVarRef *struct {
+					CompDef                     *string `tfsdk:"comp_def" json:"compDef,omitempty"`
+					ComponentName               *string `tfsdk:"component_name" json:"componentName,omitempty"`
+					InstanceNames               *string `tfsdk:"instance_names" json:"instanceNames,omitempty"`
+					MultipleClusterObjectOption *struct {
+						CombinedOption *struct {
+							FlattenFormat *struct {
+								Delimiter         *string `tfsdk:"delimiter" json:"delimiter,omitempty"`
+								KeyValueDelimiter *string `tfsdk:"key_value_delimiter" json:"keyValueDelimiter,omitempty"`
+							} `tfsdk:"flatten_format" json:"flattenFormat,omitempty"`
+							NewVarSuffix *string `tfsdk:"new_var_suffix" json:"newVarSuffix,omitempty"`
+							ValueFormat  *string `tfsdk:"value_format" json:"valueFormat,omitempty"`
+						} `tfsdk:"combined_option" json:"combinedOption,omitempty"`
+						Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
+					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					Replicas *string `tfsdk:"replicas" json:"replicas,omitempty"`
+				} `tfsdk:"component_var_ref" json:"componentVarRef,omitempty"`
 				ConfigMapKeyRef *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -2209,6 +2228,7 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 				ServiceVarRef *struct {
 					CompDef                     *string `tfsdk:"comp_def" json:"compDef,omitempty"`
 					Host                        *string `tfsdk:"host" json:"host,omitempty"`
+					LoadBalancer                *string `tfsdk:"load_balancer" json:"loadBalancer,omitempty"`
 					MultipleClusterObjectOption *struct {
 						CombinedOption *struct {
 							FlattenFormat *struct {
@@ -15994,16 +16014,16 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 								},
 
 								"pod_service": schema.BoolAttribute{
-									Description:         "Indicates whether to create a corresponding Service for each Pod of the selected Component. When set to true, a set of Services will be automatically generated for each Pod, and the 'roleSelector' field will be ignored.  The names of the generated Services will follow the same naming pattern: '$(serviceName)-$(podOrdinal)'.  The podOrdinal is zero-based, meaning it starts from 0 for the first Pod and increments for each subsequent Pod. The total number of generated Services will be equal to the number of replicas specified for the Component.  Example usage:  '''yaml name: my-service serviceName: my-service generatePodOrdinalService: true spec: type: NodePort ports: - name: http port: 80 targetPort: 8080 '''  In this example, if the Component has 3 replicas, three Services will be generated: - my-service-0: Points to the first Pod (podOrdinal: 0) - my-service-1: Points to the second Pod (podOrdinal: 1) - my-service-2: Points to the third Pod (podOrdinal: 2)  Each generated Service will have the specified spec configuration and will target its respective Pod.  This feature is useful when you need to expose each Pod of a Component individually, allowing external access to specific instances of the Component.",
-									MarkdownDescription: "Indicates whether to create a corresponding Service for each Pod of the selected Component. When set to true, a set of Services will be automatically generated for each Pod, and the 'roleSelector' field will be ignored.  The names of the generated Services will follow the same naming pattern: '$(serviceName)-$(podOrdinal)'.  The podOrdinal is zero-based, meaning it starts from 0 for the first Pod and increments for each subsequent Pod. The total number of generated Services will be equal to the number of replicas specified for the Component.  Example usage:  '''yaml name: my-service serviceName: my-service generatePodOrdinalService: true spec: type: NodePort ports: - name: http port: 80 targetPort: 8080 '''  In this example, if the Component has 3 replicas, three Services will be generated: - my-service-0: Points to the first Pod (podOrdinal: 0) - my-service-1: Points to the second Pod (podOrdinal: 1) - my-service-2: Points to the third Pod (podOrdinal: 2)  Each generated Service will have the specified spec configuration and will target its respective Pod.  This feature is useful when you need to expose each Pod of a Component individually, allowing external access to specific instances of the Component.",
+									Description:         "Indicates whether to create a corresponding Service for each Pod of the selected Component. When set to true, a set of Services will be automatically generated for each Pod, and the 'roleSelector' field will be ignored.  The names of the generated Services will follow the same suffix naming pattern: '$(serviceName)-$(podOrdinal)'. The total number of generated Services will be equal to the number of replicas specified for the Component.  Example usage:  '''yaml name: my-service serviceName: my-service podService: true disableAutoProvision: true spec: type: NodePort ports: - name: http port: 80 targetPort: 8080 '''  In this example, if the Component has 3 replicas, three Services will be generated: - my-service-0: Points to the first Pod (podOrdinal: 0) - my-service-1: Points to the second Pod (podOrdinal: 1) - my-service-2: Points to the third Pod (podOrdinal: 2)  Each generated Service will have the specified spec configuration and will target its respective Pod.  This feature is useful when you need to expose each Pod of a Component individually, allowing external access to specific instances of the Component.",
+									MarkdownDescription: "Indicates whether to create a corresponding Service for each Pod of the selected Component. When set to true, a set of Services will be automatically generated for each Pod, and the 'roleSelector' field will be ignored.  The names of the generated Services will follow the same suffix naming pattern: '$(serviceName)-$(podOrdinal)'. The total number of generated Services will be equal to the number of replicas specified for the Component.  Example usage:  '''yaml name: my-service serviceName: my-service podService: true disableAutoProvision: true spec: type: NodePort ports: - name: http port: 80 targetPort: 8080 '''  In this example, if the Component has 3 replicas, three Services will be generated: - my-service-0: Points to the first Pod (podOrdinal: 0) - my-service-1: Points to the second Pod (podOrdinal: 1) - my-service-2: Points to the third Pod (podOrdinal: 2)  Each generated Service will have the specified spec configuration and will target its respective Pod.  This feature is useful when you need to expose each Pod of a Component individually, allowing external access to specific instances of the Component.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"role_selector": schema.StringAttribute{
-									Description:         "Extends the above 'serviceSpec.selector' by allowing you to specify defined role as selector for the service. When 'roleSelector' is set, it adds a label selector 'kubeblocks.io/role: {roleSelector}' to the 'serviceSpec.selector'. Example usage:  roleSelector: 'leader'  In this example, setting 'roleSelector' to 'leader' will add a label selector 'kubeblocks.io/role: leader' to the 'serviceSpec.selector'. This means that the service will select and route traffic to Pods with the label 'kubeblocks.io/role' set to 'leader'.  Note that if 'generatePodOrdinalService' sets to true, RoleSelector will be ignored. The 'generatePodOrdinalService' flag takes precedence over 'roleSelector' and generates a service for each Pod.",
-									MarkdownDescription: "Extends the above 'serviceSpec.selector' by allowing you to specify defined role as selector for the service. When 'roleSelector' is set, it adds a label selector 'kubeblocks.io/role: {roleSelector}' to the 'serviceSpec.selector'. Example usage:  roleSelector: 'leader'  In this example, setting 'roleSelector' to 'leader' will add a label selector 'kubeblocks.io/role: leader' to the 'serviceSpec.selector'. This means that the service will select and route traffic to Pods with the label 'kubeblocks.io/role' set to 'leader'.  Note that if 'generatePodOrdinalService' sets to true, RoleSelector will be ignored. The 'generatePodOrdinalService' flag takes precedence over 'roleSelector' and generates a service for each Pod.",
+									Description:         "Extends the above 'serviceSpec.selector' by allowing you to specify defined role as selector for the service. When 'roleSelector' is set, it adds a label selector 'kubeblocks.io/role: {roleSelector}' to the 'serviceSpec.selector'. Example usage:  roleSelector: 'leader'  In this example, setting 'roleSelector' to 'leader' will add a label selector 'kubeblocks.io/role: leader' to the 'serviceSpec.selector'. This means that the service will select and route traffic to Pods with the label 'kubeblocks.io/role' set to 'leader'.  Note that if 'podService' sets to true, RoleSelector will be ignored. The 'podService' flag takes precedence over 'roleSelector' and generates a service for each Pod.",
+									MarkdownDescription: "Extends the above 'serviceSpec.selector' by allowing you to specify defined role as selector for the service. When 'roleSelector' is set, it adds a label selector 'kubeblocks.io/role: {roleSelector}' to the 'serviceSpec.selector'. Example usage:  roleSelector: 'leader'  In this example, setting 'roleSelector' to 'leader' will add a label selector 'kubeblocks.io/role: leader' to the 'serviceSpec.selector'. This means that the service will select and route traffic to Pods with the label 'kubeblocks.io/role' set to 'leader'.  Note that if 'podService' sets to true, RoleSelector will be ignored. The 'podService' flag takes precedence over 'roleSelector' and generates a service for each Pod.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -16403,8 +16423,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"vars": schema.ListNestedAttribute{
-						Description:         "Represents user-defined variables that can be used as environment variables for Pods and Actions, or to render templates of config and script. These variables are placed in front of the environment variables declared in the Pod if used as environment variables.  The value of a var can be populated from the following sources:  - ConfigMap: Allows you to select a ConfigMap and a specific key within that ConfigMap to extract the value from. - Secret: Allows you to select a Secret and a specific key within that Secret to extract the value from. - Pod: Retrieves values (including ports) from a selected Pod. - Service: Retrieves values (including address, port, NodePort) from a selected Service. The purpose of ServiceVar is to obtain the address of a ComponentService. - Credential: Retrieves values (including account name, account password) from a SystemAccount variable. - ServiceRef: Retrieves values (including address, port, account name, account password) from a selected ServiceRefDeclaration. The purpose of ServiceRefVar is to obtain the specific address that a ServiceRef is bound to (e.g., a ClusterService of another Cluster).  This field is immutable.",
-						MarkdownDescription: "Represents user-defined variables that can be used as environment variables for Pods and Actions, or to render templates of config and script. These variables are placed in front of the environment variables declared in the Pod if used as environment variables.  The value of a var can be populated from the following sources:  - ConfigMap: Allows you to select a ConfigMap and a specific key within that ConfigMap to extract the value from. - Secret: Allows you to select a Secret and a specific key within that Secret to extract the value from. - Pod: Retrieves values (including ports) from a selected Pod. - Service: Retrieves values (including address, port, NodePort) from a selected Service. The purpose of ServiceVar is to obtain the address of a ComponentService. - Credential: Retrieves values (including account name, account password) from a SystemAccount variable. - ServiceRef: Retrieves values (including address, port, account name, account password) from a selected ServiceRefDeclaration. The purpose of ServiceRefVar is to obtain the specific address that a ServiceRef is bound to (e.g., a ClusterService of another Cluster).  This field is immutable.",
+						Description:         "Represents user-defined variables that can be used as environment variables for Pods and Actions, or to render templates of config and script. These variables are placed in front of the environment variables declared in the Pod if used as environment variables.  The value of a var can be populated from the following sources:  - ConfigMap: Allows you to select a ConfigMap and a specific key within that ConfigMap to extract the value from. - Secret: Allows you to select a Secret and a specific key within that Secret to extract the value from. - Pod: Retrieves values (including ports) from a selected Pod. - Service: Retrieves values (including address, port, NodePort) from a selected Service. The purpose of ServiceVar is to obtain the address of a ComponentService. - Credential: Retrieves values (including account name, account password) from a SystemAccount variable. - ServiceRef: Retrieves values (including address, port, account name, account password) from a selected ServiceRefDeclaration. The purpose of ServiceRefVar is to obtain the specific address that a ServiceRef is bound to (e.g., a ClusterService of another Cluster). - Component: Retrieves values from a field of a Component.  This field is immutable.",
+						MarkdownDescription: "Represents user-defined variables that can be used as environment variables for Pods and Actions, or to render templates of config and script. These variables are placed in front of the environment variables declared in the Pod if used as environment variables.  The value of a var can be populated from the following sources:  - ConfigMap: Allows you to select a ConfigMap and a specific key within that ConfigMap to extract the value from. - Secret: Allows you to select a Secret and a specific key within that Secret to extract the value from. - Pod: Retrieves values (including ports) from a selected Pod. - Service: Retrieves values (including address, port, NodePort) from a selected Service. The purpose of ServiceVar is to obtain the address of a ComponentService. - Credential: Retrieves values (including account name, account password) from a SystemAccount variable. - ServiceRef: Retrieves values (including address, port, account name, account password) from a selected ServiceRefDeclaration. The purpose of ServiceRefVar is to obtain the specific address that a ServiceRef is bound to (e.g., a ClusterService of another Cluster). - Component: Retrieves values from a field of a Component.  This field is immutable.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -16427,6 +16447,142 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 									Description:         "Source for the variable's value. Cannot be used if value is not empty.",
 									MarkdownDescription: "Source for the variable's value. Cannot be used if value is not empty.",
 									Attributes: map[string]schema.Attribute{
+										"component_var_ref": schema.SingleNestedAttribute{
+											Description:         "Selects a defined var of a Component.",
+											MarkdownDescription: "Selects a defined var of a Component.",
+											Attributes: map[string]schema.Attribute{
+												"comp_def": schema.StringAttribute{
+													Description:         "CompDef specifies the definition used by the component that the referent object resident in. If not specified, the component itself will be used.",
+													MarkdownDescription: "CompDef specifies the definition used by the component that the referent object resident in. If not specified, the component itself will be used.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"component_name": schema.StringAttribute{
+													Description:         "Reference to the name of the Component object.",
+													MarkdownDescription: "Reference to the name of the Component object.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"instance_names": schema.StringAttribute{
+													Description:         "Reference to the instanceName list of the component. and the value will be presented in the following format: instanceName1,instanceName2...",
+													MarkdownDescription: "Reference to the instanceName list of the component. and the value will be presented in the following format: instanceName1,instanceName2...",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"multiple_cluster_object_option": schema.SingleNestedAttribute{
+													Description:         "This option defines the behavior when multiple component objects match the specified @CompDef. If not provided, an error will be raised when handling multiple matches.",
+													MarkdownDescription: "This option defines the behavior when multiple component objects match the specified @CompDef. If not provided, an error will be raised when handling multiple matches.",
+													Attributes: map[string]schema.Attribute{
+														"combined_option": schema.SingleNestedAttribute{
+															Description:         "Define the options for handling combined variables. Valid only when the strategy is set to 'combined'.",
+															MarkdownDescription: "Define the options for handling combined variables. Valid only when the strategy is set to 'combined'.",
+															Attributes: map[string]schema.Attribute{
+																"flatten_format": schema.SingleNestedAttribute{
+																	Description:         "The flatten format, default is: $(comp-name-1):value,$(comp-name-2):value.",
+																	MarkdownDescription: "The flatten format, default is: $(comp-name-1):value,$(comp-name-2):value.",
+																	Attributes: map[string]schema.Attribute{
+																		"delimiter": schema.StringAttribute{
+																			Description:         "Pair delimiter.",
+																			MarkdownDescription: "Pair delimiter.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"key_value_delimiter": schema.StringAttribute{
+																			Description:         "Key-value delimiter.",
+																			MarkdownDescription: "Key-value delimiter.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"new_var_suffix": schema.StringAttribute{
+																	Description:         "If set, the existing variable will be kept, and a new variable will be defined with the specified suffix in pattern: $(var.name)_$(suffix). The new variable will be auto-created and placed behind the existing one. If not set, the existing variable will be reused with the value format defined below.",
+																	MarkdownDescription: "If set, the existing variable will be kept, and a new variable will be defined with the specified suffix in pattern: $(var.name)_$(suffix). The new variable will be auto-created and placed behind the existing one. If not set, the existing variable will be reused with the value format defined below.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"value_format": schema.StringAttribute{
+																	Description:         "The format of the value that the operator will use to compose values from multiple components.",
+																	MarkdownDescription: "The format of the value that the operator will use to compose values from multiple components.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"strategy": schema.StringAttribute{
+															Description:         "Define the strategy for handling multiple cluster objects.",
+															MarkdownDescription: "Define the strategy for handling multiple cluster objects.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("individual", "combined"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent object.",
+													MarkdownDescription: "Name of the referent object.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the object must be defined.",
+													MarkdownDescription: "Specify whether the object must be defined.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"replicas": schema.StringAttribute{
+													Description:         "Reference to the replicas of the component.",
+													MarkdownDescription: "Reference to the replicas of the component.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"config_map_key_ref": schema.SingleNestedAttribute{
 											Description:         "Selects a key of a ConfigMap.",
 											MarkdownDescription: "Selects a key of a ConfigMap.",
@@ -16928,6 +17084,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												"host": schema.StringAttribute{
 													Description:         "VarOption defines whether a variable is required or optional.",
 													MarkdownDescription: "VarOption defines whether a variable is required or optional.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"load_balancer": schema.StringAttribute{
+													Description:         "LoadBalancer represents the LoadBalancer ingress point of the service.  If multiple ingress points are available, the first one will be used automatically, choosing between IP and Hostname.",
+													MarkdownDescription: "LoadBalancer represents the LoadBalancer ingress point of the service.  If multiple ingress points are available, the first one will be used automatically, choosing between IP and Hostname.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

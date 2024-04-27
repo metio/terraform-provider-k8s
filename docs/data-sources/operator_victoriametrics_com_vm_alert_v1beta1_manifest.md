@@ -1032,7 +1032,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--service_spec--metadata))
-- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChanging from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--service_spec--metadata"></a>
 ### Nested Schema for `spec.service_spec.metadata`

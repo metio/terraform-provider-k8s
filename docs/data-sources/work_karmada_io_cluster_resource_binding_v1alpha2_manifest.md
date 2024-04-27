@@ -64,6 +64,7 @@ Optional:
 - `replica_requirements` (Attributes) ReplicaRequirements represents the requirements required by each replica. (see [below for nested schema](#nestedatt--spec--replica_requirements))
 - `replicas` (Number) Replicas represents the replica number of the referencing resource.
 - `required_by` (Attributes List) RequiredBy represents the list of Bindings that depend on the referencing resource. (see [below for nested schema](#nestedatt--spec--required_by))
+- `reschedule_triggered_at` (String) RescheduleTriggeredAt is a timestamp representing when the referenced resource is triggered rescheduling. When this field is updated, it means a rescheduling is manually triggered by user, and the expected behavior of this action is to do a complete recalculation without referring to last scheduling results. It works with the status.lastScheduledTime field, and only when this timestamp is later than timestamp in status.lastScheduledTime will the rescheduling actually execute, otherwise, ignored.  It is represented in RFC3339 form (like '2006-01-02T15:04:05Z') and is in UTC.
 - `scheduler_name` (String) SchedulerName represents which scheduler to proceed the scheduling. It inherits directly from the associated PropagationPolicy(or ClusterPropagationPolicy).
 
 <a id="nestedatt--spec--resource"></a>

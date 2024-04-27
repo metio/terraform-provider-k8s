@@ -7,6 +7,7 @@ package networking_istio_io_v1alpha3
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -651,6 +652,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"time": schema.StringAttribute{
@@ -743,6 +748,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																	},
 																},
 															},
 															Required: false,
@@ -756,6 +764,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+															},
 														},
 
 														"ring_hash": schema.SingleNestedAttribute{
@@ -768,6 +779,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																	},
 																},
 															},
 															Required: false,
@@ -911,6 +925,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 
 												"consecutive_errors": schema.Int64Attribute{
@@ -927,6 +945,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 
 												"consecutive_local_origin_failures": schema.Int64Attribute{
@@ -935,6 +957,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 
 												"interval": schema.StringAttribute{
@@ -1113,6 +1139,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
+																				Validators: []validator.Int64{
+																					int64validator.AtLeast(0),
+																					int64validator.AtMost(4.294967295e+09),
+																				},
 																			},
 
 																			"time": schema.StringAttribute{
@@ -1205,6 +1235,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
+																				Validators: []validator.Int64{
+																					int64validator.AtLeast(0),
+																				},
 																			},
 																		},
 																		Required: false,
@@ -1218,6 +1251,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(0),
+																		},
 																	},
 
 																	"ring_hash": schema.SingleNestedAttribute{
@@ -1230,6 +1266,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
+																				Validators: []validator.Int64{
+																					int64validator.AtLeast(0),
+																				},
 																			},
 																		},
 																		Required: false,
@@ -1373,6 +1412,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 
 															"consecutive_errors": schema.Int64Attribute{
@@ -1389,6 +1432,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 
 															"consecutive_local_origin_failures": schema.Int64Attribute{
@@ -1397,6 +1444,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 
 															"interval": schema.StringAttribute{
@@ -1446,6 +1497,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,
@@ -1675,6 +1730,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 											},
 											Required: false,
@@ -1831,6 +1890,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
 													},
 
 													"time": schema.StringAttribute{
@@ -1923,6 +1986,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
 													},
 												},
 												Required: false,
@@ -1936,6 +2002,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+												},
 											},
 
 											"ring_hash": schema.SingleNestedAttribute{
@@ -1948,6 +2017,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
 													},
 												},
 												Required: false,
@@ -2091,6 +2163,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 
 									"consecutive_errors": schema.Int64Attribute{
@@ -2107,6 +2183,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 
 									"consecutive_local_origin_failures": schema.Int64Attribute{
@@ -2115,6 +2195,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 
 									"interval": schema.StringAttribute{
@@ -2293,6 +2377,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"time": schema.StringAttribute{
@@ -2385,6 +2473,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																	},
 																},
 															},
 															Required: false,
@@ -2398,6 +2489,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+															},
 														},
 
 														"ring_hash": schema.SingleNestedAttribute{
@@ -2410,6 +2504,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																	},
 																},
 															},
 															Required: false,
@@ -2553,6 +2650,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 
 												"consecutive_errors": schema.Int64Attribute{
@@ -2569,6 +2670,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 
 												"consecutive_local_origin_failures": schema.Int64Attribute{
@@ -2577,6 +2682,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 
 												"interval": schema.StringAttribute{
@@ -2626,6 +2735,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 											},
 											Required: false,
@@ -2855,6 +2968,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 								},
 								Required: false,
