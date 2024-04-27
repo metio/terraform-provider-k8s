@@ -93,6 +93,7 @@ Optional:
 - `volume_claim_templates` (Attributes List) VolumeClaimTemplates will provide stable storage using PersistentVolumes. Only available when the mode=statefulset. (see [below for nested schema](#nestedatt--spec--volume_claim_templates))
 - `volume_mounts` (Attributes List) VolumeMounts represents the mount points to use in the underlying collector deployment(s) (see [below for nested schema](#nestedatt--spec--volume_mounts))
 - `volumes` (Attributes List) Volumes represents which volumes to use in the underlying collector deployment(s). (see [below for nested schema](#nestedatt--spec--volumes))
+- `working_dir` (String) WorkingDir represents Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
 <a id="nestedatt--spec--additional_containers"></a>
 ### Nested Schema for `spec.additional_containers`

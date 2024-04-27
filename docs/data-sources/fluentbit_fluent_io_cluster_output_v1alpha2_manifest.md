@@ -291,7 +291,7 @@ Optional:
 
 Optional:
 
-- `apikey` (String) Your Datadog API key.
+- `apikey` (Attributes) Your Datadog API key. (see [below for nested schema](#nestedatt--spec--datadog--apikey))
 - `compress` (String) Compress  the payload in GZIP format. Datadog supports and recommends setting this to gzip.
 - `dd_message_key` (String) By default, the plugin searches for the key 'log' and remap the value to the key 'message'. If the property is set, the plugin will search the property name key.
 - `dd_service` (String) The human readable name for your service generating the logs.
@@ -304,6 +304,35 @@ Optional:
 - `proxy` (String) Specify an HTTP Proxy.
 - `tag_key` (String) The key name of tag. If include_tag_key is false, This property is ignored.
 - `tls` (Boolean) TLS controls whether to use end-to-end security communications security protocol. Datadog recommends setting this to on.
+
+<a id="nestedatt--spec--datadog--apikey"></a>
+### Nested Schema for `spec.datadog.apikey`
+
+Optional:
+
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--datadog--apikey--value_from))
+
+<a id="nestedatt--spec--datadog--apikey--value_from"></a>
+### Nested Schema for `spec.datadog.apikey.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--datadog--apikey--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--datadog--apikey--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.datadog.apikey.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
 
 
 <a id="nestedatt--spec--es"></a>

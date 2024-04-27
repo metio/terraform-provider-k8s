@@ -296,7 +296,7 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("etcd", "MySQL", "PostgreSQL"),
+							stringvalidator.OneOf("etcd", "MySQL", "PostgreSQL", "NATS"),
 						},
 					},
 

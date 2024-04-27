@@ -174,21 +174,21 @@ func (r *DevicesKubeedgeIoDeviceModelV1Beta1Manifest) Schema(_ context.Context, 
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Required: The device property name.",
-									MarkdownDescription: "Required: The device property name.",
+									Description:         "Required: The device property name. Note: If you need to use the built-in stream data processing function, you need to define Name as saveFrame or saveVideo",
+									MarkdownDescription: "Required: The device property name. Note: If you need to use the built-in stream data processing function, you need to define Name as saveFrame or saveVideo",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "Required: Type of device property, ENUM: INT,FLOAT,DOUBLE,STRING,BOOLEAN,BYTES",
-									MarkdownDescription: "Required: Type of device property, ENUM: INT,FLOAT,DOUBLE,STRING,BOOLEAN,BYTES",
+									Description:         "Required: Type of device property, ENUM: INT,FLOAT,DOUBLE,STRING,BOOLEAN,BYTES,STREAM",
+									MarkdownDescription: "Required: Type of device property, ENUM: INT,FLOAT,DOUBLE,STRING,BOOLEAN,BYTES,STREAM",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.OneOf("INT", "FLOAT", "DOUBLE", "STRING", "BOOLEAN", "BYTES"),
+										stringvalidator.OneOf("INT", "FLOAT", "DOUBLE", "STRING", "BOOLEAN", "BYTES", "STREAM"),
 									},
 								},
 

@@ -124,6 +124,7 @@ Optional:
 
 Optional:
 
+- `cron` (String) cron specifies the task schedule as a cron expression. It supports an extended syntax including @monthly, @weekly, @daily, @midnight, @hourly, @every X[h|m|s].
 - `dc` (List of String) dc is a list of datacenter glob patterns, e.g. 'dc1,!otherdc*' used to specify the DCs to include or exclude from backup.
 - `interval` (String) interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s.
 - `keyspace` (List of String) keyspace is a list of keyspace/tables glob patterns, e.g. 'keyspace,!keyspace.table_prefix_*' used to include or exclude keyspaces from repair.
@@ -134,6 +135,7 @@ Optional:
 - `retention` (Number) retention is the number of backups which are to be stored.
 - `snapshot_parallel` (List of String) snapshotParallel is a list of snapshot parallelism limits in the format [<dc>:]<limit>. The <dc>: part is optional and allows for specifying different limits in selected datacenters. If The <dc>: part is not set, the limit is global (e.g. 'dc1:2,5') the runs are parallel in n nodes (2 in dc1) and n nodes in all the other datacenters.
 - `start_date` (String) startDate specifies the task start date expressed in the RFC3339 format or now[+duration], e.g. now+3d2h10m, valid units are d, h, m, s.
+- `timezone` (String) timezone specifies the timezone of cron field.
 - `upload_parallel` (List of String) uploadParallel is a list of upload parallelism limits in the format [<dc>:]<limit>. The <dc>: part is optional and allows for specifying different limits in selected datacenters. If The <dc>: part is not set the limit is global (e.g. 'dc1:2,5') the runs are parallel in n nodes (2 in dc1) and n nodes in all the other datacenters.
 
 
@@ -1577,6 +1579,7 @@ Required:
 
 Optional:
 
+- `cron` (String) cron specifies the task schedule as a cron expression. It supports an extended syntax including @monthly, @weekly, @daily, @midnight, @hourly, @every X[h|m|s].
 - `dc` (List of String) dc is a list of datacenter glob patterns, e.g. 'dc1', '!otherdc*' used to specify the DCs to include or exclude from backup.
 - `fail_fast` (Boolean) failFast indicates if a repair should be stopped on first error.
 - `host` (String) host specifies a host to repair. If empty, all hosts are repaired.
@@ -1588,3 +1591,4 @@ Optional:
 - `parallel` (Number) parallel is the maximum number of Scylla repair jobs that can run at the same time (on different token ranges and replicas). Each node can take part in at most one repair at any given moment. By default the maximum possible parallelism is used. The effective parallelism depends on a keyspace replication factor (RF) and the number of nodes. The formula to calculate it is as follows: number of nodes / RF, ex. for 6 node cluster with RF=3 the maximum parallelism is 2.
 - `small_table_threshold` (String) smallTableThreshold enable small table optimization for tables of size lower than given threshold. Supported units [B, MiB, GiB, TiB].
 - `start_date` (String) startDate specifies the task start date expressed in the RFC3339 format or now[+duration], e.g. now+3d2h10m, valid units are d, h, m, s.
+- `timezone` (String) timezone specifies the timezone of cron field.

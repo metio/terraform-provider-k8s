@@ -251,7 +251,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--vminsert--service_spec--metadata))
-- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChanging from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--vminsert--service_spec--metadata"></a>
 ### Nested Schema for `spec.vminsert.service_spec.metadata`
@@ -572,7 +572,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--vmselect--service_spec--metadata))
-- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChanging from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--vmselect--service_spec--metadata"></a>
 ### Nested Schema for `spec.vmselect.service_spec.metadata`
@@ -1028,7 +1028,7 @@ Required:
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--vmstorage--service_spec--metadata))
-- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChaning from headless service to clusterIP or loadbalancer may break cross-component communication
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChanging from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--vmstorage--service_spec--metadata"></a>
 ### Nested Schema for `spec.vmstorage.service_spec.metadata`

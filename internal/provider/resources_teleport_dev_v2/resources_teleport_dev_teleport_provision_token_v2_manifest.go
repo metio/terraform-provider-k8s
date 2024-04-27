@@ -247,8 +247,8 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 								},
 
 								"aws_role": schema.StringAttribute{
-									Description:         "AWSRole is used for the EC2 join method and is the the ARN of the AWS role that the auth server will assume in order to call the ec2 API.",
-									MarkdownDescription: "AWSRole is used for the EC2 join method and is the the ARN of the AWS role that the auth server will assume in order to call the ec2 API.",
+									Description:         "AWSRole is used for the EC2 join method and is the ARN of the AWS role that the auth server will assume in order to call the ec2 API.",
+									MarkdownDescription: "AWSRole is used for the EC2 join method and is the ARN of the AWS role that the auth server will assume in order to call the ec2 API.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

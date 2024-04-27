@@ -82,12 +82,13 @@ type KmmSigsXK8SIoModuleV1Beta1ManifestData struct {
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 				VolumeMounts *[]struct {
-					MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-					MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-					Name             *string `tfsdk:"name" json:"name,omitempty"`
-					ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-					SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"container" json:"container,omitempty"`
 			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
@@ -849,8 +850,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"mount_propagation": schema.StringAttribute{
-													Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
-													MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
+													Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
+													MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified(which defaults to None).",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -867,6 +868,14 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 												"read_only": schema.BoolAttribute{
 													Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
 													MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"recursive_read_only": schema.StringAttribute{
+													Description:         "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
+													MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1305,8 +1314,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"field_ref": schema.SingleNestedAttribute{
-																Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																Attributes: map[string]schema.Attribute{
 																	"api_version": schema.StringAttribute{
 																		Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -1608,8 +1617,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 																},
 
 																"volume_attributes_class_name": schema.StringAttribute{
-																	Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-																	MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																	Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																	MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2326,8 +2335,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"field_ref": schema.SingleNestedAttribute{
-																					Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																					MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																					Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																					MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																					Attributes: map[string]schema.Attribute{
 																						"api_version": schema.StringAttribute{
 																							Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",

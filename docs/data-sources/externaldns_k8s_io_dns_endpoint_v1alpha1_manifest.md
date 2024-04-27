@@ -66,7 +66,7 @@ Optional:
 - `labels` (Map of String) Labels stores labels defined for the Endpoint
 - `provider_specific` (Attributes List) ProviderSpecific stores provider specific config (see [below for nested schema](#nestedatt--spec--endpoints--provider_specific))
 - `record_ttl` (Number) TTL for the record
-- `record_type` (String) RecordType type of record, e.g. CNAME, A, SRV, TXT etc
+- `record_type` (String) RecordType type of record, e.g. CNAME, A, AAAA, SRV, TXT etc
 - `set_identifier` (String) Identifier to distinguish multiple records with the same name and type (e.g. Route53 records with routing policies other than 'simple')
 - `targets` (List of String) The targets the DNS record points to
 

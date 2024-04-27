@@ -55,14 +55,14 @@ Optional:
 
 Required:
 
-- `description` (String) Description for this ManagedZone
-- `dns_provider_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--dns_provider_secret_ref))
-- `domain_name` (String) Domain name of this ManagedZone
+- `description` (String) description for this ManagedZone
+- `dns_provider_secret_ref` (Attributes) dnsProviderSecretRef reference to a secret containing credentials to access a dns provider. (see [below for nested schema](#nestedatt--spec--dns_provider_secret_ref))
+- `domain_name` (String) domainName of this ManagedZone
 
 Optional:
 
-- `id` (String) ID is the provider assigned id of this  zone (i.e. route53.HostedZone.ID).
-- `parent_managed_zone` (Attributes) Reference to another managed zone that this managed zone belongs to. (see [below for nested schema](#nestedatt--spec--parent_managed_zone))
+- `id` (String) id is the provider assigned id of this  zone (i.e. route53.HostedZone.ID).
+- `parent_managed_zone` (Attributes) parentManagedZone reference to another managed zone that this managed zone belongs to. (see [below for nested schema](#nestedatt--spec--parent_managed_zone))
 
 <a id="nestedatt--spec--dns_provider_secret_ref"></a>
 ### Nested Schema for `spec.dns_provider_secret_ref`

@@ -7,6 +7,7 @@ package operator_open_cluster_management_io_v1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -69,6 +70,13 @@ type OperatorOpenClusterManagementIoKlusterletV1ManifestData struct {
 		} `tfsdk:"node_placement" json:"nodePlacement,omitempty"`
 		PriorityClassName         *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 		RegistrationConfiguration *struct {
+			BootstrapKubeConfigs *struct {
+				LocalSecretsConfig *struct {
+					HubConnectionTimeoutSeconds *int64    `tfsdk:"hub_connection_timeout_seconds" json:"hubConnectionTimeoutSeconds,omitempty"`
+					SecretNames                 *[]string `tfsdk:"secret_names" json:"secretNames,omitempty"`
+				} `tfsdk:"local_secrets_config" json:"localSecretsConfig,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"bootstrap_kube_configs" json:"bootstrapKubeConfigs,omitempty"`
 			ClientCertExpirationSeconds *int64             `tfsdk:"client_cert_expiration_seconds" json:"clientCertExpirationSeconds,omitempty"`
 			ClusterAnnotations          *map[string]string `tfsdk:"cluster_annotations" json:"clusterAnnotations,omitempty"`
 			FeatureGates                *[]struct {
@@ -357,6 +365,55 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 						Description:         "RegistrationConfiguration contains the configuration of registration",
 						MarkdownDescription: "RegistrationConfiguration contains the configuration of registration",
 						Attributes: map[string]schema.Attribute{
+							"bootstrap_kube_configs": schema.SingleNestedAttribute{
+								Description:         "BootstrapKubeConfigs defines the ordered list of bootstrap kubeconfigs. The order decides which bootstrap kubeconfig to use first when rebootstrap.  When the agent loses the connection to the current hub over HubConnectionTimeoutSeconds, or the managedcluster CR is set 'hubAcceptsClient=false' on the hub, the controller marks the related bootstrap kubeconfig as 'failed'.  A failed bootstrapkubeconfig won't be used for the duration specified by SkipFailedBootstrapKubeConfigSeconds. But if the user updates the content of a failed bootstrapkubeconfig, the 'failed' mark will be cleared.",
+								MarkdownDescription: "BootstrapKubeConfigs defines the ordered list of bootstrap kubeconfigs. The order decides which bootstrap kubeconfig to use first when rebootstrap.  When the agent loses the connection to the current hub over HubConnectionTimeoutSeconds, or the managedcluster CR is set 'hubAcceptsClient=false' on the hub, the controller marks the related bootstrap kubeconfig as 'failed'.  A failed bootstrapkubeconfig won't be used for the duration specified by SkipFailedBootstrapKubeConfigSeconds. But if the user updates the content of a failed bootstrapkubeconfig, the 'failed' mark will be cleared.",
+								Attributes: map[string]schema.Attribute{
+									"local_secrets_config": schema.SingleNestedAttribute{
+										Description:         "LocalSecretsConfig include a list of secrets that contains the kubeconfigs for ordered bootstrap kubeconifigs. The secrets must be in the same namespace where the agent controller runs.",
+										MarkdownDescription: "LocalSecretsConfig include a list of secrets that contains the kubeconfigs for ordered bootstrap kubeconifigs. The secrets must be in the same namespace where the agent controller runs.",
+										Attributes: map[string]schema.Attribute{
+											"hub_connection_timeout_seconds": schema.Int64Attribute{
+												Description:         "HubConnectionTimeoutSeconds is used to set the timeout of connecting to the hub cluster. When agent loses the connection to the hub over the timeout seconds, the agent do a rebootstrap. By default is 10 mins.",
+												MarkdownDescription: "HubConnectionTimeoutSeconds is used to set the timeout of connecting to the hub cluster. When agent loses the connection to the hub over the timeout seconds, the agent do a rebootstrap. By default is 10 mins.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(180),
+												},
+											},
+
+											"secret_names": schema.ListAttribute{
+												Description:         "SecretNames is a list of secret names. The secrets are in the same namespace where the agent controller runs.",
+												MarkdownDescription: "SecretNames is a list of secret names. The secrets are in the same namespace where the agent controller runs.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "Type specifies the type of priority bootstrap kubeconfigs. By default, it is set to None, representing no priority bootstrap kubeconfigs are set.",
+										MarkdownDescription: "Type specifies the type of priority bootstrap kubeconfigs. By default, it is set to None, representing no priority bootstrap kubeconfigs are set.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("None", "LocalSecrets"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"client_cert_expiration_seconds": schema.Int64Attribute{
 								Description:         "clientCertExpirationSeconds represents the seconds of a client certificate to expire. If it is not set or 0, the default duration seconds will be set by the hub cluster. If the value is larger than the max signing duration seconds set on the hub cluster, the max signing duration seconds will be set.",
 								MarkdownDescription: "clientCertExpirationSeconds represents the seconds of a client certificate to expire. If it is not set or 0, the default duration seconds will be set by the hub cluster. If the value is larger than the max signing duration seconds set on the hub cluster, the max signing duration seconds will be set.",

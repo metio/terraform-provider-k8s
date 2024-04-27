@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+{{ range $index, $resource := . -}}
+out/test-sentinel-{{ $resource.ManifestTestFile }}: ./internal/provider/{{ $resource.Package }}/{{ $resource.ManifestFile }} ./internal/provider/{{ $resource.Package }}/{{ $resource.ManifestTestFile }}
+	mkdir --parents $(@D)
+	go test ./internal/provider/{{ $resource.Package }}/{{ $resource.ManifestTestFile }}
+	touch $@
+{{ end }}
+
+.PHONY: tests
+tests: {{ range $index, $resource := . }}out/test-sentinel-{{ $resource.ManifestTestFile }} {{ end }}out/tools-tests-sentinel ## run the unit tests

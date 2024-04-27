@@ -253,134 +253,40 @@ Optional:
 <a id="nestedatt--spec--instances--volume_claim_templates"></a>
 ### Nested Schema for `spec.instances.volume_claim_templates`
 
-Optional:
+Required:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--metadata))
-- `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--spec))
-- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--status))
-
-<a id="nestedatt--spec--instances--volume_claim_templates--metadata"></a>
-### Nested Schema for `spec.instances.volume_claim_templates.metadata`
+- `name` (String) Refers to the name of a volumeMount defined in either:  - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated)  The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.
 
 Optional:
 
-- `annotations` (Map of String)
-- `finalizers` (List of String)
-- `labels` (Map of String)
-- `name` (String)
-- `namespace` (String)
-
+- `spec` (Attributes) Defines the desired characteristics of a PersistentVolumeClaim that will be created for the volume with the mount name specified in the 'name' field.  When a Pod is created for this ClusterComponent, a new PVC will be created based on the specification defined in the 'spec' field. The PVC will be associated with the volume mount specified by the 'name' field. (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--spec))
 
 <a id="nestedatt--spec--instances--volume_claim_templates--spec"></a>
 ### Nested Schema for `spec.instances.volume_claim_templates.spec`
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--status--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--status--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--status--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--status--selector))
-- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
-- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
+- `access_modes` (Map of String) Contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1.
+- `resources` (Attributes) Represents the minimum resources the volume should have. If the RecoverVolumeExpansionFailure feature is enabled, users are allowed to specify resource requirements that are lower than the previous value but must still be higher than the capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources. (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--spec--resources))
+- `storage_class_name` (String) The name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1.
+- `volume_mode` (String) Defines what type of volume is required by the claim, either Block or Filesystem.
 
-<a id="nestedatt--spec--instances--volume_claim_templates--status--data_source"></a>
-### Nested Schema for `spec.instances.volume_claim_templates.status.data_source`
-
-Required:
-
-- `kind` (String) Kind is the type of resource being referenced
-- `name` (String) Name is the name of resource being referenced
+<a id="nestedatt--spec--instances--volume_claim_templates--spec--resources"></a>
+### Nested Schema for `spec.instances.volume_claim_templates.spec.resources`
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
-
-
-<a id="nestedatt--spec--instances--volume_claim_templates--status--data_source_ref"></a>
-### Nested Schema for `spec.instances.volume_claim_templates.status.data_source_ref`
-
-Required:
-
-- `kind` (String) Kind is the type of resource being referenced
-- `name` (String) Name is the name of resource being referenced
-
-Optional:
-
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
-
-
-<a id="nestedatt--spec--instances--volume_claim_templates--status--resources"></a>
-### Nested Schema for `spec.instances.volume_claim_templates.status.resources`
-
-Optional:
-
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--status--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--instances--volume_claim_templates--status--resources--claims"></a>
-### Nested Schema for `spec.instances.volume_claim_templates.status.resources.claims`
+<a id="nestedatt--spec--instances--volume_claim_templates--spec--resources--claims"></a>
+### Nested Schema for `spec.instances.volume_claim_templates.spec.resources.claims`
 
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
-
-
-<a id="nestedatt--spec--instances--volume_claim_templates--status--selector"></a>
-### Nested Schema for `spec.instances.volume_claim_templates.status.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--status--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--instances--volume_claim_templates--status--selector--match_expressions"></a>
-### Nested Schema for `spec.instances.volume_claim_templates.status.selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
-
-
-
-
-<a id="nestedatt--spec--instances--volume_claim_templates--status"></a>
-### Nested Schema for `spec.instances.volume_claim_templates.status`
-
-Optional:
-
-- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--instances--volume_claim_templates--status--conditions))
-- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-
-<a id="nestedatt--spec--instances--volume_claim_templates--status--conditions"></a>
-### Nested Schema for `spec.instances.volume_claim_templates.status.conditions`
-
-Required:
-
-- `status` (String)
-- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
-
-Optional:
-
-- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
-- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
-- `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
 
 
 
@@ -1644,7 +1550,7 @@ Required:
 
 Optional:
 
-- `cluster` (String) Specifies the name of the KubeBlocks Cluster being referenced. This is used when services from another KubeBlocks Cluster are consumed.  By default, the referenced KubeBlocks Cluster's 'clusterDefinition.spec.connectionCredential' will be utilized to bind to the current Component. This credential should include: 'endpoint', 'port', 'username', and 'password'.  Note:  - The 'ServiceKind' and 'ServiceVersion' specified in the service reference within the ClusterDefinition are not validated when using this approach. - If both 'cluster' and 'serviceDescriptor' are present, 'cluster' will take precedence.  Deprecated since v0.9 since 'clusterDefinition.spec.connectionCredential' is deprecated, use 'clusterRef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
+- `cluster` (String) Specifies the name of the KubeBlocks Cluster being referenced. This is used when services from another KubeBlocks Cluster are consumed.  By default, the referenced KubeBlocks Cluster's 'clusterDefinition.spec.connectionCredential' will be utilized to bind to the current Component. This credential should include: 'endpoint', 'port', 'username', and 'password'.  Note:  - The 'ServiceKind' and 'ServiceVersion' specified in the service reference within the ClusterDefinition are not validated when using this approach. - If both 'cluster' and 'serviceDescriptor' are present, 'cluster' will take precedence.  Deprecated since v0.9 since 'clusterDefinition.spec.connectionCredential' is deprecated, use 'clusterServiceSelector' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
 - `cluster_service_selector` (Attributes) ClusterRef is used to reference a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access. (see [below for nested schema](#nestedatt--spec--service_refs--cluster_service_selector))
 - `namespace` (String) Specifies the namespace of the referenced Cluster or the namespace of the referenced ServiceDescriptor object. If not provided, the referenced Cluster and ServiceDescriptor will be searched in the namespace of the current Cluster by default.
 - `service_descriptor` (String) Specifies the name of the ServiceDescriptor object that describes the service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.
@@ -1696,8 +1602,8 @@ Optional:
 
 - `annotations` (Map of String) If ServiceType is LoadBalancer, cloud provider related parameters can be put here More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.
 - `disable_auto_provision` (Boolean) Indicates whether the automatic provisioning of the service should be disabled.  If set to true, the service will not be automatically created at the component provisioning. Instead, you can enable the creation of this service by specifying it explicitly in the cluster API.
-- `pod_service` (Boolean) Indicates whether to create a corresponding Service for each Pod of the selected Component. When set to true, a set of Services will be automatically generated for each Pod, and the 'roleSelector' field will be ignored.  The names of the generated Services will follow the same naming pattern: '$(serviceName)-$(podOrdinal)'.  The podOrdinal is zero-based, meaning it starts from 0 for the first Pod and increments for each subsequent Pod. The total number of generated Services will be equal to the number of replicas specified for the Component.  Example usage:  '''yaml name: my-service serviceName: my-service generatePodOrdinalService: true spec: type: NodePort ports: - name: http port: 80 targetPort: 8080 '''  In this example, if the Component has 3 replicas, three Services will be generated: - my-service-0: Points to the first Pod (podOrdinal: 0) - my-service-1: Points to the second Pod (podOrdinal: 1) - my-service-2: Points to the third Pod (podOrdinal: 2)  Each generated Service will have the specified spec configuration and will target its respective Pod.  This feature is useful when you need to expose each Pod of a Component individually, allowing external access to specific instances of the Component.
-- `role_selector` (String) Extends the above 'serviceSpec.selector' by allowing you to specify defined role as selector for the service. When 'roleSelector' is set, it adds a label selector 'kubeblocks.io/role: {roleSelector}' to the 'serviceSpec.selector'. Example usage:  roleSelector: 'leader'  In this example, setting 'roleSelector' to 'leader' will add a label selector 'kubeblocks.io/role: leader' to the 'serviceSpec.selector'. This means that the service will select and route traffic to Pods with the label 'kubeblocks.io/role' set to 'leader'.  Note that if 'generatePodOrdinalService' sets to true, RoleSelector will be ignored. The 'generatePodOrdinalService' flag takes precedence over 'roleSelector' and generates a service for each Pod.
+- `pod_service` (Boolean) Indicates whether to create a corresponding Service for each Pod of the selected Component. When set to true, a set of Services will be automatically generated for each Pod, and the 'roleSelector' field will be ignored.  The names of the generated Services will follow the same suffix naming pattern: '$(serviceName)-$(podOrdinal)'. The total number of generated Services will be equal to the number of replicas specified for the Component.  Example usage:  '''yaml name: my-service serviceName: my-service podService: true disableAutoProvision: true spec: type: NodePort ports: - name: http port: 80 targetPort: 8080 '''  In this example, if the Component has 3 replicas, three Services will be generated: - my-service-0: Points to the first Pod (podOrdinal: 0) - my-service-1: Points to the second Pod (podOrdinal: 1) - my-service-2: Points to the third Pod (podOrdinal: 2)  Each generated Service will have the specified spec configuration and will target its respective Pod.  This feature is useful when you need to expose each Pod of a Component individually, allowing external access to specific instances of the Component.
+- `role_selector` (String) Extends the above 'serviceSpec.selector' by allowing you to specify defined role as selector for the service. When 'roleSelector' is set, it adds a label selector 'kubeblocks.io/role: {roleSelector}' to the 'serviceSpec.selector'. Example usage:  roleSelector: 'leader'  In this example, setting 'roleSelector' to 'leader' will add a label selector 'kubeblocks.io/role: leader' to the 'serviceSpec.selector'. This means that the service will select and route traffic to Pods with the label 'kubeblocks.io/role' set to 'leader'.  Note that if 'podService' sets to true, RoleSelector will be ignored. The 'podService' flag takes precedence over 'roleSelector' and generates a service for each Pod.
 - `service_name` (String) ServiceName defines the name of the underlying service object. If not specified, the default service name with different patterns will be used:  - CLUSTER_NAME: for cluster-level services - CLUSTER_NAME-COMPONENT_NAME: for component-level services  Only one default service name is allowed. Cannot be updated.
 - `spec` (Attributes) Spec defines the behavior of a service. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec--services--spec))
 

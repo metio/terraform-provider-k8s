@@ -145,6 +145,7 @@ Optional:
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--security_context))
 - `service_account` (String)
 - `service_annotations` (Map of String)
+- `service_labels` (Map of String)
 - `share_process_namespace` (Boolean)
 - `sidecars` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--driver--sidecars))
 - `termination_grace_period_seconds` (Number)

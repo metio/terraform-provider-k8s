@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+{{ range $index, $resource := . -}}
+out/terratest-sentinel-{{ .ManifestTestFile }}: out/install-sentinel terratest/{{ $resource.Package }}/{{ $resource.ManifestTestFile }} $(shell find ./examples/data-sources/{{ $resource.FullManifestTypeName }} -type f -name '*.tf')
+	mkdir --parents $(@D)
+	go test -timeout=120s ./terratest/{{ $resource.Package }}/{{ $resource.ManifestTestFile }}
+	touch $@
+{{ end }}
+
+.PHONY: terratests
+terratests: {{ range $index, $resource := . }}out/terratest-sentinel-{{ $resource.ManifestTestFile }} {{ end }} ## run all terratest tests

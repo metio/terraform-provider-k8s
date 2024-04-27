@@ -190,7 +190,8 @@ type WorkKarmadaIoClusterResourceBindingV1Alpha2ManifestData struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"required_by" json:"requiredBy,omitempty"`
-		Resource *struct {
+		RescheduleTriggeredAt *string `tfsdk:"reschedule_triggered_at" json:"rescheduleTriggeredAt,omitempty"`
+		Resource              *struct {
 			ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name            *string `tfsdk:"name" json:"name,omitempty"`
@@ -1276,6 +1277,17 @@ func (r *WorkKarmadaIoClusterResourceBindingV1Alpha2Manifest) Schema(_ context.C
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"reschedule_triggered_at": schema.StringAttribute{
+						Description:         "RescheduleTriggeredAt is a timestamp representing when the referenced resource is triggered rescheduling. When this field is updated, it means a rescheduling is manually triggered by user, and the expected behavior of this action is to do a complete recalculation without referring to last scheduling results. It works with the status.lastScheduledTime field, and only when this timestamp is later than timestamp in status.lastScheduledTime will the rescheduling actually execute, otherwise, ignored.  It is represented in RFC3339 form (like '2006-01-02T15:04:05Z') and is in UTC.",
+						MarkdownDescription: "RescheduleTriggeredAt is a timestamp representing when the referenced resource is triggered rescheduling. When this field is updated, it means a rescheduling is manually triggered by user, and the expected behavior of this action is to do a complete recalculation without referring to last scheduling results. It works with the status.lastScheduledTime field, and only when this timestamp is later than timestamp in status.lastScheduledTime will the rescheduling actually execute, otherwise, ignored.  It is represented in RFC3339 form (like '2006-01-02T15:04:05Z') and is in UTC.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							validators.DateTime64Validator(),
+						},
 					},
 
 					"resource": schema.SingleNestedAttribute{

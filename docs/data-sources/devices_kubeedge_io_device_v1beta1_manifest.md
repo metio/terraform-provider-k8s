@@ -75,7 +75,7 @@ Optional:
 
 - `collect_cycle` (Number) Define how frequent mapper will collect from device.
 - `desired` (Attributes) The desired property value. (see [below for nested schema](#nestedatt--spec--properties--desired))
-- `name` (String) Required: The device property name to be accessed. It must be unique.
+- `name` (String) Required: The device property name to be accessed. It must be unique. Note: If you need to use the built-in stream data processing function, you need to define Name as saveFrame or saveVideo
 - `push_method` (Attributes) PushMethod represents the protocol used to push data, please ensure that the mapper can access the destination address. (see [below for nested schema](#nestedatt--spec--properties--push_method))
 - `report_cycle` (Number) Define how frequent mapper will report the value.
 - `report_to_cloud` (Boolean) whether be reported to the cloud
@@ -108,6 +108,7 @@ Optional:
 Optional:
 
 - `influxdb2` (Attributes) method configuration for database (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--influxdb2))
+- `mysql` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--mysql))
 - `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--redis))
 - `td_engine` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--td_engine))
 
@@ -137,6 +138,24 @@ Optional:
 - `field_key` (String) FieldKey of the user data
 - `measurement` (String) Measurement of the user data
 - `tag` (Map of String) the tag of device data
+
+
+
+<a id="nestedatt--spec--properties--push_method--mqtt--mysql"></a>
+### Nested Schema for `spec.properties.push_method.mqtt.mysql`
+
+Optional:
+
+- `mysql_client_config` (Attributes) (see [below for nested schema](#nestedatt--spec--properties--push_method--mqtt--mysql--mysql_client_config))
+
+<a id="nestedatt--spec--properties--push_method--mqtt--mysql--mysql_client_config"></a>
+### Nested Schema for `spec.properties.push_method.mqtt.mysql.mysql_client_config`
+
+Optional:
+
+- `addr` (String) mysql address,like localhost:3306
+- `database` (String) database name
+- `user_name` (String) user name
 
 
 

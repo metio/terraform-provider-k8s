@@ -68,7 +68,7 @@ Optional:
 - `grpc_web` (Attributes) GrpcWeb holds the gRPC web middleware configuration.This middleware converts a gRPC web request to an HTTP/2 gRPC request. (see [below for nested schema](#nestedatt--spec--grpc_web))
 - `headers` (Attributes) Headers holds the headers middleware configuration.This middleware manages the requests and responses headers.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/headers/#customrequestheaders (see [below for nested schema](#nestedatt--spec--headers))
 - `in_flight_req` (Attributes) InFlightReq holds the in-flight request middleware configuration.This middleware limits the number of requests being processed and served concurrently.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/inflightreq/ (see [below for nested schema](#nestedatt--spec--in_flight_req))
-- `ip_allow_list` (Attributes) IPAllowList holds the IP allowlist middleware configuration.This middleware accepts / refuses requests based on the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/ipallowlist/ (see [below for nested schema](#nestedatt--spec--ip_allow_list))
+- `ip_allow_list` (Attributes) IPAllowList holds the IP allowlist middleware configuration.This middleware limits allowed requests based on the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/ipallowlist/ (see [below for nested schema](#nestedatt--spec--ip_allow_list))
 - `ip_white_list` (Attributes) Deprecated: please use IPAllowList instead. (see [below for nested schema](#nestedatt--spec--ip_white_list))
 - `pass_tls_client_cert` (Attributes) PassTLSClientCert holds the pass TLS client cert middleware configuration.This middleware adds the selected data from the passed client TLS certificate to a header.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/passtlsclientcert/ (see [below for nested schema](#nestedatt--spec--pass_tls_client_cert))
 - `plugin` (Map of String) Plugin defines the middleware plugin configuration.More info: https://doc.traefik.io/traefik/plugins/
@@ -141,6 +141,7 @@ Optional:
 - `expression` (String) Expression is the condition that triggers the tripped state.
 - `fallback_duration` (String) FallbackDuration is the duration for which the circuit breaker will wait before trying to recover (from a tripped state).
 - `recovery_duration` (String) RecoveryDuration is the duration for which the circuit breaker will try to recover (as soon as it is in recovering state).
+- `response_code` (Number) ResponseCode is the status code that the circuit breaker will return while it is in the open state.
 
 
 <a id="nestedatt--spec--compress"></a>
@@ -358,7 +359,7 @@ Optional:
 Optional:
 
 - `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--ip_white_list--ip_strategy))
-- `source_range` (List of String) SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation).
+- `source_range` (List of String) SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation). Required.
 
 <a id="nestedatt--spec--ip_white_list--ip_strategy"></a>
 ### Nested Schema for `spec.ip_white_list.ip_strategy`

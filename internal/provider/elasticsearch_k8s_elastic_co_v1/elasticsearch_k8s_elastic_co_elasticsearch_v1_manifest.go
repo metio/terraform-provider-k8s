@@ -45,7 +45,8 @@ type ElasticsearchK8SElasticCoElasticsearchV1ManifestData struct {
 
 	Spec *struct {
 		Auth *struct {
-			FileRealm *[]struct {
+			DisableElasticUser *bool `tfsdk:"disable_elastic_user" json:"disableElasticUser,omitempty"`
+			FileRealm          *[]struct {
 				SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 			} `tfsdk:"file_realm" json:"fileRealm,omitempty"`
 			Roles *[]struct {
@@ -1664,6 +1665,14 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Manifest) Schema(_ context.Cont
 						Description:         "Auth contains user authentication and authorization security settings for Elasticsearch.",
 						MarkdownDescription: "Auth contains user authentication and authorization security settings for Elasticsearch.",
 						Attributes: map[string]schema.Attribute{
+							"disable_elastic_user": schema.BoolAttribute{
+								Description:         "DisableElasticUser disables the default elastic user that is created by ECK.",
+								MarkdownDescription: "DisableElasticUser disables the default elastic user that is created by ECK.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"file_realm": schema.ListNestedAttribute{
 								Description:         "FileRealm to propagate to the Elasticsearch cluster.",
 								MarkdownDescription: "FileRealm to propagate to the Elasticsearch cluster.",

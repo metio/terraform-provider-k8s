@@ -182,6 +182,7 @@ type AcidZalanDoOperatorConfigurationV1ManifestData struct {
 			Logical_backup_provider                       *string `tfsdk:"logical_backup_provider" json:"logical_backup_provider,omitempty"`
 			Logical_backup_s3_access_key_id               *string `tfsdk:"logical_backup_s3_access_key_id" json:"logical_backup_s3_access_key_id,omitempty"`
 			Logical_backup_s3_bucket                      *string `tfsdk:"logical_backup_s3_bucket" json:"logical_backup_s3_bucket,omitempty"`
+			Logical_backup_s3_bucket_prefix               *string `tfsdk:"logical_backup_s3_bucket_prefix" json:"logical_backup_s3_bucket_prefix,omitempty"`
 			Logical_backup_s3_endpoint                    *string `tfsdk:"logical_backup_s3_endpoint" json:"logical_backup_s3_endpoint,omitempty"`
 			Logical_backup_s3_region                      *string `tfsdk:"logical_backup_s3_region" json:"logical_backup_s3_region,omitempty"`
 			Logical_backup_s3_retention_time              *string `tfsdk:"logical_backup_s3_retention_time" json:"logical_backup_s3_retention_time,omitempty"`
@@ -1432,6 +1433,14 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 							},
 
 							"logical_backup_s3_bucket": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"logical_backup_s3_bucket_prefix": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

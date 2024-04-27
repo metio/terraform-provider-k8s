@@ -80,7 +80,7 @@ Optional:
 - `sidecar_container_specs` (Map of String) Defines the sidecar containers that will be attached to the component's main container.
 - `system_accounts` (Attributes List) An array of 'SystemAccount' objects that define the system accounts needed for the management operations of the Component.  Each 'SystemAccount' object in the array contains the following fields:  - Account name. - The SQL statement template used to create the system account. - The source of the password for the system account. It can be generated based on certain rules or copied from a secret.  Common scenarios of system accounts include:  - Accounts required to initialize the system - Performing backup tasks - Monitoring - Health checks - Replica replication - Other system-level operations  System accounts are distinct from user accounts, although both are database accounts.  - System accounts are typically created by the operator during cluster creation and initialization. They usually have higher privileges and are used exclusively by the operator and for system management tasks. System accounts are managed by the KubeBlocks operator using a declarative API, and their lifecycle is fully controlled by the operator. - User accounts, on the other hand, are managed through ops operations and their lifecycle is controlled by users or administrators. User account permissions should follow the principle of least privilege, granting only the necessary access rights to complete their required tasks.  This field is immutable. (see [below for nested schema](#nestedatt--spec--system_accounts))
 - `update_strategy` (String) Specifies the strategy for updating the component instance when it has multiple replicas. It determines whether multiple replicas can be updated concurrently.  The available strategies are:  - 'Serial': The replicas are updated one at a time in a serial manner. The operator waits for each replica to be updated and ready before proceeding to the next one. This ensures that only one replica is unavailable at a time during the update process. - 'Parallel': The replicas are updated in parallel, with the operator updating all replicas concurrently. This strategy provides the fastest update time but may lead to a period of reduced availability or capacity during the update process. - 'BestEffortParallel': The replicas are updated in parallel, with the operator making a best-effort attempt to update as many replicas as possible concurrently while maintaining the component's availability. Unlike the 'Parallel' strategy, the 'BestEffortParallel' strategy aims to ensure that a minimum number of replicas remain available during the update process to maintain the component's quorum and functionality. For example, consider a component with 5 replicas. To maintain the component's availability and quorum, the operator may allow a maximum of 2 replicas to be simultaneously updated. This ensures that at least 3 replicas (a quorum) remain available and functional during the update process.  This field is immutable.
-- `vars` (Attributes List) Represents user-defined variables that can be used as environment variables for Pods and Actions, or to render templates of config and script. These variables are placed in front of the environment variables declared in the Pod if used as environment variables.  The value of a var can be populated from the following sources:  - ConfigMap: Allows you to select a ConfigMap and a specific key within that ConfigMap to extract the value from. - Secret: Allows you to select a Secret and a specific key within that Secret to extract the value from. - Pod: Retrieves values (including ports) from a selected Pod. - Service: Retrieves values (including address, port, NodePort) from a selected Service. The purpose of ServiceVar is to obtain the address of a ComponentService. - Credential: Retrieves values (including account name, account password) from a SystemAccount variable. - ServiceRef: Retrieves values (including address, port, account name, account password) from a selected ServiceRefDeclaration. The purpose of ServiceRefVar is to obtain the specific address that a ServiceRef is bound to (e.g., a ClusterService of another Cluster).  This field is immutable. (see [below for nested schema](#nestedatt--spec--vars))
+- `vars` (Attributes List) Represents user-defined variables that can be used as environment variables for Pods and Actions, or to render templates of config and script. These variables are placed in front of the environment variables declared in the Pod if used as environment variables.  The value of a var can be populated from the following sources:  - ConfigMap: Allows you to select a ConfigMap and a specific key within that ConfigMap to extract the value from. - Secret: Allows you to select a Secret and a specific key within that Secret to extract the value from. - Pod: Retrieves values (including ports) from a selected Pod. - Service: Retrieves values (including address, port, NodePort) from a selected Service. The purpose of ServiceVar is to obtain the address of a ComponentService. - Credential: Retrieves values (including account name, account password) from a SystemAccount variable. - ServiceRef: Retrieves values (including address, port, account name, account password) from a selected ServiceRefDeclaration. The purpose of ServiceRefVar is to obtain the specific address that a ServiceRef is bound to (e.g., a ClusterService of another Cluster). - Component: Retrieves values from a field of a Component.  This field is immutable. (see [below for nested schema](#nestedatt--spec--vars))
 - `volumes` (Attributes List) Defines the volumes used by the Component and some static attributes of the volumes. After defining the volumes here, user can reference them in the 'cluster.spec.componentSpecs[*].volumeClaimTemplates' field to configure dynamic properties such as volume capacity and storage class.  This field allows you to specify the following:  - Snapshot behavior: Determines whether a snapshot of the volume should be taken when performing a snapshot backup of the component. - Disk high watermark: Sets the high watermark for the volume's disk usage. When the disk usage reaches the specified threshold, it triggers an alert or action.  By configuring these volume behaviors, you can control how the volumes are managed and monitored within the component.  This field is immutable. (see [below for nested schema](#nestedatt--spec--volumes))
 
 <a id="nestedatt--spec--runtime"></a>
@@ -5329,8 +5329,8 @@ Optional:
 
 - `annotations` (Map of String) If ServiceType is LoadBalancer, cloud provider related parameters can be put here More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.
 - `disable_auto_provision` (Boolean) Indicates whether the automatic provisioning of the service should be disabled.  If set to true, the service will not be automatically created at the component provisioning. Instead, you can enable the creation of this service by specifying it explicitly in the cluster API.
-- `pod_service` (Boolean) Indicates whether to create a corresponding Service for each Pod of the selected Component. When set to true, a set of Services will be automatically generated for each Pod, and the 'roleSelector' field will be ignored.  The names of the generated Services will follow the same naming pattern: '$(serviceName)-$(podOrdinal)'.  The podOrdinal is zero-based, meaning it starts from 0 for the first Pod and increments for each subsequent Pod. The total number of generated Services will be equal to the number of replicas specified for the Component.  Example usage:  '''yaml name: my-service serviceName: my-service generatePodOrdinalService: true spec: type: NodePort ports: - name: http port: 80 targetPort: 8080 '''  In this example, if the Component has 3 replicas, three Services will be generated: - my-service-0: Points to the first Pod (podOrdinal: 0) - my-service-1: Points to the second Pod (podOrdinal: 1) - my-service-2: Points to the third Pod (podOrdinal: 2)  Each generated Service will have the specified spec configuration and will target its respective Pod.  This feature is useful when you need to expose each Pod of a Component individually, allowing external access to specific instances of the Component.
-- `role_selector` (String) Extends the above 'serviceSpec.selector' by allowing you to specify defined role as selector for the service. When 'roleSelector' is set, it adds a label selector 'kubeblocks.io/role: {roleSelector}' to the 'serviceSpec.selector'. Example usage:  roleSelector: 'leader'  In this example, setting 'roleSelector' to 'leader' will add a label selector 'kubeblocks.io/role: leader' to the 'serviceSpec.selector'. This means that the service will select and route traffic to Pods with the label 'kubeblocks.io/role' set to 'leader'.  Note that if 'generatePodOrdinalService' sets to true, RoleSelector will be ignored. The 'generatePodOrdinalService' flag takes precedence over 'roleSelector' and generates a service for each Pod.
+- `pod_service` (Boolean) Indicates whether to create a corresponding Service for each Pod of the selected Component. When set to true, a set of Services will be automatically generated for each Pod, and the 'roleSelector' field will be ignored.  The names of the generated Services will follow the same suffix naming pattern: '$(serviceName)-$(podOrdinal)'. The total number of generated Services will be equal to the number of replicas specified for the Component.  Example usage:  '''yaml name: my-service serviceName: my-service podService: true disableAutoProvision: true spec: type: NodePort ports: - name: http port: 80 targetPort: 8080 '''  In this example, if the Component has 3 replicas, three Services will be generated: - my-service-0: Points to the first Pod (podOrdinal: 0) - my-service-1: Points to the second Pod (podOrdinal: 1) - my-service-2: Points to the third Pod (podOrdinal: 2)  Each generated Service will have the specified spec configuration and will target its respective Pod.  This feature is useful when you need to expose each Pod of a Component individually, allowing external access to specific instances of the Component.
+- `role_selector` (String) Extends the above 'serviceSpec.selector' by allowing you to specify defined role as selector for the service. When 'roleSelector' is set, it adds a label selector 'kubeblocks.io/role: {roleSelector}' to the 'serviceSpec.selector'. Example usage:  roleSelector: 'leader'  In this example, setting 'roleSelector' to 'leader' will add a label selector 'kubeblocks.io/role: leader' to the 'serviceSpec.selector'. This means that the service will select and route traffic to Pods with the label 'kubeblocks.io/role' set to 'leader'.  Note that if 'podService' sets to true, RoleSelector will be ignored. The 'podService' flag takes precedence over 'roleSelector' and generates a service for each Pod.
 - `service_name` (String) ServiceName defines the name of the underlying service object. If not specified, the default service name with different patterns will be used:  - CLUSTER_NAME: for cluster-level services - CLUSTER_NAME-COMPONENT_NAME: for component-level services  Only one default service name is allowed. Cannot be updated.
 - `spec` (Attributes) Spec defines the behavior of a service. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec--services--spec))
 
@@ -5446,12 +5446,58 @@ Optional:
 
 Optional:
 
+- `component_var_ref` (Attributes) Selects a defined var of a Component. (see [below for nested schema](#nestedatt--spec--vars--value_from--component_var_ref))
 - `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--vars--value_from--config_map_key_ref))
 - `credential_var_ref` (Attributes) Selects a defined var of a Credential (SystemAccount). (see [below for nested schema](#nestedatt--spec--vars--value_from--credential_var_ref))
 - `pod_var_ref` (Attributes) Selects a defined var of a Pod. (see [below for nested schema](#nestedatt--spec--vars--value_from--pod_var_ref))
 - `secret_key_ref` (Attributes) Selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--vars--value_from--secret_key_ref))
 - `service_ref_var_ref` (Attributes) Selects a defined var of a ServiceRef. (see [below for nested schema](#nestedatt--spec--vars--value_from--service_ref_var_ref))
 - `service_var_ref` (Attributes) Selects a defined var of a Service. (see [below for nested schema](#nestedatt--spec--vars--value_from--service_var_ref))
+
+<a id="nestedatt--spec--vars--value_from--component_var_ref"></a>
+### Nested Schema for `spec.vars.value_from.component_var_ref`
+
+Optional:
+
+- `comp_def` (String) CompDef specifies the definition used by the component that the referent object resident in. If not specified, the component itself will be used.
+- `component_name` (String) Reference to the name of the Component object.
+- `instance_names` (String) Reference to the instanceName list of the component. and the value will be presented in the following format: instanceName1,instanceName2...
+- `multiple_cluster_object_option` (Attributes) This option defines the behavior when multiple component objects match the specified @CompDef. If not provided, an error will be raised when handling multiple matches. (see [below for nested schema](#nestedatt--spec--vars--value_from--service_var_ref--multiple_cluster_object_option))
+- `name` (String) Name of the referent object.
+- `optional` (Boolean) Specify whether the object must be defined.
+- `replicas` (String) Reference to the replicas of the component.
+
+<a id="nestedatt--spec--vars--value_from--service_var_ref--multiple_cluster_object_option"></a>
+### Nested Schema for `spec.vars.value_from.service_var_ref.multiple_cluster_object_option`
+
+Required:
+
+- `strategy` (String) Define the strategy for handling multiple cluster objects.
+
+Optional:
+
+- `combined_option` (Attributes) Define the options for handling combined variables. Valid only when the strategy is set to 'combined'. (see [below for nested schema](#nestedatt--spec--vars--value_from--service_var_ref--multiple_cluster_object_option--combined_option))
+
+<a id="nestedatt--spec--vars--value_from--service_var_ref--multiple_cluster_object_option--combined_option"></a>
+### Nested Schema for `spec.vars.value_from.service_var_ref.multiple_cluster_object_option.combined_option`
+
+Optional:
+
+- `flatten_format` (Attributes) The flatten format, default is: $(comp-name-1):value,$(comp-name-2):value. (see [below for nested schema](#nestedatt--spec--vars--value_from--service_var_ref--multiple_cluster_object_option--combined_option--flatten_format))
+- `new_var_suffix` (String) If set, the existing variable will be kept, and a new variable will be defined with the specified suffix in pattern: $(var.name)_$(suffix). The new variable will be auto-created and placed behind the existing one. If not set, the existing variable will be reused with the value format defined below.
+- `value_format` (String) The format of the value that the operator will use to compose values from multiple components.
+
+<a id="nestedatt--spec--vars--value_from--service_var_ref--multiple_cluster_object_option--combined_option--flatten_format"></a>
+### Nested Schema for `spec.vars.value_from.service_var_ref.multiple_cluster_object_option.combined_option.flatten_format`
+
+Required:
+
+- `delimiter` (String) Pair delimiter.
+- `key_value_delimiter` (String) Key-value delimiter.
+
+
+
+
 
 <a id="nestedatt--spec--vars--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.vars.value_from.config_map_key_ref`
@@ -5640,6 +5686,7 @@ Optional:
 
 - `comp_def` (String) CompDef specifies the definition used by the component that the referent object resident in. If not specified, the component itself will be used.
 - `host` (String) VarOption defines whether a variable is required or optional.
+- `load_balancer` (String) LoadBalancer represents the LoadBalancer ingress point of the service.  If multiple ingress points are available, the first one will be used automatically, choosing between IP and Hostname.
 - `multiple_cluster_object_option` (Attributes) This option defines the behavior when multiple component objects match the specified @CompDef. If not provided, an error will be raised when handling multiple matches. (see [below for nested schema](#nestedatt--spec--vars--value_from--service_var_ref--multiple_cluster_object_option))
 - `name` (String) Name of the referent object.
 - `optional` (Boolean) Specify whether the object must be defined.

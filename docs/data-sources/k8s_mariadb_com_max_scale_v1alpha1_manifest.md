@@ -64,12 +64,13 @@ Optional:
 - `connection` (Attributes) Connection provides a template to define the Connection for MaxScale. (see [below for nested schema](#nestedatt--spec--connection))
 - `env` (Attributes List) Env represents the environment variables to be injected in a container. (see [below for nested schema](#nestedatt--spec--env))
 - `env_from` (Attributes List) EnvFrom represents the references (via ConfigMap and Secrets) to environment variables to be injected in the container. (see [below for nested schema](#nestedatt--spec--env_from))
+- `gui_kubernetes_service` (Attributes) GuiKubernetesService defines a template for a Kubernetes Service object to connect to MaxScale's GUI. (see [below for nested schema](#nestedatt--spec--gui_kubernetes_service))
 - `image` (String) Image name to be used by the MaxScale instances. The supported format is '<image>:<tag>'.Only MaxScale official images are supported.
 - `image_pull_policy` (String) ImagePullPolicy is the image pull policy. One of 'Always', 'Never' or 'IfNotPresent'. If not defined, it defaults to 'IfNotPresent'.
 - `image_pull_secrets` (Attributes List) ImagePullSecrets is the list of pull Secrets to be used to pull the image. (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `inherit_metadata` (Attributes) InheritMetadata defines the metadata to be inherited by children resources. (see [below for nested schema](#nestedatt--spec--inherit_metadata))
 - `init_containers` (Attributes List) InitContainers to be used in the Pod. (see [below for nested schema](#nestedatt--spec--init_containers))
-- `kubernetes_service` (Attributes) Service defines templates to configure the Kubernetes Service object. (see [below for nested schema](#nestedatt--spec--kubernetes_service))
+- `kubernetes_service` (Attributes) KubernetesService defines a template for a Kubernetes Service object to connect to MaxScale. (see [below for nested schema](#nestedatt--spec--kubernetes_service))
 - `liveness_probe` (Attributes) LivenessProbe to be used in the Container. (see [below for nested schema](#nestedatt--spec--liveness_probe))
 - `maria_db_ref` (Attributes) MariaDBRef is a reference to the MariaDB that MaxScale points to. It is used to initialize the servers field. (see [below for nested schema](#nestedatt--spec--maria_db_ref))
 - `metrics` (Attributes) Metrics configures metrics and how to scrape them. (see [below for nested schema](#nestedatt--spec--metrics))
@@ -839,6 +840,29 @@ Optional:
 
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret must be defined
+
+
+
+<a id="nestedatt--spec--gui_kubernetes_service"></a>
+### Nested Schema for `spec.gui_kubernetes_service`
+
+Optional:
+
+- `allocate_load_balancer_node_ports` (Boolean) AllocateLoadBalancerNodePorts Service field.
+- `external_traffic_policy` (String) ExternalTrafficPolicy Service field.
+- `load_balancer_ip` (String) LoadBalancerIP Service field.
+- `load_balancer_source_ranges` (List of String) LoadBalancerSourceRanges Service field.
+- `metadata` (Attributes) Metadata to be added to the Service metadata. (see [below for nested schema](#nestedatt--spec--gui_kubernetes_service--metadata))
+- `session_affinity` (String) SessionAffinity Service field.
+- `type` (String) Type is the Service type. One of 'ClusterIP', 'NodePort' or 'LoadBalancer'. If not defined, it defaults to 'ClusterIP'.
+
+<a id="nestedatt--spec--gui_kubernetes_service--metadata"></a>
+### Nested Schema for `spec.gui_kubernetes_service.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations to be added to children resources.
+- `labels` (Map of String) Labels to be added to children resources.
 
 
 

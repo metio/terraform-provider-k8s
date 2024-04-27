@@ -3703,9 +3703,10 @@ Optional:
 - `config` (Attributes) Config defines the MaxScale configuration. (see [below for nested schema](#nestedatt--spec--max_scale--config))
 - `connection` (Attributes) Connection provides a template to define the Connection for MaxScale. (see [below for nested schema](#nestedatt--spec--max_scale--connection))
 - `enabled` (Boolean) Enabled is a flag to enable a MaxScale instance to be used with the current MariaDB.
+- `gui_kubernetes_service` (Attributes) GuiKubernetesService define a template for a Kubernetes Service object to connect to MaxScale's GUI. (see [below for nested schema](#nestedatt--spec--max_scale--gui_kubernetes_service))
 - `image` (String) Image name to be used by the MaxScale instances. The supported format is '<image>:<tag>'.Only MaxScale official images are supported.
 - `image_pull_policy` (String) ImagePullPolicy is the image pull policy. One of 'Always', 'Never' or 'IfNotPresent'. If not defined, it defaults to 'IfNotPresent'.
-- `kubernetes_service` (Attributes) Service defines templates to configure the Kubernetes Service object. (see [below for nested schema](#nestedatt--spec--max_scale--kubernetes_service))
+- `kubernetes_service` (Attributes) KubernetesService defines a template for a Kubernetes Service object to connect to MaxScale. (see [below for nested schema](#nestedatt--spec--max_scale--kubernetes_service))
 - `metrics` (Attributes) Metrics configures metrics and how to scrape them. (see [below for nested schema](#nestedatt--spec--max_scale--metrics))
 - `monitor` (Attributes) Monitor monitors MariaDB server instances. (see [below for nested schema](#nestedatt--spec--max_scale--monitor))
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget defines the budget for replica availability. (see [below for nested schema](#nestedatt--spec--max_scale--pod_disruption_budget))
@@ -3973,6 +3974,29 @@ Optional:
 - `annotations` (Map of String) Annotations to be added to children resources.
 - `labels` (Map of String) Labels to be added to children resources.
 
+
+
+
+<a id="nestedatt--spec--max_scale--gui_kubernetes_service"></a>
+### Nested Schema for `spec.max_scale.gui_kubernetes_service`
+
+Optional:
+
+- `allocate_load_balancer_node_ports` (Boolean) AllocateLoadBalancerNodePorts Service field.
+- `external_traffic_policy` (String) ExternalTrafficPolicy Service field.
+- `load_balancer_ip` (String) LoadBalancerIP Service field.
+- `load_balancer_source_ranges` (List of String) LoadBalancerSourceRanges Service field.
+- `metadata` (Attributes) Metadata to be added to the Service metadata. (see [below for nested schema](#nestedatt--spec--max_scale--gui_kubernetes_service--metadata))
+- `session_affinity` (String) SessionAffinity Service field.
+- `type` (String) Type is the Service type. One of 'ClusterIP', 'NodePort' or 'LoadBalancer'. If not defined, it defaults to 'ClusterIP'.
+
+<a id="nestedatt--spec--max_scale--gui_kubernetes_service--metadata"></a>
+### Nested Schema for `spec.max_scale.gui_kubernetes_service.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations to be added to children resources.
+- `labels` (Map of String) Labels to be added to children resources.
 
 
 

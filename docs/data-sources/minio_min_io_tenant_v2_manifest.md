@@ -81,6 +81,7 @@ Optional:
 - `image_pull_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--image_pull_secret))
 - `init_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--init_containers))
 - `kes` (Attributes) (see [below for nested schema](#nestedatt--spec--kes))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle))
 - `liveness` (Attributes) (see [below for nested schema](#nestedatt--spec--liveness))
 - `logging` (Attributes) (see [below for nested schema](#nestedatt--spec--logging))
 - `mount_path` (String)
@@ -3177,6 +3178,123 @@ Optional:
 
 - `values` (List of String)
 
+
+
+
+
+<a id="nestedatt--spec--lifecycle"></a>
+### Nested Schema for `spec.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--lifecycle--post_start"></a>
+### Nested Schema for `spec.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--post_start--tcp_socket))
+
+<a id="nestedatt--spec--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.lifecycle.post_start.exec`
+
+Optional:
+
+- `command` (List of String)
+
+
+<a id="nestedatt--spec--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.lifecycle.post_start.http_get`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--lifecycle--post_start--tcp_socket--http_headers))
+- `path` (String)
+- `scheme` (String)
+
+<a id="nestedatt--spec--lifecycle--post_start--tcp_socket--http_headers"></a>
+### Nested Schema for `spec.lifecycle.post_start.tcp_socket.http_headers`
+
+Required:
+
+- `name` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.lifecycle.post_start.tcp_socket`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
+
+
+
+<a id="nestedatt--spec--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.lifecycle.pre_stop`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--pre_stop--tcp_socket))
+
+<a id="nestedatt--spec--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.lifecycle.pre_stop.exec`
+
+Optional:
+
+- `command` (List of String)
+
+
+<a id="nestedatt--spec--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.lifecycle.pre_stop.http_get`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--lifecycle--pre_stop--tcp_socket--http_headers))
+- `path` (String)
+- `scheme` (String)
+
+<a id="nestedatt--spec--lifecycle--pre_stop--tcp_socket--http_headers"></a>
+### Nested Schema for `spec.lifecycle.pre_stop.tcp_socket.http_headers`
+
+Required:
+
+- `name` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.lifecycle.pre_stop.tcp_socket`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
 
 
 

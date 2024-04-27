@@ -147,8 +147,8 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 				MarkdownDescription: "DNSRecordSpec defines the desired state of DNSRecord",
 				Attributes: map[string]schema.Attribute{
 					"endpoints": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "endpoints is a list of endpoints that will be published into the dns provider.",
+						MarkdownDescription: "endpoints is a list of endpoints that will be published into the dns provider.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"dns_name": schema.StringAttribute{
@@ -276,8 +276,8 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"managed_zone": schema.SingleNestedAttribute{
-						Description:         "ManagedZoneReference holds a reference to a ManagedZone",
-						MarkdownDescription: "ManagedZoneReference holds a reference to a ManagedZone",
+						Description:         "managedZone is a reference to a ManagedZone instance to which this record will publish its endpoints.",
+						MarkdownDescription: "managedZone is a reference to a ManagedZone instance to which this record will publish its endpoints.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "'name' is the name of the managed zone. Required",
@@ -287,22 +287,22 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Computed:            false,
 							},
 						},
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
 					"owner_id": schema.StringAttribute{
-						Description:         "OwnerID is a unique string used to identify all endpoints created by this kuadrant",
-						MarkdownDescription: "OwnerID is a unique string used to identify all endpoints created by this kuadrant",
+						Description:         "ownerID is a unique string used to identify the owner of this record.",
+						MarkdownDescription: "ownerID is a unique string used to identify the owner of this record.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"root_host": schema.StringAttribute{
-						Description:         "rootHost is the single root for all endpoints in a DNSRecord. If rootHost is set, it is expected all defined endpoints are children 	of or equal to this rootHost",
-						MarkdownDescription: "rootHost is the single root for all endpoints in a DNSRecord. If rootHost is set, it is expected all defined endpoints are children 	of or equal to this rootHost",
+						Description:         "rootHost is the single root for all endpoints in a DNSRecord. If rootHost is set, it is expected all defined endpoints are children of or equal to this rootHost",
+						MarkdownDescription: "rootHost is the single root for all endpoints in a DNSRecord. If rootHost is set, it is expected all defined endpoints are children of or equal to this rootHost",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

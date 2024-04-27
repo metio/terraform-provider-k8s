@@ -127,7 +127,15 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			Config *string `tfsdk:"config" json:"config,omitempty"`
 		} `tfsdk:"custom_plugin" json:"customPlugin,omitempty"`
 		Datadog *struct {
-			Apikey          *string `tfsdk:"apikey" json:"apikey,omitempty"`
+			Apikey *struct {
+				ValueFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"apikey" json:"apikey,omitempty"`
 			Compress        *string `tfsdk:"compress" json:"compress,omitempty"`
 			Dd_message_key  *string `tfsdk:"dd_message_key" json:"dd_message_key,omitempty"`
 			Dd_service      *string `tfsdk:"dd_service" json:"dd_service,omitempty"`
@@ -1509,12 +1517,55 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 						Description:         "DataDog defines DataDog Output configuration.",
 						MarkdownDescription: "DataDog defines DataDog Output configuration.",
 						Attributes: map[string]schema.Attribute{
-							"apikey": schema.StringAttribute{
+							"apikey": schema.SingleNestedAttribute{
 								Description:         "Your Datadog API key.",
 								MarkdownDescription: "Your Datadog API key.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
+								Attributes: map[string]schema.Attribute{
+									"value_from": schema.SingleNestedAttribute{
+										Description:         "ValueSource defines how to find a value's key.",
+										MarkdownDescription: "ValueSource defines how to find a value's key.",
+										Attributes: map[string]schema.Attribute{
+											"secret_key_ref": schema.SingleNestedAttribute{
+												Description:         "Selects a key of a secret in the pod's namespace",
+												MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"compress": schema.StringAttribute{

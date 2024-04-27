@@ -76,10 +76,8 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				Username_claim            *string            `tfsdk:"username_claim" json:"username_claim,omitempty"`
 			} `tfsdk:"openid" json:"openid,omitempty"`
 			Openshift *struct {
-				Auth_timeout             *int64  `tfsdk:"auth_timeout" json:"auth_timeout,omitempty"`
-				Client_id_prefix         *string `tfsdk:"client_id_prefix" json:"client_id_prefix,omitempty"`
-				Token_inactivity_timeout *int64  `tfsdk:"token_inactivity_timeout" json:"token_inactivity_timeout,omitempty"`
-				Token_max_age            *int64  `tfsdk:"token_max_age" json:"token_max_age,omitempty"`
+				Token_inactivity_timeout *int64 `tfsdk:"token_inactivity_timeout" json:"token_inactivity_timeout,omitempty"`
+				Token_max_age            *int64 `tfsdk:"token_max_age" json:"token_max_age,omitempty"`
 			} `tfsdk:"openshift" json:"openshift,omitempty"`
 			Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
 		} `tfsdk:"auth" json:"auth,omitempty"`
@@ -754,22 +752,6 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Description:         "To learn more about these settings and how to configure the OpenShift authentication strategy, read the documentation at https://kiali.io/docs/configuration/authentication/openshift/",
 								MarkdownDescription: "To learn more about these settings and how to configure the OpenShift authentication strategy, read the documentation at https://kiali.io/docs/configuration/authentication/openshift/",
 								Attributes: map[string]schema.Attribute{
-									"auth_timeout": schema.Int64Attribute{
-										Description:         "The amount of time in seconds Kiali will wait for a response from the OpenShift API server when requesting authentication results.",
-										MarkdownDescription: "The amount of time in seconds Kiali will wait for a response from the OpenShift API server when requesting authentication results.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"client_id_prefix": schema.StringAttribute{
-										Description:         "The Route resource name and OAuthClient resource name will have this value as its prefix. This value normally should never change. The installer will ensure this value is set correctly.",
-										MarkdownDescription: "The Route resource name and OAuthClient resource name will have this value as its prefix. This value normally should never change. The installer will ensure this value is set correctly.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
 									"token_inactivity_timeout": schema.Int64Attribute{
 										Description:         "Timeout that overrides the default OpenShift token inactivity timeout. This value represents the maximum amount of time in seconds that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. If 0, the Kiali tokens never timeout. OpenShift may have a minimum allowed value - see the OpenShift documentation specific for the version of OpenShift you are using. WARNING: existing tokens will not be affected by changing this setting.",
 										MarkdownDescription: "Timeout that overrides the default OpenShift token inactivity timeout. This value represents the maximum amount of time in seconds that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. If 0, the Kiali tokens never timeout. OpenShift may have a minimum allowed value - see the OpenShift documentation specific for the version of OpenShift you are using. WARNING: existing tokens will not be affected by changing this setting.",

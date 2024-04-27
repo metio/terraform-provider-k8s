@@ -251,6 +251,7 @@ Optional:
 - `logical_backup_provider` (String)
 - `logical_backup_s3_access_key_id` (String)
 - `logical_backup_s3_bucket` (String)
+- `logical_backup_s3_bucket_prefix` (String)
 - `logical_backup_s3_endpoint` (String)
 - `logical_backup_s3_region` (String)
 - `logical_backup_s3_retention_time` (String)

@@ -295,7 +295,7 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datas
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("test", "testsuite"),
+							stringvalidator.OneOf("test", "testsuite", "testworkflow"),
 						},
 					},
 

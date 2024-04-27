@@ -886,8 +886,8 @@ func (r *AcmpcaServicesK8SAwsCertificateAuthorityV1Alpha1Manifest) Schema(_ cont
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The type of the certificate authority.",
+						MarkdownDescription: "The type of the certificate authority.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

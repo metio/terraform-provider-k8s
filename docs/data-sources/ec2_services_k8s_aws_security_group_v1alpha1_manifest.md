@@ -114,10 +114,44 @@ Optional:
 - `description` (String)
 - `group_id` (String)
 - `group_name` (String)
+- `group_ref` (Attributes) Reference field for GroupName (see [below for nested schema](#nestedatt--spec--egress_rules--user_id_group_pairs--group_ref))
 - `peering_status` (String)
 - `user_id` (String)
 - `vpc_id` (String)
 - `vpc_peering_connection_id` (String)
+- `vpc_ref` (Attributes) Reference field for VPCID (see [below for nested schema](#nestedatt--spec--egress_rules--user_id_group_pairs--vpc_ref))
+
+<a id="nestedatt--spec--egress_rules--user_id_group_pairs--group_ref"></a>
+### Nested Schema for `spec.egress_rules.user_id_group_pairs.group_ref`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--egress_rules--user_id_group_pairs--vpc_ref--from))
+
+<a id="nestedatt--spec--egress_rules--user_id_group_pairs--vpc_ref--from"></a>
+### Nested Schema for `spec.egress_rules.user_id_group_pairs.vpc_ref.from`
+
+Optional:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--egress_rules--user_id_group_pairs--vpc_ref"></a>
+### Nested Schema for `spec.egress_rules.user_id_group_pairs.vpc_ref`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--egress_rules--user_id_group_pairs--vpc_ref--from))
+
+<a id="nestedatt--spec--egress_rules--user_id_group_pairs--vpc_ref--from"></a>
+### Nested Schema for `spec.egress_rules.user_id_group_pairs.vpc_ref.from`
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -169,10 +203,44 @@ Optional:
 - `description` (String)
 - `group_id` (String)
 - `group_name` (String)
+- `group_ref` (Attributes) Reference field for GroupName (see [below for nested schema](#nestedatt--spec--ingress_rules--user_id_group_pairs--group_ref))
 - `peering_status` (String)
 - `user_id` (String)
 - `vpc_id` (String)
 - `vpc_peering_connection_id` (String)
+- `vpc_ref` (Attributes) Reference field for VPCID (see [below for nested schema](#nestedatt--spec--ingress_rules--user_id_group_pairs--vpc_ref))
+
+<a id="nestedatt--spec--ingress_rules--user_id_group_pairs--group_ref"></a>
+### Nested Schema for `spec.ingress_rules.user_id_group_pairs.group_ref`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--ingress_rules--user_id_group_pairs--vpc_ref--from))
+
+<a id="nestedatt--spec--ingress_rules--user_id_group_pairs--vpc_ref--from"></a>
+### Nested Schema for `spec.ingress_rules.user_id_group_pairs.vpc_ref.from`
+
+Optional:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--ingress_rules--user_id_group_pairs--vpc_ref"></a>
+### Nested Schema for `spec.ingress_rules.user_id_group_pairs.vpc_ref`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--ingress_rules--user_id_group_pairs--vpc_ref--from))
+
+<a id="nestedatt--spec--ingress_rules--user_id_group_pairs--vpc_ref--from"></a>
+### Nested Schema for `spec.ingress_rules.user_id_group_pairs.vpc_ref.from`
+
+Optional:
+
+- `name` (String)
+
+
 
 
 

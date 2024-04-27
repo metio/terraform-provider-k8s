@@ -293,6 +293,9 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Beta1Manifest) Schema(_ context.Context, _
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^((?:[1-9][0-9]{0,3}|[1-4][0-9]{4}|[5][0-8][0-9]{3}|59000)Gi|(?:[1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-3][0-9]{3}|64000)G|([1-9]||[1-5][0-7]|58)Ti|([1-9]||[1-5][0-9]|6[0-3]|64)T)$`), ""),
+											},
 										},
 
 										"volume_type": schema.StringAttribute{

@@ -946,6 +946,46 @@ type MinioMinIoTenantV2ManifestData struct {
 				WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 			} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 		} `tfsdk:"kes" json:"kes,omitempty"`
+		Lifecycle *struct {
+			PostStart *struct {
+				Exec *struct {
+					Command *[]string `tfsdk:"command" json:"command,omitempty"`
+				} `tfsdk:"exec" json:"exec,omitempty"`
+				HttpGet *struct {
+					Host        *string `tfsdk:"host" json:"host,omitempty"`
+					HttpHeaders *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				TcpSocket *struct {
+					Host *string `tfsdk:"host" json:"host,omitempty"`
+					Port *string `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+			} `tfsdk:"post_start" json:"postStart,omitempty"`
+			PreStop *struct {
+				Exec *struct {
+					Command *[]string `tfsdk:"command" json:"command,omitempty"`
+				} `tfsdk:"exec" json:"exec,omitempty"`
+				HttpGet *struct {
+					Host        *string `tfsdk:"host" json:"host,omitempty"`
+					HttpHeaders *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				TcpSocket *struct {
+					Host *string `tfsdk:"host" json:"host,omitempty"`
+					Port *string `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+			} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+		} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 		Liveness *struct {
 			Exec *struct {
 				Command *[]string `tfsdk:"command" json:"command,omitempty"`
@@ -8065,6 +8105,255 @@ func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.Sche
 											Optional:            false,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"lifecycle": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"post_start": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"exec": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"command": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_get": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"http_headers": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tcp_socket": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pre_stop": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"exec": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"command": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_get": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"http_headers": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tcp_socket": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,

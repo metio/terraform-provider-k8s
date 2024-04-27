@@ -7,6 +7,7 @@ package networking_istio_io_v1alpha3
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -270,6 +271,10 @@ func (r *NetworkingIstioIoSidecarV1Alpha3Manifest) Schema(_ context.Context, _ d
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(4.294967295e+09),
+											},
 										},
 
 										"protocol": schema.StringAttribute{
@@ -286,6 +291,10 @@ func (r *NetworkingIstioIoSidecarV1Alpha3Manifest) Schema(_ context.Context, _ d
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(4.294967295e+09),
+											},
 										},
 									},
 									Required: false,
@@ -433,6 +442,10 @@ func (r *NetworkingIstioIoSidecarV1Alpha3Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
 											},
 
 											"time": schema.StringAttribute{
@@ -616,6 +629,10 @@ func (r *NetworkingIstioIoSidecarV1Alpha3Manifest) Schema(_ context.Context, _ d
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(4.294967295e+09),
+															},
 														},
 
 														"time": schema.StringAttribute{
@@ -667,6 +684,10 @@ func (r *NetworkingIstioIoSidecarV1Alpha3Manifest) Schema(_ context.Context, _ d
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(4.294967295e+09),
+											},
 										},
 
 										"protocol": schema.StringAttribute{
@@ -683,6 +704,10 @@ func (r *NetworkingIstioIoSidecarV1Alpha3Manifest) Schema(_ context.Context, _ d
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(4.294967295e+09),
+											},
 										},
 									},
 									Required: true,
@@ -848,6 +873,10 @@ func (r *NetworkingIstioIoSidecarV1Alpha3Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
 											},
 										},
 										Required: false,

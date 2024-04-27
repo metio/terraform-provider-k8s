@@ -55,42 +55,42 @@ Optional:
 
 Required:
 
-- `cluster_ref` (String) References the cluster object.
-- `type` (String) Defines the operation type.
+- `cluster_ref` (String) Specifies the name of the Cluster resource that this operation is targeting.
+- `type` (String) Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover', 'VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore', 'Expose', 'DataScript', 'RebuildInstance', 'Custom'.  Note: This field is immutable once set.
 
 Optional:
 
-- `backup_spec` (Attributes) Defines how to backup the cluster. (see [below for nested schema](#nestedatt--spec--backup_spec))
-- `cancel` (Boolean) Defines the action to cancel the 'Pending/Creating/Running' opsRequest, supported types: 'VerticalScaling/HorizontalScaling'. Once set to true, this opsRequest will be canceled and modifying this property again will not take effect.
-- `custom_spec` (Attributes) Specifies a custom operation as defined by OpsDefinition. (see [below for nested schema](#nestedatt--spec--custom_spec))
-- `expose` (Attributes List) Defines services the component needs to expose. (see [below for nested schema](#nestedatt--spec--expose))
-- `force` (Boolean) Indicates if pre-checks should be bypassed, allowing the opsRequest to execute immediately. If set to true, pre-checks are skipped except for 'Start' type. Particularly useful when concurrent execution of VerticalScaling and HorizontalScaling opsRequests is required, achievable through the use of the Force flag.
-- `horizontal_scaling` (Attributes List) Defines what component need to horizontal scale the specified replicas. (see [below for nested schema](#nestedatt--spec--horizontal_scaling))
-- `rebuild_from` (Attributes List) Specifies the instances that require re-creation. (see [below for nested schema](#nestedatt--spec--rebuild_from))
-- `reconfigure` (Attributes) Deprecated: replace by reconfigures. Defines the variables that need to input when updating configuration. (see [below for nested schema](#nestedatt--spec--reconfigure))
-- `reconfigures` (Attributes List) Defines the variables that need to input when updating configuration. (see [below for nested schema](#nestedatt--spec--reconfigures))
-- `restart` (Attributes List) Restarts the specified components. (see [below for nested schema](#nestedatt--spec--restart))
+- `backup_spec` (Attributes) Specifies the parameters to backup a Cluster. (see [below for nested schema](#nestedatt--spec--backup_spec))
+- `cancel` (Boolean) Indicates whether the current operation should be canceled and terminated gracefully if it's in the 'Pending', 'Creating', or 'Running' state.  This field applies only to 'VerticalScaling' and 'HorizontalScaling' opsRequests.  Note: Setting 'cancel' to true is irreversible; further modifications to this field are ineffective.
+- `custom_spec` (Attributes) Specifies a custom operation defined by OpsDefinition. (see [below for nested schema](#nestedatt--spec--custom_spec))
+- `expose` (Attributes List) Lists Expose objects, each specifying a Component and its services to be exposed. (see [below for nested schema](#nestedatt--spec--expose))
+- `force` (Boolean) Instructs the system to bypass pre-checks (including cluster state checks and customized pre-conditions hooks) and immediately execute the opsRequest, except for the opsRequest of 'Start' type, which will still undergo pre-checks even if 'force' is true.  This is useful for concurrent execution of 'VerticalScaling' and 'HorizontalScaling' opsRequests. By setting 'force' to true, you can bypass the default checks and demand these opsRequests to run simultaneously.  Note: Once set, the 'force' field is immutable and cannot be updated.
+- `horizontal_scaling` (Attributes List) Lists HorizontalScaling objects, each specifying scaling requirements for a Component, including desired total replica counts, configurations for new instances, modifications for existing instances, and instance downscaling options. (see [below for nested schema](#nestedatt--spec--horizontal_scaling))
+- `rebuild_from` (Attributes List) Specifies the parameters to rebuild some instances. Rebuilding an instance involves restoring its data from a backup or another database replica. The instances being rebuilt usually serve as standby in the cluster. Hence rebuilding instances is often also referred to as 'standby reconstruction'. (see [below for nested schema](#nestedatt--spec--rebuild_from))
+- `reconfigure` (Attributes) Specifies a component and its configuration updates.  This field is deprecated and replaced by 'reconfigures'. (see [below for nested schema](#nestedatt--spec--reconfigure))
+- `reconfigures` (Attributes List) Lists Reconfigure objects, each specifying a Component and its configuration updates. (see [below for nested schema](#nestedatt--spec--reconfigures))
+- `restart` (Attributes List) Lists Components to be restarted. (see [below for nested schema](#nestedatt--spec--restart))
 - `restore_from` (Attributes) Cluster RestoreFrom backup or point in time. (see [below for nested schema](#nestedatt--spec--restore_from))
-- `restore_spec` (Attributes) Defines how to restore the cluster. Note that this restore operation will roll back cluster services. (see [below for nested schema](#nestedatt--spec--restore_spec))
-- `script_spec` (Attributes) Defines the script to be executed. (see [below for nested schema](#nestedatt--spec--script_spec))
-- `switchover` (Attributes List) Switches over the specified components. (see [below for nested schema](#nestedatt--spec--switchover))
-- `ttl_seconds_after_succeed` (Number) OpsRequest will be deleted after TTLSecondsAfterSucceed second when OpsRequest.status.phase is Succeed.
-- `ttl_seconds_before_abort` (Number) OpsRequest will wait at most TTLSecondsBeforeAbort seconds for start-conditions to be met. If not specified, the default value is 0, which means that the start-conditions must be met immediately.
-- `upgrade` (Attributes) Specifies the cluster version by specifying clusterVersionRef. (see [below for nested schema](#nestedatt--spec--upgrade))
-- `vertical_scaling` (List of Map of String) Note: Quantity struct can not do immutable check by CEL. Defines what component need to vertical scale the specified compute resources.
-- `volume_expansion` (Attributes List) Note: Quantity struct can not do immutable check by CEL. Defines what component and volumeClaimTemplate need to expand the specified storage. (see [below for nested schema](#nestedatt--spec--volume_expansion))
+- `restore_spec` (Attributes) Specifies the parameters to restore a Cluster. Note that this restore operation will roll back cluster services. (see [below for nested schema](#nestedatt--spec--restore_spec))
+- `script_spec` (Attributes) Specifies the image and scripts for executing engine-specific operations such as creating databases or users. It supports limited engines including MySQL, PostgreSQL, Redis, MongoDB.  ScriptSpec has been replaced by the more versatile OpsDefinition. It is recommended to use OpsDefinition instead. ScriptSpec is deprecated and will be removed in a future version. (see [below for nested schema](#nestedatt--spec--script_spec))
+- `switchover` (Attributes List) Lists Switchover objects, each specifying a Component to perform the switchover operation. (see [below for nested schema](#nestedatt--spec--switchover))
+- `ttl_seconds_after_succeed` (Number) Specifies the duration in seconds that an OpsRequest will remain in the system after successfully completing (when 'opsRequest.status.phase' is 'Succeed') before automatic deletion.
+- `ttl_seconds_before_abort` (Number) Specifies the maximum number of seconds the OpsRequest will wait for its start conditions to be met before aborting. If set to 0 (default), the start conditions must be met immediately for the OpsRequest to proceed.
+- `upgrade` (Attributes) Specifies the desired new version of the Cluster.  Note: This field is immutable once set. (see [below for nested schema](#nestedatt--spec--upgrade))
+- `vertical_scaling` (List of Map of String) Lists VerticalScaling objects, each specifying a component and its desired compute resources for vertical scaling.
+- `volume_expansion` (Attributes List) Lists VolumeExpansion objects, each specifying a component and its corresponding volumeClaimTemplates that requires storage expansion. (see [below for nested schema](#nestedatt--spec--volume_expansion))
 
 <a id="nestedatt--spec--backup_spec"></a>
 ### Nested Schema for `spec.backup_spec`
 
 Optional:
 
-- `backup_method` (String) Defines the backup method that is defined in backupPolicy.
-- `backup_name` (String) Specifies the name of the backup.
-- `backup_policy_name` (String) Indicates the backupPolicy applied to perform this backup.
-- `deletion_policy` (String) Determines whether the backup contents stored in backup repository should be deleted when the backup custom resource is deleted. Supported values are 'Retain' and 'Delete'. - 'Retain' means that the backup content and its physical snapshot on backup repository are kept. - 'Delete' means that the backup content and its physical snapshot on backup repository are deleted.
-- `parent_backup_name` (String) If backupType is incremental, parentBackupName is required.
-- `retention_period` (String) Determines a duration up to which the backup should be kept. Controller will remove all backups that are older than the RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the backups of last 30 days. Sample duration format:  - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m  You can also combine the above durations. For example: 30d12h30m. If not set, the backup will be kept forever.
+- `backup_method` (String) Specifies the name of BackupMethod. The specified BackupMethod must be defined in the BackupPolicy.
+- `backup_name` (String) Specifies the name of the Backup custom resource.
+- `backup_policy_name` (String) Indicates the name of the BackupPolicy applied to perform this Backup.
+- `deletion_policy` (String) Determines whether the backup contents stored in backup repository should be deleted when the Backup custom resource is deleted. Supported values are 'Retain' and 'Delete'. - 'Retain' means that the backup content and its physical snapshot on backup repository are kept. - 'Delete' means that the backup content and its physical snapshot on backup repository are deleted.
+- `parent_backup_name` (String) If the specified BackupMethod is incremental, 'parentBackupName' is required.
+- `retention_period` (String) Determines the duration for which the Backup custom resources should be retained.  The controller will automatically remove all Backup objects that are older than the specified RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the Backup objects of last 30 days. Sample duration format:  - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m  You can also combine the above durations. For example: 30d12h30m. If not set, the Backup objects will be kept forever.  If the 'deletionPolicy' is set to 'Delete', then the associated backup data will also be deleted along with the Backup object. Otherwise, only the Backup custom resource will be deleted.
 
 
 <a id="nestedatt--spec--custom_spec"></a>
@@ -98,24 +98,24 @@ Optional:
 
 Required:
 
-- `components` (Attributes List) Defines which components need to perform the actions defined by this OpsDefinition. At least one component is required. The components are identified by their name and can be merged or retained. (see [below for nested schema](#nestedatt--spec--custom_spec--components))
-- `ops_definition_ref` (String) Is a reference to an OpsDefinition.
+- `components` (Attributes List) Specifies the components and their parameters for executing custom actions as defined in OpsDefinition. Requires at least one component. (see [below for nested schema](#nestedatt--spec--custom_spec--components))
+- `ops_definition_ref` (String) Specifies the name of the OpsDefinition.
 
 Optional:
 
-- `parallelism` (String) Defines the execution concurrency. By default, all incoming Components will be executed simultaneously. The value can be an absolute number (e.g., 5) or a percentage of desired components (e.g., 10%). The absolute number is calculated from the percentage by rounding up. For instance, if the percentage value is 10% and the components length is 1, the calculated number will be rounded up to 1.
-- `service_account_name` (String)
+- `parallelism` (String) Specifies the maximum number of components to be operated on concurrently to mitigate performance impact on clusters with multiple components.  It accepts an absolute number (e.g., 5) or a percentage of components to execute in parallel (e.g., '10%'). Percentages are rounded up to the nearest whole number of components. For example, if '10%' results in less than one, it rounds up to 1.  When unspecified, all components are processed simultaneously by default.  Note: This feature is not implemented yet.
+- `service_account_name` (String) Specifies the name of the ServiceAccount to be used for executing the custom operation.
 
 <a id="nestedatt--spec--custom_spec--components"></a>
 ### Nested Schema for `spec.custom_spec.components`
 
 Required:
 
-- `name` (String) Specifies the unique identifier of the cluster component
+- `component_name` (String) Specifies the name of the Component.
 
 Optional:
 
-- `parameters` (Attributes List) Represents the parameters for this operation as declared in the opsDefinition.spec.parametersSchema. (see [below for nested schema](#nestedatt--spec--custom_spec--components--parameters))
+- `parameters` (Attributes List) Specifies the parameters that match the schema specified in the 'opsDefinition.spec.parametersSchema'. (see [below for nested schema](#nestedatt--spec--custom_spec--components--parameters))
 
 <a id="nestedatt--spec--custom_spec--components--parameters"></a>
 ### Nested Schema for `spec.custom_spec.components.parameters`
@@ -133,26 +133,29 @@ Required:
 
 Required:
 
-- `component_name` (String) Specifies the name of the cluster component.
-- `services` (Attributes List) A list of services that are to be exposed or removed. If componentNamem is not specified, each 'OpsService' in the list must specify ports and selectors. (see [below for nested schema](#nestedatt--spec--expose--services))
-- `switch` (String) Controls the expose operation. If set to Enable, the corresponding service will be exposed. Conversely, if set to Disable, the service will be removed.
+- `services` (Attributes List) Specifies a list of OpsService. When an OpsService is exposed, a corresponding ClusterService will be added to 'cluster.spec.services'. On the other hand, when an OpsService is unexposed, the corresponding ClusterService will be removed from 'cluster.spec.services'.  Note: If 'componentName' is not specified, the 'ports' and 'selector' fields must be provided in each OpsService definition. (see [below for nested schema](#nestedatt--spec--expose--services))
+- `switch` (String) Indicates whether the services will be exposed. 'Enable' exposes the services. while 'Disable' removes the exposed Service.
+
+Optional:
+
+- `component_name` (String) Specifies the name of the Component.
 
 <a id="nestedatt--spec--expose--services"></a>
 ### Nested Schema for `spec.expose.services`
 
 Required:
 
-- `name` (String) Specifies the name of the service. This name is used by others to refer to this service (e.g., connection credential). Note: This field cannot be updated.
+- `name` (String) Specifies the name of the Service. This name is used to set 'clusterService.name'.  Note: This field cannot be updated.
 
 Optional:
 
-- `annotations` (Map of String) Contains cloud provider related parameters if ServiceType is LoadBalancer. More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.
-- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'.  This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName.  This field may hold a maximum of two entries (dual-stack families, in either order).  These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.
-- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.
-- `ports` (Attributes List) Lists the ports that are exposed by this service. If not provided, the default Services Ports defined in the ClusterDefinition or ComponentDefinition that are neither of NodePort nor LoadBalancer service type will be used. If there is no corresponding Service defined in the ClusterDefinition or ComponentDefinition, the expose operation will fail. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies (see [below for nested schema](#nestedatt--spec--expose--services--ports))
-- `role_selector` (String) Allows you to specify a defined role as a selector for the service, extending the ServiceSpec.Selector.
-- `selector` (Map of String) Routes service traffic to pods with label keys and values matching this selector. If empty or not present, the service is assumed to have an external process managing its endpoints, which Kubernetes will not modify. This only applies to types ClusterIP, NodePort, and LoadBalancer and is ignored if type is ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/
-- `service_type` (String) Determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.
+- `annotations` (Map of String) Contains cloud provider related parameters if ServiceType is LoadBalancer.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.
+- `ip_families` (List of String) A list of IP families (e.g., IPv4, IPv6) assigned to this Service.  Usually assigned automatically based on the cluster configuration and the 'ipFamilyPolicy' field. If specified manually, the requested IP family must be available in the cluster and allowed by the 'ipFamilyPolicy'. If the requested IP family is not available or not allowed, the Service creation will fail.  Valid values:  - 'IPv4' - 'IPv6'  This field may hold a maximum of two entries (dual-stack families, in either order).  Common combinations of 'ipFamilies' and 'ipFamilyPolicy' are:  - ipFamilies=[] + ipFamilyPolicy='PreferDualStack' : The Service prefers dual-stack but can fall back to single-stack if the cluster does not support dual-stack. The IP family is automatically assigned based on the cluster configuration. - ipFamilies=['IPV4','IPV6'] + ipFamilyPolicy='RequiredDualStack' : The Service requires dual-stack and will only be created if the cluster supports both IPv4 and IPv6. The primary IP family is IPV4. - ipFamilies=['IPV6','IPV4'] + ipFamilyPolicy='RequiredDualStack' : The Service requires dual-stack and will only be created if the cluster supports both IPv4 and IPv6. The primary IP family is IPV6. - ipFamilies=['IPV4'] + ipFamilyPolicy='SingleStack' : The Service uses a single-stack with IPv4 only. - ipFamilies=['IPV6'] + ipFamilyPolicy='SingleStack' : The Service uses a single-stack with IPv6 only.
+- `ip_family_policy` (String) Specifies whether the Service should use a single IP family (SingleStack) or two IP families (DualStack).  Possible values:  - 'SingleStack' (default) : The Service uses a single IP family. If no value is provided, IPFamilyPolicy defaults to SingleStack. - 'PreferDualStack' : The Service prefers to use two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. - 'RequiredDualStack' : The Service requires two IP families on dual-stack configured clusters. If the cluster is not configured for dual-stack, the Service creation fails.
+- `ports` (Attributes List) Specifies Port definitions that are to be exposed by a ClusterService.  If not specified, the Port definitions from non-NodePort and non-LoadBalancer type ComponentService defined in the ComponentDefinition ('componentDefinition.spec.services') will be used. If no matching ComponentService is found, the expose operation will fail.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports (see [below for nested schema](#nestedatt--spec--expose--services--ports))
+- `role_selector` (String) Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.
+- `selector` (Map of String) Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.
+- `service_type` (String) Determines how the Service is exposed. Defaults to 'ClusterIP'. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP': allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort': builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer': builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for the expose operation.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.
 
 <a id="nestedatt--spec--expose--services--ports"></a>
 ### Nested Schema for `spec.expose.services.ports`
@@ -177,13 +180,13 @@ Optional:
 
 Required:
 
-- `component_name` (String) Specifies the name of the cluster component.
-- `replicas` (Number) Specifies the number of replicas for the workloads.
+- `component_name` (String) Specifies the name of the Component.
+- `replicas` (Number) Specifies the number of total replicas.
 
 Optional:
 
-- `instances` (Attributes List) Specifies instances to be added and/or deleted for the workloads. Name and Replicas should be provided. Other fields will simply be ignored. The Replicas will be overridden if an existing InstanceTemplate is matched by Name. Or the InstanceTemplate will be added as a new one. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances))
-- `offline_instances` (List of String) Specifies instances to be scaled in with dedicated names in the list.
+- `instances` (Attributes List) Contains a list of InstanceTemplate objects. Each InstanceTemplate object allows for modifying replica counts or specifying configurations for new instances during scaling.  The field supports two main use cases:  - Modifying replica count: Specify the desired replica count for existing instances with a particular configuration using Name and Replicas fields. To modify the replica count, the Name and Replicas fields of the InstanceTemplate object should be provided. Only these fields are used for matching and adjusting replicas; other fields are ignored. The Replicas value overrides any existing count. - Configuring new instances: Define the configuration for new instances added during scaling, including resource requirements, labels, annotations, etc. New instances are created based on the provided InstanceTemplate. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances))
+- `offline_instances` (List of String) Specifies the names of instances to be scaled down. This provides control over which specific instances are targeted for termination when reducing the replica count.
 
 <a id="nestedatt--spec--horizontal_scaling--instances"></a>
 ### Nested Schema for `spec.horizontal_scaling.instances`
@@ -315,134 +318,40 @@ Optional:
 <a id="nestedatt--spec--horizontal_scaling--instances--volume_claim_templates"></a>
 ### Nested Schema for `spec.horizontal_scaling.instances.volume_claim_templates`
 
-Optional:
+Required:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--metadata))
-- `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec))
-- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--status))
-
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--metadata"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.metadata`
+- `name` (String) Refers to the name of a volumeMount defined in either:  - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated)  The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.
 
 Optional:
 
-- `annotations` (Map of String)
-- `finalizers` (List of String)
-- `labels` (Map of String)
-- `name` (String)
-- `namespace` (String)
-
+- `spec` (Attributes) Defines the desired characteristics of a PersistentVolumeClaim that will be created for the volume with the mount name specified in the 'name' field.  When a Pod is created for this ClusterComponent, a new PVC will be created based on the specification defined in the 'spec' field. The PVC will be associated with the volume mount specified by the 'name' field. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec))
 
 <a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec"></a>
 ### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec`
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--selector))
-- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
-- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
-
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--data_source"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.data_source`
-
-Required:
-
-- `kind` (String) Kind is the type of resource being referenced
-- `name` (String) Name is the name of resource being referenced
-
-Optional:
-
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
-
-
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--data_source_ref"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.data_source_ref`
-
-Required:
-
-- `kind` (String) Kind is the type of resource being referenced
-- `name` (String) Name is the name of resource being referenced
-
-Optional:
-
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
-
+- `access_modes` (Map of String) Contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1.
+- `resources` (Attributes) Represents the minimum resources the volume should have. If the RecoverVolumeExpansionFailure feature is enabled, users are allowed to specify resource requirements that are lower than the previous value but must still be higher than the capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--resources))
+- `storage_class_name` (String) The name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1.
+- `volume_mode` (String) Defines what type of volume is required by the claim, either Block or Filesystem.
 
 <a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--resources"></a>
 ### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_name--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_mode--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_name--claims"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.volume_name.claims`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_mode--claims"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.volume_mode.claims`
 
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
-
-
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--selector"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_name--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.volume_name.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
-
-
-
-
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--status"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.status`
-
-Optional:
-
-- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--status--conditions))
-- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--status--conditions"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.status.conditions`
-
-Required:
-
-- `status` (String)
-- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
-
-Optional:
-
-- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
-- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
-- `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
 
 
 
@@ -1246,13 +1155,13 @@ Optional:
 
 Required:
 
-- `component_name` (String) Specifies the name of the cluster component.
-- `instances` (Attributes List) Defines the instances that need to be rebuilt. (see [below for nested schema](#nestedatt--spec--rebuild_from--instances))
+- `component_name` (String) Specifies the name of the Component.
+- `instances` (Attributes List) Specifies the instances (Pods) that need to be rebuilt, typically operating as standbys. (see [below for nested schema](#nestedatt--spec--rebuild_from--instances))
 
 Optional:
 
-- `backup_name` (String) Indicates the name of the backup from which to recover. Currently, only a full physical backup is supported unless your component only has one replica. Such as 'xtrabackup' is full physical backup for mysql and 'mysqldump' is not. And if no specified backupName, the instance will be recreated with empty 'PersistentVolumes'.
-- `env_for_restore` (Map of String) List of environment variables to set in the container for restore. These will be merged with the env of Backup and ActionSet.  The priority of merging is as follows: 'Restore env > Backup env > ActionSet env'.
+- `backup_name` (String) Indicates the name of the Backup custom resource from which to recover the instance. Defaults to an empty PersistentVolume if unspecified.  Note: - Only full physical backups are supported for multi-replica Components (e.g., 'xtrabackup' for MySQL). - Logical backups (e.g., 'mysqldump' for MySQL) are unsupported in the current version.
+- `env_for_restore` (Map of String) Defines container environment variables for the restore process. merged with the ones specified in the Backup and ActionSet resources.  Merge priority: Restore env > Backup env > ActionSet env.  Purpose: Some databases require different configurations when being restored as a standby compared to being restored as a primary. For example, when restoring MySQL as a replica, you need to set 'skip_slave_start='ON'' for 5.7 or 'skip_replica_start='ON'' for 8.0. Allowing environment variables to be passed in makes it more convenient to control these behavioral differences during the restore process.
 
 <a id="nestedatt--spec--rebuild_from--instances"></a>
 ### Nested Schema for `spec.rebuild_from.instances`
@@ -1272,32 +1181,32 @@ Optional:
 
 Required:
 
-- `component_name` (String) Specifies the name of the cluster component.
-- `configurations` (Attributes List) Specifies the components that will perform the operation. (see [below for nested schema](#nestedatt--spec--reconfigure--configurations))
+- `component_name` (String) Specifies the name of the Component.
+- `configurations` (Attributes List) Contains a list of ConfigurationItem objects, specifying the Component's configuration template name, upgrade policy, and parameter key-value pairs to be updated. (see [below for nested schema](#nestedatt--spec--reconfigure--configurations))
 
 <a id="nestedatt--spec--reconfigure--configurations"></a>
 ### Nested Schema for `spec.reconfigure.configurations`
 
 Required:
 
-- `keys` (Attributes List) Sets the parameters to be updated. It should contain at least one item. The keys are merged and retained during patch operations. (see [below for nested schema](#nestedatt--spec--reconfigure--configurations--keys))
+- `keys` (Attributes List) Sets the configuration files and their associated parameters that need to be updated. It should contain at least one item. (see [below for nested schema](#nestedatt--spec--reconfigure--configurations--keys))
 - `name` (String) Specifies the name of the configuration template.
 
 Optional:
 
-- `policy` (String) Defines the upgrade policy for the configuration. This field is optional.
+- `policy` (String) Defines the upgrade policy for the configuration.
 
 <a id="nestedatt--spec--reconfigure--configurations--keys"></a>
 ### Nested Schema for `spec.reconfigure.configurations.keys`
 
 Required:
 
-- `key` (String) Represents the unique identifier for the ConfigMap.
+- `key` (String) Represents a key in the configuration template(as ConfigMap). Each key in the ConfigMap corresponds to a specific configuration file.
 
 Optional:
 
-- `file_content` (String) Represents the content of the configuration file. This field is used to update the entire content of the file.
-- `parameters` (Attributes List) Defines a list of key-value pairs for a single configuration file. These parameters are used to update the specified configuration settings. (see [below for nested schema](#nestedatt--spec--reconfigure--configurations--policy--parameters))
+- `file_content` (String) Specifies the content of the entire configuration file. This field is used to update the complete configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.
+- `parameters` (Attributes List) Specifies a list of key-value pairs representing parameters and their corresponding values within a single configuration file. This field is used to override or set the values of parameters without modifying the entire configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both. (see [below for nested schema](#nestedatt--spec--reconfigure--configurations--policy--parameters))
 
 <a id="nestedatt--spec--reconfigure--configurations--policy--parameters"></a>
 ### Nested Schema for `spec.reconfigure.configurations.policy.parameters`
@@ -1319,32 +1228,32 @@ Optional:
 
 Required:
 
-- `component_name` (String) Specifies the name of the cluster component.
-- `configurations` (Attributes List) Specifies the components that will perform the operation. (see [below for nested schema](#nestedatt--spec--reconfigures--configurations))
+- `component_name` (String) Specifies the name of the Component.
+- `configurations` (Attributes List) Contains a list of ConfigurationItem objects, specifying the Component's configuration template name, upgrade policy, and parameter key-value pairs to be updated. (see [below for nested schema](#nestedatt--spec--reconfigures--configurations))
 
 <a id="nestedatt--spec--reconfigures--configurations"></a>
 ### Nested Schema for `spec.reconfigures.configurations`
 
 Required:
 
-- `keys` (Attributes List) Sets the parameters to be updated. It should contain at least one item. The keys are merged and retained during patch operations. (see [below for nested schema](#nestedatt--spec--reconfigures--configurations--keys))
+- `keys` (Attributes List) Sets the configuration files and their associated parameters that need to be updated. It should contain at least one item. (see [below for nested schema](#nestedatt--spec--reconfigures--configurations--keys))
 - `name` (String) Specifies the name of the configuration template.
 
 Optional:
 
-- `policy` (String) Defines the upgrade policy for the configuration. This field is optional.
+- `policy` (String) Defines the upgrade policy for the configuration.
 
 <a id="nestedatt--spec--reconfigures--configurations--keys"></a>
 ### Nested Schema for `spec.reconfigures.configurations.keys`
 
 Required:
 
-- `key` (String) Represents the unique identifier for the ConfigMap.
+- `key` (String) Represents a key in the configuration template(as ConfigMap). Each key in the ConfigMap corresponds to a specific configuration file.
 
 Optional:
 
-- `file_content` (String) Represents the content of the configuration file. This field is used to update the entire content of the file.
-- `parameters` (Attributes List) Defines a list of key-value pairs for a single configuration file. These parameters are used to update the specified configuration settings. (see [below for nested schema](#nestedatt--spec--reconfigures--configurations--policy--parameters))
+- `file_content` (String) Specifies the content of the entire configuration file. This field is used to update the complete configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.
+- `parameters` (Attributes List) Specifies a list of key-value pairs representing parameters and their corresponding values within a single configuration file. This field is used to override or set the values of parameters without modifying the entire configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both. (see [below for nested schema](#nestedatt--spec--reconfigures--configurations--policy--parameters))
 
 <a id="nestedatt--spec--reconfigures--configurations--policy--parameters"></a>
 ### Nested Schema for `spec.reconfigures.configurations.policy.parameters`
@@ -1366,7 +1275,7 @@ Optional:
 
 Required:
 
-- `component_name` (String) Specifies the name of the cluster component.
+- `component_name` (String) Specifies the name of the Component.
 
 
 <a id="nestedatt--spec--restore_from"></a>
@@ -1374,7 +1283,7 @@ Required:
 
 Optional:
 
-- `backup` (Attributes List) Refers to the backup name and component name used for restoration. Supports recovery of multiple components. (see [below for nested schema](#nestedatt--spec--restore_from--backup))
+- `backup` (Attributes List) Refers to the backup name and component name used for restoration. Supports recovery of multiple Components. (see [below for nested schema](#nestedatt--spec--restore_from--backup))
 - `point_in_time` (Attributes) Refers to the specific point in time for recovery. (see [below for nested schema](#nestedatt--spec--restore_from--point_in_time))
 
 <a id="nestedatt--spec--restore_from--backup"></a>
@@ -1418,13 +1327,13 @@ Optional:
 
 Required:
 
-- `backup_name` (String) Specifies the name of the backup.
+- `backup_name` (String) Specifies the name of the Backup custom resource.
 
 Optional:
 
-- `effective_common_component_def` (Boolean) Indicates if this backup will be restored for all components which refer to common ComponentDefinition.
-- `restore_time_str` (String) Defines the point in time to restore.
-- `volume_restore_policy` (String) Specifies the volume claim restore policy, support values: [Serial, Parallel]
+- `do_ready_restore_after_cluster_running` (Boolean) If set to true, the recovery process in the PostReady phase will be performed after the cluster is running successfully. otherwise, it will be performed after component is running.
+- `restore_time_str` (String) Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'
+- `volume_restore_policy` (String) Specifies the policy for restoring volume claims of a Component's Pods. It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once). Support values:  - 'Serial' - 'Parallel'
 
 
 <a id="nestedatt--spec--script_spec"></a>
@@ -1432,23 +1341,23 @@ Optional:
 
 Required:
 
-- `component_name` (String) Specifies the name of the cluster component.
+- `component_name` (String) Specifies the name of the Component.
 
 Optional:
 
-- `image` (String) Specifies the image to be used for the exec command. By default, the image of kubeblocks-datascript is used.
-- `script` (List of String) Defines the script to be executed.
-- `script_from` (Attributes) Defines the script to be executed from a configMap or secret. (see [below for nested schema](#nestedatt--spec--script_spec--script_from))
+- `image` (String) Specifies the image to be used to execute scripts.  By default, the image 'apecloud/kubeblocks-datascript:latest' is used.
+- `script` (List of String) Defines the content of scripts to be executed.  All scripts specified in this field will be executed in the order they are provided.  Note: this field cannot be modified once set.
+- `script_from` (Attributes) Specifies the sources of the scripts to be executed. Each script can be imported either from a ConfigMap or a Secret.  All scripts obtained from the sources specified in this field will be executed after any scripts provided in the 'script' field.  Execution order: 1. Scripts provided in the 'script' field, in the order of the scripts listed. 2. Scripts imported from ConfigMaps, in the order of the sources listed. 3. Scripts imported from Secrets, in the order of the sources listed.  Note: this field cannot be modified once set. (see [below for nested schema](#nestedatt--spec--script_spec--script_from))
 - `secret` (Attributes) Defines the secret to be used to execute the script. If not specified, the default cluster root credential secret is used. (see [below for nested schema](#nestedatt--spec--script_spec--secret))
-- `selector` (Attributes) By default, KubeBlocks will execute the script on the primary pod with role=leader. Exceptions exist, such as Redis, which does not synchronize account information between primary and secondary. In such cases, the script needs to be executed on all pods matching the selector. Indicates the components on which the script is executed. (see [below for nested schema](#nestedatt--spec--script_spec--selector))
+- `selector` (Attributes) Specifies the labels used to select the Pods on which the script should be executed.  By default, the script is executed on the Pod associated with the service named '{clusterName}-{componentName}', which typically routes to the Pod with the primary/leader role.  However, some Components, such as Redis, do not synchronize account information between primary and secondary Pods. In these cases, the script must be executed on all replica Pods matching the selector.  Note: this field cannot be modified once set. (see [below for nested schema](#nestedatt--spec--script_spec--selector))
 
 <a id="nestedatt--spec--script_spec--script_from"></a>
 ### Nested Schema for `spec.script_spec.script_from`
 
 Optional:
 
-- `config_map_ref` (Attributes List) Specifies the configMap that is to be executed. (see [below for nested schema](#nestedatt--spec--script_spec--script_from--config_map_ref))
-- `secret_ref` (Attributes List) Specifies the secret that is to be executed. (see [below for nested schema](#nestedatt--spec--script_spec--script_from--secret_ref))
+- `config_map_ref` (Attributes List) A list of ConfigMapKeySelector objects, each specifies a ConfigMap and a key containing the script.  Note: This field cannot be modified once set. (see [below for nested schema](#nestedatt--spec--script_spec--script_from--config_map_ref))
+- `secret_ref` (Attributes List) A list of SecretKeySelector objects, each specifies a Secret and a key containing the script.  Note: This field cannot be modified once set. (see [below for nested schema](#nestedatt--spec--script_spec--script_from--secret_ref))
 
 <a id="nestedatt--spec--script_spec--script_from--config_map_ref"></a>
 ### Nested Schema for `spec.script_spec.script_from.config_map_ref`
@@ -1518,8 +1427,8 @@ Optional:
 
 Required:
 
-- `component_name` (String) Specifies the name of the cluster component.
-- `instance_name` (String) Utilized to designate the candidate primary or leader instance for the switchover process. If assigned '*', it signifies that no specific primary or leader is designated for the switchover, and the switchoverAction defined in 'clusterDefinition.componentDefs[x].switchoverSpec.withoutCandidate' will be executed.  It is mandatory that 'clusterDefinition.componentDefs[x].switchoverSpec.withoutCandidate' is not left blank.  If assigned a valid instance name other than '*', it signifies that a specific candidate primary or leader is designated for the switchover. The value can be retrieved using 'kbcli cluster list-instances', any other value is considered invalid.  In this scenario, the 'switchoverAction' defined in clusterDefinition.componentDefs[x].switchoverSpec.withCandidate will be executed, and it is mandatory that clusterDefinition.componentDefs[x].switchoverSpec.withCandidate is not left blank.
+- `component_name` (String) Specifies the name of the Component.
+- `instance_name` (String) Specifies the instance to become the primary or leader during a switchover operation.  The value of 'instanceName' can be either:  1. '*' (wildcard value): - Indicates no specific instance is designated as the primary or leader. - Executes the switchover action from 'clusterDefinition.componentDefs[*].switchoverSpec.withoutCandidate'. - 'clusterDefinition.componentDefs[x].switchoverSpec.withoutCandidate' must be defined when using '*'.  2. A valid instance name (pod name): - Designates a specific instance (pod) as the primary or leader. - The name must match one of the pods in the component. Any non-valid pod name is considered invalid. - Executes the switchover action from 'clusterDefinition.componentDefs[*].switchoverSpec.withCandidate'. - 'clusterDefinition.componentDefs[*].switchoverSpec.withCandidate' must be defined when specifying a valid instance name.
 
 
 <a id="nestedatt--spec--upgrade"></a>
@@ -1527,7 +1436,7 @@ Required:
 
 Required:
 
-- `cluster_version_ref` (String) A reference to the name of the ClusterVersion.
+- `cluster_version_ref` (String) Specifies the name of the target ClusterVersion for the upgrade.  This field is deprecated since v0.9 because ClusterVersion is deprecated.
 
 
 <a id="nestedatt--spec--volume_expansion"></a>
@@ -1535,13 +1444,34 @@ Required:
 
 Required:
 
-- `component_name` (String) Specifies the name of the cluster component.
-- `volume_claim_templates` (Attributes List) volumeClaimTemplates specifies the storage size and volumeClaimTemplate name. (see [below for nested schema](#nestedatt--spec--volume_expansion--volume_claim_templates))
+- `component_name` (String) Specifies the name of the Component.
+- `volume_claim_templates` (Attributes List) Specifies a list of OpsRequestVolumeClaimTemplate objects, defining the volumeClaimTemplates that are used to expand the storage and the desired storage size for each one. (see [below for nested schema](#nestedatt--spec--volume_expansion--volume_claim_templates))
+
+Optional:
+
+- `instances` (Attributes List) Specifies the instance template that need to volume expand. (see [below for nested schema](#nestedatt--spec--volume_expansion--instances))
 
 <a id="nestedatt--spec--volume_expansion--volume_claim_templates"></a>
 ### Nested Schema for `spec.volume_expansion.volume_claim_templates`
 
 Required:
 
-- `name` (String) A reference to the volumeClaimTemplate name from the cluster components.
-- `storage` (String) Specifies the requested storage size for the volume.
+- `name` (String) Specify the name of the volumeClaimTemplate in the Component. The specified name must match one of the volumeClaimTemplates defined in the 'clusterComponentSpec.volumeClaimTemplates' field.
+- `storage` (String) Specifies the desired storage size for the volume.
+
+
+<a id="nestedatt--spec--volume_expansion--instances"></a>
+### Nested Schema for `spec.volume_expansion.instances`
+
+Required:
+
+- `name` (String) Refer to the instance template name of the component or sharding.
+- `volume_claim_templates` (Attributes List) volumeClaimTemplates specifies the storage size and volumeClaimTemplate name. (see [below for nested schema](#nestedatt--spec--volume_expansion--instances--volume_claim_templates))
+
+<a id="nestedatt--spec--volume_expansion--instances--volume_claim_templates"></a>
+### Nested Schema for `spec.volume_expansion.instances.volume_claim_templates`
+
+Required:
+
+- `name` (String) Specify the name of the volumeClaimTemplate in the Component. The specified name must match one of the volumeClaimTemplates defined in the 'clusterComponentSpec.volumeClaimTemplates' field.
+- `storage` (String) Specifies the desired storage size for the volume.
