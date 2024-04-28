@@ -13,12 +13,18 @@ jobs:
     outputs:
       commit_count: ${{ steps.commits.outputs.count }}
       release_version: ${{ steps.release.outputs.version }}
+      previous_version: ${{ steps.last_release.outputs.tag }}
     steps:
       - id: checkout
         name: Clone Git Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - id: last_release
+        name: Fetch last release info
+        run: echo "tag=$(gh release view --json tagName --jq '.tagName')" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - id: commits
         name: Count Commits
         run: echo "count=$(git rev-list --count ${{ steps.last_release.outputs.tag }}..HEAD)" >> $GITHUB_OUTPUT
