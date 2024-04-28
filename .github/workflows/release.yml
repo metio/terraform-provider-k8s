@@ -7,22 +7,18 @@ on:
     - cron: 23 6 * * MON
   workflow_dispatch:
 jobs:
-  release:
+  prepare:
+    name: Prepare Release
     runs-on: ubuntu-latest
-    timeout-minutes: 120
-    permissions:
-      contents: write
+    outputs:
+      commit_count: ${{ steps.commits.outputs.count }}
+      release_version: ${{ steps.release.outputs.version }}
     steps:
       - id: checkout
-        name: Checkout
+        name: Clone Git Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - id: last_release
-        name: Fetch last release info
-        run: echo "tag=$(gh release view --json tagName --jq '.tagName')" >> $GITHUB_OUTPUT
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - id: commits
         name: Count Commits
         run: echo "count=$(git rev-list --count ${{ steps.last_release.outputs.tag }}..HEAD)" >> $GITHUB_OUTPUT
@@ -30,12 +26,30 @@ jobs:
         name: Create Release Version
         if: steps.commits.outputs.count > 0
         run: echo "version=$(date +'%Y.%-m.%-d')" >> $GITHUB_OUTPUT
-      - id: tag
-        name: Create Release Tag
-        if: steps.commits.outputs.count > 0
-        uses: EndBug/latest-tag@v1
-        with:
-          ref: ${{ steps.release.outputs.version }}
+  build:
+    name: Build ${{ matrix.goos }}/${{ matrix.goarch }}
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+          - goos: linux
+            goarch: arm
+          - goos: linux
+            goarch: arm64
+          - goos: darwin
+            goarch: amd64
+          - goos: darwin
+            goarch: arm64
+          - goos: windows
+            goarch: amd64
+    steps:
+      - id: checkout
+        name: Clone Git Repository
+        if: needs.prepare.outputs.commit_count > 0
+        uses: actions/checkout@v4
       - id: setup_go
         name: Set up Go
         uses: actions/setup-go@v5
@@ -43,42 +57,135 @@ jobs:
         with:
           go-version-file: go.mod
           cache: true
+      - id: build
+        name: Build Project
+        if: needs.prepare.outputs.commit_count > 0
+        run: >
+          go build
+          -o terraform-provider-k8s_v${{ needs.prepare.outputs.release_version }}
+          -trimpath
+          -ldflags="-s -w -X main.version=${{ needs.prepare.outputs.release_version }} -X main.commit=${{ github.sha }}"
+        env:
+          CGO_ENABLED: 0
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+      - id: zip
+        name: Create Zip Archive
+        if: steps.commits.outputs.count > 0
+        run: >
+          zip
+          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
+          terraform-provider-k8s_v${{ needs.prepare.outputs.release_version }}
+          LICENSE
+          LICENSES/0BSD.txt
+          LICENSES/Apache-2.0.txt
+          README.md
+      - id: upload
+        name: Upload Artifact
+        if: needs.prepare.outputs.commit_count > 0
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-provider-k8s-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
+  release:
+    name: GitHub Release
+    needs: [prepare, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - id: checkout
+        name: Clone Git Repository
+        if: needs.prepare.outputs.commit_count > 0
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: download
+        name: Download Artifacts
+        if: needs.prepare.outputs.commit_count > 0
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          pattern: terraform-provider-k8s-*
+          merge-multiple: true
+      - id: manifest
+        name: Version Manifest
+        if: needs.prepare.outputs.commit_count > 0
+        run: >
+          cp
+          terraform-registry-manifest.json
+          dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_manifest.json
+      - id: checksums
+        name: Calculate Checksums
+        if: needs.prepare.outputs.commit_count > 0
+        run: >
+          cd dist &&
+          sha256sum
+          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_amd64.zip
+          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_arm.zip
+          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_arm64.zip
+          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_darwin_amd64.zip
+          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_darwin_arm64.zip
+          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_windows_amd64.zip
+          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_manifest.json
+          > terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS
       - id: import_gpg
         name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v6
-        if: steps.commits.outputs.count > 0
+        if: needs.prepare.outputs.commit_count > 0
         with:
           gpg_private_key: ${{ secrets.GPG_SECRET_KEY_BASE64 }}
           passphrase: ${{ secrets.GPG_SECRET_KEY_PASSWORD }}
-      - id: goreleaser
-        name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5
-        if: steps.commits.outputs.count > 0
+      - id: sign_checksums
+        name: Sign Checksums
+        if: needs.prepare.outputs.commit_count > 0
+        run: >
+          gpg
+          --batch
+          --local-user ${{ steps.import_gpg.outputs.fingerprint }}
+          --output dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS.sig
+          --detach-sign
+          dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS
+      - id: create_release
+        name: Create Release
+        if: needs.prepare.outputs.commit_count > 0
+        uses: softprops/action-gh-release@v2
         with:
-          version: latest
-          args: release --clean --timeout 120m --parallelism 1
-        env:
-          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ needs.prepare.outputs.release_version }}
+          name: ${{ needs.prepare.outputs.release_version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: |
+            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_amd64.zip
+            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_arm.zip
+            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_arm64.zip
+            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_darwin_amd64.zip
+            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_darwin_arm64.zip
+            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_windows_amd64.zip
+            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS
+            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS.sig
+            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_manifest.json
       - id: mail
         name: Send Mail
-        if: steps.commits.outputs.count > 0
+        if: needs.prepare.outputs.commit_count > 0
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: ${{ secrets.MAIL_SERVER }}
           server_port: ${{ secrets.MAIL_PORT }}
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: ${{ github.event.repository.name }} version ${{ steps.release.outputs.version }} published
-          body: See https://github.com/metio/terraform-provider-k8s/releases/tag/${{ steps.release.outputs.version }} for details.
+          subject: ${{ github.event.repository.name }} version ${{ needs.prepare.outputs.release_version }} published
+          body: See https://github.com/metio/terraform-provider-k8s/releases/tag/${{ needs.prepare.outputs.release_version }} for details.
           to: ${{ secrets.MAIL_RECIPIENT }}
           from: ${{ secrets.MAIL_SENDER }}
       - id: matrix
         name: Send Matrix Message
-        if: steps.commits.outputs.count > 0
+        if: needs.prepare.outputs.commit_count > 0
         uses: s3krit/matrix-message-action@v0.0.3
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          message: ${{ github.event.repository.name }} version [${{ steps.release.outputs.version }}](https://github.com/metio/terraform-provider-k8s/releases/tag/${{ steps.release.outputs.version }}) published
+          message: ${{ github.event.repository.name }} version [${{ needs.prepare.outputs.release_version }}](https://github.com/metio/terraform-provider-k8s/releases/tag/${{ needs.prepare.outputs.release_version }}) published
           server: ${{ secrets.MATRIX_SERVER }}
