@@ -15,7 +15,7 @@ ImageUpdateAutomation is the Schema for the imageupdateautomations API
 ```terraform
 data "k8s_image_toolkit_fluxcd_io_image_update_automation_v1beta2_manifest" "example" {
   metadata = {
-    name = "some-name"
+    name      = "some-name"
     namespace = "some-namespace"
   }
 }

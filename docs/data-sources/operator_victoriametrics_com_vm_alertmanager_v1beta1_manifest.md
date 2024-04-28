@@ -18,6 +18,7 @@ data "k8s_operator_victoriametrics_com_vm_alertmanager_v1beta1_manifest" "exampl
     name      = "some-name"
     namespace = "some-namespace"
   }
+  spec = {}
 }
 ```
 
