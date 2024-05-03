@@ -138,8 +138,8 @@ func (r *PolicyKarmadaIoFederatedResourceQuotaV1Alpha1Manifest) Schema(_ context
 					},
 
 					"static_assignments": schema.ListNestedAttribute{
-						Description:         "StaticAssignments represents the subset of desired hard limits for each cluster. Note: for clusters not present in this list, Karmada will set an empty ResourceQuota to them, which means these clusters will have no quotas in the referencing namespace.",
-						MarkdownDescription: "StaticAssignments represents the subset of desired hard limits for each cluster. Note: for clusters not present in this list, Karmada will set an empty ResourceQuota to them, which means these clusters will have no quotas in the referencing namespace.",
+						Description:         "StaticAssignments represents the subset of desired hard limits for each cluster.Note: for clusters not present in this list, Karmada will set an empty ResourceQuota to them, which means theseclusters will have no quotas in the referencing namespace.",
+						MarkdownDescription: "StaticAssignments represents the subset of desired hard limits for each cluster.Note: for clusters not present in this list, Karmada will set an empty ResourceQuota to them, which means theseclusters will have no quotas in the referencing namespace.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"cluster_name": schema.StringAttribute{

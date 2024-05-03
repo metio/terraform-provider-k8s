@@ -172,6 +172,7 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 			} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
 		Annotations                  *string `tfsdk:"annotations" json:"annotations,omitempty"`
+		Api_urlpattern_prefix        *string `tfsdk:"api_urlpattern_prefix" json:"api_urlpattern_prefix,omitempty"`
 		Api_version                  *string `tfsdk:"api_version" json:"api_version,omitempty"`
 		Auto_upgrade                 *bool   `tfsdk:"auto_upgrade" json:"auto_upgrade,omitempty"`
 		Broadcast_websocket_secret   *string `tfsdk:"broadcast_websocket_secret" json:"broadcast_websocket_secret,omitempty"`
@@ -1624,6 +1625,14 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 					"annotations": schema.StringAttribute{
 						Description:         "Common annotations for both Web and Task deployments.",
 						MarkdownDescription: "Common annotations for both Web and Task deployments.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"api_urlpattern_prefix": schema.StringAttribute{
+						Description:         "An optional configuration to add a prefix in the API URL path",
+						MarkdownDescription: "An optional configuration to add a prefix in the API URL path",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -93,9 +93,9 @@ Optional:
 - `proxy_policy` (String) The policy used for proxy binding to the endpoint. Supported proxy policies are: single/all-master-shards/all-nodes When left blank, the default value will be chosen according to the value of ossCluster - single if disabled, all-master-shards when enabled
 - `rack_aware` (Boolean) Whether database should be rack aware. This improves availability - more information: https://docs.redislabs.com/latest/rs/concepts/high-availability/rack-zone-awareness/
 - `redis_enterprise_cluster` (Attributes) Connection to Redis Enterprise Cluster (see [below for nested schema](#nestedatt--spec--global_configurations--redis_enterprise_cluster))
-- `redis_version` (String) Redis OSS version. For existing databases - Upgrade Redis OSS version. For new databases - the version which the database will be created with. If set to 'major' - will always upgrade to the most recent major Redis version. If set to 'latest' - will always upgrade to the most recent Redis version. Depends on 'redisUpgradePolicy' - if you want to set the value to 'latest' for some databases, you must set redisUpgradePolicy on the cluster before. Possible values are 'major' or 'latest' When using upgrade - make sure to backup the database before. This value is used only for database type 'redis'
+- `redis_version` (String) Redis OSS version. Version can be specified via <major.minor> prefix, or via channels - for existing databases - Upgrade Redis OSS version. For new databases - the version which the database will be created with. If set to 'major' - will always upgrade to the most recent major Redis version. If set to 'latest' - will always upgrade to the most recent Redis version. Depends on 'redisUpgradePolicy' - if you want to set the value to 'latest' for some databases, you must set redisUpgradePolicy on the cluster before. Possible values are 'major' or 'latest' When using upgrade - make sure to backup the database before. This value is used only for database type 'redis'
 - `replica_sources` (Attributes List) What databases to replicate from (see [below for nested schema](#nestedatt--spec--global_configurations--replica_sources))
-- `replication` (Boolean) In-memory database replication. When enabled, database will have replica shard for every master - leading to higher availability.
+- `replication` (Boolean) In-memory database replication. When enabled, database will have replica shard for every master - leading to higher availability. Defaults to false.
 - `resp3` (Boolean) Whether this database supports RESP3 protocol. Note - Deleting this property after explicitly setting its value shall have no effect. Please view the corresponding field in RS doc for more info.
 - `rof_ram_size` (String) The size of the RAM portion of an RoF database. Similarly to 'memorySize' use formats like 100MB, 0.1GB It must be at least 10% of combined memory size (RAM+Flash), as specified by 'memorySize'.
 - `roles_permissions` (Attributes List) List of Redis Enteprise ACL and Role bindings to apply (see [below for nested schema](#nestedatt--spec--global_configurations--roles_permissions))
@@ -104,6 +104,7 @@ Optional:
 - `shards_placement` (String) Control the density of shards - should they reside on as few or as many nodes as possible. Available options are 'dense' or 'sparse'. If left unset, defaults to 'dense'.
 - `tls_mode` (String) Require SSL authenticated and encrypted connections to the database. enabled - all incoming connections to the Database must use SSL. disabled - no incoming connection to the Database should use SSL. replica_ssl - databases that replicate from this one need to use SSL.
 - `type` (String) The type of the database.
+- `upgrade_spec` (Attributes) Specifications for DB upgrade. (see [below for nested schema](#nestedatt--spec--global_configurations--upgrade_spec))
 
 <a id="nestedatt--spec--global_configurations--active_active"></a>
 ### Nested Schema for `spec.global_configurations.active_active`
@@ -360,12 +361,12 @@ Optional:
 Required:
 
 - `name` (String) The module's name e.g 'ft' for redissearch
-- `version` (String) Module's semantic version e.g '1.6.12'
 
 Optional:
 
 - `config` (String) Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30
 - `uid` (String) Module's uid - do not set, for system use only nolint:staticcheck // custom json tag unknown to the linter
+- `version` (String) Module's semantic version e.g '1.6.12' - optional only in REDB, must be set in REAADB
 
 
 <a id="nestedatt--spec--global_configurations--redis_enterprise_cluster"></a>
@@ -400,6 +401,14 @@ Required:
 - `acl` (String) Acl Name of RolePermissionType (note: use exact name of the ACL from the Redis Enterprise ACL list, case sensitive)
 - `role` (String) Role Name of RolePermissionType (note: use exact name of the role from the Redis Enterprise role list, case sensitive)
 - `type` (String) Type of Redis Enterprise Database Role Permission
+
+
+<a id="nestedatt--spec--global_configurations--upgrade_spec"></a>
+### Nested Schema for `spec.global_configurations.upgrade_spec`
+
+Required:
+
+- `upgrade_modules_to_latest` (Boolean) Upgrades the modules to the latest version that supportes the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Note - This field is currently not supported for Active-Active databases.
 
 
 

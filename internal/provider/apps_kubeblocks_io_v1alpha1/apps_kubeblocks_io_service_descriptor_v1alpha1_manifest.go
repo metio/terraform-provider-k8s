@@ -152,8 +152,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Metadata(_ context.C
 
 func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ServiceDescriptor is the Schema for the servicedescriptors API",
-		MarkdownDescription: "ServiceDescriptor is the Schema for the servicedescriptors API",
+		Description:         "ServiceDescriptor describes a service provided by external sources. It contains the necessary details such as the service's address and connection credentials. To enable a Cluster to access this service, the ServiceDescriptor's name should be specified in the Cluster configuration under 'clusterComponent.serviceRefs[*].serviceDescriptor'.",
+		MarkdownDescription: "ServiceDescriptor describes a service provided by external sources. It contains the necessary details such as the service's address and connection credentials. To enable a Cluster to access this service, the ServiceDescriptor's name should be specified in the Cluster configuration under 'clusterComponent.serviceRefs[*].serviceDescriptor'.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -220,28 +220,28 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ServiceDescriptorSpec defines the desired state of ServiceDescriptor",
-				MarkdownDescription: "ServiceDescriptorSpec defines the desired state of ServiceDescriptor",
+				Description:         "ServiceDescriptorSpec defines the desired state of ServiceDescriptor.",
+				MarkdownDescription: "ServiceDescriptorSpec defines the desired state of ServiceDescriptor.",
 				Attributes: map[string]schema.Attribute{
 					"auth": schema.SingleNestedAttribute{
-						Description:         "Represents the authentication details of the service connection credential.",
-						MarkdownDescription: "Represents the authentication details of the service connection credential.",
+						Description:         "Specifies the authentication credentials required for accessing an external service.",
+						MarkdownDescription: "Specifies the authentication credentials required for accessing an external service.",
 						Attributes: map[string]schema.Attribute{
 							"password": schema.SingleNestedAttribute{
-								Description:         "Represents the password credential for the service connection.",
-								MarkdownDescription: "Represents the password credential for the service connection.",
+								Description:         "Specifies the password for the external service.",
+								MarkdownDescription: "Specifies the password for the external service.",
 								Attributes: map[string]schema.Attribute{
 									"value": schema.StringAttribute{
-										Description:         "Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.",
-										MarkdownDescription: "Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.",
+										Description:         "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",
+										MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"value_from": schema.SingleNestedAttribute{
-										Description:         "Defines the source for the environment variable's value. This cannot be used if the value is not empty.",
-										MarkdownDescription: "Defines the source for the environment variable's value. This cannot be used if the value is not empty.",
+										Description:         "Specifies the source for the variable's value.",
+										MarkdownDescription: "Specifies the source for the variable's value.",
 										Attributes: map[string]schema.Attribute{
 											"config_map_key_ref": schema.SingleNestedAttribute{
 												Description:         "Selects a key of a ConfigMap.",
@@ -378,20 +378,20 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"username": schema.SingleNestedAttribute{
-								Description:         "Represents the username credential for the service connection.",
-								MarkdownDescription: "Represents the username credential for the service connection.",
+								Description:         "Specifies the username for the external service.",
+								MarkdownDescription: "Specifies the username for the external service.",
 								Attributes: map[string]schema.Attribute{
 									"value": schema.StringAttribute{
-										Description:         "Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.",
-										MarkdownDescription: "Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.",
+										Description:         "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",
+										MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"value_from": schema.SingleNestedAttribute{
-										Description:         "Defines the source for the environment variable's value. This cannot be used if the value is not empty.",
-										MarkdownDescription: "Defines the source for the environment variable's value. This cannot be used if the value is not empty.",
+										Description:         "Specifies the source for the variable's value.",
+										MarkdownDescription: "Specifies the source for the variable's value.",
 										Attributes: map[string]schema.Attribute{
 											"config_map_key_ref": schema.SingleNestedAttribute{
 												Description:         "Selects a key of a ConfigMap.",
@@ -533,20 +533,20 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"endpoint": schema.SingleNestedAttribute{
-						Description:         "Represents the endpoint of the service connection credential.",
-						MarkdownDescription: "Represents the endpoint of the service connection credential.",
+						Description:         "Specifies the URL or IP address of the external service.",
+						MarkdownDescription: "Specifies the URL or IP address of the external service.",
 						Attributes: map[string]schema.Attribute{
 							"value": schema.StringAttribute{
-								Description:         "Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.",
-								MarkdownDescription: "Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.",
+								Description:         "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",
+								MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"value_from": schema.SingleNestedAttribute{
-								Description:         "Defines the source for the environment variable's value. This cannot be used if the value is not empty.",
-								MarkdownDescription: "Defines the source for the environment variable's value. This cannot be used if the value is not empty.",
+								Description:         "Specifies the source for the variable's value.",
+								MarkdownDescription: "Specifies the source for the variable's value.",
 								Attributes: map[string]schema.Attribute{
 									"config_map_key_ref": schema.SingleNestedAttribute{
 										Description:         "Selects a key of a ConfigMap.",
@@ -683,20 +683,20 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"port": schema.SingleNestedAttribute{
-						Description:         "Represents the port of the service connection credential.",
-						MarkdownDescription: "Represents the port of the service connection credential.",
+						Description:         "Specifies the port of the external service.",
+						MarkdownDescription: "Specifies the port of the external service.",
 						Attributes: map[string]schema.Attribute{
 							"value": schema.StringAttribute{
-								Description:         "Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.",
-								MarkdownDescription: "Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.",
+								Description:         "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",
+								MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"value_from": schema.SingleNestedAttribute{
-								Description:         "Defines the source for the environment variable's value. This cannot be used if the value is not empty.",
-								MarkdownDescription: "Defines the source for the environment variable's value. This cannot be used if the value is not empty.",
+								Description:         "Specifies the source for the variable's value.",
+								MarkdownDescription: "Specifies the source for the variable's value.",
 								Attributes: map[string]schema.Attribute{
 									"config_map_key_ref": schema.SingleNestedAttribute{
 										Description:         "Selects a key of a ConfigMap.",
@@ -833,16 +833,16 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"service_kind": schema.StringAttribute{
-						Description:         "Specifies the type or nature of the service. Should represent a well-known application cluster type, such as {mysql, redis, mongodb}. This field is case-insensitive and supports abbreviations for some well-known databases. For instance, both 'zk' and 'zookeeper' will be recognized as a ZooKeeper cluster, and 'pg', 'postgres', 'postgresql' will all be recognized as a PostgreSQL cluster.",
-						MarkdownDescription: "Specifies the type or nature of the service. Should represent a well-known application cluster type, such as {mysql, redis, mongodb}. This field is case-insensitive and supports abbreviations for some well-known databases. For instance, both 'zk' and 'zookeeper' will be recognized as a ZooKeeper cluster, and 'pg', 'postgres', 'postgresql' will all be recognized as a PostgreSQL cluster.",
+						Description:         "Describes the type of database service provided by the external service. For example, 'mysql', 'redis', 'mongodb'. This field categorizes databases by their functionality, protocol and compatibility, facilitating appropriate service integration based on their unique capabilities.  This field is case-insensitive.  It also supports abbreviations for some well-known databases: - 'pg', 'pgsql', 'postgres', 'postgresql': PostgreSQL service - 'zk', 'zookeeper': ZooKeeper service - 'es', 'elasticsearch': Elasticsearch service - 'mongo', 'mongodb': MongoDB service - 'ch', 'clickhouse': ClickHouse service",
+						MarkdownDescription: "Describes the type of database service provided by the external service. For example, 'mysql', 'redis', 'mongodb'. This field categorizes databases by their functionality, protocol and compatibility, facilitating appropriate service integration based on their unique capabilities.  This field is case-insensitive.  It also supports abbreviations for some well-known databases: - 'pg', 'pgsql', 'postgres', 'postgresql': PostgreSQL service - 'zk', 'zookeeper': ZooKeeper service - 'es', 'elasticsearch': Elasticsearch service - 'mongo', 'mongodb': MongoDB service - 'ch', 'clickhouse': ClickHouse service",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"service_version": schema.StringAttribute{
-						Description:         "Represents the version of the service reference.",
-						MarkdownDescription: "Represents the version of the service reference.",
+						Description:         "Describes the version of the service provided by the external service. This is crucial for ensuring compatibility between different components of the system, as different versions of a service may have varying features.",
+						MarkdownDescription: "Describes the version of the service provided by the external service. This is crucial for ensuring compatibility between different components of the system, as different versions of a service may have varying features.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

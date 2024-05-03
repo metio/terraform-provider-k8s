@@ -383,10 +383,14 @@ Optional:
 Optional:
 
 - `credit_card_numbers` (Boolean)
+- `custom_patterns` (Boolean)
+- `custom_patterns_list` (List of String)
 - `enabled` (Boolean)
 - `enforcement_mode` (String)
 - `enforcement_urls` (List of String)
+- `first_custom_characters_to_expose` (Number)
 - `last_ccn_digits_to_expose` (Number)
+- `last_custom_characters_to_expose` (Number)
 - `last_ssn_digits_to_expose` (Number)
 - `mask_data` (Boolean)
 - `us_social_security_numbers` (Boolean)
@@ -479,7 +483,7 @@ Optional:
 - `metachar_overrides` (Attributes List) (see [below for nested schema](#nestedatt--spec--policy--graphql_profiles--metachar_overrides))
 - `name` (String)
 - `response_enforcement` (Attributes) (see [below for nested schema](#nestedatt--spec--policy--graphql_profiles--response_enforcement))
-- `sensetive_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--policy--graphql_profiles--sensetive_data))
+- `sensitive_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--policy--graphql_profiles--sensitive_data))
 - `signature_overrides` (Attributes List) (see [below for nested schema](#nestedatt--spec--policy--graphql_profiles--signature_overrides))
 
 <a id="nestedatt--spec--policy--graphql_profiles--defense_attributes"></a>
@@ -514,8 +518,8 @@ Optional:
 - `disallowed_patterns` (List of String)
 
 
-<a id="nestedatt--spec--policy--graphql_profiles--sensetive_data"></a>
-### Nested Schema for `spec.policy.graphql_profiles.sensetive_data`
+<a id="nestedatt--spec--policy--graphql_profiles--sensitive_data"></a>
+### Nested Schema for `spec.policy.graphql_profiles.sensitive_data`
 
 Optional:
 

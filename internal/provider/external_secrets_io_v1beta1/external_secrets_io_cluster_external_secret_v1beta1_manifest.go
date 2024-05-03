@@ -1083,8 +1083,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 					},
 
 					"namespaces": schema.ListAttribute{
-						Description:         "Choose namespaces by name. This field is ORed with anything that NamespaceSelector ends up choosing.",
-						MarkdownDescription: "Choose namespaces by name. This field is ORed with anything that NamespaceSelector ends up choosing.",
+						Description:         "Choose namespaces by name. This field is ORed with anything that NamespaceSelectors ends up choosing.",
+						MarkdownDescription: "Choose namespaces by name. This field is ORed with anything that NamespaceSelectors ends up choosing.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

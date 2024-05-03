@@ -1240,8 +1240,8 @@ func (r *AnywhereEksAmazonawsComClusterV1Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"registry": schema.StringAttribute{
-											Description:         "Name refers to the name of the upstream registry",
-											MarkdownDescription: "Name refers to the name of the upstream registry",
+											Description:         "Registry refers to the name of the upstream registry",
+											MarkdownDescription: "Registry refers to the name of the upstream registry",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,

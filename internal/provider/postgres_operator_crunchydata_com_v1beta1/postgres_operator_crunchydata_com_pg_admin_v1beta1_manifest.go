@@ -167,6 +167,11 @@ type PostgresOperatorCrunchydataComPgadminV1Beta1ManifestData struct {
 			} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
 		Config *struct {
+			ConfigDatabaseURI *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"config_database_uri" json:"configDatabaseURI,omitempty"`
 			Files *[]struct {
 				ConfigMap *struct {
 					Items *[]struct {
@@ -259,6 +264,7 @@ type PostgresOperatorCrunchydataComPgadminV1Beta1ManifestData struct {
 		} `tfsdk:"resources" json:"resources,omitempty"`
 		ServerGroups *[]struct {
 			Name                    *string `tfsdk:"name" json:"name,omitempty"`
+			PostgresClusterName     *string `tfsdk:"postgres_cluster_name" json:"postgresClusterName,omitempty"`
 			PostgresClusterSelector *struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1175,6 +1181,39 @@ func (r *PostgresOperatorCrunchydataComPgadminV1Beta1Manifest) Schema(_ context.
 						Description:         "Configuration settings for the pgAdmin process. Changes to any of these values will be loaded without validation. Be careful, as you may put pgAdmin into an unusable state.",
 						MarkdownDescription: "Configuration settings for the pgAdmin process. Changes to any of these values will be loaded without validation. Be careful, as you may put pgAdmin into an unusable state.",
 						Attributes: map[string]schema.Attribute{
+							"config_database_uri": schema.SingleNestedAttribute{
+								Description:         "A Secret containing the value for the CONFIG_DATABASE_URI setting. More info: https://www.pgadmin.org/docs/pgadmin4/latest/external_database.html",
+								MarkdownDescription: "A Secret containing the value for the CONFIG_DATABASE_URI setting. More info: https://www.pgadmin.org/docs/pgadmin4/latest/external_database.html",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"files": schema.ListNestedAttribute{
 								Description:         "Files allows the user to mount projected volumes into the pgAdmin container so that files can be referenced by pgAdmin as needed.",
 								MarkdownDescription: "Files allows the user to mount projected volumes into the pgAdmin container so that files can be referenced by pgAdmin as needed.",
@@ -1791,6 +1830,14 @@ func (r *PostgresOperatorCrunchydataComPgadminV1Beta1Manifest) Schema(_ context.
 									Computed:            false,
 								},
 
+								"postgres_cluster_name": schema.StringAttribute{
+									Description:         "PostgresClusterName selects one cluster to add to pgAdmin by name.",
+									MarkdownDescription: "PostgresClusterName selects one cluster to add to pgAdmin by name.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"postgres_cluster_selector": schema.SingleNestedAttribute{
 									Description:         "PostgresClusterSelector selects clusters to dynamically add to pgAdmin by matching labels. An empty selector like '{}' will select ALL clusters in the namespace.",
 									MarkdownDescription: "PostgresClusterSelector selects clusters to dynamically add to pgAdmin by matching labels. An empty selector like '{}' will select ALL clusters in the namespace.",
@@ -1840,8 +1887,8 @@ func (r *PostgresOperatorCrunchydataComPgadminV1Beta1Manifest) Schema(_ context.
 											Computed:            false,
 										},
 									},
-									Required: true,
-									Optional: false,
+									Required: false,
+									Optional: true,
 									Computed: false,
 								},
 							},

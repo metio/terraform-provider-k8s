@@ -1945,6 +1945,10 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 
 									"pack_as_bytes": schema.BoolAttribute{
@@ -1982,6 +1986,10 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(4.294967295e+09),
+								},
 							},
 
 							"transport_api_version": schema.StringAttribute{
@@ -2415,6 +2423,10 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 
 									"replace_invalid_routes": schema.BoolAttribute{
@@ -2618,6 +2630,10 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 								},
 								Required: false,
@@ -2834,6 +2850,10 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 
 									"pack_as_bytes": schema.BoolAttribute{
@@ -2871,6 +2891,10 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(4.294967295e+09),
+								},
 							},
 
 							"transport_api_version": schema.StringAttribute{
@@ -3012,6 +3036,10 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 
 												"unit": schema.StringAttribute{

@@ -256,8 +256,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"value": schema.MapAttribute{
-														Description:         "Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
-														MarkdownDescription: "Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
+														Description:         "Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
+														MarkdownDescription: "Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -295,8 +295,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"value": schema.ListAttribute{
-														Description:         "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
-														MarkdownDescription: "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
+														Description:         "Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.",
+														MarkdownDescription: "Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -334,8 +334,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"value": schema.ListAttribute{
-														Description:         "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
-														MarkdownDescription: "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
+														Description:         "Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.",
+														MarkdownDescription: "Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -354,8 +354,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"component": schema.StringAttribute{
-														Description:         "Component is part of image name. Basically we presume an image can be made of '[registry/]repository[:tag]'. The registry could be: - registry.k8s.io - fictional.registry.example:10443 The repository could be: - kube-apiserver - fictional/nginx The tag cloud be: - latest - v1.19.1 - @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c",
-														MarkdownDescription: "Component is part of image name. Basically we presume an image can be made of '[registry/]repository[:tag]'. The registry could be: - registry.k8s.io - fictional.registry.example:10443 The repository could be: - kube-apiserver - fictional/nginx The tag cloud be: - latest - v1.19.1 - @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c",
+														Description:         "Component is part of image name.Basically we presume an image can be made of '[registry/]repository[:tag]'.The registry could be:- registry.k8s.io- fictional.registry.example:10443The repository could be:- kube-apiserver- fictional/nginxThe tag cloud be:- latest- v1.19.1- @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c",
+														MarkdownDescription: "Component is part of image name.Basically we presume an image can be made of '[registry/]repository[:tag]'.The registry could be:- registry.k8s.io- fictional.registry.example:10443The repository could be:- kube-apiserver- fictional/nginxThe tag cloud be:- latest- v1.19.1- @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -376,8 +376,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"predicate": schema.SingleNestedAttribute{
-														Description:         "Predicate filters images before applying the rule.  Defaults to nil, in that case, the system will automatically detect image fields if the resource type is Pod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule: - Pod: /spec/containers/<N>/image - ReplicaSet: /spec/template/spec/containers/<N>/image - Deployment: /spec/template/spec/containers/<N>/image - DaemonSet: /spec/template/spec/containers/<N>/image - StatefulSet: /spec/template/spec/containers/<N>/image - Job: /spec/template/spec/containers/<N>/image In addition, all images will be processed if the resource object has more than one container.  If not nil, only images matches the filters will be processed.",
-														MarkdownDescription: "Predicate filters images before applying the rule.  Defaults to nil, in that case, the system will automatically detect image fields if the resource type is Pod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule: - Pod: /spec/containers/<N>/image - ReplicaSet: /spec/template/spec/containers/<N>/image - Deployment: /spec/template/spec/containers/<N>/image - DaemonSet: /spec/template/spec/containers/<N>/image - StatefulSet: /spec/template/spec/containers/<N>/image - Job: /spec/template/spec/containers/<N>/image In addition, all images will be processed if the resource object has more than one container.  If not nil, only images matches the filters will be processed.",
+														Description:         "Predicate filters images before applying the rule.Defaults to nil, in that case, the system will automatically detect image fields if the resource type isPod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule:  - Pod: /spec/containers/<N>/image  - ReplicaSet: /spec/template/spec/containers/<N>/image  - Deployment: /spec/template/spec/containers/<N>/image  - DaemonSet: /spec/template/spec/containers/<N>/image  - StatefulSet: /spec/template/spec/containers/<N>/image  - Job: /spec/template/spec/containers/<N>/imageIn addition, all images will be processed if the resource object has more than one container.If not nil, only images matches the filters will be processed.",
+														MarkdownDescription: "Predicate filters images before applying the rule.Defaults to nil, in that case, the system will automatically detect image fields if the resource type isPod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule:  - Pod: /spec/containers/<N>/image  - ReplicaSet: /spec/template/spec/containers/<N>/image  - Deployment: /spec/template/spec/containers/<N>/image  - DaemonSet: /spec/template/spec/containers/<N>/image  - StatefulSet: /spec/template/spec/containers/<N>/image  - Job: /spec/template/spec/containers/<N>/imageIn addition, all images will be processed if the resource object has more than one container.If not nil, only images matches the filters will be processed.",
 														Attributes: map[string]schema.Attribute{
 															"path": schema.StringAttribute{
 																Description:         "Path indicates the path of target field",
@@ -393,8 +393,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"value": schema.StringAttribute{
-														Description:         "Value to be applied to image. Must not be empty when operator is 'add' or 'replace'. Defaults to empty and ignored when operator is 'remove'.",
-														MarkdownDescription: "Value to be applied to image. Must not be empty when operator is 'add' or 'replace'. Defaults to empty and ignored when operator is 'remove'.",
+														Description:         "Value to be applied to image.Must not be empty when operator is 'add' or 'replace'.Defaults to empty and ignored when operator is 'remove'.",
+														MarkdownDescription: "Value to be applied to image.Must not be empty when operator is 'add' or 'replace'.Defaults to empty and ignored when operator is 'remove'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -423,8 +423,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"value": schema.MapAttribute{
-														Description:         "Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
-														MarkdownDescription: "Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
+														Description:         "Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
+														MarkdownDescription: "Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -443,8 +443,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"operator": schema.StringAttribute{
-														Description:         "Operator indicates the operation on target field. Available operators are: add, replace and remove.",
-														MarkdownDescription: "Operator indicates the operation on target field. Available operators are: add, replace and remove.",
+														Description:         "Operator indicates the operation on target field.Available operators are: add, replace and remove.",
+														MarkdownDescription: "Operator indicates the operation on target field.Available operators are: add, replace and remove.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -462,8 +462,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"value": schema.MapAttribute{
-														Description:         "Value to be applied to target field. Must be empty when operator is Remove.",
-														MarkdownDescription: "Value to be applied to target field. Must be empty when operator is Remove.",
+														Description:         "Value to be applied to target field.Must be empty when operator is Remove.",
+														MarkdownDescription: "Value to be applied to target field.Must be empty when operator is Remove.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -482,8 +482,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"target_cluster": schema.SingleNestedAttribute{
-									Description:         "TargetCluster defines restrictions on this override policy that only applies to resources propagated to the matching clusters. nil means matching all clusters.",
-									MarkdownDescription: "TargetCluster defines restrictions on this override policy that only applies to resources propagated to the matching clusters. nil means matching all clusters.",
+									Description:         "TargetCluster defines restrictions on this override policythat only applies to resources propagated to the matching clusters.nil means matching all clusters.",
+									MarkdownDescription: "TargetCluster defines restrictions on this override policythat only applies to resources propagated to the matching clusters.nil means matching all clusters.",
 									Attributes: map[string]schema.Attribute{
 										"cluster_names": schema.ListAttribute{
 											Description:         "ClusterNames is the list of clusters to be selected.",
@@ -504,8 +504,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"field_selector": schema.SingleNestedAttribute{
-											Description:         "FieldSelector is a filter to select member clusters by fields. The key(field) of the match expression should be 'provider', 'region', or 'zone', and the operator of the match expression should be 'In' or 'NotIn'. If non-nil and non-empty, only the clusters match this filter will be selected.",
-											MarkdownDescription: "FieldSelector is a filter to select member clusters by fields. The key(field) of the match expression should be 'provider', 'region', or 'zone', and the operator of the match expression should be 'In' or 'NotIn'. If non-nil and non-empty, only the clusters match this filter will be selected.",
+											Description:         "FieldSelector is a filter to select member clusters by fields.The key(field) of the match expression should be 'provider', 'region', or 'zone',and the operator of the match expression should be 'In' or 'NotIn'.If non-nil and non-empty, only the clusters match this filter will be selected.",
+											MarkdownDescription: "FieldSelector is a filter to select member clusters by fields.The key(field) of the match expression should be 'provider', 'region', or 'zone',and the operator of the match expression should be 'In' or 'NotIn'.If non-nil and non-empty, only the clusters match this filter will be selected.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "A list of field selector requirements.",
@@ -521,16 +521,16 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -549,8 +549,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"label_selector": schema.SingleNestedAttribute{
-											Description:         "LabelSelector is a filter to select member clusters by labels. If non-nil and non-empty, only the clusters match this filter will be selected.",
-											MarkdownDescription: "LabelSelector is a filter to select member clusters by labels. If non-nil and non-empty, only the clusters match this filter will be selected.",
+											Description:         "LabelSelector is a filter to select member clusters by labels.If non-nil and non-empty, only the clusters match this filter will be selected.",
+											MarkdownDescription: "LabelSelector is a filter to select member clusters by labels.If non-nil and non-empty, only the clusters match this filter will be selected.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -566,16 +566,16 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -589,8 +589,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -614,8 +614,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"overriders": schema.SingleNestedAttribute{
-						Description:         "Overriders represents the override rules that would apply on resources  Deprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead.",
-						MarkdownDescription: "Overriders represents the override rules that would apply on resources  Deprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead.",
+						Description:         "Overriders represents the override rules that would apply on resourcesDeprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead.",
+						MarkdownDescription: "Overriders represents the override rules that would apply on resourcesDeprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead.",
 						Attributes: map[string]schema.Attribute{
 							"annotations_overrider": schema.ListNestedAttribute{
 								Description:         "AnnotationsOverrider represents the rules dedicated to handling workload annotations",
@@ -634,8 +634,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"value": schema.MapAttribute{
-											Description:         "Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
-											MarkdownDescription: "Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
+											Description:         "Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
+											MarkdownDescription: "Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -673,8 +673,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"value": schema.ListAttribute{
-											Description:         "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
-											MarkdownDescription: "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
+											Description:         "Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.",
+											MarkdownDescription: "Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -712,8 +712,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"value": schema.ListAttribute{
-											Description:         "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
-											MarkdownDescription: "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
+											Description:         "Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.",
+											MarkdownDescription: "Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -732,8 +732,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"component": schema.StringAttribute{
-											Description:         "Component is part of image name. Basically we presume an image can be made of '[registry/]repository[:tag]'. The registry could be: - registry.k8s.io - fictional.registry.example:10443 The repository could be: - kube-apiserver - fictional/nginx The tag cloud be: - latest - v1.19.1 - @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c",
-											MarkdownDescription: "Component is part of image name. Basically we presume an image can be made of '[registry/]repository[:tag]'. The registry could be: - registry.k8s.io - fictional.registry.example:10443 The repository could be: - kube-apiserver - fictional/nginx The tag cloud be: - latest - v1.19.1 - @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c",
+											Description:         "Component is part of image name.Basically we presume an image can be made of '[registry/]repository[:tag]'.The registry could be:- registry.k8s.io- fictional.registry.example:10443The repository could be:- kube-apiserver- fictional/nginxThe tag cloud be:- latest- v1.19.1- @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c",
+											MarkdownDescription: "Component is part of image name.Basically we presume an image can be made of '[registry/]repository[:tag]'.The registry could be:- registry.k8s.io- fictional.registry.example:10443The repository could be:- kube-apiserver- fictional/nginxThe tag cloud be:- latest- v1.19.1- @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -754,8 +754,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"predicate": schema.SingleNestedAttribute{
-											Description:         "Predicate filters images before applying the rule.  Defaults to nil, in that case, the system will automatically detect image fields if the resource type is Pod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule: - Pod: /spec/containers/<N>/image - ReplicaSet: /spec/template/spec/containers/<N>/image - Deployment: /spec/template/spec/containers/<N>/image - DaemonSet: /spec/template/spec/containers/<N>/image - StatefulSet: /spec/template/spec/containers/<N>/image - Job: /spec/template/spec/containers/<N>/image In addition, all images will be processed if the resource object has more than one container.  If not nil, only images matches the filters will be processed.",
-											MarkdownDescription: "Predicate filters images before applying the rule.  Defaults to nil, in that case, the system will automatically detect image fields if the resource type is Pod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule: - Pod: /spec/containers/<N>/image - ReplicaSet: /spec/template/spec/containers/<N>/image - Deployment: /spec/template/spec/containers/<N>/image - DaemonSet: /spec/template/spec/containers/<N>/image - StatefulSet: /spec/template/spec/containers/<N>/image - Job: /spec/template/spec/containers/<N>/image In addition, all images will be processed if the resource object has more than one container.  If not nil, only images matches the filters will be processed.",
+											Description:         "Predicate filters images before applying the rule.Defaults to nil, in that case, the system will automatically detect image fields if the resource type isPod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule:  - Pod: /spec/containers/<N>/image  - ReplicaSet: /spec/template/spec/containers/<N>/image  - Deployment: /spec/template/spec/containers/<N>/image  - DaemonSet: /spec/template/spec/containers/<N>/image  - StatefulSet: /spec/template/spec/containers/<N>/image  - Job: /spec/template/spec/containers/<N>/imageIn addition, all images will be processed if the resource object has more than one container.If not nil, only images matches the filters will be processed.",
+											MarkdownDescription: "Predicate filters images before applying the rule.Defaults to nil, in that case, the system will automatically detect image fields if the resource type isPod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule:  - Pod: /spec/containers/<N>/image  - ReplicaSet: /spec/template/spec/containers/<N>/image  - Deployment: /spec/template/spec/containers/<N>/image  - DaemonSet: /spec/template/spec/containers/<N>/image  - StatefulSet: /spec/template/spec/containers/<N>/image  - Job: /spec/template/spec/containers/<N>/imageIn addition, all images will be processed if the resource object has more than one container.If not nil, only images matches the filters will be processed.",
 											Attributes: map[string]schema.Attribute{
 												"path": schema.StringAttribute{
 													Description:         "Path indicates the path of target field",
@@ -771,8 +771,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Value to be applied to image. Must not be empty when operator is 'add' or 'replace'. Defaults to empty and ignored when operator is 'remove'.",
-											MarkdownDescription: "Value to be applied to image. Must not be empty when operator is 'add' or 'replace'. Defaults to empty and ignored when operator is 'remove'.",
+											Description:         "Value to be applied to image.Must not be empty when operator is 'add' or 'replace'.Defaults to empty and ignored when operator is 'remove'.",
+											MarkdownDescription: "Value to be applied to image.Must not be empty when operator is 'add' or 'replace'.Defaults to empty and ignored when operator is 'remove'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -801,8 +801,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"value": schema.MapAttribute{
-											Description:         "Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
-											MarkdownDescription: "Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
+											Description:         "Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
+											MarkdownDescription: "Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -821,8 +821,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"operator": schema.StringAttribute{
-											Description:         "Operator indicates the operation on target field. Available operators are: add, replace and remove.",
-											MarkdownDescription: "Operator indicates the operation on target field. Available operators are: add, replace and remove.",
+											Description:         "Operator indicates the operation on target field.Available operators are: add, replace and remove.",
+											MarkdownDescription: "Operator indicates the operation on target field.Available operators are: add, replace and remove.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -840,8 +840,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"value": schema.MapAttribute{
-											Description:         "Value to be applied to target field. Must be empty when operator is Remove.",
-											MarkdownDescription: "Value to be applied to target field. Must be empty when operator is Remove.",
+											Description:         "Value to be applied to target field.Must be empty when operator is Remove.",
+											MarkdownDescription: "Value to be applied to target field.Must be empty when operator is Remove.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -860,8 +860,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"resource_selectors": schema.ListNestedAttribute{
-						Description:         "ResourceSelectors restricts resource types that this override policy applies to. nil means matching all resources.",
-						MarkdownDescription: "ResourceSelectors restricts resource types that this override policy applies to. nil means matching all resources.",
+						Description:         "ResourceSelectors restricts resource types that this override policy applies to.nil means matching all resources.",
+						MarkdownDescription: "ResourceSelectors restricts resource types that this override policy applies to.nil means matching all resources.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"api_version": schema.StringAttribute{
@@ -881,8 +881,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"label_selector": schema.SingleNestedAttribute{
-									Description:         "A label query over a set of resources. If name is not empty, labelSelector will be ignored.",
-									MarkdownDescription: "A label query over a set of resources. If name is not empty, labelSelector will be ignored.",
+									Description:         "A label query over a set of resources.If name is not empty, labelSelector will be ignored.",
+									MarkdownDescription: "A label query over a set of resources.If name is not empty, labelSelector will be ignored.",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -898,16 +898,16 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"values": schema.ListAttribute{
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -921,8 +921,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"match_labels": schema.MapAttribute{
-											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -935,16 +935,16 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of the target resource. Default is empty, which means selecting all resources.",
-									MarkdownDescription: "Name of the target resource. Default is empty, which means selecting all resources.",
+									Description:         "Name of the target resource.Default is empty, which means selecting all resources.",
+									MarkdownDescription: "Name of the target resource.Default is empty, which means selecting all resources.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Namespace of the target resource. Default is empty, which means inherit from the parent object scope.",
-									MarkdownDescription: "Namespace of the target resource. Default is empty, which means inherit from the parent object scope.",
+									Description:         "Namespace of the target resource.Default is empty, which means inherit from the parent object scope.",
+									MarkdownDescription: "Namespace of the target resource.Default is empty, which means inherit from the parent object scope.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -957,8 +957,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"target_cluster": schema.SingleNestedAttribute{
-						Description:         "TargetCluster defines restrictions on this override policy that only applies to resources propagated to the matching clusters. nil means matching all clusters.  Deprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead.",
-						MarkdownDescription: "TargetCluster defines restrictions on this override policy that only applies to resources propagated to the matching clusters. nil means matching all clusters.  Deprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead.",
+						Description:         "TargetCluster defines restrictions on this override policythat only applies to resources propagated to the matching clusters.nil means matching all clusters.Deprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead.",
+						MarkdownDescription: "TargetCluster defines restrictions on this override policythat only applies to resources propagated to the matching clusters.nil means matching all clusters.Deprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead.",
 						Attributes: map[string]schema.Attribute{
 							"cluster_names": schema.ListAttribute{
 								Description:         "ClusterNames is the list of clusters to be selected.",
@@ -979,8 +979,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"field_selector": schema.SingleNestedAttribute{
-								Description:         "FieldSelector is a filter to select member clusters by fields. The key(field) of the match expression should be 'provider', 'region', or 'zone', and the operator of the match expression should be 'In' or 'NotIn'. If non-nil and non-empty, only the clusters match this filter will be selected.",
-								MarkdownDescription: "FieldSelector is a filter to select member clusters by fields. The key(field) of the match expression should be 'provider', 'region', or 'zone', and the operator of the match expression should be 'In' or 'NotIn'. If non-nil and non-empty, only the clusters match this filter will be selected.",
+								Description:         "FieldSelector is a filter to select member clusters by fields.The key(field) of the match expression should be 'provider', 'region', or 'zone',and the operator of the match expression should be 'In' or 'NotIn'.If non-nil and non-empty, only the clusters match this filter will be selected.",
+								MarkdownDescription: "FieldSelector is a filter to select member clusters by fields.The key(field) of the match expression should be 'provider', 'region', or 'zone',and the operator of the match expression should be 'In' or 'NotIn'.If non-nil and non-empty, only the clusters match this filter will be selected.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "A list of field selector requirements.",
@@ -996,16 +996,16 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-													MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+													Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+													MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+													Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1024,8 +1024,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"label_selector": schema.SingleNestedAttribute{
-								Description:         "LabelSelector is a filter to select member clusters by labels. If non-nil and non-empty, only the clusters match this filter will be selected.",
-								MarkdownDescription: "LabelSelector is a filter to select member clusters by labels. If non-nil and non-empty, only the clusters match this filter will be selected.",
+								Description:         "LabelSelector is a filter to select member clusters by labels.If non-nil and non-empty, only the clusters match this filter will be selected.",
+								MarkdownDescription: "LabelSelector is a filter to select member clusters by labels.If non-nil and non-empty, only the clusters match this filter will be selected.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1041,16 +1041,16 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1064,8 +1064,8 @@ func (r *PolicyKarmadaIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,

@@ -202,8 +202,8 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "Specification of the desired state of the Certificate resource.https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
 				Attributes: map[string]schema.Attribute{
 					"additional_output_formats": schema.ListNestedAttribute{
-						Description:         "Defines extra output formats of the private key and signed certificate chainto be written to this Certificate's target Secret.This is an Alpha Feature and is only enabled with the'--feature-gates=AdditionalCertificateOutputFormats=true' option set on boththe controller and webhook components.",
-						MarkdownDescription: "Defines extra output formats of the private key and signed certificate chainto be written to this Certificate's target Secret.This is an Alpha Feature and is only enabled with the'--feature-gates=AdditionalCertificateOutputFormats=true' option set on boththe controller and webhook components.",
+						Description:         "Defines extra output formats of the private key and signed certificate chainto be written to this Certificate's target Secret.This is a Beta Feature enabled by default. It can be disabled with the'--feature-gates=AdditionalCertificateOutputFormats=false' option set on boththe controller and webhook components.",
+						MarkdownDescription: "Defines extra output formats of the private key and signed certificate chainto be written to this Certificate's target Secret.This is a Beta Feature enabled by default. It can be disabled with the'--feature-gates=AdditionalCertificateOutputFormats=false' option set on boththe controller and webhook components.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"type": schema.StringAttribute{

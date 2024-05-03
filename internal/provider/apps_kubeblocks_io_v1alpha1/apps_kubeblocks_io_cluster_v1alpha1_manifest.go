@@ -1512,8 +1512,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Metadata(_ context.Context, re
 
 func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Cluster is the Schema for the clusters API.",
-		MarkdownDescription: "Cluster is the Schema for the clusters API.",
+		Description:         "Cluster offers a unified management interface for a wide variety of database and storage systems:  - Relational databases: MySQL, PostgreSQL, MariaDB - NoSQL databases: Redis, MongoDB - KV stores: ZooKeeper, etcd - Analytics systems: ElasticSearch, OpenSearch, ClickHouse, Doris, StarRocks, Solr - Message queues: Kafka, Pulsar - Distributed SQL: TiDB, OceanBase - Vector databases: Qdrant, Milvus, Weaviate - Object storage: Minio  KubeBlocks utilizes an abstraction layer to encapsulate the characteristics of these diverse systems. A Cluster is composed of multiple Components, each defined by vendors or KubeBlocks Addon developers via ComponentDefinition, arranged in Directed Acyclic Graph (DAG) topologies. The topologies, defined in a ClusterDefinition, coordinate reconciliation across Cluster's lifecycle phases: Creating, Running, Updating, Stopping, Stopped, Deleting. Lifecycle management ensures that each Component operates in harmony, executing appropriate actions at each lifecycle stage.  For sharded-nothing architecture, the Cluster supports managing multiple shards, each shard managed by a separate Component, supporting dynamic resharding.  The Cluster object is aimed to maintain the overall integrity and availability of a database cluster, serves as the central control point, abstracting the complexity of multiple-component management, and providing a unified interface for cluster-wide operations.",
+		MarkdownDescription: "Cluster offers a unified management interface for a wide variety of database and storage systems:  - Relational databases: MySQL, PostgreSQL, MariaDB - NoSQL databases: Redis, MongoDB - KV stores: ZooKeeper, etcd - Analytics systems: ElasticSearch, OpenSearch, ClickHouse, Doris, StarRocks, Solr - Message queues: Kafka, Pulsar - Distributed SQL: TiDB, OceanBase - Vector databases: Qdrant, Milvus, Weaviate - Object storage: Minio  KubeBlocks utilizes an abstraction layer to encapsulate the characteristics of these diverse systems. A Cluster is composed of multiple Components, each defined by vendors or KubeBlocks Addon developers via ComponentDefinition, arranged in Directed Acyclic Graph (DAG) topologies. The topologies, defined in a ClusterDefinition, coordinate reconciliation across Cluster's lifecycle phases: Creating, Running, Updating, Stopping, Stopped, Deleting. Lifecycle management ensures that each Component operates in harmony, executing appropriate actions at each lifecycle stage.  For sharded-nothing architecture, the Cluster supports managing multiple shards, each shard managed by a separate Component, supporting dynamic resharding.  The Cluster object is aimed to maintain the overall integrity and availability of a database cluster, serves as the central control point, abstracting the complexity of multiple-component management, and providing a unified interface for cluster-wide operations.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -1584,8 +1584,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 				MarkdownDescription: "ClusterSpec defines the desired state of Cluster.",
 				Attributes: map[string]schema.Attribute{
 					"affinity": schema.SingleNestedAttribute{
-						Description:         "Defines a set of node affinity scheduling rules for the Cluster's Pods. This field helps control the placement of Pods on nodes within the cluster.",
-						MarkdownDescription: "Defines a set of node affinity scheduling rules for the Cluster's Pods. This field helps control the placement of Pods on nodes within the cluster.",
+						Description:         "Defines a set of node affinity scheduling rules for the Cluster's Pods. This field helps control the placement of Pods on nodes within the Cluster.  Deprecated since v0.10. Use the 'schedulingPolicy' field instead.",
+						MarkdownDescription: "Defines a set of node affinity scheduling rules for the Cluster's Pods. This field helps control the placement of Pods on nodes within the Cluster.  Deprecated since v0.10. Use the 'schedulingPolicy' field instead.",
 						Attributes: map[string]schema.Attribute{
 							"node_labels": schema.MapAttribute{
 								Description:         "Indicates the node labels that must be present on nodes for pods to be scheduled on them. It is a map where the keys are the label keys and the values are the corresponding label values. Pods will only be scheduled on nodes that have all the specified labels with the corresponding values.  For example, if NodeLabels is set to {'nodeType': 'ssd', 'environment': 'production'}, pods will only be scheduled on nodes that have both the 'nodeType' label with value 'ssd' and the 'environment' label with value 'production'.  This field allows users to control Pod placement based on specific node labels. It can be used to ensure that Pods are scheduled on nodes with certain characteristics, such as specific hardware (e.g., SSD), environment (e.g., production, staging), or any other custom labels assigned to nodes.",
@@ -1713,8 +1713,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"cluster_definition_ref": schema.StringAttribute{
-						Description:         "Specifies the name of the ClusterDefinition to use when creating a Cluster.  This field enables users to create a Cluster using a specific ClusterDefinition and topology. The specified ClusterDefinition determines the components to be used based on its defined topology, allowing for the utilization of predefined configurations and behaviors.  Advanced users may opt for more precise control by directly referencing specific ComponentDefinitions for each component within 'componentSpecs[*].componentDef'. This method offers granular control over the composition of the Cluster.  If this field is not provided, each component must be explicitly defined in 'componentSpecs[*].componentDef'.  Note: Once set, this field cannot be modified; it is immutable.",
-						MarkdownDescription: "Specifies the name of the ClusterDefinition to use when creating a Cluster.  This field enables users to create a Cluster using a specific ClusterDefinition and topology. The specified ClusterDefinition determines the components to be used based on its defined topology, allowing for the utilization of predefined configurations and behaviors.  Advanced users may opt for more precise control by directly referencing specific ComponentDefinitions for each component within 'componentSpecs[*].componentDef'. This method offers granular control over the composition of the Cluster.  If this field is not provided, each component must be explicitly defined in 'componentSpecs[*].componentDef'.  Note: Once set, this field cannot be modified; it is immutable.",
+						Description:         "Specifies the name of the ClusterDefinition to use when creating a Cluster.  This field enables users to create a Cluster based on a specific ClusterDefinition. Which, in conjunction with the 'topology' field, determine:  - The Components to be included in the Cluster. - The sequences in which the Components are created, updated, and terminate.  This facilitates multiple-components management with predefined ClusterDefinition.  Users with advanced requirements can bypass this general setting and specify more precise control over the composition of the Cluster by directly referencing specific ComponentDefinitions for each component within 'componentSpecs[*].componentDef'.  If this field is not provided, each component must be explicitly defined in 'componentSpecs[*].componentDef'.  Note: Once set, this field cannot be modified; it is immutable.",
+						MarkdownDescription: "Specifies the name of the ClusterDefinition to use when creating a Cluster.  This field enables users to create a Cluster based on a specific ClusterDefinition. Which, in conjunction with the 'topology' field, determine:  - The Components to be included in the Cluster. - The sequences in which the Components are created, updated, and terminate.  This facilitates multiple-components management with predefined ClusterDefinition.  Users with advanced requirements can bypass this general setting and specify more precise control over the composition of the Cluster by directly referencing specific ComponentDefinitions for each component within 'componentSpecs[*].componentDef'.  If this field is not provided, each component must be explicitly defined in 'componentSpecs[*].componentDef'.  Note: Once set, this field cannot be modified; it is immutable.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1737,13 +1737,13 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"component_specs": schema.ListNestedAttribute{
-						Description:         "Specifies a list of ClusterComponentSpec objects used to define the individual components that make up a Cluster. This field allows for detailed configuration of each component within the Cluster.  Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a cluster.",
-						MarkdownDescription: "Specifies a list of ClusterComponentSpec objects used to define the individual components that make up a Cluster. This field allows for detailed configuration of each component within the Cluster.  Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a cluster.",
+						Description:         "Specifies a list of ClusterComponentSpec objects used to define the individual Components that make up a Cluster. This field allows for detailed configuration of each Component within the Cluster.  Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
+						MarkdownDescription: "Specifies a list of ClusterComponentSpec objects used to define the individual Components that make up a Cluster. This field allows for detailed configuration of each Component within the Cluster.  Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"affinity": schema.SingleNestedAttribute{
-									Description:         "Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the cluster.",
-									MarkdownDescription: "Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the cluster.",
+									Description:         "Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the K8s cluster.  Deprecated since v0.10, replaced by the 'schedulingPolicy' field.",
+									MarkdownDescription: "Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the K8s cluster.  Deprecated since v0.10, replaced by the 'schedulingPolicy' field.",
 									Attributes: map[string]schema.Attribute{
 										"node_labels": schema.MapAttribute{
 											Description:         "Indicates the node labels that must be present on nodes for pods to be scheduled on them. It is a map where the keys are the label keys and the values are the corresponding label values. Pods will only be scheduled on nodes that have all the specified labels with the corresponding values.  For example, if NodeLabels is set to {'nodeType': 'ssd', 'environment': 'production'}, pods will only be scheduled on nodes that have both the 'nodeType' label with value 'ssd' and the 'environment' label with value 'production'.  This field allows users to control Pod placement based on specific node labels. It can be used to ensure that Pods are scheduled on nodes with certain characteristics, such as specific hardware (e.g., SSD), environment (e.g., production, staging), or any other custom labels assigned to nodes.",
@@ -1791,8 +1791,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"component_def": schema.StringAttribute{
-									Description:         "References the name of a ComponentDefinition. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.",
-									MarkdownDescription: "References the name of a ComponentDefinition. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.",
+									Description:         "References the name of a ComponentDefinition object. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.",
+									MarkdownDescription: "References the name of a ComponentDefinition object. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1803,8 +1803,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"component_def_ref": schema.StringAttribute{
-									Description:         "References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'",
-									MarkdownDescription: "References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'",
+									Description:         "References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining Components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'",
+									MarkdownDescription: "References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining Components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1815,8 +1815,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"enabled_logs": schema.ListAttribute{
-									Description:         "Specifies which types of logs should be collected for the Cluster. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: enabledLogs: ['slow_query_log', 'error_log']",
-									MarkdownDescription: "Specifies which types of logs should be collected for the Cluster. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: enabledLogs: ['slow_query_log', 'error_log']",
+									Description:         "Specifies which types of logs should be collected for the Component. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: '''yaml enabledLogs: - slow_query_log - error_log '''",
+									MarkdownDescription: "Specifies which types of logs should be collected for the Component. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: '''yaml enabledLogs: - slow_query_log - error_log '''",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1824,8 +1824,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"instances": schema.ListNestedAttribute{
-									Description:         "Allows for the customization of configuration values for each instance within a component. An Instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of Replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules.",
-									MarkdownDescription: "Allows for the customization of configuration values for each instance within a component. An Instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of Replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules.",
+									Description:         "Allows for the customization of configuration values for each instance within a Component. An instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database Component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a Component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules.",
+									MarkdownDescription: "Allows for the customization of configuration values for each instance within a Component. An instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database Component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a Component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"annotations": schema.MapAttribute{
@@ -1998,8 +1998,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies an override for the first container's image in the pod.",
-												MarkdownDescription: "Specifies an override for the first container's image in the pod.",
+												Description:         "Specifies an override for the first container's image in the Pod.",
+												MarkdownDescription: "Specifies an override for the first container's image in the Pod.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2015,8 +2015,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
-												MarkdownDescription: "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
+												Description:         "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the Component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
+												MarkdownDescription: "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the Component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -2044,8 +2044,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"replicas": schema.Int64Attribute{
-												Description:         "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
-												MarkdownDescription: "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
+												Description:         "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the Component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
+												MarkdownDescription: "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the Component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2251,8 +2251,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"volume_mounts": schema.ListNestedAttribute{
-												Description:         "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the pod.",
-												MarkdownDescription: "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the pod.",
+												Description:         "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the Pod.",
+												MarkdownDescription: "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the Pod.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"mount_path": schema.StringAttribute{
@@ -4351,16 +4351,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"monitor_enabled": schema.BoolAttribute{
-									Description:         "Determines whether the metrics exporter needs to be published to the service endpoint. If set to true, the metrics exporter will be published to the service endpoint, the service will be injected with the following annotations: - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'",
-									MarkdownDescription: "Determines whether the metrics exporter needs to be published to the service endpoint. If set to true, the metrics exporter will be published to the service endpoint, the service will be injected with the following annotations: - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'",
+									Description:         "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
+									MarkdownDescription: "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Specifies the name of the Component. This name is also part of the Service DNS name and must comply with the IANA service naming rule. When ClusterComponentSpec is referenced as a template, the name is optional. Otherwise, it is required.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'",
-									MarkdownDescription: "Specifies the name of the Component. This name is also part of the Service DNS name and must comply with the IANA service naming rule. When ClusterComponentSpec is referenced as a template, the name is optional. Otherwise, it is required.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'",
+									Description:         "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'shardingSpec'), but required otherwise.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'",
+									MarkdownDescription: "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'shardingSpec'), but required otherwise.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4371,8 +4371,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"offline_instances": schema.ListAttribute{
-									Description:         "Specifies the names of instances to be transitioned to offline status.  Marking an instance as offline results in the following:  1. The associated pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances.  Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The cluster administrator must manually manage the cleanup and removal of these resources when they are no longer needed.",
-									MarkdownDescription: "Specifies the names of instances to be transitioned to offline status.  Marking an instance as offline results in the following:  1. The associated pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances.  Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The cluster administrator must manually manage the cleanup and removal of these resources when they are no longer needed.",
+									Description:         "Specifies the names of instances to be transitioned to offline status.  Marking an instance as offline results in the following:  1. The associated Pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances.  Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the Cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The administrator must manually manage the cleanup and removal of these resources when they are no longer needed.",
+									MarkdownDescription: "Specifies the names of instances to be transitioned to offline status.  Marking an instance as offline results in the following:  1. The associated Pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances.  Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the Cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The administrator must manually manage the cleanup and removal of these resources when they are no longer needed.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -4380,8 +4380,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"replicas": schema.Int64Attribute{
-									Description:         "Each component supports running multiple replicas to provide high availability and persistence. This field can be used to specify the desired number of replicas.",
-									MarkdownDescription: "Each component supports running multiple replicas to provide high availability and persistence. This field can be used to specify the desired number of replicas.",
+									Description:         "Specifies the desired number of replicas in the Component for enhancing availability and durability, or load balancing.",
+									MarkdownDescription: "Specifies the desired number of replicas in the Component for enhancing availability and durability, or load balancing.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -4437,12 +4437,12 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"scheduling_policy": schema.SingleNestedAttribute{
-									Description:         "Specifies the scheduling policy for the component.",
-									MarkdownDescription: "Specifies the scheduling policy for the component.",
+									Description:         "Specifies the scheduling policy for the Component.",
+									MarkdownDescription: "Specifies the scheduling policy for the Component.",
 									Attributes: map[string]schema.Attribute{
 										"affinity": schema.SingleNestedAttribute{
-											Description:         "If specified, the cluster's scheduling constraints.",
-											MarkdownDescription: "If specified, the cluster's scheduling constraints.",
+											Description:         "Specifies a group of affinity scheduling rules of the Cluster, including NodeAffinity, PodAffinity, and PodAntiAffinity.",
+											MarkdownDescription: "Specifies a group of affinity scheduling rules of the Cluster, including NodeAffinity, PodAffinity, and PodAntiAffinity.",
 											Attributes: map[string]schema.Attribute{
 												"node_affinity": schema.SingleNestedAttribute{
 													Description:         "Describes node affinity scheduling rules for the pod.",
@@ -5247,16 +5247,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"node_name": schema.StringAttribute{
-											Description:         "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
-											MarkdownDescription: "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
+											Description:         "NodeName is a request to schedule this Pod onto a specific node. If it is non-empty, the scheduler simply schedules this Pod onto that node, assuming that it fits resource requirements.",
+											MarkdownDescription: "NodeName is a request to schedule this Pod onto a specific node. If it is non-empty, the scheduler simply schedules this Pod onto that node, assuming that it fits resource requirements.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_selector": schema.MapAttribute{
-											Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-											MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+											Description:         "NodeSelector is a selector which must be true for the Pod to fit on a node. Selector which must match a node's labels for the Pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+											MarkdownDescription: "NodeSelector is a selector which must be true for the Pod to fit on a node. Selector which must match a node's labels for the Pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -5264,16 +5264,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"scheduler_name": schema.StringAttribute{
-											Description:         "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
-											MarkdownDescription: "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
+											Description:         "If specified, the Pod will be dispatched by specified scheduler. If not specified, the Pod will be dispatched by default scheduler.",
+											MarkdownDescription: "If specified, the Pod will be dispatched by specified scheduler. If not specified, the Pod will be dispatched by default scheduler.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tolerations": schema.ListNestedAttribute{
-											Description:         "Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'.",
-											MarkdownDescription: "Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'.",
+											Description:         "Allows Pods to be scheduled onto nodes with matching taints. Each toleration in the array allows the Pod to tolerate node taints based on specified 'key', 'value', 'effect', and 'operator'.  - The 'key', 'value', and 'effect' identify the taint that the toleration matches. - The 'operator' determines how the toleration matches the taint.  Pods with matching tolerations are allowed to be scheduled on tainted nodes, typically reserved for specific purposes.",
+											MarkdownDescription: "Allows Pods to be scheduled onto nodes with matching taints. Each toleration in the array allows the Pod to tolerate node taints based on specified 'key', 'value', 'effect', and 'operator'.  - The 'key', 'value', and 'effect' identify the taint that the toleration matches. - The 'operator' determines how the toleration matches the taint.  Pods with matching tolerations are allowed to be scheduled on tainted nodes, typically reserved for specific purposes.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"effect": schema.StringAttribute{
@@ -5323,8 +5323,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"topology_spread_constraints": schema.ListNestedAttribute{
-											Description:         "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
-											MarkdownDescription: "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
+											Description:         "TopologySpreadConstraints describes how a group of Pods ought to spread across topology domains. Scheduler will schedule Pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
+											MarkdownDescription: "TopologySpreadConstraints describes how a group of Pods ought to spread across topology domains. Scheduler will schedule Pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"label_selector": schema.SingleNestedAttribute{
@@ -5450,16 +5450,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"service_account_name": schema.StringAttribute{
-									Description:         "Specifies the name of the ServiceAccount required by the running Component. This ServiceAccount is used to grant necessary permissions for the Component's Pods to interact with other Kubernetes resources, such as modifying pod labels or sending events.  Defaults: If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}', bound to a default role defined during KubeBlocks installation.  Future Changes: Future versions might change the default ServiceAccount creation strategy to one per Component, potentially revising the naming to 'kb-{cluster.name}-{component.name}'.  Users can override the automatic ServiceAccount assignment by explicitly setting the name of an existed ServiceAccount in this field.",
-									MarkdownDescription: "Specifies the name of the ServiceAccount required by the running Component. This ServiceAccount is used to grant necessary permissions for the Component's Pods to interact with other Kubernetes resources, such as modifying pod labels or sending events.  Defaults: If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}', bound to a default role defined during KubeBlocks installation.  Future Changes: Future versions might change the default ServiceAccount creation strategy to one per Component, potentially revising the naming to 'kb-{cluster.name}-{component.name}'.  Users can override the automatic ServiceAccount assignment by explicitly setting the name of an existed ServiceAccount in this field.",
+									Description:         "Specifies the name of the ServiceAccount required by the running Component. This ServiceAccount is used to grant necessary permissions for the Component's Pods to interact with other Kubernetes resources, such as modifying Pod labels or sending events.  Defaults: If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}', bound to a default role installed together with KubeBlocks.  Future Changes: Future versions might change the default ServiceAccount creation strategy to one per Component, potentially revising the naming to 'kb-{cluster.name}-{component.name}'.  Users can override the automatic ServiceAccount assignment by explicitly setting the name of an existed ServiceAccount in this field.",
+									MarkdownDescription: "Specifies the name of the ServiceAccount required by the running Component. This ServiceAccount is used to grant necessary permissions for the Component's Pods to interact with other Kubernetes resources, such as modifying Pod labels or sending events.  Defaults: If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}', bound to a default role installed together with KubeBlocks.  Future Changes: Future versions might change the default ServiceAccount creation strategy to one per Component, potentially revising the naming to 'kb-{cluster.name}-{component.name}'.  Users can override the automatic ServiceAccount assignment by explicitly setting the name of an existed ServiceAccount in this field.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"service_refs": schema.ListNestedAttribute{
-									Description:         "Defines a list of ServiceRef for a Component, allowing it to connect and interact with other services. These services can be external or managed by the same KubeBlocks operator, categorized as follows:  1. External Services:  - Not managed by KubeBlocks. These could be services outside KubeBlocks or non-Kubernetes services. - Connection requires a ServiceDescriptor providing details for service binding.  2. KubeBlocks Services:  - Managed within the same KubeBlocks environment. - Service binding is achieved by specifying cluster names in the service references, with configurations handled by the KubeBlocks operator.  ServiceRef maintains cluster-level semantic consistency; references with the same 'serviceRef.name' within the same cluster are treated as identical. Only bindings to the same cluster or ServiceDescriptor are allowed within a cluster.  Example: '''yaml serviceRefs: - name: 'redis-sentinel' serviceDescriptor: name: 'external-redis-sentinel' - name: 'postgres-cluster' cluster: name: 'my-postgres-cluster' ''' The example above includes references to an external Redis Sentinel service and a PostgreSQL cluster managed by KubeBlocks.",
-									MarkdownDescription: "Defines a list of ServiceRef for a Component, allowing it to connect and interact with other services. These services can be external or managed by the same KubeBlocks operator, categorized as follows:  1. External Services:  - Not managed by KubeBlocks. These could be services outside KubeBlocks or non-Kubernetes services. - Connection requires a ServiceDescriptor providing details for service binding.  2. KubeBlocks Services:  - Managed within the same KubeBlocks environment. - Service binding is achieved by specifying cluster names in the service references, with configurations handled by the KubeBlocks operator.  ServiceRef maintains cluster-level semantic consistency; references with the same 'serviceRef.name' within the same cluster are treated as identical. Only bindings to the same cluster or ServiceDescriptor are allowed within a cluster.  Example: '''yaml serviceRefs: - name: 'redis-sentinel' serviceDescriptor: name: 'external-redis-sentinel' - name: 'postgres-cluster' cluster: name: 'my-postgres-cluster' ''' The example above includes references to an external Redis Sentinel service and a PostgreSQL cluster managed by KubeBlocks.",
+									Description:         "Defines a list of ServiceRef for a Component, enabling access to both external services and Services provided by other Clusters.  Types of services:  - External services: Not managed by KubeBlocks or managed by a different KubeBlocks operator; Require a ServiceDescriptor for connection details. - Services provided by a Cluster: Managed by the same KubeBlocks operator; identified using Cluster, Component and Service names.  ServiceRefs with identical 'serviceRef.name' in the same Cluster are considered the same.  Example: '''yaml serviceRefs: - name: 'redis-sentinel' serviceDescriptor: name: 'external-redis-sentinel' - name: 'postgres-cluster' clusterServiceSelector: cluster: 'my-postgres-cluster' service: component: 'postgresql' ''' The example above includes ServiceRefs to an external Redis Sentinel service and a PostgreSQL Cluster.",
+									MarkdownDescription: "Defines a list of ServiceRef for a Component, enabling access to both external services and Services provided by other Clusters.  Types of services:  - External services: Not managed by KubeBlocks or managed by a different KubeBlocks operator; Require a ServiceDescriptor for connection details. - Services provided by a Cluster: Managed by the same KubeBlocks operator; identified using Cluster, Component and Service names.  ServiceRefs with identical 'serviceRef.name' in the same Cluster are considered the same.  Example: '''yaml serviceRefs: - name: 'redis-sentinel' serviceDescriptor: name: 'external-redis-sentinel' - name: 'postgres-cluster' clusterServiceSelector: cluster: 'my-postgres-cluster' service: component: 'postgresql' ''' The example above includes ServiceRefs to an external Redis Sentinel service and a PostgreSQL Cluster.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"cluster": schema.StringAttribute{
@@ -5471,12 +5471,12 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"cluster_service_selector": schema.SingleNestedAttribute{
-												Description:         "ClusterRef is used to reference a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access.",
-												MarkdownDescription: "ClusterRef is used to reference a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access.",
+												Description:         "References a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access.",
+												MarkdownDescription: "References a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access.",
 												Attributes: map[string]schema.Attribute{
 													"cluster": schema.StringAttribute{
-														Description:         "The name of the KubeBlocks Cluster being referenced.",
-														MarkdownDescription: "The name of the KubeBlocks Cluster being referenced.",
+														Description:         "The name of the Cluster being referenced.",
+														MarkdownDescription: "The name of the Cluster being referenced.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -5487,8 +5487,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 														MarkdownDescription: "Specifies the SystemAccount to authenticate and establish a connection with the referenced Cluster. The SystemAccount should be defined in 'componentDefinition.spec.systemAccounts' of the Component providing the service in the referenced Cluster.",
 														Attributes: map[string]schema.Attribute{
 															"component": schema.StringAttribute{
-																Description:         "The name of the component where the credential resides in.",
-																MarkdownDescription: "The name of the component where the credential resides in.",
+																Description:         "The name of the Component where the credential resides in.",
+																MarkdownDescription: "The name of the Component where the credential resides in.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5508,28 +5508,28 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"service": schema.SingleNestedAttribute{
-														Description:         "Identifies a ClusterService from the list of services defined in 'cluster.spec.services' of the referenced Cluster.",
-														MarkdownDescription: "Identifies a ClusterService from the list of services defined in 'cluster.spec.services' of the referenced Cluster.",
+														Description:         "Identifies a ClusterService from the list of Services defined in 'cluster.spec.services' of the referenced Cluster.",
+														MarkdownDescription: "Identifies a ClusterService from the list of Services defined in 'cluster.spec.services' of the referenced Cluster.",
 														Attributes: map[string]schema.Attribute{
 															"component": schema.StringAttribute{
-																Description:         "The name of the component where the service resides in.  It is required when referencing a component service.",
-																MarkdownDescription: "The name of the component where the service resides in.  It is required when referencing a component service.",
+																Description:         "The name of the Component where the Service resides in.  It is required when referencing a Component's Service.",
+																MarkdownDescription: "The name of the Component where the Service resides in.  It is required when referencing a Component's Service.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"port": schema.StringAttribute{
-																Description:         "The port name of the service to reference.  If there is a non-zero node-port exist for the matched service port, the node-port will be selected first. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name:port1,service2.name:port2...",
-																MarkdownDescription: "The port name of the service to reference.  If there is a non-zero node-port exist for the matched service port, the node-port will be selected first. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name:port1,service2.name:port2...",
+																Description:         "The port name of the Service to be referenced.  If there is a non-zero node-port exist for the matched Service port, the node-port will be selected first.  If the referenced Service is of pod-service type (a Service per Pod), there will be multiple Service objects matched, and the resolved value will be presented in the following format: service1.name:port1,service2.name:port2...",
+																MarkdownDescription: "The port name of the Service to be referenced.  If there is a non-zero node-port exist for the matched Service port, the node-port will be selected first.  If the referenced Service is of pod-service type (a Service per Pod), there will be multiple Service objects matched, and the resolved value will be presented in the following format: service1.name:port1,service2.name:port2...",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"service": schema.StringAttribute{
-																Description:         "The name of the service to reference.  Leave it empty to reference the default service. Set it to 'headless' to reference the default headless service. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name,service2.name...",
-																MarkdownDescription: "The name of the service to reference.  Leave it empty to reference the default service. Set it to 'headless' to reference the default headless service. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name,service2.name...",
+																Description:         "The name of the Service to be referenced.  Leave it empty to reference the default Service. Set it to 'headless' to reference the default headless Service.  If the referenced Service is of pod-service type (a Service per Pod), there will be multiple Service objects matched, and the resolved value will be presented in the following format: service1.name,service2.name...",
+																MarkdownDescription: "The name of the Service to be referenced.  Leave it empty to reference the default Service. Set it to 'headless' to reference the default headless Service.  If the referenced Service is of pod-service type (a Service per Pod), there will be multiple Service objects matched, and the resolved value will be presented in the following format: service1.name,service2.name...",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5562,8 +5562,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"service_descriptor": schema.StringAttribute{
-												Description:         "Specifies the name of the ServiceDescriptor object that describes the service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.",
-												MarkdownDescription: "Specifies the name of the ServiceDescriptor object that describes the service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.",
+												Description:         "Specifies the name of the ServiceDescriptor object that describes a service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.",
+												MarkdownDescription: "Specifies the name of the ServiceDescriptor object that describes a service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5576,8 +5576,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"service_version": schema.StringAttribute{
-									Description:         "ServiceVersion specifies the version of the service expected to be provisioned by this component. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If no version is specified, the latest available version will be used.",
-									MarkdownDescription: "ServiceVersion specifies the version of the service expected to be provisioned by this component. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If no version is specified, the latest available version will be used.",
+									Description:         "ServiceVersion specifies the version of the Service expected to be provisioned by this Component. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If no version is specified, the latest available version will be used.",
+									MarkdownDescription: "ServiceVersion specifies the version of the Service expected to be provisioned by this Component. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If no version is specified, the latest available version will be used.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -5587,8 +5587,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"services": schema.ListNestedAttribute{
-									Description:         "Services overrides services defined in referenced ComponentDefinition and expose endpoints that can be accessed by clients.",
-									MarkdownDescription: "Services overrides services defined in referenced ComponentDefinition and expose endpoints that can be accessed by clients.",
+									Description:         "Overrides services defined in referenced ComponentDefinition and expose endpoints that can be accessed by clients.",
+									MarkdownDescription: "Overrides services defined in referenced ComponentDefinition and expose endpoints that can be accessed by clients.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"annotations": schema.MapAttribute{
@@ -5601,8 +5601,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "References the component service name defined in the 'componentDefinition.spec.services[*].name'.",
-												MarkdownDescription: "References the component service name defined in the 'componentDefinition.spec.services[*].name'.",
+												Description:         "References the ComponentService name defined in the 'componentDefinition.spec.services[*].name'.",
+												MarkdownDescription: "References the ComponentService name defined in the 'componentDefinition.spec.services[*].name'.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -5612,16 +5612,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"pod_service": schema.BoolAttribute{
-												Description:         "Indicates whether to generate individual services for each pod. If set to true, a separate service will be created for each pod in the cluster.",
-												MarkdownDescription: "Indicates whether to generate individual services for each pod. If set to true, a separate service will be created for each pod in the cluster.",
+												Description:         "Indicates whether to generate individual Services for each Pod. If set to true, a separate Service will be created for each Pod in the Cluster.",
+												MarkdownDescription: "Indicates whether to generate individual Services for each Pod. If set to true, a separate Service will be created for each Pod in the Cluster.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"service_type": schema.StringAttribute{
-												Description:         "Determines how the Service is exposed. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for ClusterComponentService.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
-												MarkdownDescription: "Determines how the Service is exposed. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for ClusterComponentService.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
+												Description:         "Determines how the Service is exposed. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP' allocates a Cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the ClusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the ClusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for ClusterComponentService.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
+												MarkdownDescription: "Determines how the Service is exposed. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP' allocates a Cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the ClusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the ClusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for ClusterComponentService.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5637,8 +5637,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"sidecars": schema.ListAttribute{
-									Description:         "Defines the sidecar containers that will be attached to the component's main container.",
-									MarkdownDescription: "Defines the sidecar containers that will be attached to the component's main container.",
+									Description:         "Defines the sidecar containers that will be attached to the Component's main container.",
+									MarkdownDescription: "Defines the sidecar containers that will be attached to the Component's main container.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -5666,16 +5666,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"tls": schema.BoolAttribute{
-									Description:         "A boolean flag that indicates whether the component should use Transport Layer Security (TLS) for secure communication. When set to true, the component will be configured to use TLS encryption for its network connections. This ensures that the data transmitted between the component and its clients or other components is encrypted and protected from unauthorized access. If TLS is enabled, the component may require additional configuration, such as specifying TLS certificates and keys, to properly set up the secure communication channel.",
-									MarkdownDescription: "A boolean flag that indicates whether the component should use Transport Layer Security (TLS) for secure communication. When set to true, the component will be configured to use TLS encryption for its network connections. This ensures that the data transmitted between the component and its clients or other components is encrypted and protected from unauthorized access. If TLS is enabled, the component may require additional configuration, such as specifying TLS certificates and keys, to properly set up the secure communication channel.",
+									Description:         "A boolean flag that indicates whether the Component should use Transport Layer Security (TLS) for secure communication. When set to true, the Component will be configured to use TLS encryption for its network connections. This ensures that the data transmitted between the Component and its clients or other Components is encrypted and protected from unauthorized access. If TLS is enabled, the Component may require additional configuration, such as specifying TLS certificates and keys, to properly set up the secure communication channel.",
+									MarkdownDescription: "A boolean flag that indicates whether the Component should use Transport Layer Security (TLS) for secure communication. When set to true, the Component will be configured to use TLS encryption for its network connections. This ensures that the data transmitted between the Component and its clients or other Components is encrypted and protected from unauthorized access. If TLS is enabled, the Component may require additional configuration, such as specifying TLS certificates and keys, to properly set up the secure communication channel.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"tolerations": schema.MapAttribute{
-									Description:         "Allows the Component to be scheduled onto nodes with matching taints. It is an array of tolerations that are attached to the Component's Pods.  Each toleration consists of a 'key', 'value', 'effect', and 'operator'. The 'key', 'value', and 'effect' define the taint that the toleration matches. The 'operator' specifies how the toleration matches the taint.  If a node has a taint that matches a toleration, the Component's pods can be scheduled onto that node. This allows the Component's Pods to run on nodes that have been tainted to prevent regular Pods from being scheduled.",
-									MarkdownDescription: "Allows the Component to be scheduled onto nodes with matching taints. It is an array of tolerations that are attached to the Component's Pods.  Each toleration consists of a 'key', 'value', 'effect', and 'operator'. The 'key', 'value', and 'effect' define the taint that the toleration matches. The 'operator' specifies how the toleration matches the taint.  If a node has a taint that matches a toleration, the Component's pods can be scheduled onto that node. This allows the Component's Pods to run on nodes that have been tainted to prevent regular Pods from being scheduled.",
+									Description:         "Allows Pods to be scheduled onto nodes with matching taints. Each toleration in the array allows the Pod to tolerate node taints based on specified 'key', 'value', 'effect', and 'operator'.  - The 'key', 'value', and 'effect' identify the taint that the toleration matches. - The 'operator' determines how the toleration matches the taint.  Pods with matching tolerations are allowed to be scheduled on tainted nodes, typically reserved for specific purposes.  Deprecated since v0.10, replaced by the 'schedulingPolicy' field.",
+									MarkdownDescription: "Allows Pods to be scheduled onto nodes with matching taints. Each toleration in the array allows the Pod to tolerate node taints based on specified 'key', 'value', 'effect', and 'operator'.  - The 'key', 'value', and 'effect' identify the taint that the toleration matches. - The 'operator' determines how the toleration matches the taint.  Pods with matching tolerations are allowed to be scheduled on tainted nodes, typically reserved for specific purposes.  Deprecated since v0.10, replaced by the 'schedulingPolicy' field.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -5683,8 +5683,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"update_strategy": schema.StringAttribute{
-									Description:         "Defines the update strategy for the component.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
-									MarkdownDescription: "Defines the update strategy for the component.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+									Description:         "Defines the update strategy for the Component.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+									MarkdownDescription: "Defines the update strategy for the Component.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -5698,8 +5698,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "Allows users to specify custom ConfigMaps and Secrets to be mounted as volumes in the Cluster's Pods. This is useful in scenarios where users need to provide additional resources to the Cluster, such as:  - Mounting custom scripts or configuration files during Cluster startup. - Mounting Secrets as volumes to provide sensitive information, like S3 AK/SK, to the Cluster.",
 									Attributes: map[string]schema.Attribute{
 										"config_map_refs": schema.ListNestedAttribute{
-											Description:         "ConfigMapRefs defines the user-defined config maps.",
-											MarkdownDescription: "ConfigMapRefs defines the user-defined config maps.",
+											Description:         "ConfigMapRefs defines the user-defined ConfigMaps.",
+											MarkdownDescription: "ConfigMapRefs defines the user-defined ConfigMaps.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"as_volume_from": schema.ListAttribute{
@@ -5818,8 +5818,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"secret_refs": schema.ListNestedAttribute{
-											Description:         "SecretRefs defines the user-defined secrets.",
-											MarkdownDescription: "SecretRefs defines the user-defined secrets.",
+											Description:         "SecretRefs defines the user-defined Secrets.",
+											MarkdownDescription: "SecretRefs defines the user-defined Secrets.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"as_volume_from": schema.ListAttribute{
@@ -5856,8 +5856,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"secret": schema.SingleNestedAttribute{
-														Description:         "Secret specifies the secret to be mounted as a volume.",
-														MarkdownDescription: "Secret specifies the secret to be mounted as a volume.",
+														Description:         "Secret specifies the Secret to be mounted as a volume.",
+														MarkdownDescription: "Secret specifies the Secret to be mounted as a volume.",
 														Attributes: map[string]schema.Attribute{
 															"default_mode": schema.Int64Attribute{
 																Description:         "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
@@ -5943,8 +5943,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"volume_claim_templates": schema.ListNestedAttribute{
-									Description:         "Specifies a list of PersistentVolumeClaim templates that define the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component when it is deployed.",
-									MarkdownDescription: "Specifies a list of PersistentVolumeClaim templates that define the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component when it is deployed.",
+									Description:         "Specifies a list of PersistentVolumeClaim templates that represent the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component.",
+									MarkdownDescription: "Specifies a list of PersistentVolumeClaim templates that represent the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
@@ -6085,16 +6085,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "Specifies the resources of the first componentSpec, if the resources of the first componentSpec is specified, this value will be ignored.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
 						Attributes: map[string]schema.Attribute{
 							"cpu": schema.StringAttribute{
-								Description:         "Specifies the amount of processing power the cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Specifies the amount of processing power the cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Specifies the amount of CPU resource the Cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Specifies the amount of CPU resource the Cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"memory": schema.StringAttribute{
-								Description:         "Specifies the amount of memory the cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Specifies the amount of memory the cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Specifies the amount of memory resource the Cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Specifies the amount of memory resource the Cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -6106,20 +6106,20 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"runtime_class_name": schema.StringAttribute{
-						Description:         "Defines RuntimeClassName for all Pods managed by this cluster.",
-						MarkdownDescription: "Defines RuntimeClassName for all Pods managed by this cluster.",
+						Description:         "Specifies runtimeClassName for all Pods managed by this Cluster.",
+						MarkdownDescription: "Specifies runtimeClassName for all Pods managed by this Cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"scheduling_policy": schema.SingleNestedAttribute{
-						Description:         "Specifies the scheduling policy for the cluster.",
-						MarkdownDescription: "Specifies the scheduling policy for the cluster.",
+						Description:         "Specifies the scheduling policy for the Cluster.",
+						MarkdownDescription: "Specifies the scheduling policy for the Cluster.",
 						Attributes: map[string]schema.Attribute{
 							"affinity": schema.SingleNestedAttribute{
-								Description:         "If specified, the cluster's scheduling constraints.",
-								MarkdownDescription: "If specified, the cluster's scheduling constraints.",
+								Description:         "Specifies a group of affinity scheduling rules of the Cluster, including NodeAffinity, PodAffinity, and PodAntiAffinity.",
+								MarkdownDescription: "Specifies a group of affinity scheduling rules of the Cluster, including NodeAffinity, PodAffinity, and PodAntiAffinity.",
 								Attributes: map[string]schema.Attribute{
 									"node_affinity": schema.SingleNestedAttribute{
 										Description:         "Describes node affinity scheduling rules for the pod.",
@@ -6924,16 +6924,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"node_name": schema.StringAttribute{
-								Description:         "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
-								MarkdownDescription: "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
+								Description:         "NodeName is a request to schedule this Pod onto a specific node. If it is non-empty, the scheduler simply schedules this Pod onto that node, assuming that it fits resource requirements.",
+								MarkdownDescription: "NodeName is a request to schedule this Pod onto a specific node. If it is non-empty, the scheduler simply schedules this Pod onto that node, assuming that it fits resource requirements.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"node_selector": schema.MapAttribute{
-								Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-								MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+								Description:         "NodeSelector is a selector which must be true for the Pod to fit on a node. Selector which must match a node's labels for the Pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+								MarkdownDescription: "NodeSelector is a selector which must be true for the Pod to fit on a node. Selector which must match a node's labels for the Pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -6941,16 +6941,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"scheduler_name": schema.StringAttribute{
-								Description:         "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
-								MarkdownDescription: "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
+								Description:         "If specified, the Pod will be dispatched by specified scheduler. If not specified, the Pod will be dispatched by default scheduler.",
+								MarkdownDescription: "If specified, the Pod will be dispatched by specified scheduler. If not specified, the Pod will be dispatched by default scheduler.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tolerations": schema.ListNestedAttribute{
-								Description:         "Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'.",
-								MarkdownDescription: "Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'.",
+								Description:         "Allows Pods to be scheduled onto nodes with matching taints. Each toleration in the array allows the Pod to tolerate node taints based on specified 'key', 'value', 'effect', and 'operator'.  - The 'key', 'value', and 'effect' identify the taint that the toleration matches. - The 'operator' determines how the toleration matches the taint.  Pods with matching tolerations are allowed to be scheduled on tainted nodes, typically reserved for specific purposes.",
+								MarkdownDescription: "Allows Pods to be scheduled onto nodes with matching taints. Each toleration in the array allows the Pod to tolerate node taints based on specified 'key', 'value', 'effect', and 'operator'.  - The 'key', 'value', and 'effect' identify the taint that the toleration matches. - The 'operator' determines how the toleration matches the taint.  Pods with matching tolerations are allowed to be scheduled on tainted nodes, typically reserved for specific purposes.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effect": schema.StringAttribute{
@@ -7000,8 +7000,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"topology_spread_constraints": schema.ListNestedAttribute{
-								Description:         "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
-								MarkdownDescription: "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
+								Description:         "TopologySpreadConstraints describes how a group of Pods ought to spread across topology domains. Scheduler will schedule Pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
+								MarkdownDescription: "TopologySpreadConstraints describes how a group of Pods ought to spread across topology domains. Scheduler will schedule Pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"label_selector": schema.SingleNestedAttribute{
@@ -7127,8 +7127,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"services": schema.MapAttribute{
-						Description:         "Defines the list of services that are exposed by a Cluster. This field allows selected components, either from 'componentSpecs' or 'shardingSpecs', to be exposed as cluster-level services.  Services defined here can be referenced by other clusters using the ServiceRefClusterSelector.",
-						MarkdownDescription: "Defines the list of services that are exposed by a Cluster. This field allows selected components, either from 'componentSpecs' or 'shardingSpecs', to be exposed as cluster-level services.  Services defined here can be referenced by other clusters using the ServiceRefClusterSelector.",
+						Description:         "Defines a list of additional Services that are exposed by a Cluster. This field allows Services of selected Components, either from 'componentSpecs' or 'shardingSpecs' to be exposed, alongside Services defined with ComponentService.  Services defined here can be referenced by other clusters using the ServiceRefClusterSelector.",
+						MarkdownDescription: "Defines a list of additional Services that are exposed by a Cluster. This field allows Services of selected Components, either from 'componentSpecs' or 'shardingSpecs' to be exposed, alongside Services defined with ComponentService.  Services defined here can be referenced by other clusters using the ServiceRefClusterSelector.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -7136,13 +7136,13 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"sharding_specs": schema.ListNestedAttribute{
-						Description:         "Specifies a list of ShardingSpec objects that configure the sharding topology for components of a Cluster. Each ShardingSpec corresponds to a group of components organized into shards, with each shard containing multiple replicas. Components within a shard are based on a common ClusterComponentSpec template, ensuring that all components in a shard have identical configurations as per the template.  This field supports dynamic scaling by facilitating the addition or removal of shards based on the specified number in each ShardingSpec.  Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a cluster.",
-						MarkdownDescription: "Specifies a list of ShardingSpec objects that configure the sharding topology for components of a Cluster. Each ShardingSpec corresponds to a group of components organized into shards, with each shard containing multiple replicas. Components within a shard are based on a common ClusterComponentSpec template, ensuring that all components in a shard have identical configurations as per the template.  This field supports dynamic scaling by facilitating the addition or removal of shards based on the specified number in each ShardingSpec.  Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a cluster.",
+						Description:         "Specifies a list of ShardingSpec objects that manage the sharding topology for Cluster Components. Each ShardingSpec organizes components into shards, with each shard corresponding to a Component. Components within a shard are all based on a common ClusterComponentSpec template, ensuring uniform configurations.  This field supports dynamic resharding by facilitating the addition or removal of shards through the 'shards' field in ShardingSpec.  Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
+						MarkdownDescription: "Specifies a list of ShardingSpec objects that manage the sharding topology for Cluster Components. Each ShardingSpec organizes components into shards, with each shard corresponding to a Component. Components within a shard are all based on a common ClusterComponentSpec template, ensuring uniform configurations.  This field supports dynamic resharding by facilitating the addition or removal of shards through the 'shards' field in ShardingSpec.  Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Represents the common parent part of all shard names. This identifier is included as part of the Service DNS name and must comply with IANA service naming rules. It is used to generate the names of underlying Components following the pattern '$(shardingSpec.name)-$(ShardID)'. ShardID is a random string that is appended to the Name to generate unique identifiers for each shard. For example, if the sharding specification name is 'my-shard' and the ShardID is 'abc', the resulting component name would be 'my-shard-abc'.  Note that the name defined in component template('shardingSpec.template.name') will be disregarded when generating the component names of the shards. The 'shardingSpec.name' field takes precedence.",
-									MarkdownDescription: "Represents the common parent part of all shard names. This identifier is included as part of the Service DNS name and must comply with IANA service naming rules. It is used to generate the names of underlying Components following the pattern '$(shardingSpec.name)-$(ShardID)'. ShardID is a random string that is appended to the Name to generate unique identifiers for each shard. For example, if the sharding specification name is 'my-shard' and the ShardID is 'abc', the resulting component name would be 'my-shard-abc'.  Note that the name defined in component template('shardingSpec.template.name') will be disregarded when generating the component names of the shards. The 'shardingSpec.name' field takes precedence.",
+									Description:         "Represents the common parent part of all shard names. This identifier is included as part of the Service DNS name and must comply with IANA service naming rules. It is used to generate the names of underlying Components following the pattern '$(shardingSpec.name)-$(ShardID)'. ShardID is a random string that is appended to the Name to generate unique identifiers for each shard. For example, if the sharding specification name is 'my-shard' and the ShardID is 'abc', the resulting Component name would be 'my-shard-abc'.  Note that the name defined in Component template('shardingSpec.template.name') will be disregarded when generating the Component names of the shards. The 'shardingSpec.name' field takes precedence.",
+									MarkdownDescription: "Represents the common parent part of all shard names. This identifier is included as part of the Service DNS name and must comply with IANA service naming rules. It is used to generate the names of underlying Components following the pattern '$(shardingSpec.name)-$(ShardID)'. ShardID is a random string that is appended to the Name to generate unique identifiers for each shard. For example, if the sharding specification name is 'my-shard' and the ShardID is 'abc', the resulting Component name would be 'my-shard-abc'.  Note that the name defined in Component template('shardingSpec.template.name') will be disregarded when generating the Component names of the shards. The 'shardingSpec.name' field takes precedence.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -7169,8 +7169,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "The template for generating Components for shards, where each shard consists of one Component. This field is of type ClusterComponentSpec, which encapsulates all the required details and definitions for creating and managing the Components. KubeBlocks uses this template to generate a set of identical Components or shards. All the generated Components will have the same specifications and definitions as specified in the 'template' field.  This allows for the creation of multiple Components with consistent configurations, enabling sharding and distribution of workloads across Components.",
 									Attributes: map[string]schema.Attribute{
 										"affinity": schema.SingleNestedAttribute{
-											Description:         "Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the cluster.",
-											MarkdownDescription: "Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the cluster.",
+											Description:         "Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the K8s cluster.  Deprecated since v0.10, replaced by the 'schedulingPolicy' field.",
+											MarkdownDescription: "Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the K8s cluster.  Deprecated since v0.10, replaced by the 'schedulingPolicy' field.",
 											Attributes: map[string]schema.Attribute{
 												"node_labels": schema.MapAttribute{
 													Description:         "Indicates the node labels that must be present on nodes for pods to be scheduled on them. It is a map where the keys are the label keys and the values are the corresponding label values. Pods will only be scheduled on nodes that have all the specified labels with the corresponding values.  For example, if NodeLabels is set to {'nodeType': 'ssd', 'environment': 'production'}, pods will only be scheduled on nodes that have both the 'nodeType' label with value 'ssd' and the 'environment' label with value 'production'.  This field allows users to control Pod placement based on specific node labels. It can be used to ensure that Pods are scheduled on nodes with certain characteristics, such as specific hardware (e.g., SSD), environment (e.g., production, staging), or any other custom labels assigned to nodes.",
@@ -7218,8 +7218,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"component_def": schema.StringAttribute{
-											Description:         "References the name of a ComponentDefinition. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.",
-											MarkdownDescription: "References the name of a ComponentDefinition. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.",
+											Description:         "References the name of a ComponentDefinition object. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.",
+											MarkdownDescription: "References the name of a ComponentDefinition object. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -7230,8 +7230,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"component_def_ref": schema.StringAttribute{
-											Description:         "References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'",
-											MarkdownDescription: "References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'",
+											Description:         "References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining Components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'",
+											MarkdownDescription: "References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining Components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -7242,8 +7242,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"enabled_logs": schema.ListAttribute{
-											Description:         "Specifies which types of logs should be collected for the Cluster. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: enabledLogs: ['slow_query_log', 'error_log']",
-											MarkdownDescription: "Specifies which types of logs should be collected for the Cluster. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: enabledLogs: ['slow_query_log', 'error_log']",
+											Description:         "Specifies which types of logs should be collected for the Component. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: '''yaml enabledLogs: - slow_query_log - error_log '''",
+											MarkdownDescription: "Specifies which types of logs should be collected for the Component. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: '''yaml enabledLogs: - slow_query_log - error_log '''",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7251,8 +7251,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"instances": schema.ListNestedAttribute{
-											Description:         "Allows for the customization of configuration values for each instance within a component. An Instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of Replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules.",
-											MarkdownDescription: "Allows for the customization of configuration values for each instance within a component. An Instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of Replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules.",
+											Description:         "Allows for the customization of configuration values for each instance within a Component. An instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database Component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a Component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules.",
+											MarkdownDescription: "Allows for the customization of configuration values for each instance within a Component. An instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database Component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a Component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"annotations": schema.MapAttribute{
@@ -7425,8 +7425,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"image": schema.StringAttribute{
-														Description:         "Specifies an override for the first container's image in the pod.",
-														MarkdownDescription: "Specifies an override for the first container's image in the pod.",
+														Description:         "Specifies an override for the first container's image in the Pod.",
+														MarkdownDescription: "Specifies an override for the first container's image in the Pod.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7442,8 +7442,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
-														MarkdownDescription: "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
+														Description:         "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the Component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
+														MarkdownDescription: "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the Component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -7471,8 +7471,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"replicas": schema.Int64Attribute{
-														Description:         "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
-														MarkdownDescription: "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
+														Description:         "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the Component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
+														MarkdownDescription: "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the Component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7678,8 +7678,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"volume_mounts": schema.ListNestedAttribute{
-														Description:         "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the pod.",
-														MarkdownDescription: "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the pod.",
+														Description:         "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the Pod.",
+														MarkdownDescription: "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the Pod.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"mount_path": schema.StringAttribute{
@@ -9778,16 +9778,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"monitor_enabled": schema.BoolAttribute{
-											Description:         "Determines whether the metrics exporter needs to be published to the service endpoint. If set to true, the metrics exporter will be published to the service endpoint, the service will be injected with the following annotations: - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'",
-											MarkdownDescription: "Determines whether the metrics exporter needs to be published to the service endpoint. If set to true, the metrics exporter will be published to the service endpoint, the service will be injected with the following annotations: - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'",
+											Description:         "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
+											MarkdownDescription: "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Specifies the name of the Component. This name is also part of the Service DNS name and must comply with the IANA service naming rule. When ClusterComponentSpec is referenced as a template, the name is optional. Otherwise, it is required.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'",
-											MarkdownDescription: "Specifies the name of the Component. This name is also part of the Service DNS name and must comply with the IANA service naming rule. When ClusterComponentSpec is referenced as a template, the name is optional. Otherwise, it is required.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'",
+											Description:         "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'shardingSpec'), but required otherwise.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'",
+											MarkdownDescription: "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'shardingSpec'), but required otherwise.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='name is immutable'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9798,8 +9798,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"offline_instances": schema.ListAttribute{
-											Description:         "Specifies the names of instances to be transitioned to offline status.  Marking an instance as offline results in the following:  1. The associated pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances.  Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The cluster administrator must manually manage the cleanup and removal of these resources when they are no longer needed.",
-											MarkdownDescription: "Specifies the names of instances to be transitioned to offline status.  Marking an instance as offline results in the following:  1. The associated pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances.  Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The cluster administrator must manually manage the cleanup and removal of these resources when they are no longer needed.",
+											Description:         "Specifies the names of instances to be transitioned to offline status.  Marking an instance as offline results in the following:  1. The associated Pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances.  Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the Cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The administrator must manually manage the cleanup and removal of these resources when they are no longer needed.",
+											MarkdownDescription: "Specifies the names of instances to be transitioned to offline status.  Marking an instance as offline results in the following:  1. The associated Pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances.  Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the Cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The administrator must manually manage the cleanup and removal of these resources when they are no longer needed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -9807,8 +9807,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"replicas": schema.Int64Attribute{
-											Description:         "Each component supports running multiple replicas to provide high availability and persistence. This field can be used to specify the desired number of replicas.",
-											MarkdownDescription: "Each component supports running multiple replicas to provide high availability and persistence. This field can be used to specify the desired number of replicas.",
+											Description:         "Specifies the desired number of replicas in the Component for enhancing availability and durability, or load balancing.",
+											MarkdownDescription: "Specifies the desired number of replicas in the Component for enhancing availability and durability, or load balancing.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -9864,12 +9864,12 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"scheduling_policy": schema.SingleNestedAttribute{
-											Description:         "Specifies the scheduling policy for the component.",
-											MarkdownDescription: "Specifies the scheduling policy for the component.",
+											Description:         "Specifies the scheduling policy for the Component.",
+											MarkdownDescription: "Specifies the scheduling policy for the Component.",
 											Attributes: map[string]schema.Attribute{
 												"affinity": schema.SingleNestedAttribute{
-													Description:         "If specified, the cluster's scheduling constraints.",
-													MarkdownDescription: "If specified, the cluster's scheduling constraints.",
+													Description:         "Specifies a group of affinity scheduling rules of the Cluster, including NodeAffinity, PodAffinity, and PodAntiAffinity.",
+													MarkdownDescription: "Specifies a group of affinity scheduling rules of the Cluster, including NodeAffinity, PodAffinity, and PodAntiAffinity.",
 													Attributes: map[string]schema.Attribute{
 														"node_affinity": schema.SingleNestedAttribute{
 															Description:         "Describes node affinity scheduling rules for the pod.",
@@ -10674,16 +10674,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"node_name": schema.StringAttribute{
-													Description:         "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
-													MarkdownDescription: "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
+													Description:         "NodeName is a request to schedule this Pod onto a specific node. If it is non-empty, the scheduler simply schedules this Pod onto that node, assuming that it fits resource requirements.",
+													MarkdownDescription: "NodeName is a request to schedule this Pod onto a specific node. If it is non-empty, the scheduler simply schedules this Pod onto that node, assuming that it fits resource requirements.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_selector": schema.MapAttribute{
-													Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-													MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+													Description:         "NodeSelector is a selector which must be true for the Pod to fit on a node. Selector which must match a node's labels for the Pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+													MarkdownDescription: "NodeSelector is a selector which must be true for the Pod to fit on a node. Selector which must match a node's labels for the Pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -10691,16 +10691,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"scheduler_name": schema.StringAttribute{
-													Description:         "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
-													MarkdownDescription: "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
+													Description:         "If specified, the Pod will be dispatched by specified scheduler. If not specified, the Pod will be dispatched by default scheduler.",
+													MarkdownDescription: "If specified, the Pod will be dispatched by specified scheduler. If not specified, the Pod will be dispatched by default scheduler.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"tolerations": schema.ListNestedAttribute{
-													Description:         "Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'.",
-													MarkdownDescription: "Attached to tolerate any taint that matches the triple 'key,value,effect' using the matching operator 'operator'.",
+													Description:         "Allows Pods to be scheduled onto nodes with matching taints. Each toleration in the array allows the Pod to tolerate node taints based on specified 'key', 'value', 'effect', and 'operator'.  - The 'key', 'value', and 'effect' identify the taint that the toleration matches. - The 'operator' determines how the toleration matches the taint.  Pods with matching tolerations are allowed to be scheduled on tainted nodes, typically reserved for specific purposes.",
+													MarkdownDescription: "Allows Pods to be scheduled onto nodes with matching taints. Each toleration in the array allows the Pod to tolerate node taints based on specified 'key', 'value', 'effect', and 'operator'.  - The 'key', 'value', and 'effect' identify the taint that the toleration matches. - The 'operator' determines how the toleration matches the taint.  Pods with matching tolerations are allowed to be scheduled on tainted nodes, typically reserved for specific purposes.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"effect": schema.StringAttribute{
@@ -10750,8 +10750,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"topology_spread_constraints": schema.ListNestedAttribute{
-													Description:         "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
-													MarkdownDescription: "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
+													Description:         "TopologySpreadConstraints describes how a group of Pods ought to spread across topology domains. Scheduler will schedule Pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
+													MarkdownDescription: "TopologySpreadConstraints describes how a group of Pods ought to spread across topology domains. Scheduler will schedule Pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"label_selector": schema.SingleNestedAttribute{
@@ -10877,16 +10877,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"service_account_name": schema.StringAttribute{
-											Description:         "Specifies the name of the ServiceAccount required by the running Component. This ServiceAccount is used to grant necessary permissions for the Component's Pods to interact with other Kubernetes resources, such as modifying pod labels or sending events.  Defaults: If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}', bound to a default role defined during KubeBlocks installation.  Future Changes: Future versions might change the default ServiceAccount creation strategy to one per Component, potentially revising the naming to 'kb-{cluster.name}-{component.name}'.  Users can override the automatic ServiceAccount assignment by explicitly setting the name of an existed ServiceAccount in this field.",
-											MarkdownDescription: "Specifies the name of the ServiceAccount required by the running Component. This ServiceAccount is used to grant necessary permissions for the Component's Pods to interact with other Kubernetes resources, such as modifying pod labels or sending events.  Defaults: If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}', bound to a default role defined during KubeBlocks installation.  Future Changes: Future versions might change the default ServiceAccount creation strategy to one per Component, potentially revising the naming to 'kb-{cluster.name}-{component.name}'.  Users can override the automatic ServiceAccount assignment by explicitly setting the name of an existed ServiceAccount in this field.",
+											Description:         "Specifies the name of the ServiceAccount required by the running Component. This ServiceAccount is used to grant necessary permissions for the Component's Pods to interact with other Kubernetes resources, such as modifying Pod labels or sending events.  Defaults: If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}', bound to a default role installed together with KubeBlocks.  Future Changes: Future versions might change the default ServiceAccount creation strategy to one per Component, potentially revising the naming to 'kb-{cluster.name}-{component.name}'.  Users can override the automatic ServiceAccount assignment by explicitly setting the name of an existed ServiceAccount in this field.",
+											MarkdownDescription: "Specifies the name of the ServiceAccount required by the running Component. This ServiceAccount is used to grant necessary permissions for the Component's Pods to interact with other Kubernetes resources, such as modifying Pod labels or sending events.  Defaults: If not specified, KubeBlocks automatically assigns a default ServiceAccount named 'kb-{cluster.name}', bound to a default role installed together with KubeBlocks.  Future Changes: Future versions might change the default ServiceAccount creation strategy to one per Component, potentially revising the naming to 'kb-{cluster.name}-{component.name}'.  Users can override the automatic ServiceAccount assignment by explicitly setting the name of an existed ServiceAccount in this field.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"service_refs": schema.ListNestedAttribute{
-											Description:         "Defines a list of ServiceRef for a Component, allowing it to connect and interact with other services. These services can be external or managed by the same KubeBlocks operator, categorized as follows:  1. External Services:  - Not managed by KubeBlocks. These could be services outside KubeBlocks or non-Kubernetes services. - Connection requires a ServiceDescriptor providing details for service binding.  2. KubeBlocks Services:  - Managed within the same KubeBlocks environment. - Service binding is achieved by specifying cluster names in the service references, with configurations handled by the KubeBlocks operator.  ServiceRef maintains cluster-level semantic consistency; references with the same 'serviceRef.name' within the same cluster are treated as identical. Only bindings to the same cluster or ServiceDescriptor are allowed within a cluster.  Example: '''yaml serviceRefs: - name: 'redis-sentinel' serviceDescriptor: name: 'external-redis-sentinel' - name: 'postgres-cluster' cluster: name: 'my-postgres-cluster' ''' The example above includes references to an external Redis Sentinel service and a PostgreSQL cluster managed by KubeBlocks.",
-											MarkdownDescription: "Defines a list of ServiceRef for a Component, allowing it to connect and interact with other services. These services can be external or managed by the same KubeBlocks operator, categorized as follows:  1. External Services:  - Not managed by KubeBlocks. These could be services outside KubeBlocks or non-Kubernetes services. - Connection requires a ServiceDescriptor providing details for service binding.  2. KubeBlocks Services:  - Managed within the same KubeBlocks environment. - Service binding is achieved by specifying cluster names in the service references, with configurations handled by the KubeBlocks operator.  ServiceRef maintains cluster-level semantic consistency; references with the same 'serviceRef.name' within the same cluster are treated as identical. Only bindings to the same cluster or ServiceDescriptor are allowed within a cluster.  Example: '''yaml serviceRefs: - name: 'redis-sentinel' serviceDescriptor: name: 'external-redis-sentinel' - name: 'postgres-cluster' cluster: name: 'my-postgres-cluster' ''' The example above includes references to an external Redis Sentinel service and a PostgreSQL cluster managed by KubeBlocks.",
+											Description:         "Defines a list of ServiceRef for a Component, enabling access to both external services and Services provided by other Clusters.  Types of services:  - External services: Not managed by KubeBlocks or managed by a different KubeBlocks operator; Require a ServiceDescriptor for connection details. - Services provided by a Cluster: Managed by the same KubeBlocks operator; identified using Cluster, Component and Service names.  ServiceRefs with identical 'serviceRef.name' in the same Cluster are considered the same.  Example: '''yaml serviceRefs: - name: 'redis-sentinel' serviceDescriptor: name: 'external-redis-sentinel' - name: 'postgres-cluster' clusterServiceSelector: cluster: 'my-postgres-cluster' service: component: 'postgresql' ''' The example above includes ServiceRefs to an external Redis Sentinel service and a PostgreSQL Cluster.",
+											MarkdownDescription: "Defines a list of ServiceRef for a Component, enabling access to both external services and Services provided by other Clusters.  Types of services:  - External services: Not managed by KubeBlocks or managed by a different KubeBlocks operator; Require a ServiceDescriptor for connection details. - Services provided by a Cluster: Managed by the same KubeBlocks operator; identified using Cluster, Component and Service names.  ServiceRefs with identical 'serviceRef.name' in the same Cluster are considered the same.  Example: '''yaml serviceRefs: - name: 'redis-sentinel' serviceDescriptor: name: 'external-redis-sentinel' - name: 'postgres-cluster' clusterServiceSelector: cluster: 'my-postgres-cluster' service: component: 'postgresql' ''' The example above includes ServiceRefs to an external Redis Sentinel service and a PostgreSQL Cluster.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"cluster": schema.StringAttribute{
@@ -10898,12 +10898,12 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"cluster_service_selector": schema.SingleNestedAttribute{
-														Description:         "ClusterRef is used to reference a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access.",
-														MarkdownDescription: "ClusterRef is used to reference a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access.",
+														Description:         "References a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access.",
+														MarkdownDescription: "References a service provided by another KubeBlocks Cluster. It specifies the ClusterService and the account credentials needed for access.",
 														Attributes: map[string]schema.Attribute{
 															"cluster": schema.StringAttribute{
-																Description:         "The name of the KubeBlocks Cluster being referenced.",
-																MarkdownDescription: "The name of the KubeBlocks Cluster being referenced.",
+																Description:         "The name of the Cluster being referenced.",
+																MarkdownDescription: "The name of the Cluster being referenced.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -10914,8 +10914,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 																MarkdownDescription: "Specifies the SystemAccount to authenticate and establish a connection with the referenced Cluster. The SystemAccount should be defined in 'componentDefinition.spec.systemAccounts' of the Component providing the service in the referenced Cluster.",
 																Attributes: map[string]schema.Attribute{
 																	"component": schema.StringAttribute{
-																		Description:         "The name of the component where the credential resides in.",
-																		MarkdownDescription: "The name of the component where the credential resides in.",
+																		Description:         "The name of the Component where the credential resides in.",
+																		MarkdownDescription: "The name of the Component where the credential resides in.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -10935,28 +10935,28 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 															},
 
 															"service": schema.SingleNestedAttribute{
-																Description:         "Identifies a ClusterService from the list of services defined in 'cluster.spec.services' of the referenced Cluster.",
-																MarkdownDescription: "Identifies a ClusterService from the list of services defined in 'cluster.spec.services' of the referenced Cluster.",
+																Description:         "Identifies a ClusterService from the list of Services defined in 'cluster.spec.services' of the referenced Cluster.",
+																MarkdownDescription: "Identifies a ClusterService from the list of Services defined in 'cluster.spec.services' of the referenced Cluster.",
 																Attributes: map[string]schema.Attribute{
 																	"component": schema.StringAttribute{
-																		Description:         "The name of the component where the service resides in.  It is required when referencing a component service.",
-																		MarkdownDescription: "The name of the component where the service resides in.  It is required when referencing a component service.",
+																		Description:         "The name of the Component where the Service resides in.  It is required when referencing a Component's Service.",
+																		MarkdownDescription: "The name of the Component where the Service resides in.  It is required when referencing a Component's Service.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"port": schema.StringAttribute{
-																		Description:         "The port name of the service to reference.  If there is a non-zero node-port exist for the matched service port, the node-port will be selected first. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name:port1,service2.name:port2...",
-																		MarkdownDescription: "The port name of the service to reference.  If there is a non-zero node-port exist for the matched service port, the node-port will be selected first. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name:port1,service2.name:port2...",
+																		Description:         "The port name of the Service to be referenced.  If there is a non-zero node-port exist for the matched Service port, the node-port will be selected first.  If the referenced Service is of pod-service type (a Service per Pod), there will be multiple Service objects matched, and the resolved value will be presented in the following format: service1.name:port1,service2.name:port2...",
+																		MarkdownDescription: "The port name of the Service to be referenced.  If there is a non-zero node-port exist for the matched Service port, the node-port will be selected first.  If the referenced Service is of pod-service type (a Service per Pod), there will be multiple Service objects matched, and the resolved value will be presented in the following format: service1.name:port1,service2.name:port2...",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"service": schema.StringAttribute{
-																		Description:         "The name of the service to reference.  Leave it empty to reference the default service. Set it to 'headless' to reference the default headless service. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name,service2.name...",
-																		MarkdownDescription: "The name of the service to reference.  Leave it empty to reference the default service. Set it to 'headless' to reference the default headless service. If the referenced service is a pod-service, there will be multiple service objects matched, and the resolved value will be presented in the following format: service1.name,service2.name...",
+																		Description:         "The name of the Service to be referenced.  Leave it empty to reference the default Service. Set it to 'headless' to reference the default headless Service.  If the referenced Service is of pod-service type (a Service per Pod), there will be multiple Service objects matched, and the resolved value will be presented in the following format: service1.name,service2.name...",
+																		MarkdownDescription: "The name of the Service to be referenced.  Leave it empty to reference the default Service. Set it to 'headless' to reference the default headless Service.  If the referenced Service is of pod-service type (a Service per Pod), there will be multiple Service objects matched, and the resolved value will be presented in the following format: service1.name,service2.name...",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -10989,8 +10989,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"service_descriptor": schema.StringAttribute{
-														Description:         "Specifies the name of the ServiceDescriptor object that describes the service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.",
-														MarkdownDescription: "Specifies the name of the ServiceDescriptor object that describes the service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.",
+														Description:         "Specifies the name of the ServiceDescriptor object that describes a service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.",
+														MarkdownDescription: "Specifies the name of the ServiceDescriptor object that describes a service provided by external sources.  When referencing a service provided by external sources, a ServiceDescriptor object is required to establish the service binding. The 'serviceDescriptor.spec.serviceKind' and 'serviceDescriptor.spec.serviceVersion' should match the serviceKind and serviceVersion declared in the definition.  If both 'cluster' and 'serviceDescriptor' are specified, the 'cluster' takes precedence.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -11003,8 +11003,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"service_version": schema.StringAttribute{
-											Description:         "ServiceVersion specifies the version of the service expected to be provisioned by this component. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If no version is specified, the latest available version will be used.",
-											MarkdownDescription: "ServiceVersion specifies the version of the service expected to be provisioned by this component. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If no version is specified, the latest available version will be used.",
+											Description:         "ServiceVersion specifies the version of the Service expected to be provisioned by this Component. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If no version is specified, the latest available version will be used.",
+											MarkdownDescription: "ServiceVersion specifies the version of the Service expected to be provisioned by this Component. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If no version is specified, the latest available version will be used.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -11014,8 +11014,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"services": schema.ListNestedAttribute{
-											Description:         "Services overrides services defined in referenced ComponentDefinition and expose endpoints that can be accessed by clients.",
-											MarkdownDescription: "Services overrides services defined in referenced ComponentDefinition and expose endpoints that can be accessed by clients.",
+											Description:         "Overrides services defined in referenced ComponentDefinition and expose endpoints that can be accessed by clients.",
+											MarkdownDescription: "Overrides services defined in referenced ComponentDefinition and expose endpoints that can be accessed by clients.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"annotations": schema.MapAttribute{
@@ -11028,8 +11028,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "References the component service name defined in the 'componentDefinition.spec.services[*].name'.",
-														MarkdownDescription: "References the component service name defined in the 'componentDefinition.spec.services[*].name'.",
+														Description:         "References the ComponentService name defined in the 'componentDefinition.spec.services[*].name'.",
+														MarkdownDescription: "References the ComponentService name defined in the 'componentDefinition.spec.services[*].name'.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -11039,16 +11039,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"pod_service": schema.BoolAttribute{
-														Description:         "Indicates whether to generate individual services for each pod. If set to true, a separate service will be created for each pod in the cluster.",
-														MarkdownDescription: "Indicates whether to generate individual services for each pod. If set to true, a separate service will be created for each pod in the cluster.",
+														Description:         "Indicates whether to generate individual Services for each Pod. If set to true, a separate Service will be created for each Pod in the Cluster.",
+														MarkdownDescription: "Indicates whether to generate individual Services for each Pod. If set to true, a separate Service will be created for each Pod in the Cluster.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"service_type": schema.StringAttribute{
-														Description:         "Determines how the Service is exposed. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for ClusterComponentService.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
-														MarkdownDescription: "Determines how the Service is exposed. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for ClusterComponentService.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
+														Description:         "Determines how the Service is exposed. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP' allocates a Cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the ClusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the ClusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for ClusterComponentService.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
+														MarkdownDescription: "Determines how the Service is exposed. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP' allocates a Cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the ClusterIP. - 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the ClusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for ClusterComponentService.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -11064,8 +11064,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"sidecars": schema.ListAttribute{
-											Description:         "Defines the sidecar containers that will be attached to the component's main container.",
-											MarkdownDescription: "Defines the sidecar containers that will be attached to the component's main container.",
+											Description:         "Defines the sidecar containers that will be attached to the Component's main container.",
+											MarkdownDescription: "Defines the sidecar containers that will be attached to the Component's main container.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -11093,16 +11093,16 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"tls": schema.BoolAttribute{
-											Description:         "A boolean flag that indicates whether the component should use Transport Layer Security (TLS) for secure communication. When set to true, the component will be configured to use TLS encryption for its network connections. This ensures that the data transmitted between the component and its clients or other components is encrypted and protected from unauthorized access. If TLS is enabled, the component may require additional configuration, such as specifying TLS certificates and keys, to properly set up the secure communication channel.",
-											MarkdownDescription: "A boolean flag that indicates whether the component should use Transport Layer Security (TLS) for secure communication. When set to true, the component will be configured to use TLS encryption for its network connections. This ensures that the data transmitted between the component and its clients or other components is encrypted and protected from unauthorized access. If TLS is enabled, the component may require additional configuration, such as specifying TLS certificates and keys, to properly set up the secure communication channel.",
+											Description:         "A boolean flag that indicates whether the Component should use Transport Layer Security (TLS) for secure communication. When set to true, the Component will be configured to use TLS encryption for its network connections. This ensures that the data transmitted between the Component and its clients or other Components is encrypted and protected from unauthorized access. If TLS is enabled, the Component may require additional configuration, such as specifying TLS certificates and keys, to properly set up the secure communication channel.",
+											MarkdownDescription: "A boolean flag that indicates whether the Component should use Transport Layer Security (TLS) for secure communication. When set to true, the Component will be configured to use TLS encryption for its network connections. This ensures that the data transmitted between the Component and its clients or other Components is encrypted and protected from unauthorized access. If TLS is enabled, the Component may require additional configuration, such as specifying TLS certificates and keys, to properly set up the secure communication channel.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tolerations": schema.MapAttribute{
-											Description:         "Allows the Component to be scheduled onto nodes with matching taints. It is an array of tolerations that are attached to the Component's Pods.  Each toleration consists of a 'key', 'value', 'effect', and 'operator'. The 'key', 'value', and 'effect' define the taint that the toleration matches. The 'operator' specifies how the toleration matches the taint.  If a node has a taint that matches a toleration, the Component's pods can be scheduled onto that node. This allows the Component's Pods to run on nodes that have been tainted to prevent regular Pods from being scheduled.",
-											MarkdownDescription: "Allows the Component to be scheduled onto nodes with matching taints. It is an array of tolerations that are attached to the Component's Pods.  Each toleration consists of a 'key', 'value', 'effect', and 'operator'. The 'key', 'value', and 'effect' define the taint that the toleration matches. The 'operator' specifies how the toleration matches the taint.  If a node has a taint that matches a toleration, the Component's pods can be scheduled onto that node. This allows the Component's Pods to run on nodes that have been tainted to prevent regular Pods from being scheduled.",
+											Description:         "Allows Pods to be scheduled onto nodes with matching taints. Each toleration in the array allows the Pod to tolerate node taints based on specified 'key', 'value', 'effect', and 'operator'.  - The 'key', 'value', and 'effect' identify the taint that the toleration matches. - The 'operator' determines how the toleration matches the taint.  Pods with matching tolerations are allowed to be scheduled on tainted nodes, typically reserved for specific purposes.  Deprecated since v0.10, replaced by the 'schedulingPolicy' field.",
+											MarkdownDescription: "Allows Pods to be scheduled onto nodes with matching taints. Each toleration in the array allows the Pod to tolerate node taints based on specified 'key', 'value', 'effect', and 'operator'.  - The 'key', 'value', and 'effect' identify the taint that the toleration matches. - The 'operator' determines how the toleration matches the taint.  Pods with matching tolerations are allowed to be scheduled on tainted nodes, typically reserved for specific purposes.  Deprecated since v0.10, replaced by the 'schedulingPolicy' field.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -11110,8 +11110,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"update_strategy": schema.StringAttribute{
-											Description:         "Defines the update strategy for the component.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
-											MarkdownDescription: "Defines the update strategy for the component.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+											Description:         "Defines the update strategy for the Component.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+											MarkdownDescription: "Defines the update strategy for the Component.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -11125,8 +11125,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "Allows users to specify custom ConfigMaps and Secrets to be mounted as volumes in the Cluster's Pods. This is useful in scenarios where users need to provide additional resources to the Cluster, such as:  - Mounting custom scripts or configuration files during Cluster startup. - Mounting Secrets as volumes to provide sensitive information, like S3 AK/SK, to the Cluster.",
 											Attributes: map[string]schema.Attribute{
 												"config_map_refs": schema.ListNestedAttribute{
-													Description:         "ConfigMapRefs defines the user-defined config maps.",
-													MarkdownDescription: "ConfigMapRefs defines the user-defined config maps.",
+													Description:         "ConfigMapRefs defines the user-defined ConfigMaps.",
+													MarkdownDescription: "ConfigMapRefs defines the user-defined ConfigMaps.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"as_volume_from": schema.ListAttribute{
@@ -11245,8 +11245,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"secret_refs": schema.ListNestedAttribute{
-													Description:         "SecretRefs defines the user-defined secrets.",
-													MarkdownDescription: "SecretRefs defines the user-defined secrets.",
+													Description:         "SecretRefs defines the user-defined Secrets.",
+													MarkdownDescription: "SecretRefs defines the user-defined Secrets.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"as_volume_from": schema.ListAttribute{
@@ -11283,8 +11283,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 															},
 
 															"secret": schema.SingleNestedAttribute{
-																Description:         "Secret specifies the secret to be mounted as a volume.",
-																MarkdownDescription: "Secret specifies the secret to be mounted as a volume.",
+																Description:         "Secret specifies the Secret to be mounted as a volume.",
+																MarkdownDescription: "Secret specifies the Secret to be mounted as a volume.",
 																Attributes: map[string]schema.Attribute{
 																	"default_mode": schema.Int64Attribute{
 																		Description:         "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
@@ -11370,8 +11370,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"volume_claim_templates": schema.ListNestedAttribute{
-											Description:         "Specifies a list of PersistentVolumeClaim templates that define the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component when it is deployed.",
-											MarkdownDescription: "Specifies a list of PersistentVolumeClaim templates that define the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component when it is deployed.",
+											Description:         "Specifies a list of PersistentVolumeClaim templates that represent the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component.",
+											MarkdownDescription: "Specifies a list of PersistentVolumeClaim templates that represent the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
@@ -11484,8 +11484,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "Specifies the storage of the first componentSpec, if the storage of the first componentSpec is specified, this value will be ignored.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
 						Attributes: map[string]schema.Attribute{
 							"size": schema.StringAttribute{
-								Description:         "Specifies the amount of storage the cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Specifies the amount of storage the cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Specifies the amount of storage the Cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Specifies the amount of storage the Cluster needs. For more information, refer to: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -11497,8 +11497,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"tenancy": schema.StringAttribute{
-						Description:         "Describes how pods are distributed across node.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
-						MarkdownDescription: "Describes how pods are distributed across node.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+						Description:         "Describes how Pods are distributed across node.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+						MarkdownDescription: "Describes how Pods are distributed across node.  Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -11508,8 +11508,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"termination_policy": schema.StringAttribute{
-						Description:         "Specifies the behavior when a Cluster is deleted. It defines how resources, data, and backups associated with a Cluster are managed during termination. Choose a policy based on the desired level of resource cleanup and data preservation:  - 'DoNotTerminate': Prevents deletion of the Cluster. This policy ensures that all resources remain intact. - 'Halt': Deletes Cluster resources like Pods and Services but retains Persistent Volume Claims (PVCs), allowing for data preservation while stopping other operations. - 'Delete': Extends the 'Halt' policy by also removing PVCs, leading to a thorough cleanup while removing all persistent data. - 'WipeOut': An aggressive policy that deletes all Cluster resources, including volume snapshots and backups in external storage. This results in complete data removal and should be used cautiously, primarily in non-production environments to avoid irreversible data loss.  Warning: Choosing an inappropriate termination policy can result in significant data loss. The 'WipeOut' policy is particularly risky in production environments due to its irreversible nature.",
-						MarkdownDescription: "Specifies the behavior when a Cluster is deleted. It defines how resources, data, and backups associated with a Cluster are managed during termination. Choose a policy based on the desired level of resource cleanup and data preservation:  - 'DoNotTerminate': Prevents deletion of the Cluster. This policy ensures that all resources remain intact. - 'Halt': Deletes Cluster resources like Pods and Services but retains Persistent Volume Claims (PVCs), allowing for data preservation while stopping other operations. - 'Delete': Extends the 'Halt' policy by also removing PVCs, leading to a thorough cleanup while removing all persistent data. - 'WipeOut': An aggressive policy that deletes all Cluster resources, including volume snapshots and backups in external storage. This results in complete data removal and should be used cautiously, primarily in non-production environments to avoid irreversible data loss.  Warning: Choosing an inappropriate termination policy can result in significant data loss. The 'WipeOut' policy is particularly risky in production environments due to its irreversible nature.",
+						Description:         "Specifies the behavior when a Cluster is deleted. It defines how resources, data, and backups associated with a Cluster are managed during termination. Choose a policy based on the desired level of resource cleanup and data preservation:  - 'DoNotTerminate': Prevents deletion of the Cluster. This policy ensures that all resources remain intact. - 'Halt': Deletes Cluster resources like Pods and Services but retains Persistent Volume Claims (PVCs), allowing for data preservation while stopping other operations. - 'Delete': Extends the 'Halt' policy by also removing PVCs, leading to a thorough cleanup while removing all persistent data. - 'WipeOut': An aggressive policy that deletes all Cluster resources, including volume snapshots and backups in external storage. This results in complete data removal and should be used cautiously, primarily in non-production environments to avoid irreversible data loss.  Warning: Choosing an inappropriate termination policy can result in data loss. The 'WipeOut' policy is particularly risky in production environments due to its irreversible nature.",
+						MarkdownDescription: "Specifies the behavior when a Cluster is deleted. It defines how resources, data, and backups associated with a Cluster are managed during termination. Choose a policy based on the desired level of resource cleanup and data preservation:  - 'DoNotTerminate': Prevents deletion of the Cluster. This policy ensures that all resources remain intact. - 'Halt': Deletes Cluster resources like Pods and Services but retains Persistent Volume Claims (PVCs), allowing for data preservation while stopping other operations. - 'Delete': Extends the 'Halt' policy by also removing PVCs, leading to a thorough cleanup while removing all persistent data. - 'WipeOut': An aggressive policy that deletes all Cluster resources, including volume snapshots and backups in external storage. This results in complete data removal and should be used cautiously, primarily in non-production environments to avoid irreversible data loss.  Warning: Choosing an inappropriate termination policy can result in data loss. The 'WipeOut' policy is particularly risky in production environments due to its irreversible nature.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -11519,8 +11519,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"tolerations": schema.MapAttribute{
-						Description:         "An array that specifies tolerations attached to the Cluster's Pods, allowing them to be scheduled onto nodes with matching taints.",
-						MarkdownDescription: "An array that specifies tolerations attached to the Cluster's Pods, allowing them to be scheduled onto nodes with matching taints.",
+						Description:         "An array that specifies tolerations attached to the Cluster's Pods, allowing them to be scheduled onto nodes with matching taints.  Deprecated since v0.10. Use the 'schedulingPolicy' field instead.",
+						MarkdownDescription: "An array that specifies tolerations attached to the Cluster's Pods, allowing them to be scheduled onto nodes with matching taints.  Deprecated since v0.10. Use the 'schedulingPolicy' field instead.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -11528,8 +11528,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"topology": schema.StringAttribute{
-						Description:         "Specifies the name of the ClusterTopology to be used when creating the Cluster.  This field defines which set of components, as outlined in the ClusterDefinition, will be used to construct the Cluster based on the named topology. The ClusterDefinition may list multiple topologies under 'clusterdefinition.spec.topologies[*]', each tailored to different use cases or environments.  If 'topology' is not specified, the Cluster will default to the topology defined in the ClusterDefinition.  Note: Once set during the Cluster creation, the Topology field cannot be modified. It establishes the initial composition and structure of the Cluster and is intended for one-time configuration.",
-						MarkdownDescription: "Specifies the name of the ClusterTopology to be used when creating the Cluster.  This field defines which set of components, as outlined in the ClusterDefinition, will be used to construct the Cluster based on the named topology. The ClusterDefinition may list multiple topologies under 'clusterdefinition.spec.topologies[*]', each tailored to different use cases or environments.  If 'topology' is not specified, the Cluster will default to the topology defined in the ClusterDefinition.  Note: Once set during the Cluster creation, the Topology field cannot be modified. It establishes the initial composition and structure of the Cluster and is intended for one-time configuration.",
+						Description:         "Specifies the name of the ClusterTopology to be used when creating the Cluster.  This field defines which set of Components, as outlined in the ClusterDefinition, will be used to construct the Cluster based on the named topology. The ClusterDefinition may list multiple topologies under 'clusterdefinition.spec.topologies[*]', each tailored to different use cases or environments.  If 'topology' is not specified, the Cluster will use the default topology defined in the ClusterDefinition.  Note: Once set during the Cluster creation, the 'topology' field cannot be modified. It establishes the initial composition and structure of the Cluster and is intended for one-time configuration.",
+						MarkdownDescription: "Specifies the name of the ClusterTopology to be used when creating the Cluster.  This field defines which set of Components, as outlined in the ClusterDefinition, will be used to construct the Cluster based on the named topology. The ClusterDefinition may list multiple topologies under 'clusterdefinition.spec.topologies[*]', each tailored to different use cases or environments.  If 'topology' is not specified, the Cluster will use the default topology defined in the ClusterDefinition.  Note: Once set during the Cluster creation, the 'topology' field cannot be modified. It establishes the initial composition and structure of the Cluster and is intended for one-time configuration.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

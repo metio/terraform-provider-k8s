@@ -297,6 +297,7 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
+					ServicesQueryDuration *string `tfsdk:"services_query_duration" json:"servicesQueryDuration,omitempty"`
 				} `tfsdk:"jaeger_query" json:"jaegerQuery,omitempty"`
 			} `tfsdk:"query_frontend" json:"queryFrontend,omitempty"`
 		} `tfsdk:"template" json:"template,omitempty"`
@@ -2081,6 +2082,14 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"services_query_duration": schema.StringAttribute{
+												Description:         "ServicesQueryDuration defines how long the services will be available in the services list",
+												MarkdownDescription: "ServicesQueryDuration defines how long the services will be available in the services list",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,

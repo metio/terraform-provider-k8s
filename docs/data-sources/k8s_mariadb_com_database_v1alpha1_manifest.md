@@ -62,7 +62,7 @@ Optional:
 - `character_set` (String) CharacterSet to use in the Database.
 - `collate` (String) CharacterSet to use in the Database.
 - `name` (String) Name overrides the default Database name provided by metadata.name.
-- `requeue_interval` (String) RequeueInterval is used to perform requeue reconcilizations.
+- `requeue_interval` (String) RequeueInterval is used to perform requeue reconciliations.
 - `retry_interval` (String) RetryInterval is the interval used to perform retries.
 
 <a id="nestedatt--spec--maria_db_ref"></a>

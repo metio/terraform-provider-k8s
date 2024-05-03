@@ -12809,8 +12809,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"dynamic_configuration": schema.MapAttribute{
-								Description:         "Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html",
-								MarkdownDescription: "Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html",
+								Description:         "Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/dynamic_configuration.html",
+								MarkdownDescription: "Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/dynamic_configuration.html",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

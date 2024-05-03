@@ -46,6 +46,7 @@ type VpcresourcesK8SAwsCninodeV1Alpha1ManifestData struct {
 			Name  *string `tfsdk:"name" json:"name,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"features" json:"features,omitempty"`
+		Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -139,6 +140,15 @@ func (r *VpcresourcesK8SAwsCninodeV1Alpha1Manifest) Schema(_ context.Context, _ 
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"tags": schema.MapAttribute{
+						Description:         "Additional tag key/value added to all network interfaces provisioned by the vpc-resource-controller and VPC-CNI",
+						MarkdownDescription: "Additional tag key/value added to all network interfaces provisioned by the vpc-resource-controller and VPC-CNI",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

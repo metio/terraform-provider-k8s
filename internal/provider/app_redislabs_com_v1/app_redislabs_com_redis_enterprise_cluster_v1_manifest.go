@@ -159,9 +159,10 @@ type AppRedislabsComRedisEnterpriseClusterV1ManifestData struct {
 			ResponseTimeout   *int64 `tfsdk:"response_timeout" json:"responseTimeout,omitempty"`
 		} `tfsdk:"ocsp_configuration" json:"ocspConfiguration,omitempty"`
 		PersistentSpec *struct {
-			Enabled          *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-			VolumeSize       *string `tfsdk:"volume_size" json:"volumeSize,omitempty"`
+			EnablePersistentVolumeResize *bool   `tfsdk:"enable_persistent_volume_resize" json:"enablePersistentVolumeResize,omitempty"`
+			Enabled                      *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			StorageClassName             *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+			VolumeSize                   *string `tfsdk:"volume_size" json:"volumeSize,omitempty"`
 		} `tfsdk:"persistent_spec" json:"persistentSpec,omitempty"`
 		PodAnnotations  *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
 		PodAntiAffinity *struct {
@@ -3691,6 +3692,14 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 						Description:         "Specification for Redis Enterprise Cluster persistence",
 						MarkdownDescription: "Specification for Redis Enterprise Cluster persistence",
 						Attributes: map[string]schema.Attribute{
+							"enable_persistent_volume_resize": schema.BoolAttribute{
+								Description:         "Whether to enable PersistentVolumes resize. Disabled by default. Read the instruction in pvc_expansion readme carefully before using this feature.",
+								MarkdownDescription: "Whether to enable PersistentVolumes resize. Disabled by default. Read the instruction in pvc_expansion readme carefully before using this feature.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled": schema.BoolAttribute{
 								Description:         "Whether to add persistent volume to Redis Enterprise pods",
 								MarkdownDescription: "Whether to add persistent volume to Redis Enterprise pods",
@@ -3700,16 +3709,16 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 							},
 
 							"storage_class_name": schema.StringAttribute{
-								Description:         "Storage class for persistent volume in Redis Enterprise pods Leave empty to use the default",
-								MarkdownDescription: "Storage class for persistent volume in Redis Enterprise pods Leave empty to use the default",
+								Description:         "Storage class for persistent volume in Redis Enterprise pods. Leave empty to use the default. If using the default this way, make sure the Kubernetes Cluster has a default Storage Class configured. This can be done by running a 'kubectl get storageclass' and see if one of the Storage Classes' names contains a '(default)' mark.",
+								MarkdownDescription: "Storage class for persistent volume in Redis Enterprise pods. Leave empty to use the default. If using the default this way, make sure the Kubernetes Cluster has a default Storage Class configured. This can be done by running a 'kubectl get storageclass' and see if one of the Storage Classes' names contains a '(default)' mark.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"volume_size": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "To enable resizing after creating the cluster - please follow the instructions in the pvc_expansion readme",
+								MarkdownDescription: "To enable resizing after creating the cluster - please follow the instructions in the pvc_expansion readme",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

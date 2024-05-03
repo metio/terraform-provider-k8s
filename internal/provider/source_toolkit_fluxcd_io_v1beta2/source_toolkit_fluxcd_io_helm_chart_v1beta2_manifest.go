@@ -49,10 +49,11 @@ type SourceToolkitFluxcdIoHelmChartV1Beta2ManifestData struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"namespace_selectors" json:"namespaceSelectors,omitempty"`
 		} `tfsdk:"access_from" json:"accessFrom,omitempty"`
-		Chart             *string `tfsdk:"chart" json:"chart,omitempty"`
-		Interval          *string `tfsdk:"interval" json:"interval,omitempty"`
-		ReconcileStrategy *string `tfsdk:"reconcile_strategy" json:"reconcileStrategy,omitempty"`
-		SourceRef         *struct {
+		Chart                    *string `tfsdk:"chart" json:"chart,omitempty"`
+		IgnoreMissingValuesFiles *bool   `tfsdk:"ignore_missing_values_files" json:"ignoreMissingValuesFiles,omitempty"`
+		Interval                 *string `tfsdk:"interval" json:"interval,omitempty"`
+		ReconcileStrategy        *string `tfsdk:"reconcile_strategy" json:"reconcileStrategy,omitempty"`
+		SourceRef                *struct {
 			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
@@ -185,6 +186,14 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Manifest) Schema(_ context.Context
 						MarkdownDescription: "Chart is the name or path the Helm chart is available at in theSourceRef.",
 						Required:            true,
 						Optional:            false,
+						Computed:            false,
+					},
+
+					"ignore_missing_values_files": schema.BoolAttribute{
+						Description:         "IgnoreMissingValuesFiles controls whether to silently ignore missing valuesfiles rather than failing.",
+						MarkdownDescription: "IgnoreMissingValuesFiles controls whether to silently ignore missing valuesfiles rather than failing.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 

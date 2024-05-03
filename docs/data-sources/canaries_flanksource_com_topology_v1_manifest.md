@@ -75,6 +75,7 @@ Optional:
 - `checks` (Attributes List) (see [below for nested schema](#nestedatt--spec--components--checks))
 - `components` (Map of String) Create new child components
 - `configs` (Attributes List) Lookup and associate config items with this component (see [below for nested schema](#nestedatt--spec--components--configs))
+- `external_id` (String)
 - `for_each` (Map of String) Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself
 - `hidden` (Boolean) If set to true, do not display in UI
 - `icon` (String)
@@ -168,6 +169,7 @@ Optional:
 
 Optional:
 
+- `external_id` (String)
 - `name` (String)
 - `namespace` (String)
 - `type` (String)

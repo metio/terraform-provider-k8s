@@ -109,7 +109,7 @@ Optional:
 
 Optional:
 
-- `http` (Attributes) LocalHTTP defines confguration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--from--default--local--http))
+- `http` (Attributes) LocalHTTP defines configuration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--from--default--local--http))
 - `tcp` (Attributes) LocalTCP defines confguration of local TCP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--from--default--local--tcp))
 
 <a id="nestedatt--spec--from--default--local--http"></a>
@@ -223,7 +223,7 @@ Optional:
 
 Optional:
 
-- `http` (Attributes) LocalHTTP defines confguration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--to--default--local--http))
+- `http` (Attributes) LocalHTTP defines configuration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--to--default--local--http))
 - `tcp` (Attributes) LocalTCP defines confguration of local TCP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--to--default--local--tcp))
 
 <a id="nestedatt--spec--to--default--local--http"></a>

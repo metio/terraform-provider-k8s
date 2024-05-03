@@ -1474,6 +1474,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
 													},
 												},
 												Required: false,
@@ -1516,6 +1520,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
 													},
 												},
 												Required: false,
@@ -1623,6 +1631,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(0),
+																			int64validator.AtMost(4.294967295e+09),
+																		},
 																	},
 																},
 															},
@@ -3052,6 +3064,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
 											},
 
 											"tokens_per_fill": schema.Int64Attribute{
@@ -3687,6 +3703,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
 											},
 
 											"unit": schema.StringAttribute{
@@ -3712,6 +3732,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
 											},
 
 											"unit": schema.StringAttribute{
@@ -3754,6 +3778,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
 											},
 
 											"tokens_per_fill": schema.Int64Attribute{
@@ -4397,6 +4425,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
 											},
 
 											"tokens_per_fill": schema.Int64Attribute{
@@ -5133,6 +5165,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 
 									"per_try_timeout": schema.StringAttribute{
@@ -5500,6 +5536,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
 																				},
 																			},
 																			Required: false,
@@ -5807,6 +5847,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
 																				},
 																			},
 																			Required: false,
@@ -6176,6 +6220,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
 																				},
 																			},
 																			Required: false,
@@ -6672,6 +6720,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
 																				},
 																			},
 																			Required: false,
@@ -6979,6 +7031,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
 																				},
 																			},
 																			Required: false,
@@ -7348,6 +7404,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
 																				},
 																			},
 																			Required: false,
@@ -7727,6 +7787,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,
@@ -8034,6 +8098,10 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,

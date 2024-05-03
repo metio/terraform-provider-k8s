@@ -69,10 +69,10 @@ Required:
 
 Optional:
 
-- `namespace` (String) Namespace represents the namespace for the referent. For non-namespace scoped resources(e.g. 'ClusterRole')，do not need specify Namespace, and for namespace scoped resources, Namespace is required. If Namespace is not specified, means the resource is non-namespace scoped.
+- `namespace` (String) Namespace represents the namespace for the referent.For non-namespace scoped resources(e.g. 'ClusterRole')，do not need specify Namespace,and for namespace scoped resources, Namespace is required.If Namespace is not specified, means the resource is non-namespace scoped.
 - `replicas` (Number) Replicas represents the replica number of the referencing resource.
 - `resource_per_replicas` (Map of String) ReplicaResourceRequirements represents the resources required by each replica.
-- `resource_version` (String) ResourceVersion represents the internal version of the referenced object, that can be used by clients to determine when object has changed.
+- `resource_version` (String) ResourceVersion represents the internal version of the referenced object, that can be used by clients todetermine when object has changed.
 
 
 <a id="nestedatt--spec--clusters"></a>

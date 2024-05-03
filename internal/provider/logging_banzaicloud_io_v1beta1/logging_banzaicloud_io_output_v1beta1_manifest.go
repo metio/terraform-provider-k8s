@@ -1259,6 +1259,41 @@ type LoggingBanzaicloudIoOutputV1Beta1ManifestData struct {
 			Transcoding              *bool   `tfsdk:"transcoding" json:"transcoding,omitempty"`
 		} `tfsdk:"gcs" json:"gcs,omitempty"`
 		Gelf *struct {
+			Buffer *struct {
+				Chunk_full_threshold           *string `tfsdk:"chunk_full_threshold" json:"chunk_full_threshold,omitempty"`
+				Chunk_limit_records            *int64  `tfsdk:"chunk_limit_records" json:"chunk_limit_records,omitempty"`
+				Chunk_limit_size               *string `tfsdk:"chunk_limit_size" json:"chunk_limit_size,omitempty"`
+				Compress                       *string `tfsdk:"compress" json:"compress,omitempty"`
+				Delayed_commit_timeout         *string `tfsdk:"delayed_commit_timeout" json:"delayed_commit_timeout,omitempty"`
+				Disable_chunk_backup           *bool   `tfsdk:"disable_chunk_backup" json:"disable_chunk_backup,omitempty"`
+				Disabled                       *bool   `tfsdk:"disabled" json:"disabled,omitempty"`
+				Flush_at_shutdown              *bool   `tfsdk:"flush_at_shutdown" json:"flush_at_shutdown,omitempty"`
+				Flush_interval                 *string `tfsdk:"flush_interval" json:"flush_interval,omitempty"`
+				Flush_mode                     *string `tfsdk:"flush_mode" json:"flush_mode,omitempty"`
+				Flush_thread_burst_interval    *string `tfsdk:"flush_thread_burst_interval" json:"flush_thread_burst_interval,omitempty"`
+				Flush_thread_count             *int64  `tfsdk:"flush_thread_count" json:"flush_thread_count,omitempty"`
+				Flush_thread_interval          *string `tfsdk:"flush_thread_interval" json:"flush_thread_interval,omitempty"`
+				Overflow_action                *string `tfsdk:"overflow_action" json:"overflow_action,omitempty"`
+				Path                           *string `tfsdk:"path" json:"path,omitempty"`
+				Queue_limit_length             *int64  `tfsdk:"queue_limit_length" json:"queue_limit_length,omitempty"`
+				Queued_chunks_limit_size       *int64  `tfsdk:"queued_chunks_limit_size" json:"queued_chunks_limit_size,omitempty"`
+				Retry_exponential_backoff_base *string `tfsdk:"retry_exponential_backoff_base" json:"retry_exponential_backoff_base,omitempty"`
+				Retry_forever                  *bool   `tfsdk:"retry_forever" json:"retry_forever,omitempty"`
+				Retry_max_interval             *string `tfsdk:"retry_max_interval" json:"retry_max_interval,omitempty"`
+				Retry_max_times                *int64  `tfsdk:"retry_max_times" json:"retry_max_times,omitempty"`
+				Retry_randomize                *bool   `tfsdk:"retry_randomize" json:"retry_randomize,omitempty"`
+				Retry_secondary_threshold      *string `tfsdk:"retry_secondary_threshold" json:"retry_secondary_threshold,omitempty"`
+				Retry_timeout                  *string `tfsdk:"retry_timeout" json:"retry_timeout,omitempty"`
+				Retry_type                     *string `tfsdk:"retry_type" json:"retry_type,omitempty"`
+				Retry_wait                     *string `tfsdk:"retry_wait" json:"retry_wait,omitempty"`
+				Tags                           *string `tfsdk:"tags" json:"tags,omitempty"`
+				Timekey                        *string `tfsdk:"timekey" json:"timekey,omitempty"`
+				Timekey_use_utc                *bool   `tfsdk:"timekey_use_utc" json:"timekey_use_utc,omitempty"`
+				Timekey_wait                   *string `tfsdk:"timekey_wait" json:"timekey_wait,omitempty"`
+				Timekey_zone                   *string `tfsdk:"timekey_zone" json:"timekey_zone,omitempty"`
+				Total_limit_size               *string `tfsdk:"total_limit_size" json:"total_limit_size,omitempty"`
+				Type                           *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"buffer" json:"buffer,omitempty"`
 			Host        *string            `tfsdk:"host" json:"host,omitempty"`
 			Port        *int64             `tfsdk:"port" json:"port,omitempty"`
 			Protocol    *string            `tfsdk:"protocol" json:"protocol,omitempty"`
@@ -11884,6 +11919,279 @@ func (r *LoggingBanzaicloudIoOutputV1Beta1Manifest) Schema(_ context.Context, _ 
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"buffer": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"chunk_full_threshold": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"chunk_limit_records": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"chunk_limit_size": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"compress": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"delayed_commit_timeout": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"disable_chunk_backup": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"disabled": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"flush_at_shutdown": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"flush_interval": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"flush_mode": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"flush_thread_burst_interval": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"flush_thread_count": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"flush_thread_interval": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"overflow_action": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"path": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"queue_limit_length": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"queued_chunks_limit_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_exponential_backoff_base": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_forever": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_max_interval": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_max_times": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_randomize": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_secondary_threshold": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_timeout": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_type": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_wait": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tags": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timekey": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timekey_use_utc": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timekey_wait": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timekey_zone": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"total_limit_size": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"host": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",

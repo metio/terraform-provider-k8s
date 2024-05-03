@@ -64,6 +64,7 @@ Optional:
 - `patches` (Attributes List) Patches is a list of json 6902 patches to apply to the target resources. (see [below for nested schema](#nestedatt--spec--patches))
 - `suspend_cron_jobs` (Boolean) If SuspendCronjobs is set to true, on sleep the cronjobs of the namespace will be suspended.
 - `suspend_deployments` (Boolean) If SuspendDeployments is set to false, on sleep the deployment of the namespace will not be suspended. By default Deployment will be suspended.
+- `suspend_statefulsets` (Boolean) If SuspendStatefulSets is set to false, on sleep the statefulset of the namespace will not be suspended. By default StatefulSet will be suspended.
 - `time_zone` (String) Time zone to set the schedule, in IANA time zone identifier.It is not required, default to UTC.For example, for the Italy time zone set Europe/Rome.
 - `wake_up_at` (String) Hours:MinutesAccept cron schedule for both hour and minute.For example, *:*/2 is set to configure a run every even minute.It is not required.
 

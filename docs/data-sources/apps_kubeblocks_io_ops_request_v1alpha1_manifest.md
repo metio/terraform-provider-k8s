@@ -75,7 +75,7 @@ Optional:
 - `script_spec` (Attributes) Specifies the image and scripts for executing engine-specific operations such as creating databases or users. It supports limited engines including MySQL, PostgreSQL, Redis, MongoDB.  ScriptSpec has been replaced by the more versatile OpsDefinition. It is recommended to use OpsDefinition instead. ScriptSpec is deprecated and will be removed in a future version. (see [below for nested schema](#nestedatt--spec--script_spec))
 - `switchover` (Attributes List) Lists Switchover objects, each specifying a Component to perform the switchover operation. (see [below for nested schema](#nestedatt--spec--switchover))
 - `ttl_seconds_after_succeed` (Number) Specifies the duration in seconds that an OpsRequest will remain in the system after successfully completing (when 'opsRequest.status.phase' is 'Succeed') before automatic deletion.
-- `ttl_seconds_before_abort` (Number) Specifies the maximum number of seconds the OpsRequest will wait for its start conditions to be met before aborting. If set to 0 (default), the start conditions must be met immediately for the OpsRequest to proceed.
+- `ttl_seconds_before_abort` (Number) Specifies the maximum time in seconds that the OpsRequest will wait for its pre-conditions to be met before it aborts the operation. If set to 0 (default), pre-conditions must be satisfied immediately for the OpsRequest to proceed.
 - `upgrade` (Attributes) Specifies the desired new version of the Cluster.  Note: This field is immutable once set. (see [below for nested schema](#nestedatt--spec--upgrade))
 - `vertical_scaling` (List of Map of String) Lists VerticalScaling objects, each specifying a component and its desired compute resources for vertical scaling.
 - `volume_expansion` (Attributes List) Lists VolumeExpansion objects, each specifying a component and its corresponding volumeClaimTemplates that requires storage expansion. (see [below for nested schema](#nestedatt--spec--volume_expansion))
@@ -193,21 +193,21 @@ Optional:
 
 Required:
 
-- `name` (String) Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.
+- `name` (String) Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the Component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.
 
 Optional:
 
 - `annotations` (Map of String) Specifies a map of key-value pairs to be merged into the Pod's existing annotations. Existing keys will have their values overwritten, while new keys will be added to the annotations.
 - `env` (Attributes List) Defines Env to override. Add new or override existing envs. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--env))
-- `image` (String) Specifies an override for the first container's image in the pod.
+- `image` (String) Specifies an override for the first container's image in the Pod.
 - `labels` (Map of String) Specifies a map of key-value pairs that will be merged into the Pod's existing labels. Values for existing keys will be overwritten, and new keys will be added.
 - `node_name` (String) Specifies the name of the node where the Pod should be scheduled. If set, the Pod will be directly assigned to the specified node, bypassing the Kubernetes scheduler. This is useful for controlling Pod placement on specific nodes.  Important considerations: - 'nodeName' bypasses default scheduling constraints (e.g., resource requirements, node selectors, affinity rules). - It is the user's responsibility to ensure the node is suitable for the Pod. - If the node is unavailable, the Pod will remain in 'Pending' state until the node is available or the Pod is deleted.
 - `node_selector` (Map of String) Defines NodeSelector to override.
-- `replicas` (Number) Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.
+- `replicas` (Number) Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the Component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.
 - `resources` (Attributes) Specifies an override for the resource requirements of the first container in the Pod. This field allows for customizing resource allocation (CPU, memory, etc.) for the container. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--resources))
 - `tolerations` (Attributes List) Tolerations specifies a list of tolerations to be applied to the Pod, allowing it to tolerate node taints. This field can be used to add new tolerations or override existing ones. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--tolerations))
 - `volume_claim_templates` (Attributes List) Defines VolumeClaimTemplates to override. Add new or override existing volume claim templates. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volume_claim_templates))
-- `volume_mounts` (Attributes List) Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the pod. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volume_mounts))
+- `volume_mounts` (Attributes List) Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the Pod. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volume_mounts))
 - `volumes` (Attributes List) Defines Volumes to override. Add new or override existing volumes. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes))
 
 <a id="nestedatt--spec--horizontal_scaling--instances--env"></a>
@@ -1331,7 +1331,7 @@ Required:
 
 Optional:
 
-- `do_ready_restore_after_cluster_running` (Boolean) If set to true, the recovery process in the PostReady phase will be performed after the cluster is running successfully. otherwise, it will be performed after component is running.
+- `do_ready_restore_after_cluster_running` (Boolean) Controls the timing of PostReady actions during the recovery process.  If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding.  This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.
 - `restore_time_str` (String) Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'
 - `volume_restore_policy` (String) Specifies the policy for restoring volume claims of a Component's Pods. It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once). Support values:  - 'Serial' - 'Parallel'
 

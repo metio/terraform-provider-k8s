@@ -2042,6 +2042,8 @@ func allResources() []func() resource.Resource {
 		//sonataflow_org_v1alpha08.NewSonataflowOrgSonataFlowPlatformV1Alpha08Resource,
 		//sonataflow_org_v1alpha08.NewSonataflowOrgSonataFlowV1Alpha08Resource,
 		//source_toolkit_fluxcd_io_v1.NewSourceToolkitFluxcdIoGitRepositoryV1Resource,
+		//source_toolkit_fluxcd_io_v1.NewSourceToolkitFluxcdIoHelmChartV1Resource,
+		//source_toolkit_fluxcd_io_v1.NewSourceToolkitFluxcdIoHelmRepositoryV1Resource,
 		//source_toolkit_fluxcd_io_v1beta1.NewSourceToolkitFluxcdIoBucketV1Beta1Resource,
 		//source_toolkit_fluxcd_io_v1beta1.NewSourceToolkitFluxcdIoGitRepositoryV1Beta1Resource,
 		//source_toolkit_fluxcd_io_v1beta1.NewSourceToolkitFluxcdIoHelmChartV1Beta1Resource,

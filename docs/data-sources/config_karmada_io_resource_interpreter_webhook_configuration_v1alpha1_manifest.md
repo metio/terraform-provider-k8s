@@ -3,12 +3,12 @@
 page_title: "k8s_config_karmada_io_resource_interpreter_webhook_configuration_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "config.karmada.io"
 description: |-
-  ResourceInterpreterWebhookConfiguration describes the configuration of webhooks which take the responsibility to tell karmada the details of the resource object, especially for custom resources.
+  ResourceInterpreterWebhookConfiguration describes the configuration of webhooks which take the responsibility totell karmada the details of the resource object, especially for custom resources.
 ---
 
 # k8s_config_karmada_io_resource_interpreter_webhook_configuration_v1alpha1_manifest (Data Source)
 
-ResourceInterpreterWebhookConfiguration describes the configuration of webhooks which take the responsibility to tell karmada the details of the resource object, especially for custom resources.
+ResourceInterpreterWebhookConfiguration describes the configuration of webhooks which take the responsibility totell karmada the details of the resource object, especially for custom resources.
 
 ## Example Usage
 
@@ -52,35 +52,35 @@ Optional:
 Required:
 
 - `client_config` (Attributes) ClientConfig defines how to communicate with the hook. (see [below for nested schema](#nestedatt--webhooks--client_config))
-- `interpreter_context_versions` (List of String) InterpreterContextVersions is an ordered list of preferred 'ResourceInterpreterContext' versions the Webhook expects. Karmada will try to use first version in the list which it supports. If none of the versions specified in this list supported by Karmada, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the Karmada, calls to the webhook will fail and be subject to the failure policy.
+- `interpreter_context_versions` (List of String) InterpreterContextVersions is an ordered list of preferred 'ResourceInterpreterContext'versions the Webhook expects. Karmada will try to use first version inthe list which it supports. If none of the versions specified in this listsupported by Karmada, validation will fail for this object.If a persisted webhook configuration specifies allowed versions and does notinclude any versions known to the Karmada, calls to the webhook will failand be subject to the failure policy.
 - `name` (String) Name is the full-qualified name of the webhook.
 
 Optional:
 
-- `rules` (Attributes List) Rules describes what operations on what resources the webhook cares about. The webhook cares about an operation if it matches any Rule. (see [below for nested schema](#nestedatt--webhooks--rules))
-- `timeout_seconds` (Number) TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
+- `rules` (Attributes List) Rules describes what operations on what resources the webhook cares about.The webhook cares about an operation if it matches any Rule. (see [below for nested schema](#nestedatt--webhooks--rules))
+- `timeout_seconds` (Number) TimeoutSeconds specifies the timeout for this webhook. After the timeout passes,the webhook call will be ignored or the API call will fail based on thefailure policy.The timeout value must be between 1 and 30 seconds.Default to 10 seconds.
 
 <a id="nestedatt--webhooks--client_config"></a>
 ### Nested Schema for `webhooks.client_config`
 
 Optional:
 
-- `ca_bundle` (String) 'caBundle' is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
-- `service` (Attributes) 'service' is a reference to the service for this webhook. Either 'service' or 'url' must be specified.  If the webhook is running within the cluster, then you should use 'service'. (see [below for nested schema](#nestedatt--webhooks--client_config--service))
-- `url` (String) 'url' gives the location of the webhook, in standard URL form ('scheme://host:port/path'). Exactly one of 'url' or 'service' must be specified.  The 'host' should not refer to a service running in the cluster; use the 'service' field instead. The host might be resolved via external DNS in some apiservers (e.g., 'kube-apiserver' cannot resolve in-cluster DNS as that would be a layering violation). 'host' may also be an IP address.  Please note that using 'localhost' or '127.0.0.1' as a 'host' is risky unless you take great care to run this webhook on all hosts which run an apiserver which might need to make calls to this webhook. Such installs are likely to be non-portable, i.e., not easy to turn up in a new cluster.  The scheme must be 'https'; the URL must begin with 'https://'.  A path is optional, and if present may be any string permissible in a URL. You may use the path to pass an arbitrary string to the webhook, for example, a cluster identifier.  Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed, either.
+- `ca_bundle` (String) 'caBundle' is a PEM encoded CA bundle which will be used to validate the webhook's server certificate.If unspecified, system trust roots on the apiserver are used.
+- `service` (Attributes) 'service' is a reference to the service for this webhook. Either'service' or 'url' must be specified.If the webhook is running within the cluster, then you should use 'service'. (see [below for nested schema](#nestedatt--webhooks--client_config--service))
+- `url` (String) 'url' gives the location of the webhook, in standard URL form('scheme://host:port/path'). Exactly one of 'url' or 'service'must be specified.The 'host' should not refer to a service running in the cluster; usethe 'service' field instead. The host might be resolved via externalDNS in some apiservers (e.g., 'kube-apiserver' cannot resolvein-cluster DNS as that would be a layering violation). 'host' mayalso be an IP address.Please note that using 'localhost' or '127.0.0.1' as a 'host' isrisky unless you take great care to run this webhook on all hostswhich run an apiserver which might need to make calls to thiswebhook. Such installs are likely to be non-portable, i.e., not easyto turn up in a new cluster.The scheme must be 'https'; the URL must begin with 'https://'.A path is optional, and if present may be any string permissible ina URL. You may use the path to pass an arbitrary string to thewebhook, for example, a cluster identifier.Attempting to use a user or basic auth e.g. 'user:password@' is notallowed. Fragments ('#...') and query parameters ('?...') are notallowed, either.
 
 <a id="nestedatt--webhooks--client_config--service"></a>
 ### Nested Schema for `webhooks.client_config.service`
 
 Required:
 
-- `name` (String) 'name' is the name of the service. Required
-- `namespace` (String) 'namespace' is the namespace of the service. Required
+- `name` (String) 'name' is the name of the service.Required
+- `namespace` (String) 'namespace' is the namespace of the service.Required
 
 Optional:
 
-- `path` (String) 'path' is an optional URL path which will be sent in any request to this service.
-- `port` (Number) If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. 'port' should be a valid port number (1-65535, inclusive).
+- `path` (String) 'path' is an optional URL path which will be sent in any request tothis service.
+- `port` (Number) If specified, the port on the service that hosting webhook.Default to 443 for backward compatibility.'port' should be a valid port number (1-65535, inclusive).
 
 
 
@@ -89,7 +89,7 @@ Optional:
 
 Required:
 
-- `api_groups` (List of String) APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all group  Note: The group could be empty, e.g the 'core' group of kubernetes, in that case use [''].
-- `api_versions` (List of String) APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one. For example: ['v1alpha1', 'v1beta1'] means matches 2 versions. ['*'] means matches all versions.
-- `kinds` (List of String) Kinds is a list of resources this rule applies to. If '*' is present, the length of the slice must be one. For example: ['Deployment', 'Pod'] means matches Deployment and Pod. ['*'] means apply to all resources.
-- `operations` (List of String) Operations is the operations the hook cares about. If '*' is present, the length of the slice must be one.
+- `api_groups` (List of String) APIGroups is the API groups the resources belong to. '*' is all groups.If '*' is present, the length of the slice must be one.For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all groupNote: The group could be empty, e.g the 'core' group of kubernetes, in that case use [''].
+- `api_versions` (List of String) APIVersions is the API versions the resources belong to. '*' is all versions.If '*' is present, the length of the slice must be one.For example: ['v1alpha1', 'v1beta1'] means matches 2 versions. ['*'] means matches all versions.
+- `kinds` (List of String) Kinds is a list of resources this rule applies to.If '*' is present, the length of the slice must be one.For example: ['Deployment', 'Pod'] means matches Deployment and Pod. ['*'] means apply to all resources.
+- `operations` (List of String) Operations is the operations the hook cares about.If '*' is present, the length of the slice must be one.

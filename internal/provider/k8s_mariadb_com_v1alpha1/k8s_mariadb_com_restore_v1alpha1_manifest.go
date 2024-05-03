@@ -2092,8 +2092,8 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"prefix": schema.StringAttribute{
-								Description:         "Prefix allows backups to be placed under a specific prefix in the bucket. A trailing slash '/' is added if not provided.",
-								MarkdownDescription: "Prefix allows backups to be placed under a specific prefix in the bucket. A trailing slash '/' is added if not provided.",
+								Description:         "Prefix indicates a folder/subfolder in the bucket. For example: mariadb/ or mariadb/backups. A trailing slash '/' is added if not provided.",
+								MarkdownDescription: "Prefix indicates a folder/subfolder in the bucket. For example: mariadb/ or mariadb/backups. A trailing slash '/' is added if not provided.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

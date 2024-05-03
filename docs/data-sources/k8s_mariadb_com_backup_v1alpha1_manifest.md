@@ -190,7 +190,7 @@ Required:
 
 Optional:
 
-- `prefix` (String) Prefix allows backups to be placed under a specific prefix in the bucket. A trailing slash '/' is added if not provided.
+- `prefix` (String) Prefix indicates a folder/subfolder in the bucket. For example: mariadb/ or mariadb/backups. A trailing slash '/' is added if not provided.
 - `region` (String) Region is the S3 region name to use.
 - `session_token_secret_key_ref` (Attributes) SessionTokenSecretKeyRef is a reference to a Secret key containing the S3 session token. (see [below for nested schema](#nestedatt--spec--storage--s3--session_token_secret_key_ref))
 - `tls` (Attributes) TLS provides the configuration required to establish TLS connections with S3. (see [below for nested schema](#nestedatt--spec--storage--s3--tls))

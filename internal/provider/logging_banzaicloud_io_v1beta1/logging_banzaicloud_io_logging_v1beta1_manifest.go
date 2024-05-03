@@ -1871,8 +1871,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
-			LogLevel *string `tfsdk:"log_level" json:"logLevel,omitempty"`
-			Metrics  *struct {
+			LogFormat *string `tfsdk:"log_format" json:"logFormat,omitempty"`
+			LogLevel  *string `tfsdk:"log_level" json:"logLevel,omitempty"`
+			Metrics   *struct {
 				Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
 				Path                  *string `tfsdk:"path" json:"path,omitempty"`
 				Port                  *int64  `tfsdk:"port" json:"port,omitempty"`
@@ -20044,6 +20045,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"log_format": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"log_level": schema.StringAttribute{

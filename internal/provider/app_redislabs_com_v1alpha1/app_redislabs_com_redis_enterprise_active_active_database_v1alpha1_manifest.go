@@ -184,6 +184,9 @@ type AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1ManifestData stru
 			ShardsPlacement *string `tfsdk:"shards_placement" json:"shardsPlacement,omitempty"`
 			TlsMode         *string `tfsdk:"tls_mode" json:"tlsMode,omitempty"`
 			Type            *string `tfsdk:"type" json:"type,omitempty"`
+			UpgradeSpec     *struct {
+				UpgradeModulesToLatest *bool `tfsdk:"upgrade_modules_to_latest" json:"upgradeModulesToLatest,omitempty"`
+			} `tfsdk:"upgrade_spec" json:"upgradeSpec,omitempty"`
 		} `tfsdk:"global_configurations" json:"globalConfigurations,omitempty"`
 		ParticipatingClusters *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -978,10 +981,10 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 										},
 
 										"version": schema.StringAttribute{
-											Description:         "Module's semantic version e.g '1.6.12'",
-											MarkdownDescription: "Module's semantic version e.g '1.6.12'",
-											Required:            true,
-											Optional:            false,
+											Description:         "Module's semantic version e.g '1.6.12' - optional only in REDB, must be set in REAADB",
+											MarkdownDescription: "Module's semantic version e.g '1.6.12' - optional only in REDB, must be set in REAADB",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 									},
@@ -1044,14 +1047,11 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 							},
 
 							"redis_version": schema.StringAttribute{
-								Description:         "Redis OSS version. For existing databases - Upgrade Redis OSS version. For new databases - the version which the database will be created with. If set to 'major' - will always upgrade to the most recent major Redis version. If set to 'latest' - will always upgrade to the most recent Redis version. Depends on 'redisUpgradePolicy' - if you want to set the value to 'latest' for some databases, you must set redisUpgradePolicy on the cluster before. Possible values are 'major' or 'latest' When using upgrade - make sure to backup the database before. This value is used only for database type 'redis'",
-								MarkdownDescription: "Redis OSS version. For existing databases - Upgrade Redis OSS version. For new databases - the version which the database will be created with. If set to 'major' - will always upgrade to the most recent major Redis version. If set to 'latest' - will always upgrade to the most recent Redis version. Depends on 'redisUpgradePolicy' - if you want to set the value to 'latest' for some databases, you must set redisUpgradePolicy on the cluster before. Possible values are 'major' or 'latest' When using upgrade - make sure to backup the database before. This value is used only for database type 'redis'",
+								Description:         "Redis OSS version. Version can be specified via <major.minor> prefix, or via channels - for existing databases - Upgrade Redis OSS version. For new databases - the version which the database will be created with. If set to 'major' - will always upgrade to the most recent major Redis version. If set to 'latest' - will always upgrade to the most recent Redis version. Depends on 'redisUpgradePolicy' - if you want to set the value to 'latest' for some databases, you must set redisUpgradePolicy on the cluster before. Possible values are 'major' or 'latest' When using upgrade - make sure to backup the database before. This value is used only for database type 'redis'",
+								MarkdownDescription: "Redis OSS version. Version can be specified via <major.minor> prefix, or via channels - for existing databases - Upgrade Redis OSS version. For new databases - the version which the database will be created with. If set to 'major' - will always upgrade to the most recent major Redis version. If set to 'latest' - will always upgrade to the most recent Redis version. Depends on 'redisUpgradePolicy' - if you want to set the value to 'latest' for some databases, you must set redisUpgradePolicy on the cluster before. Possible values are 'major' or 'latest' When using upgrade - make sure to backup the database before. This value is used only for database type 'redis'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.OneOf("major", "latest"),
-								},
 							},
 
 							"replica_sources": schema.ListNestedAttribute{
@@ -1114,8 +1114,8 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 							},
 
 							"replication": schema.BoolAttribute{
-								Description:         "In-memory database replication. When enabled, database will have replica shard for every master - leading to higher availability.",
-								MarkdownDescription: "In-memory database replication. When enabled, database will have replica shard for every master - leading to higher availability.",
+								Description:         "In-memory database replication. When enabled, database will have replica shard for every master - leading to higher availability. Defaults to false.",
+								MarkdownDescription: "In-memory database replication. When enabled, database will have replica shard for every master - leading to higher availability. Defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1216,6 +1216,23 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 								Validators: []validator.String{
 									stringvalidator.OneOf("redis", "memcached"),
 								},
+							},
+
+							"upgrade_spec": schema.SingleNestedAttribute{
+								Description:         "Specifications for DB upgrade.",
+								MarkdownDescription: "Specifications for DB upgrade.",
+								Attributes: map[string]schema.Attribute{
+									"upgrade_modules_to_latest": schema.BoolAttribute{
+										Description:         "Upgrades the modules to the latest version that supportes the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Note - This field is currently not supported for Active-Active databases.",
+										MarkdownDescription: "Upgrades the modules to the latest version that supportes the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Note - This field is currently not supported for Active-Active databases.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

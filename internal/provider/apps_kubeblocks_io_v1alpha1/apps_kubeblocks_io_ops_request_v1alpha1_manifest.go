@@ -1170,8 +1170,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies an override for the first container's image in the pod.",
-												MarkdownDescription: "Specifies an override for the first container's image in the pod.",
+												Description:         "Specifies an override for the first container's image in the Pod.",
+												MarkdownDescription: "Specifies an override for the first container's image in the Pod.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1187,8 +1187,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
-												MarkdownDescription: "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
+												Description:         "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the Component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
+												MarkdownDescription: "Name specifies the unique name of the instance Pod created using this InstanceTemplate. This name is constructed by concatenating the Component's name, the template's name, and the instance's ordinal using the pattern: $(cluster.name)-$(component.name)-$(template.name)-$(ordinal). Ordinals start from 0. The specified name overrides any default naming conventions or patterns.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -1216,8 +1216,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"replicas": schema.Int64Attribute{
-												Description:         "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
-												MarkdownDescription: "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
+												Description:         "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the Component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
+												MarkdownDescription: "Specifies the number of instances (Pods) to create from this InstanceTemplate. This field allows setting how many replicated instances of the Component, with the specific overrides in the InstanceTemplate, are created. The default value is 1. A value of 0 disables instance creation.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1423,8 +1423,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"volume_mounts": schema.ListNestedAttribute{
-												Description:         "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the pod.",
-												MarkdownDescription: "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the pod.",
+												Description:         "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the Pod.",
+												MarkdownDescription: "Defines VolumeMounts to override. Add new or override existing volume mounts of the first container in the Pod.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"mount_path": schema.StringAttribute{
@@ -3887,8 +3887,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"do_ready_restore_after_cluster_running": schema.BoolAttribute{
-								Description:         "If set to true, the recovery process in the PostReady phase will be performed after the cluster is running successfully. otherwise, it will be performed after component is running.",
-								MarkdownDescription: "If set to true, the recovery process in the PostReady phase will be performed after the cluster is running successfully. otherwise, it will be performed after component is running.",
+								Description:         "Controls the timing of PostReady actions during the recovery process.  If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding.  This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.",
+								MarkdownDescription: "Controls the timing of PostReady actions during the recovery process.  If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding.  This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4158,8 +4158,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"ttl_seconds_before_abort": schema.Int64Attribute{
-						Description:         "Specifies the maximum number of seconds the OpsRequest will wait for its start conditions to be met before aborting. If set to 0 (default), the start conditions must be met immediately for the OpsRequest to proceed.",
-						MarkdownDescription: "Specifies the maximum number of seconds the OpsRequest will wait for its start conditions to be met before aborting. If set to 0 (default), the start conditions must be met immediately for the OpsRequest to proceed.",
+						Description:         "Specifies the maximum time in seconds that the OpsRequest will wait for its pre-conditions to be met before it aborts the operation. If set to 0 (default), pre-conditions must be satisfied immediately for the OpsRequest to proceed.",
+						MarkdownDescription: "Specifies the maximum time in seconds that the OpsRequest will wait for its pre-conditions to be met before it aborts the operation. If set to 0 (default), pre-conditions must be satisfied immediately for the OpsRequest to proceed.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

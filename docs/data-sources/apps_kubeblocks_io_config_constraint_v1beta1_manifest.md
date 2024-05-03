@@ -64,7 +64,7 @@ Optional:
 - `dynamic_action_can_be_merged` (Boolean) Indicates whether to consolidate dynamic reload and restart actions into a single restart.  - If true, updates requiring both actions will result in only a restart, merging the actions. - If false, updates will trigger both actions executed sequentially: first dynamic reload, then restart.  This flag allows for more efficient handling of configuration changes by potentially eliminating an unnecessary reload step.
 - `dynamic_parameter_selected_policy` (String) Configures whether the dynamic reload specified in 'dynamicReloadAction' applies only to dynamic parameters or to all parameters (including static parameters).  - 'dynamic' (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - 'all': Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.
 - `dynamic_parameters` (List of String) List dynamic parameters. Modifications to these parameters trigger a configuration reload without requiring a process restart.
-- `dynamic_reload_action` (Attributes) Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'dynamicReloadAction' is set.  If 'dynamicReloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml reloadOptions: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true ''' (see [below for nested schema](#nestedatt--spec--dynamic_reload_action))
+- `dynamic_reload_action` (Attributes) Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'dynamicReloadAction' is set.  If 'dynamicReloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml dynamicReloadAction: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true ''' (see [below for nested schema](#nestedatt--spec--dynamic_reload_action))
 - `dynamic_reload_selector` (Attributes) Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'dynamicReloadSelector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'dynamicReloadSelector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload. (see [below for nested schema](#nestedatt--spec--dynamic_reload_selector))
 - `immutable_parameters` (List of String) Lists the parameters that cannot be modified once set. Attempting to change any of these parameters will be ignored.
 - `reload_tools_image` (Attributes) Specifies the tools container image used by ShellTrigger for dynamic reload. If the dynamic reload action is triggered by a ShellTrigger, this field is required. This image must contain all necessary tools for executing the ShellTrigger scripts.  Usually the specified image is referenced by the init container, which is then responsible for copy the tools from the image to a bin volume. This ensures that the tools are available to the 'config-manager' sidecar. (see [below for nested schema](#nestedatt--spec--reload_tools_image))
@@ -180,9 +180,9 @@ Required:
 
 Optional:
 
-- `batch_parameters_template` (String) BatchParametersTemplate provides an optional Go template string to format the batch input data passed into the STDIN of the script when 'batchReload' is set to 'True'. The template uses the updated parameters' key-value pairs, accessible via the '$' variable. This allows for custom formatting of the input data. Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''
-- `batch_reload` (Boolean) Specifies whether to process dynamic parameter updates individually or collectively in a batch:  - Set to 'True' to execute all parameter changes in one batch reload action. - Set to 'False' to execute a reload action for each individual parameter change. The default behavior, if not specified, is 'False'.
-- `sync` (Boolean) Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.
+- `batch_parameters_template` (String) Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data.  Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''
+- `batch_reload` (Boolean) Controls whether parameter updates are processed individually or collectively in a batch:  - 'True': Processes all changes in one batch reload. - 'False': Processes each change individually.  Defaults to 'False' if unspecified.
+- `sync` (Boolean) Determines the synchronization mode of parameter updates with 'config-manager'.  - 'True': Executes reload actions synchronously, pausing until completion. - 'False': Executes reload actions asynchronously, without waiting for completion.
 
 
 <a id="nestedatt--spec--dynamic_reload_action--tpl_script_trigger"></a>
@@ -190,12 +190,12 @@ Optional:
 
 Required:
 
-- `script_config_map_ref` (String) Specifies the reference to the ConfigMap that contains the script to be executed for reload.
+- `script_config_map_ref` (String) Specifies the reference to the ConfigMap containing the scripts.
 
 Optional:
 
-- `namespace` (String) Specifies the namespace where the referenced tpl script ConfigMap in. If left empty, by default in the 'default' namespace.
-- `sync` (Boolean) Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.
+- `namespace` (String) Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.
+- `sync` (Boolean) Determines whether parameter updates should be synchronized with the 'config-manager'. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.
 
 
 <a id="nestedatt--spec--dynamic_reload_action--unix_signal_trigger"></a>
@@ -258,8 +258,8 @@ Optional:
 
 Required:
 
-- `script_config_map_ref` (String) Specifies the reference to the ConfigMap that contains the script to be executed for reload.
+- `script_config_map_ref` (String) Specifies the reference to the ConfigMap containing the scripts.
 
 Optional:
 
-- `namespace` (String) Specifies the namespace where the referenced tpl script ConfigMap in. If left empty, by default in the 'default' namespace.
+- `namespace` (String) Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.

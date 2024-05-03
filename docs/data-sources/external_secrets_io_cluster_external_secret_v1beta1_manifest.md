@@ -62,7 +62,7 @@ Optional:
 - `external_secret_name` (String) The name of the external secrets to be created defaults to the name of the ClusterExternalSecret
 - `namespace_selector` (Attributes) The labels to select by to find the Namespaces to create the ExternalSecrets in.Deprecated: Use NamespaceSelectors instead. (see [below for nested schema](#nestedatt--spec--namespace_selector))
 - `namespace_selectors` (Attributes List) A list of labels to select by to find the Namespaces to create the ExternalSecrets in. The selectors are ORed. (see [below for nested schema](#nestedatt--spec--namespace_selectors))
-- `namespaces` (List of String) Choose namespaces by name. This field is ORed with anything that NamespaceSelector ends up choosing.
+- `namespaces` (List of String) Choose namespaces by name. This field is ORed with anything that NamespaceSelectors ends up choosing.
 - `refresh_time` (String) The time in which the controller should reconcile its objects and recheck namespaces for labels.
 
 <a id="nestedatt--spec--external_secret_spec"></a>

@@ -297,8 +297,8 @@ func (r *VolsyncBackubeReplicationSourceV1Alpha1Manifest) Metadata(_ context.Con
 
 func (r *VolsyncBackubeReplicationSourceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ReplicationSource defines the source for a replicated volume",
-		MarkdownDescription: "ReplicationSource defines the source for a replicated volume",
+		Description:         "A ReplicationSource is a VolSync resource that you can use to define the source PVC and replication mover type, enabling you to replicate or synchronize PVC data to a remote location.",
+		MarkdownDescription: "A ReplicationSource is a VolSync resource that you can use to define the source PVC and replication mover type, enabling you to replicate or synchronize PVC data to a remote location.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

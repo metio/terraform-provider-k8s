@@ -17,6 +17,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -1449,14 +1450,21 @@ func (r *KueueXK8SIoWorkloadV1Beta1Manifest) Schema(_ context.Context, _ datasou
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtLeast(1),
+									},
 								},
 
 								"name": schema.StringAttribute{
 									Description:         "name is the PodSet name.",
 									MarkdownDescription: "name is the PodSet name.",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(63),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+									},
 								},
 
 								"template": schema.SingleNestedAttribute{
@@ -10082,6 +10090,10 @@ func (r *KueueXK8SIoWorkloadV1Beta1Manifest) Schema(_ context.Context, _ datasou
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(253),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+						},
 					},
 
 					"priority_class_source": schema.StringAttribute{
@@ -10101,6 +10113,10 @@ func (r *KueueXK8SIoWorkloadV1Beta1Manifest) Schema(_ context.Context, _ datasou
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(253),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+						},
 					},
 				},
 				Required: false,

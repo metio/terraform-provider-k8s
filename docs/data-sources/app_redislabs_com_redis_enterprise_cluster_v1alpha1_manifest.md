@@ -362,6 +362,7 @@ Optional:
 
 Optional:
 
+- `enable_persistent_volume_resize` (Boolean)
 - `enabled` (Boolean)
 - `storage_class_name` (String)
 - `volume_size` (String)

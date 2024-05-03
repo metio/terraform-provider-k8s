@@ -62,7 +62,8 @@ type AppprotectF5ComApuserSigV1Beta1ManifestData struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"systems" json:"systems,omitempty"`
 		} `tfsdk:"signatures" json:"signatures,omitempty"`
-		Tag *string `tfsdk:"tag" json:"tag,omitempty"`
+		SoftwareVersion *string `tfsdk:"software_version" json:"softwareVersion,omitempty"`
+		Tag             *string `tfsdk:"tag" json:"tag,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -281,6 +282,14 @@ func (r *AppprotectF5ComApuserSigV1Beta1Manifest) Schema(_ context.Context, _ da
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"software_version": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"tag": schema.StringAttribute{

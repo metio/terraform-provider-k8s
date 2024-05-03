@@ -56,14 +56,14 @@ Optional:
 Required:
 
 - `maria_db_ref` (Attributes) MariaDBRef is a reference to a MariaDB object. (see [below for nested schema](#nestedatt--spec--maria_db_ref))
-- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a reference to the password to be used by the User. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
 
 Optional:
 
 - `host` (String) Host related to the User.
 - `max_user_connections` (Number) MaxUserConnections defines the maximum number of connections that the User can establish.
 - `name` (String) Name overrides the default name provided by metadata.name.
-- `requeue_interval` (String) RequeueInterval is used to perform requeue reconcilizations.
+- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a reference to the password to be used by the User.If not provided, the account will be locked and the password will expire. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
+- `requeue_interval` (String) RequeueInterval is used to perform requeue reconciliations.
 - `retry_interval` (String) RetryInterval is the interval used to perform retries.
 
 <a id="nestedatt--spec--maria_db_ref"></a>

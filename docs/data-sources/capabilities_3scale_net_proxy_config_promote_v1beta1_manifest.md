@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `product_cr_name` (String) product CR metadata.name
+- `product_cr_name` (String) Product CR metadata name
 
 Optional:
 

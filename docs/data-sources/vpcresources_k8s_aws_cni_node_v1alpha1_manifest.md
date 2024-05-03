@@ -55,6 +55,7 @@ Optional:
 Optional:
 
 - `features` (Attributes List) (see [below for nested schema](#nestedatt--spec--features))
+- `tags` (Map of String) Additional tag key/value added to all network interfaces provisioned by the vpc-resource-controller and VPC-CNI
 
 <a id="nestedatt--spec--features"></a>
 ### Nested Schema for `spec.features`

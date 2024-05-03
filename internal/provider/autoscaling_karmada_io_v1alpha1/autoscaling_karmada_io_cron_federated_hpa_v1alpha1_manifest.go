@@ -69,8 +69,8 @@ func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest) Metadata(_ contex
 
 func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CronFederatedHPA represents a collection of repeating schedule to scale replica number of a specific workload. It can scale any resource implementing the scale subresource as well as FederatedHPA.",
-		MarkdownDescription: "CronFederatedHPA represents a collection of repeating schedule to scale replica number of a specific workload. It can scale any resource implementing the scale subresource as well as FederatedHPA.",
+		Description:         "CronFederatedHPA represents a collection of repeating schedule to scalereplica number of a specific workload. It can scale any resource implementingthe scale subresource as well as FederatedHPA.",
+		MarkdownDescription: "CronFederatedHPA represents a collection of repeating schedule to scalereplica number of a specific workload. It can scale any resource implementingthe scale subresource as well as FederatedHPA.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -141,13 +141,13 @@ func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest) Schema(_ context.
 				MarkdownDescription: "Spec is the specification of the CronFederatedHPA.",
 				Attributes: map[string]schema.Attribute{
 					"rules": schema.ListNestedAttribute{
-						Description:         "Rules contains a collection of schedules that declares when and how the referencing target resource should be scaled.",
-						MarkdownDescription: "Rules contains a collection of schedules that declares when and how the referencing target resource should be scaled.",
+						Description:         "Rules contains a collection of schedules that declares when and howthe referencing target resource should be scaled.",
+						MarkdownDescription: "Rules contains a collection of schedules that declares when and howthe referencing target resource should be scaled.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"failed_history_limit": schema.Int64Attribute{
-									Description:         "FailedHistoryLimit represents the count of failed execution items for each rule. The value must be a positive integer. It defaults to 3.",
-									MarkdownDescription: "FailedHistoryLimit represents the count of failed execution items for each rule. The value must be a positive integer. It defaults to 3.",
+									Description:         "FailedHistoryLimit represents the count of failed execution items foreach rule.The value must be a positive integer. It defaults to 3.",
+									MarkdownDescription: "FailedHistoryLimit represents the count of failed execution items foreach rule.The value must be a positive integer. It defaults to 3.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -158,8 +158,8 @@ func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of the rule. Each rule in a CronFederatedHPA must have a unique name.  Note: the name will be used as an identifier to record its execution history. Changing the name will be considered as deleting the old rule and adding a new rule, that means the original execution history will be discarded.",
-									MarkdownDescription: "Name of the rule. Each rule in a CronFederatedHPA must have a unique name.  Note: the name will be used as an identifier to record its execution history. Changing the name will be considered as deleting the old rule and adding a new rule, that means the original execution history will be discarded.",
+									Description:         "Name of the rule.Each rule in a CronFederatedHPA must have a unique name.Note: the name will be used as an identifier to record its executionhistory. Changing the name will be considered as deleting the old ruleand adding a new rule, that means the original execution history will bediscarded.",
+									MarkdownDescription: "Name of the rule.Each rule in a CronFederatedHPA must have a unique name.Note: the name will be used as an identifier to record its executionhistory. Changing the name will be considered as deleting the old ruleand adding a new rule, that means the original execution history will bediscarded.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -170,16 +170,16 @@ func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"schedule": schema.StringAttribute{
-									Description:         "Schedule is the cron expression that represents a periodical time. The syntax follows https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#schedule-syntax.",
-									MarkdownDescription: "Schedule is the cron expression that represents a periodical time. The syntax follows https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#schedule-syntax.",
+									Description:         "Schedule is the cron expression that represents a periodical time.The syntax follows https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#schedule-syntax.",
+									MarkdownDescription: "Schedule is the cron expression that represents a periodical time.The syntax follows https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#schedule-syntax.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"successful_history_limit": schema.Int64Attribute{
-									Description:         "SuccessfulHistoryLimit represents the count of successful execution items for each rule. The value must be a positive integer. It defaults to 3.",
-									MarkdownDescription: "SuccessfulHistoryLimit represents the count of successful execution items for each rule. The value must be a positive integer. It defaults to 3.",
+									Description:         "SuccessfulHistoryLimit represents the count of successful execution itemsfor each rule.The value must be a positive integer. It defaults to 3.",
+									MarkdownDescription: "SuccessfulHistoryLimit represents the count of successful execution itemsfor each rule.The value must be a positive integer. It defaults to 3.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -190,40 +190,40 @@ func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"suspend": schema.BoolAttribute{
-									Description:         "Suspend tells the controller to suspend subsequent executions. Defaults to false.",
-									MarkdownDescription: "Suspend tells the controller to suspend subsequent executions. Defaults to false.",
+									Description:         "Suspend tells the controller to suspend subsequent executions.Defaults to false.",
+									MarkdownDescription: "Suspend tells the controller to suspend subsequent executions.Defaults to false.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"target_max_replicas": schema.Int64Attribute{
-									Description:         "TargetMaxReplicas is the target MaxReplicas to be set for FederatedHPA. Only needed when referencing resource is FederatedHPA. TargetMinReplicas and TargetMaxReplicas can be specified together or either one can be specified alone. nil means the MaxReplicas(.spec.maxReplicas) of the referencing FederatedHPA will not be updated.",
-									MarkdownDescription: "TargetMaxReplicas is the target MaxReplicas to be set for FederatedHPA. Only needed when referencing resource is FederatedHPA. TargetMinReplicas and TargetMaxReplicas can be specified together or either one can be specified alone. nil means the MaxReplicas(.spec.maxReplicas) of the referencing FederatedHPA will not be updated.",
+									Description:         "TargetMaxReplicas is the target MaxReplicas to be set for FederatedHPA.Only needed when referencing resource is FederatedHPA.TargetMinReplicas and TargetMaxReplicas can be specified together oreither one can be specified alone.nil means the MaxReplicas(.spec.maxReplicas) of the referencing FederatedHPAwill not be updated.",
+									MarkdownDescription: "TargetMaxReplicas is the target MaxReplicas to be set for FederatedHPA.Only needed when referencing resource is FederatedHPA.TargetMinReplicas and TargetMaxReplicas can be specified together oreither one can be specified alone.nil means the MaxReplicas(.spec.maxReplicas) of the referencing FederatedHPAwill not be updated.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"target_min_replicas": schema.Int64Attribute{
-									Description:         "TargetMinReplicas is the target MinReplicas to be set for FederatedHPA. Only needed when referencing resource is FederatedHPA. TargetMinReplicas and TargetMaxReplicas can be specified together or either one can be specified alone. nil means the MinReplicas(.spec.minReplicas) of the referencing FederatedHPA will not be updated.",
-									MarkdownDescription: "TargetMinReplicas is the target MinReplicas to be set for FederatedHPA. Only needed when referencing resource is FederatedHPA. TargetMinReplicas and TargetMaxReplicas can be specified together or either one can be specified alone. nil means the MinReplicas(.spec.minReplicas) of the referencing FederatedHPA will not be updated.",
+									Description:         "TargetMinReplicas is the target MinReplicas to be set for FederatedHPA.Only needed when referencing resource is FederatedHPA.TargetMinReplicas and TargetMaxReplicas can be specified together oreither one can be specified alone.nil means the MinReplicas(.spec.minReplicas) of the referencing FederatedHPAwill not be updated.",
+									MarkdownDescription: "TargetMinReplicas is the target MinReplicas to be set for FederatedHPA.Only needed when referencing resource is FederatedHPA.TargetMinReplicas and TargetMaxReplicas can be specified together oreither one can be specified alone.nil means the MinReplicas(.spec.minReplicas) of the referencing FederatedHPAwill not be updated.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"target_replicas": schema.Int64Attribute{
-									Description:         "TargetReplicas is the target replicas to be scaled for resources referencing by ScaleTargetRef of this CronFederatedHPA. Only needed when referencing resource is not FederatedHPA.",
-									MarkdownDescription: "TargetReplicas is the target replicas to be scaled for resources referencing by ScaleTargetRef of this CronFederatedHPA. Only needed when referencing resource is not FederatedHPA.",
+									Description:         "TargetReplicas is the target replicas to be scaled for resourcesreferencing by ScaleTargetRef of this CronFederatedHPA.Only needed when referencing resource is not FederatedHPA.",
+									MarkdownDescription: "TargetReplicas is the target replicas to be scaled for resourcesreferencing by ScaleTargetRef of this CronFederatedHPA.Only needed when referencing resource is not FederatedHPA.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"time_zone": schema.StringAttribute{
-									Description:         "TimeZone for the giving schedule. If not specified, this will default to the time zone of the karmada-controller-manager process. Invalid TimeZone will be rejected when applying by karmada-webhook. see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the all timezones.",
-									MarkdownDescription: "TimeZone for the giving schedule. If not specified, this will default to the time zone of the karmada-controller-manager process. Invalid TimeZone will be rejected when applying by karmada-webhook. see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the all timezones.",
+									Description:         "TimeZone for the giving schedule.If not specified, this will default to the time zone of thekarmada-controller-manager process.Invalid TimeZone will be rejected when applying by karmada-webhook.see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for theall timezones.",
+									MarkdownDescription: "TimeZone for the giving schedule.If not specified, this will default to the time zone of thekarmada-controller-manager process.Invalid TimeZone will be rejected when applying by karmada-webhook.see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for theall timezones.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -236,8 +236,8 @@ func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"scale_target_ref": schema.SingleNestedAttribute{
-						Description:         "ScaleTargetRef points to the target resource to scale. Target resource could be any resource that implementing the scale subresource like Deployment, or FederatedHPA.",
-						MarkdownDescription: "ScaleTargetRef points to the target resource to scale. Target resource could be any resource that implementing the scale subresource like Deployment, or FederatedHPA.",
+						Description:         "ScaleTargetRef points to the target resource to scale.Target resource could be any resource that implementing the scalesubresource like Deployment, or FederatedHPA.",
+						MarkdownDescription: "ScaleTargetRef points to the target resource to scale.Target resource could be any resource that implementing the scalesubresource like Deployment, or FederatedHPA.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "apiVersion is the API version of the referent",

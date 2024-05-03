@@ -472,6 +472,7 @@ Required:
 
 Optional:
 
+- `credentials` (Attributes List) Credentials are optional credentials that the Composition Function needs. (see [below for nested schema](#nestedatt--spec--pipeline--credentials))
 - `input` (Map of String) Input is an optional, arbitrary Kubernetes resource (i.e. a resourcewith an apiVersion and kind) that will be passed to the CompositionFunction as the 'input' of its RunFunctionRequest.
 
 <a id="nestedatt--spec--pipeline--function_ref"></a>
@@ -480,6 +481,28 @@ Optional:
 Required:
 
 - `name` (String) Name of the referenced Function.
+
+
+<a id="nestedatt--spec--pipeline--credentials"></a>
+### Nested Schema for `spec.pipeline.credentials`
+
+Required:
+
+- `name` (String) Name of this set of credentials.
+- `source` (String) Source of the function credentials.
+
+Optional:
+
+- `secret_ref` (Attributes) A SecretRef is a reference to a secret containing credentials that shouldbe supplied to the function. (see [below for nested schema](#nestedatt--spec--pipeline--credentials--secret_ref))
+
+<a id="nestedatt--spec--pipeline--credentials--secret_ref"></a>
+### Nested Schema for `spec.pipeline.credentials.secret_ref`
+
+Required:
+
+- `name` (String) Name of the secret.
+- `namespace` (String) Namespace of the secret.
+
 
 
 

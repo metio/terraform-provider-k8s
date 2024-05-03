@@ -3056,6 +3056,7 @@ Optional:
 - `labels` (Map of String)
 - `liveness_default_check` (Boolean)
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--liveness_probe))
+- `log_format` (String)
 - `log_level` (String)
 - `metrics` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--metrics))
 - `node_selector` (Map of String)

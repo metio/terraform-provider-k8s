@@ -62,10 +62,11 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 			Type          *string            `tfsdk:"type" json:"type,omitempty"`
 			Types         *[]string          `tfsdk:"types" json:"types,omitempty"`
 		} `tfsdk:"configs" json:"configs,omitempty"`
-		ForEach *map[string]string `tfsdk:"for_each" json:"forEach,omitempty"`
-		Hidden  *bool              `tfsdk:"hidden" json:"hidden,omitempty"`
-		Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-		Id      *struct {
+		ExternalID *string            `tfsdk:"external_id" json:"externalID,omitempty"`
+		ForEach    *map[string]string `tfsdk:"for_each" json:"forEach,omitempty"`
+		Hidden     *bool              `tfsdk:"hidden" json:"hidden,omitempty"`
+		Icon       *string            `tfsdk:"icon" json:"icon,omitempty"`
+		Id         *struct {
 			Expr       *string `tfsdk:"expr" json:"expr,omitempty"`
 			Javascript *string `tfsdk:"javascript" json:"javascript,omitempty"`
 			JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
@@ -84,9 +85,10 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 		Order        *int64             `tfsdk:"order" json:"order,omitempty"`
 		Owner        *string            `tfsdk:"owner" json:"owner,omitempty"`
 		ParentLookup *struct {
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Type      *string `tfsdk:"type" json:"type,omitempty"`
+			ExternalID *string `tfsdk:"external_id" json:"externalID,omitempty"`
+			Name       *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Type       *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"parent_lookup" json:"parentLookup,omitempty"`
 		Properties    *map[string]string `tfsdk:"properties" json:"properties,omitempty"`
 		Relationships *[]struct {
@@ -344,6 +346,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 						Computed: false,
 					},
 
+					"external_id": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"for_each": schema.MapAttribute{
 						Description:         "Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself",
 						MarkdownDescription: "Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself",
@@ -508,6 +518,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 						Description:         "Reference to populate parent_id",
 						MarkdownDescription: "Reference to populate parent_id",
 						Attributes: map[string]schema.Attribute{
+							"external_id": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"name": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",

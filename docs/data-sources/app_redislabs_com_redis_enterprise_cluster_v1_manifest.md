@@ -362,9 +362,10 @@ Optional:
 
 Optional:
 
+- `enable_persistent_volume_resize` (Boolean) Whether to enable PersistentVolumes resize. Disabled by default. Read the instruction in pvc_expansion readme carefully before using this feature.
 - `enabled` (Boolean) Whether to add persistent volume to Redis Enterprise pods
-- `storage_class_name` (String) Storage class for persistent volume in Redis Enterprise pods Leave empty to use the default
-- `volume_size` (String)
+- `storage_class_name` (String) Storage class for persistent volume in Redis Enterprise pods. Leave empty to use the default. If using the default this way, make sure the Kubernetes Cluster has a default Storage Class configured. This can be done by running a 'kubectl get storageclass' and see if one of the Storage Classes' names contains a '(default)' mark.
+- `volume_size` (String) To enable resizing after creating the cluster - please follow the instructions in the pvc_expansion readme
 
 
 <a id="nestedatt--spec--pod_anti_affinity"></a>

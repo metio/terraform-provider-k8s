@@ -937,7 +937,7 @@ Required:
 
 Optional:
 
-- `prefix` (String) Prefix allows backups to be placed under a specific prefix in the bucket. A trailing slash '/' is added if not provided.
+- `prefix` (String) Prefix indicates a folder/subfolder in the bucket. For example: mariadb/ or mariadb/backups. A trailing slash '/' is added if not provided.
 - `region` (String) Region is the S3 region name to use.
 - `session_token_secret_key_ref` (Attributes) SessionTokenSecretKeyRef is a reference to a Secret key containing the S3 session token. (see [below for nested schema](#nestedatt--spec--bootstrap_from--s3--session_token_secret_key_ref))
 - `tls` (Attributes) TLS provides the configuration required to establish TLS connections with S3. (see [below for nested schema](#nestedatt--spec--bootstrap_from--s3--tls))
@@ -1813,7 +1813,7 @@ Optional:
 Optional:
 
 - `interval` (String) Interval used to perform health checks.
-- `retry_interval` (String) RetryInterval is the intervañ used to perform health check retries.
+- `retry_interval` (String) RetryInterval is the interval used to perform health check retries.
 
 
 <a id="nestedatt--spec--connection--secret_template"></a>
@@ -1955,7 +1955,7 @@ Optional:
 - `enabled` (Boolean) Enabled is a flag to enable Galera.
 - `galera_lib_path` (String) GaleraLibPath is a path inside the MariaDB image to the wsrep provider plugin. It is defaulted if not provided.More info: https://galeracluster.com/library/documentation/mysql-wsrep-options.html#wsrep-provider.
 - `init_container` (Attributes) InitContainer is an init container that co-operates with mariadb-operator. (see [below for nested schema](#nestedatt--spec--galera--init_container))
-- `init_job` (Attributes) InitJob defines metadata to the passed to the initialization Job. (see [below for nested schema](#nestedatt--spec--galera--init_job))
+- `init_job` (Attributes) InitJob defines additional properties for the Job used to perform the initialization. (see [below for nested schema](#nestedatt--spec--galera--init_job))
 - `primary` (Attributes) Primary is the Galera configuration for the primary node. (see [below for nested schema](#nestedatt--spec--galera--primary))
 - `provider_options` (Map of String) ProviderOptions is map of Galera configuration parameters.More info: https://mariadb.com/kb/en/galera-cluster-system-variables/#wsrep_provider_options.
 - `recovery` (Attributes) GaleraRecovery is the recovery process performed by the operator whenever the Galera cluster is not healthy.More info: https://galeracluster.com/library/documentation/crash-recovery.html. (see [below for nested schema](#nestedatt--spec--galera--recovery))
@@ -3712,7 +3712,7 @@ Optional:
 - `monitor` (Attributes) Monitor monitors MariaDB server instances. (see [below for nested schema](#nestedatt--spec--max_scale--monitor))
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget defines the budget for replica availability. (see [below for nested schema](#nestedatt--spec--max_scale--pod_disruption_budget))
 - `replicas` (Number) Replicas indicates the number of desired instances.
-- `requeue_interval` (String) RequeueInterval is used to perform requeue reconcilizations.
+- `requeue_interval` (String) RequeueInterval is used to perform requeue reconciliations.
 - `services` (Attributes List) Services define how the traffic is forwarded to the MariaDB servers. (see [below for nested schema](#nestedatt--spec--max_scale--services))
 - `update_strategy` (Attributes) UpdateStrategy defines the update strategy for the StatefulSet object. (see [below for nested schema](#nestedatt--spec--max_scale--update_strategy))
 
@@ -3758,6 +3758,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -3771,6 +3772,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -3784,6 +3786,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -3797,6 +3800,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -3810,6 +3814,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -3823,6 +3828,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -3950,7 +3956,7 @@ Optional:
 Optional:
 
 - `interval` (String) Interval used to perform health checks.
-- `retry_interval` (String) RetryInterval is the intervañ used to perform health check retries.
+- `retry_interval` (String) RetryInterval is the interval used to perform health check retries.
 
 
 <a id="nestedatt--spec--max_scale--connection--secret_template"></a>
@@ -6489,7 +6495,7 @@ Required:
 
 Optional:
 
-- `params` (Map of String) Params defines extra parameters to pass to the monitor.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1.Router specific parameter are also suported:https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration.https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.
+- `params` (Map of String) Params defines extra parameters to pass to the service.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1.Router specific parameter are also suported:https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration.https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.
 - `suspend` (Boolean) Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.
 
 <a id="nestedatt--spec--max_scale--services--listener"></a>
@@ -8969,6 +8975,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -9007,6 +9014,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -9107,7 +9115,7 @@ Optional:
 Optional:
 
 - `interval` (String) Interval used to perform health checks.
-- `retry_interval` (String) RetryInterval is the intervañ used to perform health check retries.
+- `retry_interval` (String) RetryInterval is the interval used to perform health check retries.
 
 
 <a id="nestedatt--spec--primary_connection--secret_template"></a>
@@ -9272,6 +9280,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -9305,6 +9314,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -9327,7 +9337,7 @@ Optional:
 Optional:
 
 - `interval` (String) Interval used to perform health checks.
-- `retry_interval` (String) RetryInterval is the intervañ used to perform health check retries.
+- `retry_interval` (String) RetryInterval is the interval used to perform health check retries.
 
 
 <a id="nestedatt--spec--secondary_connection--secret_template"></a>

@@ -70,8 +70,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 
 func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ResourceInterpreterWebhookConfiguration describes the configuration of webhooks which take the responsibility to tell karmada the details of the resource object, especially for custom resources.",
-		MarkdownDescription: "ResourceInterpreterWebhookConfiguration describes the configuration of webhooks which take the responsibility to tell karmada the details of the resource object, especially for custom resources.",
+		Description:         "ResourceInterpreterWebhookConfiguration describes the configuration of webhooks which take the responsibility totell karmada the details of the resource object, especially for custom resources.",
+		MarkdownDescription: "ResourceInterpreterWebhookConfiguration describes the configuration of webhooks which take the responsibility totell karmada the details of the resource object, especially for custom resources.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -135,8 +135,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 							MarkdownDescription: "ClientConfig defines how to communicate with the hook.",
 							Attributes: map[string]schema.Attribute{
 								"ca_bundle": schema.StringAttribute{
-									Description:         "'caBundle' is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.",
-									MarkdownDescription: "'caBundle' is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.",
+									Description:         "'caBundle' is a PEM encoded CA bundle which will be used to validate the webhook's server certificate.If unspecified, system trust roots on the apiserver are used.",
+									MarkdownDescription: "'caBundle' is a PEM encoded CA bundle which will be used to validate the webhook's server certificate.If unspecified, system trust roots on the apiserver are used.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -146,36 +146,36 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 								},
 
 								"service": schema.SingleNestedAttribute{
-									Description:         "'service' is a reference to the service for this webhook. Either 'service' or 'url' must be specified.  If the webhook is running within the cluster, then you should use 'service'.",
-									MarkdownDescription: "'service' is a reference to the service for this webhook. Either 'service' or 'url' must be specified.  If the webhook is running within the cluster, then you should use 'service'.",
+									Description:         "'service' is a reference to the service for this webhook. Either'service' or 'url' must be specified.If the webhook is running within the cluster, then you should use 'service'.",
+									MarkdownDescription: "'service' is a reference to the service for this webhook. Either'service' or 'url' must be specified.If the webhook is running within the cluster, then you should use 'service'.",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "'name' is the name of the service. Required",
-											MarkdownDescription: "'name' is the name of the service. Required",
+											Description:         "'name' is the name of the service.Required",
+											MarkdownDescription: "'name' is the name of the service.Required",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "'namespace' is the namespace of the service. Required",
-											MarkdownDescription: "'namespace' is the namespace of the service. Required",
+											Description:         "'namespace' is the namespace of the service.Required",
+											MarkdownDescription: "'namespace' is the namespace of the service.Required",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"path": schema.StringAttribute{
-											Description:         "'path' is an optional URL path which will be sent in any request to this service.",
-											MarkdownDescription: "'path' is an optional URL path which will be sent in any request to this service.",
+											Description:         "'path' is an optional URL path which will be sent in any request tothis service.",
+											MarkdownDescription: "'path' is an optional URL path which will be sent in any request tothis service.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"port": schema.Int64Attribute{
-											Description:         "If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. 'port' should be a valid port number (1-65535, inclusive).",
-											MarkdownDescription: "If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. 'port' should be a valid port number (1-65535, inclusive).",
+											Description:         "If specified, the port on the service that hosting webhook.Default to 443 for backward compatibility.'port' should be a valid port number (1-65535, inclusive).",
+											MarkdownDescription: "If specified, the port on the service that hosting webhook.Default to 443 for backward compatibility.'port' should be a valid port number (1-65535, inclusive).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -187,8 +187,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 								},
 
 								"url": schema.StringAttribute{
-									Description:         "'url' gives the location of the webhook, in standard URL form ('scheme://host:port/path'). Exactly one of 'url' or 'service' must be specified.  The 'host' should not refer to a service running in the cluster; use the 'service' field instead. The host might be resolved via external DNS in some apiservers (e.g., 'kube-apiserver' cannot resolve in-cluster DNS as that would be a layering violation). 'host' may also be an IP address.  Please note that using 'localhost' or '127.0.0.1' as a 'host' is risky unless you take great care to run this webhook on all hosts which run an apiserver which might need to make calls to this webhook. Such installs are likely to be non-portable, i.e., not easy to turn up in a new cluster.  The scheme must be 'https'; the URL must begin with 'https://'.  A path is optional, and if present may be any string permissible in a URL. You may use the path to pass an arbitrary string to the webhook, for example, a cluster identifier.  Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed, either.",
-									MarkdownDescription: "'url' gives the location of the webhook, in standard URL form ('scheme://host:port/path'). Exactly one of 'url' or 'service' must be specified.  The 'host' should not refer to a service running in the cluster; use the 'service' field instead. The host might be resolved via external DNS in some apiservers (e.g., 'kube-apiserver' cannot resolve in-cluster DNS as that would be a layering violation). 'host' may also be an IP address.  Please note that using 'localhost' or '127.0.0.1' as a 'host' is risky unless you take great care to run this webhook on all hosts which run an apiserver which might need to make calls to this webhook. Such installs are likely to be non-portable, i.e., not easy to turn up in a new cluster.  The scheme must be 'https'; the URL must begin with 'https://'.  A path is optional, and if present may be any string permissible in a URL. You may use the path to pass an arbitrary string to the webhook, for example, a cluster identifier.  Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed, either.",
+									Description:         "'url' gives the location of the webhook, in standard URL form('scheme://host:port/path'). Exactly one of 'url' or 'service'must be specified.The 'host' should not refer to a service running in the cluster; usethe 'service' field instead. The host might be resolved via externalDNS in some apiservers (e.g., 'kube-apiserver' cannot resolvein-cluster DNS as that would be a layering violation). 'host' mayalso be an IP address.Please note that using 'localhost' or '127.0.0.1' as a 'host' isrisky unless you take great care to run this webhook on all hostswhich run an apiserver which might need to make calls to thiswebhook. Such installs are likely to be non-portable, i.e., not easyto turn up in a new cluster.The scheme must be 'https'; the URL must begin with 'https://'.A path is optional, and if present may be any string permissible ina URL. You may use the path to pass an arbitrary string to thewebhook, for example, a cluster identifier.Attempting to use a user or basic auth e.g. 'user:password@' is notallowed. Fragments ('#...') and query parameters ('?...') are notallowed, either.",
+									MarkdownDescription: "'url' gives the location of the webhook, in standard URL form('scheme://host:port/path'). Exactly one of 'url' or 'service'must be specified.The 'host' should not refer to a service running in the cluster; usethe 'service' field instead. The host might be resolved via externalDNS in some apiservers (e.g., 'kube-apiserver' cannot resolvein-cluster DNS as that would be a layering violation). 'host' mayalso be an IP address.Please note that using 'localhost' or '127.0.0.1' as a 'host' isrisky unless you take great care to run this webhook on all hostswhich run an apiserver which might need to make calls to thiswebhook. Such installs are likely to be non-portable, i.e., not easyto turn up in a new cluster.The scheme must be 'https'; the URL must begin with 'https://'.A path is optional, and if present may be any string permissible ina URL. You may use the path to pass an arbitrary string to thewebhook, for example, a cluster identifier.Attempting to use a user or basic auth e.g. 'user:password@' is notallowed. Fragments ('#...') and query parameters ('?...') are notallowed, either.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -200,8 +200,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 						},
 
 						"interpreter_context_versions": schema.ListAttribute{
-							Description:         "InterpreterContextVersions is an ordered list of preferred 'ResourceInterpreterContext' versions the Webhook expects. Karmada will try to use first version in the list which it supports. If none of the versions specified in this list supported by Karmada, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the Karmada, calls to the webhook will fail and be subject to the failure policy.",
-							MarkdownDescription: "InterpreterContextVersions is an ordered list of preferred 'ResourceInterpreterContext' versions the Webhook expects. Karmada will try to use first version in the list which it supports. If none of the versions specified in this list supported by Karmada, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the Karmada, calls to the webhook will fail and be subject to the failure policy.",
+							Description:         "InterpreterContextVersions is an ordered list of preferred 'ResourceInterpreterContext'versions the Webhook expects. Karmada will try to use first version inthe list which it supports. If none of the versions specified in this listsupported by Karmada, validation will fail for this object.If a persisted webhook configuration specifies allowed versions and does notinclude any versions known to the Karmada, calls to the webhook will failand be subject to the failure policy.",
+							MarkdownDescription: "InterpreterContextVersions is an ordered list of preferred 'ResourceInterpreterContext'versions the Webhook expects. Karmada will try to use first version inthe list which it supports. If none of the versions specified in this listsupported by Karmada, validation will fail for this object.If a persisted webhook configuration specifies allowed versions and does notinclude any versions known to the Karmada, calls to the webhook will failand be subject to the failure policy.",
 							ElementType:         types.StringType,
 							Required:            true,
 							Optional:            false,
@@ -217,13 +217,13 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 						},
 
 						"rules": schema.ListNestedAttribute{
-							Description:         "Rules describes what operations on what resources the webhook cares about. The webhook cares about an operation if it matches any Rule.",
-							MarkdownDescription: "Rules describes what operations on what resources the webhook cares about. The webhook cares about an operation if it matches any Rule.",
+							Description:         "Rules describes what operations on what resources the webhook cares about.The webhook cares about an operation if it matches any Rule.",
+							MarkdownDescription: "Rules describes what operations on what resources the webhook cares about.The webhook cares about an operation if it matches any Rule.",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"api_groups": schema.ListAttribute{
-										Description:         "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all group  Note: The group could be empty, e.g the 'core' group of kubernetes, in that case use [''].",
-										MarkdownDescription: "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all group  Note: The group could be empty, e.g the 'core' group of kubernetes, in that case use [''].",
+										Description:         "APIGroups is the API groups the resources belong to. '*' is all groups.If '*' is present, the length of the slice must be one.For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all groupNote: The group could be empty, e.g the 'core' group of kubernetes, in that case use [''].",
+										MarkdownDescription: "APIGroups is the API groups the resources belong to. '*' is all groups.If '*' is present, the length of the slice must be one.For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all groupNote: The group could be empty, e.g the 'core' group of kubernetes, in that case use [''].",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -231,8 +231,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 									},
 
 									"api_versions": schema.ListAttribute{
-										Description:         "APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one. For example: ['v1alpha1', 'v1beta1'] means matches 2 versions. ['*'] means matches all versions.",
-										MarkdownDescription: "APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one. For example: ['v1alpha1', 'v1beta1'] means matches 2 versions. ['*'] means matches all versions.",
+										Description:         "APIVersions is the API versions the resources belong to. '*' is all versions.If '*' is present, the length of the slice must be one.For example: ['v1alpha1', 'v1beta1'] means matches 2 versions. ['*'] means matches all versions.",
+										MarkdownDescription: "APIVersions is the API versions the resources belong to. '*' is all versions.If '*' is present, the length of the slice must be one.For example: ['v1alpha1', 'v1beta1'] means matches 2 versions. ['*'] means matches all versions.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -240,8 +240,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 									},
 
 									"kinds": schema.ListAttribute{
-										Description:         "Kinds is a list of resources this rule applies to. If '*' is present, the length of the slice must be one. For example: ['Deployment', 'Pod'] means matches Deployment and Pod. ['*'] means apply to all resources.",
-										MarkdownDescription: "Kinds is a list of resources this rule applies to. If '*' is present, the length of the slice must be one. For example: ['Deployment', 'Pod'] means matches Deployment and Pod. ['*'] means apply to all resources.",
+										Description:         "Kinds is a list of resources this rule applies to.If '*' is present, the length of the slice must be one.For example: ['Deployment', 'Pod'] means matches Deployment and Pod. ['*'] means apply to all resources.",
+										MarkdownDescription: "Kinds is a list of resources this rule applies to.If '*' is present, the length of the slice must be one.For example: ['Deployment', 'Pod'] means matches Deployment and Pod. ['*'] means apply to all resources.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -249,8 +249,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 									},
 
 									"operations": schema.ListAttribute{
-										Description:         "Operations is the operations the hook cares about. If '*' is present, the length of the slice must be one.",
-										MarkdownDescription: "Operations is the operations the hook cares about. If '*' is present, the length of the slice must be one.",
+										Description:         "Operations is the operations the hook cares about.If '*' is present, the length of the slice must be one.",
+										MarkdownDescription: "Operations is the operations the hook cares about.If '*' is present, the length of the slice must be one.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -264,8 +264,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 						},
 
 						"timeout_seconds": schema.Int64Attribute{
-							Description:         "TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.",
-							MarkdownDescription: "TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.",
+							Description:         "TimeoutSeconds specifies the timeout for this webhook. After the timeout passes,the webhook call will be ignored or the API call will fail based on thefailure policy.The timeout value must be between 1 and 30 seconds.Default to 10 seconds.",
+							MarkdownDescription: "TimeoutSeconds specifies the timeout for this webhook. After the timeout passes,the webhook call will be ignored or the API call will fail based on thefailure policy.The timeout value must be between 1 and 30 seconds.Default to 10 seconds.",
 							Required:            false,
 							Optional:            true,
 							Computed:            false,

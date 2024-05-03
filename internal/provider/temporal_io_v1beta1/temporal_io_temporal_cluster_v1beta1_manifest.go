@@ -161,7 +161,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				RootCACertificate           *string `tfsdk:"root_ca_certificate" json:"rootCACertificate,omitempty"`
 			} `tfsdk:"certificates_duration" json:"certificatesDuration,omitempty"`
 			Frontend *struct {
-				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				Enabled       *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
+				ExtraDnsNames *[]string `tfsdk:"extra_dns_names" json:"extraDnsNames,omitempty"`
 			} `tfsdk:"frontend" json:"frontend,omitempty"`
 			Internode *struct {
 				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -196,7 +197,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 							AttachMetadata *struct {
 								Node *bool `tfsdk:"node" json:"node,omitempty"`
 							} `tfsdk:"attach_metadata" json:"attachMetadata,omitempty"`
-							Endpoints *[]struct {
+							BodySizeLimit *string `tfsdk:"body_size_limit" json:"bodySizeLimit,omitempty"`
+							Endpoints     *[]struct {
 								Authorization *struct {
 									Credentials *struct {
 										Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -325,6 +327,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 							} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 							PodTargetLabels *[]string `tfsdk:"pod_target_labels" json:"podTargetLabels,omitempty"`
 							SampleLimit     *int64    `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
+							ScrapeClass     *string   `tfsdk:"scrape_class" json:"scrapeClass,omitempty"`
+							ScrapeProtocols *[]string `tfsdk:"scrape_protocols" json:"scrapeProtocols,omitempty"`
 							Selector        *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1660,6 +1664,15 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"extra_dns_names": schema.ListAttribute{
+										Description:         "ExtraDNSNames is a list of additional DNS names associated with the TemporalCluster. These DNS names can be used for accessing the TemporalCluster from external services. The DNS names specified here will be added to the TLS certificate for secure communication.",
+										MarkdownDescription: "ExtraDNSNames is a list of additional DNS names associated with the TemporalCluster. These DNS names can be used for accessing the TemporalCluster from external services. The DNS names specified here will be added to the TLS certificate for secure communication.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -1896,6 +1909,17 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																Required: false,
 																Optional: true,
 																Computed: false,
+															},
+
+															"body_size_limit": schema.StringAttribute{
+																Description:         "When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus.  It requires Prometheus >= v2.28.0.",
+																MarkdownDescription: "When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus.  It requires Prometheus >= v2.28.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`(^0|([0-9]*[.])?[0-9]+((K|M|G|T|E|P)i?)?B)$`), ""),
+																},
 															},
 
 															"endpoints": schema.ListNestedAttribute{
@@ -2464,8 +2488,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"target_port": schema.StringAttribute{
-																			Description:         "Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property.  Deprecated: use 'port' instead.",
-																			MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property.  Deprecated: use 'port' instead.",
+																			Description:         "Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.",
+																			MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2795,6 +2819,26 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															"sample_limit": schema.Int64Attribute{
 																Description:         "'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.",
 																MarkdownDescription: "'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"scrape_class": schema.StringAttribute{
+																Description:         "The scrape class to apply.",
+																MarkdownDescription: "The scrape class to apply.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+
+															"scrape_protocols": schema.ListAttribute{
+																Description:         "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
+																MarkdownDescription: "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
+																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
 																Computed:            false,

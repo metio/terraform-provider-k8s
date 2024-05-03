@@ -180,9 +180,9 @@ Required:
 
 Optional:
 
-- `batch_parameters_template` (String) BatchParametersTemplate provides an optional Go template string to format the batch input data passed into the STDIN of the script when 'batchReload' is set to 'True'. The template uses the updated parameters' key-value pairs, accessible via the '$' variable. This allows for custom formatting of the input data. Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''
-- `batch_reload` (Boolean) Specifies whether to process dynamic parameter updates individually or collectively in a batch:  - Set to 'True' to execute all parameter changes in one batch reload action. - Set to 'False' to execute a reload action for each individual parameter change. The default behavior, if not specified, is 'False'.
-- `sync` (Boolean) Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.
+- `batch_parameters_template` (String) Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data.  Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''
+- `batch_reload` (Boolean) Controls whether parameter updates are processed individually or collectively in a batch:  - 'True': Processes all changes in one batch reload. - 'False': Processes each change individually.  Defaults to 'False' if unspecified.
+- `sync` (Boolean) Determines the synchronization mode of parameter updates with 'config-manager'.  - 'True': Executes reload actions synchronously, pausing until completion. - 'False': Executes reload actions asynchronously, without waiting for completion.
 
 
 <a id="nestedatt--spec--reload_options--tpl_script_trigger"></a>
@@ -190,12 +190,12 @@ Optional:
 
 Required:
 
-- `script_config_map_ref` (String) Specifies the reference to the ConfigMap that contains the script to be executed for reload.
+- `script_config_map_ref` (String) Specifies the reference to the ConfigMap containing the scripts.
 
 Optional:
 
-- `namespace` (String) Specifies the namespace where the referenced tpl script ConfigMap in. If left empty, by default in the 'default' namespace.
-- `sync` (Boolean) Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.
+- `namespace` (String) Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.
+- `sync` (Boolean) Determines whether parameter updates should be synchronized with the 'config-manager'. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.
 
 
 <a id="nestedatt--spec--reload_options--unix_signal_trigger"></a>
@@ -213,11 +213,11 @@ Required:
 
 Required:
 
-- `script_config_map_ref` (String) Specifies the reference to the ConfigMap that contains the script to be executed for reload.
+- `script_config_map_ref` (String) Specifies the reference to the ConfigMap containing the scripts.
 
 Optional:
 
-- `namespace` (String) Specifies the namespace where the referenced tpl script ConfigMap in. If left empty, by default in the 'default' namespace.
+- `namespace` (String) Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.
 
 
 <a id="nestedatt--spec--selector"></a>
