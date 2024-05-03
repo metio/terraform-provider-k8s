@@ -3,12 +3,12 @@
 page_title: "k8s_networking_karmada_io_multi_cluster_service_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "networking.karmada.io"
 description: |-
-  MultiClusterService is a named abstraction of multi-cluster software service. The name field of MultiClusterService is the same as that of Service name. Services with the same name in different clusters are regarded as the same service and are associated with the same MultiClusterService. MultiClusterService can control the exposure of services to outside multiple clusters, and also enable service discovery between clusters.
+  MultiClusterService is a named abstraction of multi-cluster software service.The name field of MultiClusterService is the same as that of Service name.Services with the same name in different clusters are regarded as the sameservice and are associated with the same MultiClusterService.MultiClusterService can control the exposure of services to outside multipleclusters, and also enable service discovery between clusters.
 ---
 
 # k8s_networking_karmada_io_multi_cluster_service_v1alpha1_manifest (Data Source)
 
-MultiClusterService is a named abstraction of multi-cluster software service. The name field of MultiClusterService is the same as that of Service name. Services with the same name in different clusters are regarded as the same service and are associated with the same MultiClusterService. MultiClusterService can control the exposure of services to outside multiple clusters, and also enable service discovery between clusters.
+MultiClusterService is a named abstraction of multi-cluster software service.The name field of MultiClusterService is the same as that of Service name.Services with the same name in different clusters are regarded as the sameservice and are associated with the same MultiClusterService.MultiClusterService can control the exposure of services to outside multipleclusters, and also enable service discovery between clusters.
 
 ## Example Usage
 
@@ -52,16 +52,16 @@ Optional:
 
 Required:
 
-- `types` (List of String) Types specifies how to expose the service referencing by this MultiClusterService.
+- `types` (List of String) Types specifies how to expose the service referencing by thisMultiClusterService.
 
 Optional:
 
-- `consumer_clusters` (Attributes List) ConsumerClusters specifies the clusters where the service will be exposed, for clients. If leave it empty, the service will be exposed to all clusters. (see [below for nested schema](#nestedatt--spec--consumer_clusters))
-- `ports` (Attributes List) Ports is the list of ports that are exposed by this MultiClusterService. No specified port will be filtered out during the service exposure and discovery process. All ports in the referencing service will be exposed by default. (see [below for nested schema](#nestedatt--spec--ports))
-- `provider_clusters` (Attributes List) ProviderClusters specifies the clusters which will provide the service backend. If leave it empty, we will collect the backend endpoints from all clusters and sync them to the ConsumerClusters. (see [below for nested schema](#nestedatt--spec--provider_clusters))
-- `range` (Attributes) Range specifies the ranges where the referencing service should be exposed. Only valid and optional in case of Types contains CrossCluster. If not set and Types contains CrossCluster, all clusters will be selected, that means the referencing service will be exposed across all registered clusters. Deprecated: in favor of ProviderClusters/ConsumerClusters. (see [below for nested schema](#nestedatt--spec--range))
-- `service_consumption_clusters` (List of String) ServiceConsumptionClusters specifies the clusters where the service will be exposed, for clients. If leave it empty, the service will be exposed to all clusters. Deprecated: in favor of ProviderClusters/ConsumerClusters.
-- `service_provision_clusters` (List of String) ServiceProvisionClusters specifies the clusters which will provision the service backend. If leave it empty, we will collect the backend endpoints from all clusters and sync them to the ServiceConsumptionClusters. Deprecated: in favor of ProviderClusters/ConsumerClusters.
+- `consumer_clusters` (Attributes List) ConsumerClusters specifies the clusters where the service will be exposed, for clients.If leave it empty, the service will be exposed to all clusters. (see [below for nested schema](#nestedatt--spec--consumer_clusters))
+- `ports` (Attributes List) Ports is the list of ports that are exposed by this MultiClusterService.No specified port will be filtered out during the serviceexposure and discovery process.All ports in the referencing service will be exposed by default. (see [below for nested schema](#nestedatt--spec--ports))
+- `provider_clusters` (Attributes List) ProviderClusters specifies the clusters which will provide the service backend.If leave it empty, we will collect the backend endpoints from all clusters and syncthem to the ConsumerClusters. (see [below for nested schema](#nestedatt--spec--provider_clusters))
+- `range` (Attributes) Range specifies the ranges where the referencing service shouldbe exposed.Only valid and optional in case of Types contains CrossCluster.If not set and Types contains CrossCluster, all clusters willbe selected, that means the referencing service will be exposedacross all registered clusters.Deprecated: in favor of ProviderClusters/ConsumerClusters. (see [below for nested schema](#nestedatt--spec--range))
+- `service_consumption_clusters` (List of String) ServiceConsumptionClusters specifies the clusters where the service will be exposed, for clients.If leave it empty, the service will be exposed to all clusters.Deprecated: in favor of ProviderClusters/ConsumerClusters.
+- `service_provision_clusters` (List of String) ServiceProvisionClusters specifies the clusters which will provision the service backend.If leave it empty, we will collect the backend endpoints from all clusters and syncthem to the ServiceConsumptionClusters.Deprecated: in favor of ProviderClusters/ConsumerClusters.
 
 <a id="nestedatt--spec--consumer_clusters"></a>
 ### Nested Schema for `spec.consumer_clusters`
@@ -80,7 +80,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name is the name of the port that needs to be exposed within the service. The port name must be the same as that defined in the service.
+- `name` (String) Name is the name of the port that needs to be exposed within the service.The port name must be the same as that defined in the service.
 
 
 <a id="nestedatt--spec--provider_clusters"></a>

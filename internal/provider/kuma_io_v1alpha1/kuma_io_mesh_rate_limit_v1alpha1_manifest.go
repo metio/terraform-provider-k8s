@@ -225,8 +225,8 @@ func (r *KumaIoMeshRateLimitV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 											MarkdownDescription: "LocalConf defines local http or/and tcp rate limit configuration",
 											Attributes: map[string]schema.Attribute{
 												"http": schema.SingleNestedAttribute{
-													Description:         "LocalHTTP defines confguration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
-													MarkdownDescription: "LocalHTTP defines confguration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
+													Description:         "LocalHTTP defines configuration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
+													MarkdownDescription: "LocalHTTP defines configuration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
 													Attributes: map[string]schema.Attribute{
 														"disabled": schema.BoolAttribute{
 															Description:         "Define if rate limiting should be disabled.",
@@ -536,8 +536,8 @@ func (r *KumaIoMeshRateLimitV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 											MarkdownDescription: "LocalConf defines local http or/and tcp rate limit configuration",
 											Attributes: map[string]schema.Attribute{
 												"http": schema.SingleNestedAttribute{
-													Description:         "LocalHTTP defines confguration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
-													MarkdownDescription: "LocalHTTP defines confguration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
+													Description:         "LocalHTTP defines configuration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
+													MarkdownDescription: "LocalHTTP defines configuration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
 													Attributes: map[string]schema.Attribute{
 														"disabled": schema.BoolAttribute{
 															Description:         "Define if rate limiting should be disabled.",

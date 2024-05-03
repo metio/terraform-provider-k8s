@@ -150,13 +150,23 @@ Optional:
 
 Optional:
 
+- `ipv6_pool` (Attributes) IPv6Pool is the list of IPv6 addresses available to the node for allocation. When an IPv6 address is used, it will remain on this list but will be added to Status.IPAM.IPv6Used (see [below for nested schema](#nestedatt--spec--ipam--ipv6_pool))
 - `max_above_watermark` (Number) MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.
 - `max_allocate` (Number) MaxAllocate is the maximum number of IPs that can be allocated to the node. When the current amount of allocated IPs will approach this value, the considered value for PreAllocate will decrease down to 0 in order to not attempt to allocate more addresses than defined.
 - `min_allocate` (Number) MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.
 - `pod_cid_rs` (List of String) PodCIDRs is the list of CIDRs available to the node for allocation. When an IP is used, the IP will be added to Status.IPAM.Used
-- `pool` (Attributes) Pool is the list of IPs available to the node for allocation. When an IP is used, the IP will remain on this list but will be added to Status.IPAM.Used (see [below for nested schema](#nestedatt--spec--ipam--pool))
+- `pool` (Attributes) Pool is the list of IPv4 addresses available to the node for allocation. When an IPv4 address is used, it will remain on this list but will be added to Status.IPAM.Used (see [below for nested schema](#nestedatt--spec--ipam--pool))
 - `pools` (Attributes) Pools contains the list of assigned IPAM pools for this node. (see [below for nested schema](#nestedatt--spec--ipam--pools))
 - `pre_allocate` (Number) PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.
+
+<a id="nestedatt--spec--ipam--ipv6_pool"></a>
+### Nested Schema for `spec.ipam.ipv6_pool`
+
+Optional:
+
+- `owner` (String) Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.
+- `resource` (String) Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI
+
 
 <a id="nestedatt--spec--ipam--pool"></a>
 ### Nested Schema for `spec.ipam.pool`

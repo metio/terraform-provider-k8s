@@ -3,12 +3,12 @@
 page_title: "k8s_volsync_backube_replication_source_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "volsync.backube"
 description: |-
-  ReplicationSource defines the source for a replicated volume
+  A ReplicationSource is a VolSync resource that you can use to define the source PVC and replication mover type, enabling you to replicate or synchronize PVC data to a remote location.
 ---
 
 # k8s_volsync_backube_replication_source_v1alpha1_manifest (Data Source)
 
-ReplicationSource defines the source for a replicated volume
+A ReplicationSource is a VolSync resource that you can use to define the source PVC and replication mover type, enabling you to replicate or synchronize PVC data to a remote location.
 
 ## Example Usage
 

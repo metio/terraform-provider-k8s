@@ -93,6 +93,7 @@ type AcidZalanDoPostgresqlV1ManifestData struct {
 		EnableShmVolume                 *bool                `tfsdk:"enable_shm_volume" json:"enableShmVolume,omitempty"`
 		Env                             *[]map[string]string `tfsdk:"env" json:"env,omitempty"`
 		InitContainers                  *[]map[string]string `tfsdk:"init_containers" json:"initContainers,omitempty"`
+		LogicalBackupRetention          *string              `tfsdk:"logical_backup_retention" json:"logicalBackupRetention,omitempty"`
 		LogicalBackupSchedule           *string              `tfsdk:"logical_backup_schedule" json:"logicalBackupSchedule,omitempty"`
 		MaintenanceWindows              *[]string            `tfsdk:"maintenance_windows" json:"maintenanceWindows,omitempty"`
 		MasterServiceAnnotations        *map[string]string   `tfsdk:"master_service_annotations" json:"masterServiceAnnotations,omitempty"`
@@ -678,6 +679,14 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 						Description:         "",
 						MarkdownDescription: "",
 						ElementType:         types.MapType{ElemType: types.StringType},
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"logical_backup_retention": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

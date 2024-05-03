@@ -1077,6 +1077,10 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,
@@ -1119,6 +1123,10 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,
@@ -1239,6 +1247,10 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
+																							Validators: []validator.Int64{
+																								int64validator.AtLeast(0),
+																								int64validator.AtMost(4.294967295e+09),
+																							},
 																						},
 																					},
 																				},
@@ -1533,6 +1545,10 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
 																				},
 
 																				"path": schema.StringAttribute{
@@ -1582,6 +1598,10 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
 																				},
 
 																				"protocol": schema.StringAttribute{
@@ -1741,6 +1761,10 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"protocol": schema.StringAttribute{
@@ -2808,6 +2832,10 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
 													},
 
 													"pack_as_bytes": schema.BoolAttribute{
@@ -2845,6 +2873,10 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
 											},
 
 											"transport_api_version": schema.StringAttribute{
@@ -4153,6 +4185,10 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
 													},
 
 													"tokens_per_fill": schema.Int64Attribute{
@@ -4219,6 +4255,10 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
 											},
 
 											"tokens_per_fill": schema.Int64Attribute{

@@ -61,6 +61,7 @@ Optional:
 - `admin_user` (String) Username to use for the admin account
 - `affinity` (Attributes) If specified, the pod's scheduling constraints (see [below for nested schema](#nestedatt--spec--affinity))
 - `annotations` (String) Common annotations for both Web and Task deployments.
+- `api_urlpattern_prefix` (String) An optional configuration to add a prefix in the API URL path
 - `api_version` (String) apiVersion of the deployment type
 - `auto_upgrade` (Boolean) Should AWX instances be automatically upgraded when operator gets upgraded
 - `broadcast_websocket_secret` (String) Secret where the broadcast websocket secret can be found

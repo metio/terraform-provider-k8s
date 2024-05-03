@@ -90,7 +90,7 @@ Optional:
 Optional:
 
 - `interval` (String) Interval used to perform health checks.
-- `retry_interval` (String) RetryInterval is the intervañ used to perform health check retries.
+- `retry_interval` (String) RetryInterval is the interval used to perform health check retries.
 
 
 <a id="nestedatt--spec--maria_db_ref"></a>

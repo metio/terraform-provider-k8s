@@ -247,8 +247,8 @@ func (r *K8SMariadbComUserV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"password_secret_key_ref": schema.SingleNestedAttribute{
-						Description:         "PasswordSecretKeyRef is a reference to the password to be used by the User.",
-						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to be used by the User.",
+						Description:         "PasswordSecretKeyRef is a reference to the password to be used by the User.If not provided, the account will be locked and the password will expire.",
+						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to be used by the User.If not provided, the account will be locked and the password will expire.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -274,14 +274,14 @@ func (r *K8SMariadbComUserV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
 					"requeue_interval": schema.StringAttribute{
-						Description:         "RequeueInterval is used to perform requeue reconcilizations.",
-						MarkdownDescription: "RequeueInterval is used to perform requeue reconcilizations.",
+						Description:         "RequeueInterval is used to perform requeue reconciliations.",
+						MarkdownDescription: "RequeueInterval is used to perform requeue reconciliations.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

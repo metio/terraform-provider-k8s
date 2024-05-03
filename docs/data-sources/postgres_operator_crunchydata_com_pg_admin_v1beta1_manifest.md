@@ -523,10 +523,24 @@ Optional:
 
 Optional:
 
+- `config_database_uri` (Attributes) A Secret containing the value for the CONFIG_DATABASE_URI setting. More info: https://www.pgadmin.org/docs/pgadmin4/latest/external_database.html (see [below for nested schema](#nestedatt--spec--config--config_database_uri))
 - `files` (Attributes List) Files allows the user to mount projected volumes into the pgAdmin container so that files can be referenced by pgAdmin as needed. (see [below for nested schema](#nestedatt--spec--config--files))
 - `gunicorn` (Map of String) Settings for the gunicorn server. More info: https://docs.gunicorn.org/en/latest/settings.html
 - `ldap_bind_password` (Attributes) A Secret containing the value for the LDAP_BIND_PASSWORD setting. More info: https://www.pgadmin.org/docs/pgadmin4/latest/ldap.html (see [below for nested schema](#nestedatt--spec--config--ldap_bind_password))
 - `settings` (Map of String) Settings for the pgAdmin server process. Keys should be uppercase and values must be constants. More info: https://www.pgadmin.org/docs/pgadmin4/latest/config_py.html
+
+<a id="nestedatt--spec--config--config_database_uri"></a>
+### Nested Schema for `spec.config.config_database_uri`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 <a id="nestedatt--spec--config--files"></a>
 ### Nested Schema for `spec.config.files`
@@ -691,6 +705,10 @@ Optional:
 Required:
 
 - `name` (String) The name for the ServerGroup in pgAdmin. Must be unique in the pgAdmin's ServerGroups since it becomes the ServerGroup name in pgAdmin.
+
+Optional:
+
+- `postgres_cluster_name` (String) PostgresClusterName selects one cluster to add to pgAdmin by name.
 - `postgres_cluster_selector` (Attributes) PostgresClusterSelector selects clusters to dynamically add to pgAdmin by matching labels. An empty selector like '{}' will select ALL clusters in the namespace. (see [below for nested schema](#nestedatt--spec--server_groups--postgres_cluster_selector))
 
 <a id="nestedatt--spec--server_groups--postgres_cluster_selector"></a>

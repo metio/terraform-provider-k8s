@@ -56,7 +56,7 @@ Required:
 
 Optional:
 
-- `static_assignments` (Attributes List) StaticAssignments represents the subset of desired hard limits for each cluster. Note: for clusters not present in this list, Karmada will set an empty ResourceQuota to them, which means these clusters will have no quotas in the referencing namespace. (see [below for nested schema](#nestedatt--spec--static_assignments))
+- `static_assignments` (Attributes List) StaticAssignments represents the subset of desired hard limits for each cluster.Note: for clusters not present in this list, Karmada will set an empty ResourceQuota to them, which means theseclusters will have no quotas in the referencing namespace. (see [below for nested schema](#nestedatt--spec--static_assignments))
 
 <a id="nestedatt--spec--static_assignments"></a>
 ### Nested Schema for `spec.static_assignments`

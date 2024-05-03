@@ -3,12 +3,12 @@
 page_title: "k8s_volsync_backube_replication_destination_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "volsync.backube"
 description: |-
-  ReplicationDestination defines the destination for a replicated volume
+  A ReplicationDestination is a VolSync resource that you can use to define the destination of a VolSync replication or synchronization.
 ---
 
 # k8s_volsync_backube_replication_destination_v1alpha1_manifest (Data Source)
 
-ReplicationDestination defines the destination for a replicated volume
+A ReplicationDestination is a VolSync resource that you can use to define the destination of a VolSync replication or synchronization.
 
 ## Example Usage
 

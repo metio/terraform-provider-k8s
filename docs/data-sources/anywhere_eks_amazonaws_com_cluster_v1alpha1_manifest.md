@@ -424,7 +424,7 @@ Optional:
 Required:
 
 - `namespace` (String) Namespace refers to the name of a namespace in the local registry
-- `registry` (String) Name refers to the name of the upstream registry
+- `registry` (String) Registry refers to the name of the upstream registry
 
 
 

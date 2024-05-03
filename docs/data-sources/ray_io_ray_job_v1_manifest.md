@@ -70,6 +70,7 @@ Optional:
 - `runtime_env_yaml` (String)
 - `shutdown_after_job_finishes` (Boolean)
 - `submission_mode` (String)
+- `submitter_config` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_config))
 - `submitter_pod_template` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template))
 - `suspend` (Boolean)
 - `ttl_seconds_after_finished` (Number)
@@ -6916,6 +6917,14 @@ Optional:
 - `workers_to_delete` (List of String)
 
 
+
+
+<a id="nestedatt--spec--submitter_config"></a>
+### Nested Schema for `spec.submitter_config`
+
+Optional:
+
+- `backoff_limit` (Number)
 
 
 <a id="nestedatt--spec--submitter_pod_template"></a>

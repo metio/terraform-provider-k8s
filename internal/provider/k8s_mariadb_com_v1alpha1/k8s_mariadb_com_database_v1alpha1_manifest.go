@@ -239,8 +239,8 @@ func (r *K8SMariadbComDatabaseV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"requeue_interval": schema.StringAttribute{
-						Description:         "RequeueInterval is used to perform requeue reconcilizations.",
-						MarkdownDescription: "RequeueInterval is used to perform requeue reconcilizations.",
+						Description:         "RequeueInterval is used to perform requeue reconciliations.",
+						MarkdownDescription: "RequeueInterval is used to perform requeue reconciliations.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -53,8 +53,8 @@ Optional:
 Required:
 
 - `pg_cluster` (String) The name of the PerconaPGCluster to perform restore.
-- `repo_name` (String) The name of the pgBackRest repo within the source PostgresCluster that contains the backups that should be utilized to perform a pgBackRest restore when initializing the data source for the new PostgresCluster.
+- `repo_name` (String) The name of the pgBackRest repo within the source PostgresCluster that contains the backupsthat should be utilized to perform a pgBackRest restore when initializing the data sourcefor the new PostgresCluster.
 
 Optional:
 
-- `options` (List of String) Command line options to include when running the pgBackRest restore command. https://pgbackrest.org/command.html#command-restore
+- `options` (List of String) Command line options to include when running the pgBackRest restore command.https://pgbackrest.org/command.html#command-restore

@@ -68,7 +68,7 @@ Required:
 
 Optional:
 
-- `additional_output_formats` (Attributes List) Defines extra output formats of the private key and signed certificate chainto be written to this Certificate's target Secret.This is an Alpha Feature and is only enabled with the'--feature-gates=AdditionalCertificateOutputFormats=true' option set on boththe controller and webhook components. (see [below for nested schema](#nestedatt--spec--additional_output_formats))
+- `additional_output_formats` (Attributes List) Defines extra output formats of the private key and signed certificate chainto be written to this Certificate's target Secret.This is a Beta Feature enabled by default. It can be disabled with the'--feature-gates=AdditionalCertificateOutputFormats=false' option set on boththe controller and webhook components. (see [below for nested schema](#nestedatt--spec--additional_output_formats))
 - `common_name` (String) Requested common name X509 certificate subject attribute.More info: https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6NOTE: TLS clients will ignore this value when any subject alternative name isset (see https://tools.ietf.org/html/rfc6125#section-6.4.4).Should have a length of 64 characters or fewer to avoid generating invalid CSRs.Cannot be set if the 'literalSubject' field is set.
 - `dns_names` (List of String) Requested DNS subject alternative names.
 - `duration` (String) Requested 'duration' (i.e. lifetime) of the Certificate. Note that theissuer may choose to ignore the requested duration, just like any otherrequested attribute.If unset, this defaults to 90 days.Minimum accepted duration is 1 hour.Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.

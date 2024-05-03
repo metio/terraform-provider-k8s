@@ -734,6 +734,10 @@ func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1Manifest) Schema(_ context.Context, _
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(4.294967295e+09),
+								},
 							},
 						},
 						Required: false,

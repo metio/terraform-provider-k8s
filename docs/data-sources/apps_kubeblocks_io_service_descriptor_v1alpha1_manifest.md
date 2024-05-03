@@ -3,12 +3,12 @@
 page_title: "k8s_apps_kubeblocks_io_service_descriptor_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apps.kubeblocks.io"
 description: |-
-  ServiceDescriptor is the Schema for the servicedescriptors API
+  ServiceDescriptor describes a service provided by external sources. It contains the necessary details such as the service's address and connection credentials. To enable a Cluster to access this service, the ServiceDescriptor's name should be specified in the Cluster configuration under 'clusterComponent.serviceRefs[*].serviceDescriptor'.
 ---
 
 # k8s_apps_kubeblocks_io_service_descriptor_v1alpha1_manifest (Data Source)
 
-ServiceDescriptor is the Schema for the servicedescriptors API
+ServiceDescriptor describes a service provided by external sources. It contains the necessary details such as the service's address and connection credentials. To enable a Cluster to access this service, the ServiceDescriptor's name should be specified in the Cluster configuration under 'clusterComponent.serviceRefs[*].serviceDescriptor'.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_apps_kubeblocks_io_service_descriptor_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ServiceDescriptorSpec defines the desired state of ServiceDescriptor (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ServiceDescriptorSpec defines the desired state of ServiceDescriptor. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,30 +55,30 @@ Optional:
 
 Required:
 
-- `service_kind` (String) Specifies the type or nature of the service. Should represent a well-known application cluster type, such as {mysql, redis, mongodb}. This field is case-insensitive and supports abbreviations for some well-known databases. For instance, both 'zk' and 'zookeeper' will be recognized as a ZooKeeper cluster, and 'pg', 'postgres', 'postgresql' will all be recognized as a PostgreSQL cluster.
-- `service_version` (String) Represents the version of the service reference.
+- `service_kind` (String) Describes the type of database service provided by the external service. For example, 'mysql', 'redis', 'mongodb'. This field categorizes databases by their functionality, protocol and compatibility, facilitating appropriate service integration based on their unique capabilities.  This field is case-insensitive.  It also supports abbreviations for some well-known databases: - 'pg', 'pgsql', 'postgres', 'postgresql': PostgreSQL service - 'zk', 'zookeeper': ZooKeeper service - 'es', 'elasticsearch': Elasticsearch service - 'mongo', 'mongodb': MongoDB service - 'ch', 'clickhouse': ClickHouse service
+- `service_version` (String) Describes the version of the service provided by the external service. This is crucial for ensuring compatibility between different components of the system, as different versions of a service may have varying features.
 
 Optional:
 
-- `auth` (Attributes) Represents the authentication details of the service connection credential. (see [below for nested schema](#nestedatt--spec--auth))
-- `endpoint` (Attributes) Represents the endpoint of the service connection credential. (see [below for nested schema](#nestedatt--spec--endpoint))
-- `port` (Attributes) Represents the port of the service connection credential. (see [below for nested schema](#nestedatt--spec--port))
+- `auth` (Attributes) Specifies the authentication credentials required for accessing an external service. (see [below for nested schema](#nestedatt--spec--auth))
+- `endpoint` (Attributes) Specifies the URL or IP address of the external service. (see [below for nested schema](#nestedatt--spec--endpoint))
+- `port` (Attributes) Specifies the port of the external service. (see [below for nested schema](#nestedatt--spec--port))
 
 <a id="nestedatt--spec--auth"></a>
 ### Nested Schema for `spec.auth`
 
 Optional:
 
-- `password` (Attributes) Represents the password credential for the service connection. (see [below for nested schema](#nestedatt--spec--auth--password))
-- `username` (Attributes) Represents the username credential for the service connection. (see [below for nested schema](#nestedatt--spec--auth--username))
+- `password` (Attributes) Specifies the password for the external service. (see [below for nested schema](#nestedatt--spec--auth--password))
+- `username` (Attributes) Specifies the username for the external service. (see [below for nested schema](#nestedatt--spec--auth--username))
 
 <a id="nestedatt--spec--auth--password"></a>
 ### Nested Schema for `spec.auth.password`
 
 Optional:
 
-- `value` (String) Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.
-- `value_from` (Attributes) Defines the source for the environment variable's value. This cannot be used if the value is not empty. (see [below for nested schema](#nestedatt--spec--auth--password--value_from))
+- `value` (String) Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.
+- `value_from` (Attributes) Specifies the source for the variable's value. (see [below for nested schema](#nestedatt--spec--auth--password--value_from))
 
 <a id="nestedatt--spec--auth--password--value_from"></a>
 ### Nested Schema for `spec.auth.password.value_from`
@@ -148,8 +148,8 @@ Optional:
 
 Optional:
 
-- `value` (String) Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.
-- `value_from` (Attributes) Defines the source for the environment variable's value. This cannot be used if the value is not empty. (see [below for nested schema](#nestedatt--spec--auth--username--value_from))
+- `value` (String) Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.
+- `value_from` (Attributes) Specifies the source for the variable's value. (see [below for nested schema](#nestedatt--spec--auth--username--value_from))
 
 <a id="nestedatt--spec--auth--username--value_from"></a>
 ### Nested Schema for `spec.auth.username.value_from`
@@ -220,8 +220,8 @@ Optional:
 
 Optional:
 
-- `value` (String) Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.
-- `value_from` (Attributes) Defines the source for the environment variable's value. This cannot be used if the value is not empty. (see [below for nested schema](#nestedatt--spec--endpoint--value_from))
+- `value` (String) Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.
+- `value_from` (Attributes) Specifies the source for the variable's value. (see [below for nested schema](#nestedatt--spec--endpoint--value_from))
 
 <a id="nestedatt--spec--endpoint--value_from"></a>
 ### Nested Schema for `spec.endpoint.value_from`
@@ -291,8 +291,8 @@ Optional:
 
 Optional:
 
-- `value` (String) Specifies an optional variable. Only one of the following may be specified. Variable references, denoted by $(VAR_NAME), are expanded using previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string remains unchanged.  Double $$ are reduced to a single $, enabling the escaping of the $(VAR_NAME) syntax. For instance, '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, irrespective of the variable's existence. The default value is ''.
-- `value_from` (Attributes) Defines the source for the environment variable's value. This cannot be used if the value is not empty. (see [below for nested schema](#nestedatt--spec--port--value_from))
+- `value` (String) Holds a direct string or an expression that can be evaluated to a string.  It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output.  To escape variable expansion and retain the literal value, use double $ characters.  For example:  - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.  Default value is an empty string.
+- `value_from` (Attributes) Specifies the source for the variable's value. (see [below for nested schema](#nestedatt--spec--port--value_from))
 
 <a id="nestedatt--spec--port--value_from"></a>
 ### Nested Schema for `spec.port.value_from`

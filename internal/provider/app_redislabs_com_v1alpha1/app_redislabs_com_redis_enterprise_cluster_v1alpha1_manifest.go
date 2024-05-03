@@ -159,9 +159,10 @@ type AppRedislabsComRedisEnterpriseClusterV1Alpha1ManifestData struct {
 			ResponseTimeout   *int64 `tfsdk:"response_timeout" json:"responseTimeout,omitempty"`
 		} `tfsdk:"ocsp_configuration" json:"ocspConfiguration,omitempty"`
 		PersistentSpec *struct {
-			Enabled          *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-			VolumeSize       *string `tfsdk:"volume_size" json:"volumeSize,omitempty"`
+			EnablePersistentVolumeResize *bool   `tfsdk:"enable_persistent_volume_resize" json:"enablePersistentVolumeResize,omitempty"`
+			Enabled                      *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			StorageClassName             *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+			VolumeSize                   *string `tfsdk:"volume_size" json:"volumeSize,omitempty"`
 		} `tfsdk:"persistent_spec" json:"persistentSpec,omitempty"`
 		PodAnnotations  *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
 		PodAntiAffinity *struct {
@@ -3691,6 +3692,14 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Alpha1Manifest) Schema(_ context
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"enable_persistent_volume_resize": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",

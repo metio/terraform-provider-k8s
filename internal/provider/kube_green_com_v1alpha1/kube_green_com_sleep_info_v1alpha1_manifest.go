@@ -56,12 +56,13 @@ type KubeGreenComSleepInfoV1Alpha1ManifestData struct {
 				Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
 			} `tfsdk:"target" json:"target,omitempty"`
 		} `tfsdk:"patches" json:"patches,omitempty"`
-		SleepAt            *string `tfsdk:"sleep_at" json:"sleepAt,omitempty"`
-		SuspendCronJobs    *bool   `tfsdk:"suspend_cron_jobs" json:"suspendCronJobs,omitempty"`
-		SuspendDeployments *bool   `tfsdk:"suspend_deployments" json:"suspendDeployments,omitempty"`
-		TimeZone           *string `tfsdk:"time_zone" json:"timeZone,omitempty"`
-		WakeUpAt           *string `tfsdk:"wake_up_at" json:"wakeUpAt,omitempty"`
-		Weekdays           *string `tfsdk:"weekdays" json:"weekdays,omitempty"`
+		SleepAt             *string `tfsdk:"sleep_at" json:"sleepAt,omitempty"`
+		SuspendCronJobs     *bool   `tfsdk:"suspend_cron_jobs" json:"suspendCronJobs,omitempty"`
+		SuspendDeployments  *bool   `tfsdk:"suspend_deployments" json:"suspendDeployments,omitempty"`
+		SuspendStatefulsets *bool   `tfsdk:"suspend_statefulsets" json:"suspendStatefulsets,omitempty"`
+		TimeZone            *string `tfsdk:"time_zone" json:"timeZone,omitempty"`
+		WakeUpAt            *string `tfsdk:"wake_up_at" json:"wakeUpAt,omitempty"`
+		Weekdays            *string `tfsdk:"weekdays" json:"weekdays,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -249,6 +250,14 @@ func (r *KubeGreenComSleepInfoV1Alpha1Manifest) Schema(_ context.Context, _ data
 					"suspend_deployments": schema.BoolAttribute{
 						Description:         "If SuspendDeployments is set to false, on sleep the deployment of the namespace will not be suspended. By default Deployment will be suspended.",
 						MarkdownDescription: "If SuspendDeployments is set to false, on sleep the deployment of the namespace will not be suspended. By default Deployment will be suspended.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"suspend_statefulsets": schema.BoolAttribute{
+						Description:         "If SuspendStatefulSets is set to false, on sleep the statefulset of the namespace will not be suspended. By default StatefulSet will be suspended.",
+						MarkdownDescription: "If SuspendStatefulSets is set to false, on sleep the statefulset of the namespace will not be suspended. By default StatefulSet will be suspended.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

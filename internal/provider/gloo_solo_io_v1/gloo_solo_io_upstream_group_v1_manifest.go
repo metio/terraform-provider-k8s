@@ -1098,6 +1098,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																			Validators: []validator.Int64{
+																				int64validator.AtLeast(0),
+																				int64validator.AtMost(4.294967295e+09),
+																			},
 																		},
 																	},
 																	Required: false,
@@ -1226,6 +1230,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 
 												"ref": schema.SingleNestedAttribute{
@@ -1455,6 +1463,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 															},
 															Required: false,
@@ -1497,6 +1509,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 															},
 															Required: false,
@@ -2067,6 +2083,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																								Validators: []validator.Int64{
+																									int64validator.AtLeast(0),
+																									int64validator.AtMost(4.294967295e+09),
+																								},
 																							},
 																						},
 																						Required: false,
@@ -2374,6 +2394,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																								Validators: []validator.Int64{
+																									int64validator.AtLeast(0),
+																									int64validator.AtMost(4.294967295e+09),
+																								},
 																							},
 																						},
 																						Required: false,
@@ -2743,6 +2767,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																								Validators: []validator.Int64{
+																									int64validator.AtLeast(0),
+																									int64validator.AtMost(4.294967295e+09),
+																								},
 																							},
 																						},
 																						Required: false,
@@ -3239,6 +3267,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																								Validators: []validator.Int64{
+																									int64validator.AtLeast(0),
+																									int64validator.AtMost(4.294967295e+09),
+																								},
 																							},
 																						},
 																						Required: false,
@@ -3546,6 +3578,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																								Validators: []validator.Int64{
+																									int64validator.AtLeast(0),
+																									int64validator.AtMost(4.294967295e+09),
+																								},
 																							},
 																						},
 																						Required: false,
@@ -3915,6 +3951,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																								Validators: []validator.Int64{
+																									int64validator.AtLeast(0),
+																									int64validator.AtMost(4.294967295e+09),
+																								},
 																							},
 																						},
 																						Required: false,
@@ -4250,6 +4290,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																			Validators: []validator.Int64{
+																				int64validator.AtLeast(0),
+																				int64validator.AtMost(4.294967295e+09),
+																			},
 																		},
 																	},
 																	Required: false,
@@ -4557,6 +4601,10 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																			Validators: []validator.Int64{
+																				int64validator.AtLeast(0),
+																				int64validator.AtMost(4.294967295e+09),
+																			},
 																		},
 																	},
 																	Required: false,

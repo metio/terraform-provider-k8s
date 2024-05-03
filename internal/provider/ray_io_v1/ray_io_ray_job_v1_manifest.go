@@ -2722,7 +2722,10 @@ type RayIoRayJobV1ManifestData struct {
 		RuntimeEnvYAML           *string `tfsdk:"runtime_env_yaml" json:"runtimeEnvYAML,omitempty"`
 		ShutdownAfterJobFinishes *bool   `tfsdk:"shutdown_after_job_finishes" json:"shutdownAfterJobFinishes,omitempty"`
 		SubmissionMode           *string `tfsdk:"submission_mode" json:"submissionMode,omitempty"`
-		SubmitterPodTemplate     *struct {
+		SubmitterConfig          *struct {
+			BackoffLimit *int64 `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
+		} `tfsdk:"submitter_config" json:"submitterConfig,omitempty"`
+		SubmitterPodTemplate *struct {
 			Metadata *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Finalizers  *[]string          `tfsdk:"finalizers" json:"finalizers,omitempty"`
@@ -22036,6 +22039,23 @@ func (r *RayIoRayJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReq
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"submitter_config": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"backoff_limit": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"submitter_pod_template": schema.SingleNestedAttribute{

@@ -65,6 +65,7 @@ Optional:
 - `discovery_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--discovery_metadata))
 - `dns_refresh_rate` (String)
 - `failover` (Attributes) (see [below for nested schema](#nestedatt--spec--failover))
+- `gcp` (Attributes) (see [below for nested schema](#nestedatt--spec--gcp))
 - `health_checks` (Attributes List) (see [below for nested schema](#nestedatt--spec--health_checks))
 - `http_connect_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_connect_headers))
 - `http_connect_ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_connect_ssl_config))
@@ -625,6 +626,15 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--gcp"></a>
+### Nested Schema for `spec.gcp`
+
+Optional:
+
+- `audience` (String)
+- `host` (String)
 
 
 <a id="nestedatt--spec--health_checks"></a>

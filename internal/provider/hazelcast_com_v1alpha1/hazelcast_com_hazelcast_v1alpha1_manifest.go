@@ -89,15 +89,17 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 		} `tfsdk:"cp_subsystem" json:"cpSubsystem,omitempty"`
 		CustomConfigCmName      *string `tfsdk:"custom_config_cm_name" json:"customConfigCmName,omitempty"`
 		DurableExecutorServices *[]struct {
-			Capacity   *int64  `tfsdk:"capacity" json:"capacity,omitempty"`
-			Durability *int64  `tfsdk:"durability" json:"durability,omitempty"`
-			Name       *string `tfsdk:"name" json:"name,omitempty"`
-			PoolSize   *int64  `tfsdk:"pool_size" json:"poolSize,omitempty"`
+			Capacity          *int64  `tfsdk:"capacity" json:"capacity,omitempty"`
+			Durability        *int64  `tfsdk:"durability" json:"durability,omitempty"`
+			Name              *string `tfsdk:"name" json:"name,omitempty"`
+			PoolSize          *int64  `tfsdk:"pool_size" json:"poolSize,omitempty"`
+			UserCodeNamespace *string `tfsdk:"user_code_namespace" json:"userCodeNamespace,omitempty"`
 		} `tfsdk:"durable_executor_services" json:"durableExecutorServices,omitempty"`
 		ExecutorServices *[]struct {
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			PoolSize      *int64  `tfsdk:"pool_size" json:"poolSize,omitempty"`
-			QueueCapacity *int64  `tfsdk:"queue_capacity" json:"queueCapacity,omitempty"`
+			Name              *string `tfsdk:"name" json:"name,omitempty"`
+			PoolSize          *int64  `tfsdk:"pool_size" json:"poolSize,omitempty"`
+			QueueCapacity     *int64  `tfsdk:"queue_capacity" json:"queueCapacity,omitempty"`
+			UserCodeNamespace *string `tfsdk:"user_code_namespace" json:"userCodeNamespace,omitempty"`
 		} `tfsdk:"executor_services" json:"executorServices,omitempty"`
 		ExposeExternally *struct {
 			DiscoveryServiceType *string `tfsdk:"discovery_service_type" json:"discoveryServiceType,omitempty"`
@@ -207,11 +209,12 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
 		ScheduledExecutorServices *[]struct {
-			Capacity       *int64  `tfsdk:"capacity" json:"capacity,omitempty"`
-			CapacityPolicy *string `tfsdk:"capacity_policy" json:"capacityPolicy,omitempty"`
-			Durability     *int64  `tfsdk:"durability" json:"durability,omitempty"`
-			Name           *string `tfsdk:"name" json:"name,omitempty"`
-			PoolSize       *int64  `tfsdk:"pool_size" json:"poolSize,omitempty"`
+			Capacity          *int64  `tfsdk:"capacity" json:"capacity,omitempty"`
+			CapacityPolicy    *string `tfsdk:"capacity_policy" json:"capacityPolicy,omitempty"`
+			Durability        *int64  `tfsdk:"durability" json:"durability,omitempty"`
+			Name              *string `tfsdk:"name" json:"name,omitempty"`
+			PoolSize          *int64  `tfsdk:"pool_size" json:"poolSize,omitempty"`
+			UserCodeNamespace *string `tfsdk:"user_code_namespace" json:"userCodeNamespace,omitempty"`
 		} `tfsdk:"scheduled_executor_services" json:"scheduledExecutorServices,omitempty"`
 		Scheduling *struct {
 			Affinity *struct {
@@ -416,6 +419,20 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 			RemoteURLs      *[]string `tfsdk:"remote_urls" json:"remoteURLs,omitempty"`
 			TriggerSequence *string   `tfsdk:"trigger_sequence" json:"triggerSequence,omitempty"`
 		} `tfsdk:"user_code_deployment" json:"userCodeDeployment,omitempty"`
+		UserCodeNamespaces *struct {
+			ClassFilter *struct {
+				Blacklist *struct {
+					Classes  *[]string `tfsdk:"classes" json:"classes,omitempty"`
+					Packages *[]string `tfsdk:"packages" json:"packages,omitempty"`
+					Prefixes *[]string `tfsdk:"prefixes" json:"prefixes,omitempty"`
+				} `tfsdk:"blacklist" json:"blacklist,omitempty"`
+				Whitelist *struct {
+					Classes  *[]string `tfsdk:"classes" json:"classes,omitempty"`
+					Packages *[]string `tfsdk:"packages" json:"packages,omitempty"`
+					Prefixes *[]string `tfsdk:"prefixes" json:"prefixes,omitempty"`
+				} `tfsdk:"whitelist" json:"whitelist,omitempty"`
+			} `tfsdk:"class_filter" json:"classFilter,omitempty"`
+		} `tfsdk:"user_code_namespaces" json:"userCodeNamespaces,omitempty"`
 		Version *string `tfsdk:"version" json:"version,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -823,6 +840,17 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 										int64validator.AtLeast(1),
 									},
 								},
+
+								"user_code_namespace": schema.StringAttribute{
+									Description:         "Name of the User Code Namespace applied to this instance",
+									MarkdownDescription: "Name of the User Code Namespace applied to this instance",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
 							},
 						},
 						Required: false,
@@ -860,6 +888,17 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"user_code_namespace": schema.StringAttribute{
+									Description:         "Name of the User Code Namespace applied to this instance",
+									MarkdownDescription: "Name of the User Code Namespace applied to this instance",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
 								},
 							},
 						},
@@ -1698,6 +1737,17 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 									Computed:            false,
 									Validators: []validator.Int64{
 										int64validator.AtLeast(1),
+									},
+								},
+
+								"user_code_namespace": schema.StringAttribute{
+									Description:         "Name of the User Code Namespace applied to this instance",
+									MarkdownDescription: "Name of the User Code Namespace applied to this instance",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
 									},
 								},
 							},
@@ -3097,6 +3147,120 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"user_code_namespaces": schema.SingleNestedAttribute{
+						Description:         "UserCodeNamespaces provide a container for Java classpath resources, such as user code and accompanying artifacts like property files",
+						MarkdownDescription: "UserCodeNamespaces provide a container for Java classpath resources, such as user code and accompanying artifacts like property files",
+						Attributes: map[string]schema.Attribute{
+							"class_filter": schema.SingleNestedAttribute{
+								Description:         "Blacklist and whitelist for classes when User Code Namespaces is used.",
+								MarkdownDescription: "Blacklist and whitelist for classes when User Code Namespaces is used.",
+								Attributes: map[string]schema.Attribute{
+									"blacklist": schema.SingleNestedAttribute{
+										Description:         "Java deserialization protection Blacklist.",
+										MarkdownDescription: "Java deserialization protection Blacklist.",
+										Attributes: map[string]schema.Attribute{
+											"classes": schema.ListAttribute{
+												Description:         "List of class names to be filtered.",
+												MarkdownDescription: "List of class names to be filtered.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("packages"), path.MatchRelative().AtParent().AtName("prefixes")),
+												},
+											},
+
+											"packages": schema.ListAttribute{
+												Description:         "List of packages to be filtered",
+												MarkdownDescription: "List of packages to be filtered",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("prefixes")),
+												},
+											},
+
+											"prefixes": schema.ListAttribute{
+												Description:         "List of prefixes to be filtered.",
+												MarkdownDescription: "List of prefixes to be filtered.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("packages")),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+										Validators: []validator.Object{
+											objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("whitelist")),
+										},
+									},
+
+									"whitelist": schema.SingleNestedAttribute{
+										Description:         "Java deserialization protection Whitelist.",
+										MarkdownDescription: "Java deserialization protection Whitelist.",
+										Attributes: map[string]schema.Attribute{
+											"classes": schema.ListAttribute{
+												Description:         "List of class names to be filtered.",
+												MarkdownDescription: "List of class names to be filtered.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("packages"), path.MatchRelative().AtParent().AtName("prefixes")),
+												},
+											},
+
+											"packages": schema.ListAttribute{
+												Description:         "List of packages to be filtered",
+												MarkdownDescription: "List of packages to be filtered",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("prefixes")),
+												},
+											},
+
+											"prefixes": schema.ListAttribute{
+												Description:         "List of prefixes to be filtered.",
+												MarkdownDescription: "List of prefixes to be filtered.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("packages")),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+										Validators: []validator.Object{
+											objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("blacklist")),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

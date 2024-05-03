@@ -75,6 +75,7 @@ Optional:
 - `persistence_enabled` (Boolean) When enabled, map data will be persisted. It cannot be updated after map config is created successfully.
 - `tiered_store` (Attributes) TieredStore enables the Hazelcast's Tiered-Store feature for the Map (see [below for nested schema](#nestedatt--spec--tiered_store))
 - `time_to_live_seconds` (Number) Maximum time in seconds for each entry to stay in the map. If it is not 0, entries that are older than this time and not updated for this time are evicted automatically. It can be updated.
+- `user_code_namespace` (String) Name of the User Code Namespace applied to this instance
 
 <a id="nestedatt--spec--attributes"></a>
 ### Nested Schema for `spec.attributes`

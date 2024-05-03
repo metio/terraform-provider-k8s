@@ -3635,6 +3635,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,
@@ -3677,6 +3681,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,
@@ -3784,6 +3792,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
+																				Validators: []validator.Int64{
+																					int64validator.AtLeast(0),
+																					int64validator.AtMost(4.294967295e+09),
+																				},
 																			},
 																		},
 																	},
@@ -5213,6 +5225,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
 													},
 
 													"tokens_per_fill": schema.Int64Attribute{
@@ -5848,6 +5864,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
 													},
 
 													"unit": schema.StringAttribute{
@@ -5873,6 +5893,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
 													},
 
 													"unit": schema.StringAttribute{
@@ -5915,6 +5939,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
 													},
 
 													"tokens_per_fill": schema.Int64Attribute{
@@ -6558,6 +6586,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
 													},
 
 													"tokens_per_fill": schema.Int64Attribute{
@@ -7294,6 +7326,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
 											},
 
 											"per_try_timeout": schema.StringAttribute{
@@ -7661,6 +7697,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
+																							Validators: []validator.Int64{
+																								int64validator.AtLeast(0),
+																								int64validator.AtMost(4.294967295e+09),
+																							},
 																						},
 																					},
 																					Required: false,
@@ -7968,6 +8008,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
+																							Validators: []validator.Int64{
+																								int64validator.AtLeast(0),
+																								int64validator.AtMost(4.294967295e+09),
+																							},
 																						},
 																					},
 																					Required: false,
@@ -8337,6 +8381,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
+																							Validators: []validator.Int64{
+																								int64validator.AtLeast(0),
+																								int64validator.AtMost(4.294967295e+09),
+																							},
 																						},
 																					},
 																					Required: false,
@@ -8833,6 +8881,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
+																							Validators: []validator.Int64{
+																								int64validator.AtLeast(0),
+																								int64validator.AtMost(4.294967295e+09),
+																							},
 																						},
 																					},
 																					Required: false,
@@ -9140,6 +9192,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
+																							Validators: []validator.Int64{
+																								int64validator.AtLeast(0),
+																								int64validator.AtMost(4.294967295e+09),
+																							},
 																						},
 																					},
 																					Required: false,
@@ -9509,6 +9565,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
+																							Validators: []validator.Int64{
+																								int64validator.AtLeast(0),
+																								int64validator.AtMost(4.294967295e+09),
+																							},
 																						},
 																					},
 																					Required: false,
@@ -9888,6 +9948,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(0),
+																			int64validator.AtMost(4.294967295e+09),
+																		},
 																	},
 																},
 																Required: false,
@@ -10195,6 +10259,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(0),
+																			int64validator.AtMost(4.294967295e+09),
+																		},
 																	},
 																},
 																Required: false,
@@ -10695,6 +10763,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 											},
 											Required: false,
@@ -11133,6 +11205,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																			Validators: []validator.Int64{
+																				int64validator.AtLeast(0),
+																				int64validator.AtMost(4.294967295e+09),
+																			},
 																		},
 																	},
 																	Required: false,
@@ -11175,6 +11251,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																			Validators: []validator.Int64{
+																				int64validator.AtLeast(0),
+																				int64validator.AtMost(4.294967295e+09),
+																			},
 																		},
 																	},
 																	Required: false,
@@ -11282,6 +11362,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
+																							Validators: []validator.Int64{
+																								int64validator.AtLeast(0),
+																								int64validator.AtMost(4.294967295e+09),
+																							},
 																						},
 																					},
 																				},
@@ -11731,6 +11815,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"percentage": schema.Float64Attribute{
@@ -12303,6 +12391,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"tokens_per_fill": schema.Int64Attribute{
@@ -12938,6 +13030,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"unit": schema.StringAttribute{
@@ -12963,6 +13059,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"unit": schema.StringAttribute{
@@ -13013,6 +13113,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"tokens_per_fill": schema.Int64Attribute{
@@ -13664,6 +13768,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"tokens_per_fill": schema.Int64Attribute{
@@ -14455,6 +14563,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(4.294967295e+09),
+															},
 														},
 
 														"per_try_timeout": schema.StringAttribute{
@@ -14864,6 +14976,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
+																										Validators: []validator.Int64{
+																											int64validator.AtLeast(0),
+																											int64validator.AtMost(4.294967295e+09),
+																										},
 																									},
 																								},
 																								Required: false,
@@ -15171,6 +15287,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
+																										Validators: []validator.Int64{
+																											int64validator.AtLeast(0),
+																											int64validator.AtMost(4.294967295e+09),
+																										},
 																									},
 																								},
 																								Required: false,
@@ -15540,6 +15660,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
+																										Validators: []validator.Int64{
+																											int64validator.AtLeast(0),
+																											int64validator.AtMost(4.294967295e+09),
+																										},
 																									},
 																								},
 																								Required: false,
@@ -16036,6 +16160,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
+																										Validators: []validator.Int64{
+																											int64validator.AtLeast(0),
+																											int64validator.AtMost(4.294967295e+09),
+																										},
 																									},
 																								},
 																								Required: false,
@@ -16343,6 +16471,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
+																										Validators: []validator.Int64{
+																											int64validator.AtLeast(0),
+																											int64validator.AtMost(4.294967295e+09),
+																										},
 																									},
 																								},
 																								Required: false,
@@ -16712,6 +16844,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
+																										Validators: []validator.Int64{
+																											int64validator.AtLeast(0),
+																											int64validator.AtMost(4.294967295e+09),
+																										},
 																									},
 																								},
 																								Required: false,
@@ -17113,6 +17249,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
 																				},
 																			},
 																			Required: false,
@@ -17420,6 +17560,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
 																				},
 																			},
 																			Required: false,
@@ -18353,6 +18497,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																												Required:            false,
 																												Optional:            true,
 																												Computed:            false,
+																												Validators: []validator.Int64{
+																													int64validator.AtLeast(0),
+																													int64validator.AtMost(4.294967295e+09),
+																												},
 																											},
 																										},
 																										Required: false,
@@ -18481,6 +18629,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																						Validators: []validator.Int64{
+																							int64validator.AtLeast(0),
+																							int64validator.AtMost(4.294967295e+09),
+																						},
 																					},
 
 																					"ref": schema.SingleNestedAttribute{
@@ -18710,6 +18862,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
+																										Validators: []validator.Int64{
+																											int64validator.AtLeast(0),
+																											int64validator.AtMost(4.294967295e+09),
+																										},
 																									},
 																								},
 																								Required: false,
@@ -18752,6 +18908,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
+																										Validators: []validator.Int64{
+																											int64validator.AtLeast(0),
+																											int64validator.AtMost(4.294967295e+09),
+																										},
 																									},
 																								},
 																								Required: false,
@@ -19322,6 +19482,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																																	Required:            false,
 																																	Optional:            true,
 																																	Computed:            false,
+																																	Validators: []validator.Int64{
+																																		int64validator.AtLeast(0),
+																																		int64validator.AtMost(4.294967295e+09),
+																																	},
 																																},
 																															},
 																															Required: false,
@@ -19629,6 +19793,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																																	Required:            false,
 																																	Optional:            true,
 																																	Computed:            false,
+																																	Validators: []validator.Int64{
+																																		int64validator.AtLeast(0),
+																																		int64validator.AtMost(4.294967295e+09),
+																																	},
 																																},
 																															},
 																															Required: false,
@@ -19998,6 +20166,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																																	Required:            false,
 																																	Optional:            true,
 																																	Computed:            false,
+																																	Validators: []validator.Int64{
+																																		int64validator.AtLeast(0),
+																																		int64validator.AtMost(4.294967295e+09),
+																																	},
 																																},
 																															},
 																															Required: false,
@@ -20494,6 +20666,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																																	Required:            false,
 																																	Optional:            true,
 																																	Computed:            false,
+																																	Validators: []validator.Int64{
+																																		int64validator.AtLeast(0),
+																																		int64validator.AtMost(4.294967295e+09),
+																																	},
 																																},
 																															},
 																															Required: false,
@@ -20801,6 +20977,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																																	Required:            false,
 																																	Optional:            true,
 																																	Computed:            false,
+																																	Validators: []validator.Int64{
+																																		int64validator.AtLeast(0),
+																																		int64validator.AtMost(4.294967295e+09),
+																																	},
 																																},
 																															},
 																															Required: false,
@@ -21170,6 +21350,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																																	Required:            false,
 																																	Optional:            true,
 																																	Computed:            false,
+																																	Validators: []validator.Int64{
+																																		int64validator.AtLeast(0),
+																																		int64validator.AtMost(4.294967295e+09),
+																																	},
 																																},
 																															},
 																															Required: false,
@@ -21505,6 +21689,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																												Required:            false,
 																												Optional:            true,
 																												Computed:            false,
+																												Validators: []validator.Int64{
+																													int64validator.AtLeast(0),
+																													int64validator.AtMost(4.294967295e+09),
+																												},
 																											},
 																										},
 																										Required: false,
@@ -21812,6 +22000,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																												Required:            false,
 																												Optional:            true,
 																												Computed:            false,
+																												Validators: []validator.Int64{
+																													int64validator.AtLeast(0),
+																													int64validator.AtMost(4.294967295e+09),
+																												},
 																											},
 																										},
 																										Required: false,
@@ -22345,6 +22537,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
+																							Validators: []validator.Int64{
+																								int64validator.AtLeast(0),
+																								int64validator.AtMost(4.294967295e+09),
+																							},
 																						},
 																					},
 																					Required: false,
@@ -22473,6 +22669,10 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"ref": schema.SingleNestedAttribute{

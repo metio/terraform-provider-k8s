@@ -106,7 +106,8 @@ type HazelcastComMapV1Alpha1ManifestData struct {
 			DiskDeviceName *string `tfsdk:"disk_device_name" json:"diskDeviceName,omitempty"`
 			MemoryCapacity *string `tfsdk:"memory_capacity" json:"memoryCapacity,omitempty"`
 		} `tfsdk:"tiered_store" json:"tieredStore,omitempty"`
-		TimeToLiveSeconds *int64 `tfsdk:"time_to_live_seconds" json:"timeToLiveSeconds,omitempty"`
+		TimeToLiveSeconds *int64  `tfsdk:"time_to_live_seconds" json:"timeToLiveSeconds,omitempty"`
+		UserCodeNamespace *string `tfsdk:"user_code_namespace" json:"userCodeNamespace,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -663,6 +664,17 @@ func (r *HazelcastComMapV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"user_code_namespace": schema.StringAttribute{
+						Description:         "Name of the User Code Namespace applied to this instance",
+						MarkdownDescription: "Name of the User Code Namespace applied to this instance",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
 					},
 				},
 				Required: true,

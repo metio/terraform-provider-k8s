@@ -377,8 +377,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"dynamic_reload_action": schema.SingleNestedAttribute{
-						Description:         "Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'dynamicReloadAction' is set.  If 'dynamicReloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml reloadOptions: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true '''",
-						MarkdownDescription: "Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'dynamicReloadAction' is set.  If 'dynamicReloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml reloadOptions: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true '''",
+						Description:         "Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'dynamicReloadAction' is set.  If 'dynamicReloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml dynamicReloadAction: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true '''",
+						MarkdownDescription: "Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'dynamicReloadAction' is set.  If 'dynamicReloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml dynamicReloadAction: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true '''",
 						Attributes: map[string]schema.Attribute{
 							"auto_trigger": schema.SingleNestedAttribute{
 								Description:         "Automatically perform the reload when specified conditions are met.",
@@ -402,16 +402,16 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 								MarkdownDescription: "Allows to execute a custom shell script to reload the process.",
 								Attributes: map[string]schema.Attribute{
 									"batch_parameters_template": schema.StringAttribute{
-										Description:         "BatchParametersTemplate provides an optional Go template string to format the batch input data passed into the STDIN of the script when 'batchReload' is set to 'True'. The template uses the updated parameters' key-value pairs, accessible via the '$' variable. This allows for custom formatting of the input data. Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
-										MarkdownDescription: "BatchParametersTemplate provides an optional Go template string to format the batch input data passed into the STDIN of the script when 'batchReload' is set to 'True'. The template uses the updated parameters' key-value pairs, accessible via the '$' variable. This allows for custom formatting of the input data. Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
+										Description:         "Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data.  Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
+										MarkdownDescription: "Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data.  Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"batch_reload": schema.BoolAttribute{
-										Description:         "Specifies whether to process dynamic parameter updates individually or collectively in a batch:  - Set to 'True' to execute all parameter changes in one batch reload action. - Set to 'False' to execute a reload action for each individual parameter change. The default behavior, if not specified, is 'False'.",
-										MarkdownDescription: "Specifies whether to process dynamic parameter updates individually or collectively in a batch:  - Set to 'True' to execute all parameter changes in one batch reload action. - Set to 'False' to execute a reload action for each individual parameter change. The default behavior, if not specified, is 'False'.",
+										Description:         "Controls whether parameter updates are processed individually or collectively in a batch:  - 'True': Processes all changes in one batch reload. - 'False': Processes each change individually.  Defaults to 'False' if unspecified.",
+										MarkdownDescription: "Controls whether parameter updates are processed individually or collectively in a batch:  - 'True': Processes all changes in one batch reload. - 'False': Processes each change individually.  Defaults to 'False' if unspecified.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -427,8 +427,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 									},
 
 									"sync": schema.BoolAttribute{
-										Description:         "Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
-										MarkdownDescription: "Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
+										Description:         "Determines the synchronization mode of parameter updates with 'config-manager'.  - 'True': Executes reload actions synchronously, pausing until completion. - 'False': Executes reload actions asynchronously, without waiting for completion.",
+										MarkdownDescription: "Determines the synchronization mode of parameter updates with 'config-manager'.  - 'True': Executes reload actions synchronously, pausing until completion. - 'False': Executes reload actions asynchronously, without waiting for completion.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -444,8 +444,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 								MarkdownDescription: "Enables reloading process using a Go template script.",
 								Attributes: map[string]schema.Attribute{
 									"namespace": schema.StringAttribute{
-										Description:         "Specifies the namespace where the referenced tpl script ConfigMap in. If left empty, by default in the 'default' namespace.",
-										MarkdownDescription: "Specifies the namespace where the referenced tpl script ConfigMap in. If left empty, by default in the 'default' namespace.",
+										Description:         "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+										MarkdownDescription: "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -456,16 +456,16 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 									},
 
 									"script_config_map_ref": schema.StringAttribute{
-										Description:         "Specifies the reference to the ConfigMap that contains the script to be executed for reload.",
-										MarkdownDescription: "Specifies the reference to the ConfigMap that contains the script to be executed for reload.",
+										Description:         "Specifies the reference to the ConfigMap containing the scripts.",
+										MarkdownDescription: "Specifies the reference to the ConfigMap containing the scripts.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"sync": schema.BoolAttribute{
-										Description:         "Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
-										MarkdownDescription: "Determines whether parameter updates should be synchronized with the config manager. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
+										Description:         "Determines whether parameter updates should be synchronized with the 'config-manager'. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
+										MarkdownDescription: "Determines whether parameter updates should be synchronized with the 'config-manager'. Specifies the controller's reload strategy:  - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -683,8 +683,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"namespace": schema.StringAttribute{
-									Description:         "Specifies the namespace where the referenced tpl script ConfigMap in. If left empty, by default in the 'default' namespace.",
-									MarkdownDescription: "Specifies the namespace where the referenced tpl script ConfigMap in. If left empty, by default in the 'default' namespace.",
+									Description:         "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+									MarkdownDescription: "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -695,8 +695,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"script_config_map_ref": schema.StringAttribute{
-									Description:         "Specifies the reference to the ConfigMap that contains the script to be executed for reload.",
-									MarkdownDescription: "Specifies the reference to the ConfigMap that contains the script to be executed for reload.",
+									Description:         "Specifies the reference to the ConfigMap containing the scripts.",
+									MarkdownDescription: "Specifies the reference to the ConfigMap containing the scripts.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,

@@ -4577,7 +4577,7 @@ Optional:
 
 Optional:
 
-- `dynamic_configuration` (Map of String) Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html
+- `dynamic_configuration` (Map of String) Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/dynamic_configuration.html
 - `leader_lease_duration_seconds` (Number) TTL of the cluster leader lock. 'Think of it as the length of time before initiation of the automatic failover process.' Changing this value causes PostgreSQL to restart.
 - `port` (Number) The port on which Patroni should listen. Changing this value causes PostgreSQL to restart.
 - `switchover` (Attributes) Switchover gives options to perform ad hoc switchovers in a PostgresCluster. (see [below for nested schema](#nestedatt--spec--patroni--switchover))

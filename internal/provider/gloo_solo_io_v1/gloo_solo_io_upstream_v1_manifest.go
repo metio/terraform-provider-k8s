@@ -282,6 +282,10 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 				} `tfsdk:"locality_endpoints" json:"localityEndpoints,omitempty"`
 			} `tfsdk:"prioritized_localities" json:"prioritizedLocalities,omitempty"`
 		} `tfsdk:"failover" json:"failover,omitempty"`
+		Gcp *struct {
+			Audience *string `tfsdk:"audience" json:"audience,omitempty"`
+			Host     *string `tfsdk:"host" json:"host,omitempty"`
+		} `tfsdk:"gcp" json:"gcp,omitempty"`
 		HealthChecks *[]struct {
 			AlwaysLogHealthCheckFailures *bool `tfsdk:"always_log_health_check_failures" json:"alwaysLogHealthCheckFailures,omitempty"`
 			CustomHealthCheck            *struct {
@@ -1074,6 +1078,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(4.294967295e+09),
+								},
 							},
 
 							"public_ip": schema.BoolAttribute{
@@ -1286,6 +1294,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 
 									"max_stream_duration": schema.StringAttribute{
@@ -1356,6 +1368,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(4.294967295e+09),
+								},
 							},
 
 							"per_connection_buffer_limit_bytes": schema.Int64Attribute{
@@ -1388,6 +1404,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 
 									"keepalive_time": schema.StringAttribute{
@@ -1888,6 +1908,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,
@@ -2145,6 +2169,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																			Validators: []validator.Int64{
+																				int64validator.AtLeast(0),
+																				int64validator.AtMost(4.294967295e+09),
+																			},
 																		},
 																	},
 																	Required: false,
@@ -2170,6 +2198,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(4.294967295e+09),
+																	},
 																},
 
 																"upstream_ssl_config": schema.SingleNestedAttribute{
@@ -2460,6 +2492,31 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"gcp": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"audience": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"host": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -2927,6 +2984,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtLeast(0),
+										int64validator.AtMost(4.294967295e+09),
+									},
 								},
 
 								"no_traffic_interval": schema.StringAttribute{
@@ -3361,6 +3422,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(4.294967295e+09),
+								},
 							},
 
 							"service_spec": schema.SingleNestedAttribute{
@@ -3771,6 +3836,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,
@@ -3979,6 +4048,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
 									},
 
 									"slow_start_config": schema.SingleNestedAttribute{
@@ -4778,6 +4851,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,
@@ -5245,6 +5322,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(4.294967295e+09),
+											},
 										},
 
 										"sni_addr": schema.StringAttribute{
@@ -5669,6 +5750,10 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 														Required: false,

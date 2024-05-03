@@ -575,6 +575,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 
 												"commit_master": schema.Int64Attribute{
@@ -583,6 +587,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
 												},
 
 												"hostname": schema.StringAttribute{
@@ -644,6 +652,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(4.294967295e+09),
+															},
 														},
 
 														"read_mode_ap_one": schema.Int64Attribute{
@@ -652,6 +664,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(4.294967295e+09),
+															},
 														},
 													},
 													Required: false,
@@ -669,6 +685,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(4.294967295e+09),
+															},
 														},
 
 														"read_mode_sc_linearize": schema.Int64Attribute{
@@ -677,6 +697,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(4.294967295e+09),
+															},
 														},
 
 														"read_mode_sc_replica": schema.Int64Attribute{
@@ -685,6 +709,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(4.294967295e+09),
+															},
 														},
 
 														"read_mode_sc_session": schema.Int64Attribute{
@@ -693,6 +721,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(4.294967295e+09),
+															},
 														},
 													},
 													Required: false,
@@ -727,6 +759,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 
 															"curve_p384": schema.Int64Attribute{
@@ -735,6 +771,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 
 															"curve_p521": schema.Int64Attribute{
@@ -743,6 +783,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 
 															"x25519": schema.Int64Attribute{
@@ -751,6 +795,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 													},
@@ -2470,6 +2518,10 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(4.294967295e+09),
+															},
 														},
 
 														"never": schema.MapAttribute{

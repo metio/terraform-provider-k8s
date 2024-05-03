@@ -1028,6 +1028,7 @@ Optional:
 Optional:
 
 - `enabled` (Boolean) Enabled defines if the operator should enable mTLS for cluster's public endpoints.
+- `extra_dns_names` (List of String) ExtraDNSNames is a list of additional DNS names associated with the TemporalCluster. These DNS names can be used for accessing the TemporalCluster from external services. The DNS names specified here will be added to the TLS certificate for secure communication.
 
 
 <a id="nestedatt--spec--m_tls--internode"></a>
@@ -1104,6 +1105,7 @@ Required:
 Optional:
 
 - `attach_metadata` (Attributes) 'attachMetadata' defines additional metadata which is added to the discovered targets.  It requires Prometheus >= v2.37.0. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--attach_metadata))
+- `body_size_limit` (String) When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus.  It requires Prometheus >= v2.28.0.
 - `endpoints` (Attributes List) List of endpoints part of this ServiceMonitor. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints))
 - `job_label` (String) 'jobLabel' selects the label from the associated Kubernetes 'Service' object which will be used as the 'job' label for all metrics.  For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics.  If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the associated Kubernetes 'Service'.
 - `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.
@@ -1113,6 +1115,8 @@ Optional:
 - `namespace_selector` (Attributes) Selector to select which namespaces the Kubernetes 'Endpoints' objects are discovered from. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--namespace_selector))
 - `pod_target_labels` (List of String) 'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.
 - `sample_limit` (Number) 'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.
+- `scrape_class` (String) The scrape class to apply.
+- `scrape_protocols` (List of String) 'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.
 - `target_labels` (List of String) 'targetLabels' defines the labels which are transferred from the associated Kubernetes 'Service' object onto the ingested metrics.
 - `target_limit` (Number) 'targetLimit' defines a limit on the number of scraped targets that will be accepted.
 
@@ -1170,7 +1174,7 @@ Optional:
 - `relabelings` (Attributes List) 'relabelings' configures the relabeling rules to apply the target's metadata labels.  The Operator automatically adds relabelings for a few standard Kubernetes fields.  The original scrape job's name is available via the '__tmp_prometheus_job_name' label.  More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--relabelings))
 - `scheme` (String) HTTP scheme to use for scraping.  'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling.  If empty, Prometheus uses the default value 'http'.
 - `scrape_timeout` (String) Timeout after which Prometheus considers the scrape to be failed.  If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.
-- `target_port` (String) Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property.  Deprecated: use 'port' instead.
+- `target_port` (String) Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.
 - `tls_config` (Attributes) TLS configuration to use when scraping the target. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--target_limit--tls_config))
 - `track_timestamps_staleness` (Boolean) 'trackTimestampsStaleness' defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false.  It requires Prometheus >= v2.48.0.
 

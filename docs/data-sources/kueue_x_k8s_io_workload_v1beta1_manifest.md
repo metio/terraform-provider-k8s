@@ -71,12 +71,12 @@ Optional:
 Required:
 
 - `count` (Number) count is the number of pods for the spec.
-- `name` (String) name is the PodSet name.
 - `template` (Attributes) template is the Pod template.The only allowed fields in template.metadata are labels and annotations.If requests are omitted for a container or initContainer,they default to the limits if they are explicitly specified for thecontainer or initContainer.During admission, the rules in nodeSelector andnodeAffinity.requiredDuringSchedulingIgnoredDuringExecution that matchthe keys in the nodeLabels from the ResourceFlavors considered for thisWorkload are used to filter the ResourceFlavors that can be assigned tothis podSet. (see [below for nested schema](#nestedatt--spec--pod_sets--template))
 
 Optional:
 
 - `min_count` (Number) minCount is the minimum number of pods for the spec acceptableif the workload supports partial admission.If not provided, partial admission for the current PodSet is notenabled.Only one podSet within the workload can use this.This is an alpha field and requires enabling PartialAdmission feature gate.
+- `name` (String) name is the PodSet name.
 
 <a id="nestedatt--spec--pod_sets--template"></a>
 ### Nested Schema for `spec.pod_sets.template`

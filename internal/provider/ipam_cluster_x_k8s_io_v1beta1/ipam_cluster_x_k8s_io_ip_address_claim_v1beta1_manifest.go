@@ -43,7 +43,8 @@ type IpamClusterXK8SIoIpaddressClaimV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		PoolRef *struct {
+		ClusterName *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+		PoolRef     *struct {
 			ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
 			Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -128,6 +129,14 @@ func (r *IpamClusterXK8SIoIpaddressClaimV1Beta1Manifest) Schema(_ context.Contex
 				Description:         "IPAddressClaimSpec is the desired state of an IPAddressClaim.",
 				MarkdownDescription: "IPAddressClaimSpec is the desired state of an IPAddressClaim.",
 				Attributes: map[string]schema.Attribute{
+					"cluster_name": schema.StringAttribute{
+						Description:         "ClusterName is the name of the Cluster this object belongs to.",
+						MarkdownDescription: "ClusterName is the name of the Cluster this object belongs to.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"pool_ref": schema.SingleNestedAttribute{
 						Description:         "PoolRef is a reference to the pool from which an IP address should be created.",
 						MarkdownDescription: "PoolRef is a reference to the pool from which an IP address should be created.",

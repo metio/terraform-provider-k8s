@@ -93,6 +93,10 @@ type CiliumIoCiliumNodeV2ManifestData struct {
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
 		Instance_id *string `tfsdk:"instance_id" json:"instance-id,omitempty"`
 		Ipam        *struct {
+			Ipv6_pool *struct {
+				Owner    *string `tfsdk:"owner" json:"owner,omitempty"`
+				Resource *string `tfsdk:"resource" json:"resource,omitempty"`
+			} `tfsdk:"ipv6_pool" json:"ipv6-pool,omitempty"`
 			Max_above_watermark *int64    `tfsdk:"max_above_watermark" json:"max-above-watermark,omitempty"`
 			Max_allocate        *int64    `tfsdk:"max_allocate" json:"max-allocate,omitempty"`
 			Min_allocate        *int64    `tfsdk:"min_allocate" json:"min-allocate,omitempty"`
@@ -555,6 +559,31 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 						Description:         "IPAM is the address management specification. This section can be populated by a user or it can be automatically populated by an IPAM operator.",
 						MarkdownDescription: "IPAM is the address management specification. This section can be populated by a user or it can be automatically populated by an IPAM operator.",
 						Attributes: map[string]schema.Attribute{
+							"ipv6_pool": schema.SingleNestedAttribute{
+								Description:         "IPv6Pool is the list of IPv6 addresses available to the node for allocation. When an IPv6 address is used, it will remain on this list but will be added to Status.IPAM.IPv6Used",
+								MarkdownDescription: "IPv6Pool is the list of IPv6 addresses available to the node for allocation. When an IPv6 address is used, it will remain on this list but will be added to Status.IPAM.IPv6Used",
+								Attributes: map[string]schema.Attribute{
+									"owner": schema.StringAttribute{
+										Description:         "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
+										MarkdownDescription: "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"resource": schema.StringAttribute{
+										Description:         "Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI",
+										MarkdownDescription: "Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"max_above_watermark": schema.Int64Attribute{
 								Description:         "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.",
 								MarkdownDescription: "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.",
@@ -598,8 +627,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"pool": schema.SingleNestedAttribute{
-								Description:         "Pool is the list of IPs available to the node for allocation. When an IP is used, the IP will remain on this list but will be added to Status.IPAM.Used",
-								MarkdownDescription: "Pool is the list of IPs available to the node for allocation. When an IP is used, the IP will remain on this list but will be added to Status.IPAM.Used",
+								Description:         "Pool is the list of IPv4 addresses available to the node for allocation. When an IPv4 address is used, it will remain on this list but will be added to Status.IPAM.Used",
+								MarkdownDescription: "Pool is the list of IPv4 addresses available to the node for allocation. When an IPv4 address is used, it will remain on this list but will be added to Status.IPAM.Used",
 								Attributes: map[string]schema.Attribute{
 									"owner": schema.StringAttribute{
 										Description:         "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",

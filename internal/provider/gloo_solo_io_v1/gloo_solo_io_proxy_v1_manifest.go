@@ -403,6 +403,10 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtLeast(0),
+										int64validator.AtMost(4.294967295e+09),
+									},
 								},
 
 								"http_listener": schema.MapAttribute{
@@ -587,6 +591,10 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																								Validators: []validator.Int64{
+																									int64validator.AtLeast(0),
+																									int64validator.AtMost(4.294967295e+09),
+																								},
 																							},
 
 																							"runtime_key": schema.StringAttribute{
@@ -825,6 +833,10 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																						Validators: []validator.Int64{
+																							int64validator.AtLeast(0),
+																							int64validator.AtMost(4.294967295e+09),
+																						},
 																					},
 																				},
 																				Required: false,
@@ -879,6 +891,10 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																								Validators: []validator.Int64{
+																									int64validator.AtLeast(0),
+																									int64validator.AtMost(4.294967295e+09),
+																								},
 																							},
 
 																							"runtime_key": schema.StringAttribute{
@@ -1099,6 +1115,10 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																								Validators: []validator.Int64{
+																									int64validator.AtLeast(0),
+																									int64validator.AtMost(4.294967295e+09),
+																								},
 																							},
 
 																							"runtime_key": schema.StringAttribute{
@@ -1337,6 +1357,10 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																						Validators: []validator.Int64{
+																							int64validator.AtLeast(0),
+																							int64validator.AtMost(4.294967295e+09),
+																						},
 																					},
 																				},
 																				Required: false,
@@ -1391,6 +1415,10 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																								Validators: []validator.Int64{
+																									int64validator.AtLeast(0),
+																									int64validator.AtMost(4.294967295e+09),
+																								},
 																							},
 
 																							"runtime_key": schema.StringAttribute{
@@ -1553,6 +1581,10 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(4.294967295e+09),
+																},
 															},
 														},
 													},

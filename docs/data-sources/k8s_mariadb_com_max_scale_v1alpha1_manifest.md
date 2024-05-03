@@ -82,7 +82,7 @@ Optional:
 - `priority_class_name` (String) PriorityClassName to be used in the Pod.
 - `readiness_probe` (Attributes) ReadinessProbe to be used in the Container. (see [below for nested schema](#nestedatt--spec--readiness_probe))
 - `replicas` (Number) Replicas indicates the number of desired instances.
-- `requeue_interval` (String) RequeueInterval is used to perform requeue reconcilizations. If not defined, it defaults to 10s.
+- `requeue_interval` (String) RequeueInterval is used to perform requeue reconciliations. If not defined, it defaults to 10s.
 - `resources` (Attributes) Resouces describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--resources))
 - `security_context` (Attributes) SecurityContext holds security configuration that will be applied to a container. (see [below for nested schema](#nestedatt--spec--security_context))
 - `servers` (Attributes List) Servers are the MariaDB servers to forward traffic to. It is required if 'spec.mariaDbRef' is not provided. (see [below for nested schema](#nestedatt--spec--servers))
@@ -520,6 +520,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -533,6 +534,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -546,6 +548,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -559,6 +562,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -572,6 +576,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -585,6 +590,7 @@ Required:
 
 Optional:
 
+- `generate` (Boolean) Generate indicates whether the Secret should be generated if the Secret referenced is not present.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
@@ -712,7 +718,7 @@ Optional:
 Optional:
 
 - `interval` (String) Interval used to perform health checks.
-- `retry_interval` (String) RetryInterval is the intervañ used to perform health check retries.
+- `retry_interval` (String) RetryInterval is the interval used to perform health check retries.
 
 
 <a id="nestedatt--spec--connection--secret_template"></a>
@@ -4061,7 +4067,7 @@ Required:
 
 Optional:
 
-- `params` (Map of String) Params defines extra parameters to pass to the monitor.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1.Router specific parameter are also suported:https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration.https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.
+- `params` (Map of String) Params defines extra parameters to pass to the service.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1.Router specific parameter are also suported:https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration.https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.
 - `suspend` (Boolean) Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.
 
 <a id="nestedatt--spec--services--listener"></a>

@@ -57,4 +57,4 @@ Required:
 
 Optional:
 
-- `options` (List of String) Command line options to include when running the pgBackRest backup command. https://pgbackrest.org/command.html#command-backup
+- `options` (List of String) Command line options to include when running the pgBackRest backup command.https://pgbackrest.org/command.html#command-backup

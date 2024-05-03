@@ -71,8 +71,9 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 				KafkaBatchSize  *int64    `tfsdk:"kafka_batch_size" json:"kafkaBatchSize,omitempty"`
 				LogLevel        *string   `tfsdk:"log_level" json:"logLevel,omitempty"`
 				Metrics         *struct {
-					Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
-					Server *struct {
+					DisableAlerts *[]string `tfsdk:"disable_alerts" json:"disableAlerts,omitempty"`
+					Enable        *bool     `tfsdk:"enable" json:"enable,omitempty"`
+					Server        *struct {
 						Port *int64 `tfsdk:"port" json:"port,omitempty"`
 						Tls  *struct {
 							InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
@@ -801,6 +802,15 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 										Description:         "'metrics' defines the eBPF agent configuration regarding metrics",
 										MarkdownDescription: "'metrics' defines the eBPF agent configuration regarding metrics",
 										Attributes: map[string]schema.Attribute{
+											"disable_alerts": schema.ListAttribute{
+												Description:         "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when eBPF agent hashmap table is full.<br>",
+												MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when eBPF agent hashmap table is full.<br>",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"enable": schema.BoolAttribute{
 												Description:         "Set 'enable' to 'true' to enable eBPF agent metrics collection.",
 												MarkdownDescription: "Set 'enable' to 'true' to enable eBPF agent metrics collection.",

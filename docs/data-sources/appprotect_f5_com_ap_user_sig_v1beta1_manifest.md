@@ -57,6 +57,7 @@ Optional:
 
 - `properties` (String)
 - `signatures` (Attributes List) (see [below for nested schema](#nestedatt--spec--signatures))
+- `software_version` (String)
 - `tag` (String)
 
 <a id="nestedatt--spec--signatures"></a>

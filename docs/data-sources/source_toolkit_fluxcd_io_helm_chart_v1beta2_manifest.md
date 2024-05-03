@@ -62,6 +62,7 @@ Required:
 Optional:
 
 - `access_from` (Attributes) AccessFrom specifies an Access Control List for allowing cross-namespacereferences to this object.NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092 (see [below for nested schema](#nestedatt--spec--access_from))
+- `ignore_missing_values_files` (Boolean) IgnoreMissingValuesFiles controls whether to silently ignore missing valuesfiles rather than failing.
 - `reconcile_strategy` (String) ReconcileStrategy determines what enables the creation of a new artifact.Valid values are ('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.
 - `suspend` (Boolean) Suspend tells the controller to suspend the reconciliation of thissource.
 - `values_file` (String) ValuesFile is an alternative values file to use as the default chartvalues, expected to be a relative path in the SourceRef. Deprecated infavor of ValuesFiles, for backwards compatibility the file specified hereis merged before the ValuesFiles items. Ignored when omitted.

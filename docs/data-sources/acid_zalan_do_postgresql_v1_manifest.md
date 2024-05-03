@@ -91,6 +91,7 @@ Optional:
 - `enable_shm_volume` (Boolean)
 - `env` (List of Map of String)
 - `init_containers` (List of Map of String)
+- `logical_backup_retention` (String)
 - `logical_backup_schedule` (String)
 - `maintenance_windows` (List of String)
 - `master_service_annotations` (Map of String)

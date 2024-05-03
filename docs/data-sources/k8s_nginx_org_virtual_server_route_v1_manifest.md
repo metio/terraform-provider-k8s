@@ -151,7 +151,17 @@ Optional:
 
 - `body` (String)
 - `code` (Number)
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--action--return--headers))
 - `type` (String)
+
+<a id="nestedatt--spec--subroutes--action--return--headers"></a>
+### Nested Schema for `spec.subroutes.action.return.headers`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+
 
 
 
@@ -279,7 +289,17 @@ Optional:
 
 - `body` (String)
 - `code` (Number)
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--return--headers))
 - `type` (String)
+
+<a id="nestedatt--spec--subroutes--matches--splits--return--headers"></a>
+### Nested Schema for `spec.subroutes.matches.splits.return.headers`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+
 
 
 
@@ -379,7 +399,17 @@ Optional:
 
 - `body` (String)
 - `code` (Number)
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--action--return--headers))
 - `type` (String)
+
+<a id="nestedatt--spec--subroutes--matches--splits--action--return--headers"></a>
+### Nested Schema for `spec.subroutes.matches.splits.action.return.headers`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+
 
 
 
@@ -478,7 +508,17 @@ Optional:
 
 - `body` (String)
 - `code` (Number)
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--splits--weight--return--headers))
 - `type` (String)
+
+<a id="nestedatt--spec--subroutes--splits--weight--return--headers"></a>
+### Nested Schema for `spec.subroutes.splits.weight.return.headers`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+
 
 
 

@@ -244,8 +244,8 @@ func (r *VolsyncBackubeReplicationDestinationV1Alpha1Manifest) Metadata(_ contex
 
 func (r *VolsyncBackubeReplicationDestinationV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ReplicationDestination defines the destination for a replicated volume",
-		MarkdownDescription: "ReplicationDestination defines the destination for a replicated volume",
+		Description:         "A ReplicationDestination is a VolSync resource that you can use to define the destination of a VolSync replication or synchronization.",
+		MarkdownDescription: "A ReplicationDestination is a VolSync resource that you can use to define the destination of a VolSync replication or synchronization.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

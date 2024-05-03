@@ -57,6 +57,10 @@ Required:
 
 - `pool_ref` (Attributes) PoolRef is a reference to the pool from which an IP address should be created. (see [below for nested schema](#nestedatt--spec--pool_ref))
 
+Optional:
+
+- `cluster_name` (String) ClusterName is the name of the Cluster this object belongs to.
+
 <a id="nestedatt--spec--pool_ref"></a>
 ### Nested Schema for `spec.pool_ref`
 

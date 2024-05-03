@@ -182,6 +182,7 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 		Args *[]string `tfsdk:"args" json:"args,omitempty"`
 		Auth *struct {
 			AdminPasswordSecretKeyRef *struct {
+				Generate *bool   `tfsdk:"generate" json:"generate,omitempty"`
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -189,6 +190,7 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 			AdminUsername              *string `tfsdk:"admin_username" json:"adminUsername,omitempty"`
 			ClientMaxConnections       *int64  `tfsdk:"client_max_connections" json:"clientMaxConnections,omitempty"`
 			ClientPasswordSecretKeyRef *struct {
+				Generate *bool   `tfsdk:"generate" json:"generate,omitempty"`
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -197,6 +199,7 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 			DeleteDefaultAdmin          *bool   `tfsdk:"delete_default_admin" json:"deleteDefaultAdmin,omitempty"`
 			Generate                    *bool   `tfsdk:"generate" json:"generate,omitempty"`
 			MetricsPasswordSecretKeyRef *struct {
+				Generate *bool   `tfsdk:"generate" json:"generate,omitempty"`
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -204,6 +207,7 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 			MetricsUsername             *string `tfsdk:"metrics_username" json:"metricsUsername,omitempty"`
 			MonitorMaxConnections       *int64  `tfsdk:"monitor_max_connections" json:"monitorMaxConnections,omitempty"`
 			MonitorPasswordSecretKeyRef *struct {
+				Generate *bool   `tfsdk:"generate" json:"generate,omitempty"`
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -211,6 +215,7 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 			MonitorUsername            *string `tfsdk:"monitor_username" json:"monitorUsername,omitempty"`
 			ServerMaxConnections       *int64  `tfsdk:"server_max_connections" json:"serverMaxConnections,omitempty"`
 			ServerPasswordSecretKeyRef *struct {
+				Generate *bool   `tfsdk:"generate" json:"generate,omitempty"`
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -218,6 +223,7 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 			ServerUsername           *string `tfsdk:"server_username" json:"serverUsername,omitempty"`
 			SyncMaxConnections       *int64  `tfsdk:"sync_max_connections" json:"syncMaxConnections,omitempty"`
 			SyncPasswordSecretKeyRef *struct {
+				Generate *bool   `tfsdk:"generate" json:"generate,omitempty"`
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -3110,6 +3116,14 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Description:         "AdminPasswordSecretKeyRef is Secret key reference to the admin password to call the admin REST API. It is defaulted if not provided.",
 								MarkdownDescription: "AdminPasswordSecretKeyRef is Secret key reference to the admin password to call the admin REST API. It is defaulted if not provided.",
 								Attributes: map[string]schema.Attribute{
+									"generate": schema.BoolAttribute{
+										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										MarkdownDescription: "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
 										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -3159,6 +3173,14 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Description:         "ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.",
 								MarkdownDescription: "ClientPasswordSecretKeyRef is Secret key reference to the password to connect to MaxScale. It is defaulted if not provided.",
 								Attributes: map[string]schema.Attribute{
+									"generate": schema.BoolAttribute{
+										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										MarkdownDescription: "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
 										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -3216,6 +3238,14 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Description:         "MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.",
 								MarkdownDescription: "MetricsPasswordSecretKeyRef is Secret key reference to the metrics password to call the admib REST API. It is defaulted if metrics are enabled.",
 								Attributes: map[string]schema.Attribute{
+									"generate": schema.BoolAttribute{
+										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										MarkdownDescription: "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
 										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -3265,6 +3295,14 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Description:         "MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.",
 								MarkdownDescription: "MonitorPasswordSecretKeyRef is Secret key reference to the password used by MaxScale monitor to connect to MariaDB server. It is defaulted if not provided.",
 								Attributes: map[string]schema.Attribute{
+									"generate": schema.BoolAttribute{
+										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										MarkdownDescription: "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
 										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -3314,6 +3352,14 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Description:         "ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.",
 								MarkdownDescription: "ServerPasswordSecretKeyRef is Secret key reference to the password used by MaxScale to connect to MariaDB server. It is defaulted if not provided.",
 								Attributes: map[string]schema.Attribute{
+									"generate": schema.BoolAttribute{
+										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										MarkdownDescription: "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
 										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -3363,6 +3409,14 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Description:         "SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.",
 								MarkdownDescription: "SyncPasswordSecretKeyRef is Secret key reference to the password used by MaxScale config to connect to MariaDB server. It is defaulted when HA is enabled.",
 								Attributes: map[string]schema.Attribute{
+									"generate": schema.BoolAttribute{
+										Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										MarkdownDescription: "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
 										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -3714,8 +3768,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 									},
 
 									"retry_interval": schema.StringAttribute{
-										Description:         "RetryInterval is the intervañ used to perform health check retries.",
-										MarkdownDescription: "RetryInterval is the intervañ used to perform health check retries.",
+										Description:         "RetryInterval is the interval used to perform health check retries.",
+										MarkdownDescription: "RetryInterval is the interval used to perform health check retries.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -12388,8 +12442,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"requeue_interval": schema.StringAttribute{
-						Description:         "RequeueInterval is used to perform requeue reconcilizations. If not defined, it defaults to 10s.",
-						MarkdownDescription: "RequeueInterval is used to perform requeue reconcilizations. If not defined, it defaults to 10s.",
+						Description:         "RequeueInterval is used to perform requeue reconciliations. If not defined, it defaults to 10s.",
+						MarkdownDescription: "RequeueInterval is used to perform requeue reconciliations. If not defined, it defaults to 10s.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -12772,8 +12826,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"params": schema.MapAttribute{
-									Description:         "Params defines extra parameters to pass to the monitor.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1.Router specific parameter are also suported:https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration.https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.",
-									MarkdownDescription: "Params defines extra parameters to pass to the monitor.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1.Router specific parameter are also suported:https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration.https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.",
+									Description:         "Params defines extra parameters to pass to the service.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1.Router specific parameter are also suported:https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration.https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.",
+									MarkdownDescription: "Params defines extra parameters to pass to the service.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1.Router specific parameter are also suported:https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration.https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,

@@ -232,7 +232,7 @@ func (r *AppprotectF5ComAplogConfV1Beta1Manifest) Schema(_ context.Context, _ da
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^([1-9]|[1-9][0-9]|[1-9][0-9]{2}|1[0-9]{3}|20[1-3][0-9]|204[1-8]|any)$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([1-9]|[1-9][0-9]|[1-9][0-9]{2}|[1-9][0-9]{3}|10[0-2][0-9][0-9]|[1-9]k|10k|any)$`), ""),
 								},
 							},
 						},

@@ -659,6 +659,7 @@ Optional:
 - `ingress` (Attributes) Ingress defines the options for the Jaeger Query ingress. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--ingress))
 - `monitor_tab` (Attributes) MonitorTab defines the monitor tab configuration. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--monitor_tab))
 - `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--resources))
+- `services_query_duration` (String) ServicesQueryDuration defines how long the services will be available in the services list
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--ingress"></a>
 ### Nested Schema for `spec.template.query_frontend.jaeger_query.ingress`

@@ -88,6 +88,7 @@ Optional:
 - `sql` (Attributes) Hazelcast SQL configuration (see [below for nested schema](#nestedatt--spec--sql))
 - `tls` (Attributes) Hazelcast TLS configuration (see [below for nested schema](#nestedatt--spec--tls))
 - `user_code_deployment` (Attributes) User Codes to Download into CLASSPATH (see [below for nested schema](#nestedatt--spec--user_code_deployment))
+- `user_code_namespaces` (Attributes) UserCodeNamespaces provide a container for Java classpath resources, such as user code and accompanying artifacts like property files (see [below for nested schema](#nestedatt--spec--user_code_namespaces))
 - `version` (String) Version of Hazelcast Platform.
 
 <a id="nestedatt--spec--advanced_network"></a>
@@ -187,6 +188,7 @@ Optional:
 - `durability` (Number) Durability of the executor.
 - `name` (String) The name of the executor service
 - `pool_size` (Number) The number of executor threads per member.
+- `user_code_namespace` (String) Name of the User Code Namespace applied to this instance
 
 
 <a id="nestedatt--spec--executor_services"></a>
@@ -197,6 +199,7 @@ Optional:
 - `name` (String) The name of the executor service
 - `pool_size` (Number) The number of executor threads per member.
 - `queue_capacity` (Number) Task queue capacity of the executor.
+- `user_code_namespace` (String) Name of the User Code Namespace applied to this instance
 
 
 <a id="nestedatt--spec--expose_externally"></a>
@@ -428,6 +431,7 @@ Optional:
 - `durability` (Number) Durability of the executor.
 - `name` (String) The name of the executor service
 - `pool_size` (Number) The number of executor threads per member.
+- `user_code_namespace` (String) Name of the User Code Namespace applied to this instance
 
 
 <a id="nestedatt--spec--scheduling"></a>
@@ -987,3 +991,39 @@ Optional:
 
 - `secret` (String) secret is a deprecated alias for secretName.
 - `secret_name` (String) Name of the secret with credentials for cloud providers.
+
+
+
+<a id="nestedatt--spec--user_code_namespaces"></a>
+### Nested Schema for `spec.user_code_namespaces`
+
+Optional:
+
+- `class_filter` (Attributes) Blacklist and whitelist for classes when User Code Namespaces is used. (see [below for nested schema](#nestedatt--spec--user_code_namespaces--class_filter))
+
+<a id="nestedatt--spec--user_code_namespaces--class_filter"></a>
+### Nested Schema for `spec.user_code_namespaces.class_filter`
+
+Optional:
+
+- `blacklist` (Attributes) Java deserialization protection Blacklist. (see [below for nested schema](#nestedatt--spec--user_code_namespaces--class_filter--blacklist))
+- `whitelist` (Attributes) Java deserialization protection Whitelist. (see [below for nested schema](#nestedatt--spec--user_code_namespaces--class_filter--whitelist))
+
+<a id="nestedatt--spec--user_code_namespaces--class_filter--blacklist"></a>
+### Nested Schema for `spec.user_code_namespaces.class_filter.blacklist`
+
+Optional:
+
+- `classes` (List of String) List of class names to be filtered.
+- `packages` (List of String) List of packages to be filtered
+- `prefixes` (List of String) List of prefixes to be filtered.
+
+
+<a id="nestedatt--spec--user_code_namespaces--class_filter--whitelist"></a>
+### Nested Schema for `spec.user_code_namespaces.class_filter.whitelist`
+
+Optional:
+
+- `classes` (List of String) List of class names to be filtered.
+- `packages` (List of String) List of packages to be filtered
+- `prefixes` (List of String) List of prefixes to be filtered.

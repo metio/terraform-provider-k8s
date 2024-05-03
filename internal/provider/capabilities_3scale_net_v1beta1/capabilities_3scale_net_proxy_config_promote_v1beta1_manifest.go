@@ -135,8 +135,8 @@ func (r *Capabilities3ScaleNetProxyConfigPromoteV1Beta1Manifest) Schema(_ contex
 					},
 
 					"product_cr_name": schema.StringAttribute{
-						Description:         "product CR metadata.name",
-						MarkdownDescription: "product CR metadata.name",
+						Description:         "Product CR metadata name",
+						MarkdownDescription: "Product CR metadata name",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

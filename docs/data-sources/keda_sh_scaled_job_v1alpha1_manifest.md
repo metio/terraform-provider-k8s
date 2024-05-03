@@ -81,14 +81,14 @@ Optional:
 
 - `active_deadline_seconds` (Number) Specifies the duration in seconds relative to the startTime that the jobmay be continuously active before the system tries to terminate it; valuemust be positive integer. If a Job is suspended (at creation or through anupdate), this timer will effectively be stopped and reset when the Job isresumed again.
 - `backoff_limit` (Number) Specifies the number of retries before marking this job failed.Defaults to 6
-- `backoff_limit_per_index` (Number) Specifies the limit for the number of retries within anindex before marking this index as failed. When enabled the number offailures per index is kept in the pod'sbatch.kubernetes.io/job-index-failure-count annotation. It can onlybe set when Job's completionMode=Indexed, and the Pod's restartpolicy is Never. The field is immutable.This field is alpha-level. It can be used when the 'JobBackoffLimitPerIndex'feature gate is enabled (disabled by default).
+- `backoff_limit_per_index` (Number) Specifies the limit for the number of retries within anindex before marking this index as failed. When enabled the number offailures per index is kept in the pod'sbatch.kubernetes.io/job-index-failure-count annotation. It can onlybe set when Job's completionMode=Indexed, and the Pod's restartpolicy is Never. The field is immutable.This field is beta-level. It can be used when the 'JobBackoffLimitPerIndex'feature gate is enabled (enabled by default).
 - `completion_mode` (String) completionMode specifies how Pod completions are tracked. It can be'NonIndexed' (default) or 'Indexed'.'NonIndexed' means that the Job is considered complete when there havebeen .spec.completions successfully completed Pods. Each Pod completion ishomologous to each other.'Indexed' means that the Pods of aJob get an associated completion index from 0 to (.spec.completions - 1),available in the annotation batch.kubernetes.io/job-completion-index.The Job is considered complete when there is one successfully completed Podfor each index.When value is 'Indexed', .spec.completions must be specified and'.spec.parallelism' must be less than or equal to 10^5.In addition, The Pod name takes the form'$(job-name)-$(index)-$(random-string)',the Pod hostname takes the form '$(job-name)-$(index)'.More completion modes can be added in the future.If the Job controller observes a mode that it doesn't recognize, whichis possible during upgrades due to version skew, the controllerskips updates for the Job.
 - `completions` (Number) Specifies the desired number of successfully finished pods thejob should be run with.  Setting to null means that the success of anypod signals the success of all pods, and allows parallelism to have any positivevalue.  Setting to 1 means that parallelism is limited to 1 and the success of thatpod signals the success of the job.More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
 - `manual_selector` (Boolean) manualSelector controls generation of pod labels and pod selectors.Leave 'manualSelector' unset unless you are certain what you are doing.When false or unset, the system pick labels unique to this joband appends those labels to the pod template.  When true,the user is responsible for picking unique labels and specifyingthe selector.  Failure to pick a unique label may cause thisand other jobs to not function correctly.  However, You may see'manualSelector=true' in jobs that were created with the old 'extensions/v1beta1'API.More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector
-- `max_failed_indexes` (Number) Specifies the maximal number of failed indexes before marking the Job asfailed, when backoffLimitPerIndex is set. Once the number of failedindexes exceeds this number the entire Job is marked as Failed and itsexecution is terminated. When left as null the job continues execution ofall of its indexes and is marked with the 'Complete' Job condition.It can only be specified when backoffLimitPerIndex is set.It can be null or up to completions. It is required and must beless than or equal to 10^4 when is completions greater than 10^5.This field is alpha-level. It can be used when the 'JobBackoffLimitPerIndex'feature gate is enabled (disabled by default).
+- `max_failed_indexes` (Number) Specifies the maximal number of failed indexes before marking the Job asfailed, when backoffLimitPerIndex is set. Once the number of failedindexes exceeds this number the entire Job is marked as Failed and itsexecution is terminated. When left as null the job continues execution ofall of its indexes and is marked with the 'Complete' Job condition.It can only be specified when backoffLimitPerIndex is set.It can be null or up to completions. It is required and must beless than or equal to 10^4 when is completions greater than 10^5.This field is beta-level. It can be used when the 'JobBackoffLimitPerIndex'feature gate is enabled (enabled by default).
 - `parallelism` (Number) Specifies the maximum desired number of pods the job shouldrun at any given time. The actual number of pods running in steady state willbe less than this number when ((.spec.completions - .status.successful) < .spec.parallelism),i.e. when the work left to do is less than max parallelism.More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
 - `pod_failure_policy` (Attributes) Specifies the policy of handling failed pods. In particular, it allows tospecify the set of actions and conditions which need to besatisfied to take the associated action.If empty, the default behaviour applies - the counter of failed pods,represented by the jobs's .status.failed field, is incremented and it ischecked against the backoffLimit. This field cannot be used in combinationwith restartPolicy=OnFailure.This field is beta-level. It can be used when the 'JobPodFailurePolicy'feature gate is enabled (enabled by default). (see [below for nested schema](#nestedatt--spec--job_target_ref--pod_failure_policy))
-- `pod_replacement_policy` (String) podReplacementPolicy specifies when to create replacement Pods.Possible values are:- TerminatingOrFailed means that we recreate pods  when they are terminating (has a metadata.deletionTimestamp) or failed.- Failed means to wait until a previously created Pod is fully terminated (has phase  Failed or Succeeded) before creating a replacement Pod.When using podFailurePolicy, Failed is the the only allowed value.TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use.This is an alpha field. Enable JobPodReplacementPolicy to be able to use this field.
+- `pod_replacement_policy` (String) podReplacementPolicy specifies when to create replacement Pods.Possible values are:- TerminatingOrFailed means that we recreate pods  when they are terminating (has a metadata.deletionTimestamp) or failed.- Failed means to wait until a previously created Pod is fully terminated (has phase  Failed or Succeeded) before creating a replacement Pod.When using podFailurePolicy, Failed is the the only allowed value.TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use.This is an beta field. To use this, enable the JobPodReplacementPolicy feature toggle.This is on by default.
 - `selector` (Attributes) A label query over pods that should match the pod count.Normally, the system sets this field for you.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors (see [below for nested schema](#nestedatt--spec--job_target_ref--selector))
 - `suspend` (Boolean) suspend specifies whether the Job controller should create Pods or not. Ifa Job is created with suspend set to true, no Pods are created by the Jobcontroller. If a Job is suspended after creation (i.e. the flag goes fromfalse to true), the Job controller will delete all active Pods associatedwith this Job. Users must design their workload to gracefully handle this.Suspending a Job will reset the StartTime field of the Job, effectivelyresetting the ActiveDeadlineSeconds timer too. Defaults to false.
 - `ttl_seconds_after_finished` (Number) ttlSecondsAfterFinished limits the lifetime of a Job that has finishedexecution (either Complete or Failed). If this field is set,ttlSecondsAfterFinished after the Job finishes, it is eligible to beautomatically deleted. When the Job is being deleted, its lifecycleguarantees (e.g. finalizers) will be honored. If this field is unset,the Job won't be automatically deleted. If this field is set to zero,the Job becomes eligible to be deleted immediately after it finishes.
@@ -300,6 +300,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--exec"></a>
@@ -332,6 +333,14 @@ Required:
 - `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.job_target_ref.template.spec.containers.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--tcp_socket"></a>
@@ -354,6 +363,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--exec"></a>
@@ -386,6 +396,14 @@ Required:
 - `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.job_target_ref.template.spec.containers.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--job_target_ref--template--spec--containers--working_dir--pre_stop--tcp_socket"></a>
@@ -880,7 +898,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -939,7 +959,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1014,7 +1036,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1073,7 +1097,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.Also, MatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector.Also, MismatchLabelKeys cannot be set when LabelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1295,6 +1321,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
@@ -1327,6 +1354,14 @@ Required:
 - `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.job_target_ref.template.spec.ephemeral_containers.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -1349,6 +1384,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
@@ -1381,6 +1417,14 @@ Required:
 - `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.job_target_ref.template.spec.ephemeral_containers.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--job_target_ref--template--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -1913,6 +1957,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--exec"></a>
@@ -1945,6 +1990,14 @@ Required:
 - `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.job_target_ref.template.spec.init_containers.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -1967,6 +2020,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and keptfor the backward compatibility. There are no validation of this field andlifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--exec"></a>
@@ -1999,6 +2053,14 @@ Required:
 - `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.job_target_ref.template.spec.init_containers.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--job_target_ref--template--spec--init_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -2781,6 +2843,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -2816,17 +2879,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims"></a>
-### Nested Schema for `spec.job_target_ref.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.resources.claims`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
-
 
 
 <a id="nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
@@ -3042,10 +3096,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' fieldof ClusterTrustBundle objects in an auto-updating file.Alpha, gated by the ClusterTrustBundleProjection feature gate.ClusterTrustBundle objects can either be selected by name, or by thecombination of signer name and a label selector.Kubelet performs aggressive normalization of the PEM contents writteninto the pod filesystem.  Esoteric PEM features such as inter-blockcomments and block headers are stripped.  Certificates are deduplicated.The ordering of certificates within the file is arbitrary, and Kubeletmay change the order over time. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle))
 - `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--config_map))
 - `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--downward_api))
 - `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--secret))
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--service_account_token))
+
+<a id="nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.job_target_ref.template.spec.volumes.vsphere_volume.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String) Relative path from the volume root to write the bundle.
+
+Optional:
+
+- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector.  Only haseffect if signerName is set.  Mutually-exclusive with name.  If unset,interpreted as 'match nothing'.  If set but empty, interpreted as 'matcheverything'. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector))
+- `name` (String) Select a single ClusterTrustBundle by object name.  Mutually-exclusivewith signerName and labelSelector.
+- `optional` (Boolean) If true, don't block pod startup if the referenced ClusterTrustBundle(s)aren't available.  If using name, then the named ClusterTrustBundle isallowed not to exist.  If using signerName, then the combination ofsignerName and labelSelector is allowed to match zeroClusterTrustBundles.
+- `signer_name` (String) Select all ClusterTrustBundles that match this signer name.Mutually-exclusive with name.  The contents of all selectedClusterTrustBundles will be unified and deduplicated.
+
+<a id="nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
+### Nested Schema for `spec.job_target_ref.template.spec.volumes.vsphere_volume.sources.service_account_token.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector--match_expressions"></a>
+### Nested Schema for `spec.job_target_ref.template.spec.volumes.vsphere_volume.sources.service_account_token.label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
 
 <a id="nestedatt--spec--job_target_ref--template--spec--volumes--vsphere_volume--sources--config_map"></a>
 ### Nested Schema for `spec.job_target_ref.template.spec.volumes.vsphere_volume.sources.config_map`
@@ -3298,7 +3390,7 @@ Required:
 
 Required:
 
-- `action` (String) Specifies the action taken on a pod failure when the requirements are satisfied.Possible values are:- FailJob: indicates that the pod's job is marked as Failed and all  running pods are terminated.- FailIndex: indicates that the pod's index is marked as Failed and will  not be restarted.  This value is alpha-level. It can be used when the  'JobBackoffLimitPerIndex' feature gate is enabled (disabled by default).- Ignore: indicates that the counter towards the .backoffLimit is not  incremented and a replacement pod is created.- Count: indicates that the pod is handled in the default way - the  counter towards the .backoffLimit is incremented.Additional values are considered to be added in the future. Clients shouldreact to an unknown action by skipping the rule.
+- `action` (String) Specifies the action taken on a pod failure when the requirements are satisfied.Possible values are:- FailJob: indicates that the pod's job is marked as Failed and all  running pods are terminated.- FailIndex: indicates that the pod's index is marked as Failed and will  not be restarted.  This value is beta-level. It can be used when the  'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).- Ignore: indicates that the counter towards the .backoffLimit is not  incremented and a replacement pod is created.- Count: indicates that the pod is handled in the default way - the  counter towards the .backoffLimit is incremented.Additional values are considered to be added in the future. Clients shouldreact to an unknown action by skipping the rule.
 
 Optional:
 

@@ -192,8 +192,8 @@ func (r *K8SMariadbComConnectionV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"retry_interval": schema.StringAttribute{
-								Description:         "RetryInterval is the intervañ used to perform health check retries.",
-								MarkdownDescription: "RetryInterval is the intervañ used to perform health check retries.",
+								Description:         "RetryInterval is the interval used to perform health check retries.",
+								MarkdownDescription: "RetryInterval is the interval used to perform health check retries.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

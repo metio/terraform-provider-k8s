@@ -163,14 +163,18 @@ type AppprotectF5ComAppolicyV1Beta1ManifestData struct {
 				WildcardOrder     *int64  `tfsdk:"wildcard_order" json:"wildcardOrder,omitempty"`
 			} `tfsdk:"csrf_urls" json:"csrf-urls,omitempty"`
 			Data_guard *struct {
-				CreditCardNumbers       *bool     `tfsdk:"credit_card_numbers" json:"creditCardNumbers,omitempty"`
-				Enabled                 *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
-				EnforcementMode         *string   `tfsdk:"enforcement_mode" json:"enforcementMode,omitempty"`
-				EnforcementUrls         *[]string `tfsdk:"enforcement_urls" json:"enforcementUrls,omitempty"`
-				LastCcnDigitsToExpose   *int64    `tfsdk:"last_ccn_digits_to_expose" json:"lastCcnDigitsToExpose,omitempty"`
-				LastSsnDigitsToExpose   *int64    `tfsdk:"last_ssn_digits_to_expose" json:"lastSsnDigitsToExpose,omitempty"`
-				MaskData                *bool     `tfsdk:"mask_data" json:"maskData,omitempty"`
-				UsSocialSecurityNumbers *bool     `tfsdk:"us_social_security_numbers" json:"usSocialSecurityNumbers,omitempty"`
+				CreditCardNumbers             *bool     `tfsdk:"credit_card_numbers" json:"creditCardNumbers,omitempty"`
+				CustomPatterns                *bool     `tfsdk:"custom_patterns" json:"customPatterns,omitempty"`
+				CustomPatternsList            *[]string `tfsdk:"custom_patterns_list" json:"customPatternsList,omitempty"`
+				Enabled                       *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
+				EnforcementMode               *string   `tfsdk:"enforcement_mode" json:"enforcementMode,omitempty"`
+				EnforcementUrls               *[]string `tfsdk:"enforcement_urls" json:"enforcementUrls,omitempty"`
+				FirstCustomCharactersToExpose *int64    `tfsdk:"first_custom_characters_to_expose" json:"firstCustomCharactersToExpose,omitempty"`
+				LastCcnDigitsToExpose         *int64    `tfsdk:"last_ccn_digits_to_expose" json:"lastCcnDigitsToExpose,omitempty"`
+				LastCustomCharactersToExpose  *int64    `tfsdk:"last_custom_characters_to_expose" json:"lastCustomCharactersToExpose,omitempty"`
+				LastSsnDigitsToExpose         *int64    `tfsdk:"last_ssn_digits_to_expose" json:"lastSsnDigitsToExpose,omitempty"`
+				MaskData                      *bool     `tfsdk:"mask_data" json:"maskData,omitempty"`
+				UsSocialSecurityNumbers       *bool     `tfsdk:"us_social_security_numbers" json:"usSocialSecurityNumbers,omitempty"`
 			} `tfsdk:"data_guard" json:"data-guard,omitempty"`
 			DataGuardReference *struct {
 				Link *string `tfsdk:"link" json:"link,omitempty"`
@@ -237,9 +241,9 @@ type AppprotectF5ComAppolicyV1Beta1ManifestData struct {
 					BlockDisallowedPatterns *bool     `tfsdk:"block_disallowed_patterns" json:"blockDisallowedPatterns,omitempty"`
 					DisallowedPatterns      *[]string `tfsdk:"disallowed_patterns" json:"disallowedPatterns,omitempty"`
 				} `tfsdk:"response_enforcement" json:"responseEnforcement,omitempty"`
-				SensetiveData *[]struct {
+				SensitiveData *[]struct {
 					ParameterName *string `tfsdk:"parameter_name" json:"parameterName,omitempty"`
-				} `tfsdk:"sensetive_data" json:"sensetiveData,omitempty"`
+				} `tfsdk:"sensitive_data" json:"sensitiveData,omitempty"`
 				SignatureOverrides *[]struct {
 					Enabled     *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 					Name        *string `tfsdk:"name" json:"name,omitempty"`
@@ -956,7 +960,7 @@ func (r *AppprotectF5ComAppolicyV1Beta1Manifest) Schema(_ context.Context, _ dat
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.OneOf("VIOL_ACCESS_INVALID", "VIOL_ACCESS_MALFORMED", "VIOL_ACCESS_MISSING", "VIOL_ASM_COOKIE_HIJACKING", "VIOL_ASM_COOKIE_MODIFIED", "VIOL_BLACKLISTED_IP", "VIOL_COOKIE_EXPIRED", "VIOL_COOKIE_LENGTH", "VIOL_COOKIE_MALFORMED", "VIOL_COOKIE_MODIFIED", "VIOL_CSRF", "VIOL_DATA_GUARD", "VIOL_ENCODING", "VIOL_EVASION", "VIOL_FILETYPE", "VIOL_FILE_UPLOAD", "VIOL_FILE_UPLOAD_IN_BODY", "VIOL_GRAPHQL_ERROR_RESPONSE", "VIOL_GRAPHQL_FORMAT", "VIOL_GRAPHQL_INTROSPECTION_QUERY", "VIOL_GRAPHQL_MALFORMED", "VIOL_GRPC_FORMAT", "VIOL_GRPC_MALFORMED", "VIOL_GRPC_METHOD", "VIOL_HEADER_LENGTH", "VIOL_HEADER_METACHAR", "VIOL_HEADER_REPEATED", "VIOL_HTTP_PROTOCOL", "VIOL_HTTP_RESPONSE_STATUS", "VIOL_JSON_FORMAT", "VIOL_JSON_MALFORMED", "VIOL_JSON_SCHEMA", "VIOL_MANDATORY_HEADER", "VIOL_MANDATORY_PARAMETER", "VIOL_MANDATORY_REQUEST_BODY", "VIOL_METHOD", "VIOL_PARAMETER", "VIOL_PARAMETER_ARRAY_VALUE", "VIOL_PARAMETER_DATA_TYPE", "VIOL_PARAMETER_EMPTY_VALUE", "VIOL_PARAMETER_LOCATION", "VIOL_PARAMETER_MULTIPART_NULL_VALUE", "VIOL_PARAMETER_NAME_METACHAR", "VIOL_PARAMETER_NUMERIC_VALUE", "VIOL_PARAMETER_REPEATED", "VIOL_PARAMETER_STATIC_VALUE", "VIOL_PARAMETER_VALUE_BASE64", "VIOL_PARAMETER_VALUE_LENGTH", "VIOL_PARAMETER_VALUE_METACHAR", "VIOL_PARAMETER_VALUE_REGEXP", "VIOL_POST_DATA_LENGTH", "VIOL_QUERY_STRING_LENGTH", "VIOL_RATING_NEED_EXAMINATION", "VIOL_RATING_THREAT", "VIOL_REQUEST_LENGTH", "VIOL_REQUEST_MAX_LENGTH", "VIOL_THREAT_CAMPAIGN", "VIOL_URL", "VIOL_URL_CONTENT_TYPE", "VIOL_URL_LENGTH", "VIOL_URL_METACHAR", "VIOL_XML_FORMAT", "VIOL_XML_MALFORMED"),
+														stringvalidator.OneOf("VIOL_ACCESS_INVALID", "VIOL_ACCESS_MALFORMED", "VIOL_ACCESS_MISSING", "VIOL_ACCESS_UNAUTHORIZED", "VIOL_ASM_COOKIE_HIJACKING", "VIOL_ASM_COOKIE_MODIFIED", "VIOL_BLACKLISTED_IP", "VIOL_COOKIE_EXPIRED", "VIOL_COOKIE_LENGTH", "VIOL_COOKIE_MALFORMED", "VIOL_COOKIE_MODIFIED", "VIOL_CSRF", "VIOL_DATA_GUARD", "VIOL_ENCODING", "VIOL_EVASION", "VIOL_FILE_UPLOAD", "VIOL_FILE_UPLOAD_IN_BODY", "VIOL_FILETYPE", "VIOL_GRAPHQL_ERROR_RESPONSE", "VIOL_GRAPHQL_FORMAT", "VIOL_GRAPHQL_INTROSPECTION_QUERY", "VIOL_GRAPHQL_MALFORMED", "VIOL_GRPC_FORMAT", "VIOL_GRPC_MALFORMED", "VIOL_GRPC_METHOD", "VIOL_HEADER_LENGTH", "VIOL_HEADER_METACHAR", "VIOL_HEADER_REPEATED", "VIOL_HTTP_PROTOCOL", "VIOL_HTTP_RESPONSE_STATUS", "VIOL_JSON_FORMAT", "VIOL_JSON_MALFORMED", "VIOL_JSON_SCHEMA", "VIOL_MANDATORY_HEADER", "VIOL_MANDATORY_PARAMETER", "VIOL_MANDATORY_REQUEST_BODY", "VIOL_METHOD", "VIOL_PARAMETER", "VIOL_PARAMETER_ARRAY_VALUE", "VIOL_PARAMETER_DATA_TYPE", "VIOL_PARAMETER_EMPTY_VALUE", "VIOL_PARAMETER_LOCATION", "VIOL_PARAMETER_MULTIPART_NULL_VALUE", "VIOL_PARAMETER_NAME_METACHAR", "VIOL_PARAMETER_NUMERIC_VALUE", "VIOL_PARAMETER_REPEATED", "VIOL_PARAMETER_STATIC_VALUE", "VIOL_PARAMETER_VALUE_BASE64", "VIOL_PARAMETER_VALUE_LENGTH", "VIOL_PARAMETER_VALUE_METACHAR", "VIOL_PARAMETER_VALUE_REGEXP", "VIOL_POST_DATA_LENGTH", "VIOL_QUERY_STRING_LENGTH", "VIOL_RATING_NEED_EXAMINATION", "VIOL_RATING_THREAT", "VIOL_REQUEST_LENGTH", "VIOL_REQUEST_MAX_LENGTH", "VIOL_THREAT_CAMPAIGN", "VIOL_URL", "VIOL_URL_CONTENT_TYPE", "VIOL_URL_LENGTH", "VIOL_URL_METACHAR", "VIOL_XML_FORMAT", "VIOL_XML_MALFORMED"),
 													},
 												},
 											},
@@ -1672,6 +1676,23 @@ func (r *AppprotectF5ComAppolicyV1Beta1Manifest) Schema(_ context.Context, _ dat
 										Computed:            false,
 									},
 
+									"custom_patterns": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_patterns_list": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"enabled": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -1700,7 +1721,23 @@ func (r *AppprotectF5ComAppolicyV1Beta1Manifest) Schema(_ context.Context, _ dat
 										Computed:            false,
 									},
 
+									"first_custom_characters_to_expose": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"last_ccn_digits_to_expose": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"last_custom_characters_to_expose": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -2218,7 +2255,7 @@ func (r *AppprotectF5ComAppolicyV1Beta1Manifest) Schema(_ context.Context, _ dat
 											Computed: false,
 										},
 
-										"sensetive_data": schema.ListNestedAttribute{
+										"sensitive_data": schema.ListNestedAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											NestedObject: schema.NestedAttributeObject{

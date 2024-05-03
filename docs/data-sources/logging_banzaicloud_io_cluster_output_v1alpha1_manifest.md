@@ -75,6 +75,7 @@ Optional:
 - `nullout` (Map of String)
 - `opensearch` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch))
 - `oss` (Attributes) (see [below for nested schema](#nestedatt--spec--oss))
+- `protected` (Boolean)
 - `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--redis))
 - `relabel` (Attributes) (see [below for nested schema](#nestedatt--spec--relabel))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--s3))
@@ -2730,9 +2731,50 @@ Required:
 
 Optional:
 
+- `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--gelf--buffer))
 - `protocol` (String)
 - `tls` (Boolean)
 - `tls_options` (Map of String)
+
+<a id="nestedatt--spec--gelf--buffer"></a>
+### Nested Schema for `spec.gelf.buffer`
+
+Optional:
+
+- `chunk_full_threshold` (String)
+- `chunk_limit_records` (Number)
+- `chunk_limit_size` (String)
+- `compress` (String)
+- `delayed_commit_timeout` (String)
+- `disable_chunk_backup` (Boolean)
+- `disabled` (Boolean)
+- `flush_at_shutdown` (Boolean)
+- `flush_interval` (String)
+- `flush_mode` (String)
+- `flush_thread_burst_interval` (String)
+- `flush_thread_count` (Number)
+- `flush_thread_interval` (String)
+- `overflow_action` (String)
+- `path` (String)
+- `queue_limit_length` (Number)
+- `queued_chunks_limit_size` (Number)
+- `retry_exponential_backoff_base` (String)
+- `retry_forever` (Boolean)
+- `retry_max_interval` (String)
+- `retry_max_times` (Number)
+- `retry_randomize` (Boolean)
+- `retry_secondary_threshold` (String)
+- `retry_timeout` (String)
+- `retry_type` (String)
+- `retry_wait` (String)
+- `tags` (String)
+- `timekey` (String)
+- `timekey_use_utc` (Boolean)
+- `timekey_wait` (String)
+- `timekey_zone` (String)
+- `total_limit_size` (String)
+- `type` (String)
+
 
 
 <a id="nestedatt--spec--http"></a>

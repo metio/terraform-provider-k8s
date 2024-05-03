@@ -194,6 +194,14 @@ type ApiextensionsCrossplaneIoCompositionV1ManifestData struct {
 			} `tfsdk:"patches" json:"patches,omitempty"`
 		} `tfsdk:"patch_sets" json:"patchSets,omitempty"`
 		Pipeline *[]struct {
+			Credentials *[]struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				SecretRef *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+				Source *string `tfsdk:"source" json:"source,omitempty"`
+			} `tfsdk:"credentials" json:"credentials,omitempty"`
 			FunctionRef *struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"function_ref" json:"functionRef,omitempty"`
@@ -1429,6 +1437,61 @@ func (r *ApiextensionsCrossplaneIoCompositionV1Manifest) Schema(_ context.Contex
 						MarkdownDescription: "Pipeline is a list of composition function steps that will be used when acomposite resource referring to this composition is created. One ofresources and pipeline must be specified - you cannot specify both.The Pipeline is only used by the 'Pipeline' mode of Composition. It isignored by other modes.THIS IS A BETA FIELD. It is not honored if the relevant Crossplanefeature flag is disabled.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"credentials": schema.ListNestedAttribute{
+									Description:         "Credentials are optional credentials that the Composition Function needs.",
+									MarkdownDescription: "Credentials are optional credentials that the Composition Function needs.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "Name of this set of credentials.",
+												MarkdownDescription: "Name of this set of credentials.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"secret_ref": schema.SingleNestedAttribute{
+												Description:         "A SecretRef is a reference to a secret containing credentials that shouldbe supplied to the function.",
+												MarkdownDescription: "A SecretRef is a reference to a secret containing credentials that shouldbe supplied to the function.",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "Name of the secret.",
+														MarkdownDescription: "Name of the secret.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "Namespace of the secret.",
+														MarkdownDescription: "Namespace of the secret.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"source": schema.StringAttribute{
+												Description:         "Source of the function credentials.",
+												MarkdownDescription: "Source of the function credentials.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("None", "Secret"),
+												},
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"function_ref": schema.SingleNestedAttribute{
 									Description:         "FunctionRef is a reference to the Composition Function this step shouldexecute.",
 									MarkdownDescription: "FunctionRef is a reference to the Composition Function this step shouldexecute.",
