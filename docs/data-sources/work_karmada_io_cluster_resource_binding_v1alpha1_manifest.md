@@ -16,7 +16,13 @@ ClusterResourceBinding represents a binding of a kubernetes resource with a Clus
 data "k8s_work_karmada_io_cluster_resource_binding_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
-
+  }
+  spec = {
+    resource = {
+      api_version = "v1"
+      kind        = "Service"
+      name        = "some-service"
+    }
   }
 }
 ```
