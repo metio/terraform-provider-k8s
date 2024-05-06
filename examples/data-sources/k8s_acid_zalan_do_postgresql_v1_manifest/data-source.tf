@@ -6,7 +6,7 @@ data "k8s_acid_zalan_do_postgresql_v1_manifest" "example" {
   spec = {
     number_of_instances = 3
     postgresql = {
-      version = "9.6"
+      version = "16"
     }
     team_id = "abc"
     volume = {
