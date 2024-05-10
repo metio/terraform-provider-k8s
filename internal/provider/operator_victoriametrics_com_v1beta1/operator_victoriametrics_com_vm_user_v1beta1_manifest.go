@@ -46,6 +46,7 @@ type OperatorVictoriametricsComVmuserV1Beta1ManifestData struct {
 		BearerToken                *string   `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
 		Default_url                *[]string `tfsdk:"default_url" json:"default_url,omitempty"`
 		Disable_secret_creation    *bool     `tfsdk:"disable_secret_creation" json:"disable_secret_creation,omitempty"`
+		Discover_backend_ips       *bool     `tfsdk:"discover_backend_ips" json:"discover_backend_ips,omitempty"`
 		Drop_src_path_prefix_parts *int64    `tfsdk:"drop_src_path_prefix_parts" json:"drop_src_path_prefix_parts,omitempty"`
 		GeneratePassword           *bool     `tfsdk:"generate_password" json:"generatePassword,omitempty"`
 		Headers                    *[]string `tfsdk:"headers" json:"headers,omitempty"`
@@ -71,6 +72,7 @@ type OperatorVictoriametricsComVmuserV1Beta1ManifestData struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"crd" json:"crd,omitempty"`
+			Discover_backend_ips       *bool     `tfsdk:"discover_backend_ips" json:"discover_backend_ips,omitempty"`
 			Drop_src_path_prefix_parts *int64    `tfsdk:"drop_src_path_prefix_parts" json:"drop_src_path_prefix_parts,omitempty"`
 			Headers                    *[]string `tfsdk:"headers" json:"headers,omitempty"`
 			Hosts                      *[]string `tfsdk:"hosts" json:"hosts,omitempty"`
@@ -78,6 +80,8 @@ type OperatorVictoriametricsComVmuserV1Beta1ManifestData struct {
 			Paths                      *[]string `tfsdk:"paths" json:"paths,omitempty"`
 			Response_headers           *[]string `tfsdk:"response_headers" json:"response_headers,omitempty"`
 			Retry_status_codes         *[]string `tfsdk:"retry_status_codes" json:"retry_status_codes,omitempty"`
+			Src_headers                *[]string `tfsdk:"src_headers" json:"src_headers,omitempty"`
+			Src_query_args             *[]string `tfsdk:"src_query_args" json:"src_query_args,omitempty"`
 			Static                     *struct {
 				Url  *string   `tfsdk:"url" json:"url,omitempty"`
 				Urls *[]string `tfsdk:"urls" json:"urls,omitempty"`
@@ -96,8 +100,43 @@ type OperatorVictoriametricsComVmuserV1Beta1ManifestData struct {
 			} `tfsdk:"target_ref_basic_auth" json:"targetRefBasicAuth,omitempty"`
 			Target_path_suffix *string `tfsdk:"target_path_suffix" json:"target_path_suffix,omitempty"`
 		} `tfsdk:"target_refs" json:"targetRefs,omitempty"`
-		Tls_insecure_skip_verify *bool `tfsdk:"tls_insecure_skip_verify" json:"tls_insecure_skip_verify,omitempty"`
-		TokenRef                 *struct {
+		TlsConfig *struct {
+			Ca *struct {
+				ConfigMap *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map" json:"configMap,omitempty"`
+				Secret *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret" json:"secret,omitempty"`
+			} `tfsdk:"ca" json:"ca,omitempty"`
+			CaFile *string `tfsdk:"ca_file" json:"caFile,omitempty"`
+			Cert   *struct {
+				ConfigMap *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map" json:"configMap,omitempty"`
+				Secret *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret" json:"secret,omitempty"`
+			} `tfsdk:"cert" json:"cert,omitempty"`
+			CertFile           *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+			InsecureSkipVerify *bool   `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+			KeyFile            *string `tfsdk:"key_file" json:"keyFile,omitempty"`
+			KeySecret          *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+			ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+		} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+		TokenRef *struct {
 			Key      *string `tfsdk:"key" json:"key,omitempty"`
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
 			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -203,6 +242,14 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 					"disable_secret_creation": schema.BoolAttribute{
 						Description:         "DisableSecretCreation skips related secret creation for vmuser",
 						MarkdownDescription: "DisableSecretCreation skips related secret creation for vmuser",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"discover_backend_ips": schema.BoolAttribute{
+						Description:         "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+						MarkdownDescription: "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -393,6 +440,14 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 									Computed: false,
 								},
 
+								"discover_backend_ips": schema.BoolAttribute{
+									Description:         "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+									MarkdownDescription: "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"drop_src_path_prefix_parts": schema.Int64Attribute{
 									Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
 									MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
@@ -402,8 +457,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"headers": schema.ListAttribute{
-									Description:         "Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
-									MarkdownDescription: "Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
+									Description:         "RequestHeaders represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
+									MarkdownDescription: "RequestHeaders represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -451,6 +506,24 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 								"retry_status_codes": schema.ListAttribute{
 									Description:         "RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]",
 									MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"src_headers": schema.ListAttribute{
+									Description:         "SrcHeaders is an optional list of headers, which must match request headers.",
+									MarkdownDescription: "SrcHeaders is an optional list of headers, which must match request headers.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"src_query_args": schema.ListAttribute{
+									Description:         "SrcQueryArgs is an optional list of query args, which must match request URL query args.",
+									MarkdownDescription: "SrcQueryArgs is an optional list of query args, which must match request URL query args.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -559,8 +632,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"target_path_suffix": schema.StringAttribute{
-									Description:         "QueryParams []string 'json:'queryParams,omitempty''TargetPathSuffix allows to add some suffix to the target pathIt allows to hide tenant configuration from user with crd as ref.it also may contain any url encoded params.",
-									MarkdownDescription: "QueryParams []string 'json:'queryParams,omitempty''TargetPathSuffix allows to add some suffix to the target pathIt allows to hide tenant configuration from user with crd as ref.it also may contain any url encoded params.",
+									Description:         "TargetPathSuffix allows to add some suffix to the target pathIt allows to hide tenant configuration from user with crd as ref.it also may contain any url encoded params.",
+									MarkdownDescription: "TargetPathSuffix allows to add some suffix to the target pathIt allows to hide tenant configuration from user with crd as ref.it also may contain any url encoded params.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -572,12 +645,236 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 						Computed: false,
 					},
 
-					"tls_insecure_skip_verify": schema.BoolAttribute{
-						Description:         "TLSInsecureSkipVerify - whether to skip TLS verification when connecting to backend over HTTPS.See https://docs.victoriametrics.com/vmauth.html#backend-tls-setup",
-						MarkdownDescription: "TLSInsecureSkipVerify - whether to skip TLS verification when connecting to backend over HTTPS.See https://docs.victoriametrics.com/vmauth.html#backend-tls-setup",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
+					"tls_config": schema.SingleNestedAttribute{
+						Description:         "TLSConfig specifies TLSConfig configuration parameters.",
+						MarkdownDescription: "TLSConfig specifies TLSConfig configuration parameters.",
+						Attributes: map[string]schema.Attribute{
+							"ca": schema.SingleNestedAttribute{
+								Description:         "Stuct containing the CA cert to use for the targets.",
+								MarkdownDescription: "Stuct containing the CA cert to use for the targets.",
+								Attributes: map[string]schema.Attribute{
+									"config_map": schema.SingleNestedAttribute{
+										Description:         "ConfigMap containing data to use for the targets.",
+										MarkdownDescription: "ConfigMap containing data to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret": schema.SingleNestedAttribute{
+										Description:         "Secret containing data to use for the targets.",
+										MarkdownDescription: "Secret containing data to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ca_file": schema.StringAttribute{
+								Description:         "Path to the CA cert in the container to use for the targets.",
+								MarkdownDescription: "Path to the CA cert in the container to use for the targets.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cert": schema.SingleNestedAttribute{
+								Description:         "Struct containing the client cert file for the targets.",
+								MarkdownDescription: "Struct containing the client cert file for the targets.",
+								Attributes: map[string]schema.Attribute{
+									"config_map": schema.SingleNestedAttribute{
+										Description:         "ConfigMap containing data to use for the targets.",
+										MarkdownDescription: "ConfigMap containing data to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret": schema.SingleNestedAttribute{
+										Description:         "Secret containing data to use for the targets.",
+										MarkdownDescription: "Secret containing data to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"cert_file": schema.StringAttribute{
+								Description:         "Path to the client cert file in the container for the targets.",
+								MarkdownDescription: "Path to the client cert file in the container for the targets.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"insecure_skip_verify": schema.BoolAttribute{
+								Description:         "Disable target certificate validation.",
+								MarkdownDescription: "Disable target certificate validation.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"key_file": schema.StringAttribute{
+								Description:         "Path to the client key file in the container for the targets.",
+								MarkdownDescription: "Path to the client key file in the container for the targets.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"key_secret": schema.SingleNestedAttribute{
+								Description:         "Secret containing the client key file for the targets.",
+								MarkdownDescription: "Secret containing the client key file for the targets.",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"server_name": schema.StringAttribute{
+								Description:         "Used to verify the hostname for the targets.",
+								MarkdownDescription: "Used to verify the hostname for the targets.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"token_ref": schema.SingleNestedAttribute{

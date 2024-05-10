@@ -60,22 +60,30 @@ Optional:
 - `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'
 - `config_secret` (String) ConfigSecret is the name of a Kubernetes Secret in the same namespace as theVMAuth object, which contains auth configuration for vmauth,configuration must be inside secret key: config.yaml.It must be created and managed manually.If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders
 - `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers.It can be useful for proxies, backup, etc.
+- `default_url` (List of String) DefaultURLs backend url for non-matching paths filterusually used for default backend with error message
+- `discover_backend_ips` (Boolean) DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.
 - `dns_config` (Attributes) Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
 - `dns_policy` (String) DNSPolicy sets DNS policy for the pod
+- `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
 - `extra_args` (Map of String) ExtraArgs that will be passed to  VMAuth podfor example remoteWrite.tmpDataPath: /tmp
 - `extra_envs` (List of Map of String) ExtraEnvs that will be added to VMAuth pod
+- `headers` (List of String) Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth
 - `host_aliases` (Attributes List) HostAliases provides mapping for ip and hostname,that would be propagated to pod,cannot be used with HostNetwork. (see [below for nested schema](#nestedatt--spec--host_aliases))
 - `host_network` (Boolean) HostNetwork controls whether the pod may use the node network namespace
 - `image` (Attributes) Image - docker image settings for VMAuthif no specified operator uses default config version (see [below for nested schema](#nestedatt--spec--image))
 - `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespaceto use for pulling images from registriessee https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `ingress` (Attributes) Ingress enables ingress configuration for VMAuth. (see [below for nested schema](#nestedatt--spec--ingress))
 - `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the vmSingle configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.
+- `ip_filters` (Attributes) IPFilters defines per target src ip filterssupported only with enterprise version of vmauthhttps://docs.victoriametrics.com/vmauth.html#ip-filters (see [below for nested schema](#nestedatt--spec--ip_filters))
 - `license` (Attributes) License allows to configure license key to be used for enterprise features.Using license key is supported starting from VictoriaMetrics v1.94.0.See: https://docs.victoriametrics.com/enterprise.html (see [below for nested schema](#nestedatt--spec--license))
 - `liveness_probe` (Map of String) LivenessProbe that will be added CRD pod
+- `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
 - `log_format` (String) LogFormat for VMAuth to be configured with.
 - `log_level` (String) LogLevel for victoria metrics single to be configured with.
+- `max_concurrent_requests` (Number) MaxConcurrentRequests defines max concurrent requests per user300 is default value for vmauth
 - `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
+- `paused` (Boolean) Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMAuth pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
 - `port` (String) Port listen port
@@ -84,6 +92,8 @@ Optional:
 - `readiness_probe` (Map of String) ReadinessProbe that will be added CRD pod
 - `replica_count` (Number) ReplicaCount is the expected size of the VMAuth
 - `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--resources))
+- `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth
+- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]
 - `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment ormaximum number of revisions that will be maintained in the StatefulSet's revision history.Defaults to 10.
 - `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod.https://kubernetes.io/docs/concepts/containers/runtime-class/
 - `scheduler_name` (String) SchedulerName - defines kubernetes scheduler name
@@ -95,6 +105,7 @@ Optional:
 - `service_spec` (Attributes) ServiceSpec that will be added to vmsingle service spec (see [below for nested schema](#nestedatt--spec--service_spec))
 - `startup_probe` (Map of String) StartupProbe that will be added to CRD pod
 - `termination_grace_period_seconds` (Number) TerminationGracePeriodSeconds period for container graceful termination
+- `tls_config` (Attributes) TLSConfig specifies TLSConfig configuration parameters. (see [below for nested schema](#nestedatt--spec--tls_config))
 - `tolerations` (Attributes List) Tolerations If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--tolerations))
 - `topology_spread_constraints` (List of Map of String) TopologySpreadConstraints embedded kubernetes pod configuration option,controls how pods are spread across your cluster among failure-domainssuch as regions, zones, nodes, and other user-defined topology domainshttps://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
 - `unauthorized_access_config` (Attributes List) UnauthorizedAccessConfig configures access for un authorized users (see [below for nested schema](#nestedatt--spec--unauthorized_access_config))
@@ -248,6 +259,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--ip_filters"></a>
+### Nested Schema for `spec.ip_filters`
+
+Optional:
+
+- `allow_list` (List of String)
+- `deny_list` (List of String)
+
+
 <a id="nestedatt--spec--license"></a>
 ### Nested Schema for `spec.license`
 
@@ -339,6 +359,104 @@ Optional:
 
 
 
+<a id="nestedatt--spec--tls_config"></a>
+### Nested Schema for `spec.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--ca))
+- `ca_file` (String) Path to the CA cert in the container to use for the targets.
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--cert))
+- `cert_file` (String) Path to the client cert file in the container for the targets.
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_file` (String) Path to the client key file in the container for the targets.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--key_secret))
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--tls_config--ca"></a>
+### Nested Schema for `spec.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--ca--secret))
+
+<a id="nestedatt--spec--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--tls_config--ca--secret"></a>
+### Nested Schema for `spec.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--tls_config--cert"></a>
+### Nested Schema for `spec.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--cert--secret))
+
+<a id="nestedatt--spec--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--tls_config--cert--secret"></a>
+### Nested Schema for `spec.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--tls_config--key_secret"></a>
+### Nested Schema for `spec.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
 <a id="nestedatt--spec--tolerations"></a>
 ### Nested Schema for `spec.tolerations`
 
@@ -356,24 +474,17 @@ Optional:
 
 Optional:
 
+- `discover_backend_ips` (Boolean) DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.
 - `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
-- `headers` (List of String) Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth
-- `ip_filters` (Attributes) IPFilters defines filter for src ip addressenterprise only (see [below for nested schema](#nestedatt--spec--unauthorized_access_config--ip_filters))
+- `headers` (List of String) RequestHeaders represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth
 - `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
 - `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth
-- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]
-- `src_hosts` (List of String) SrcHosts is the list of regular expressions, which match the request hostname.
-- `src_paths` (List of String) Paths src request paths
-- `url_prefix` (List of String) URLs defines url_prefix for dst routing
-
-<a id="nestedatt--spec--unauthorized_access_config--ip_filters"></a>
-### Nested Schema for `spec.unauthorized_access_config.ip_filters`
-
-Optional:
-
-- `allow_list` (List of String)
-- `deny_list` (List of String)
-
+- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]
+- `src_headers` (List of String) SrcHeaders is an optional list of headers, which must match request headers.
+- `src_hosts` (List of String) SrcHosts is an optional list of regular expressions, which must match the request hostname.
+- `src_paths` (List of String) SrcPaths is an optional list of regular expressions, which must match the request path.
+- `src_query_args` (List of String) SrcQueryArgs is an optional list of query args, which must match request URL query args.
+- `url_prefix` (List of String) UrlPrefix contains backend url prefixes for the proxied request url.
 
 
 <a id="nestedatt--spec--user_namespace_selector"></a>

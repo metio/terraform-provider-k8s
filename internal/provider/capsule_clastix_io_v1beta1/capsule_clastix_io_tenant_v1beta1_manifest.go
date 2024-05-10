@@ -298,16 +298,16 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"api_group": schema.StringAttribute{
-												Description:         "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
-												MarkdownDescription: "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+												Description:         "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+												MarkdownDescription: "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"kind": schema.StringAttribute{
-												Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
-												MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+												Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+												MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -322,8 +322,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
-												MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
+												Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
+												MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -433,8 +433,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"hostname_collision_scope": schema.StringAttribute{
-								Description:         "Defines the scope of hostname collision check performed when Tenant Owners create Ingress with allowed hostnames.  - Cluster: disallow the creation of an Ingress if the pair hostname and path is already used across the Namespaces managed by Capsule.  - Tenant: disallow the creation of an Ingress if the pair hostname and path is already used across the Namespaces of the Tenant.  - Namespace: disallow the creation of an Ingress if the pair hostname and path is already used in the Ingress Namespace.  Optional.",
-								MarkdownDescription: "Defines the scope of hostname collision check performed when Tenant Owners create Ingress with allowed hostnames.  - Cluster: disallow the creation of an Ingress if the pair hostname and path is already used across the Namespaces managed by Capsule.  - Tenant: disallow the creation of an Ingress if the pair hostname and path is already used across the Namespaces of the Tenant.  - Namespace: disallow the creation of an Ingress if the pair hostname and path is already used in the Ingress Namespace.  Optional.",
+								Description:         "Defines the scope of hostname collision check performed when Tenant Owners create Ingress with allowed hostnames.- Cluster: disallow the creation of an Ingress if the pair hostname and path is already used across the Namespaces managed by Capsule.- Tenant: disallow the creation of an Ingress if the pair hostname and path is already used across the Namespaces of the Tenant.- Namespace: disallow the creation of an Ingress if the pair hostname and path is already used in the Ingress Namespace.Optional.",
+								MarkdownDescription: "Defines the scope of hostname collision check performed when Tenant Owners create Ingress with allowed hostnames.- Cluster: disallow the creation of an Ingress if the pair hostname and path is already used across the Namespaces managed by Capsule.- Tenant: disallow the creation of an Ingress if the pair hostname and path is already used across the Namespaces of the Tenant.- Namespace: disallow the creation of an Ingress if the pair hostname and path is already used in the Ingress Namespace.Optional.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -589,34 +589,34 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"egress": schema.ListNestedAttribute{
-											Description:         "egress is a list of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8",
-											MarkdownDescription: "egress is a list of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8",
+											Description:         "egress is a list of egress rules to be applied to the selected pods. Outgoing trafficis allowed if there are no NetworkPolicies selecting the pod (and cluster policyotherwise allows the traffic), OR if the traffic matches at least one egress ruleacross all of the NetworkPolicy objects whose podSelector matches the pod. Ifthis field is empty then this NetworkPolicy limits all outgoing traffic (and servessolely to ensure that the pods it selects are isolated by default).This field is beta-level in 1.8",
+											MarkdownDescription: "egress is a list of egress rules to be applied to the selected pods. Outgoing trafficis allowed if there are no NetworkPolicies selecting the pod (and cluster policyotherwise allows the traffic), OR if the traffic matches at least one egress ruleacross all of the NetworkPolicy objects whose podSelector matches the pod. Ifthis field is empty then this NetworkPolicy limits all outgoing traffic (and servessolely to ensure that the pods it selects are isolated by default).This field is beta-level in 1.8",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"ports": schema.ListNestedAttribute{
-														Description:         "ports is a list of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.",
-														MarkdownDescription: "ports is a list of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.",
+														Description:         "ports is a list of destination ports for outgoing traffic.Each item in this list is combined using a logical OR. If this field isempty or missing, this rule matches all ports (traffic not restricted by port).If this field is present and contains at least one item, then this rule allowstraffic only if the traffic matches at least one port in the list.",
+														MarkdownDescription: "ports is a list of destination ports for outgoing traffic.Each item in this list is combined using a logical OR. If this field isempty or missing, this rule matches all ports (traffic not restricted by port).If this field is present and contains at least one item, then this rule allowstraffic only if the traffic matches at least one port in the list.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"end_port": schema.Int64Attribute{
-																	Description:         "endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.",
-																	MarkdownDescription: "endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.",
+																	Description:         "endPort indicates that the range of ports from port to endPort if set, inclusive,should be allowed by the policy. This field cannot be defined if the port fieldis not defined or if the port field is defined as a named (string) port.The endPort must be equal or greater than port.",
+																	MarkdownDescription: "endPort indicates that the range of ports from port to endPort if set, inclusive,should be allowed by the policy. This field cannot be defined if the port fieldis not defined or if the port field is defined as a named (string) port.The endPort must be equal or greater than port.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"port": schema.StringAttribute{
-																	Description:         "port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.",
-																	MarkdownDescription: "port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.",
+																	Description:         "port represents the port on the given protocol. This can either be a numerical or namedport on a pod. If this field is not provided, this matches all port names andnumbers.If present, only traffic on the specified protocol AND port will be matched.",
+																	MarkdownDescription: "port represents the port on the given protocol. This can either be a numerical or namedport on a pod. If this field is not provided, this matches all port names andnumbers.If present, only traffic on the specified protocol AND port will be matched.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"protocol": schema.StringAttribute{
-																	Description:         "protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
-																	MarkdownDescription: "protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
+																	Description:         "protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.",
+																	MarkdownDescription: "protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -629,25 +629,25 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"to": schema.ListNestedAttribute{
-														Description:         "to is a list of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.",
-														MarkdownDescription: "to is a list of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.",
+														Description:         "to is a list of destinations for outgoing traffic of pods selected for this rule.Items in this list are combined using a logical OR operation. If this field isempty or missing, this rule matches all destinations (traffic not restricted bydestination). If this field is present and contains at least one item, this ruleallows traffic only if the traffic matches at least one item in the to list.",
+														MarkdownDescription: "to is a list of destinations for outgoing traffic of pods selected for this rule.Items in this list are combined using a logical OR operation. If this field isempty or missing, this rule matches all destinations (traffic not restricted bydestination). If this field is present and contains at least one item, this ruleallows traffic only if the traffic matches at least one item in the to list.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"ip_block": schema.SingleNestedAttribute{
-																	Description:         "ipBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.",
-																	MarkdownDescription: "ipBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.",
+																	Description:         "ipBlock defines policy on a particular IPBlock. If this field is set thenneither of the other fields can be.",
+																	MarkdownDescription: "ipBlock defines policy on a particular IPBlock. If this field is set thenneither of the other fields can be.",
 																	Attributes: map[string]schema.Attribute{
 																		"cidr": schema.StringAttribute{
-																			Description:         "cidr is a string representing the IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64'",
-																			MarkdownDescription: "cidr is a string representing the IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64'",
+																			Description:         "cidr is a string representing the IPBlockValid examples are '192.168.1.0/24' or '2001:db8::/64'",
+																			MarkdownDescription: "cidr is a string representing the IPBlockValid examples are '192.168.1.0/24' or '2001:db8::/64'",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"except": schema.ListAttribute{
-																			Description:         "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
-																			MarkdownDescription: "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
+																			Description:         "except is a slice of CIDRs that should not be included within an IPBlockValid examples are '192.168.1.0/24' or '2001:db8::/64'Except values will be rejected if they are outside the cidr range",
+																			MarkdownDescription: "except is a slice of CIDRs that should not be included within an IPBlockValid examples are '192.168.1.0/24' or '2001:db8::/64'Except values will be rejected if they are outside the cidr range",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -660,8 +660,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector.",
-																	MarkdownDescription: "namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector.",
+																	Description:         "namespaceSelector selects namespaces using cluster-scoped labels. This field followsstandard label selector semantics; if present but empty, it selects all namespaces.If podSelector is also set, then the NetworkPolicyPeer as a whole selectsthe pods matching podSelector in the namespaces selected by namespaceSelector.Otherwise it selects all pods in the namespaces selected by namespaceSelector.",
+																	MarkdownDescription: "namespaceSelector selects namespaces using cluster-scoped labels. This field followsstandard label selector semantics; if present but empty, it selects all namespaces.If podSelector is also set, then the NetworkPolicyPeer as a whole selectsthe pods matching podSelector in the namespaces selected by namespaceSelector.Otherwise it selects all pods in the namespaces selected by namespaceSelector.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -677,16 +677,16 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -700,8 +700,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -714,8 +714,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"pod_selector": schema.SingleNestedAttribute{
-																	Description:         "podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace.",
-																	MarkdownDescription: "podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace.",
+																	Description:         "podSelector is a label selector which selects pods. This field follows standard labelselector semantics; if present but empty, it selects all pods.If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selectsthe pods matching podSelector in the Namespaces selected by NamespaceSelector.Otherwise it selects the pods matching podSelector in the policy's own namespace.",
+																	MarkdownDescription: "podSelector is a label selector which selects pods. This field follows standard labelselector semantics; if present but empty, it selects all pods.If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selectsthe pods matching podSelector in the Namespaces selected by NamespaceSelector.Otherwise it selects the pods matching podSelector in the policy's own namespace.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -731,16 +731,16 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -754,8 +754,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -780,30 +780,30 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"ingress": schema.ListNestedAttribute{
-											Description:         "ingress is a list of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default)",
-											MarkdownDescription: "ingress is a list of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default)",
+											Description:         "ingress is a list of ingress rules to be applied to the selected pods.Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod(and cluster policy otherwise allows the traffic), OR if the traffic source isthe pod's local node, OR if the traffic matches at least one ingress ruleacross all of the NetworkPolicy objects whose podSelector matches the pod. Ifthis field is empty then this NetworkPolicy does not allow any traffic (and servessolely to ensure that the pods it selects are isolated by default)",
+											MarkdownDescription: "ingress is a list of ingress rules to be applied to the selected pods.Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod(and cluster policy otherwise allows the traffic), OR if the traffic source isthe pod's local node, OR if the traffic matches at least one ingress ruleacross all of the NetworkPolicy objects whose podSelector matches the pod. Ifthis field is empty then this NetworkPolicy does not allow any traffic (and servessolely to ensure that the pods it selects are isolated by default)",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"from": schema.ListNestedAttribute{
-														Description:         "from is a list of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.",
-														MarkdownDescription: "from is a list of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.",
+														Description:         "from is a list of sources which should be able to access the pods selected for this rule.Items in this list are combined using a logical OR operation. If this field isempty or missing, this rule matches all sources (traffic not restricted bysource). If this field is present and contains at least one item, this ruleallows traffic only if the traffic matches at least one item in the from list.",
+														MarkdownDescription: "from is a list of sources which should be able to access the pods selected for this rule.Items in this list are combined using a logical OR operation. If this field isempty or missing, this rule matches all sources (traffic not restricted bysource). If this field is present and contains at least one item, this ruleallows traffic only if the traffic matches at least one item in the from list.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"ip_block": schema.SingleNestedAttribute{
-																	Description:         "ipBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.",
-																	MarkdownDescription: "ipBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.",
+																	Description:         "ipBlock defines policy on a particular IPBlock. If this field is set thenneither of the other fields can be.",
+																	MarkdownDescription: "ipBlock defines policy on a particular IPBlock. If this field is set thenneither of the other fields can be.",
 																	Attributes: map[string]schema.Attribute{
 																		"cidr": schema.StringAttribute{
-																			Description:         "cidr is a string representing the IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64'",
-																			MarkdownDescription: "cidr is a string representing the IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64'",
+																			Description:         "cidr is a string representing the IPBlockValid examples are '192.168.1.0/24' or '2001:db8::/64'",
+																			MarkdownDescription: "cidr is a string representing the IPBlockValid examples are '192.168.1.0/24' or '2001:db8::/64'",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"except": schema.ListAttribute{
-																			Description:         "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
-																			MarkdownDescription: "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
+																			Description:         "except is a slice of CIDRs that should not be included within an IPBlockValid examples are '192.168.1.0/24' or '2001:db8::/64'Except values will be rejected if they are outside the cidr range",
+																			MarkdownDescription: "except is a slice of CIDRs that should not be included within an IPBlockValid examples are '192.168.1.0/24' or '2001:db8::/64'Except values will be rejected if they are outside the cidr range",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -816,8 +816,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector.",
-																	MarkdownDescription: "namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector.",
+																	Description:         "namespaceSelector selects namespaces using cluster-scoped labels. This field followsstandard label selector semantics; if present but empty, it selects all namespaces.If podSelector is also set, then the NetworkPolicyPeer as a whole selectsthe pods matching podSelector in the namespaces selected by namespaceSelector.Otherwise it selects all pods in the namespaces selected by namespaceSelector.",
+																	MarkdownDescription: "namespaceSelector selects namespaces using cluster-scoped labels. This field followsstandard label selector semantics; if present but empty, it selects all namespaces.If podSelector is also set, then the NetworkPolicyPeer as a whole selectsthe pods matching podSelector in the namespaces selected by namespaceSelector.Otherwise it selects all pods in the namespaces selected by namespaceSelector.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -833,16 +833,16 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -856,8 +856,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -870,8 +870,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"pod_selector": schema.SingleNestedAttribute{
-																	Description:         "podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace.",
-																	MarkdownDescription: "podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace.",
+																	Description:         "podSelector is a label selector which selects pods. This field follows standard labelselector semantics; if present but empty, it selects all pods.If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selectsthe pods matching podSelector in the Namespaces selected by NamespaceSelector.Otherwise it selects the pods matching podSelector in the policy's own namespace.",
+																	MarkdownDescription: "podSelector is a label selector which selects pods. This field follows standard labelselector semantics; if present but empty, it selects all pods.If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selectsthe pods matching podSelector in the Namespaces selected by NamespaceSelector.Otherwise it selects the pods matching podSelector in the policy's own namespace.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -887,16 +887,16 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -910,8 +910,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -930,29 +930,29 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"ports": schema.ListNestedAttribute{
-														Description:         "ports is a list of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.",
-														MarkdownDescription: "ports is a list of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.",
+														Description:         "ports is a list of ports which should be made accessible on the pods selected forthis rule. Each item in this list is combined using a logical OR. If this field isempty or missing, this rule matches all ports (traffic not restricted by port).If this field is present and contains at least one item, then this rule allowstraffic only if the traffic matches at least one port in the list.",
+														MarkdownDescription: "ports is a list of ports which should be made accessible on the pods selected forthis rule. Each item in this list is combined using a logical OR. If this field isempty or missing, this rule matches all ports (traffic not restricted by port).If this field is present and contains at least one item, then this rule allowstraffic only if the traffic matches at least one port in the list.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"end_port": schema.Int64Attribute{
-																	Description:         "endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.",
-																	MarkdownDescription: "endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.",
+																	Description:         "endPort indicates that the range of ports from port to endPort if set, inclusive,should be allowed by the policy. This field cannot be defined if the port fieldis not defined or if the port field is defined as a named (string) port.The endPort must be equal or greater than port.",
+																	MarkdownDescription: "endPort indicates that the range of ports from port to endPort if set, inclusive,should be allowed by the policy. This field cannot be defined if the port fieldis not defined or if the port field is defined as a named (string) port.The endPort must be equal or greater than port.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"port": schema.StringAttribute{
-																	Description:         "port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.",
-																	MarkdownDescription: "port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.",
+																	Description:         "port represents the port on the given protocol. This can either be a numerical or namedport on a pod. If this field is not provided, this matches all port names andnumbers.If present, only traffic on the specified protocol AND port will be matched.",
+																	MarkdownDescription: "port represents the port on the given protocol. This can either be a numerical or namedport on a pod. If this field is not provided, this matches all port names andnumbers.If present, only traffic on the specified protocol AND port will be matched.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"protocol": schema.StringAttribute{
-																	Description:         "protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
-																	MarkdownDescription: "protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
+																	Description:         "protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.",
+																	MarkdownDescription: "protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -971,8 +971,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"pod_selector": schema.SingleNestedAttribute{
-											Description:         "podSelector selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.",
-											MarkdownDescription: "podSelector selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.",
+											Description:         "podSelector selects the pods to which this NetworkPolicy object applies.The array of ingress rules is applied to any pods selected by this field.Multiple network policies can select the same set of pods. In this case,the ingress rules for each are combined additively.This field is NOT optional and follows standard label selector semantics.An empty podSelector matches all pods in this namespace.",
+											MarkdownDescription: "podSelector selects the pods to which this NetworkPolicy object applies.The array of ingress rules is applied to any pods selected by this field.Multiple network policies can select the same set of pods. In this case,the ingress rules for each are combined additively.This field is NOT optional and follows standard label selector semantics.An empty podSelector matches all pods in this namespace.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -988,16 +988,16 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1011,8 +1011,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1025,8 +1025,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"policy_types": schema.ListAttribute{
-											Description:         "policyTypes is a list of rule types that the NetworkPolicy relates to. Valid options are ['Ingress'], ['Egress'], or ['Ingress', 'Egress']. If this field is not specified, it will default based on the existence of ingress or egress rules; policies that contain an egress section are assumed to affect egress, and all policies (whether or not they contain an ingress section) are assumed to affect ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ 'Egress' ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include 'Egress' (since such a policy would not include an egress section and would otherwise default to just [ 'Ingress' ]). This field is beta-level in 1.8",
-											MarkdownDescription: "policyTypes is a list of rule types that the NetworkPolicy relates to. Valid options are ['Ingress'], ['Egress'], or ['Ingress', 'Egress']. If this field is not specified, it will default based on the existence of ingress or egress rules; policies that contain an egress section are assumed to affect egress, and all policies (whether or not they contain an ingress section) are assumed to affect ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ 'Egress' ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include 'Egress' (since such a policy would not include an egress section and would otherwise default to just [ 'Ingress' ]). This field is beta-level in 1.8",
+											Description:         "policyTypes is a list of rule types that the NetworkPolicy relates to.Valid options are ['Ingress'], ['Egress'], or ['Ingress', 'Egress'].If this field is not specified, it will default based on the existence of ingress or egress rules;policies that contain an egress section are assumed to affect egress, and all policies(whether or not they contain an ingress section) are assumed to affect ingress.If you want to write an egress-only policy, you must explicitly specify policyTypes [ 'Egress' ].Likewise, if you want to write a policy that specifies that no egress is allowed,you must specify a policyTypes value that include 'Egress' (since such a policy would not includean egress section and would otherwise default to just [ 'Ingress' ]).This field is beta-level in 1.8",
+											MarkdownDescription: "policyTypes is a list of rule types that the NetworkPolicy relates to.Valid options are ['Ingress'], ['Egress'], or ['Ingress', 'Egress'].If this field is not specified, it will default based on the existence of ingress or egress rules;policies that contain an egress section are assumed to affect egress, and all policies(whether or not they contain an ingress section) are assumed to affect ingress.If you want to write an egress-only policy, you must explicitly specify policyTypes [ 'Egress' ].Likewise, if you want to write a policy that specifies that no egress is allowed,you must specify a policyTypes value that include 'Egress' (since such a policy would not includean egress section and would otherwise default to just [ 'Ingress' ]).This field is beta-level in 1.8",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1150,8 +1150,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"hard": schema.MapAttribute{
-											Description:         "hard is the set of desired hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/",
-											MarkdownDescription: "hard is the set of desired hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/",
+											Description:         "hard is the set of desired hard limits for each named resource.More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/",
+											MarkdownDescription: "hard is the set of desired hard limits for each named resource.More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1159,8 +1159,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"scope_selector": schema.SingleNestedAttribute{
-											Description:         "scopeSelector is also a collection of filters like scopes that must match each object tracked by a quota but expressed using ScopeSelectorOperator in combination with possible values. For a resource to match, both scopes AND scopeSelector (if specified in spec), must be matched.",
-											MarkdownDescription: "scopeSelector is also a collection of filters like scopes that must match each object tracked by a quota but expressed using ScopeSelectorOperator in combination with possible values. For a resource to match, both scopes AND scopeSelector (if specified in spec), must be matched.",
+											Description:         "scopeSelector is also a collection of filters like scopes that must match each object tracked by a quotabut expressed using ScopeSelectorOperator in combination with possible values.For a resource to match, both scopes AND scopeSelector (if specified in spec), must be matched.",
+											MarkdownDescription: "scopeSelector is also a collection of filters like scopes that must match each object tracked by a quotabut expressed using ScopeSelectorOperator in combination with possible values.For a resource to match, both scopes AND scopeSelector (if specified in spec), must be matched.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "A list of scope selector requirements by scope of the resources.",
@@ -1168,8 +1168,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"operator": schema.StringAttribute{
-																Description:         "Represents a scope's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.",
-																MarkdownDescription: "Represents a scope's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.",
+																Description:         "Represents a scope's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist.",
+																MarkdownDescription: "Represents a scope's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1184,8 +1184,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty.This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty.This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1204,8 +1204,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"scopes": schema.ListAttribute{
-											Description:         "A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects.",
-											MarkdownDescription: "A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects.",
+											Description:         "A collection of filters that must match each object tracked by a quota.If not specified, the quota matches all objects.",
+											MarkdownDescription: "A collection of filters that must match each object tracked by a quota.If not specified, the quota matches all objects.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

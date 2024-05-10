@@ -239,8 +239,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 				MarkdownDescription: "WorkspaceSpec defines the desired state of Workspace.",
 				Attributes: map[string]schema.Attribute{
 					"agent_pool": schema.SingleNestedAttribute{
-						Description:         "Terraform Cloud Agents allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/agents",
-						MarkdownDescription: "Terraform Cloud Agents allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/agents",
+						Description:         "HCP Terraform Agents allow HCP Terraform to communicate with isolated, private, or on-premises infrastructure.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/agents",
+						MarkdownDescription: "HCP Terraform Agents allow HCP Terraform to communicate with isolated, private, or on-premises infrastructure.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/agents",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
 								Description:         "Agent Pool ID.Must match pattern: '^apool-[a-zA-Z0-9]+$'",
@@ -462,8 +462,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"email_addresses": schema.ListAttribute{
-									Description:         "The list of email addresses that will receive notification emails.It is only available for Terraform Enterprise users. It is not available in Terraform Cloud.",
-									MarkdownDescription: "The list of email addresses that will receive notification emails.It is only available for Terraform Enterprise users. It is not available in Terraform Cloud.",
+									Description:         "The list of email addresses that will receive notification emails.It is only available for Terraform Enterprise users. It is not available in HCP Terraform.",
+									MarkdownDescription: "The list of email addresses that will receive notification emails.It is only available for Terraform Enterprise users. It is not available in HCP Terraform.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -589,8 +589,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"remote_state_sharing": schema.SingleNestedAttribute{
-						Description:         "Remote state access between workspaces.By default, new workspaces in Terraform Cloud do not allow other workspaces to access their state.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state#accessing-state-from-other-workspaces",
-						MarkdownDescription: "Remote state access between workspaces.By default, new workspaces in Terraform Cloud do not allow other workspaces to access their state.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state#accessing-state-from-other-workspaces",
+						Description:         "Remote state access between workspaces.By default, new workspaces in HCP Terraform do not allow other workspaces to access their state.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state#accessing-state-from-other-workspaces",
+						MarkdownDescription: "Remote state access between workspaces.By default, new workspaces in HCP Terraform do not allow other workspaces to access their state.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state#accessing-state-from-other-workspaces",
 						Attributes: map[string]schema.Attribute{
 							"all_workspaces": schema.BoolAttribute{
 								Description:         "Allow access to the state for all workspaces within the same organization.Default: 'false'.",
@@ -639,8 +639,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"run_tasks": schema.ListNestedAttribute{
-						Description:         "Run tasks allow Terraform Cloud to interact with external systems at specific points in the Terraform Cloud run lifecycle.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks",
-						MarkdownDescription: "Run tasks allow Terraform Cloud to interact with external systems at specific points in the Terraform Cloud run lifecycle.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks",
+						Description:         "Run tasks allow HCP Terraform to interact with external systems at specific points in the HCP Terraform run lifecycle.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks",
+						MarkdownDescription: "Run tasks allow HCP Terraform to interact with external systems at specific points in the HCP Terraform run lifecycle.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"enforcement_level": schema.StringAttribute{
@@ -767,8 +767,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"team_access": schema.ListNestedAttribute{
-						Description:         "Terraform Cloud workspaces can only be accessed by users with the correct permissions.You can manage permissions for a workspace on a per-team basis.When a workspace is created, only the owners team and teams with the 'manage workspaces' permission can access it,with full admin permissions. These teams' access can't be removed from a workspace.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/access",
-						MarkdownDescription: "Terraform Cloud workspaces can only be accessed by users with the correct permissions.You can manage permissions for a workspace on a per-team basis.When a workspace is created, only the owners team and teams with the 'manage workspaces' permission can access it,with full admin permissions. These teams' access can't be removed from a workspace.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/access",
+						Description:         "HCP Terraform workspaces can only be accessed by users with the correct permissions.You can manage permissions for a workspace on a per-team basis.When a workspace is created, only the owners team and teams with the 'manage workspaces' permission can access it,with full admin permissions. These teams' access can't be removed from a workspace.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/access",
+						MarkdownDescription: "HCP Terraform workspaces can only be accessed by users with the correct permissions.You can manage permissions for a workspace on a per-team basis.When a workspace is created, only the owners team and teams with the 'manage workspaces' permission can access it,with full admin permissions. These teams' access can't be removed from a workspace.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/access",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"access": schema.StringAttribute{

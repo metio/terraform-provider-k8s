@@ -3393,7 +3393,7 @@ Required:
 Optional:
 
 - `cooldown_period_seconds` (Number) CooldownPeriodSeconds is the time to wait between scaling events. Defaults to 300.
-- `target_workspaces` (Attributes List) TargetWorkspaces is a list of Terraform Cloud Workspaces whichthe agent pool should scale up to meet demand. When this fieldis ommited the autoscaler will target all workspaces that areassociated with the AgentPool. (see [below for nested schema](#nestedatt--spec--autoscaling--target_workspaces))
+- `target_workspaces` (Attributes List) TargetWorkspaces is a list of HCP Terraform Workspaces whichthe agent pool should scale up to meet demand. When this fieldis ommited the autoscaler will target all workspaces that areassociated with the AgentPool. (see [below for nested schema](#nestedatt--spec--autoscaling--target_workspaces))
 
 <a id="nestedatt--spec--autoscaling--target_workspaces"></a>
 ### Nested Schema for `spec.autoscaling.target_workspaces`

@@ -54,6 +54,7 @@ type LambdaServicesK8SAwsFunctionV1Alpha1ManifestData struct {
 			} `tfsdk:"s3_bucket_ref" json:"s3BucketRef,omitempty"`
 			S3Key           *string `tfsdk:"s3_key" json:"s3Key,omitempty"`
 			S3ObjectVersion *string `tfsdk:"s3_object_version" json:"s3ObjectVersion,omitempty"`
+			Sha256          *string `tfsdk:"sha256" json:"sha256,omitempty"`
 			ZipFile         *string `tfsdk:"zip_file" json:"zipFile,omitempty"`
 		} `tfsdk:"code" json:"code,omitempty"`
 		CodeSigningConfigARN *string `tfsdk:"code_signing_config_arn" json:"codeSigningConfigARN,omitempty"`
@@ -276,6 +277,14 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 							},
 
 							"s3_object_version": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"sha256": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

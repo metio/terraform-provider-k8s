@@ -102,6 +102,7 @@ Required:
 
 Optional:
 
+- `ignore_missing_values_files` (Boolean) IgnoreMissingValuesFiles controls whether to silently ignore missing values files rather than failing.
 - `interval` (String) Interval at which to check the v1.Source for updates. Defaults to'HelmReleaseSpec.Interval'.
 - `reconcile_strategy` (String) Determines what enables the creation of a new artifact. Valid values are('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.
 - `values_file` (String) Alternative values file to use as the default chart values, expected tobe a relative path in the SourceRef. Deprecated in favor of ValuesFiles,for backwards compatibility the file defined here is merged before theValuesFiles items. Ignored when omitted.

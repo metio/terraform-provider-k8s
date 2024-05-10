@@ -56,7 +56,7 @@ Optional:
 Optional:
 
 - `failure_policy` (Attributes) FailurePolicy, if set, configures when to declare the JobSet asfailed.The JobSet is always declared failed if any job in the setfinished with status failed. (see [below for nested schema](#nestedatt--spec--failure_policy))
-- `managed_by` (String) ManagedBy is used to indicate the controller or entity that manages a JobSet
+- `managed_by` (String) ManagedBy is used to indicate the controller or entity that manages a JobSet.The built-in JobSet controller reconciles JobSets which don't have thisfield at all or the field value is the reserved string'jobset.sigs.k8s.io/jobset-controller', but skips reconciling JobSetswith a custom value for this field.The value must be a valid domain-prefixed path (e.g. acme.io/foo) -all characters before the first '/' must be a valid subdomain as definedby RFC 1123. All characters trailing the first '/' must be valid HTTP Pathcharacters as defined by RFC 3986. The value cannot exceed 63 characters.The field is immutable.
 - `network` (Attributes) Network defines the networking options for the jobset. (see [below for nested schema](#nestedatt--spec--network))
 - `replicated_jobs` (Attributes List) ReplicatedJobs is the group of jobs that will form the set. (see [below for nested schema](#nestedatt--spec--replicated_jobs))
 - `startup_policy` (Attributes) StartupPolicy, if set, configures in what order jobs must be started (see [below for nested schema](#nestedatt--spec--startup_policy))

@@ -42,7 +42,8 @@ type Elbv2K8SAwsIngressClassParamsV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Group *struct {
+		CertficateArn *[]string `tfsdk:"certficate_arn" json:"certficateArn,omitempty"`
+		Group         *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"group" json:"group,omitempty"`
 		InboundCIDRs           *[]string `tfsdk:"inbound_cid_rs" json:"inboundCIDRs,omitempty"`
@@ -137,6 +138,15 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 				Description:         "IngressClassParamsSpec defines the desired state of IngressClassParams",
 				MarkdownDescription: "IngressClassParamsSpec defines the desired state of IngressClassParams",
 				Attributes: map[string]schema.Attribute{
+					"certficate_arn": schema.ListAttribute{
+						Description:         "CertificateARN specifies the ARN of the certificates for all Ingresses that belong to IngressClass with this IngressClassParams.",
+						MarkdownDescription: "CertificateARN specifies the ARN of the certificates for all Ingresses that belong to IngressClass with this IngressClassParams.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"group": schema.SingleNestedAttribute{
 						Description:         "Group defines the IngressGroup for all Ingresses that belong to IngressClass with this IngressClassParams.",
 						MarkdownDescription: "Group defines the IngressGroup for all Ingresses that belong to IngressClass with this IngressClassParams.",

@@ -264,6 +264,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 		NodeSelector            *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		OverrideHonorLabels     *bool              `tfsdk:"override_honor_labels" json:"overrideHonorLabels,omitempty"`
 		OverrideHonorTimestamps *bool              `tfsdk:"override_honor_timestamps" json:"overrideHonorTimestamps,omitempty"`
+		Paused                  *bool              `tfsdk:"paused" json:"paused,omitempty"`
 		PodDisruptionBudget     *struct {
 			MaxUnavailable *string            `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
 			MinAvailable   *string            `tfsdk:"min_available" json:"minAvailable,omitempty"`
@@ -403,7 +404,10 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 				KeepInput     *bool   `tfsdk:"keep_input" json:"keepInput,omitempty"`
 				Rules         *[]struct {
 					By                    *[]string `tfsdk:"by" json:"by,omitempty"`
+					Dedup_interval        *string   `tfsdk:"dedup_interval" json:"dedup_interval,omitempty"`
+					Drop_input_labels     *[]string `tfsdk:"drop_input_labels" json:"drop_input_labels,omitempty"`
 					Flush_on_shutdown     *bool     `tfsdk:"flush_on_shutdown" json:"flush_on_shutdown,omitempty"`
+					Ignore_old_samples    *bool     `tfsdk:"ignore_old_samples" json:"ignore_old_samples,omitempty"`
 					Input_relabel_configs *[]struct {
 						Action       *string            `tfsdk:"action" json:"action,omitempty"`
 						If           *map[string]string `tfsdk:"if" json:"if,omitempty"`
@@ -416,9 +420,11 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 						SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
 						TargetLabel  *string            `tfsdk:"target_label" json:"targetLabel,omitempty"`
 					} `tfsdk:"input_relabel_configs" json:"input_relabel_configs,omitempty"`
-					Interval               *string            `tfsdk:"interval" json:"interval,omitempty"`
-					Match                  *map[string]string `tfsdk:"match" json:"match,omitempty"`
-					Output_relabel_configs *[]struct {
+					Interval                   *string            `tfsdk:"interval" json:"interval,omitempty"`
+					Keep_metric_names          *bool              `tfsdk:"keep_metric_names" json:"keep_metric_names,omitempty"`
+					Match                      *map[string]string `tfsdk:"match" json:"match,omitempty"`
+					No_align_flush_to_interval *bool              `tfsdk:"no_align_flush_to_interval" json:"no_align_flush_to_interval,omitempty"`
+					Output_relabel_configs     *[]struct {
 						Action       *string            `tfsdk:"action" json:"action,omitempty"`
 						If           *map[string]string `tfsdk:"if" json:"if,omitempty"`
 						Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -2319,6 +2325,14 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 						Computed:            false,
 					},
 
+					"paused": schema.BoolAttribute{
+						Description:         "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
+						MarkdownDescription: "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"pod_disruption_budget": schema.SingleNestedAttribute{
 						Description:         "PodDisruptionBudget created by operator",
 						MarkdownDescription: "PodDisruptionBudget created by operator",
@@ -3303,9 +3317,34 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 														Computed:            false,
 													},
 
+													"dedup_interval": schema.StringAttribute{
+														Description:         "DedupInterval is an optional interval for deduplication.",
+														MarkdownDescription: "DedupInterval is an optional interval for deduplication.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"drop_input_labels": schema.ListAttribute{
+														Description:         "DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples.Labels are dropped before de-duplication and aggregation.",
+														MarkdownDescription: "DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples.Labels are dropped before de-duplication and aggregation.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"flush_on_shutdown": schema.BoolAttribute{
 														Description:         "FlushOnShutdown defines whether to flush the aggregation state on process terminationor config reload. Is 'false' by default.It is not recommended changing this setting, unless unfinished aggregations statesare preferred to missing data points.",
 														MarkdownDescription: "FlushOnShutdown defines whether to flush the aggregation state on process terminationor config reload. Is 'false' by default.It is not recommended changing this setting, unless unfinished aggregations statesare preferred to missing data points.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"ignore_old_samples": schema.BoolAttribute{
+														Description:         "IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.",
+														MarkdownDescription: "IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3414,10 +3453,26 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 														Computed:            false,
 													},
 
+													"keep_metric_names": schema.BoolAttribute{
+														Description:         "KeepMetricNames instructs to leave metric names as is for the output time series without adding any suffix.",
+														MarkdownDescription: "KeepMetricNames instructs to leave metric names as is for the output time series without adding any suffix.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"match": schema.MapAttribute{
 														Description:         "Match is a label selector (or list of label selectors) for filtering time series for the given selector.If the match isn't set, then all the input time series are processed.",
 														MarkdownDescription: "Match is a label selector (or list of label selectors) for filtering time series for the given selector.If the match isn't set, then all the input time series are processed.",
 														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"no_align_flush_to_interval": schema.BoolAttribute{
+														Description:         "NoAlighFlushToInterval disables aligning of flushes to multiples of Interval.By default flushes are aligned to Interval.",
+														MarkdownDescription: "NoAlighFlushToInterval disables aligning of flushes to multiples of Interval.By default flushes are aligned to Interval.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3528,8 +3583,8 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 													},
 
 													"staleness_interval": schema.StringAttribute{
-														Description:         "StalenessInterval defines an interval after which the series state will be reset if no samples have been sent during it.",
-														MarkdownDescription: "StalenessInterval defines an interval after which the series state will be reset if no samples have been sent during it.",
+														Description:         "Staleness interval is interval after which the series state will be reset if no samples have been sent during it.The parameter is only relevant for outputs: total, total_prometheus, increase, increase_prometheus and histogram_bucket.",
+														MarkdownDescription: "Staleness interval is interval after which the series state will be reset if no samples have been sent during it.The parameter is only relevant for outputs: total, total_prometheus, increase, increase_prometheus and histogram_bucket.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

@@ -874,8 +874,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"interval": schema.StringAttribute{
-									Description:         "interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s.",
-									MarkdownDescription: "interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s.",
+									Description:         "interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s. Deprecated: please use cron instead.",
+									MarkdownDescription: "interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s. Deprecated: please use cron instead.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4666,8 +4666,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"interval": schema.StringAttribute{
-									Description:         "interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s.",
-									MarkdownDescription: "interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s.",
+									Description:         "interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s. Deprecated: please use cron instead.",
+									MarkdownDescription: "interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s. Deprecated: please use cron instead.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

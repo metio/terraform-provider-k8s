@@ -30,7 +30,7 @@ data "k8s_elasticache_services_k8s_aws_snapshot_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) SnapshotSpec defines the desired state of Snapshot.  Represents a copy of an entire Redis cluster as of the time when the snapshot was taken. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) SnapshotSpec defines the desired state of Snapshot.Represents a copy of an entire Redis cluster as of the time when the snapshotwas taken. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -59,11 +59,11 @@ Required:
 
 Optional:
 
-- `cache_cluster_id` (String) The identifier of an existing cluster. The snapshot is created from this cluster.
+- `cache_cluster_id` (String) The identifier of an existing cluster. The snapshot is created from thiscluster.
 - `kms_key_id` (String) The ID of the KMS key used to encrypt the snapshot.
-- `replication_group_id` (String) The identifier of an existing replication group. The snapshot is created from this replication group.
+- `replication_group_id` (String) The identifier of an existing replication group. The snapshot is createdfrom this replication group.
 - `source_snapshot_name` (String) The name of an existing snapshot from which to make a copy.
-- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--tags"></a>
 ### Nested Schema for `spec.tags`

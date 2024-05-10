@@ -53,21 +53,17 @@ type AppsKubeblocksIoComponentV1Alpha1ManifestData struct {
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
 		CompDef *string `tfsdk:"comp_def" json:"compDef,omitempty"`
 		Configs *[]struct {
-			AsEnvFrom                *[]string `tfsdk:"as_env_from" json:"asEnvFrom,omitempty"`
-			ConstraintRef            *string   `tfsdk:"constraint_ref" json:"constraintRef,omitempty"`
-			DefaultMode              *int64    `tfsdk:"default_mode" json:"defaultMode,omitempty"`
-			InjectEnvTo              *[]string `tfsdk:"inject_env_to" json:"injectEnvTo,omitempty"`
-			Keys                     *[]string `tfsdk:"keys" json:"keys,omitempty"`
-			LegacyRenderedConfigSpec *struct {
-				Namespace   *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Policy      *string `tfsdk:"policy" json:"policy,omitempty"`
-				TemplateRef *string `tfsdk:"template_ref" json:"templateRef,omitempty"`
-			} `tfsdk:"legacy_rendered_config_spec" json:"legacyRenderedConfigSpec,omitempty"`
-			Name                  *string   `tfsdk:"name" json:"name,omitempty"`
-			Namespace             *string   `tfsdk:"namespace" json:"namespace,omitempty"`
-			ReRenderResourceTypes *[]string `tfsdk:"re_render_resource_types" json:"reRenderResourceTypes,omitempty"`
-			TemplateRef           *string   `tfsdk:"template_ref" json:"templateRef,omitempty"`
-			VolumeName            *string   `tfsdk:"volume_name" json:"volumeName,omitempty"`
+			ConfigMap *struct {
+				DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+				Items       *[]struct {
+					Key  *string `tfsdk:"key" json:"key,omitempty"`
+					Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+					Path *string `tfsdk:"path" json:"path,omitempty"`
+				} `tfsdk:"items" json:"items,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"config_map" json:"configMap,omitempty"`
+			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"configs" json:"configs,omitempty"`
 		EnabledLogs *[]string `tfsdk:"enabled_logs" json:"enabledLogs,omitempty"`
 		Instances   *[]struct {
@@ -837,94 +833,71 @@ func (r *AppsKubeblocksIoComponentV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"configs": schema.ListNestedAttribute{
-						Description:         "Reserved field for future use.",
-						MarkdownDescription: "Reserved field for future use.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
-								"as_env_from": schema.ListAttribute{
-									Description:         "Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.  Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0. Use 'injectEnvTo' instead.",
-									MarkdownDescription: "Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.  Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0. Use 'injectEnvTo' instead.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"constraint_ref": schema.StringAttribute{
-									Description:         "Specifies the name of the referenced configuration constraints object.",
-									MarkdownDescription: "Specifies the name of the referenced configuration constraints object.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.LengthAtMost(63),
-										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
-									},
-								},
-
-								"default_mode": schema.Int64Attribute{
-									Description:         "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-									MarkdownDescription: "Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"inject_env_to": schema.ListAttribute{
-									Description:         "Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.",
-									MarkdownDescription: "Specifies the containers to inject the ConfigMap parameters as environment variables.  This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables.  This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"keys": schema.ListAttribute{
-									Description:         "Specifies the configuration files within the ConfigMap that support dynamic updates.  A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart.  If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.",
-									MarkdownDescription: "Specifies the configuration files within the ConfigMap that support dynamic updates.  A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart.  If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"legacy_rendered_config_spec": schema.SingleNestedAttribute{
-									Description:         "Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'.",
-									MarkdownDescription: "Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'.",
+								"config_map": schema.SingleNestedAttribute{
+									Description:         "ConfigMap source for the config.",
+									MarkdownDescription: "ConfigMap source for the config.",
 									Attributes: map[string]schema.Attribute{
-										"namespace": schema.StringAttribute{
-											Description:         "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
-											MarkdownDescription: "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
+										"default_mode": schema.Int64Attribute{
+											Description:         "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+											MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.LengthAtMost(63),
-												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
-											},
 										},
 
-										"policy": schema.StringAttribute{
-											Description:         "Defines the strategy for merging externally imported templates into component templates.",
-											MarkdownDescription: "Defines the strategy for merging externally imported templates into component templates.",
+										"items": schema.ListNestedAttribute{
+											Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+											MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "key is the key to project.",
+														MarkdownDescription: "key is the key to project.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"mode": schema.Int64Attribute{
+														Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+														MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+														MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.OneOf("patch", "replace", "none"),
-											},
 										},
 
-										"template_ref": schema.StringAttribute{
-											Description:         "Specifies the name of the referenced configuration template ConfigMap object.",
-											MarkdownDescription: "Specifies the name of the referenced configuration template ConfigMap object.",
-											Required:            true,
-											Optional:            false,
+										"optional": schema.BoolAttribute{
+											Description:         "optional specify whether the ConfigMap or its keys must be defined",
+											MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.LengthAtMost(63),
-												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
-											},
 										},
 									},
 									Required: false,
@@ -933,60 +906,11 @@ func (r *AppsKubeblocksIoComponentV1Alpha1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Specifies the name of the configuration template.",
-									MarkdownDescription: "Specifies the name of the configuration template.",
-									Required:            true,
-									Optional:            false,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.LengthAtMost(63),
-										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
-									},
-								},
-
-								"namespace": schema.StringAttribute{
-									Description:         "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
-									MarkdownDescription: "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
+									Description:         "The name of the config.",
+									MarkdownDescription: "The name of the config.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.LengthAtMost(63),
-										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
-									},
-								},
-
-								"re_render_resource_types": schema.ListAttribute{
-									Description:         "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
-									MarkdownDescription: "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"template_ref": schema.StringAttribute{
-									Description:         "Specifies the name of the referenced configuration template ConfigMap object.",
-									MarkdownDescription: "Specifies the name of the referenced configuration template ConfigMap object.",
-									Required:            true,
-									Optional:            false,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.LengthAtMost(63),
-										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
-									},
-								},
-
-								"volume_name": schema.StringAttribute{
-									Description:         "Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
-									MarkdownDescription: "Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
-									Required:            true,
-									Optional:            false,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.LengthAtMost(63),
-										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
-									},
 								},
 							},
 						},

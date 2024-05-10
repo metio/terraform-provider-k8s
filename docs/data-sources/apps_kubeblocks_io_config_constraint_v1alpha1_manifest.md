@@ -62,10 +62,10 @@ Optional:
 - `configuration_schema` (Attributes) Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values). (see [below for nested schema](#nestedatt--spec--configuration_schema))
 - `downward_api_options` (Attributes List) Specifies a list of actions to execute specified commands based on Pod labels.  It utilizes the K8s Downward API to mount label information as a volume into the pod. The 'config-manager' sidecar container watches for changes in the role label and dynamically invoke registered commands (usually execute some SQL statements) when a change is detected.  It is designed for scenarios where:  - Replicas with different roles have different configurations, such as Redis primary & secondary replicas. - After a role switch (e.g., from secondary to primary), some changes in configuration are needed to reflect the new role. (see [below for nested schema](#nestedatt--spec--downward_api_options))
 - `dynamic_action_can_be_merged` (Boolean) Indicates whether to consolidate dynamic reload and restart actions into a single restart.  - If true, updates requiring both actions will result in only a restart, merging the actions. - If false, updates will trigger both actions executed sequentially: first dynamic reload, then restart.  This flag allows for more efficient handling of configuration changes by potentially eliminating an unnecessary reload step.
-- `dynamic_parameter_selected_policy` (String) Configures whether the dynamic reload specified in 'reloadOptions' applies only to dynamic parameters or to all parameters (including static parameters).  - 'dynamic' (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - 'all': Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.
 - `dynamic_parameters` (List of String) List dynamic parameters. Modifications to these parameters trigger a configuration reload without requiring a process restart.
 - `immutable_parameters` (List of String) Lists the parameters that cannot be modified once set. Attempting to change any of these parameters will be ignored.
 - `reload_options` (Attributes) Specifies the dynamic reload action supported by the engine. When set, the controller executes the method defined here to execute hot parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'reloadOptions' is set.  If 'reloadOptions' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml reloadOptions: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true ''' (see [below for nested schema](#nestedatt--spec--reload_options))
+- `reload_static_params_before_restart` (Boolean) Configures whether the dynamic reload specified in 'reloadOptions' applies only to dynamic parameters or to all parameters (including static parameters).  - false (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - true: Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.
 - `script_configs` (Attributes List) A list of ScriptConfig Object.  Each ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the dynamic reload and DownwardAction to perform specific tasks or configurations. (see [below for nested schema](#nestedatt--spec--script_configs))
 - `selector` (Attributes) Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'selector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'selector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload. (see [below for nested schema](#nestedatt--spec--selector))
 - `static_parameters` (List of String) List static parameters. Modifications to any of these parameters require a restart of the process to take effect.
@@ -112,6 +112,7 @@ Required:
 Optional:
 
 - `command` (List of String) Specifies the command to be triggered when changes are detected in Downward API volume files. It relies on the inotify mechanism in the config-manager sidecar to monitor file changes.
+- `script_config` (Attributes) ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the DownwardAction to perform specific tasks or configurations. (see [below for nested schema](#nestedatt--spec--downward_api_options--script_config))
 
 <a id="nestedatt--spec--downward_api_options--items"></a>
 ### Nested Schema for `spec.downward_api_options.items`
@@ -152,6 +153,18 @@ Optional:
 
 
 
+<a id="nestedatt--spec--downward_api_options--script_config"></a>
+### Nested Schema for `spec.downward_api_options.script_config`
+
+Required:
+
+- `script_config_map_ref` (String) Specifies the reference to the ConfigMap containing the scripts.
+
+Optional:
+
+- `namespace` (String) Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.
+
+
 
 <a id="nestedatt--spec--reload_options"></a>
 ### Nested Schema for `spec.reload_options`
@@ -180,9 +193,46 @@ Required:
 
 Optional:
 
-- `batch_parameters_template` (String) Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data.  Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''
+- `batch_params_formatter_template` (String) Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data.  Example template:  '''yaml batchParamsFormatterTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''
 - `batch_reload` (Boolean) Controls whether parameter updates are processed individually or collectively in a batch:  - 'True': Processes all changes in one batch reload. - 'False': Processes each change individually.  Defaults to 'False' if unspecified.
+- `script_config` (Attributes) ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the dynamic reload. (see [below for nested schema](#nestedatt--spec--reload_options--shell_trigger--script_config))
 - `sync` (Boolean) Determines the synchronization mode of parameter updates with 'config-manager'.  - 'True': Executes reload actions synchronously, pausing until completion. - 'False': Executes reload actions asynchronously, without waiting for completion.
+- `tools_setup` (Attributes) Specifies the tools container image used by ShellTrigger for dynamic reload. If the dynamic reload action is triggered by a ShellTrigger, this field is required. This image must contain all necessary tools for executing the ShellTrigger scripts.  Usually the specified image is referenced by the init container, which is then responsible for copy the tools from the image to a bin volume. This ensures that the tools are available to the 'config-manager' sidecar. (see [below for nested schema](#nestedatt--spec--reload_options--shell_trigger--tools_setup))
+
+<a id="nestedatt--spec--reload_options--shell_trigger--script_config"></a>
+### Nested Schema for `spec.reload_options.shell_trigger.script_config`
+
+Required:
+
+- `script_config_map_ref` (String) Specifies the reference to the ConfigMap containing the scripts.
+
+Optional:
+
+- `namespace` (String) Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.
+
+
+<a id="nestedatt--spec--reload_options--shell_trigger--tools_setup"></a>
+### Nested Schema for `spec.reload_options.shell_trigger.tools_setup`
+
+Required:
+
+- `mount_point` (String) Specifies the directory path in the container where the tools-related files are to be copied. This field is typically used with an emptyDir volume to ensure a temporary, empty directory is provided at pod creation.
+
+Optional:
+
+- `tool_configs` (Attributes List) Specifies a list of settings of init containers that prepare tools for dynamic reload. (see [below for nested schema](#nestedatt--spec--reload_options--shell_trigger--tools_setup--tool_configs))
+
+<a id="nestedatt--spec--reload_options--shell_trigger--tools_setup--tool_configs"></a>
+### Nested Schema for `spec.reload_options.shell_trigger.tools_setup.tool_configs`
+
+Optional:
+
+- `as_container_image` (Boolean) Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml toolsSetup:: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''
+- `command` (List of String) Specifies the command to be executed by the init container.
+- `image` (String) Specifies the tool container image.
+- `name` (String) Specifies the name of the init container.
+
+
 
 
 <a id="nestedatt--spec--reload_options--tpl_script_trigger"></a>
@@ -258,7 +308,7 @@ Optional:
 
 Optional:
 
-- `as_container_image` (Boolean) Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml reloadToolsImage: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''
+- `as_container_image` (Boolean) Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml toolsSetup:: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''
 - `command` (List of String) Specifies the command to be executed by the init container.
 - `image` (String) Specifies the tool container image.
 - `name` (String) Specifies the name of the init container.

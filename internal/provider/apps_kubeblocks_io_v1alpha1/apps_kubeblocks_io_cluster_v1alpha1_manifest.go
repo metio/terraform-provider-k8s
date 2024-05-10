@@ -70,10 +70,23 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 				Tenancy         *string            `tfsdk:"tenancy" json:"tenancy,omitempty"`
 				TopologyKeys    *[]string          `tfsdk:"topology_keys" json:"topologyKeys,omitempty"`
 			} `tfsdk:"affinity" json:"affinity,omitempty"`
-			ComponentDef    *string   `tfsdk:"component_def" json:"componentDef,omitempty"`
-			ComponentDefRef *string   `tfsdk:"component_def_ref" json:"componentDefRef,omitempty"`
-			EnabledLogs     *[]string `tfsdk:"enabled_logs" json:"enabledLogs,omitempty"`
-			Instances       *[]struct {
+			ComponentDef    *string `tfsdk:"component_def" json:"componentDef,omitempty"`
+			ComponentDefRef *string `tfsdk:"component_def_ref" json:"componentDefRef,omitempty"`
+			Configs         *[]struct {
+				ConfigMap *struct {
+					DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+					Items       *[]struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+						Path *string `tfsdk:"path" json:"path,omitempty"`
+					} `tfsdk:"items" json:"items,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map" json:"configMap,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"configs" json:"configs,omitempty"`
+			EnabledLogs *[]string `tfsdk:"enabled_logs" json:"enabledLogs,omitempty"`
+			Instances   *[]struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Env         *[]struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -869,10 +882,23 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 					Tenancy         *string            `tfsdk:"tenancy" json:"tenancy,omitempty"`
 					TopologyKeys    *[]string          `tfsdk:"topology_keys" json:"topologyKeys,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
-				ComponentDef    *string   `tfsdk:"component_def" json:"componentDef,omitempty"`
-				ComponentDefRef *string   `tfsdk:"component_def_ref" json:"componentDefRef,omitempty"`
-				EnabledLogs     *[]string `tfsdk:"enabled_logs" json:"enabledLogs,omitempty"`
-				Instances       *[]struct {
+				ComponentDef    *string `tfsdk:"component_def" json:"componentDef,omitempty"`
+				ComponentDefRef *string `tfsdk:"component_def_ref" json:"componentDefRef,omitempty"`
+				Configs         *[]struct {
+					ConfigMap *struct {
+						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+						Items       *[]struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+							Path *string `tfsdk:"path" json:"path,omitempty"`
+						} `tfsdk:"items" json:"items,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"configs" json:"configs,omitempty"`
+				EnabledLogs *[]string `tfsdk:"enabled_logs" json:"enabledLogs,omitempty"`
+				Instances   *[]struct {
 					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 					Env         *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -1812,6 +1838,93 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										stringvalidator.LengthAtMost(22),
 										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
 									},
+								},
+
+								"configs": schema.ListNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"config_map": schema.SingleNestedAttribute{
+												Description:         "ConfigMap source for the config.",
+												MarkdownDescription: "ConfigMap source for the config.",
+												Attributes: map[string]schema.Attribute{
+													"default_mode": schema.Int64Attribute{
+														Description:         "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+														MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"items": schema.ListNestedAttribute{
+														Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+														MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "key is the key to project.",
+																	MarkdownDescription: "key is the key to project.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"mode": schema.Int64Attribute{
+																	Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																	MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"path": schema.StringAttribute{
+																	Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																	MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "optional specify whether the ConfigMap or its keys must be defined",
+														MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "The name of the config.",
+												MarkdownDescription: "The name of the config.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"enabled_logs": schema.ListAttribute{
@@ -7239,6 +7352,93 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 												stringvalidator.LengthAtMost(22),
 												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
 											},
+										},
+
+										"configs": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"config_map": schema.SingleNestedAttribute{
+														Description:         "ConfigMap source for the config.",
+														MarkdownDescription: "ConfigMap source for the config.",
+														Attributes: map[string]schema.Attribute{
+															"default_mode": schema.Int64Attribute{
+																Description:         "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"items": schema.ListNestedAttribute{
+																Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "key is the key to project.",
+																			MarkdownDescription: "key is the key to project.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"mode": schema.Int64Attribute{
+																			Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																			MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"path": schema.StringAttribute{
+																			Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																			MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "optional specify whether the ConfigMap or its keys must be defined",
+																MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "The name of the config.",
+														MarkdownDescription: "The name of the config.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"enabled_logs": schema.ListAttribute{

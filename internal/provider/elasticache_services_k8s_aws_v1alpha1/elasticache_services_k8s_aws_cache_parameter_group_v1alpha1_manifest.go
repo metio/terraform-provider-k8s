@@ -131,12 +131,12 @@ func (r *ElasticacheServicesK8SAwsCacheParameterGroupV1Alpha1Manifest) Schema(_ 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "CacheParameterGroupSpec defines the desired state of CacheParameterGroup.  Represents the output of a CreateCacheParameterGroup operation.",
-				MarkdownDescription: "CacheParameterGroupSpec defines the desired state of CacheParameterGroup.  Represents the output of a CreateCacheParameterGroup operation.",
+				Description:         "CacheParameterGroupSpec defines the desired state of CacheParameterGroup.Represents the output of a CreateCacheParameterGroup operation.",
+				MarkdownDescription: "CacheParameterGroupSpec defines the desired state of CacheParameterGroup.Represents the output of a CreateCacheParameterGroup operation.",
 				Attributes: map[string]schema.Attribute{
 					"cache_parameter_group_family": schema.StringAttribute{
-						Description:         "The name of the cache parameter group family that the cache parameter group can be used with.  Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x",
-						MarkdownDescription: "The name of the cache parameter group family that the cache parameter group can be used with.  Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x",
+						Description:         "The name of the cache parameter group family that the cache parameter groupcan be used with.Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x",
+						MarkdownDescription: "The name of the cache parameter group family that the cache parameter groupcan be used with.Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -159,8 +159,8 @@ func (r *ElasticacheServicesK8SAwsCacheParameterGroupV1Alpha1Manifest) Schema(_ 
 					},
 
 					"parameter_name_values": schema.ListNestedAttribute{
-						Description:         "An array of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional. A maximum of 20 parameters may be modified per request.",
-						MarkdownDescription: "An array of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional. A maximum of 20 parameters may be modified per request.",
+						Description:         "An array of parameter names and values for the parameter update. You mustsupply at least one parameter name and value; subsequent arguments are optional.A maximum of 20 parameters may be modified per request.",
+						MarkdownDescription: "An array of parameter names and values for the parameter update. You mustsupply at least one parameter name and value; subsequent arguments are optional.A maximum of 20 parameters may be modified per request.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"parameter_name": schema.StringAttribute{
@@ -186,8 +186,8 @@ func (r *ElasticacheServicesK8SAwsCacheParameterGroupV1Alpha1Manifest) Schema(_ 
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
-						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
+						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

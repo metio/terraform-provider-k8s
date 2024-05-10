@@ -126,7 +126,7 @@ Optional:
 
 - `cron` (String) cron specifies the task schedule as a cron expression. It supports an extended syntax including @monthly, @weekly, @daily, @midnight, @hourly, @every X[h|m|s].
 - `dc` (List of String) dc is a list of datacenter glob patterns, e.g. 'dc1,!otherdc*' used to specify the DCs to include or exclude from backup.
-- `interval` (String) interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s.
+- `interval` (String) interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s. Deprecated: please use cron instead.
 - `keyspace` (List of String) keyspace is a list of keyspace/tables glob patterns, e.g. 'keyspace,!keyspace.table_prefix_*' used to include or exclude keyspaces from repair.
 - `location` (List of String) location is a list of backup locations in the format [<dc>:]<provider>:<name> ex. s3:my-bucket. The <dc>: part is optional and is only needed when different datacenters are being used to upload data to different locations. <name> must be an alphanumeric string and may contain a dash and or a dot, but other characters are forbidden. The only supported storage <provider> at the moment are s3 and gcs.
 - `name` (String) name is a unique name of a task.
@@ -1584,7 +1584,7 @@ Optional:
 - `fail_fast` (Boolean) failFast indicates if a repair should be stopped on first error.
 - `host` (String) host specifies a host to repair. If empty, all hosts are repaired.
 - `intensity` (String) intensity indicates how many token ranges (per shard) to repair in a single Scylla repair job. By default this is 1. If you set it to 0 the number of token ranges is adjusted to the maximum supported by node (see max_repair_ranges_in_parallel in Scylla logs). Valid values are 0 and integers >= 1. Higher values will result in increased cluster load and slightly faster repairs. Changing the intensity impacts repair granularity if you need to resume it, the higher the value the more work on resume. For Scylla clusters that *do not support row-level repair*, intensity can be a decimal between (0,1). In that case it specifies percent of shards that can be repaired in parallel on a repair master node. For Scylla clusters that are row-level repair enabled, setting intensity below 1 has the same effect as setting intensity 1.
-- `interval` (String) interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s.
+- `interval` (String) interval represents a task schedule interval e.g. 3d2h10m, valid units are d, h, m, s. Deprecated: please use cron instead.
 - `keyspace` (List of String) keyspace is a list of keyspace/tables glob patterns, e.g. 'keyspace,!keyspace.table_prefix_*' used to include or exclude keyspaces from repair.
 - `name` (String) name is a unique name of a task.
 - `num_retries` (Number) numRetries indicates how many times a scheduled task will be retried before failing.

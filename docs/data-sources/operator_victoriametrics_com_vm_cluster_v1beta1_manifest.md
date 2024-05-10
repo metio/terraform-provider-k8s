@@ -62,6 +62,7 @@ Optional:
 - `cluster_version` (String) ClusterVersion defines default images tag for all components.it can be overwritten with component specific image.tag value.
 - `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespaceto use for pulling images from registriessee https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `license` (Attributes) License allows to configure license key to be used for enterprise features.Using license key is supported starting from VictoriaMetrics v1.94.0.See: https://docs.victoriametrics.com/enterprise.html (see [below for nested schema](#nestedatt--spec--license))
+- `paused` (Boolean) Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.
 - `replication_factor` (Number) ReplicationFactor defines how many copies of data make amongdistinct storage nodes
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run theVMSelect, VMStorage and VMInsert Pods.
 - `use_strict_security` (Boolean) UseStrictSecurity enables strict security mode for componentit restricts disk writes accessuses non-root user out of the boxdrops not needed security permissions

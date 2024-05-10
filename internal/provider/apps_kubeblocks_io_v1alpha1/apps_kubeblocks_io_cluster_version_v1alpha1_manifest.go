@@ -308,8 +308,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											"template_ref": schema.StringAttribute{
 												Description:         "Specifies the name of the referenced configuration template ConfigMap object.",
 												MarkdownDescription: "Specifies the name of the referenced configuration template ConfigMap object.",
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 												Validators: []validator.String{
 													stringvalidator.LengthAtMost(63),

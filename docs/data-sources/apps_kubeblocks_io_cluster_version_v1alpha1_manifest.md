@@ -86,7 +86,6 @@ Optional:
 Required:
 
 - `name` (String) Specifies the name of the configuration template.
-- `template_ref` (String) Specifies the name of the referenced configuration template ConfigMap object.
 - `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.
 
 Optional:
@@ -99,6 +98,7 @@ Optional:
 - `legacy_rendered_config_spec` (Attributes) Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'. (see [below for nested schema](#nestedatt--spec--component_versions--config_specs--legacy_rendered_config_spec))
 - `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
 - `re_render_resource_types` (List of String) Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.
+- `template_ref` (String) Specifies the name of the referenced configuration template ConfigMap object.
 
 <a id="nestedatt--spec--component_versions--config_specs--legacy_rendered_config_spec"></a>
 ### Nested Schema for `spec.component_versions.config_specs.legacy_rendered_config_spec`

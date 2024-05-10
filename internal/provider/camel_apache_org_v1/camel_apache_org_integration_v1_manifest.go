@@ -1177,21 +1177,27 @@ type CamelApacheOrgIntegrationV1ManifestData struct {
 				RuntimeVersion *string            `tfsdk:"runtime_version" json:"runtimeVersion,omitempty"`
 			} `tfsdk:"camel" json:"camel,omitempty"`
 			Container *struct {
-				Auto            *bool              `tfsdk:"auto" json:"auto,omitempty"`
-				Configuration   *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
-				Enabled         *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-				Expose          *bool              `tfsdk:"expose" json:"expose,omitempty"`
-				Image           *string            `tfsdk:"image" json:"image,omitempty"`
-				ImagePullPolicy *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-				LimitCPU        *string            `tfsdk:"limit_cpu" json:"limitCPU,omitempty"`
-				LimitMemory     *string            `tfsdk:"limit_memory" json:"limitMemory,omitempty"`
-				Name            *string            `tfsdk:"name" json:"name,omitempty"`
-				Port            *int64             `tfsdk:"port" json:"port,omitempty"`
-				PortName        *string            `tfsdk:"port_name" json:"portName,omitempty"`
-				RequestCPU      *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
-				RequestMemory   *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
-				ServicePort     *int64             `tfsdk:"service_port" json:"servicePort,omitempty"`
-				ServicePortName *string            `tfsdk:"service_port_name" json:"servicePortName,omitempty"`
+				AllowPrivilegeEscalation *bool              `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+				Auto                     *bool              `tfsdk:"auto" json:"auto,omitempty"`
+				CapabilitiesAdd          *[]string          `tfsdk:"capabilities_add" json:"capabilitiesAdd,omitempty"`
+				CapabilitiesDrop         *[]string          `tfsdk:"capabilities_drop" json:"capabilitiesDrop,omitempty"`
+				Configuration            *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+				Enabled                  *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				Expose                   *bool              `tfsdk:"expose" json:"expose,omitempty"`
+				Image                    *string            `tfsdk:"image" json:"image,omitempty"`
+				ImagePullPolicy          *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+				LimitCPU                 *string            `tfsdk:"limit_cpu" json:"limitCPU,omitempty"`
+				LimitMemory              *string            `tfsdk:"limit_memory" json:"limitMemory,omitempty"`
+				Name                     *string            `tfsdk:"name" json:"name,omitempty"`
+				Port                     *int64             `tfsdk:"port" json:"port,omitempty"`
+				PortName                 *string            `tfsdk:"port_name" json:"portName,omitempty"`
+				RequestCPU               *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
+				RequestMemory            *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
+				RunAsNonRoot             *bool              `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+				RunAsUser                *int64             `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeccompProfileType       *string            `tfsdk:"seccomp_profile_type" json:"seccompProfileType,omitempty"`
+				ServicePort              *int64             `tfsdk:"service_port" json:"servicePort,omitempty"`
+				ServicePortName          *string            `tfsdk:"service_port_name" json:"servicePortName,omitempty"`
 			} `tfsdk:"container" json:"container,omitempty"`
 			Cron *struct {
 				ActiveDeadlineSeconds   *int64             `tfsdk:"active_deadline_seconds" json:"activeDeadlineSeconds,omitempty"`
@@ -1433,6 +1439,13 @@ type CamelApacheOrgIntegrationV1ManifestData struct {
 				TlsKeySecret                      *string            `tfsdk:"tls_key_secret" json:"tlsKeySecret,omitempty"`
 				TlsTermination                    *string            `tfsdk:"tls_termination" json:"tlsTermination,omitempty"`
 			} `tfsdk:"route" json:"route,omitempty"`
+			Security_context *struct {
+				Configuration      *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+				Enabled            *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				RunAsNonRoot       *bool              `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+				RunAsUser          *int64             `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeccompProfileType *string            `tfsdk:"seccomp_profile_type" json:"seccompProfileType,omitempty"`
+			} `tfsdk:"security_context" json:"security-context,omitempty"`
 			Service *struct {
 				Auto          *bool              `tfsdk:"auto" json:"auto,omitempty"`
 				Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
@@ -9197,9 +9210,35 @@ func (r *CamelApacheOrgIntegrationV1Manifest) Schema(_ context.Context, _ dataso
 								Description:         "The configuration of Container trait",
 								MarkdownDescription: "The configuration of Container trait",
 								Attributes: map[string]schema.Attribute{
+									"allow_privilege_escalation": schema.BoolAttribute{
+										Description:         "Security Context AllowPrivilegeEscalation configuration (default false).",
+										MarkdownDescription: "Security Context AllowPrivilegeEscalation configuration (default false).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"auto": schema.BoolAttribute{
 										Description:         "To automatically enable the trait",
 										MarkdownDescription: "To automatically enable the trait",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"capabilities_add": schema.ListAttribute{
+										Description:         "Security Context Capabilities Add configuration (default none).",
+										MarkdownDescription: "Security Context Capabilities Add configuration (default none).",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"capabilities_drop": schema.ListAttribute{
+										Description:         "Security Context Capabilities Drop configuration (default ALL).",
+										MarkdownDescription: "Security Context Capabilities Drop configuration (default ALL).",
+										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -9303,6 +9342,33 @@ func (r *CamelApacheOrgIntegrationV1Manifest) Schema(_ context.Context, _ dataso
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"run_as_non_root": schema.BoolAttribute{
+										Description:         "Security Context RunAsNonRoot configuration (default false).",
+										MarkdownDescription: "Security Context RunAsNonRoot configuration (default false).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_user": schema.Int64Attribute{
+										Description:         "Security Context RunAsUser configuration (default none): this value is automatically retrieved in Openshift clusters when not explicitly set.",
+										MarkdownDescription: "Security Context RunAsUser configuration (default none): this value is automatically retrieved in Openshift clusters when not explicitly set.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"seccomp_profile_type": schema.StringAttribute{
+										Description:         "Security Context SeccompProfileType configuration (default RuntimeDefault).",
+										MarkdownDescription: "Security Context SeccompProfileType configuration (default RuntimeDefault).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Unconfined", "RuntimeDefault"),
+										},
 									},
 
 									"service_port": schema.Int64Attribute{
@@ -11116,6 +11182,59 @@ func (r *CamelApacheOrgIntegrationV1Manifest) Schema(_ context.Context, _ dataso
 										Computed:            false,
 										Validators: []validator.String{
 											stringvalidator.OneOf("edge", "reencrypt", "passthrough"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"security_context": schema.SingleNestedAttribute{
+								Description:         "The configuration of Security Context trait",
+								MarkdownDescription: "The configuration of Security Context trait",
+								Attributes: map[string]schema.Attribute{
+									"configuration": schema.MapAttribute{
+										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enabled": schema.BoolAttribute{
+										Description:         "Deprecated: no longer in use.",
+										MarkdownDescription: "Deprecated: no longer in use.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_non_root": schema.BoolAttribute{
+										Description:         "Security Context RunAsNonRoot configuration (default false).",
+										MarkdownDescription: "Security Context RunAsNonRoot configuration (default false).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_user": schema.Int64Attribute{
+										Description:         "Security Context RunAsUser configuration (default none): this value is automatically retrieved in Openshift clusters when not explicitly set.",
+										MarkdownDescription: "Security Context RunAsUser configuration (default none): this value is automatically retrieved in Openshift clusters when not explicitly set.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"seccomp_profile_type": schema.StringAttribute{
+										Description:         "Security Context SeccompProfileType configuration (default RuntimeDefault).",
+										MarkdownDescription: "Security Context SeccompProfileType configuration (default RuntimeDefault).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Unconfined", "RuntimeDefault"),
 										},
 									},
 								},

@@ -726,7 +726,8 @@ type SonataflowOrgSonataFlowV1Alpha08ManifestData struct {
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"containers" json:"containers,omitempty"`
-			DnsConfig *struct {
+			DeploymentModel *string `tfsdk:"deployment_model" json:"deploymentModel,omitempty"`
+			DnsConfig       *struct {
 				Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 				Options     *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -6009,6 +6010,17 @@ func (r *SonataflowOrgSonataFlowV1Alpha08Manifest) Schema(_ context.Context, _ d
 								Computed: false,
 							},
 
+							"deployment_model": schema.StringAttribute{
+								Description:         "Defines the kind of deployment model for this pod spec. In dev profile, only 'kubernetes' is valid.",
+								MarkdownDescription: "Defines the kind of deployment model for this pod spec. In dev profile, only 'kubernetes' is valid.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("kubernetes", "knative"),
+								},
+							},
+
 							"dns_config": schema.SingleNestedAttribute{
 								Description:         "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
 								MarkdownDescription: "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
@@ -7820,8 +7832,8 @@ func (r *SonataflowOrgSonataFlowV1Alpha08Manifest) Schema(_ context.Context, _ d
 							},
 
 							"replicas": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Replicas define the number of pods to start by default for this deployment model. Ignored in 'knative' deployment model.",
+								MarkdownDescription: "Replicas define the number of pods to start by default for this deployment model. Ignored in 'knative' deployment model.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

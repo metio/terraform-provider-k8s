@@ -76,7 +76,7 @@ Optional:
 - `image_lookup_os_distro` (String) ImageLookupOSDistro is the name of the OS distro to use when fetching machine images,if not set it will default to ubuntu.
 - `image_lookup_os_version` (String) ImageLookupOSVersion is the version of the OS distribution to use when fetching machineimages. If not set it will default based on ImageLookupOSDistro.
 - `provider_id` (String)
-- `template_override` (String) TemplateOverride overrides the default Tinkerbell template used by CAPT.You can learn more about Tinkerbell templates here: https://docs.tinkerbell.org/templates/
+- `template_override` (String) TemplateOverride overrides the default Tinkerbell template used by CAPT.You can learn more about Tinkerbell templates here: https://tinkerbell.org/docs/concepts/templates/
 
 <a id="nestedatt--spec--template--spec--hardware_affinity"></a>
 ### Nested Schema for `spec.template.spec.hardware_affinity`

@@ -1367,10 +1367,10 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"cluster_definition_ref": schema.StringAttribute{
-						Description:         "Specifies the name of a ClusterDefinition.  This is an immutable attribute that cannot be changed after creation.",
-						MarkdownDescription: "Specifies the name of a ClusterDefinition.  This is an immutable attribute that cannot be changed after creation.",
-						Required:            true,
-						Optional:            false,
+						Description:         "Specifies the name of a ClusterDefinition. This is an immutable attribute that cannot be changed after creation. And this field is deprecated since v0.9, consider using the ComponentDef instead.",
+						MarkdownDescription: "Specifies the name of a ClusterDefinition. This is an immutable attribute that cannot be changed after creation. And this field is deprecated since v0.9, consider using the ComponentDef instead.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),

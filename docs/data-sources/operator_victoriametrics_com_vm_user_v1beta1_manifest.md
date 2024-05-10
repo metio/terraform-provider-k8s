@@ -62,6 +62,7 @@ Optional:
 - `bearer_token` (String) BearerToken Authorization header value for accessing protected endpoint.
 - `default_url` (List of String) DefaultURLs backend url for non-matching paths filterusually used for default backend with error message
 - `disable_secret_creation` (Boolean) DisableSecretCreation skips related secret creation for vmuser
+- `discover_backend_ips` (Boolean) DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.
 - `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
 - `generate_password` (Boolean) GeneratePassword instructs operator to generate password for userif spec.password if empty.
 - `headers` (List of String) Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth
@@ -74,7 +75,7 @@ Optional:
 - `password_ref` (Attributes) PasswordRef allows fetching password from user-create secret by its name and key. (see [below for nested schema](#nestedatt--spec--password_ref))
 - `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth
 - `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]
-- `tls_insecure_skip_verify` (Boolean) TLSInsecureSkipVerify - whether to skip TLS verification when connecting to backend over HTTPS.See https://docs.victoriametrics.com/vmauth.html#backend-tls-setup
+- `tls_config` (Attributes) TLSConfig specifies TLSConfig configuration parameters. (see [below for nested schema](#nestedatt--spec--tls_config))
 - `token_ref` (Attributes) TokenRef allows fetching token from user-created secrets by its name and key. (see [below for nested schema](#nestedatt--spec--token_ref))
 - `username` (String) UserName basic auth user name for accessing protected endpoint,will be replaced with metadata.name of VMUser if omitted.
 
@@ -84,15 +85,18 @@ Optional:
 Optional:
 
 - `crd` (Attributes) CRD describes exist operator's CRD object,operator generates access url based on CRD params. (see [below for nested schema](#nestedatt--spec--target_refs--crd))
+- `discover_backend_ips` (Boolean) DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.
 - `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
-- `headers` (List of String) Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth
+- `headers` (List of String) RequestHeaders represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth
 - `hosts` (List of String)
 - `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
 - `paths` (List of String) Paths - matched path to route.
 - `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth
 - `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]
+- `src_headers` (List of String) SrcHeaders is an optional list of headers, which must match request headers.
+- `src_query_args` (List of String) SrcQueryArgs is an optional list of query args, which must match request URL query args.
 - `static` (Attributes) Static - user defined url for traffic forward,for instance http://vmsingle:8429 (see [below for nested schema](#nestedatt--spec--target_refs--static))
-- `target_path_suffix` (String) QueryParams []string 'json:'queryParams,omitempty''TargetPathSuffix allows to add some suffix to the target pathIt allows to hide tenant configuration from user with crd as ref.it also may contain any url encoded params.
+- `target_path_suffix` (String) TargetPathSuffix allows to add some suffix to the target pathIt allows to hide tenant configuration from user with crd as ref.it also may contain any url encoded params.
 - `target_ref_basic_auth` (Attributes) TargetRefBasicAuth allow an target endpoint to authenticate over basic authentication (see [below for nested schema](#nestedatt--spec--target_refs--target_ref_basic_auth))
 
 <a id="nestedatt--spec--target_refs--crd"></a>
@@ -170,6 +174,104 @@ Optional:
 
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--tls_config"></a>
+### Nested Schema for `spec.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--ca))
+- `ca_file` (String) Path to the CA cert in the container to use for the targets.
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--cert))
+- `cert_file` (String) Path to the client cert file in the container for the targets.
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_file` (String) Path to the client key file in the container for the targets.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--key_secret))
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--tls_config--ca"></a>
+### Nested Schema for `spec.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--ca--secret))
+
+<a id="nestedatt--spec--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--tls_config--ca--secret"></a>
+### Nested Schema for `spec.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--tls_config--cert"></a>
+### Nested Schema for `spec.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--tls_config--cert--secret))
+
+<a id="nestedatt--spec--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--tls_config--cert--secret"></a>
+### Nested Schema for `spec.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--tls_config--key_secret"></a>
+### Nested Schema for `spec.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 <a id="nestedatt--spec--token_ref"></a>

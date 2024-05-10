@@ -45,6 +45,14 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Backup *struct {
+			BackupMethod     *string `tfsdk:"backup_method" json:"backupMethod,omitempty"`
+			BackupName       *string `tfsdk:"backup_name" json:"backupName,omitempty"`
+			BackupPolicyName *string `tfsdk:"backup_policy_name" json:"backupPolicyName,omitempty"`
+			DeletionPolicy   *string `tfsdk:"deletion_policy" json:"deletionPolicy,omitempty"`
+			ParentBackupName *string `tfsdk:"parent_backup_name" json:"parentBackupName,omitempty"`
+			RetentionPeriod  *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
+		} `tfsdk:"backup" json:"backup,omitempty"`
 		BackupSpec *struct {
 			BackupMethod     *string `tfsdk:"backup_method" json:"backupMethod,omitempty"`
 			BackupName       *string `tfsdk:"backup_name" json:"backupName,omitempty"`
@@ -53,9 +61,10 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 			ParentBackupName *string `tfsdk:"parent_backup_name" json:"parentBackupName,omitempty"`
 			RetentionPeriod  *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
 		} `tfsdk:"backup_spec" json:"backupSpec,omitempty"`
-		Cancel     *bool   `tfsdk:"cancel" json:"cancel,omitempty"`
-		ClusterRef *string `tfsdk:"cluster_ref" json:"clusterRef,omitempty"`
-		CustomSpec *struct {
+		Cancel      *bool   `tfsdk:"cancel" json:"cancel,omitempty"`
+		ClusterName *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+		ClusterRef  *string `tfsdk:"cluster_ref" json:"clusterRef,omitempty"`
+		Custom      *struct {
 			Components *[]struct {
 				ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
 				Parameters    *[]struct {
@@ -63,10 +72,10 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"parameters" json:"parameters,omitempty"`
 			} `tfsdk:"components" json:"components,omitempty"`
-			OpsDefinitionRef   *string `tfsdk:"ops_definition_ref" json:"opsDefinitionRef,omitempty"`
-			Parallelism        *string `tfsdk:"parallelism" json:"parallelism,omitempty"`
-			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
-		} `tfsdk:"custom_spec" json:"customSpec,omitempty"`
+			MaxConcurrentComponents *string `tfsdk:"max_concurrent_components" json:"maxConcurrentComponents,omitempty"`
+			OpsDefinitionName       *string `tfsdk:"ops_definition_name" json:"opsDefinitionName,omitempty"`
+			ServiceAccountName      *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		} `tfsdk:"custom" json:"custom,omitempty"`
 		Expose *[]struct {
 			ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
 			Services      *[]struct {
@@ -74,6 +83,7 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 				IpFamilies     *[]string          `tfsdk:"ip_families" json:"ipFamilies,omitempty"`
 				IpFamilyPolicy *string            `tfsdk:"ip_family_policy" json:"ipFamilyPolicy,omitempty"`
 				Name           *string            `tfsdk:"name" json:"name,omitempty"`
+				PodSelector    *map[string]string `tfsdk:"pod_selector" json:"podSelector,omitempty"`
 				Ports          *[]struct {
 					AppProtocol *string `tfsdk:"app_protocol" json:"appProtocol,omitempty"`
 					Name        *string `tfsdk:"name" json:"name,omitempty"`
@@ -82,9 +92,8 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 					Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
 					TargetPort  *string `tfsdk:"target_port" json:"targetPort,omitempty"`
 				} `tfsdk:"ports" json:"ports,omitempty"`
-				RoleSelector *string            `tfsdk:"role_selector" json:"roleSelector,omitempty"`
-				Selector     *map[string]string `tfsdk:"selector" json:"selector,omitempty"`
-				ServiceType  *string            `tfsdk:"service_type" json:"serviceType,omitempty"`
+				RoleSelector *string `tfsdk:"role_selector" json:"roleSelector,omitempty"`
+				ServiceType  *string `tfsdk:"service_type" json:"serviceType,omitempty"`
 			} `tfsdk:"services" json:"services,omitempty"`
 			Switch *string `tfsdk:"switch" json:"switch,omitempty"`
 		} `tfsdk:"expose" json:"expose,omitempty"`
@@ -462,14 +471,15 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 			OfflineInstances *[]string `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
 			Replicas         *int64    `tfsdk:"replicas" json:"replicas,omitempty"`
 		} `tfsdk:"horizontal_scaling" json:"horizontalScaling,omitempty"`
-		RebuildFrom *[]struct {
-			BackupName    *string            `tfsdk:"backup_name" json:"backupName,omitempty"`
-			ComponentName *string            `tfsdk:"component_name" json:"componentName,omitempty"`
-			EnvForRestore *map[string]string `tfsdk:"env_for_restore" json:"envForRestore,omitempty"`
+		PreConditionDeadlineSeconds *int64 `tfsdk:"pre_condition_deadline_seconds" json:"preConditionDeadlineSeconds,omitempty"`
+		RebuildFrom                 *[]struct {
+			BackupName    *string `tfsdk:"backup_name" json:"backupName,omitempty"`
+			ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
 			Instances     *[]struct {
 				Name           *string `tfsdk:"name" json:"name,omitempty"`
 				TargetNodeName *string `tfsdk:"target_node_name" json:"targetNodeName,omitempty"`
 			} `tfsdk:"instances" json:"instances,omitempty"`
+			RestoreEnv *map[string]string `tfsdk:"restore_env" json:"restoreEnv,omitempty"`
 		} `tfsdk:"rebuild_from" json:"rebuildFrom,omitempty"`
 		Reconfigure *struct {
 			ComponentName  *string `tfsdk:"component_name" json:"componentName,omitempty"`
@@ -504,25 +514,16 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 		Restart *[]struct {
 			ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
 		} `tfsdk:"restart" json:"restart,omitempty"`
-		RestoreFrom *struct {
-			Backup *[]struct {
-				Ref *struct {
-					Name      *string `tfsdk:"name" json:"name,omitempty"`
-					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				} `tfsdk:"ref" json:"ref,omitempty"`
-			} `tfsdk:"backup" json:"backup,omitempty"`
-			PointInTime *struct {
-				Ref *struct {
-					Name      *string `tfsdk:"name" json:"name,omitempty"`
-					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				} `tfsdk:"ref" json:"ref,omitempty"`
-				Time *string `tfsdk:"time" json:"time,omitempty"`
-			} `tfsdk:"point_in_time" json:"pointInTime,omitempty"`
-		} `tfsdk:"restore_from" json:"restoreFrom,omitempty"`
+		Restore *struct {
+			BackupName                        *string `tfsdk:"backup_name" json:"backupName,omitempty"`
+			DeferPostReadyUntilClusterRunning *bool   `tfsdk:"defer_post_ready_until_cluster_running" json:"deferPostReadyUntilClusterRunning,omitempty"`
+			RestorePointInTime                *string `tfsdk:"restore_point_in_time" json:"restorePointInTime,omitempty"`
+			VolumeRestorePolicy               *string `tfsdk:"volume_restore_policy" json:"volumeRestorePolicy,omitempty"`
+		} `tfsdk:"restore" json:"restore,omitempty"`
 		RestoreSpec *struct {
 			BackupName                        *string `tfsdk:"backup_name" json:"backupName,omitempty"`
-			DoReadyRestoreAfterClusterRunning *bool   `tfsdk:"do_ready_restore_after_cluster_running" json:"doReadyRestoreAfterClusterRunning,omitempty"`
-			RestoreTimeStr                    *string `tfsdk:"restore_time_str" json:"restoreTimeStr,omitempty"`
+			DeferPostReadyUntilClusterRunning *bool   `tfsdk:"defer_post_ready_until_cluster_running" json:"deferPostReadyUntilClusterRunning,omitempty"`
+			RestorePointInTime                *string `tfsdk:"restore_point_in_time" json:"restorePointInTime,omitempty"`
 			VolumeRestorePolicy               *string `tfsdk:"volume_restore_policy" json:"volumeRestorePolicy,omitempty"`
 		} `tfsdk:"restore_spec" json:"restoreSpec,omitempty"`
 		ScriptSpec *struct {
@@ -560,7 +561,6 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 			InstanceName  *string `tfsdk:"instance_name" json:"instanceName,omitempty"`
 		} `tfsdk:"switchover" json:"switchover,omitempty"`
 		TtlSecondsAfterSucceed *int64  `tfsdk:"ttl_seconds_after_succeed" json:"ttlSecondsAfterSucceed,omitempty"`
-		TtlSecondsBeforeAbort  *int64  `tfsdk:"ttl_seconds_before_abort" json:"ttlSecondsBeforeAbort,omitempty"`
 		Type                   *string `tfsdk:"type" json:"type,omitempty"`
 		Upgrade                *struct {
 			ClusterVersionRef *string `tfsdk:"cluster_version_ref" json:"clusterVersionRef,omitempty"`
@@ -660,9 +660,69 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 				Description:         "OpsRequestSpec defines the desired state of OpsRequest",
 				MarkdownDescription: "OpsRequestSpec defines the desired state of OpsRequest",
 				Attributes: map[string]schema.Attribute{
-					"backup_spec": schema.SingleNestedAttribute{
+					"backup": schema.SingleNestedAttribute{
 						Description:         "Specifies the parameters to backup a Cluster.",
 						MarkdownDescription: "Specifies the parameters to backup a Cluster.",
+						Attributes: map[string]schema.Attribute{
+							"backup_method": schema.StringAttribute{
+								Description:         "Specifies the name of BackupMethod. The specified BackupMethod must be defined in the BackupPolicy.",
+								MarkdownDescription: "Specifies the name of BackupMethod. The specified BackupMethod must be defined in the BackupPolicy.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"backup_name": schema.StringAttribute{
+								Description:         "Specifies the name of the Backup custom resource.",
+								MarkdownDescription: "Specifies the name of the Backup custom resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"backup_policy_name": schema.StringAttribute{
+								Description:         "Indicates the name of the BackupPolicy applied to perform this Backup.",
+								MarkdownDescription: "Indicates the name of the BackupPolicy applied to perform this Backup.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"deletion_policy": schema.StringAttribute{
+								Description:         "Determines whether the backup contents stored in backup repository should be deleted when the Backup custom resource is deleted. Supported values are 'Retain' and 'Delete'. - 'Retain' means that the backup content and its physical snapshot on backup repository are kept. - 'Delete' means that the backup content and its physical snapshot on backup repository are deleted.",
+								MarkdownDescription: "Determines whether the backup contents stored in backup repository should be deleted when the Backup custom resource is deleted. Supported values are 'Retain' and 'Delete'. - 'Retain' means that the backup content and its physical snapshot on backup repository are kept. - 'Delete' means that the backup content and its physical snapshot on backup repository are deleted.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Delete", "Retain"),
+								},
+							},
+
+							"parent_backup_name": schema.StringAttribute{
+								Description:         "If the specified BackupMethod is incremental, 'parentBackupName' is required.",
+								MarkdownDescription: "If the specified BackupMethod is incremental, 'parentBackupName' is required.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"retention_period": schema.StringAttribute{
+								Description:         "Determines the duration for which the Backup custom resources should be retained.  The controller will automatically remove all Backup objects that are older than the specified RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the Backup objects of last 30 days. Sample duration format:  - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m  You can also combine the above durations. For example: 30d12h30m. If not set, the Backup objects will be kept forever.  If the 'deletionPolicy' is set to 'Delete', then the associated backup data will also be deleted along with the Backup object. Otherwise, only the Backup custom resource will be deleted.",
+								MarkdownDescription: "Determines the duration for which the Backup custom resources should be retained.  The controller will automatically remove all Backup objects that are older than the specified RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the Backup objects of last 30 days. Sample duration format:  - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m  You can also combine the above durations. For example: 30d12h30m. If not set, the Backup objects will be kept forever.  If the 'deletionPolicy' is set to 'Delete', then the associated backup data will also be deleted along with the Backup object. Otherwise, only the Backup custom resource will be deleted.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"backup_spec": schema.SingleNestedAttribute{
+						Description:         "Deprecated: since v0.9, use backup instead. Specifies the parameters to backup a Cluster.",
+						MarkdownDescription: "Deprecated: since v0.9, use backup instead. Specifies the parameters to backup a Cluster.",
 						Attributes: map[string]schema.Attribute{
 							"backup_method": schema.StringAttribute{
 								Description:         "Specifies the name of BackupMethod. The specified BackupMethod must be defined in the BackupPolicy.",
@@ -728,15 +788,23 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed:            false,
 					},
 
-					"cluster_ref": schema.StringAttribute{
+					"cluster_name": schema.StringAttribute{
 						Description:         "Specifies the name of the Cluster resource that this operation is targeting.",
 						MarkdownDescription: "Specifies the name of the Cluster resource that this operation is targeting.",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
-					"custom_spec": schema.SingleNestedAttribute{
+					"cluster_ref": schema.StringAttribute{
+						Description:         "Deprecated: since v0.9, use clusterName instead. Specifies the name of the Cluster resource that this operation is targeting.",
+						MarkdownDescription: "Deprecated: since v0.9, use clusterName instead. Specifies the name of the Cluster resource that this operation is targeting.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"custom": schema.SingleNestedAttribute{
 						Description:         "Specifies a custom operation defined by OpsDefinition.",
 						MarkdownDescription: "Specifies a custom operation defined by OpsDefinition.",
 						Attributes: map[string]schema.Attribute{
@@ -786,19 +854,19 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 								Computed: false,
 							},
 
-							"ops_definition_ref": schema.StringAttribute{
-								Description:         "Specifies the name of the OpsDefinition.",
-								MarkdownDescription: "Specifies the name of the OpsDefinition.",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-							},
-
-							"parallelism": schema.StringAttribute{
+							"max_concurrent_components": schema.StringAttribute{
 								Description:         "Specifies the maximum number of components to be operated on concurrently to mitigate performance impact on clusters with multiple components.  It accepts an absolute number (e.g., 5) or a percentage of components to execute in parallel (e.g., '10%'). Percentages are rounded up to the nearest whole number of components. For example, if '10%' results in less than one, it rounds up to 1.  When unspecified, all components are processed simultaneously by default.  Note: This feature is not implemented yet.",
 								MarkdownDescription: "Specifies the maximum number of components to be operated on concurrently to mitigate performance impact on clusters with multiple components.  It accepts an absolute number (e.g., 5) or a percentage of components to execute in parallel (e.g., '10%'). Percentages are rounded up to the nearest whole number of components. For example, if '10%' results in less than one, it rounds up to 1.  When unspecified, all components are processed simultaneously by default.  Note: This feature is not implemented yet.",
 								Required:            false,
 								Optional:            true,
+								Computed:            false,
+							},
+
+							"ops_definition_name": schema.StringAttribute{
+								Description:         "Specifies the name of the OpsDefinition.",
+								MarkdownDescription: "Specifies the name of the OpsDefinition.",
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 							},
 
@@ -867,6 +935,15 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 												Computed:            false,
 											},
 
+											"pod_selector": schema.MapAttribute{
+												Description:         "Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
+												MarkdownDescription: "Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"ports": schema.ListNestedAttribute{
 												Description:         "Specifies Port definitions that are to be exposed by a ClusterService.  If not specified, the Port definitions from non-NodePort and non-LoadBalancer type ComponentService defined in the ComponentDefinition ('componentDefinition.spec.services') will be used. If no matching ComponentService is found, the expose operation will fail.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports",
 												MarkdownDescription: "Specifies Port definitions that are to be exposed by a ClusterService.  If not specified, the Port definitions from non-NodePort and non-LoadBalancer type ComponentService defined in the ComponentDefinition ('componentDefinition.spec.services') will be used. If no matching ComponentService is found, the expose operation will fail.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports",
@@ -929,15 +1006,6 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											"role_selector": schema.StringAttribute{
 												Description:         "Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
 												MarkdownDescription: "Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"selector": schema.MapAttribute{
-												Description:         "Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
-												MarkdownDescription: "Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
-												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3490,6 +3558,14 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed: false,
 					},
 
+					"pre_condition_deadline_seconds": schema.Int64Attribute{
+						Description:         "Specifies the maximum time in seconds that the OpsRequest will wait for its pre-conditions to be met before it aborts the operation. If set to 0 (default), pre-conditions must be satisfied immediately for the OpsRequest to proceed.",
+						MarkdownDescription: "Specifies the maximum time in seconds that the OpsRequest will wait for its pre-conditions to be met before it aborts the operation. If set to 0 (default), pre-conditions must be satisfied immediately for the OpsRequest to proceed.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"rebuild_from": schema.ListNestedAttribute{
 						Description:         "Specifies the parameters to rebuild some instances. Rebuilding an instance involves restoring its data from a backup or another database replica. The instances being rebuilt usually serve as standby in the cluster. Hence rebuilding instances is often also referred to as 'standby reconstruction'.",
 						MarkdownDescription: "Specifies the parameters to rebuild some instances. Rebuilding an instance involves restoring its data from a backup or another database replica. The instances being rebuilt usually serve as standby in the cluster. Hence rebuilding instances is often also referred to as 'standby reconstruction'.",
@@ -3508,15 +3584,6 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "Specifies the name of the Component.",
 									Required:            true,
 									Optional:            false,
-									Computed:            false,
-								},
-
-								"env_for_restore": schema.MapAttribute{
-									Description:         "Defines container environment variables for the restore process. merged with the ones specified in the Backup and ActionSet resources.  Merge priority: Restore env > Backup env > ActionSet env.  Purpose: Some databases require different configurations when being restored as a standby compared to being restored as a primary. For example, when restoring MySQL as a replica, you need to set 'skip_slave_start='ON'' for 5.7 or 'skip_replica_start='ON'' for 8.0. Allowing environment variables to be passed in makes it more convenient to control these behavioral differences during the restore process.",
-									MarkdownDescription: "Defines container environment variables for the restore process. merged with the ones specified in the Backup and ActionSet resources.  Merge priority: Restore env > Backup env > ActionSet env.  Purpose: Some databases require different configurations when being restored as a standby compared to being restored as a primary. For example, when restoring MySQL as a replica, you need to set 'skip_slave_start='ON'' for 5.7 or 'skip_replica_start='ON'' for 8.0. Allowing environment variables to be passed in makes it more convenient to control these behavioral differences during the restore process.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
 									Computed:            false,
 								},
 
@@ -3545,6 +3612,15 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 									Required: true,
 									Optional: false,
 									Computed: false,
+								},
+
+								"restore_env": schema.MapAttribute{
+									Description:         "Defines container environment variables for the restore process. merged with the ones specified in the Backup and ActionSet resources.  Merge priority: Restore env > Backup env > ActionSet env.  Purpose: Some databases require different configurations when being restored as a standby compared to being restored as a primary. For example, when restoring MySQL as a replica, you need to set 'skip_slave_start='ON'' for 5.7 or 'skip_replica_start='ON'' for 8.0. Allowing environment variables to be passed in makes it more convenient to control these behavioral differences during the restore process.",
+									MarkdownDescription: "Defines container environment variables for the restore process. merged with the ones specified in the Backup and ActionSet resources.  Merge priority: Restore env > Backup env > ActionSet env.  Purpose: Some databases require different configurations when being restored as a standby compared to being restored as a primary. For example, when restoring MySQL as a replica, you need to set 'skip_slave_start='ON'' for 5.7 or 'skip_replica_start='ON'' for 8.0. Allowing environment variables to be passed in makes it more convenient to control these behavioral differences during the restore process.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 							},
 						},
@@ -3784,97 +3860,7 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed: false,
 					},
 
-					"restore_from": schema.SingleNestedAttribute{
-						Description:         "Cluster RestoreFrom backup or point in time.",
-						MarkdownDescription: "Cluster RestoreFrom backup or point in time.",
-						Attributes: map[string]schema.Attribute{
-							"backup": schema.ListNestedAttribute{
-								Description:         "Refers to the backup name and component name used for restoration. Supports recovery of multiple Components.",
-								MarkdownDescription: "Refers to the backup name and component name used for restoration. Supports recovery of multiple Components.",
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"ref": schema.SingleNestedAttribute{
-											Description:         "Refers to a reference backup that needs to be restored.",
-											MarkdownDescription: "Refers to a reference backup that needs to be restored.",
-											Attributes: map[string]schema.Attribute{
-												"name": schema.StringAttribute{
-													Description:         "Refers to the specific name of the resource.",
-													MarkdownDescription: "Refers to the specific name of the resource.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"namespace": schema.StringAttribute{
-													Description:         "Refers to the specific namespace of the resource.",
-													MarkdownDescription: "Refers to the specific namespace of the resource.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"point_in_time": schema.SingleNestedAttribute{
-								Description:         "Refers to the specific point in time for recovery.",
-								MarkdownDescription: "Refers to the specific point in time for recovery.",
-								Attributes: map[string]schema.Attribute{
-									"ref": schema.SingleNestedAttribute{
-										Description:         "Refers to a reference source cluster that needs to be restored.",
-										MarkdownDescription: "Refers to a reference source cluster that needs to be restored.",
-										Attributes: map[string]schema.Attribute{
-											"name": schema.StringAttribute{
-												Description:         "Refers to the specific name of the resource.",
-												MarkdownDescription: "Refers to the specific name of the resource.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"namespace": schema.StringAttribute{
-												Description:         "Refers to the specific namespace of the resource.",
-												MarkdownDescription: "Refers to the specific namespace of the resource.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"time": schema.StringAttribute{
-										Description:         "Refers to the specific time point for restoration, with UTC as the time zone.",
-										MarkdownDescription: "Refers to the specific time point for restoration, with UTC as the time zone.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-										Validators: []validator.String{
-											validators.DateTime64Validator(),
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"restore_spec": schema.SingleNestedAttribute{
+					"restore": schema.SingleNestedAttribute{
 						Description:         "Specifies the parameters to restore a Cluster. Note that this restore operation will roll back cluster services.",
 						MarkdownDescription: "Specifies the parameters to restore a Cluster. Note that this restore operation will roll back cluster services.",
 						Attributes: map[string]schema.Attribute{
@@ -3886,7 +3872,7 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
-							"do_ready_restore_after_cluster_running": schema.BoolAttribute{
+							"defer_post_ready_until_cluster_running": schema.BoolAttribute{
 								Description:         "Controls the timing of PostReady actions during the recovery process.  If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding.  This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.",
 								MarkdownDescription: "Controls the timing of PostReady actions during the recovery process.  If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding.  This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.",
 								Required:            false,
@@ -3894,7 +3880,51 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
-							"restore_time_str": schema.StringAttribute{
+							"restore_point_in_time": schema.StringAttribute{
+								Description:         "Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'",
+								MarkdownDescription: "Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"volume_restore_policy": schema.StringAttribute{
+								Description:         "Specifies the policy for restoring volume claims of a Component's Pods. It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once). Support values:  - 'Serial' - 'Parallel'",
+								MarkdownDescription: "Specifies the policy for restoring volume claims of a Component's Pods. It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once). Support values:  - 'Serial' - 'Parallel'",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Serial", "Parallel"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"restore_spec": schema.SingleNestedAttribute{
+						Description:         "Deprecated: since v0.9, use restore instead. Specifies the parameters to restore a Cluster. Note that this restore operation will roll back cluster services.",
+						MarkdownDescription: "Deprecated: since v0.9, use restore instead. Specifies the parameters to restore a Cluster. Note that this restore operation will roll back cluster services.",
+						Attributes: map[string]schema.Attribute{
+							"backup_name": schema.StringAttribute{
+								Description:         "Specifies the name of the Backup custom resource.",
+								MarkdownDescription: "Specifies the name of the Backup custom resource.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"defer_post_ready_until_cluster_running": schema.BoolAttribute{
+								Description:         "Controls the timing of PostReady actions during the recovery process.  If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding.  This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.",
+								MarkdownDescription: "Controls the timing of PostReady actions during the recovery process.  If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding.  This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"restore_point_in_time": schema.StringAttribute{
 								Description:         "Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'",
 								MarkdownDescription: "Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'",
 								Required:            false,
@@ -4157,14 +4187,6 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed:            false,
 					},
 
-					"ttl_seconds_before_abort": schema.Int64Attribute{
-						Description:         "Specifies the maximum time in seconds that the OpsRequest will wait for its pre-conditions to be met before it aborts the operation. If set to 0 (default), pre-conditions must be satisfied immediately for the OpsRequest to proceed.",
-						MarkdownDescription: "Specifies the maximum time in seconds that the OpsRequest will wait for its pre-conditions to be met before it aborts the operation. If set to 0 (default), pre-conditions must be satisfied immediately for the OpsRequest to proceed.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"type": schema.StringAttribute{
 						Description:         "Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover', 'VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore', 'Expose', 'DataScript', 'RebuildInstance', 'Custom'.  Note: This field is immutable once set.",
 						MarkdownDescription: "Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover', 'VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore', 'Expose', 'DataScript', 'RebuildInstance', 'Custom'.  Note: This field is immutable once set.",
@@ -4216,8 +4238,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 								},
 
 								"instances": schema.ListNestedAttribute{
-									Description:         "Specifies the instance template that need to volume expand.",
-									MarkdownDescription: "Specifies the instance template that need to volume expand.",
+									Description:         "Specifies the desired storage size of the instance template that need to volume expand.",
+									MarkdownDescription: "Specifies the desired storage size of the instance template that need to volume expand.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{

@@ -76,6 +76,7 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 			TlsAlternateAccess                   *string   `tfsdk:"tls_alternate_access" json:"tlsAlternateAccess,omitempty"`
 			TlsFabric                            *string   `tfsdk:"tls_fabric" json:"tlsFabric,omitempty"`
 		} `tfsdk:"aerospike_network_policy" json:"aerospikeNetworkPolicy,omitempty"`
+		DisablePDB                *bool     `tfsdk:"disable_pdb" json:"disablePDB,omitempty"`
 		EnableDynamicConfigUpdate *bool     `tfsdk:"enable_dynamic_config_update" json:"enableDynamicConfigUpdate,omitempty"`
 		Image                     *string   `tfsdk:"image" json:"image,omitempty"`
 		K8sNodeBlockList          *[]string `tfsdk:"k8s_node_block_list" json:"k8sNodeBlockList,omitempty"`
@@ -1798,6 +1799,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"disable_pdb": schema.BoolAttribute{
+						Description:         "Disable the PodDisruptionBudget creation for the Aerospike cluster.",
+						MarkdownDescription: "Disable the PodDisruptionBudget creation for the Aerospike cluster.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"enable_dynamic_config_update": schema.BoolAttribute{

@@ -218,6 +218,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/groupsnapshot_storage_k8s_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/hazelcast_com_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/helm_sigstore_dev_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/helm_toolkit_fluxcd_io_v2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/helm_toolkit_fluxcd_io_v2beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/helm_toolkit_fluxcd_io_v2beta2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/hive_openshift_io_v1"
@@ -1242,6 +1243,7 @@ func allResources() []func() resource.Resource {
 		//hazelcast_com_v1alpha1.NewHazelcastComMapV1Alpha1Resource,
 		//hazelcast_com_v1alpha1.NewHazelcastComWanReplicationV1Alpha1Resource,
 		//helm_sigstore_dev_v1alpha1.NewHelmSigstoreDevRekorV1Alpha1Resource,
+		//helm_toolkit_fluxcd_io_v2.NewHelmToolkitFluxcdIoHelmReleaseV2Resource,
 		//helm_toolkit_fluxcd_io_v2beta1.NewHelmToolkitFluxcdIoHelmReleaseV2Beta1Resource,
 		//helm_toolkit_fluxcd_io_v2beta2.NewHelmToolkitFluxcdIoHelmReleaseV2Beta2Resource,
 		//hive_openshift_io_v1.NewHiveOpenshiftIoCheckpointV1Resource,

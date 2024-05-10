@@ -365,8 +365,8 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineV1Beta1Manifest) Schema(_ c
 					},
 
 					"template_override": schema.StringAttribute{
-						Description:         "TemplateOverride overrides the default Tinkerbell template used by CAPT.You can learn more about Tinkerbell templates here: https://docs.tinkerbell.org/templates/",
-						MarkdownDescription: "TemplateOverride overrides the default Tinkerbell template used by CAPT.You can learn more about Tinkerbell templates here: https://docs.tinkerbell.org/templates/",
+						Description:         "TemplateOverride overrides the default Tinkerbell template used by CAPT.You can learn more about Tinkerbell templates here: https://tinkerbell.org/docs/concepts/templates/",
+						MarkdownDescription: "TemplateOverride overrides the default Tinkerbell template used by CAPT.You can learn more about Tinkerbell templates here: https://tinkerbell.org/docs/concepts/templates/",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
