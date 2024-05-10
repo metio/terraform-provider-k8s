@@ -55,6 +55,7 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"key_ref" json:"keyRef,omitempty"`
 		} `tfsdk:"license" json:"license,omitempty"`
+		Paused             *bool   `tfsdk:"paused" json:"paused,omitempty"`
 		ReplicationFactor  *int64  `tfsdk:"replication_factor" json:"replicationFactor,omitempty"`
 		RetentionPeriod    *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
 		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
@@ -750,6 +751,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"paused": schema.BoolAttribute{
+						Description:         "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
+						MarkdownDescription: "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"replication_factor": schema.Int64Attribute{

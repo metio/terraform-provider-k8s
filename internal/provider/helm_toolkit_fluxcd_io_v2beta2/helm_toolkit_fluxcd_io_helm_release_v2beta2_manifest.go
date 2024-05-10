@@ -50,10 +50,11 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta2ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			} `tfsdk:"metadata" json:"metadata,omitempty"`
 			Spec *struct {
-				Chart             *string `tfsdk:"chart" json:"chart,omitempty"`
-				Interval          *string `tfsdk:"interval" json:"interval,omitempty"`
-				ReconcileStrategy *string `tfsdk:"reconcile_strategy" json:"reconcileStrategy,omitempty"`
-				SourceRef         *struct {
+				Chart                    *string `tfsdk:"chart" json:"chart,omitempty"`
+				IgnoreMissingValuesFiles *bool   `tfsdk:"ignore_missing_values_files" json:"ignoreMissingValuesFiles,omitempty"`
+				Interval                 *string `tfsdk:"interval" json:"interval,omitempty"`
+				ReconcileStrategy        *string `tfsdk:"reconcile_strategy" json:"reconcileStrategy,omitempty"`
+				SourceRef                *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
@@ -341,6 +342,14 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest) Schema(_ context.Context
 											stringvalidator.LengthAtLeast(1),
 											stringvalidator.LengthAtMost(2048),
 										},
+									},
+
+									"ignore_missing_values_files": schema.BoolAttribute{
+										Description:         "IgnoreMissingValuesFiles controls whether to silently ignore missing values files rather than failing.",
+										MarkdownDescription: "IgnoreMissingValuesFiles controls whether to silently ignore missing values files rather than failing.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"interval": schema.StringAttribute{

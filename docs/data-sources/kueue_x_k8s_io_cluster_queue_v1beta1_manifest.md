@@ -57,6 +57,7 @@ Optional:
 - `admission_checks` (List of String) admissionChecks lists the AdmissionChecks required by this ClusterQueue.Cannot be used along with AdmissionCheckStrategy.
 - `admission_checks_strategy` (Attributes) admissionCheckStrategy defines a list of strategies to determine which ResourceFlavors require AdmissionChecks.This property cannot be used in conjunction with the 'admissionChecks' property. (see [below for nested schema](#nestedatt--spec--admission_checks_strategy))
 - `cohort` (String) cohort that this ClusterQueue belongs to. CQs that belong to thesame cohort can borrow unused resources from each other.A CQ can be a member of a single borrowing cohort. A workload submittedto a queue referencing this CQ can borrow quota from any CQ in the cohort.Only quota for the [resource, flavor] pairs listed in the CQ can beborrowed.If empty, this ClusterQueue cannot borrow from any other ClusterQueue andvice versa.A cohort is a name that links CQs together, but it doesn't reference anyobject.Validation of a cohort name is equivalent to that of object names:subdomain in DNS (RFC 1123).
+- `fair_sharing` (Attributes) fairSharing defines the properties of the ClusterQueue when participating in fair sharing.The values are only relevant if fair sharing is enabled in the Kueue configuration. (see [below for nested schema](#nestedatt--spec--fair_sharing))
 - `flavor_fungibility` (Attributes) flavorFungibility defines whether a workload should try the next flavorbefore borrowing or preempting in the flavor being evaluated. (see [below for nested schema](#nestedatt--spec--flavor_fungibility))
 - `namespace_selector` (Attributes) namespaceSelector defines which namespaces are allowed to submit workloads tothis clusterQueue. Beyond this basic support for policy, a policy agent likeGatekeeper should be used to enforce more advanced policies.Defaults to null which is a nothing selector (no namespaces eligible).If set to an empty selector '{}', then all namespaces are eligible. (see [below for nested schema](#nestedatt--spec--namespace_selector))
 - `preemption` (Attributes) preemption describes policies to preempt Workloads from this ClusterQueueor the ClusterQueue's cohort.Preemption can happen in two scenarios:- When a Workload fits within the nominal quota of the ClusterQueue, but  the quota is currently borrowed by other ClusterQueues in the cohort.  Preempting Workloads in other ClusterQueues allows this ClusterQueue to  reclaim its nominal quota.- When a Workload doesn't fit within the nominal quota of the ClusterQueue  and there are admitted Workloads in the ClusterQueue with lower priority.The preemption algorithm tries to find a minimal set of Workloads topreempt to accomomdate the pending Workload, preempting Workloads withlower priority first. (see [below for nested schema](#nestedatt--spec--preemption))
@@ -82,6 +83,14 @@ Optional:
 
 - `on_flavors` (List of String) onFlavors is a list of ResourceFlavors' names that this AdmissionCheck should run for.If empty, the AdmissionCheck will run for all workloads submitted to the ClusterQueue.
 
+
+
+<a id="nestedatt--spec--fair_sharing"></a>
+### Nested Schema for `spec.fair_sharing`
+
+Optional:
+
+- `weight` (String) weight gives a comparative advantage to this ClusterQueue when competing for unusedresources in the cohort against other ClusterQueues.The share of a ClusterQueue is based on the dominant resource usage above nominalquotas for each resource, divided by the weight.Admission prioritizes scheduling workloads from ClusterQueues with the lowest shareand preempting workloads from the ClusterQueues with the highest share.A zero weight implies infinite share value, meaning that this ClusterQueue will alwaysbe at disadvantage against other ClusterQueues.
 
 
 <a id="nestedatt--spec--flavor_fungibility"></a>

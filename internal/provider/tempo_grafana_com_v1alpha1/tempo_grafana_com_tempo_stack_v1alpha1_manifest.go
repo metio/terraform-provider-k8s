@@ -52,6 +52,7 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 			} `tfsdk:"memberlist" json:"memberlist,omitempty"`
 		} `tfsdk:"hash_ring" json:"hashRing,omitempty"`
 		Images *struct {
+			OauthProxy      *string `tfsdk:"oauth_proxy" json:"oauthProxy,omitempty"`
 			Tempo           *string `tfsdk:"tempo" json:"tempo,omitempty"`
 			TempoGateway    *string `tfsdk:"tempo_gateway" json:"tempoGateway,omitempty"`
 			TempoGatewayOpa *string `tfsdk:"tempo_gateway_opa" json:"tempoGatewayOpa,omitempty"`
@@ -276,6 +277,10 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 					} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 				} `tfsdk:"component" json:"component,omitempty"`
 				JaegerQuery *struct {
+					Authentication *struct {
+						Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+						Sar     *string `tfsdk:"sar" json:"sar,omitempty"`
+					} `tfsdk:"authentication" json:"authentication,omitempty"`
 					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 					Ingress *struct {
 						Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -461,6 +466,14 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 						Description:         "Images defines the image for each container.",
 						MarkdownDescription: "Images defines the image for each container.",
 						Attributes: map[string]schema.Attribute{
+							"oauth_proxy": schema.StringAttribute{
+								Description:         "OauthProxy defines the oauth proxy image used to protect the jaegerUI on single tenant.",
+								MarkdownDescription: "OauthProxy defines the oauth proxy image used to protect the jaegerUI on single tenant.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"tempo": schema.StringAttribute{
 								Description:         "Tempo defines the tempo container image.",
 								MarkdownDescription: "Tempo defines the tempo container image.",
@@ -1940,6 +1953,31 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 										Description:         "JaegerQuery defines options specific to the Jaeger Query component.",
 										MarkdownDescription: "JaegerQuery defines options specific to the Jaeger Query component.",
 										Attributes: map[string]schema.Attribute{
+											"authentication": schema.SingleNestedAttribute{
+												Description:         "Oauth defines the options for the oauth proxy used to protect jaeger UI",
+												MarkdownDescription: "Oauth defines the options for the oauth proxy used to protect jaeger UI",
+												Attributes: map[string]schema.Attribute{
+													"enabled": schema.BoolAttribute{
+														Description:         "Defines if the authentication will be enabled for jaeger UI.",
+														MarkdownDescription: "Defines if the authentication will be enabled for jaeger UI.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"sar": schema.StringAttribute{
+														Description:         "SAR defines the SAR to be used in the oauth-proxy default is '{'namespace': '<tempo_stack_namespace>', 'resource': 'pods', 'verb': 'get'}",
+														MarkdownDescription: "SAR defines the SAR to be used in the oauth-proxy default is '{'namespace': '<tempo_stack_namespace>', 'resource': 'pods', 'verb': 'get'}",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"enabled": schema.BoolAttribute{
 												Description:         "Enabled defines if the Jaeger Query component should be created.",
 												MarkdownDescription: "Enabled defines if the Jaeger Query component should be created.",

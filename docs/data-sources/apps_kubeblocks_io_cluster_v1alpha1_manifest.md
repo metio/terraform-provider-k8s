@@ -117,6 +117,7 @@ Optional:
 - `affinity` (Attributes) Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the K8s cluster.  Deprecated since v0.10, replaced by the 'schedulingPolicy' field. (see [below for nested schema](#nestedatt--spec--component_specs--affinity))
 - `component_def` (String) References the name of a ComponentDefinition object. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.
 - `component_def_ref` (String) References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining Components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--component_specs--configs))
 - `enabled_logs` (List of String) Specifies which types of logs should be collected for the Component. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: '''yaml enabledLogs: - slow_query_log - error_log '''
 - `instances` (Attributes List) Allows for the customization of configuration values for each instance within a Component. An instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database Component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a Component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules. (see [below for nested schema](#nestedatt--spec--component_specs--instances))
 - `issuer` (Attributes) Specifies the configuration for the TLS certificates issuer. It allows defining the issuer name and the reference to the secret containing the TLS certificates and key. The secret should contain the CA certificate, TLS certificate, and private key in the specified keys. Required when TLS is enabled. (see [below for nested schema](#nestedatt--spec--component_specs--issuer))
@@ -146,6 +147,39 @@ Optional:
 - `pod_anti_affinity` (String) Specifies the anti-affinity level of Pods within a Component. It determines how pods should be spread across nodes to improve availability and performance. It can have the following values: 'Preferred' and 'Required'. The default value is 'Preferred'.
 - `tenancy` (String) Determines the level of resource isolation between Pods. It can have the following values: 'SharedNode' and 'DedicatedNode'.  - SharedNode: Allow that multiple Pods may share the same node, which is the default behavior of K8s. - DedicatedNode: Each Pod runs on a dedicated node, ensuring that no two Pods share the same node. In other words, if a Pod is already running on a node, no other Pods will be scheduled on that node. Which provides a higher level of isolation and resource guarantee for Pods.  The default value is 'SharedNode'.
 - `topology_keys` (List of String) Represents the key of node labels used to define the topology domain for Pod anti-affinity and Pod spread constraints.  In K8s, a topology domain is a set of nodes that have the same value for a specific label key. Nodes with labels containing any of the specified TopologyKeys and identical values are considered to be in the same topology domain.  Note: The concept of topology in the context of K8s TopologyKeys is different from the concept of topology in the ClusterDefinition.  When a Pod has anti-affinity or spread constraints specified, Kubernetes will attempt to schedule the Pod on nodes with different values for the specified TopologyKeys. This ensures that Pods are spread across different topology domains, promoting high availability and reducing the impact of node failures.  Some well-known label keys, such as 'kubernetes.io/hostname' and 'topology.kubernetes.io/zone', are often used as TopologyKey. These keys represent the hostname and zone of a node, respectively. By including these keys in the TopologyKeys list, Pods will be spread across nodes with different hostnames or zones.  In addition to the well-known keys, users can also specify custom label keys as TopologyKeys. This allows for more flexible and custom topology definitions based on the specific needs of the application or environment.  The TopologyKeys field is a slice of strings, where each string represents a label key. The order of the keys in the slice does not matter.
+
+
+<a id="nestedatt--spec--component_specs--configs"></a>
+### Nested Schema for `spec.component_specs.configs`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap source for the config. (see [below for nested schema](#nestedatt--spec--component_specs--configs--config_map))
+- `name` (String) The name of the config.
+
+<a id="nestedatt--spec--component_specs--configs--config_map"></a>
+### Nested Schema for `spec.component_specs.configs.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--component_specs--configs--name--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--component_specs--configs--name--items"></a>
+### Nested Schema for `spec.component_specs.configs.name.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
 
 
 <a id="nestedatt--spec--component_specs--instances"></a>
@@ -2271,6 +2305,7 @@ Optional:
 - `affinity` (Attributes) Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the K8s cluster.  Deprecated since v0.10, replaced by the 'schedulingPolicy' field. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--affinity))
 - `component_def` (String) References the name of a ComponentDefinition object. The ComponentDefinition specifies the behavior and characteristics of the Component. If both 'componentDefRef' and 'componentDef' are provided, the 'componentDef' will take precedence over 'componentDefRef'.
 - `component_def_ref` (String) References a ClusterComponentDefinition defined in the 'clusterDefinition.spec.componentDef' field. Must comply with the IANA service naming rule.  Deprecated since v0.9, because defining Components in 'clusterDefinition.spec.componentDef' field has been deprecated. This field is replaced by the 'componentDef' field, use 'componentDef' instead. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  TODO +kubebuilder:validation:XValidation:rule='self == oldSelf',message='componentDefRef is immutable'
+- `configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding_specs--template--configs))
 - `enabled_logs` (List of String) Specifies which types of logs should be collected for the Component. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries.  The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: '''yaml enabledLogs: - slow_query_log - error_log '''
 - `instances` (Attributes List) Allows for the customization of configuration values for each instance within a Component. An instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios:  For example: - A database Component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a Component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly.  InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts.  The sum of replicas across all InstanceTemplates should not exceed the total number of replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--instances))
 - `issuer` (Attributes) Specifies the configuration for the TLS certificates issuer. It allows defining the issuer name and the reference to the secret containing the TLS certificates and key. The secret should contain the CA certificate, TLS certificate, and private key in the specified keys. Required when TLS is enabled. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--issuer))
@@ -2300,6 +2335,39 @@ Optional:
 - `pod_anti_affinity` (String) Specifies the anti-affinity level of Pods within a Component. It determines how pods should be spread across nodes to improve availability and performance. It can have the following values: 'Preferred' and 'Required'. The default value is 'Preferred'.
 - `tenancy` (String) Determines the level of resource isolation between Pods. It can have the following values: 'SharedNode' and 'DedicatedNode'.  - SharedNode: Allow that multiple Pods may share the same node, which is the default behavior of K8s. - DedicatedNode: Each Pod runs on a dedicated node, ensuring that no two Pods share the same node. In other words, if a Pod is already running on a node, no other Pods will be scheduled on that node. Which provides a higher level of isolation and resource guarantee for Pods.  The default value is 'SharedNode'.
 - `topology_keys` (List of String) Represents the key of node labels used to define the topology domain for Pod anti-affinity and Pod spread constraints.  In K8s, a topology domain is a set of nodes that have the same value for a specific label key. Nodes with labels containing any of the specified TopologyKeys and identical values are considered to be in the same topology domain.  Note: The concept of topology in the context of K8s TopologyKeys is different from the concept of topology in the ClusterDefinition.  When a Pod has anti-affinity or spread constraints specified, Kubernetes will attempt to schedule the Pod on nodes with different values for the specified TopologyKeys. This ensures that Pods are spread across different topology domains, promoting high availability and reducing the impact of node failures.  Some well-known label keys, such as 'kubernetes.io/hostname' and 'topology.kubernetes.io/zone', are often used as TopologyKey. These keys represent the hostname and zone of a node, respectively. By including these keys in the TopologyKeys list, Pods will be spread across nodes with different hostnames or zones.  In addition to the well-known keys, users can also specify custom label keys as TopologyKeys. This allows for more flexible and custom topology definitions based on the specific needs of the application or environment.  The TopologyKeys field is a slice of strings, where each string represents a label key. The order of the keys in the slice does not matter.
+
+
+<a id="nestedatt--spec--sharding_specs--template--configs"></a>
+### Nested Schema for `spec.sharding_specs.template.configs`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap source for the config. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--config_map))
+- `name` (String) The name of the config.
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--config_map"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.config_map`
+
+Optional:
+
+- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--sharding_specs--template--volume_claim_templates--config_map--items))
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+
+<a id="nestedatt--spec--sharding_specs--template--volume_claim_templates--config_map--items"></a>
+### Nested Schema for `spec.sharding_specs.template.volume_claim_templates.config_map.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+
+
 
 
 <a id="nestedatt--spec--sharding_specs--template--instances"></a>

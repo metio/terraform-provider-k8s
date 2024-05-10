@@ -2376,8 +2376,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"configs": schema.ListNestedAttribute{
-						Description:         "Specifies the configuration file templates and volume mount parameters used by the Component. It also includes descriptions of the parameters in the ConfigMaps, such as value range limitations.  This field specifies a list of templates that will be rendered into Component containers' configuration files. Each template is represented as a ConfigMap and may contain multiple configuration files, with each file being a key in the ConfigMap.  The rendered configuration files will be mounted into the Component's containers according to the specified volume mount parameters.  This field is immutable.  TODO: support referencing configs from other components or clusters.",
-						MarkdownDescription: "Specifies the configuration file templates and volume mount parameters used by the Component. It also includes descriptions of the parameters in the ConfigMaps, such as value range limitations.  This field specifies a list of templates that will be rendered into Component containers' configuration files. Each template is represented as a ConfigMap and may contain multiple configuration files, with each file being a key in the ConfigMap.  The rendered configuration files will be mounted into the Component's containers according to the specified volume mount parameters.  This field is immutable.  TODO: support referencing configs from other components or clusters.",
+						Description:         "Specifies the configuration file templates and volume mount parameters used by the Component. It also includes descriptions of the parameters in the ConfigMaps, such as value range limitations.  This field specifies a list of templates that will be rendered into Component containers' configuration files. Each template is represented as a ConfigMap and may contain multiple configuration files, with each file being a key in the ConfigMap.  The rendered configuration files will be mounted into the Component's containers according to the specified volume mount parameters.  This field is immutable.",
+						MarkdownDescription: "Specifies the configuration file templates and volume mount parameters used by the Component. It also includes descriptions of the parameters in the ConfigMaps, such as value range limitations.  This field specifies a list of templates that will be rendered into Component containers' configuration files. Each template is represented as a ConfigMap and may contain multiple configuration files, with each file being a key in the ConfigMap.  The rendered configuration files will be mounted into the Component's containers according to the specified volume mount parameters.  This field is immutable.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"as_env_from": schema.ListAttribute{
@@ -2507,8 +2507,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 								"template_ref": schema.StringAttribute{
 									Description:         "Specifies the name of the referenced configuration template ConfigMap object.",
 									MarkdownDescription: "Specifies the name of the referenced configuration template ConfigMap object.",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.LengthAtMost(63),
@@ -15885,8 +15885,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 								"template_ref": schema.StringAttribute{
 									Description:         "Specifies the name of the referenced configuration template ConfigMap object.",
 									MarkdownDescription: "Specifies the name of the referenced configuration template ConfigMap object.",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.LengthAtMost(63),

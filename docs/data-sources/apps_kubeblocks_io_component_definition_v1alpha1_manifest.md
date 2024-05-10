@@ -60,7 +60,7 @@ Optional:
 
 - `annotations` (Map of String) Specifies static annotations that will be patched to all Kubernetes resources created for the Component.  Note: If an annotation key in the 'annotations' field conflicts with any system annotations or user-specified annotations, it will be silently ignored to avoid overriding higher-priority annotations.  This field is immutable.
 - `builtin_monitor_container` (Attributes) Defines the built-in metrics exporter container. (see [below for nested schema](#nestedatt--spec--builtin_monitor_container))
-- `configs` (Attributes List) Specifies the configuration file templates and volume mount parameters used by the Component. It also includes descriptions of the parameters in the ConfigMaps, such as value range limitations.  This field specifies a list of templates that will be rendered into Component containers' configuration files. Each template is represented as a ConfigMap and may contain multiple configuration files, with each file being a key in the ConfigMap.  The rendered configuration files will be mounted into the Component's containers according to the specified volume mount parameters.  This field is immutable.  TODO: support referencing configs from other components or clusters. (see [below for nested schema](#nestedatt--spec--configs))
+- `configs` (Attributes List) Specifies the configuration file templates and volume mount parameters used by the Component. It also includes descriptions of the parameters in the ConfigMaps, such as value range limitations.  This field specifies a list of templates that will be rendered into Component containers' configuration files. Each template is represented as a ConfigMap and may contain multiple configuration files, with each file being a key in the ConfigMap.  The rendered configuration files will be mounted into the Component's containers according to the specified volume mount parameters.  This field is immutable. (see [below for nested schema](#nestedatt--spec--configs))
 - `description` (String) Provides a brief and concise explanation of the Component's purpose, functionality, and any relevant details. It serves as a quick reference for users to understand the Component's role and characteristics.
 - `host_network` (Attributes) Specifies the host network configuration for the Component.  When 'hostNetwork' option is enabled, the Pods share the host's network namespace and can directly access the host's network interfaces. This means that if multiple Pods need to use the same port, they cannot run on the same host simultaneously due to port conflicts.  The DNSPolicy field in the Pod spec determines how containers within the Pod perform DNS resolution. When using hostNetwork, the operator will set the DNSPolicy to 'ClusterFirstWithHostNet'. With this policy, DNS queries will first go through the K8s cluster's DNS service. If the query fails, it will fall back to the host's DNS settings.  If set, the DNS policy will be automatically set to 'ClusterFirstWithHostNet'. (see [below for nested schema](#nestedatt--spec--host_network))
 - `labels` (Map of String) Specifies static labels that will be patched to all Kubernetes resources created for the Component.  Note: If a label key in the 'labels' field conflicts with any system labels or user-specified labels, it will be silently ignored to avoid overriding higher-priority labels.  This field is immutable.
@@ -3299,7 +3299,6 @@ Optional:
 Required:
 
 - `name` (String) Specifies the name of the configuration template.
-- `template_ref` (String) Specifies the name of the referenced configuration template ConfigMap object.
 - `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.
 
 Optional:
@@ -3312,6 +3311,7 @@ Optional:
 - `legacy_rendered_config_spec` (Attributes) Specifies the secondary rendered config spec for pod-specific customization.  The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file.  This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration.  Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'. (see [below for nested schema](#nestedatt--spec--configs--legacy_rendered_config_spec))
 - `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
 - `re_render_resource_types` (List of String) Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.  In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples:  - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.
+- `template_ref` (String) Specifies the name of the referenced configuration template ConfigMap object.
 
 <a id="nestedatt--spec--configs--legacy_rendered_config_spec"></a>
 ### Nested Schema for `spec.configs.legacy_rendered_config_spec`
@@ -5291,13 +5291,13 @@ Optional:
 Required:
 
 - `name` (String) Specifies the name of the configuration template.
-- `template_ref` (String) Specifies the name of the referenced configuration template ConfigMap object.
 - `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.
 
 Optional:
 
 - `default_mode` (Number) Deprecated: DefaultMode is deprecated since 0.9.0 and will be removed in 0.10.0 for scripts, auto set 0555 for configs, auto set 0444 Refers to the mode bits used to set permissions on created files by default.  Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.  Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 - `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.
+- `template_ref` (String) Specifies the name of the referenced configuration template ConfigMap object.
 
 
 <a id="nestedatt--spec--service_ref_declarations"></a>

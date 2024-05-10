@@ -1493,8 +1493,8 @@ func (r *JobsetXK8SIoJobSetV1Alpha2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"managed_by": schema.StringAttribute{
-						Description:         "ManagedBy is used to indicate the controller or entity that manages a JobSet",
-						MarkdownDescription: "ManagedBy is used to indicate the controller or entity that manages a JobSet",
+						Description:         "ManagedBy is used to indicate the controller or entity that manages a JobSet.The built-in JobSet controller reconciles JobSets which don't have thisfield at all or the field value is the reserved string'jobset.sigs.k8s.io/jobset-controller', but skips reconciling JobSetswith a custom value for this field.The value must be a valid domain-prefixed path (e.g. acme.io/foo) -all characters before the first '/' must be a valid subdomain as definedby RFC 1123. All characters trailing the first '/' must be valid HTTP Pathcharacters as defined by RFC 3986. The value cannot exceed 63 characters.The field is immutable.",
+						MarkdownDescription: "ManagedBy is used to indicate the controller or entity that manages a JobSet.The built-in JobSet controller reconciles JobSets which don't have thisfield at all or the field value is the reserved string'jobset.sigs.k8s.io/jobset-controller', but skips reconciling JobSetswith a custom value for this field.The value must be a valid domain-prefixed path (e.g. acme.io/foo) -all characters before the first '/' must be a valid subdomain as definedby RFC 1123. All characters trailing the first '/' must be valid HTTP Pathcharacters as defined by RFC 3986. The value cannot exceed 63 characters.The field is immutable.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

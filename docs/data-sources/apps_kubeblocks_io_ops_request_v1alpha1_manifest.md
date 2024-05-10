@@ -55,30 +55,45 @@ Optional:
 
 Required:
 
-- `cluster_ref` (String) Specifies the name of the Cluster resource that this operation is targeting.
 - `type` (String) Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover', 'VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore', 'Expose', 'DataScript', 'RebuildInstance', 'Custom'.  Note: This field is immutable once set.
 
 Optional:
 
-- `backup_spec` (Attributes) Specifies the parameters to backup a Cluster. (see [below for nested schema](#nestedatt--spec--backup_spec))
+- `backup` (Attributes) Specifies the parameters to backup a Cluster. (see [below for nested schema](#nestedatt--spec--backup))
+- `backup_spec` (Attributes) Deprecated: since v0.9, use backup instead. Specifies the parameters to backup a Cluster. (see [below for nested schema](#nestedatt--spec--backup_spec))
 - `cancel` (Boolean) Indicates whether the current operation should be canceled and terminated gracefully if it's in the 'Pending', 'Creating', or 'Running' state.  This field applies only to 'VerticalScaling' and 'HorizontalScaling' opsRequests.  Note: Setting 'cancel' to true is irreversible; further modifications to this field are ineffective.
-- `custom_spec` (Attributes) Specifies a custom operation defined by OpsDefinition. (see [below for nested schema](#nestedatt--spec--custom_spec))
+- `cluster_name` (String) Specifies the name of the Cluster resource that this operation is targeting.
+- `cluster_ref` (String) Deprecated: since v0.9, use clusterName instead. Specifies the name of the Cluster resource that this operation is targeting.
+- `custom` (Attributes) Specifies a custom operation defined by OpsDefinition. (see [below for nested schema](#nestedatt--spec--custom))
 - `expose` (Attributes List) Lists Expose objects, each specifying a Component and its services to be exposed. (see [below for nested schema](#nestedatt--spec--expose))
 - `force` (Boolean) Instructs the system to bypass pre-checks (including cluster state checks and customized pre-conditions hooks) and immediately execute the opsRequest, except for the opsRequest of 'Start' type, which will still undergo pre-checks even if 'force' is true.  This is useful for concurrent execution of 'VerticalScaling' and 'HorizontalScaling' opsRequests. By setting 'force' to true, you can bypass the default checks and demand these opsRequests to run simultaneously.  Note: Once set, the 'force' field is immutable and cannot be updated.
 - `horizontal_scaling` (Attributes List) Lists HorizontalScaling objects, each specifying scaling requirements for a Component, including desired total replica counts, configurations for new instances, modifications for existing instances, and instance downscaling options. (see [below for nested schema](#nestedatt--spec--horizontal_scaling))
+- `pre_condition_deadline_seconds` (Number) Specifies the maximum time in seconds that the OpsRequest will wait for its pre-conditions to be met before it aborts the operation. If set to 0 (default), pre-conditions must be satisfied immediately for the OpsRequest to proceed.
 - `rebuild_from` (Attributes List) Specifies the parameters to rebuild some instances. Rebuilding an instance involves restoring its data from a backup or another database replica. The instances being rebuilt usually serve as standby in the cluster. Hence rebuilding instances is often also referred to as 'standby reconstruction'. (see [below for nested schema](#nestedatt--spec--rebuild_from))
 - `reconfigure` (Attributes) Specifies a component and its configuration updates.  This field is deprecated and replaced by 'reconfigures'. (see [below for nested schema](#nestedatt--spec--reconfigure))
 - `reconfigures` (Attributes List) Lists Reconfigure objects, each specifying a Component and its configuration updates. (see [below for nested schema](#nestedatt--spec--reconfigures))
 - `restart` (Attributes List) Lists Components to be restarted. (see [below for nested schema](#nestedatt--spec--restart))
-- `restore_from` (Attributes) Cluster RestoreFrom backup or point in time. (see [below for nested schema](#nestedatt--spec--restore_from))
-- `restore_spec` (Attributes) Specifies the parameters to restore a Cluster. Note that this restore operation will roll back cluster services. (see [below for nested schema](#nestedatt--spec--restore_spec))
+- `restore` (Attributes) Specifies the parameters to restore a Cluster. Note that this restore operation will roll back cluster services. (see [below for nested schema](#nestedatt--spec--restore))
+- `restore_spec` (Attributes) Deprecated: since v0.9, use restore instead. Specifies the parameters to restore a Cluster. Note that this restore operation will roll back cluster services. (see [below for nested schema](#nestedatt--spec--restore_spec))
 - `script_spec` (Attributes) Specifies the image and scripts for executing engine-specific operations such as creating databases or users. It supports limited engines including MySQL, PostgreSQL, Redis, MongoDB.  ScriptSpec has been replaced by the more versatile OpsDefinition. It is recommended to use OpsDefinition instead. ScriptSpec is deprecated and will be removed in a future version. (see [below for nested schema](#nestedatt--spec--script_spec))
 - `switchover` (Attributes List) Lists Switchover objects, each specifying a Component to perform the switchover operation. (see [below for nested schema](#nestedatt--spec--switchover))
 - `ttl_seconds_after_succeed` (Number) Specifies the duration in seconds that an OpsRequest will remain in the system after successfully completing (when 'opsRequest.status.phase' is 'Succeed') before automatic deletion.
-- `ttl_seconds_before_abort` (Number) Specifies the maximum time in seconds that the OpsRequest will wait for its pre-conditions to be met before it aborts the operation. If set to 0 (default), pre-conditions must be satisfied immediately for the OpsRequest to proceed.
 - `upgrade` (Attributes) Specifies the desired new version of the Cluster.  Note: This field is immutable once set. (see [below for nested schema](#nestedatt--spec--upgrade))
 - `vertical_scaling` (List of Map of String) Lists VerticalScaling objects, each specifying a component and its desired compute resources for vertical scaling.
 - `volume_expansion` (Attributes List) Lists VolumeExpansion objects, each specifying a component and its corresponding volumeClaimTemplates that requires storage expansion. (see [below for nested schema](#nestedatt--spec--volume_expansion))
+
+<a id="nestedatt--spec--backup"></a>
+### Nested Schema for `spec.backup`
+
+Optional:
+
+- `backup_method` (String) Specifies the name of BackupMethod. The specified BackupMethod must be defined in the BackupPolicy.
+- `backup_name` (String) Specifies the name of the Backup custom resource.
+- `backup_policy_name` (String) Indicates the name of the BackupPolicy applied to perform this Backup.
+- `deletion_policy` (String) Determines whether the backup contents stored in backup repository should be deleted when the Backup custom resource is deleted. Supported values are 'Retain' and 'Delete'. - 'Retain' means that the backup content and its physical snapshot on backup repository are kept. - 'Delete' means that the backup content and its physical snapshot on backup repository are deleted.
+- `parent_backup_name` (String) If the specified BackupMethod is incremental, 'parentBackupName' is required.
+- `retention_period` (String) Determines the duration for which the Backup custom resources should be retained.  The controller will automatically remove all Backup objects that are older than the specified RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the Backup objects of last 30 days. Sample duration format:  - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m  You can also combine the above durations. For example: 30d12h30m. If not set, the Backup objects will be kept forever.  If the 'deletionPolicy' is set to 'Delete', then the associated backup data will also be deleted along with the Backup object. Otherwise, only the Backup custom resource will be deleted.
+
 
 <a id="nestedatt--spec--backup_spec"></a>
 ### Nested Schema for `spec.backup_spec`
@@ -93,21 +108,21 @@ Optional:
 - `retention_period` (String) Determines the duration for which the Backup custom resources should be retained.  The controller will automatically remove all Backup objects that are older than the specified RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the Backup objects of last 30 days. Sample duration format:  - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m  You can also combine the above durations. For example: 30d12h30m. If not set, the Backup objects will be kept forever.  If the 'deletionPolicy' is set to 'Delete', then the associated backup data will also be deleted along with the Backup object. Otherwise, only the Backup custom resource will be deleted.
 
 
-<a id="nestedatt--spec--custom_spec"></a>
-### Nested Schema for `spec.custom_spec`
+<a id="nestedatt--spec--custom"></a>
+### Nested Schema for `spec.custom`
 
 Required:
 
-- `components` (Attributes List) Specifies the components and their parameters for executing custom actions as defined in OpsDefinition. Requires at least one component. (see [below for nested schema](#nestedatt--spec--custom_spec--components))
-- `ops_definition_ref` (String) Specifies the name of the OpsDefinition.
+- `components` (Attributes List) Specifies the components and their parameters for executing custom actions as defined in OpsDefinition. Requires at least one component. (see [below for nested schema](#nestedatt--spec--custom--components))
+- `ops_definition_name` (String) Specifies the name of the OpsDefinition.
 
 Optional:
 
-- `parallelism` (String) Specifies the maximum number of components to be operated on concurrently to mitigate performance impact on clusters with multiple components.  It accepts an absolute number (e.g., 5) or a percentage of components to execute in parallel (e.g., '10%'). Percentages are rounded up to the nearest whole number of components. For example, if '10%' results in less than one, it rounds up to 1.  When unspecified, all components are processed simultaneously by default.  Note: This feature is not implemented yet.
+- `max_concurrent_components` (String) Specifies the maximum number of components to be operated on concurrently to mitigate performance impact on clusters with multiple components.  It accepts an absolute number (e.g., 5) or a percentage of components to execute in parallel (e.g., '10%'). Percentages are rounded up to the nearest whole number of components. For example, if '10%' results in less than one, it rounds up to 1.  When unspecified, all components are processed simultaneously by default.  Note: This feature is not implemented yet.
 - `service_account_name` (String) Specifies the name of the ServiceAccount to be used for executing the custom operation.
 
-<a id="nestedatt--spec--custom_spec--components"></a>
-### Nested Schema for `spec.custom_spec.components`
+<a id="nestedatt--spec--custom--components"></a>
+### Nested Schema for `spec.custom.components`
 
 Required:
 
@@ -115,10 +130,10 @@ Required:
 
 Optional:
 
-- `parameters` (Attributes List) Specifies the parameters that match the schema specified in the 'opsDefinition.spec.parametersSchema'. (see [below for nested schema](#nestedatt--spec--custom_spec--components--parameters))
+- `parameters` (Attributes List) Specifies the parameters that match the schema specified in the 'opsDefinition.spec.parametersSchema'. (see [below for nested schema](#nestedatt--spec--custom--components--parameters))
 
-<a id="nestedatt--spec--custom_spec--components--parameters"></a>
-### Nested Schema for `spec.custom_spec.components.parameters`
+<a id="nestedatt--spec--custom--components--parameters"></a>
+### Nested Schema for `spec.custom.components.parameters`
 
 Required:
 
@@ -152,9 +167,9 @@ Optional:
 - `annotations` (Map of String) Contains cloud provider related parameters if ServiceType is LoadBalancer.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.
 - `ip_families` (List of String) A list of IP families (e.g., IPv4, IPv6) assigned to this Service.  Usually assigned automatically based on the cluster configuration and the 'ipFamilyPolicy' field. If specified manually, the requested IP family must be available in the cluster and allowed by the 'ipFamilyPolicy'. If the requested IP family is not available or not allowed, the Service creation will fail.  Valid values:  - 'IPv4' - 'IPv6'  This field may hold a maximum of two entries (dual-stack families, in either order).  Common combinations of 'ipFamilies' and 'ipFamilyPolicy' are:  - ipFamilies=[] + ipFamilyPolicy='PreferDualStack' : The Service prefers dual-stack but can fall back to single-stack if the cluster does not support dual-stack. The IP family is automatically assigned based on the cluster configuration. - ipFamilies=['IPV4','IPV6'] + ipFamilyPolicy='RequiredDualStack' : The Service requires dual-stack and will only be created if the cluster supports both IPv4 and IPv6. The primary IP family is IPV4. - ipFamilies=['IPV6','IPV4'] + ipFamilyPolicy='RequiredDualStack' : The Service requires dual-stack and will only be created if the cluster supports both IPv4 and IPv6. The primary IP family is IPV6. - ipFamilies=['IPV4'] + ipFamilyPolicy='SingleStack' : The Service uses a single-stack with IPv4 only. - ipFamilies=['IPV6'] + ipFamilyPolicy='SingleStack' : The Service uses a single-stack with IPv6 only.
 - `ip_family_policy` (String) Specifies whether the Service should use a single IP family (SingleStack) or two IP families (DualStack).  Possible values:  - 'SingleStack' (default) : The Service uses a single IP family. If no value is provided, IPFamilyPolicy defaults to SingleStack. - 'PreferDualStack' : The Service prefers to use two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. - 'RequiredDualStack' : The Service requires two IP families on dual-stack configured clusters. If the cluster is not configured for dual-stack, the Service creation fails.
+- `pod_selector` (Map of String) Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.
 - `ports` (Attributes List) Specifies Port definitions that are to be exposed by a ClusterService.  If not specified, the Port definitions from non-NodePort and non-LoadBalancer type ComponentService defined in the ComponentDefinition ('componentDefinition.spec.services') will be used. If no matching ComponentService is found, the expose operation will fail.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports (see [below for nested schema](#nestedatt--spec--expose--services--ports))
 - `role_selector` (String) Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.
-- `selector` (Map of String) Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.
 - `service_type` (String) Determines how the Service is exposed. Defaults to 'ClusterIP'. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP': allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort': builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer': builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for the expose operation.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.
 
 <a id="nestedatt--spec--expose--services--ports"></a>
@@ -1161,7 +1176,7 @@ Required:
 Optional:
 
 - `backup_name` (String) Indicates the name of the Backup custom resource from which to recover the instance. Defaults to an empty PersistentVolume if unspecified.  Note: - Only full physical backups are supported for multi-replica Components (e.g., 'xtrabackup' for MySQL). - Logical backups (e.g., 'mysqldump' for MySQL) are unsupported in the current version.
-- `env_for_restore` (Map of String) Defines container environment variables for the restore process. merged with the ones specified in the Backup and ActionSet resources.  Merge priority: Restore env > Backup env > ActionSet env.  Purpose: Some databases require different configurations when being restored as a standby compared to being restored as a primary. For example, when restoring MySQL as a replica, you need to set 'skip_slave_start='ON'' for 5.7 or 'skip_replica_start='ON'' for 8.0. Allowing environment variables to be passed in makes it more convenient to control these behavioral differences during the restore process.
+- `restore_env` (Map of String) Defines container environment variables for the restore process. merged with the ones specified in the Backup and ActionSet resources.  Merge priority: Restore env > Backup env > ActionSet env.  Purpose: Some databases require different configurations when being restored as a standby compared to being restored as a primary. For example, when restoring MySQL as a replica, you need to set 'skip_slave_start='ON'' for 5.7 or 'skip_replica_start='ON'' for 8.0. Allowing environment variables to be passed in makes it more convenient to control these behavioral differences during the restore process.
 
 <a id="nestedatt--spec--rebuild_from--instances"></a>
 ### Nested Schema for `spec.rebuild_from.instances`
@@ -1278,48 +1293,18 @@ Required:
 - `component_name` (String) Specifies the name of the Component.
 
 
-<a id="nestedatt--spec--restore_from"></a>
-### Nested Schema for `spec.restore_from`
+<a id="nestedatt--spec--restore"></a>
+### Nested Schema for `spec.restore`
+
+Required:
+
+- `backup_name` (String) Specifies the name of the Backup custom resource.
 
 Optional:
 
-- `backup` (Attributes List) Refers to the backup name and component name used for restoration. Supports recovery of multiple Components. (see [below for nested schema](#nestedatt--spec--restore_from--backup))
-- `point_in_time` (Attributes) Refers to the specific point in time for recovery. (see [below for nested schema](#nestedatt--spec--restore_from--point_in_time))
-
-<a id="nestedatt--spec--restore_from--backup"></a>
-### Nested Schema for `spec.restore_from.backup`
-
-Optional:
-
-- `ref` (Attributes) Refers to a reference backup that needs to be restored. (see [below for nested schema](#nestedatt--spec--restore_from--backup--ref))
-
-<a id="nestedatt--spec--restore_from--backup--ref"></a>
-### Nested Schema for `spec.restore_from.backup.ref`
-
-Optional:
-
-- `name` (String) Refers to the specific name of the resource.
-- `namespace` (String) Refers to the specific namespace of the resource.
-
-
-
-<a id="nestedatt--spec--restore_from--point_in_time"></a>
-### Nested Schema for `spec.restore_from.point_in_time`
-
-Optional:
-
-- `ref` (Attributes) Refers to a reference source cluster that needs to be restored. (see [below for nested schema](#nestedatt--spec--restore_from--point_in_time--ref))
-- `time` (String) Refers to the specific time point for restoration, with UTC as the time zone.
-
-<a id="nestedatt--spec--restore_from--point_in_time--ref"></a>
-### Nested Schema for `spec.restore_from.point_in_time.ref`
-
-Optional:
-
-- `name` (String) Refers to the specific name of the resource.
-- `namespace` (String) Refers to the specific namespace of the resource.
-
-
+- `defer_post_ready_until_cluster_running` (Boolean) Controls the timing of PostReady actions during the recovery process.  If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding.  This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.
+- `restore_point_in_time` (String) Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'
+- `volume_restore_policy` (String) Specifies the policy for restoring volume claims of a Component's Pods. It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once). Support values:  - 'Serial' - 'Parallel'
 
 
 <a id="nestedatt--spec--restore_spec"></a>
@@ -1331,8 +1316,8 @@ Required:
 
 Optional:
 
-- `do_ready_restore_after_cluster_running` (Boolean) Controls the timing of PostReady actions during the recovery process.  If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding.  This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.
-- `restore_time_str` (String) Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'
+- `defer_post_ready_until_cluster_running` (Boolean) Controls the timing of PostReady actions during the recovery process.  If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding.  This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.
+- `restore_point_in_time` (String) Specifies the point in time to which the restore should be performed. Supported time formats:  - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'
 - `volume_restore_policy` (String) Specifies the policy for restoring volume claims of a Component's Pods. It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once). Support values:  - 'Serial' - 'Parallel'
 
 
@@ -1449,7 +1434,7 @@ Required:
 
 Optional:
 
-- `instances` (Attributes List) Specifies the instance template that need to volume expand. (see [below for nested schema](#nestedatt--spec--volume_expansion--instances))
+- `instances` (Attributes List) Specifies the desired storage size of the instance template that need to volume expand. (see [below for nested schema](#nestedatt--spec--volume_expansion--instances))
 
 <a id="nestedatt--spec--volume_expansion--volume_claim_templates"></a>
 ### Nested Schema for `spec.volume_expansion.volume_claim_templates`

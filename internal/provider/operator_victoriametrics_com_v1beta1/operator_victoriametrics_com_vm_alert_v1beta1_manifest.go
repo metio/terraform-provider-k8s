@@ -262,6 +262,7 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 			TlsConfig *map[string]string `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			Url       *string            `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"notifiers" json:"notifiers,omitempty"`
+		Paused              *bool `tfsdk:"paused" json:"paused,omitempty"`
 		PodDisruptionBudget *struct {
 			MaxUnavailable *string            `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
 			MinAvailable   *string            `tfsdk:"min_available" json:"minAvailable,omitempty"`
@@ -2014,6 +2015,14 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"paused": schema.BoolAttribute{
+						Description:         "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
+						MarkdownDescription: "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"pod_disruption_budget": schema.SingleNestedAttribute{

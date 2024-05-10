@@ -3741,6 +3741,9 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtMost(40),
+											},
 										},
 
 										"placement": schema.SingleNestedAttribute{

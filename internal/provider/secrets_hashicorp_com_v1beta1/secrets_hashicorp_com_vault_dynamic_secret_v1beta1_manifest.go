@@ -444,19 +444,19 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"kind": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Kind of the resource",
+									MarkdownDescription: "Kind of the resource",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.OneOf("Deployment", "DaemonSet", "StatefulSet"),
+										stringvalidator.OneOf("Deployment", "DaemonSet", "StatefulSet", "argo.Rollout"),
 									},
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Name of the resource",
+									MarkdownDescription: "Name of the resource",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,

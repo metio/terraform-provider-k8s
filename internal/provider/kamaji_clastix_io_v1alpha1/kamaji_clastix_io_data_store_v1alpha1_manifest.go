@@ -310,8 +310,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"tls_config": schema.SingleNestedAttribute{
-						Description:         "Defines the TLS/SSL configuration required to connect to the data store in a secure way.",
-						MarkdownDescription: "Defines the TLS/SSL configuration required to connect to the data store in a secure way.",
+						Description:         "Defines the TLS/SSL configuration required to connect to the data store in a secure way.This value is optional.",
+						MarkdownDescription: "Defines the TLS/SSL configuration required to connect to the data store in a secure way.This value is optional.",
 						Attributes: map[string]schema.Attribute{
 							"certificate_authority": schema.SingleNestedAttribute{
 								Description:         "Retrieve the Certificate Authority certificate and private key, such as bare content of the file, or a SecretReference.The key reference is required since etcd authentication is based on certificates, and Kamaji is responsible in creating this.",
@@ -550,13 +550,13 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 										Computed: false,
 									},
 								},
-								Required: true,
-								Optional: false,
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				},

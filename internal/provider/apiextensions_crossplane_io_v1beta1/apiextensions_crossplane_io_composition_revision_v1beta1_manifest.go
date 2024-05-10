@@ -624,8 +624,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest) Schema(_ c
 												},
 
 												"merge_options": schema.SingleNestedAttribute{
-													Description:         "MergeOptions Specifies merge options on a field path",
-													MarkdownDescription: "MergeOptions Specifies merge options on a field path",
+													Description:         "MergeOptions Specifies merge options on a field path.",
+													MarkdownDescription: "MergeOptions Specifies merge options on a field path.",
 													Attributes: map[string]schema.Attribute{
 														"append_slice": schema.BoolAttribute{
 															Description:         "Specifies that already existing elements in a merged slice should be preserved",
@@ -1102,8 +1102,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest) Schema(_ c
 													},
 
 													"merge_options": schema.SingleNestedAttribute{
-														Description:         "MergeOptions Specifies merge options on a field path",
-														MarkdownDescription: "MergeOptions Specifies merge options on a field path",
+														Description:         "MergeOptions Specifies merge options on a field path.",
+														MarkdownDescription: "MergeOptions Specifies merge options on a field path.",
 														Attributes: map[string]schema.Attribute{
 															"append_slice": schema.BoolAttribute{
 																Description:         "Specifies that already existing elements in a merged slice should be preserved",
@@ -1719,8 +1719,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest) Schema(_ c
 													},
 
 													"merge_options": schema.SingleNestedAttribute{
-														Description:         "MergeOptions Specifies merge options on a field path",
-														MarkdownDescription: "MergeOptions Specifies merge options on a field path",
+														Description:         "MergeOptions Specifies merge options on a field path.",
+														MarkdownDescription: "MergeOptions Specifies merge options on a field path.",
 														Attributes: map[string]schema.Attribute{
 															"append_slice": schema.BoolAttribute{
 																Description:         "Specifies that already existing elements in a merged slice should be preserved",

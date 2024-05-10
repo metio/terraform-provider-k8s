@@ -2860,6 +2860,7 @@ Optional:
 - `quarkus` (Attributes) The configuration of Quarkus trait (see [below for nested schema](#nestedatt--spec--integration--traits--quarkus))
 - `registry` (Attributes) The configuration of Registry trait Deprecated: use jvm trait or read documentation. (see [below for nested schema](#nestedatt--spec--integration--traits--registry))
 - `route` (Attributes) The configuration of Route trait (see [below for nested schema](#nestedatt--spec--integration--traits--route))
+- `security_context` (Attributes) The configuration of Security Context trait (see [below for nested schema](#nestedatt--spec--integration--traits--security_context))
 - `service` (Attributes) The configuration of Service trait (see [below for nested schema](#nestedatt--spec--integration--traits--service))
 - `service_binding` (Attributes) The configuration of Service Binding trait (see [below for nested schema](#nestedatt--spec--integration--traits--service_binding))
 - `strimzi` (Attributes) Deprecated: for backward compatibility. (see [below for nested schema](#nestedatt--spec--integration--traits--strimzi))
@@ -2926,7 +2927,10 @@ Optional:
 
 Optional:
 
+- `allow_privilege_escalation` (Boolean) Security Context AllowPrivilegeEscalation configuration (default false).
 - `auto` (Boolean) To automatically enable the trait
+- `capabilities_add` (List of String) Security Context Capabilities Add configuration (default none).
+- `capabilities_drop` (List of String) Security Context Capabilities Drop configuration (default ALL).
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `expose` (Boolean) Can be used to enable/disable exposure via kubernetes Service.
@@ -2939,6 +2943,9 @@ Optional:
 - `port_name` (String) To configure a different port name for the port exposed by the container. It defaults to 'http' only when the 'expose' parameter is true.
 - `request_cpu` (String) The minimum amount of CPU required.
 - `request_memory` (String) The minimum amount of memory required.
+- `run_as_non_root` (Boolean) Security Context RunAsNonRoot configuration (default false).
+- `run_as_user` (Number) Security Context RunAsUser configuration (default none): this value is automatically retrieved in Openshift clusters when not explicitly set.
+- `seccomp_profile_type` (String) Security Context SeccompProfileType configuration (default RuntimeDefault).
 - `service_port` (Number) To configure under which service port the container port is to be exposed (default '80').
 - `service_port_name` (String) To configure under which service port name the container port is to be exposed (default 'http').
 
@@ -3326,6 +3333,18 @@ Optional:
 - `tls_key` (String) The TLS certificate key contents.  Refer to the OpenShift route documentation for additional information.
 - `tls_key_secret` (String) The secret name and key reference to the TLS certificate key. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.  Refer to the OpenShift route documentation for additional information.
 - `tls_termination` (String) The TLS termination type, like 'edge', 'passthrough' or 'reencrypt'.  Refer to the OpenShift route documentation for additional information.
+
+
+<a id="nestedatt--spec--integration--traits--security_context"></a>
+### Nested Schema for `spec.integration.traits.security_context`
+
+Optional:
+
+- `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
+- `enabled` (Boolean) Deprecated: no longer in use.
+- `run_as_non_root` (Boolean) Security Context RunAsNonRoot configuration (default false).
+- `run_as_user` (Number) Security Context RunAsUser configuration (default none): this value is automatically retrieved in Openshift clusters when not explicitly set.
+- `seccomp_profile_type` (String) Security Context SeccompProfileType configuration (default RuntimeDefault).
 
 
 <a id="nestedatt--spec--integration--traits--service"></a>

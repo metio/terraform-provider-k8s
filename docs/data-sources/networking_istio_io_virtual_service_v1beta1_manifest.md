@@ -96,6 +96,7 @@ Optional:
 - `allow_origins` (Attributes List) String patterns that match allowed origins. (see [below for nested schema](#nestedatt--spec--http--cors_policy--allow_origins))
 - `expose_headers` (List of String) A list of HTTP headers that the browsers are allowed to access.
 - `max_age` (String) Specifies how long the results of a preflight request can be cached.
+- `unmatched_preflights` (String) Indicates whether preflight requests not matching the configured allowed origin shouldn't be forwarded to the upstream.Valid Options: FORWARD, IGNORE
 
 <a id="nestedatt--spec--http--cors_policy--allow_origins"></a>
 ### Nested Schema for `spec.http.cors_policy.allow_origins`

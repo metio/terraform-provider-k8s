@@ -58,8 +58,9 @@ type NetworkingIstioIoVirtualServiceV1ManifestData struct {
 					Prefix *string `tfsdk:"prefix" json:"prefix,omitempty"`
 					Regex  *string `tfsdk:"regex" json:"regex,omitempty"`
 				} `tfsdk:"allow_origins" json:"allowOrigins,omitempty"`
-				ExposeHeaders *[]string `tfsdk:"expose_headers" json:"exposeHeaders,omitempty"`
-				MaxAge        *string   `tfsdk:"max_age" json:"maxAge,omitempty"`
+				ExposeHeaders       *[]string `tfsdk:"expose_headers" json:"exposeHeaders,omitempty"`
+				MaxAge              *string   `tfsdk:"max_age" json:"maxAge,omitempty"`
+				UnmatchedPreflights *string   `tfsdk:"unmatched_preflights" json:"unmatchedPreflights,omitempty"`
 			} `tfsdk:"cors_policy" json:"corsPolicy,omitempty"`
 			Delegate *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -457,6 +458,17 @@ func (r *NetworkingIstioIoVirtualServiceV1Manifest) Schema(_ context.Context, _ 
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"unmatched_preflights": schema.StringAttribute{
+											Description:         "Indicates whether preflight requests not matching the configured allowed origin shouldn't be forwarded to the upstream.Valid Options: FORWARD, IGNORE",
+											MarkdownDescription: "Indicates whether preflight requests not matching the configured allowed origin shouldn't be forwarded to the upstream.Valid Options: FORWARD, IGNORE",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("UNSPECIFIED", "FORWARD", "IGNORE"),
+											},
 										},
 									},
 									Required: false,

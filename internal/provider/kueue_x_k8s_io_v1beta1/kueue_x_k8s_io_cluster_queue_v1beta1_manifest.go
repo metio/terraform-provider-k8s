@@ -50,7 +50,10 @@ type KueueXK8SIoClusterQueueV1Beta1ManifestData struct {
 				OnFlavors *[]string `tfsdk:"on_flavors" json:"onFlavors,omitempty"`
 			} `tfsdk:"admission_checks" json:"admissionChecks,omitempty"`
 		} `tfsdk:"admission_checks_strategy" json:"admissionChecksStrategy,omitempty"`
-		Cohort            *string `tfsdk:"cohort" json:"cohort,omitempty"`
+		Cohort      *string `tfsdk:"cohort" json:"cohort,omitempty"`
+		FairSharing *struct {
+			Weight *string `tfsdk:"weight" json:"weight,omitempty"`
+		} `tfsdk:"fair_sharing" json:"fairSharing,omitempty"`
 		FlavorFungibility *struct {
 			WhenCanBorrow  *string `tfsdk:"when_can_borrow" json:"whenCanBorrow,omitempty"`
 			WhenCanPreempt *string `tfsdk:"when_can_preempt" json:"whenCanPreempt,omitempty"`
@@ -209,6 +212,23 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 							stringvalidator.LengthAtMost(253),
 							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 						},
+					},
+
+					"fair_sharing": schema.SingleNestedAttribute{
+						Description:         "fairSharing defines the properties of the ClusterQueue when participating in fair sharing.The values are only relevant if fair sharing is enabled in the Kueue configuration.",
+						MarkdownDescription: "fairSharing defines the properties of the ClusterQueue when participating in fair sharing.The values are only relevant if fair sharing is enabled in the Kueue configuration.",
+						Attributes: map[string]schema.Attribute{
+							"weight": schema.StringAttribute{
+								Description:         "weight gives a comparative advantage to this ClusterQueue when competing for unusedresources in the cohort against other ClusterQueues.The share of a ClusterQueue is based on the dominant resource usage above nominalquotas for each resource, divided by the weight.Admission prioritizes scheduling workloads from ClusterQueues with the lowest shareand preempting workloads from the ClusterQueues with the highest share.A zero weight implies infinite share value, meaning that this ClusterQueue will alwaysbe at disadvantage against other ClusterQueues.",
+								MarkdownDescription: "weight gives a comparative advantage to this ClusterQueue when competing for unusedresources in the cohort against other ClusterQueues.The share of a ClusterQueue is based on the dominant resource usage above nominalquotas for each resource, divided by the weight.Admission prioritizes scheduling workloads from ClusterQueues with the lowest shareand preempting workloads from the ClusterQueues with the highest share.A zero weight implies infinite share value, meaning that this ClusterQueue will alwaysbe at disadvantage against other ClusterQueues.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"flavor_fungibility": schema.SingleNestedAttribute{

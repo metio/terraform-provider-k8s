@@ -63,13 +63,16 @@ type AppsKubeblocksIoConfigConstraintV1Alpha1ManifestData struct {
 					Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
 				} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
 			} `tfsdk:"items" json:"items,omitempty"`
-			MountPoint *string `tfsdk:"mount_point" json:"mountPoint,omitempty"`
-			Name       *string `tfsdk:"name" json:"name,omitempty"`
+			MountPoint   *string `tfsdk:"mount_point" json:"mountPoint,omitempty"`
+			Name         *string `tfsdk:"name" json:"name,omitempty"`
+			ScriptConfig *struct {
+				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				ScriptConfigMapRef *string `tfsdk:"script_config_map_ref" json:"scriptConfigMapRef,omitempty"`
+			} `tfsdk:"script_config" json:"scriptConfig,omitempty"`
 		} `tfsdk:"downward_api_options" json:"downwardAPIOptions,omitempty"`
-		DynamicActionCanBeMerged       *bool     `tfsdk:"dynamic_action_can_be_merged" json:"dynamicActionCanBeMerged,omitempty"`
-		DynamicParameterSelectedPolicy *string   `tfsdk:"dynamic_parameter_selected_policy" json:"dynamicParameterSelectedPolicy,omitempty"`
-		DynamicParameters              *[]string `tfsdk:"dynamic_parameters" json:"dynamicParameters,omitempty"`
-		FormatterConfig                *struct {
+		DynamicActionCanBeMerged *bool     `tfsdk:"dynamic_action_can_be_merged" json:"dynamicActionCanBeMerged,omitempty"`
+		DynamicParameters        *[]string `tfsdk:"dynamic_parameters" json:"dynamicParameters,omitempty"`
+		FormatterConfig          *struct {
 			Format    *string `tfsdk:"format" json:"format,omitempty"`
 			IniConfig *struct {
 				SectionName *string `tfsdk:"section_name" json:"sectionName,omitempty"`
@@ -81,10 +84,23 @@ type AppsKubeblocksIoConfigConstraintV1Alpha1ManifestData struct {
 				ProcessName *string `tfsdk:"process_name" json:"processName,omitempty"`
 			} `tfsdk:"auto_trigger" json:"autoTrigger,omitempty"`
 			ShellTrigger *struct {
-				BatchParametersTemplate *string   `tfsdk:"batch_parameters_template" json:"batchParametersTemplate,omitempty"`
-				BatchReload             *bool     `tfsdk:"batch_reload" json:"batchReload,omitempty"`
-				Command                 *[]string `tfsdk:"command" json:"command,omitempty"`
-				Sync                    *bool     `tfsdk:"sync" json:"sync,omitempty"`
+				BatchParamsFormatterTemplate *string   `tfsdk:"batch_params_formatter_template" json:"batchParamsFormatterTemplate,omitempty"`
+				BatchReload                  *bool     `tfsdk:"batch_reload" json:"batchReload,omitempty"`
+				Command                      *[]string `tfsdk:"command" json:"command,omitempty"`
+				ScriptConfig                 *struct {
+					Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					ScriptConfigMapRef *string `tfsdk:"script_config_map_ref" json:"scriptConfigMapRef,omitempty"`
+				} `tfsdk:"script_config" json:"scriptConfig,omitempty"`
+				Sync       *bool `tfsdk:"sync" json:"sync,omitempty"`
+				ToolsSetup *struct {
+					MountPoint  *string `tfsdk:"mount_point" json:"mountPoint,omitempty"`
+					ToolConfigs *[]struct {
+						AsContainerImage *bool     `tfsdk:"as_container_image" json:"asContainerImage,omitempty"`
+						Command          *[]string `tfsdk:"command" json:"command,omitempty"`
+						Image            *string   `tfsdk:"image" json:"image,omitempty"`
+						Name             *string   `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"tool_configs" json:"toolConfigs,omitempty"`
+				} `tfsdk:"tools_setup" json:"toolsSetup,omitempty"`
 			} `tfsdk:"shell_trigger" json:"shellTrigger,omitempty"`
 			TplScriptTrigger *struct {
 				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -96,7 +112,8 @@ type AppsKubeblocksIoConfigConstraintV1Alpha1ManifestData struct {
 				Signal      *string `tfsdk:"signal" json:"signal,omitempty"`
 			} `tfsdk:"unix_signal_trigger" json:"unixSignalTrigger,omitempty"`
 		} `tfsdk:"reload_options" json:"reloadOptions,omitempty"`
-		ScriptConfigs *[]struct {
+		ReloadStaticParamsBeforeRestart *bool `tfsdk:"reload_static_params_before_restart" json:"reloadStaticParamsBeforeRestart,omitempty"`
+		ScriptConfigs                   *[]struct {
 			Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			ScriptConfigMapRef *string `tfsdk:"script_config_map_ref" json:"scriptConfigMapRef,omitempty"`
 		} `tfsdk:"script_configs" json:"scriptConfigs,omitempty"`
@@ -341,6 +358,35 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
 									},
 								},
+
+								"script_config": schema.SingleNestedAttribute{
+									Description:         "ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the DownwardAction to perform specific tasks or configurations.",
+									MarkdownDescription: "ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the DownwardAction to perform specific tasks or configurations.",
+									Attributes: map[string]schema.Attribute{
+										"namespace": schema.StringAttribute{
+											Description:         "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+											MarkdownDescription: "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtMost(63),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
+											},
+										},
+
+										"script_config_map_ref": schema.StringAttribute{
+											Description:         "Specifies the reference to the ConfigMap containing the scripts.",
+											MarkdownDescription: "Specifies the reference to the ConfigMap containing the scripts.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
 							},
 						},
 						Required: false,
@@ -354,17 +400,6 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-					},
-
-					"dynamic_parameter_selected_policy": schema.StringAttribute{
-						Description:         "Configures whether the dynamic reload specified in 'reloadOptions' applies only to dynamic parameters or to all parameters (including static parameters).  - 'dynamic' (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - 'all': Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.",
-						MarkdownDescription: "Configures whether the dynamic reload specified in 'reloadOptions' applies only to dynamic parameters or to all parameters (including static parameters).  - 'dynamic' (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - 'all': Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("all", "dynamic"),
-						},
 					},
 
 					"dynamic_parameters": schema.ListAttribute{
@@ -447,9 +482,9 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 								Description:         "Allows to execute a custom shell script to reload the process.",
 								MarkdownDescription: "Allows to execute a custom shell script to reload the process.",
 								Attributes: map[string]schema.Attribute{
-									"batch_parameters_template": schema.StringAttribute{
-										Description:         "Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data.  Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
-										MarkdownDescription: "Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data.  Example template:  '''yaml batchParametersTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
+									"batch_params_formatter_template": schema.StringAttribute{
+										Description:         "Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data.  Example template:  '''yaml batchParamsFormatterTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
+										MarkdownDescription: "Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data.  Example template:  '''yaml batchParamsFormatterTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} '''  This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 '''  If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -472,12 +507,109 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 										Computed:            false,
 									},
 
+									"script_config": schema.SingleNestedAttribute{
+										Description:         "ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the dynamic reload.",
+										MarkdownDescription: "ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the dynamic reload.",
+										Attributes: map[string]schema.Attribute{
+											"namespace": schema.StringAttribute{
+												Description:         "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+												MarkdownDescription: "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(63),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
+												},
+											},
+
+											"script_config_map_ref": schema.StringAttribute{
+												Description:         "Specifies the reference to the ConfigMap containing the scripts.",
+												MarkdownDescription: "Specifies the reference to the ConfigMap containing the scripts.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"sync": schema.BoolAttribute{
 										Description:         "Determines the synchronization mode of parameter updates with 'config-manager'.  - 'True': Executes reload actions synchronously, pausing until completion. - 'False': Executes reload actions asynchronously, without waiting for completion.",
 										MarkdownDescription: "Determines the synchronization mode of parameter updates with 'config-manager'.  - 'True': Executes reload actions synchronously, pausing until completion. - 'False': Executes reload actions asynchronously, without waiting for completion.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"tools_setup": schema.SingleNestedAttribute{
+										Description:         "Specifies the tools container image used by ShellTrigger for dynamic reload. If the dynamic reload action is triggered by a ShellTrigger, this field is required. This image must contain all necessary tools for executing the ShellTrigger scripts.  Usually the specified image is referenced by the init container, which is then responsible for copy the tools from the image to a bin volume. This ensures that the tools are available to the 'config-manager' sidecar.",
+										MarkdownDescription: "Specifies the tools container image used by ShellTrigger for dynamic reload. If the dynamic reload action is triggered by a ShellTrigger, this field is required. This image must contain all necessary tools for executing the ShellTrigger scripts.  Usually the specified image is referenced by the init container, which is then responsible for copy the tools from the image to a bin volume. This ensures that the tools are available to the 'config-manager' sidecar.",
+										Attributes: map[string]schema.Attribute{
+											"mount_point": schema.StringAttribute{
+												Description:         "Specifies the directory path in the container where the tools-related files are to be copied. This field is typically used with an emptyDir volume to ensure a temporary, empty directory is provided at pod creation.",
+												MarkdownDescription: "Specifies the directory path in the container where the tools-related files are to be copied. This field is typically used with an emptyDir volume to ensure a temporary, empty directory is provided at pod creation.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(128),
+												},
+											},
+
+											"tool_configs": schema.ListNestedAttribute{
+												Description:         "Specifies a list of settings of init containers that prepare tools for dynamic reload.",
+												MarkdownDescription: "Specifies a list of settings of init containers that prepare tools for dynamic reload.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"as_container_image": schema.BoolAttribute{
+															Description:         "Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml toolsSetup:: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''",
+															MarkdownDescription: "Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml toolsSetup:: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"command": schema.ListAttribute{
+															Description:         "Specifies the command to be executed by the init container.",
+															MarkdownDescription: "Specifies the command to be executed by the init container.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"image": schema.StringAttribute{
+															Description:         "Specifies the tool container image.",
+															MarkdownDescription: "Specifies the tool container image.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Specifies the name of the init container.",
+															MarkdownDescription: "Specifies the name of the init container.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtMost(63),
+																stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
+															},
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -553,6 +685,14 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"reload_static_params_before_restart": schema.BoolAttribute{
+						Description:         "Configures whether the dynamic reload specified in 'reloadOptions' applies only to dynamic parameters or to all parameters (including static parameters).  - false (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - true: Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.",
+						MarkdownDescription: "Configures whether the dynamic reload specified in 'reloadOptions' applies only to dynamic parameters or to all parameters (including static parameters).  - false (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - true: Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"script_configs": schema.ListNestedAttribute{
@@ -670,8 +810,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Alpha1Manifest) Schema(_ context.Cont
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"as_container_image": schema.BoolAttribute{
-											Description:         "Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml reloadToolsImage: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''",
-											MarkdownDescription: "Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml reloadToolsImage: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''",
+											Description:         "Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml toolsSetup:: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''",
+											MarkdownDescription: "Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files).  If enabled, the tool image is deployed as a sidecar container image.  Examples: '''yaml toolsSetup:: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image:  apecloud/oceanbase:4.2.0.0-100010032023083021 '''  generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools  containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

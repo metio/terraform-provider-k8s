@@ -45,10 +45,10 @@ type AppsKubeblocksIoOpsDefinitionV1Alpha1ManifestData struct {
 	Spec *struct {
 		Actions *[]struct {
 			Exec *struct {
-				BackoffLimit      *int64    `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
-				Command           *[]string `tfsdk:"command" json:"command,omitempty"`
-				ContainerName     *string   `tfsdk:"container_name" json:"containerName,omitempty"`
-				TargetPodTemplate *string   `tfsdk:"target_pod_template" json:"targetPodTemplate,omitempty"`
+				BackoffLimit         *int64    `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
+				Command              *[]string `tfsdk:"command" json:"command,omitempty"`
+				ContainerName        *string   `tfsdk:"container_name" json:"containerName,omitempty"`
+				PodInfoExtractorName *string   `tfsdk:"pod_info_extractor_name" json:"podInfoExtractorName,omitempty"`
 			} `tfsdk:"exec" json:"exec,omitempty"`
 			FailurePolicy    *string   `tfsdk:"failure_policy" json:"failurePolicy,omitempty"`
 			Name             *string   `tfsdk:"name" json:"name,omitempty"`
@@ -75,8 +75,9 @@ type AppsKubeblocksIoOpsDefinitionV1Alpha1ManifestData struct {
 				} `tfsdk:"resource" json:"resource,omitempty"`
 			} `tfsdk:"resource_modifier" json:"resourceModifier,omitempty"`
 			Workload *struct {
-				BackoffLimit *int64 `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
-				PodSpec      *struct {
+				BackoffLimit         *int64  `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
+				PodInfoExtractorName *string `tfsdk:"pod_info_extractor_name" json:"podInfoExtractorName,omitempty"`
+				PodSpec              *struct {
 					ActiveDeadlineSeconds *int64 `tfsdk:"active_deadline_seconds" json:"activeDeadlineSeconds,omitempty"`
 					Affinity              *struct {
 						NodeAffinity *struct {
@@ -1314,41 +1315,36 @@ type AppsKubeblocksIoOpsDefinitionV1Alpha1ManifestData struct {
 						} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 					} `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"pod_spec" json:"podSpec,omitempty"`
-				TargetPodTemplate *string `tfsdk:"target_pod_template" json:"targetPodTemplate,omitempty"`
-				Type              *string `tfsdk:"type" json:"type,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"workload" json:"workload,omitempty"`
 		} `tfsdk:"actions" json:"actions,omitempty"`
-		ComponentDefinitionRefs *[]struct {
-			AccountName *string `tfsdk:"account_name" json:"accountName,omitempty"`
-			Name        *string `tfsdk:"name" json:"name,omitempty"`
-			ServiceName *string `tfsdk:"service_name" json:"serviceName,omitempty"`
-		} `tfsdk:"component_definition_refs" json:"componentDefinitionRefs,omitempty"`
+		ComponentInfos *[]struct {
+			AccountName             *string `tfsdk:"account_name" json:"accountName,omitempty"`
+			ComponentDefinitionName *string `tfsdk:"component_definition_name" json:"componentDefinitionName,omitempty"`
+			ServiceName             *string `tfsdk:"service_name" json:"serviceName,omitempty"`
+		} `tfsdk:"component_infos" json:"componentInfos,omitempty"`
 		ParametersSchema *struct {
 			OpenAPIV3Schema *map[string]string `tfsdk:"open_apiv3_schema" json:"openAPIV3Schema,omitempty"`
 		} `tfsdk:"parameters_schema" json:"parametersSchema,omitempty"`
-		PreConditions *[]struct {
-			Rule *struct {
-				Expression *string `tfsdk:"expression" json:"expression,omitempty"`
-				Message    *string `tfsdk:"message" json:"message,omitempty"`
-			} `tfsdk:"rule" json:"rule,omitempty"`
-		} `tfsdk:"pre_conditions" json:"preConditions,omitempty"`
-		TargetPodTemplates *[]struct {
-			Name        *string `tfsdk:"name" json:"name,omitempty"`
-			PodSelector *struct {
-				Availability    *string `tfsdk:"availability" json:"availability,omitempty"`
-				Role            *string `tfsdk:"role" json:"role,omitempty"`
-				SelectionPolicy *string `tfsdk:"selection_policy" json:"selectionPolicy,omitempty"`
-			} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
-			Vars *[]struct {
+		PodInfoExtractors *[]struct {
+			Env *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				ValueFrom *struct {
 					EnvRef *struct {
-						ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
-						EnvName       *string `tfsdk:"env_name" json:"envName,omitempty"`
+						EnvName             *string `tfsdk:"env_name" json:"envName,omitempty"`
+						TargetContainerName *string `tfsdk:"target_container_name" json:"targetContainerName,omitempty"`
 					} `tfsdk:"env_ref" json:"envRef,omitempty"`
-					FieldPath *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+					FieldPath *struct {
+						ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+						FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+					} `tfsdk:"field_path" json:"fieldPath,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-			} `tfsdk:"vars" json:"vars,omitempty"`
+			} `tfsdk:"env" json:"env,omitempty"`
+			Name        *string `tfsdk:"name" json:"name,omitempty"`
+			PodSelector *struct {
+				MultiPodSelectionPolicy *string `tfsdk:"multi_pod_selection_policy" json:"multiPodSelectionPolicy,omitempty"`
+				Role                    *string `tfsdk:"role" json:"role,omitempty"`
+			} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
 			VolumeMounts *[]struct {
 				MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 				MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
@@ -1357,7 +1353,13 @@ type AppsKubeblocksIoOpsDefinitionV1Alpha1ManifestData struct {
 				SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
 				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
-		} `tfsdk:"target_pod_templates" json:"targetPodTemplates,omitempty"`
+		} `tfsdk:"pod_info_extractors" json:"podInfoExtractors,omitempty"`
+		PreConditions *[]struct {
+			Rule *struct {
+				Expression *string `tfsdk:"expression" json:"expression,omitempty"`
+				Message    *string `tfsdk:"message" json:"message,omitempty"`
+			} `tfsdk:"rule" json:"rule,omitempty"`
+		} `tfsdk:"pre_conditions" json:"preConditions,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -1463,9 +1465,9 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 											Computed:            false,
 										},
 
-										"target_pod_template": schema.StringAttribute{
-											Description:         "Specifies a TargetPodTemplate defined in the 'opsDefinition.spec.targetPodTemplates'.",
-											MarkdownDescription: "Specifies a TargetPodTemplate defined in the 'opsDefinition.spec.targetPodTemplates'.",
+										"pod_info_extractor_name": schema.StringAttribute{
+											Description:         "Specifies a PodInfoExtractor defined in the 'opsDefinition.spec.podInfoExtractors'.",
+											MarkdownDescription: "Specifies a PodInfoExtractor defined in the 'opsDefinition.spec.podInfoExtractors'.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -1664,6 +1666,14 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 											Validators: []validator.Int64{
 												int64validator.AtLeast(0),
 											},
+										},
+
+										"pod_info_extractor_name": schema.StringAttribute{
+											Description:         "Specifies a PodInfoExtractor defined in the 'opsDefinition.spec.podInfoExtractors'.",
+											MarkdownDescription: "Specifies a PodInfoExtractor defined in the 'opsDefinition.spec.podInfoExtractors'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"pod_spec": schema.SingleNestedAttribute{
@@ -9950,14 +9960,6 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 											Computed: false,
 										},
 
-										"target_pod_template": schema.StringAttribute{
-											Description:         "Specifies a TargetPodTemplate defined in the 'opsDefinition.spec.targetPodTemplates'.",
-											MarkdownDescription: "Specifies a TargetPodTemplate defined in the 'opsDefinition.spec.targetPodTemplates'.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
 										"type": schema.StringAttribute{
 											Description:         "Defines the workload type of the action. Valid values include 'Job' and 'Pod'.  - 'Job': Creates a Job to execute the action. - 'Pod': Creates a Pod to execute the action. Note: unlike Jobs, manually deleting a Pod does not affect the 'backoffLimit'.",
 											MarkdownDescription: "Defines the workload type of the action. Valid values include 'Job' and 'Pod'.  - 'Job': Creates a Job to execute the action. - 'Pod': Creates a Pod to execute the action. Note: unlike Jobs, manually deleting a Pod does not affect the 'backoffLimit'.",
@@ -9980,7 +9982,7 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 						Computed: false,
 					},
 
-					"component_definition_refs": schema.ListNestedAttribute{
+					"component_infos": schema.ListNestedAttribute{
 						Description:         "Specifies a list of ComponentDefinition for Components associated with this OpsDefinition. It also includes connection credentials (address and account) for each Component.",
 						MarkdownDescription: "Specifies a list of ComponentDefinition for Components associated with this OpsDefinition. It also includes connection credentials (address and account) for each Component.",
 						NestedObject: schema.NestedAttributeObject{
@@ -9993,7 +9995,7 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 									Computed:            false,
 								},
 
-								"name": schema.StringAttribute{
+								"component_definition_name": schema.StringAttribute{
 									Description:         "Specifies the name of the ComponentDefinition.",
 									MarkdownDescription: "Specifies the name of the ComponentDefinition.",
 									Required:            true,
@@ -10036,98 +10038,12 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 						Computed: false,
 					},
 
-					"pre_conditions": schema.ListNestedAttribute{
-						Description:         "Specifies the preconditions that must be met to run the actions for the operation. if set, it will check the condition before the Component runs this operation. Example: '''yaml preConditions: - rule: expression: '{{ eq .component.status.phase 'Running' }}' message: Component is not in Running status. '''",
-						MarkdownDescription: "Specifies the preconditions that must be met to run the actions for the operation. if set, it will check the condition before the Component runs this operation. Example: '''yaml preConditions: - rule: expression: '{{ eq .component.status.phase 'Running' }}' message: Component is not in Running status. '''",
+					"pod_info_extractors": schema.ListNestedAttribute{
+						Description:         "Specifies a list of PodInfoExtractor, each designed to select a specific Pod and extract selected runtime info from its PodSpec. The extracted information, such as environment variables, volumes and tolerations, are then injected into Jobs or Pods that execute the OpsActions defined in 'actions'.",
+						MarkdownDescription: "Specifies a list of PodInfoExtractor, each designed to select a specific Pod and extract selected runtime info from its PodSpec. The extracted information, such as environment variables, volumes and tolerations, are then injected into Jobs or Pods that execute the OpsActions defined in 'actions'.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
-								"rule": schema.SingleNestedAttribute{
-									Description:         "Specifies the conditions that must be met for the operation to execute.",
-									MarkdownDescription: "Specifies the conditions that must be met for the operation to execute.",
-									Attributes: map[string]schema.Attribute{
-										"expression": schema.StringAttribute{
-											Description:         "Specifies a Go template expression that determines how the operation can be executed. The return value must be either 'true' or 'false'. Available built-in objects that can be referenced in the expression include:  - 'params': Input parameters. - 'cluster': The referenced Cluster object. - 'component': The referenced Component object.",
-											MarkdownDescription: "Specifies a Go template expression that determines how the operation can be executed. The return value must be either 'true' or 'false'. Available built-in objects that can be referenced in the expression include:  - 'params': Input parameters. - 'cluster': The referenced Cluster object. - 'component': The referenced Component object.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"message": schema.StringAttribute{
-											Description:         "Specifies the error or status message reported if the 'expression' does not evaluate to 'true'.",
-											MarkdownDescription: "Specifies the error or status message reported if the 'expression' does not evaluate to 'true'.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"target_pod_templates": schema.ListNestedAttribute{
-						Description:         "Specifies a list of TargetPodTemplate, each designed to select a specific Pod and extract selected runtime info from its PodSpec. The extracted information, such as environment variables, volumes and tolerations, are then injected into Jobs or Pods that execute the OpsActions defined in 'actions'.",
-						MarkdownDescription: "Specifies a list of TargetPodTemplate, each designed to select a specific Pod and extract selected runtime info from its PodSpec. The extracted information, such as environment variables, volumes and tolerations, are then injected into Jobs or Pods that execute the OpsActions defined in 'actions'.",
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"name": schema.StringAttribute{
-									Description:         "Specifies the name of the TargetPodTemplate.",
-									MarkdownDescription: "Specifies the name of the TargetPodTemplate.",
-									Required:            true,
-									Optional:            false,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.LengthAtMost(32),
-									},
-								},
-
-								"pod_selector": schema.SingleNestedAttribute{
-									Description:         "Used to select the target Pod from which environment variables and volumes are extracted from its PodSpec.",
-									MarkdownDescription: "Used to select the target Pod from which environment variables and volumes are extracted from its PodSpec.",
-									Attributes: map[string]schema.Attribute{
-										"availability": schema.StringAttribute{
-											Description:         "Specifies the pod selection criteria based on their availability: - 'Available': Only selects available pods, and terminates the action if none are found. - 'PreferredAvailable': Prioritizes available pods but considers others if none available. - 'None': No availability requirements.",
-											MarkdownDescription: "Specifies the pod selection criteria based on their availability: - 'Available': Only selects available pods, and terminates the action if none are found. - 'PreferredAvailable': Prioritizes available pods but considers others if none available. - 'None': No availability requirements.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.OneOf("Available", "PreferredAvailable", "None"),
-											},
-										},
-
-										"role": schema.StringAttribute{
-											Description:         "Specifies the role of the target Pod.",
-											MarkdownDescription: "Specifies the role of the target Pod.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"selection_policy": schema.StringAttribute{
-											Description:         "Defines the policy for selecting the target pod when multiple pods match the podSelector. It can be either 'Any' (select any one pod that matches the podSelector) or 'All' (select all pods that match the podSelector).",
-											MarkdownDescription: "Defines the policy for selecting the target pod when multiple pods match the podSelector. It can be either 'Any' (select any one pod that matches the podSelector) or 'All' (select all pods that match the podSelector).",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.OneOf("All", "Any"),
-											},
-										},
-									},
-									Required: true,
-									Optional: false,
-									Computed: false,
-								},
-
-								"vars": schema.ListNestedAttribute{
+								"env": schema.ListNestedAttribute{
 									Description:         "Specifies a list of environment variables to be extracted from a selected Pod, and injected into the containers executing each OpsAction.",
 									MarkdownDescription: "Specifies a list of environment variables to be extracted from a selected Pod, and injected into the containers executing each OpsAction.",
 									NestedObject: schema.NestedAttributeObject{
@@ -10148,19 +10064,19 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 														Description:         "Specifies a reference to a specific environment variable within a container. Used to specify the source of the variable, which can be either 'env' or 'envFrom'.",
 														MarkdownDescription: "Specifies a reference to a specific environment variable within a container. Used to specify the source of the variable, which can be either 'env' or 'envFrom'.",
 														Attributes: map[string]schema.Attribute{
-															"container_name": schema.StringAttribute{
-																Description:         "Specifies the container name in the target Pod. If not specified, the first container will be used by default.",
-																MarkdownDescription: "Specifies the container name in the target Pod. If not specified, the first container will be used by default.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-
 															"env_name": schema.StringAttribute{
 																Description:         "Defines the name of the environment variable. This name can originate from an 'env' entry or be a data key from an 'envFrom' source.",
 																MarkdownDescription: "Defines the name of the environment variable. This name can originate from an 'env' entry or be a data key from an 'envFrom' source.",
 																Required:            true,
 																Optional:            false,
+																Computed:            false,
+															},
+
+															"target_container_name": schema.StringAttribute{
+																Description:         "Specifies the container name in the target Pod. If not specified, the first container will be used by default.",
+																MarkdownDescription: "Specifies the container name in the target Pod. If not specified, the first container will be used by default.",
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 														},
@@ -10169,12 +10085,29 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 														Computed: false,
 													},
 
-													"field_path": schema.StringAttribute{
+													"field_path": schema.SingleNestedAttribute{
 														Description:         "Represents the JSONPath expression pointing to the specific data within the JSON structure of the target Pod. It is used to extract precise data locations for operations on the Pod.",
 														MarkdownDescription: "Represents the JSONPath expression pointing to the specific data within the JSON structure of the target Pod. It is used to extract precise data locations for operations on the Pod.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
+														Attributes: map[string]schema.Attribute{
+															"api_version": schema.StringAttribute{
+																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"field_path": schema.StringAttribute{
+																Description:         "Path of the field to select in the specified API version.",
+																MarkdownDescription: "Path of the field to select in the specified API version.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 												},
 												Required: true,
@@ -10185,6 +10118,45 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 									},
 									Required: false,
 									Optional: true,
+									Computed: false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Specifies the name of the PodInfoExtractor.",
+									MarkdownDescription: "Specifies the name of the PodInfoExtractor.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(32),
+									},
+								},
+
+								"pod_selector": schema.SingleNestedAttribute{
+									Description:         "Used to select the target Pod from which environment variables and volumes are extracted from its PodSpec.",
+									MarkdownDescription: "Used to select the target Pod from which environment variables and volumes are extracted from its PodSpec.",
+									Attributes: map[string]schema.Attribute{
+										"multi_pod_selection_policy": schema.StringAttribute{
+											Description:         "Defines the policy for selecting the target pod when multiple pods match the podSelector. It can be either 'Any' (select any one pod that matches the podSelector) or 'All' (select all pods that match the podSelector).",
+											MarkdownDescription: "Defines the policy for selecting the target pod when multiple pods match the podSelector. It can be either 'Any' (select any one pod that matches the podSelector) or 'All' (select all pods that match the podSelector).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("All", "Any"),
+											},
+										},
+
+										"role": schema.StringAttribute{
+											Description:         "Specifies the role of the target Pod.",
+											MarkdownDescription: "Specifies the role of the target Pod.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: true,
+									Optional: false,
 									Computed: false,
 								},
 
@@ -10240,6 +10212,42 @@ func (r *AppsKubeblocksIoOpsDefinitionV1Alpha1Manifest) Schema(_ context.Context
 												Optional:            true,
 												Computed:            false,
 											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"pre_conditions": schema.ListNestedAttribute{
+						Description:         "Specifies the preconditions that must be met to run the actions for the operation. if set, it will check the condition before the Component runs this operation. Example: '''yaml preConditions: - rule: expression: '{{ eq .component.status.phase 'Running' }}' message: Component is not in Running status. '''",
+						MarkdownDescription: "Specifies the preconditions that must be met to run the actions for the operation. if set, it will check the condition before the Component runs this operation. Example: '''yaml preConditions: - rule: expression: '{{ eq .component.status.phase 'Running' }}' message: Component is not in Running status. '''",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"rule": schema.SingleNestedAttribute{
+									Description:         "Specifies the conditions that must be met for the operation to execute.",
+									MarkdownDescription: "Specifies the conditions that must be met for the operation to execute.",
+									Attributes: map[string]schema.Attribute{
+										"expression": schema.StringAttribute{
+											Description:         "Specifies a Go template expression that determines how the operation can be executed. The return value must be either 'true' or 'false'. Available built-in objects that can be referenced in the expression include:  - 'params': Input parameters. - 'cluster': The referenced Cluster object. - 'component': The referenced Component object.",
+											MarkdownDescription: "Specifies a Go template expression that determines how the operation can be executed. The return value must be either 'true' or 'false'. Available built-in objects that can be referenced in the expression include:  - 'params': Input parameters. - 'cluster': The referenced Cluster object. - 'component': The referenced Component object.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"message": schema.StringAttribute{
+											Description:         "Specifies the error or status message reported if the 'expression' does not evaluate to 'true'.",
+											MarkdownDescription: "Specifies the error or status message reported if the 'expression' does not evaluate to 'true'.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
 										},
 									},
 									Required: false,

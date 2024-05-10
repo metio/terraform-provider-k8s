@@ -178,7 +178,7 @@ Required:
 Optional:
 
 - `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.
-- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path (see [below for nested schema](#nestedatt--spec--environment--patches--type--merge_options))
+- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--environment--patches--type--merge_options))
 
 <a id="nestedatt--spec--environment--patches--type--merge_options"></a>
 ### Nested Schema for `spec.environment.patches.type.merge_options`
@@ -353,7 +353,7 @@ Required:
 Optional:
 
 - `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.
-- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--merge_options))
+- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--type--merge_options))
 
 <a id="nestedatt--spec--patch_sets--patches--type--merge_options"></a>
 ### Nested Schema for `spec.patch_sets.patches.type.merge_options`
@@ -589,7 +589,7 @@ Required:
 Optional:
 
 - `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.
-- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path (see [below for nested schema](#nestedatt--spec--resources--patches--type--merge_options))
+- `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--resources--patches--type--merge_options))
 
 <a id="nestedatt--spec--resources--patches--type--merge_options"></a>
 ### Nested Schema for `spec.resources.patches.type.merge_options`

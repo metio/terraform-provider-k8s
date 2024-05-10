@@ -4046,7 +4046,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															Computed:            false,
 															Validators: []validator.String{
 																stringvalidator.LengthAtLeast(1),
-																stringvalidator.OneOf("team", "teams", "user", "escalation", "schedule"),
 															},
 														},
 

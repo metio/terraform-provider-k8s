@@ -55,10 +55,10 @@ Optional:
 Required:
 
 - `backup_policies` (Attributes List) Represents an array of BackupPolicy templates, with each template corresponding to a specified ComponentDefinition or to a group of ComponentDefinitions that are different versions of definitions of the same component. (see [below for nested schema](#nestedatt--spec--backup_policies))
-- `cluster_definition_ref` (String) Specifies the name of a ClusterDefinition.  This is an immutable attribute that cannot be changed after creation.
 
 Optional:
 
+- `cluster_definition_ref` (String) Specifies the name of a ClusterDefinition. This is an immutable attribute that cannot be changed after creation. And this field is deprecated since v0.9, consider using the ComponentDef instead.
 - `identifier` (String) Specifies a unique identifier for the BackupPolicyTemplate.  This identifier will be used as the suffix of the name of automatically generated BackupPolicy. This prevents unintended overwriting of BackupPolicies due to name conflicts when multiple BackupPolicyTemplates are present. For instance, using 'backup-policy' for regular backups and 'backup-policy-hscale' for horizontal-scale ops can differentiate the policies.
 
 <a id="nestedatt--spec--backup_policies"></a>

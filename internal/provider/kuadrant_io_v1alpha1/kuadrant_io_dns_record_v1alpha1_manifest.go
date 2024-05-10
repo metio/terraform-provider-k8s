@@ -295,17 +295,24 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					"owner_id": schema.StringAttribute{
 						Description:         "ownerID is a unique string used to identify the owner of this record.",
 						MarkdownDescription: "ownerID is a unique string used to identify the owner of this record.",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(6),
+							stringvalidator.LengthAtMost(12),
+						},
 					},
 
 					"root_host": schema.StringAttribute{
-						Description:         "rootHost is the single root for all endpoints in a DNSRecord. If rootHost is set, it is expected all defined endpoints are children of or equal to this rootHost",
-						MarkdownDescription: "rootHost is the single root for all endpoints in a DNSRecord. If rootHost is set, it is expected all defined endpoints are children of or equal to this rootHost",
-						Required:            false,
-						Optional:            true,
+						Description:         "rootHost is the single root for all endpoints in a DNSRecord. it is expected all defined endpoints are children of or equal to this rootHost",
+						MarkdownDescription: "rootHost is the single root for all endpoints in a DNSRecord. it is expected all defined endpoints are children of or equal to this rootHost",
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
 					},
 				},
 				Required: false,

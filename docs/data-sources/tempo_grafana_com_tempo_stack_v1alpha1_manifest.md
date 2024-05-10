@@ -136,6 +136,7 @@ Optional:
 
 Optional:
 
+- `oauth_proxy` (String) OauthProxy defines the oauth proxy image used to protect the jaegerUI on single tenant.
 - `tempo` (String) Tempo defines the tempo container image.
 - `tempo_gateway` (String) TempoGateway defines the tempo-gateway container image.
 - `tempo_gateway_opa` (String) TempoGatewayOpa defines the OPA sidecar container for TempoGateway.
@@ -655,11 +656,21 @@ Optional:
 
 Optional:
 
+- `authentication` (Attributes) Oauth defines the options for the oauth proxy used to protect jaeger UI (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication))
 - `enabled` (Boolean) Enabled defines if the Jaeger Query component should be created.
 - `ingress` (Attributes) Ingress defines the options for the Jaeger Query ingress. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--ingress))
 - `monitor_tab` (Attributes) MonitorTab defines the monitor tab configuration. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--monitor_tab))
 - `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--resources))
 - `services_query_duration` (String) ServicesQueryDuration defines how long the services will be available in the services list
+
+<a id="nestedatt--spec--template--query_frontend--jaeger_query--authentication"></a>
+### Nested Schema for `spec.template.query_frontend.jaeger_query.authentication`
+
+Optional:
+
+- `enabled` (Boolean) Defines if the authentication will be enabled for jaeger UI.
+- `sar` (String) SAR defines the SAR to be used in the oauth-proxy default is '{'namespace': '<tempo_stack_namespace>', 'resource': 'pods', 'verb': 'get'}
+
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--ingress"></a>
 ### Nested Schema for `spec.template.query_frontend.jaeger_query.ingress`

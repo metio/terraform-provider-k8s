@@ -142,5 +142,5 @@ Optional:
 
 Required:
 
-- `kind` (String)
-- `name` (String)
+- `kind` (String) Kind of the resource
+- `name` (String) Name of the resource

@@ -461,7 +461,7 @@ func (r *KedaShTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Context, 
 										Optional:            false,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("azure", "azure-workload", "gcp", "aws", "aws-eks", "aws-kiam", "none"),
+											stringvalidator.OneOf("azure-workload", "gcp", "aws", "aws-eks", "none"),
 										},
 									},
 
@@ -685,7 +685,7 @@ func (r *KedaShTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Context, 
 										Optional:            false,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("azure", "azure-workload", "gcp", "aws", "aws-eks", "aws-kiam", "none"),
+											stringvalidator.OneOf("azure-workload", "gcp", "aws", "aws-eks", "none"),
 										},
 									},
 
@@ -922,7 +922,7 @@ func (r *KedaShTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Context, 
 										Optional:            false,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("azure", "azure-workload", "gcp", "aws", "aws-eks", "aws-kiam", "none"),
+											stringvalidator.OneOf("azure-workload", "gcp", "aws", "aws-eks", "none"),
 										},
 									},
 
@@ -1207,7 +1207,7 @@ func (r *KedaShTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Context, 
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("azure", "azure-workload", "gcp", "aws", "aws-eks", "aws-kiam", "none"),
+									stringvalidator.OneOf("azure-workload", "gcp", "aws", "aws-eks", "none"),
 								},
 							},
 

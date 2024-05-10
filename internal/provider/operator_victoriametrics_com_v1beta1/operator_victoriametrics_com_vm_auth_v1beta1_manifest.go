@@ -48,6 +48,8 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 		ConfigReloaderExtraArgs *map[string]string   `tfsdk:"config_reloader_extra_args" json:"configReloaderExtraArgs,omitempty"`
 		ConfigSecret            *string              `tfsdk:"config_secret" json:"configSecret,omitempty"`
 		Containers              *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
+		Default_url             *[]string            `tfsdk:"default_url" json:"default_url,omitempty"`
+		Discover_backend_ips    *bool                `tfsdk:"discover_backend_ips" json:"discover_backend_ips,omitempty"`
 		DnsConfig               *struct {
 			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 			Options     *[]struct {
@@ -56,10 +58,12 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 			} `tfsdk:"options" json:"options,omitempty"`
 			Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
 		} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
-		DnsPolicy   *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
-		ExtraArgs   *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
-		ExtraEnvs   *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
-		HostAliases *[]struct {
+		DnsPolicy                  *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+		Drop_src_path_prefix_parts *int64               `tfsdk:"drop_src_path_prefix_parts" json:"drop_src_path_prefix_parts,omitempty"`
+		ExtraArgs                  *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
+		ExtraEnvs                  *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+		Headers                    *[]string            `tfsdk:"headers" json:"headers,omitempty"`
+		HostAliases                *[]struct {
 			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
 		} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
@@ -109,7 +113,11 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 			TlsSecretName *string            `tfsdk:"tls_secret_name" json:"tlsSecretName,omitempty"`
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
 		InitContainers *[]map[string]string `tfsdk:"init_containers" json:"initContainers,omitempty"`
-		License        *struct {
+		Ip_filters     *struct {
+			Allow_list *[]string `tfsdk:"allow_list" json:"allow_list,omitempty"`
+			Deny_list  *[]string `tfsdk:"deny_list" json:"deny_list,omitempty"`
+		} `tfsdk:"ip_filters" json:"ip_filters,omitempty"`
+		License *struct {
 			Key    *string `tfsdk:"key" json:"key,omitempty"`
 			KeyRef *struct {
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -117,12 +125,15 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"key_ref" json:"keyRef,omitempty"`
 		} `tfsdk:"license" json:"license,omitempty"`
-		LivenessProbe       *map[string]string `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
-		LogFormat           *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
-		LogLevel            *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
-		MinReadySeconds     *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
-		NodeSelector        *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-		PodDisruptionBudget *struct {
+		LivenessProbe           *map[string]string `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
+		Load_balancing_policy   *string            `tfsdk:"load_balancing_policy" json:"load_balancing_policy,omitempty"`
+		LogFormat               *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
+		LogLevel                *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
+		Max_concurrent_requests *int64             `tfsdk:"max_concurrent_requests" json:"max_concurrent_requests,omitempty"`
+		MinReadySeconds         *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		NodeSelector            *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		Paused                  *bool              `tfsdk:"paused" json:"paused,omitempty"`
+		PodDisruptionBudget     *struct {
 			MaxUnavailable *string            `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
 			MinAvailable   *string            `tfsdk:"min_available" json:"minAvailable,omitempty"`
 			SelectorLabels *map[string]string `tfsdk:"selector_labels" json:"selectorLabels,omitempty"`
@@ -146,6 +157,8 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
+		Response_headers          *[]string          `tfsdk:"response_headers" json:"response_headers,omitempty"`
+		Retry_status_codes        *[]string          `tfsdk:"retry_status_codes" json:"retry_status_codes,omitempty"`
 		RevisionHistoryLimitCount *int64             `tfsdk:"revision_history_limit_count" json:"revisionHistoryLimitCount,omitempty"`
 		RuntimeClassName          *string            `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 		SchedulerName             *string            `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
@@ -165,7 +178,43 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 		} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
 		StartupProbe                  *map[string]string `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 		TerminationGracePeriodSeconds *int64             `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
-		Tolerations                   *[]struct {
+		TlsConfig                     *struct {
+			Ca *struct {
+				ConfigMap *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map" json:"configMap,omitempty"`
+				Secret *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret" json:"secret,omitempty"`
+			} `tfsdk:"ca" json:"ca,omitempty"`
+			CaFile *string `tfsdk:"ca_file" json:"caFile,omitempty"`
+			Cert   *struct {
+				ConfigMap *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map" json:"configMap,omitempty"`
+				Secret *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret" json:"secret,omitempty"`
+			} `tfsdk:"cert" json:"cert,omitempty"`
+			CertFile           *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+			InsecureSkipVerify *bool   `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+			KeyFile            *string `tfsdk:"key_file" json:"keyFile,omitempty"`
+			KeySecret          *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+			ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+		} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+		Tolerations *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
 			Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -174,18 +223,17 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		TopologySpreadConstraints *[]map[string]string `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 		UnauthorizedAccessConfig  *[]struct {
+			Discover_backend_ips       *bool     `tfsdk:"discover_backend_ips" json:"discover_backend_ips,omitempty"`
 			Drop_src_path_prefix_parts *int64    `tfsdk:"drop_src_path_prefix_parts" json:"drop_src_path_prefix_parts,omitempty"`
 			Headers                    *[]string `tfsdk:"headers" json:"headers,omitempty"`
-			Ip_filters                 *struct {
-				Allow_list *[]string `tfsdk:"allow_list" json:"allow_list,omitempty"`
-				Deny_list  *[]string `tfsdk:"deny_list" json:"deny_list,omitempty"`
-			} `tfsdk:"ip_filters" json:"ip_filters,omitempty"`
-			Load_balancing_policy *string   `tfsdk:"load_balancing_policy" json:"load_balancing_policy,omitempty"`
-			Response_headers      *[]string `tfsdk:"response_headers" json:"response_headers,omitempty"`
-			Retry_status_codes    *[]string `tfsdk:"retry_status_codes" json:"retry_status_codes,omitempty"`
-			Src_hosts             *[]string `tfsdk:"src_hosts" json:"src_hosts,omitempty"`
-			Src_paths             *[]string `tfsdk:"src_paths" json:"src_paths,omitempty"`
-			Url_prefix            *[]string `tfsdk:"url_prefix" json:"url_prefix,omitempty"`
+			Load_balancing_policy      *string   `tfsdk:"load_balancing_policy" json:"load_balancing_policy,omitempty"`
+			Response_headers           *[]string `tfsdk:"response_headers" json:"response_headers,omitempty"`
+			Retry_status_codes         *[]string `tfsdk:"retry_status_codes" json:"retry_status_codes,omitempty"`
+			Src_headers                *[]string `tfsdk:"src_headers" json:"src_headers,omitempty"`
+			Src_hosts                  *[]string `tfsdk:"src_hosts" json:"src_hosts,omitempty"`
+			Src_paths                  *[]string `tfsdk:"src_paths" json:"src_paths,omitempty"`
+			Src_query_args             *[]string `tfsdk:"src_query_args" json:"src_query_args,omitempty"`
+			Url_prefix                 *[]string `tfsdk:"url_prefix" json:"url_prefix,omitempty"`
 		} `tfsdk:"unauthorized_access_config" json:"unauthorizedAccessConfig,omitempty"`
 		UseStrictSecurity     *bool `tfsdk:"use_strict_security" json:"useStrictSecurity,omitempty"`
 		UserNamespaceSelector *struct {
@@ -337,6 +385,23 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"default_url": schema.ListAttribute{
+						Description:         "DefaultURLs backend url for non-matching paths filterusually used for default backend with error message",
+						MarkdownDescription: "DefaultURLs backend url for non-matching paths filterusually used for default backend with error message",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"discover_backend_ips": schema.BoolAttribute{
+						Description:         "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+						MarkdownDescription: "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"dns_config": schema.SingleNestedAttribute{
 						Description:         "Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy.",
 						MarkdownDescription: "Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy.",
@@ -399,6 +464,14 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"drop_src_path_prefix_parts": schema.Int64Attribute{
+						Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
+						MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"extra_args": schema.MapAttribute{
 						Description:         "ExtraArgs that will be passed to  VMAuth podfor example remoteWrite.tmpDataPath: /tmp",
 						MarkdownDescription: "ExtraArgs that will be passed to  VMAuth podfor example remoteWrite.tmpDataPath: /tmp",
@@ -412,6 +485,15 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Description:         "ExtraEnvs that will be added to VMAuth pod",
 						MarkdownDescription: "ExtraEnvs that will be added to VMAuth pod",
 						ElementType:         types.MapType{ElemType: types.StringType},
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"headers": schema.ListAttribute{
+						Description:         "Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
+						MarkdownDescription: "Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
+						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -749,6 +831,33 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"ip_filters": schema.SingleNestedAttribute{
+						Description:         "IPFilters defines per target src ip filterssupported only with enterprise version of vmauthhttps://docs.victoriametrics.com/vmauth.html#ip-filters",
+						MarkdownDescription: "IPFilters defines per target src ip filterssupported only with enterprise version of vmauthhttps://docs.victoriametrics.com/vmauth.html#ip-filters",
+						Attributes: map[string]schema.Attribute{
+							"allow_list": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"deny_list": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"license": schema.SingleNestedAttribute{
 						Description:         "License allows to configure license key to be used for enterprise features.Using license key is supported starting from VictoriaMetrics v1.94.0.See: https://docs.victoriametrics.com/enterprise.html",
 						MarkdownDescription: "License allows to configure license key to be used for enterprise features.Using license key is supported starting from VictoriaMetrics v1.94.0.See: https://docs.victoriametrics.com/enterprise.html",
@@ -808,6 +917,17 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"load_balancing_policy": schema.StringAttribute{
+						Description:         "LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')",
+						MarkdownDescription: "LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("least_loaded", "first_available"),
+						},
+					},
+
 					"log_format": schema.StringAttribute{
 						Description:         "LogFormat for VMAuth to be configured with.",
 						MarkdownDescription: "LogFormat for VMAuth to be configured with.",
@@ -830,6 +950,14 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						},
 					},
 
+					"max_concurrent_requests": schema.Int64Attribute{
+						Description:         "MaxConcurrentRequests defines max concurrent requests per user300 is default value for vmauth",
+						MarkdownDescription: "MaxConcurrentRequests defines max concurrent requests per user300 is default value for vmauth",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"min_ready_seconds": schema.Int64Attribute{
 						Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state",
 						MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state",
@@ -842,6 +970,14 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Description:         "NodeSelector Define which Nodes the Pods are scheduled on.",
 						MarkdownDescription: "NodeSelector Define which Nodes the Pods are scheduled on.",
 						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"paused": schema.BoolAttribute{
+						Description:         "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
+						MarkdownDescription: "Paused If set to true all actions on the underlaying managed objects are notgoing to be performed, except for delete actions.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1014,6 +1150,24 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed: false,
 					},
 
+					"response_headers": schema.ListAttribute{
+						Description:         "ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth",
+						MarkdownDescription: "ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"retry_status_codes": schema.ListAttribute{
+						Description:         "RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]",
+						MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"revision_history_limit_count": schema.Int64Attribute{
 						Description:         "The number of old ReplicaSets to retain to allow rollback in deployment ormaximum number of revisions that will be maintained in the StatefulSet's revision history.Defaults to 10.",
 						MarkdownDescription: "The number of old ReplicaSets to retain to allow rollback in deployment ormaximum number of revisions that will be maintained in the StatefulSet's revision history.Defaults to 10.",
@@ -1159,6 +1313,238 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"tls_config": schema.SingleNestedAttribute{
+						Description:         "TLSConfig specifies TLSConfig configuration parameters.",
+						MarkdownDescription: "TLSConfig specifies TLSConfig configuration parameters.",
+						Attributes: map[string]schema.Attribute{
+							"ca": schema.SingleNestedAttribute{
+								Description:         "Stuct containing the CA cert to use for the targets.",
+								MarkdownDescription: "Stuct containing the CA cert to use for the targets.",
+								Attributes: map[string]schema.Attribute{
+									"config_map": schema.SingleNestedAttribute{
+										Description:         "ConfigMap containing data to use for the targets.",
+										MarkdownDescription: "ConfigMap containing data to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret": schema.SingleNestedAttribute{
+										Description:         "Secret containing data to use for the targets.",
+										MarkdownDescription: "Secret containing data to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ca_file": schema.StringAttribute{
+								Description:         "Path to the CA cert in the container to use for the targets.",
+								MarkdownDescription: "Path to the CA cert in the container to use for the targets.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cert": schema.SingleNestedAttribute{
+								Description:         "Struct containing the client cert file for the targets.",
+								MarkdownDescription: "Struct containing the client cert file for the targets.",
+								Attributes: map[string]schema.Attribute{
+									"config_map": schema.SingleNestedAttribute{
+										Description:         "ConfigMap containing data to use for the targets.",
+										MarkdownDescription: "ConfigMap containing data to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret": schema.SingleNestedAttribute{
+										Description:         "Secret containing data to use for the targets.",
+										MarkdownDescription: "Secret containing data to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"cert_file": schema.StringAttribute{
+								Description:         "Path to the client cert file in the container for the targets.",
+								MarkdownDescription: "Path to the client cert file in the container for the targets.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"insecure_skip_verify": schema.BoolAttribute{
+								Description:         "Disable target certificate validation.",
+								MarkdownDescription: "Disable target certificate validation.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"key_file": schema.StringAttribute{
+								Description:         "Path to the client key file in the container for the targets.",
+								MarkdownDescription: "Path to the client key file in the container for the targets.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"key_secret": schema.SingleNestedAttribute{
+								Description:         "Secret containing the client key file for the targets.",
+								MarkdownDescription: "Secret containing the client key file for the targets.",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"server_name": schema.StringAttribute{
+								Description:         "Used to verify the hostname for the targets.",
+								MarkdownDescription: "Used to verify the hostname for the targets.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"tolerations": schema.ListNestedAttribute{
 						Description:         "Tolerations If specified, the pod's tolerations.",
 						MarkdownDescription: "Tolerations If specified, the pod's tolerations.",
@@ -1224,6 +1610,14 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "UnauthorizedAccessConfig configures access for un authorized users",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"discover_backend_ips": schema.BoolAttribute{
+									Description:         "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+									MarkdownDescription: "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"drop_src_path_prefix_parts": schema.Int64Attribute{
 									Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
 									MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
@@ -1233,39 +1627,12 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"headers": schema.ListAttribute{
-									Description:         "Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
-									MarkdownDescription: "Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
+									Description:         "RequestHeaders represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
+									MarkdownDescription: "RequestHeaders represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
-								},
-
-								"ip_filters": schema.SingleNestedAttribute{
-									Description:         "IPFilters defines filter for src ip addressenterprise only",
-									MarkdownDescription: "IPFilters defines filter for src ip addressenterprise only",
-									Attributes: map[string]schema.Attribute{
-										"allow_list": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"deny_list": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
 								},
 
 								"load_balancing_policy": schema.StringAttribute{
@@ -1289,8 +1656,17 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"retry_status_codes": schema.ListAttribute{
-									Description:         "RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]",
-									MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]",
+									Description:         "RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]",
+									MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"src_headers": schema.ListAttribute{
+									Description:         "SrcHeaders is an optional list of headers, which must match request headers.",
+									MarkdownDescription: "SrcHeaders is an optional list of headers, which must match request headers.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1298,8 +1674,8 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"src_hosts": schema.ListAttribute{
-									Description:         "SrcHosts is the list of regular expressions, which match the request hostname.",
-									MarkdownDescription: "SrcHosts is the list of regular expressions, which match the request hostname.",
+									Description:         "SrcHosts is an optional list of regular expressions, which must match the request hostname.",
+									MarkdownDescription: "SrcHosts is an optional list of regular expressions, which must match the request hostname.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1307,8 +1683,17 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"src_paths": schema.ListAttribute{
-									Description:         "Paths src request paths",
-									MarkdownDescription: "Paths src request paths",
+									Description:         "SrcPaths is an optional list of regular expressions, which must match the request path.",
+									MarkdownDescription: "SrcPaths is an optional list of regular expressions, which must match the request path.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"src_query_args": schema.ListAttribute{
+									Description:         "SrcQueryArgs is an optional list of query args, which must match request URL query args.",
+									MarkdownDescription: "SrcQueryArgs is an optional list of query args, which must match request URL query args.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1316,8 +1701,8 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"url_prefix": schema.ListAttribute{
-									Description:         "URLs defines url_prefix for dst routing",
-									MarkdownDescription: "URLs defines url_prefix for dst routing",
+									Description:         "UrlPrefix contains backend url prefixes for the proxied request url.",
+									MarkdownDescription: "UrlPrefix contains backend url prefixes for the proxied request url.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,

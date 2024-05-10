@@ -10016,8 +10016,8 @@ func (r *AppTerraformIoAgentPoolV1Alpha2Manifest) Schema(_ context.Context, _ da
 							},
 
 							"target_workspaces": schema.ListNestedAttribute{
-								Description:         "TargetWorkspaces is a list of Terraform Cloud Workspaces whichthe agent pool should scale up to meet demand. When this fieldis ommited the autoscaler will target all workspaces that areassociated with the AgentPool.",
-								MarkdownDescription: "TargetWorkspaces is a list of Terraform Cloud Workspaces whichthe agent pool should scale up to meet demand. When this fieldis ommited the autoscaler will target all workspaces that areassociated with the AgentPool.",
+								Description:         "TargetWorkspaces is a list of HCP Terraform Workspaces whichthe agent pool should scale up to meet demand. When this fieldis ommited the autoscaler will target all workspaces that areassociated with the AgentPool.",
+								MarkdownDescription: "TargetWorkspaces is a list of HCP Terraform Workspaces whichthe agent pool should scale up to meet demand. When this fieldis ommited the autoscaler will target all workspaces that areassociated with the AgentPool.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"id": schema.StringAttribute{

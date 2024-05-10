@@ -114,8 +114,8 @@ func (r *ExternaldataGatekeeperShProviderV1Beta1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "Spec defines the Provider specifications.",
 				Attributes: map[string]schema.Attribute{
 					"ca_bundle": schema.StringAttribute{
-						Description:         "CABundle is a base64-encoded string that contains the TLS CA bundle in PEM format. It is used to verify the signature of the provider's certificate.",
-						MarkdownDescription: "CABundle is a base64-encoded string that contains the TLS CA bundle in PEM format. It is used to verify the signature of the provider's certificate.",
+						Description:         "CABundle is a base64-encoded string that contains the TLS CA bundle in PEM format.It is used to verify the signature of the provider's certificate.",
+						MarkdownDescription: "CABundle is a base64-encoded string that contains the TLS CA bundle in PEM format.It is used to verify the signature of the provider's certificate.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

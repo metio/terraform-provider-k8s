@@ -96,6 +96,7 @@ Optional:
 - `s3_bucket_ref` (Attributes) Reference field for S3Bucket (see [below for nested schema](#nestedatt--spec--code--s3_bucket_ref))
 - `s3_key` (String)
 - `s3_object_version` (String)
+- `sha256` (String)
 - `zip_file` (String)
 
 <a id="nestedatt--spec--code--s3_bucket_ref"></a>

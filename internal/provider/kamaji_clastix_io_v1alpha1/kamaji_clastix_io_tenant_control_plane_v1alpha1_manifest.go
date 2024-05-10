@@ -50,9 +50,16 @@ type KamajiClastixIoTenantControlPlaneV1Alpha1ManifestData struct {
 			} `tfsdk:"core_dns" json:"coreDNS,omitempty"`
 			Konnectivity *struct {
 				Agent *struct {
-					ExtraArgs *[]string `tfsdk:"extra_args" json:"extraArgs,omitempty"`
-					Image     *string   `tfsdk:"image" json:"image,omitempty"`
-					Version   *string   `tfsdk:"version" json:"version,omitempty"`
+					ExtraArgs   *[]string `tfsdk:"extra_args" json:"extraArgs,omitempty"`
+					Image       *string   `tfsdk:"image" json:"image,omitempty"`
+					Tolerations *[]struct {
+						Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+						Key               *string `tfsdk:"key" json:"key,omitempty"`
+						Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+						TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+						Value             *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"tolerations" json:"tolerations,omitempty"`
+					Version *string `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"agent" json:"agent,omitempty"`
 				Server *struct {
 					ExtraArgs *[]string `tfsdk:"extra_args" json:"extraArgs,omitempty"`
@@ -1285,6 +1292,57 @@ func (r *KamajiClastixIoTenantControlPlaneV1Alpha1Manifest) Schema(_ context.Con
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"tolerations": schema.ListNestedAttribute{
+												Description:         "Tolerations for the deployed agent.Can be customized to start the konnectivity-agent even if the nodes are not ready or tainted.",
+												MarkdownDescription: "Tolerations for the deployed agent.Can be customized to start the konnectivity-agent even if the nodes are not ready or tainted.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"effect": schema.StringAttribute{
+															Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+															MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"toleration_seconds": schema.Int64Attribute{
+															Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+															MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"version": schema.StringAttribute{
