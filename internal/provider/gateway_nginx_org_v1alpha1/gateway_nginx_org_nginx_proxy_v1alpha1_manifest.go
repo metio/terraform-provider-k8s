@@ -44,7 +44,8 @@ type GatewayNginxOrgNginxProxyV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Telemetry *struct {
+		DisableHTTP2 *bool `tfsdk:"disable_http2" json:"disableHTTP2,omitempty"`
+		Telemetry    *struct {
 			Exporter *struct {
 				BatchCount *int64  `tfsdk:"batch_count" json:"batchCount,omitempty"`
 				BatchSize  *int64  `tfsdk:"batch_size" json:"batchSize,omitempty"`
@@ -125,6 +126,14 @@ func (r *GatewayNginxOrgNginxProxyV1Alpha1Manifest) Schema(_ context.Context, _ 
 				Description:         "Spec defines the desired state of the NginxProxy.",
 				MarkdownDescription: "Spec defines the desired state of the NginxProxy.",
 				Attributes: map[string]schema.Attribute{
+					"disable_http2": schema.BoolAttribute{
+						Description:         "DisableHTTP2 defines if http2 should be disabled for all servers.Default is false, meaning http2 will be enabled for all servers.",
+						MarkdownDescription: "DisableHTTP2 defines if http2 should be disabled for all servers.Default is false, meaning http2 will be enabled for all servers.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"telemetry": schema.SingleNestedAttribute{
 						Description:         "Telemetry specifies the OpenTelemetry configuration.",
 						MarkdownDescription: "Telemetry specifies the OpenTelemetry configuration.",

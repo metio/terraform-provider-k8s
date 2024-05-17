@@ -2083,8 +2083,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"features": schema.ListAttribute{
-										Description:         "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (RTT) calculations in the eBPF agent during TCP handshakes. This feature better works with 'sampling' set to 1.<br>",
-										MarkdownDescription: "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (RTT) calculations in the eBPF agent during TCP handshakes. This feature better works with 'sampling' set to 1.<br>",
+										Description:         "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br>",
+										MarkdownDescription: "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br>",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2241,8 +2241,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										MarkdownDescription: "'metrics' defines the eBPF agent configuration regarding metrics",
 										Attributes: map[string]schema.Attribute{
 											"disable_alerts": schema.ListAttribute{
-												Description:         "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when eBPF agent hashmap table is full.<br>",
-												MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when eBPF agent hashmap table is full.<br>",
+												Description:         "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is dropping flows, such as when the BPF hashmap is full or the capacity limiter being triggered.<br>",
+												MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is dropping flows, such as when the BPF hashmap is full or the capacity limiter being triggered.<br>",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,

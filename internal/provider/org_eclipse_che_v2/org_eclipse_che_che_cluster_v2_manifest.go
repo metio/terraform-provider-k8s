@@ -6349,8 +6349,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"o_auth_secret": schema.StringAttribute{
-										Description:         "Name of the secret set in the OpenShift 'OAuthClient' resource used to set up identity federation on the OpenShift side.",
-										MarkdownDescription: "Name of the secret set in the OpenShift 'OAuthClient' resource used to set up identity federation on the OpenShift side.",
+										Description:         "Name of the secret set in the OpenShift 'OAuthClient' resource used to set up identity federation on the OpenShift side. For Kubernetes, this can either be the plain text oAuthSecret value, or the name of a kubernetes secret which contains a key 'oAuthSecret' and the value is the secret. NOTE: this secret must exist in the same namespace as the 'CheCluster' resource and contain the label 'app.kubernetes.io/part-of=che.eclipse.org'.",
+										MarkdownDescription: "Name of the secret set in the OpenShift 'OAuthClient' resource used to set up identity federation on the OpenShift side. For Kubernetes, this can either be the plain text oAuthSecret value, or the name of a kubernetes secret which contains a key 'oAuthSecret' and the value is the secret. NOTE: this secret must exist in the same namespace as the 'CheCluster' resource and contain the label 'app.kubernetes.io/part-of=che.eclipse.org'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

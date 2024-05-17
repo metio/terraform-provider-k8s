@@ -60,7 +60,7 @@ Required:
 Optional:
 
 - `chart` (Attributes) Chart defines the template of the v1beta2.HelmChart that should be createdfor this HelmRelease. (see [below for nested schema](#nestedatt--spec--chart))
-- `chart_ref` (Attributes) ChartRef holds a reference to a source controller resource containing theHelm chart artifact. (see [below for nested schema](#nestedatt--spec--chart_ref))
+- `chart_ref` (Attributes) ChartRef holds a reference to a source controller resource containing theHelm chart artifact.Note: this field is provisional to the v2 API, and not actively usedby v2beta2 HelmReleases. (see [below for nested schema](#nestedatt--spec--chart_ref))
 - `depends_on` (Attributes List) DependsOn may contain a meta.NamespacedObjectReference slice withreferences to HelmRelease resources that must be ready before this HelmReleasecan be reconciled. (see [below for nested schema](#nestedatt--spec--depends_on))
 - `drift_detection` (Attributes) DriftDetection holds the configuration for detecting and handlingdifferences between the manifest in the Helm storage and the resourcescurrently existing in the cluster. (see [below for nested schema](#nestedatt--spec--drift_detection))
 - `install` (Attributes) Install holds the configuration for Helm install actions for this HelmRelease. (see [below for nested schema](#nestedatt--spec--install))

@@ -278,8 +278,15 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 				} `tfsdk:"component" json:"component,omitempty"`
 				JaegerQuery *struct {
 					Authentication *struct {
-						Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-						Sar     *string `tfsdk:"sar" json:"sar,omitempty"`
+						Enabled   *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+						Resources *struct {
+							Claims *[]struct {
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
+							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+						} `tfsdk:"resources" json:"resources,omitempty"`
+						Sar *string `tfsdk:"sar" json:"sar,omitempty"`
 					} `tfsdk:"authentication" json:"authentication,omitempty"`
 					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 					Ingress *struct {
@@ -1954,8 +1961,8 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 										MarkdownDescription: "JaegerQuery defines options specific to the Jaeger Query component.",
 										Attributes: map[string]schema.Attribute{
 											"authentication": schema.SingleNestedAttribute{
-												Description:         "Oauth defines the options for the oauth proxy used to protect jaeger UI",
-												MarkdownDescription: "Oauth defines the options for the oauth proxy used to protect jaeger UI",
+												Description:         "Authentication defines the options for the oauth proxy used to protect jaeger UI",
+												MarkdownDescription: "Authentication defines the options for the oauth proxy used to protect jaeger UI",
 												Attributes: map[string]schema.Attribute{
 													"enabled": schema.BoolAttribute{
 														Description:         "Defines if the authentication will be enabled for jaeger UI.",
@@ -1963,6 +1970,52 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"resources": schema.SingleNestedAttribute{
+														Description:         "Resources defines the compute resource requirements of the OAuth Proxy container. The OAuth Proxy performs authentication and authorization of incoming requests to Jaeger UI when multi-tenancy is disabled.",
+														MarkdownDescription: "Resources defines the compute resource requirements of the OAuth Proxy container. The OAuth Proxy performs authentication and authorization of incoming requests to Jaeger UI when multi-tenancy is disabled.",
+														Attributes: map[string]schema.Attribute{
+															"claims": schema.ListNestedAttribute{
+																Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																			MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"limits": schema.MapAttribute{
+																Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"requests": schema.MapAttribute{
+																Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"sar": schema.StringAttribute{

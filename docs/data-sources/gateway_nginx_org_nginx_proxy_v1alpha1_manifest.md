@@ -51,6 +51,7 @@ Optional:
 
 Optional:
 
+- `disable_http2` (Boolean) DisableHTTP2 defines if http2 should be disabled for all servers.Default is false, meaning http2 will be enabled for all servers.
 - `telemetry` (Attributes) Telemetry specifies the OpenTelemetry configuration. (see [below for nested schema](#nestedatt--spec--telemetry))
 
 <a id="nestedatt--spec--telemetry"></a>

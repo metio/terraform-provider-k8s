@@ -217,6 +217,7 @@ Optional:
 
 - `alternative_names` (List of String) Additional alternative names for the bootstrap service. The alternative names will be added to the list of subject alternative names of the TLS certificates.
 - `annotations` (Map of String) Annotations that will be added to the 'Ingress', 'Route', or 'Service' resource. You can use this field to configure DNS providers such as External DNS. This field can be used only with 'loadbalancer', 'nodeport', 'route', or 'ingress' type listeners.
+- `external_i_ps` (List of String) External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This field is helpful when 'nodeport' without 'externalIP' is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. This field can only be used with 'nodeport' type listener.
 - `host` (String) The bootstrap host. This field will be used in the Ingress resource or in the Route resource to specify the desired hostname. This field can be used only with 'route' (optional) or 'ingress' (required) type listeners.
 - `labels` (Map of String) Labels that will be added to the 'Ingress', 'Route', or 'Service' resource. This field can be used only with 'loadbalancer', 'nodeport', 'route', or 'ingress' type listeners.
 - `load_balancer_ip` (String) The loadbalancer is requested with the IP address specified in this field. This feature depends on whether the underlying cloud provider supports specifying the 'loadBalancerIP' when a load balancer is created. This field is ignored if the cloud provider does not support the feature.This field can be used only with 'loadbalancer' type listener.
@@ -245,6 +246,7 @@ Optional:
 - `advertised_host` (String) The host name used in the brokers' 'advertised.listeners'.
 - `advertised_port` (Number) The port number used in the brokers' 'advertised.listeners'.
 - `annotations` (Map of String) Annotations that will be added to the 'Ingress' or 'Service' resource. You can use this field to configure DNS providers such as External DNS. This field can be used only with 'loadbalancer', 'nodeport', or 'ingress' type listeners.
+- `external_i_ps` (List of String) External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This field is helpful when 'nodeport' without 'externalIP' is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. This field can only be used with 'nodeport' type listener.
 - `host` (String) The broker host. This field will be used in the Ingress resource or in the Route resource to specify the desired hostname. This field can be used only with 'route' (optional) or 'ingress' (required) type listeners.
 - `labels` (Map of String) Labels that will be added to the 'Ingress', 'Route', or 'Service' resource. This field can be used only with 'loadbalancer', 'nodeport', 'route', or 'ingress' type listeners.
 - `load_balancer_ip` (String) The loadbalancer is requested with the IP address specified in this field. This feature depends on whether the underlying cloud provider supports specifying the 'loadBalancerIP' when a load balancer is created. This field is ignored if the cloud provider does not support the feature.This field can be used only with 'loadbalancer' type listener.
@@ -510,6 +512,7 @@ Optional:
 - `class` (String) The storage class to use for dynamic volume allocation.
 - `delete_claim` (Boolean) Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed.
 - `id` (Number) Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.
+- `kraft_metadata` (String) Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is 'shared'. At most one volume can have this property set.
 - `overrides` (Attributes List) Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers. (see [below for nested schema](#nestedatt--spec--kafka--storage--overrides))
 - `selector` (Map of String) Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume.
 - `size` (String) When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.
@@ -536,7 +539,8 @@ Optional:
 
 - `class` (String) The storage class to use for dynamic volume allocation.
 - `delete_claim` (Boolean) Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed.
-- `id` (Number) Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.
+- `id` (Number) Storage identification number. Mandatory for storage volumes defined with a 'jbod' storage type configuration.
+- `kraft_metadata` (String) Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is 'shared'. At most one volume can have this property set.
 - `overrides` (Attributes List) Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers. (see [below for nested schema](#nestedatt--spec--kafka--storage--volumes--overrides))
 - `selector` (Map of String) Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume.
 - `size` (String) When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.
@@ -4969,7 +4973,8 @@ Optional:
 
 - `class` (String) The storage class to use for dynamic volume allocation.
 - `delete_claim` (Boolean) Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed.
-- `id` (Number) Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.
+- `id` (Number) Storage identification number. Mandatory for storage volumes defined with a 'jbod' storage type configuration.
+- `kraft_metadata` (String) Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is 'shared'. At most one volume can have this property set.
 - `overrides` (Attributes List) Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers. (see [below for nested schema](#nestedatt--spec--zookeeper--storage--overrides))
 - `selector` (Map of String) Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume.
 - `size` (String) When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.

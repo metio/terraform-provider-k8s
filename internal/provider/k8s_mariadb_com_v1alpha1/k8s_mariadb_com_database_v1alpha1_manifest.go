@@ -147,8 +147,8 @@ func (r *K8SMariadbComDatabaseV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"collate": schema.StringAttribute{
-						Description:         "CharacterSet to use in the Database.",
-						MarkdownDescription: "CharacterSet to use in the Database.",
+						Description:         "Collate to use in the Database.",
+						MarkdownDescription: "Collate to use in the Database.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

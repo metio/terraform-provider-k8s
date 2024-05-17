@@ -246,8 +246,8 @@ func (r *KafkaStrimziIoKafkaUserV1Alpha1Manifest) Schema(_ context.Context, _ da
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"host": schema.StringAttribute{
-											Description:         "The host from which the action described in the ACL rule is allowed or denied.",
-											MarkdownDescription: "The host from which the action described in the ACL rule is allowed or denied.",
+											Description:         "The host from which the action described in the ACL rule is allowed or denied. If not set, it defaults to '*', allowing or denying the action from any host.",
+											MarkdownDescription: "The host from which the action described in the ACL rule is allowed or denied. If not set, it defaults to '*', allowing or denying the action from any host.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

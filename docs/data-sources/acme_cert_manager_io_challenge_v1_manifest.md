@@ -346,6 +346,7 @@ Optional:
 
 - `access_key_id` (String) The AccessKeyID is used for authentication.Cannot be set when SecretAccessKeyID is set.If neither the Access Key nor Key ID are set, we fall-back to using envvars, shared credentials file or AWS Instance metadata,see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials
 - `access_key_id_secret_ref` (Attributes) The SecretAccessKey is used for authentication. If set, pull the AWSaccess key ID from a key within a Kubernetes Secret.Cannot be set when AccessKeyID is set.If neither the Access Key nor Key ID are set, we fall-back to using envvars, shared credentials file or AWS Instance metadata,see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials (see [below for nested schema](#nestedatt--spec--solver--dns01--webhook--access_key_id_secret_ref))
+- `auth` (Attributes) Auth configures how cert-manager authenticates. (see [below for nested schema](#nestedatt--spec--solver--dns01--webhook--auth))
 - `hosted_zone_id` (String) If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.
 - `role` (String) Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKeyor the inferred credentials from environment variables, shared credentials file or AWS Instance metadata
 - `secret_access_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication.If neither the Access Key nor Key ID are set, we fall-back to using envvars, shared credentials file or AWS Instance metadata,see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials (see [below for nested schema](#nestedatt--spec--solver--dns01--webhook--secret_access_key_secret_ref))
@@ -360,6 +361,34 @@ Required:
 Optional:
 
 - `key` (String) The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.
+
+
+<a id="nestedatt--spec--solver--dns01--webhook--auth"></a>
+### Nested Schema for `spec.solver.dns01.webhook.auth`
+
+Required:
+
+- `kubernetes` (Attributes) Kubernetes authenticates with Route53 using AssumeRoleWithWebIdentityby passing a bound ServiceAccount token. (see [below for nested schema](#nestedatt--spec--solver--dns01--webhook--auth--kubernetes))
+
+<a id="nestedatt--spec--solver--dns01--webhook--auth--kubernetes"></a>
+### Nested Schema for `spec.solver.dns01.webhook.auth.kubernetes`
+
+Required:
+
+- `service_account_ref` (Attributes) A reference to a service account that will be used to request a boundtoken (also known as 'projected token'). To use this field, you mustconfigure an RBAC rule to let cert-manager request a token. (see [below for nested schema](#nestedatt--spec--solver--dns01--webhook--auth--kubernetes--service_account_ref))
+
+<a id="nestedatt--spec--solver--dns01--webhook--auth--kubernetes--service_account_ref"></a>
+### Nested Schema for `spec.solver.dns01.webhook.auth.kubernetes.service_account_ref`
+
+Required:
+
+- `name` (String) Name of the ServiceAccount used to request a token.
+
+Optional:
+
+- `audiences` (List of String) TokenAudiences is an optional list of audiences to include in thetoken passed to AWS. The default token consisting of the issuer's namespaceand name is always included.If unset the audience defaults to 'sts.amazonaws.com'.
+
+
 
 
 <a id="nestedatt--spec--solver--dns01--webhook--secret_access_key_secret_ref"></a>

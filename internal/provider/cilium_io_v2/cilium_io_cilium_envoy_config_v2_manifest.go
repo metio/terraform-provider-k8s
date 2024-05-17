@@ -58,9 +58,10 @@ type CiliumIoCiliumEnvoyConfigV2ManifestData struct {
 		} `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		Resources *[]map[string]string `tfsdk:"resources" json:"resources,omitempty"`
 		Services  *[]struct {
-			Listener  *string `tfsdk:"listener" json:"listener,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Listener  *string   `tfsdk:"listener" json:"listener,omitempty"`
+			Name      *string   `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string   `tfsdk:"namespace" json:"namespace,omitempty"`
+			Ports     *[]string `tfsdk:"ports" json:"ports,omitempty"`
 		} `tfsdk:"services" json:"services,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -164,8 +165,8 @@ func (r *CiliumIoCiliumEnvoyConfigV2Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"number": schema.ListAttribute{
-									Description:         "Port is the port number, which can be used for filtering in case of underlying is exposing multiple port numbers.",
-									MarkdownDescription: "Port is the port number, which can be used for filtering in case of underlying is exposing multiple port numbers.",
+									Description:         "Ports is a set of port numbers, which can be used for filtering in case of underlying is exposing multiple port numbers.",
+									MarkdownDescription: "Ports is a set of port numbers, which can be used for filtering in case of underlying is exposing multiple port numbers.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -268,6 +269,15 @@ func (r *CiliumIoCiliumEnvoyConfigV2Manifest) Schema(_ context.Context, _ dataso
 								"namespace": schema.StringAttribute{
 									Description:         "Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace this is overridden to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.",
 									MarkdownDescription: "Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace this is overridden to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ports": schema.ListAttribute{
+									Description:         "Ports is a set of service's frontend ports that should be redirected to the Envoy listener. By default all frontend ports of the service are redirected.",
+									MarkdownDescription: "Ports is a set of service's frontend ports that should be redirected to the Envoy listener. By default all frontend ports of the service are redirected.",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

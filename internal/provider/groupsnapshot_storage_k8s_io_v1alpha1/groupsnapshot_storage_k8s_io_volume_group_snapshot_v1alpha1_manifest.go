@@ -64,8 +64,8 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotV1Alpha1Manifest) Metadata(
 
 func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VolumeGroupSnapshot is a user's request for creating either a point-in-time group snapshot or binding to a pre-existing group snapshot.",
-		MarkdownDescription: "VolumeGroupSnapshot is a user's request for creating either a point-in-time group snapshot or binding to a pre-existing group snapshot.",
+		Description:         "VolumeGroupSnapshot is a user's request for creating either a point-in-timegroup snapshot or binding to a pre-existing group snapshot.",
+		MarkdownDescription: "VolumeGroupSnapshot is a user's request for creating either a point-in-timegroup snapshot or binding to a pre-existing group snapshot.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -132,16 +132,16 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotV1Alpha1Manifest) Schema(_ 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Spec defines the desired characteristics of a group snapshot requested by a user. Required.",
-				MarkdownDescription: "Spec defines the desired characteristics of a group snapshot requested by a user. Required.",
+				Description:         "Spec defines the desired characteristics of a group snapshot requested by a user.Required.",
+				MarkdownDescription: "Spec defines the desired characteristics of a group snapshot requested by a user.Required.",
 				Attributes: map[string]schema.Attribute{
 					"source": schema.SingleNestedAttribute{
-						Description:         "Source specifies where a group snapshot will be created from. This field is immutable after creation. Required.",
-						MarkdownDescription: "Source specifies where a group snapshot will be created from. This field is immutable after creation. Required.",
+						Description:         "Source specifies where a group snapshot will be created from.This field is immutable after creation.Required.",
+						MarkdownDescription: "Source specifies where a group snapshot will be created from.This field is immutable after creation.Required.",
 						Attributes: map[string]schema.Attribute{
 							"selector": schema.SingleNestedAttribute{
-								Description:         "Selector is a label query over persistent volume claims that are to be grouped together for snapshotting. This labelSelector will be used to match the label added to a PVC. If the label is added or removed to a volume after a group snapshot is created, the existing group snapshots won't be modified. Once a VolumeGroupSnapshotContent is created and the sidecar starts to process it, the volume list will not change with retries.",
-								MarkdownDescription: "Selector is a label query over persistent volume claims that are to be grouped together for snapshotting. This labelSelector will be used to match the label added to a PVC. If the label is added or removed to a volume after a group snapshot is created, the existing group snapshots won't be modified. Once a VolumeGroupSnapshotContent is created and the sidecar starts to process it, the volume list will not change with retries.",
+								Description:         "Selector is a label query over persistent volume claims that are to begrouped together for snapshotting.This labelSelector will be used to match the label added to a PVC.If the label is added or removed to a volume after a group snapshotis created, the existing group snapshots won't be modified.Once a VolumeGroupSnapshotContent is created and the sidecar starts to processit, the volume list will not change with retries.",
+								MarkdownDescription: "Selector is a label query over persistent volume claims that are to begrouped together for snapshotting.This labelSelector will be used to match the label added to a PVC.If the label is added or removed to a volume after a group snapshotis created, the existing group snapshots won't be modified.Once a VolumeGroupSnapshotContent is created and the sidecar starts to processit, the volume list will not change with retries.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -157,16 +157,16 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotV1Alpha1Manifest) Schema(_ 
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -180,8 +180,8 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotV1Alpha1Manifest) Schema(_ 
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -194,8 +194,8 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotV1Alpha1Manifest) Schema(_ 
 							},
 
 							"volume_group_snapshot_content_name": schema.StringAttribute{
-								Description:         "VolumeGroupSnapshotContentName specifies the name of a pre-existing VolumeGroupSnapshotContent object representing an existing volume group snapshot. This field should be set if the volume group snapshot already exists and only needs a representation in Kubernetes. This field is immutable.",
-								MarkdownDescription: "VolumeGroupSnapshotContentName specifies the name of a pre-existing VolumeGroupSnapshotContent object representing an existing volume group snapshot. This field should be set if the volume group snapshot already exists and only needs a representation in Kubernetes. This field is immutable.",
+								Description:         "VolumeGroupSnapshotContentName specifies the name of a pre-existing VolumeGroupSnapshotContentobject representing an existing volume group snapshot.This field should be set if the volume group snapshot already exists andonly needs a representation in Kubernetes.This field is immutable.",
+								MarkdownDescription: "VolumeGroupSnapshotContentName specifies the name of a pre-existing VolumeGroupSnapshotContentobject representing an existing volume group snapshot.This field should be set if the volume group snapshot already exists andonly needs a representation in Kubernetes.This field is immutable.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -207,8 +207,8 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotV1Alpha1Manifest) Schema(_ 
 					},
 
 					"volume_group_snapshot_class_name": schema.StringAttribute{
-						Description:         "VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClass requested by the VolumeGroupSnapshot. VolumeGroupSnapshotClassName may be left nil to indicate that the default class will be used. Empty string is not allowed for this field.",
-						MarkdownDescription: "VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClass requested by the VolumeGroupSnapshot. VolumeGroupSnapshotClassName may be left nil to indicate that the default class will be used. Empty string is not allowed for this field.",
+						Description:         "VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClassrequested by the VolumeGroupSnapshot.VolumeGroupSnapshotClassName may be left nil to indicate that the defaultclass will be used.Empty string is not allowed for this field.",
+						MarkdownDescription: "VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClassrequested by the VolumeGroupSnapshot.VolumeGroupSnapshotClassName may be left nil to indicate that the defaultclass will be used.Empty string is not allowed for this field.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

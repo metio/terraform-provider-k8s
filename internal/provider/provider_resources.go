@@ -76,6 +76,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/azure_microsoft_com_v1alpha2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/azure_microsoft_com_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/b3scale_infra_run_v1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/b3scale_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/batch_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/batch_volcano_sh_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/beat_k8s_elastic_co_v1beta1"
@@ -478,6 +479,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/storage_kubeblocks_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/storageos_com_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/sts_min_io_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/sts_min_io_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/stunner_l7mp_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/stunner_l7mp_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/submariner_io_v1alpha1"
@@ -516,6 +518,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/work_karmada_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/work_karmada_io_v1alpha2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/workload_codeflare_dev_v1beta1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/workload_codeflare_dev_v1beta2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/workloads_kubeblocks_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/zonecontrol_k8s_aws_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/zookeeper_pravega_io_v1beta1"
@@ -764,6 +767,7 @@ func allResources() []func() resource.Resource {
 		//azure_microsoft_com_v1beta1.NewAzureMicrosoftComAzureSqlFirewallRuleV1Beta1Resource,
 		//azure_microsoft_com_v1beta1.NewAzureMicrosoftComAzureSqlServerV1Beta1Resource,
 		//b3scale_infra_run_v1.NewB3ScaleInfraRunBbbfrontendV1Resource,
+		//b3scale_io_v1.NewB3ScaleIoBbbfrontendV1Resource,
 		//batch_v1.NewBatchCronJobV1Resource,
 		//batch_v1.NewBatchJobV1Resource,
 		//batch_volcano_sh_v1alpha1.NewBatchVolcanoShJobV1Alpha1Resource,
@@ -2071,6 +2075,7 @@ func allResources() []func() resource.Resource {
 		//storage_kubeblocks_io_v1alpha1.NewStorageKubeblocksIoStorageProviderV1Alpha1Resource,
 		//storageos_com_v1.NewStorageosComStorageOsclusterV1Resource,
 		//sts_min_io_v1alpha1.NewStsMinIoPolicyBindingV1Alpha1Resource,
+		//sts_min_io_v1beta1.NewStsMinIoPolicyBindingV1Beta1Resource,
 		//stunner_l7mp_io_v1.NewStunnerL7MpIoDataplaneV1Resource,
 		//stunner_l7mp_io_v1.NewStunnerL7MpIoGatewayConfigV1Resource,
 		//stunner_l7mp_io_v1.NewStunnerL7MpIoStaticServiceV1Resource,
@@ -2185,6 +2190,7 @@ func allResources() []func() resource.Resource {
 		//work_karmada_io_v1alpha2.NewWorkKarmadaIoResourceBindingV1Alpha2Resource,
 		//workload_codeflare_dev_v1beta1.NewWorkloadCodeflareDevAppWrapperV1Beta1Resource,
 		//workload_codeflare_dev_v1beta1.NewWorkloadCodeflareDevSchedulingSpecV1Beta1Resource,
+		//workload_codeflare_dev_v1beta2.NewWorkloadCodeflareDevAppWrapperV1Beta2Resource,
 		//workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoInstanceSetV1Alpha1Resource,
 		//workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1Resource,
 		//zonecontrol_k8s_aws_v1.NewZonecontrolK8SAwsZoneAwareUpdateV1Resource,

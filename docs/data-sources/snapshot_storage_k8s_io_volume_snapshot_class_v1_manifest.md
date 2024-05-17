@@ -3,12 +3,12 @@
 page_title: "k8s_snapshot_storage_k8s_io_volume_snapshot_class_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "snapshot.storage.k8s.io"
 description: |-
-  VolumeSnapshotClass specifies parameters that a underlying storage system uses when creating a volume snapshot. A specific VolumeSnapshotClass is used by specifying its name in a VolumeSnapshot object. VolumeSnapshotClasses are non-namespaced
+  VolumeSnapshotClass specifies parameters that a underlying storage system uses whencreating a volume snapshot. A specific VolumeSnapshotClass is used by specifying itsname in a VolumeSnapshot object.VolumeSnapshotClasses are non-namespaced
 ---
 
 # k8s_snapshot_storage_k8s_io_volume_snapshot_class_v1_manifest (Data Source)
 
-VolumeSnapshotClass specifies parameters that a underlying storage system uses when creating a volume snapshot. A specific VolumeSnapshotClass is used by specifying its name in a VolumeSnapshot object. VolumeSnapshotClasses are non-namespaced
+VolumeSnapshotClass specifies parameters that a underlying storage system uses whencreating a volume snapshot. A specific VolumeSnapshotClass is used by specifying itsname in a VolumeSnapshot object.VolumeSnapshotClasses are non-namespaced
 
 ## Example Usage
 
@@ -26,13 +26,13 @@ data "k8s_snapshot_storage_k8s_io_volume_snapshot_class_v1_manifest" "example" {
 
 ### Required
 
-- `deletion_policy` (String) deletionPolicy determines whether a VolumeSnapshotContent created through the VolumeSnapshotClass should be deleted when its bound VolumeSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept. 'Delete' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted. Required.
-- `driver` (String) driver is the name of the storage driver that handles this VolumeSnapshotClass. Required.
+- `deletion_policy` (String) deletionPolicy determines whether a VolumeSnapshotContent created throughthe VolumeSnapshotClass should be deleted when its bound VolumeSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept.'Delete' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted.Required.
+- `driver` (String) driver is the name of the storage driver that handles this VolumeSnapshotClass.Required.
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
 
 ### Optional
 
-- `parameters` (Map of String) parameters is a key-value map with storage driver specific parameters for creating snapshots. These values are opaque to Kubernetes.
+- `parameters` (Map of String) parameters is a key-value map with storage driver specific parameters for creating snapshots.These values are opaque to Kubernetes.
 
 ### Read-Only
 

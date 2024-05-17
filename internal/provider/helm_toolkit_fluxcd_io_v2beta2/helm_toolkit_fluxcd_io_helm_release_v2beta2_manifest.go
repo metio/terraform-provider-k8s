@@ -499,8 +499,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest) Schema(_ context.Context
 					},
 
 					"chart_ref": schema.SingleNestedAttribute{
-						Description:         "ChartRef holds a reference to a source controller resource containing theHelm chart artifact.",
-						MarkdownDescription: "ChartRef holds a reference to a source controller resource containing theHelm chart artifact.",
+						Description:         "ChartRef holds a reference to a source controller resource containing theHelm chart artifact.Note: this field is provisional to the v2 API, and not actively usedby v2beta2 HelmReleases.",
+						MarkdownDescription: "ChartRef holds a reference to a source controller resource containing theHelm chart artifact.Note: this field is provisional to the v2 API, and not actively usedby v2beta2 HelmReleases.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "APIVersion of the referent.",

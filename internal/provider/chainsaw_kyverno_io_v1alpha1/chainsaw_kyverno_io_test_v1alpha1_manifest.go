@@ -54,9 +54,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					Name  *string            `tfsdk:"name" json:"name,omitempty"`
 					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"bindings" json:"bindings,omitempty"`
-				Check      *map[string]string `tfsdk:"check" json:"check,omitempty"`
-				Cluster    *string            `tfsdk:"cluster" json:"cluster,omitempty"`
-				Entrypoint *string            `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
+				Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+				Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+				Clusters *struct {
+					Context    *string `tfsdk:"context" json:"context,omitempty"`
+					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+				} `tfsdk:"clusters" json:"clusters,omitempty"`
+				Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 				Env        *[]struct {
 					Name  *string            `tfsdk:"name" json:"name,omitempty"`
 					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
@@ -74,8 +78,12 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					Name  *string            `tfsdk:"name" json:"name,omitempty"`
 					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"bindings" json:"bindings,omitempty"`
-				Cluster *string `tfsdk:"cluster" json:"cluster,omitempty"`
-				Expect  *[]struct {
+				Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+				Clusters *struct {
+					Context    *string `tfsdk:"context" json:"context,omitempty"`
+					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+				} `tfsdk:"clusters" json:"clusters,omitempty"`
+				Expect *[]struct {
 					Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
 					Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
 				} `tfsdk:"expect" json:"expect,omitempty"`
@@ -92,6 +100,10 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 			Describe *struct {
 				ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 				Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
+				Clusters   *struct {
+					Context    *string `tfsdk:"context" json:"context,omitempty"`
+					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+				} `tfsdk:"clusters" json:"clusters,omitempty"`
 				Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -102,7 +114,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 			} `tfsdk:"describe" json:"describe,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
 			Events      *struct {
-				Cluster   *string `tfsdk:"cluster" json:"cluster,omitempty"`
+				Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+				Clusters *struct {
+					Context    *string `tfsdk:"context" json:"context,omitempty"`
+					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+				} `tfsdk:"clusters" json:"clusters,omitempty"`
 				Format    *string `tfsdk:"format" json:"format,omitempty"`
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -112,16 +128,24 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 			Get *struct {
 				ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 				Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
-				Format     *string `tfsdk:"format" json:"format,omitempty"`
-				Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
-				Name       *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Resource   *string `tfsdk:"resource" json:"resource,omitempty"`
-				Selector   *string `tfsdk:"selector" json:"selector,omitempty"`
-				Timeout    *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				Clusters   *struct {
+					Context    *string `tfsdk:"context" json:"context,omitempty"`
+					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+				} `tfsdk:"clusters" json:"clusters,omitempty"`
+				Format    *string `tfsdk:"format" json:"format,omitempty"`
+				Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				Resource  *string `tfsdk:"resource" json:"resource,omitempty"`
+				Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
+				Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 			} `tfsdk:"get" json:"get,omitempty"`
 			PodLogs *struct {
-				Cluster   *string `tfsdk:"cluster" json:"cluster,omitempty"`
+				Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+				Clusters *struct {
+					Context    *string `tfsdk:"context" json:"context,omitempty"`
+					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+				} `tfsdk:"clusters" json:"clusters,omitempty"`
 				Container *string `tfsdk:"container" json:"container,omitempty"`
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -134,9 +158,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					Name  *string            `tfsdk:"name" json:"name,omitempty"`
 					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"bindings" json:"bindings,omitempty"`
-				Check   *map[string]string `tfsdk:"check" json:"check,omitempty"`
-				Cluster *string            `tfsdk:"cluster" json:"cluster,omitempty"`
-				Content *string            `tfsdk:"content" json:"content,omitempty"`
+				Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+				Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+				Clusters *struct {
+					Context    *string `tfsdk:"context" json:"context,omitempty"`
+					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+				} `tfsdk:"clusters" json:"clusters,omitempty"`
+				Content *string `tfsdk:"content" json:"content,omitempty"`
 				Env     *[]struct {
 					Name  *string            `tfsdk:"name" json:"name,omitempty"`
 					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
@@ -155,7 +183,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 			Wait *struct {
 				ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 				Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
-				For        *struct {
+				Clusters   *struct {
+					Context    *string `tfsdk:"context" json:"context,omitempty"`
+					Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+				} `tfsdk:"clusters" json:"clusters,omitempty"`
+				For *struct {
 					Condition *struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
@@ -175,7 +207,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 			} `tfsdk:"wait" json:"wait,omitempty"`
 		} `tfsdk:"catch" json:"catch,omitempty"`
-		Cluster                     *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+		Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+		Clusters *struct {
+			Context    *string `tfsdk:"context" json:"context,omitempty"`
+			Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+		} `tfsdk:"clusters" json:"clusters,omitempty"`
 		Concurrent                  *bool              `tfsdk:"concurrent" json:"concurrent,omitempty"`
 		DelayBeforeCleanup          *string            `tfsdk:"delay_before_cleanup" json:"delayBeforeCleanup,omitempty"`
 		Description                 *string            `tfsdk:"description" json:"description,omitempty"`
@@ -196,9 +232,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Check      *map[string]string `tfsdk:"check" json:"check,omitempty"`
-					Cluster    *string            `tfsdk:"cluster" json:"cluster,omitempty"`
-					Entrypoint *string            `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
+					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 					Env        *[]struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
@@ -216,8 +256,12 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Cluster *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					Expect  *[]struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Expect *[]struct {
 						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
 						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
 					} `tfsdk:"expect" json:"expect,omitempty"`
@@ -234,6 +278,10 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Describe *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -244,7 +292,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"describe" json:"describe,omitempty"`
 				Description *string `tfsdk:"description" json:"description,omitempty"`
 				Events      *struct {
-					Cluster   *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Format    *string `tfsdk:"format" json:"format,omitempty"`
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -254,16 +306,24 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Get *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					Format     *string `tfsdk:"format" json:"format,omitempty"`
-					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
-					Name       *string `tfsdk:"name" json:"name,omitempty"`
-					Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
-					Resource   *string `tfsdk:"resource" json:"resource,omitempty"`
-					Selector   *string `tfsdk:"selector" json:"selector,omitempty"`
-					Timeout    *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Format    *string `tfsdk:"format" json:"format,omitempty"`
+					Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Resource  *string `tfsdk:"resource" json:"resource,omitempty"`
+					Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
+					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"get" json:"get,omitempty"`
 				PodLogs *struct {
-					Cluster   *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -276,9 +336,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Check   *map[string]string `tfsdk:"check" json:"check,omitempty"`
-					Cluster *string            `tfsdk:"cluster" json:"cluster,omitempty"`
-					Content *string            `tfsdk:"content" json:"content,omitempty"`
+					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Content *string `tfsdk:"content" json:"content,omitempty"`
 					Env     *[]struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
@@ -297,7 +361,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Wait *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					For        *struct {
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					For *struct {
 						Condition *struct {
 							Name  *string `tfsdk:"name" json:"name,omitempty"`
 							Value *string `tfsdk:"value" json:"value,omitempty"`
@@ -317,7 +385,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"wait" json:"wait,omitempty"`
 			} `tfsdk:"catch" json:"catch,omitempty"`
-			Cluster     *string `tfsdk:"cluster" json:"cluster,omitempty"`
+			Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+			Clusters *struct {
+				Context    *string `tfsdk:"context" json:"context,omitempty"`
+				Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+			} `tfsdk:"clusters" json:"clusters,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
 			Finally     *[]struct {
 				Command *struct {
@@ -326,9 +398,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Check      *map[string]string `tfsdk:"check" json:"check,omitempty"`
-					Cluster    *string            `tfsdk:"cluster" json:"cluster,omitempty"`
-					Entrypoint *string            `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
+					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 					Env        *[]struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
@@ -346,8 +422,12 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Cluster *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					Expect  *[]struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Expect *[]struct {
 						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
 						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
 					} `tfsdk:"expect" json:"expect,omitempty"`
@@ -364,6 +444,10 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Describe *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -374,7 +458,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"describe" json:"describe,omitempty"`
 				Description *string `tfsdk:"description" json:"description,omitempty"`
 				Events      *struct {
-					Cluster   *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Format    *string `tfsdk:"format" json:"format,omitempty"`
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -384,16 +472,24 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Get *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					Format     *string `tfsdk:"format" json:"format,omitempty"`
-					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
-					Name       *string `tfsdk:"name" json:"name,omitempty"`
-					Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
-					Resource   *string `tfsdk:"resource" json:"resource,omitempty"`
-					Selector   *string `tfsdk:"selector" json:"selector,omitempty"`
-					Timeout    *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Format    *string `tfsdk:"format" json:"format,omitempty"`
+					Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Resource  *string `tfsdk:"resource" json:"resource,omitempty"`
+					Selector  *string `tfsdk:"selector" json:"selector,omitempty"`
+					Timeout   *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				} `tfsdk:"get" json:"get,omitempty"`
 				PodLogs *struct {
-					Cluster   *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -406,9 +502,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Check   *map[string]string `tfsdk:"check" json:"check,omitempty"`
-					Cluster *string            `tfsdk:"cluster" json:"cluster,omitempty"`
-					Content *string            `tfsdk:"content" json:"content,omitempty"`
+					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Content *string `tfsdk:"content" json:"content,omitempty"`
 					Env     *[]struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
@@ -427,7 +527,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Wait *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					For        *struct {
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					For *struct {
 						Condition *struct {
 							Name  *string `tfsdk:"name" json:"name,omitempty"`
 							Value *string `tfsdk:"value" json:"value,omitempty"`
@@ -464,9 +568,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Cluster *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					DryRun  *bool   `tfsdk:"dry_run" json:"dryRun,omitempty"`
-					Expect  *[]struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					DryRun *bool `tfsdk:"dry_run" json:"dryRun,omitempty"`
+					Expect *[]struct {
 						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
 						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
 					} `tfsdk:"expect" json:"expect,omitempty"`
@@ -485,7 +593,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					File     *string            `tfsdk:"file" json:"file,omitempty"`
 					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
 					Template *bool              `tfsdk:"template" json:"template,omitempty"`
@@ -497,9 +609,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Check      *map[string]string `tfsdk:"check" json:"check,omitempty"`
-					Cluster    *string            `tfsdk:"cluster" json:"cluster,omitempty"`
-					Entrypoint *string            `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
+					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 					Env        *[]struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
@@ -518,9 +634,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Cluster *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					DryRun  *bool   `tfsdk:"dry_run" json:"dryRun,omitempty"`
-					Expect  *[]struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					DryRun *bool `tfsdk:"dry_run" json:"dryRun,omitempty"`
+					Expect *[]struct {
 						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
 						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
 					} `tfsdk:"expect" json:"expect,omitempty"`
@@ -539,8 +659,12 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Cluster *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					Expect  *[]struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Expect *[]struct {
 						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
 						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
 					} `tfsdk:"expect" json:"expect,omitempty"`
@@ -560,7 +684,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					File     *string            `tfsdk:"file" json:"file,omitempty"`
 					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
 					Template *bool              `tfsdk:"template" json:"template,omitempty"`
@@ -571,9 +699,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Cluster *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					DryRun  *bool   `tfsdk:"dry_run" json:"dryRun,omitempty"`
-					Expect  *[]struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					DryRun *bool `tfsdk:"dry_run" json:"dryRun,omitempty"`
+					Expect *[]struct {
 						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
 						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
 					} `tfsdk:"expect" json:"expect,omitempty"`
@@ -592,9 +724,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Check   *map[string]string `tfsdk:"check" json:"check,omitempty"`
-					Cluster *string            `tfsdk:"cluster" json:"cluster,omitempty"`
-					Content *string            `tfsdk:"content" json:"content,omitempty"`
+					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
+					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					Content *string `tfsdk:"content" json:"content,omitempty"`
 					Env     *[]struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
@@ -615,9 +751,13 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 						Name  *string            `tfsdk:"name" json:"name,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
-					Cluster *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					DryRun  *bool   `tfsdk:"dry_run" json:"dryRun,omitempty"`
-					Expect  *[]struct {
+					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Clusters *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					DryRun *bool `tfsdk:"dry_run" json:"dryRun,omitempty"`
+					Expect *[]struct {
 						Check *map[string]string `tfsdk:"check" json:"check,omitempty"`
 						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
 					} `tfsdk:"expect" json:"expect,omitempty"`
@@ -634,7 +774,11 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Wait *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					Cluster    *string `tfsdk:"cluster" json:"cluster,omitempty"`
-					For        *struct {
+					Clusters   *struct {
+						Context    *string `tfsdk:"context" json:"context,omitempty"`
+						Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+					} `tfsdk:"clusters" json:"clusters,omitempty"`
+					For *struct {
 						Condition *struct {
 							Name  *string `tfsdk:"name" json:"name,omitempty"`
 							Value *string `tfsdk:"value" json:"value,omitempty"`
@@ -829,6 +973,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"clusters": schema.SingleNestedAttribute{
+											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+											Attributes: map[string]schema.Attribute{
+												"context": schema.StringAttribute{
+													Description:         "Context is the name of the context to use.",
+													MarkdownDescription: "Context is the name of the context to use.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kubeconfig": schema.StringAttribute{
+													Description:         "Kubeconfig is the path to the referenced file.",
+													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"entrypoint": schema.StringAttribute{
 											Description:         "Entrypoint is the command entry point to run.",
 											MarkdownDescription: "Entrypoint is the command entry point to run.",
@@ -972,6 +1141,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"clusters": schema.SingleNestedAttribute{
+											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+											Attributes: map[string]schema.Attribute{
+												"context": schema.StringAttribute{
+													Description:         "Context is the name of the context to use.",
+													MarkdownDescription: "Context is the name of the context to use.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kubeconfig": schema.StringAttribute{
+													Description:         "Kubeconfig is the path to the referenced file.",
+													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"expect": schema.ListNestedAttribute{
 											Description:         "Expect defines a list of matched checks to validate the operation outcome.",
 											MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
@@ -1092,6 +1286,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"clusters": schema.SingleNestedAttribute{
+											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+											Attributes: map[string]schema.Attribute{
+												"context": schema.StringAttribute{
+													Description:         "Context is the name of the context to use.",
+													MarkdownDescription: "Context is the name of the context to use.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kubeconfig": schema.StringAttribute{
+													Description:         "Kubeconfig is the path to the referenced file.",
+													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -1173,6 +1392,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"clusters": schema.SingleNestedAttribute{
+											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+											Attributes: map[string]schema.Attribute{
+												"context": schema.StringAttribute{
+													Description:         "Context is the name of the context to use.",
+													MarkdownDescription: "Context is the name of the context to use.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kubeconfig": schema.StringAttribute{
+													Description:         "Kubeconfig is the path to the referenced file.",
+													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"format": schema.StringAttribute{
 											Description:         "Format determines the output format (json or yaml).",
 											MarkdownDescription: "Format determines the output format (json or yaml).",
@@ -1239,6 +1483,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"clusters": schema.SingleNestedAttribute{
+											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+											Attributes: map[string]schema.Attribute{
+												"context": schema.StringAttribute{
+													Description:         "Context is the name of the context to use.",
+													MarkdownDescription: "Context is the name of the context to use.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kubeconfig": schema.StringAttribute{
+													Description:         "Kubeconfig is the path to the referenced file.",
+													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"format": schema.StringAttribute{
@@ -1315,6 +1584,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"clusters": schema.SingleNestedAttribute{
+											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+											Attributes: map[string]schema.Attribute{
+												"context": schema.StringAttribute{
+													Description:         "Context is the name of the context to use.",
+													MarkdownDescription: "Context is the name of the context to use.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kubeconfig": schema.StringAttribute{
+													Description:         "Kubeconfig is the path to the referenced file.",
+													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"container": schema.StringAttribute{
@@ -1420,6 +1714,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"clusters": schema.SingleNestedAttribute{
+											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+											Attributes: map[string]schema.Attribute{
+												"context": schema.StringAttribute{
+													Description:         "Context is the name of the context to use.",
+													MarkdownDescription: "Context is the name of the context to use.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kubeconfig": schema.StringAttribute{
+													Description:         "Kubeconfig is the path to the referenced file.",
+													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"content": schema.StringAttribute{
@@ -1557,6 +1876,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"clusters": schema.SingleNestedAttribute{
+											Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+											MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+											Attributes: map[string]schema.Attribute{
+												"context": schema.StringAttribute{
+													Description:         "Context is the name of the context to use.",
+													MarkdownDescription: "Context is the name of the context to use.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kubeconfig": schema.StringAttribute{
+													Description:         "Kubeconfig is the path to the referenced file.",
+													MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"for": schema.SingleNestedAttribute{
@@ -1703,6 +2047,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"clusters": schema.SingleNestedAttribute{
+						Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+						MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+						Attributes: map[string]schema.Attribute{
+							"context": schema.StringAttribute{
+								Description:         "Context is the name of the context to use.",
+								MarkdownDescription: "Context is the name of the context to use.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kubeconfig": schema.StringAttribute{
+								Description:         "Kubeconfig is the path to the referenced file.",
+								MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"concurrent": schema.BoolAttribute{
@@ -1872,6 +2241,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"entrypoint": schema.StringAttribute{
 														Description:         "Entrypoint is the command entry point to run.",
 														MarkdownDescription: "Entrypoint is the command entry point to run.",
@@ -2015,6 +2409,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"expect": schema.ListNestedAttribute{
 														Description:         "Expect defines a list of matched checks to validate the operation outcome.",
 														MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
@@ -2135,6 +2554,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"kind": schema.StringAttribute{
 														Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 														MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -2216,6 +2660,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"format": schema.StringAttribute{
 														Description:         "Format determines the output format (json or yaml).",
 														MarkdownDescription: "Format determines the output format (json or yaml).",
@@ -2282,6 +2751,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"format": schema.StringAttribute{
@@ -2358,6 +2852,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"container": schema.StringAttribute{
@@ -2463,6 +2982,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"content": schema.StringAttribute{
@@ -2600,6 +3144,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"for": schema.SingleNestedAttribute{
@@ -2748,6 +3317,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 									Computed:            false,
 								},
 
+								"clusters": schema.SingleNestedAttribute{
+									Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+									MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+									Attributes: map[string]schema.Attribute{
+										"context": schema.StringAttribute{
+											Description:         "Context is the name of the context to use.",
+											MarkdownDescription: "Context is the name of the context to use.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"kubeconfig": schema.StringAttribute{
+											Description:         "Kubeconfig is the path to the referenced file.",
+											MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"description": schema.StringAttribute{
 									Description:         "Description contains a description of the test step.",
 									MarkdownDescription: "Description contains a description of the test step.",
@@ -2820,6 +3414,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"entrypoint": schema.StringAttribute{
@@ -2965,6 +3584,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"expect": schema.ListNestedAttribute{
 														Description:         "Expect defines a list of matched checks to validate the operation outcome.",
 														MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
@@ -3085,6 +3729,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"kind": schema.StringAttribute{
 														Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 														MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -3166,6 +3835,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"format": schema.StringAttribute{
 														Description:         "Format determines the output format (json or yaml).",
 														MarkdownDescription: "Format determines the output format (json or yaml).",
@@ -3232,6 +3926,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"format": schema.StringAttribute{
@@ -3308,6 +4027,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"container": schema.StringAttribute{
@@ -3413,6 +4157,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"content": schema.StringAttribute{
@@ -3550,6 +4319,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"for": schema.SingleNestedAttribute{
@@ -3819,6 +4613,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"dry_run": schema.BoolAttribute{
 														Description:         "DryRun determines whether the file should be applied in dry run mode.",
 														MarkdownDescription: "DryRun determines whether the file should be applied in dry run mode.",
@@ -3977,6 +4796,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"file": schema.StringAttribute{
 														Description:         "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
 														MarkdownDescription: "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
@@ -4074,6 +4918,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"entrypoint": schema.StringAttribute{
@@ -4225,6 +5094,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"dry_run": schema.BoolAttribute{
@@ -4385,6 +5279,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"expect": schema.ListNestedAttribute{
 														Description:         "Expect defines a list of matched checks to validate the operation outcome.",
 														MarkdownDescription: "Expect defines a list of matched checks to validate the operation outcome.",
@@ -4536,6 +5455,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"file": schema.StringAttribute{
 														Description:         "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
 														MarkdownDescription: "File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.",
@@ -4615,6 +5559,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"dry_run": schema.BoolAttribute{
@@ -4784,6 +5753,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"content": schema.StringAttribute{
 														Description:         "Content defines a shell script (run with 'sh -c ...').",
 														MarkdownDescription: "Content defines a shell script (run with 'sh -c ...').",
@@ -4944,6 +5938,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"dry_run": schema.BoolAttribute{
 														Description:         "DryRun determines whether the file should be applied in dry run mode.",
 														MarkdownDescription: "DryRun determines whether the file should be applied in dry run mode.",
@@ -5077,6 +6096,31 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"clusters": schema.SingleNestedAttribute{
+														Description:         "Clusters holds a registry to clusters to support multi-cluster tests.",
+														MarkdownDescription: "Clusters holds a registry to clusters to support multi-cluster tests.",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context is the name of the context to use.",
+																MarkdownDescription: "Context is the name of the context to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kubeconfig": schema.StringAttribute{
+																Description:         "Kubeconfig is the path to the referenced file.",
+																MarkdownDescription: "Kubeconfig is the path to the referenced file.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"for": schema.SingleNestedAttribute{

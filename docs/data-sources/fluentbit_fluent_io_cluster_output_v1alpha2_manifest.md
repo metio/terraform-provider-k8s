@@ -525,6 +525,7 @@ Optional:
 - `self_hostname` (String) Default value of the auto-generated certificate common name (CN).
 - `send_options` (Boolean) Always send options (with 'size'=count of messages)
 - `shared_key` (String) A key string known by the remote Fluentd used for authorization.
+- `tag` (String) Overwrite the tag as we transmit. This allows the receiving pipeline start fresh, or to attribute source.
 - `time_as_integer` (Boolean) Set timestamps in integer format, it enable compatibility mode for Fluentd v0.12 series.
 - `tls` (Attributes) Fluent Bit provides integrated support for Transport Layer Security (TLS) and it predecessor Secure Sockets Layer (SSL) respectively. (see [below for nested schema](#nestedatt--spec--forward--tls))
 - `username` (Attributes) Specify the username to present to a Fluentd server that enables user_auth. (see [below for nested schema](#nestedatt--spec--forward--username))

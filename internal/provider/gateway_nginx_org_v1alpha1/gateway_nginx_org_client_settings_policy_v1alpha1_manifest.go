@@ -58,10 +58,9 @@ type GatewayNginxOrgClientSettingsPolicyV1Alpha1ManifestData struct {
 			} `tfsdk:"timeout" json:"timeout,omitempty"`
 		} `tfsdk:"keep_alive" json:"keepAlive,omitempty"`
 		TargetRef *struct {
-			Group     *string `tfsdk:"group" json:"group,omitempty"`
-			Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Group *string `tfsdk:"group" json:"group,omitempty"`
+			Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name  *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -274,19 +273,6 @@ func (r *GatewayNginxOrgClientSettingsPolicyV1Alpha1Manifest) Schema(_ context.C
 								Validators: []validator.String{
 									stringvalidator.LengthAtLeast(1),
 									stringvalidator.LengthAtMost(253),
-								},
-							},
-
-							"namespace": schema.StringAttribute{
-								Description:         "Namespace is the namespace of the referent. When unspecified, the localnamespace is inferred. Even when policy targets a resource in a differentnamespace, it MUST only apply to traffic originating from the samenamespace as the policy.",
-								MarkdownDescription: "Namespace is the namespace of the referent. When unspecified, the localnamespace is inferred. Even when policy targets a resource in a differentnamespace, it MUST only apply to traffic originating from the samenamespace as the policy.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.LengthAtLeast(1),
-									stringvalidator.LengthAtMost(63),
-									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
 								},
 							},
 						},

@@ -1893,7 +1893,7 @@ Optional:
 - `o_auth_access_token_max_age_seconds` (Number) Access token max age for tokens to set in the OpenShift 'OAuthClient' resource used to set up identity federation on the OpenShift side. 0 means no expiration.
 - `o_auth_client_name` (String) Name of the OpenShift 'OAuthClient' resource used to set up identity federation on the OpenShift side.
 - `o_auth_scope` (String) Access Token Scope. This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.
-- `o_auth_secret` (String) Name of the secret set in the OpenShift 'OAuthClient' resource used to set up identity federation on the OpenShift side.
+- `o_auth_secret` (String) Name of the secret set in the OpenShift 'OAuthClient' resource used to set up identity federation on the OpenShift side. For Kubernetes, this can either be the plain text oAuthSecret value, or the name of a kubernetes secret which contains a key 'oAuthSecret' and the value is the secret. NOTE: this secret must exist in the same namespace as the 'CheCluster' resource and contain the label 'app.kubernetes.io/part-of=che.eclipse.org'.
 
 <a id="nestedatt--spec--networking--auth--advanced_authorization"></a>
 ### Nested Schema for `spec.networking.auth.advanced_authorization`

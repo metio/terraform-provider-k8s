@@ -59,7 +59,7 @@ Required:
 
 Optional:
 
-- `chart` (Attributes) Chart defines the template of the v1beta2.HelmChart that should be createdfor this HelmRelease. (see [below for nested schema](#nestedatt--spec--chart))
+- `chart` (Attributes) Chart defines the template of the v1.HelmChart that should be createdfor this HelmRelease. (see [below for nested schema](#nestedatt--spec--chart))
 - `chart_ref` (Attributes) ChartRef holds a reference to a source controller resource containing theHelm chart artifact. (see [below for nested schema](#nestedatt--spec--chart_ref))
 - `depends_on` (Attributes List) DependsOn may contain a meta.NamespacedObjectReference slice withreferences to HelmRelease resources that must be ready before this HelmReleasecan be reconciled. (see [below for nested schema](#nestedatt--spec--depends_on))
 - `drift_detection` (Attributes) DriftDetection holds the configuration for detecting and handlingdifferences between the manifest in the Helm storage and the resourcescurrently existing in the cluster. (see [below for nested schema](#nestedatt--spec--drift_detection))
@@ -86,7 +86,7 @@ Optional:
 
 Required:
 
-- `spec` (Attributes) Spec holds the template for the v1beta2.HelmChartSpec for this HelmRelease. (see [below for nested schema](#nestedatt--spec--chart--spec))
+- `spec` (Attributes) Spec holds the template for the v1.HelmChartSpec for this HelmRelease. (see [below for nested schema](#nestedatt--spec--chart--spec))
 
 Optional:
 
@@ -107,7 +107,7 @@ Optional:
 - `reconcile_strategy` (String) Determines what enables the creation of a new artifact. Valid values are('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.
 - `values_files` (List of String) Alternative list of values files to use as the chart values (values.yamlis not included by default), expected to be a relative path in the SourceRef.Values files are merged in the order of this list with the last file overridingthe first. Ignored when omitted.
 - `verify` (Attributes) Verify contains the secret name containing the trusted public keysused to verify the signature and specifies which provider to use to checkwhether OCI image is authentic.This field is only supported for OCI sources.Chart dependencies, which are not bundled in the umbrella chart artifact,are not verified. (see [below for nested schema](#nestedatt--spec--chart--spec--verify))
-- `version` (String) Version semver expression, ignored for charts from v1beta2.GitRepository andv1beta2.Bucket sources. Defaults to latest when omitted.
+- `version` (String) Version semver expression, ignored for charts from v1.GitRepository andv1beta2.Bucket sources. Defaults to latest when omitted.
 
 <a id="nestedatt--spec--chart--spec--source_ref"></a>
 ### Nested Schema for `spec.chart.spec.source_ref`

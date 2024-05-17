@@ -197,6 +197,15 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
 		Alerting *struct {
 			Alertmanagers *[]struct {
+				AlertRelabelings *[]struct {
+					Action       *string   `tfsdk:"action" json:"action,omitempty"`
+					Modulus      *int64    `tfsdk:"modulus" json:"modulus,omitempty"`
+					Regex        *string   `tfsdk:"regex" json:"regex,omitempty"`
+					Replacement  *string   `tfsdk:"replacement" json:"replacement,omitempty"`
+					Separator    *string   `tfsdk:"separator" json:"separator,omitempty"`
+					SourceLabels *[]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
+					TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
+				} `tfsdk:"alert_relabelings" json:"alertRelabelings,omitempty"`
 				ApiVersion    *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 				Authorization *struct {
 					Credentials *struct {
@@ -224,8 +233,17 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 				Namespace       *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				PathPrefix      *string `tfsdk:"path_prefix" json:"pathPrefix,omitempty"`
 				Port            *string `tfsdk:"port" json:"port,omitempty"`
-				Scheme          *string `tfsdk:"scheme" json:"scheme,omitempty"`
-				Sigv4           *struct {
+				Relabelings     *[]struct {
+					Action       *string   `tfsdk:"action" json:"action,omitempty"`
+					Modulus      *int64    `tfsdk:"modulus" json:"modulus,omitempty"`
+					Regex        *string   `tfsdk:"regex" json:"regex,omitempty"`
+					Replacement  *string   `tfsdk:"replacement" json:"replacement,omitempty"`
+					Separator    *string   `tfsdk:"separator" json:"separator,omitempty"`
+					SourceLabels *[]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
+					TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
+				} `tfsdk:"relabelings" json:"relabelings,omitempty"`
+				Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				Sigv4  *struct {
 					AccessKey *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -1054,6 +1072,9 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 					} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
 					TenantId *string `tfsdk:"tenant_id" json:"tenantId,omitempty"`
 				} `tfsdk:"oauth" json:"oauth,omitempty"`
+				Sdk *struct {
+					TenantId *string `tfsdk:"tenant_id" json:"tenantId,omitempty"`
+				} `tfsdk:"sdk" json:"sdk,omitempty"`
 			} `tfsdk:"azure_ad" json:"azureAd,omitempty"`
 			BasicAuth *struct {
 				Password *struct {
@@ -3048,6 +3069,77 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "AlertmanagerEndpoints Prometheus should fire alerts against.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"alert_relabelings": schema.ListNestedAttribute{
+											Description:         "Relabeling configs applied before sending alerts to a specific Alertmanager.It requires Prometheus >= v2.51.0.",
+											MarkdownDescription: "Relabeling configs applied before sending alerts to a specific Alertmanager.It requires Prometheus >= v2.51.0.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"action": schema.StringAttribute{
+														Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+														MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("replace", "Replace", "keep", "Keep", "drop", "Drop", "hashmod", "HashMod", "labelmap", "LabelMap", "labeldrop", "LabelDrop", "labelkeep", "LabelKeep", "lowercase", "Lowercase", "uppercase", "Uppercase", "keepequal", "KeepEqual", "dropequal", "DropEqual"),
+														},
+													},
+
+													"modulus": schema.Int64Attribute{
+														Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+														MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"regex": schema.StringAttribute{
+														Description:         "Regular expression against which the extracted value is matched.",
+														MarkdownDescription: "Regular expression against which the extracted value is matched.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"replacement": schema.StringAttribute{
+														Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+														MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"separator": schema.StringAttribute{
+														Description:         "Separator is the string between concatenated SourceLabels.",
+														MarkdownDescription: "Separator is the string between concatenated SourceLabels.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"source_labels": schema.ListAttribute{
+														Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+														MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"target_label": schema.StringAttribute{
+														Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+														MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"api_version": schema.StringAttribute{
 											Description:         "Version of the Alertmanager API that Prometheus uses to send alerts.It can be 'v1' or 'v2'.",
 											MarkdownDescription: "Version of the Alertmanager API that Prometheus uses to send alerts.It can be 'v1' or 'v2'.",
@@ -3227,6 +3319,77 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+										},
+
+										"relabelings": schema.ListNestedAttribute{
+											Description:         "Relabel configuration applied to the discovered Alertmanagers.",
+											MarkdownDescription: "Relabel configuration applied to the discovered Alertmanagers.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"action": schema.StringAttribute{
+														Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+														MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("replace", "Replace", "keep", "Keep", "drop", "Drop", "hashmod", "HashMod", "labelmap", "LabelMap", "labeldrop", "LabelDrop", "labelkeep", "LabelKeep", "lowercase", "Lowercase", "uppercase", "Uppercase", "keepequal", "KeepEqual", "dropequal", "DropEqual"),
+														},
+													},
+
+													"modulus": schema.Int64Attribute{
+														Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+														MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"regex": schema.StringAttribute{
+														Description:         "Regular expression against which the extracted value is matched.",
+														MarkdownDescription: "Regular expression against which the extracted value is matched.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"replacement": schema.StringAttribute{
+														Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+														MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"separator": schema.StringAttribute{
+														Description:         "Separator is the string between concatenated SourceLabels.",
+														MarkdownDescription: "Separator is the string between concatenated SourceLabels.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"source_labels": schema.ListAttribute{
+														Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+														MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"target_label": schema.StringAttribute{
+														Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+														MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"scheme": schema.StringAttribute{
@@ -8756,8 +8919,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"managed_identity": schema.SingleNestedAttribute{
-											Description:         "ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth'.",
-											MarkdownDescription: "ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth'.",
+											Description:         "ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth' or 'sdk'.",
+											MarkdownDescription: "ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth' or 'sdk'.",
 											Attributes: map[string]schema.Attribute{
 												"client_id": schema.StringAttribute{
 													Description:         "The client id",
@@ -8773,8 +8936,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"oauth": schema.SingleNestedAttribute{
-											Description:         "OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity'.It requires Prometheus >= v2.48.0.",
-											MarkdownDescription: "OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity'.It requires Prometheus >= v2.48.0.",
+											Description:         "OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity' or 'sdk'.It requires Prometheus >= v2.48.0.",
+											MarkdownDescription: "OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity' or 'sdk'.It requires Prometheus >= v2.48.0.",
 											Attributes: map[string]schema.Attribute{
 												"client_id": schema.StringAttribute{
 													Description:         "'clientID' is the clientId of the Azure Active Directory application that is being used to authenticate.",
@@ -8821,13 +8984,33 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"tenant_id": schema.StringAttribute{
-													Description:         "'tenantID' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
-													MarkdownDescription: "'tenantID' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
+													Description:         "'tenantId' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
+													MarkdownDescription: "'tenantId' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 													Validators: []validator.String{
 														stringvalidator.LengthAtLeast(1),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9a-zA-Z-.]+$`), ""),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"sdk": schema.SingleNestedAttribute{
+											Description:         "SDK defines the Azure SDK config that is being used to authenticate.See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authenticationCannot be set at the same time as 'oauth' or 'managedIdentity'.It requires Prometheus >= 2.52.0.",
+											MarkdownDescription: "SDK defines the Azure SDK config that is being used to authenticate.See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authenticationCannot be set at the same time as 'oauth' or 'managedIdentity'.It requires Prometheus >= 2.52.0.",
+											Attributes: map[string]schema.Attribute{
+												"tenant_id": schema.StringAttribute{
+													Description:         "'tenantId' is the tenant ID of the azure active directory application that is being used to authenticate.",
+													MarkdownDescription: "'tenantId' is the tenant ID of the azure active directory application that is being used to authenticate.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
 														stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9a-zA-Z-.]+$`), ""),
 													},
 												},
@@ -9940,8 +10123,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.BoolAttribute{
-									Description:         "Default indicates that the scrape applies to all scrape objects that don't configure an explicit scrape class name.Only one scrape class can be set as default.",
-									MarkdownDescription: "Default indicates that the scrape applies to all scrape objects that don't configure an explicit scrape class name.Only one scrape class can be set as default.",
+									Description:         "Default indicates that the scrape applies to all scrape objects thatdon't configure an explicit scrape class name.Only one scrape class can be set as the default.",
+									MarkdownDescription: "Default indicates that the scrape applies to all scrape objects thatdon't configure an explicit scrape class name.Only one scrape class can be set as the default.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -10030,8 +10213,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"tls_config": schema.SingleNestedAttribute{
-									Description:         "TLSConfig section for scrapes.",
-									MarkdownDescription: "TLSConfig section for scrapes.",
+									Description:         "TLSConfig defines the TLS settings to use for the scrape. When thescrape objects define their own CA, certificate and/or key, they takeprecedence over the corresponding scrape class fields.For now only the 'caFile', 'certFile' and 'keyFile' fields are supported.",
+									MarkdownDescription: "TLSConfig defines the TLS settings to use for the scrape. When thescrape objects define their own CA, certificate and/or key, they takeprecedence over the corresponding scrape class fields.For now only the 'caFile', 'certFile' and 'keyFile' fields are supported.",
 									Attributes: map[string]schema.Attribute{
 										"ca": schema.SingleNestedAttribute{
 											Description:         "Certificate authority used when verifying server certificates.",

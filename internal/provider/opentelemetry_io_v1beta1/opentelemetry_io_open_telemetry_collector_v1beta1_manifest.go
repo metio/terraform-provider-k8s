@@ -896,8 +896,16 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 			TargetPort  *string `tfsdk:"target_port" json:"targetPort,omitempty"`
 		} `tfsdk:"ports" json:"ports,omitempty"`
 		PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
-		Replicas          *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
-		Resources         *struct {
+		ReadinessProbe    *struct {
+			FailureThreshold              *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+			InitialDelaySeconds           *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+			PeriodSeconds                 *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+			SuccessThreshold              *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+			TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+		} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+		Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+		Resources *struct {
 			Claims *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
@@ -7379,6 +7387,63 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"readiness_probe": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"failure_threshold": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"initial_delay_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"period_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"success_threshold": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"termination_grace_period_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"timeout_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"replicas": schema.Int64Attribute{

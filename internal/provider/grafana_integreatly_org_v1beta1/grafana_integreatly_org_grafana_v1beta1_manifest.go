@@ -380,7 +380,11 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 							RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 							SecurityContext *struct {
 								AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-								Capabilities             *struct {
+								AppArmorProfile          *struct {
+									LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+									Type             *string `tfsdk:"type" json:"type,omitempty"`
+								} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+								Capabilities *struct {
 									Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 									Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 								} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -446,12 +450,13 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 								Name       *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 							VolumeMounts *[]struct {
-								MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-								MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-								Name             *string `tfsdk:"name" json:"name,omitempty"`
-								ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-								SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-								SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+								MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+								MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+								Name              *string `tfsdk:"name" json:"name,omitempty"`
+								ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+								RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+								SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+								SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 							} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 							WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 						} `tfsdk:"containers" json:"containers,omitempty"`
@@ -632,7 +637,11 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 							RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 							SecurityContext *struct {
 								AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-								Capabilities             *struct {
+								AppArmorProfile          *struct {
+									LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+									Type             *string `tfsdk:"type" json:"type,omitempty"`
+								} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+								Capabilities *struct {
 									Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 									Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 								} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -699,12 +708,13 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 								Name       *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 							VolumeMounts *[]struct {
-								MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-								MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-								Name             *string `tfsdk:"name" json:"name,omitempty"`
-								ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-								SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-								SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+								MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+								MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+								Name              *string `tfsdk:"name" json:"name,omitempty"`
+								ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+								RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+								SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+								SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 							} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 							WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 						} `tfsdk:"ephemeral_containers" json:"ephemeralContainers,omitempty"`
@@ -887,7 +897,11 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 							RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 							SecurityContext *struct {
 								AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-								Capabilities             *struct {
+								AppArmorProfile          *struct {
+									LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+									Type             *string `tfsdk:"type" json:"type,omitempty"`
+								} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+								Capabilities *struct {
 									Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 									Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 								} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -953,12 +967,13 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 								Name       *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 							VolumeMounts *[]struct {
-								MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-								MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-								Name             *string `tfsdk:"name" json:"name,omitempty"`
-								ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-								SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-								SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+								MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+								MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+								Name              *string `tfsdk:"name" json:"name,omitempty"`
+								ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+								RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+								SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+								SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 							} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 							WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 						} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -978,6 +993,10 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 						RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 						SchedulerName    *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 						SecurityContext  *struct {
+							AppArmorProfile *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 							FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 							FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 							RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1527,7 +1546,8 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 						TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 					} `tfsdk:"client_ip" json:"clientIP,omitempty"`
 				} `tfsdk:"session_affinity_config" json:"sessionAffinityConfig,omitempty"`
-				Type *string `tfsdk:"type" json:"type,omitempty"`
+				TrafficDistribution *string `tfsdk:"traffic_distribution" json:"trafficDistribution,omitempty"`
+				Type                *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
 		} `tfsdk:"service" json:"service,omitempty"`
 		ServiceAccount *struct {
@@ -3853,6 +3873,31 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																			Computed:            false,
 																		},
 
+																		"app_armor_profile": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"localhost_profile": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"type": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"capabilities": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -4330,6 +4375,14 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																			},
 
 																			"read_only": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"recursive_read_only": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -5532,6 +5585,31 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																			Computed:            false,
 																		},
 
+																		"app_armor_profile": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"localhost_profile": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"type": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"capabilities": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -6017,6 +6095,14 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																			},
 
 																			"read_only": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"recursive_read_only": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -7236,6 +7322,31 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																			Computed:            false,
 																		},
 
+																		"app_armor_profile": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"localhost_profile": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"type": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"capabilities": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -7720,6 +7831,14 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																				Computed:            false,
 																			},
 
+																			"recursive_read_only": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"sub_path": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -7870,6 +7989,31 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 														Description:         "",
 														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
+															"app_armor_profile": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"localhost_profile": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"fs_group": schema.Int64Attribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -11523,6 +11667,14 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"traffic_distribution": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"type": schema.StringAttribute{

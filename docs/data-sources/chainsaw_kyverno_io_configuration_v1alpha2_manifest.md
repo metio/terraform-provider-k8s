@@ -90,6 +90,7 @@ Optional:
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--catch--command--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--command--clusters))
 - `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--catch--command--env))
 - `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--catch--command--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
@@ -102,6 +103,18 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+
+<a id="nestedatt--spec--catch--command--clusters"></a>
+### Nested Schema for `spec.catch.command.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
 
 
 <a id="nestedatt--spec--catch--command--env"></a>
@@ -138,6 +151,7 @@ Optional:
 
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--catch--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--delete--clusters))
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--catch--delete--expect))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -166,6 +180,18 @@ Required:
 - `value` (Map of String) Value value of the binding.
 
 
+<a id="nestedatt--spec--catch--delete--clusters"></a>
+### Nested Schema for `spec.catch.delete.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
 <a id="nestedatt--spec--catch--delete--expect"></a>
 ### Nested Schema for `spec.catch.delete.expect`
 
@@ -186,6 +212,7 @@ Optional:
 
 - `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--describe--clusters))
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
@@ -194,6 +221,18 @@ Optional:
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
+<a id="nestedatt--spec--catch--describe--clusters"></a>
+### Nested Schema for `spec.catch.describe.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
 
 <a id="nestedatt--spec--catch--events"></a>
 ### Nested Schema for `spec.catch.events`
@@ -201,11 +240,24 @@ Optional:
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--events--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--catch--events--clusters"></a>
+### Nested Schema for `spec.catch.events.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
 
 
 <a id="nestedatt--spec--catch--get"></a>
@@ -215,6 +267,7 @@ Optional:
 
 - `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
@@ -223,6 +276,18 @@ Optional:
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
+<a id="nestedatt--spec--catch--get--clusters"></a>
+### Nested Schema for `spec.catch.get.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
+
 
 <a id="nestedatt--spec--catch--pod_logs"></a>
 ### Nested Schema for `spec.catch.pod_logs`
@@ -230,12 +295,25 @@ Optional:
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--pod_logs--clusters))
 - `container` (String) Container in pod to get logs from else --all-containers is used.
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+
+<a id="nestedatt--spec--catch--pod_logs--clusters"></a>
+### Nested Schema for `spec.catch.pod_logs.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
+
 
 
 <a id="nestedatt--spec--catch--script"></a>
@@ -246,6 +324,7 @@ Optional:
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--catch--script--bindings))
 - `check` (Map of String) Check is an assertion tree to validate the operation outcome.
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--script--clusters))
 - `content` (String) Content defines a shell script (run with 'sh -c ...').
 - `env` (Attributes List) Env defines additional environment variables. (see [below for nested schema](#nestedatt--spec--catch--script--env))
 - `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--catch--script--outputs))
@@ -259,6 +338,18 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+
+<a id="nestedatt--spec--catch--script--clusters"></a>
+### Nested Schema for `spec.catch.script.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
 
 
 <a id="nestedatt--spec--catch--script--env"></a>
@@ -303,6 +394,7 @@ Optional:
 
 - `api_version` (String) API version of the referent.
 - `cluster` (String) Cluster defines the target cluster where the wait operation will be performed (default cluster will be used if not specified).
+- `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
@@ -340,6 +432,18 @@ Required:
 - `path` (String) Path defines the json path to wait for, e.g. '{.status.phase}'.
 - `value` (String) Value defines the expected value to wait for, e.g., 'Running'.
 
+
+
+<a id="nestedatt--spec--catch--wait--clusters"></a>
+### Nested Schema for `spec.catch.wait.clusters`
+
+Required:
+
+- `kubeconfig` (String) Kubeconfig is the path to the referenced file.
+
+Optional:
+
+- `context` (String) Context is the name of the context to use.
 
 
 

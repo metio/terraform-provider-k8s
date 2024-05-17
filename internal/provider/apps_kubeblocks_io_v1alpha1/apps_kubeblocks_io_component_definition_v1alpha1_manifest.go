@@ -44,14 +44,8 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Annotations             *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-		BuiltinMonitorContainer *struct {
-			MetricsPath *string `tfsdk:"metrics_path" json:"metricsPath,omitempty"`
-			MetricsPort *string `tfsdk:"metrics_port" json:"metricsPort,omitempty"`
-			Name        *string `tfsdk:"name" json:"name,omitempty"`
-			Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
-		} `tfsdk:"builtin_monitor_container" json:"builtinMonitorContainer,omitempty"`
-		Configs *[]struct {
+		Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+		Configs     *[]struct {
 			AsEnvFrom                *[]string `tfsdk:"as_env_from" json:"asEnvFrom,omitempty"`
 			ConstraintRef            *string   `tfsdk:"constraint_ref" json:"constraintRef,omitempty"`
 			DefaultMode              *int64    `tfsdk:"default_mode" json:"defaultMode,omitempty"`
@@ -69,6 +63,12 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 			VolumeName            *string   `tfsdk:"volume_name" json:"volumeName,omitempty"`
 		} `tfsdk:"configs" json:"configs,omitempty"`
 		Description *string `tfsdk:"description" json:"description,omitempty"`
+		Exporter    *struct {
+			ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+			ScrapePath    *string `tfsdk:"scrape_path" json:"scrapePath,omitempty"`
+			ScrapePort    *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
+			ScrapeScheme  *string `tfsdk:"scrape_scheme" json:"scrapeScheme,omitempty"`
+		} `tfsdk:"exporter" json:"exporter,omitempty"`
 		HostNetwork *struct {
 			ContainerPorts *[]struct {
 				Container *string   `tfsdk:"container" json:"container,omitempty"`
@@ -800,7 +800,14 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 			Name            *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"log_configs" json:"logConfigs,omitempty"`
 		MinReadySeconds *int64 `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
-		PolicyRules     *[]struct {
+		Monitor         *struct {
+			BuiltIn        *bool `tfsdk:"built_in" json:"builtIn,omitempty"`
+			ExporterConfig *struct {
+				ScrapePath *string `tfsdk:"scrape_path" json:"scrapePath,omitempty"`
+				ScrapePort *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
+			} `tfsdk:"exporter_config" json:"exporterConfig,omitempty"`
+		} `tfsdk:"monitor" json:"monitor,omitempty"`
+		PolicyRules *[]struct {
 			ApiGroups       *[]string `tfsdk:"api_groups" json:"apiGroups,omitempty"`
 			NonResourceURLs *[]string `tfsdk:"non_resource_urls" json:"nonResourceURLs,omitempty"`
 			ResourceNames   *[]string `tfsdk:"resource_names" json:"resourceNames,omitempty"`
@@ -812,8 +819,7 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 			MaxReplicas *int64 `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
 			MinReplicas *int64 `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
 		} `tfsdk:"replicas_limit" json:"replicasLimit,omitempty"`
-		RoleArbitrator *string `tfsdk:"role_arbitrator" json:"roleArbitrator,omitempty"`
-		Roles          *[]struct {
+		Roles *[]struct {
 			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			Serviceable *bool   `tfsdk:"serviceable" json:"serviceable,omitempty"`
 			Votable     *bool   `tfsdk:"votable" json:"votable,omitempty"`
@@ -2113,8 +2119,7 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
 		} `tfsdk:"services" json:"services,omitempty"`
-		SidecarContainerSpecs *map[string]string `tfsdk:"sidecar_container_specs" json:"sidecarContainerSpecs,omitempty"`
-		SystemAccounts        *[]struct {
+		SystemAccounts *[]struct {
 			InitAccount              *bool   `tfsdk:"init_account" json:"initAccount,omitempty"`
 			Name                     *string `tfsdk:"name" json:"name,omitempty"`
 			PasswordGenerationPolicy *struct {
@@ -2177,7 +2182,7 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 					Password *string `tfsdk:"password" json:"password,omitempty"`
 					Username *string `tfsdk:"username" json:"username,omitempty"`
 				} `tfsdk:"credential_var_ref" json:"credentialVarRef,omitempty"`
-				PodVarRef *struct {
+				HostNetworkVarRef *struct {
 					CompDef   *string `tfsdk:"comp_def" json:"compDef,omitempty"`
 					Container *struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -2199,7 +2204,7 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"pod_var_ref" json:"podVarRef,omitempty"`
+				} `tfsdk:"host_network_var_ref" json:"hostNetworkVarRef,omitempty"`
 				SecretKeyRef *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -2329,50 +2334,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-					},
-
-					"builtin_monitor_container": schema.SingleNestedAttribute{
-						Description:         "Defines the built-in metrics exporter container.",
-						MarkdownDescription: "Defines the built-in metrics exporter container.",
-						Attributes: map[string]schema.Attribute{
-							"metrics_path": schema.StringAttribute{
-								Description:         "Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
-								MarkdownDescription: "Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"metrics_port": schema.StringAttribute{
-								Description:         "Specifies the port name to scrape for metrics.",
-								MarkdownDescription: "Specifies the port name to scrape for metrics.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"name": schema.StringAttribute{
-								Description:         "Specifies the name of the built-in metrics exporter container.",
-								MarkdownDescription: "Specifies the name of the built-in metrics exporter container.",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-							},
-
-							"protocol": schema.StringAttribute{
-								Description:         "Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
-								MarkdownDescription: "Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.OneOf("http", "https"),
-								},
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
 					},
 
 					"configs": schema.ListNestedAttribute{
@@ -2543,6 +2504,50 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						Validators: []validator.String{
 							stringvalidator.LengthAtMost(256),
 						},
+					},
+
+					"exporter": schema.SingleNestedAttribute{
+						Description:         "Defines the built-in metrics exporter container.",
+						MarkdownDescription: "Defines the built-in metrics exporter container.",
+						Attributes: map[string]schema.Attribute{
+							"container_name": schema.StringAttribute{
+								Description:         "Specifies the name of the built-in metrics exporter container.",
+								MarkdownDescription: "Specifies the name of the built-in metrics exporter container.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"scrape_path": schema.StringAttribute{
+								Description:         "Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+								MarkdownDescription: "Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"scrape_port": schema.StringAttribute{
+								Description:         "Specifies the port name to scrape for metrics.",
+								MarkdownDescription: "Specifies the port name to scrape for metrics.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"scrape_scheme": schema.StringAttribute{
+								Description:         "Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
+								MarkdownDescription: "Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("http", "https"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"host_network": schema.SingleNestedAttribute{
@@ -7411,6 +7416,51 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						},
 					},
 
+					"monitor": schema.SingleNestedAttribute{
+						Description:         "Deprecated since v0.9 monitor is monitoring config which provided by provider.",
+						MarkdownDescription: "Deprecated since v0.9 monitor is monitoring config which provided by provider.",
+						Attributes: map[string]schema.Attribute{
+							"built_in": schema.BoolAttribute{
+								Description:         "builtIn is a switch to enable KubeBlocks builtIn monitoring. If BuiltIn is set to true, monitor metrics will be scraped automatically. If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.",
+								MarkdownDescription: "builtIn is a switch to enable KubeBlocks builtIn monitoring. If BuiltIn is set to true, monitor metrics will be scraped automatically. If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"exporter_config": schema.SingleNestedAttribute{
+								Description:         "exporterConfig provided by provider, which specify necessary information to Time Series Database. exporterConfig is valid when builtIn is false.",
+								MarkdownDescription: "exporterConfig provided by provider, which specify necessary information to Time Series Database. exporterConfig is valid when builtIn is false.",
+								Attributes: map[string]schema.Attribute{
+									"scrape_path": schema.StringAttribute{
+										Description:         "scrapePath is exporter url path for Time Series Database to scrape metrics.",
+										MarkdownDescription: "scrapePath is exporter url path for Time Series Database to scrape metrics.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtMost(128),
+										},
+									},
+
+									"scrape_port": schema.StringAttribute{
+										Description:         "scrapePort is exporter port for Time Series Database to scrape metrics.",
+										MarkdownDescription: "scrapePort is exporter port for Time Series Database to scrape metrics.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"policy_rules": schema.ListNestedAttribute{
 						Description:         "Defines the namespaced policy rules required by the Component.  The 'policyRules' field is an array of 'rbacv1.PolicyRule' objects that define the policy rules needed by the Component to operate within a namespace. These policy rules determine the permissions and verbs the Component is allowed to perform on Kubernetes resources within the namespace.  The purpose of this field is to automatically generate the necessary RBAC roles for the Component based on the specified policy rules. This ensures that the Pods in the Component has appropriate permissions to function.  Note: This field is currently non-functional and is reserved for future implementation.  This field is immutable.",
 						MarkdownDescription: "Defines the namespaced policy rules required by the Component.  The 'policyRules' field is an array of 'rbacv1.PolicyRule' objects that define the policy rules needed by the Component to operate within a namespace. These policy rules determine the permissions and verbs the Component is allowed to perform on Kubernetes resources within the namespace.  The purpose of this field is to automatically generate the necessary RBAC roles for the Component based on the specified policy rules. This ensures that the Pods in the Component has appropriate permissions to function.  Note: This field is currently non-functional and is reserved for future implementation.  This field is immutable.",
@@ -7501,17 +7551,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						Required: false,
 						Optional: true,
 						Computed: false,
-					},
-
-					"role_arbitrator": schema.StringAttribute{
-						Description:         "This field has been deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  This field is immutable.",
-						MarkdownDescription: "This field has been deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.  This field is immutable.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("External", "Lorry"),
-						},
 					},
 
 					"roles": schema.ListNestedAttribute{
@@ -16035,6 +16074,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(25),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
+									},
 								},
 
 								"spec": schema.SingleNestedAttribute{
@@ -16278,15 +16321,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						Computed: false,
 					},
 
-					"sidecar_container_specs": schema.MapAttribute{
-						Description:         "Defines the sidecar containers that will be attached to the component's main container.",
-						MarkdownDescription: "Defines the sidecar containers that will be attached to the component's main container.",
-						ElementType:         types.StringType,
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"system_accounts": schema.ListNestedAttribute{
 						Description:         "An array of 'SystemAccount' objects that define the system accounts needed for the management operations of the Component.  Each 'SystemAccount' includes:  - Account name. - The SQL statement template: Used to create the system account. - Password Source: Either generated based on certain rules or retrieved from a Secret.  Use cases for system accounts typically involve tasks like system initialization, backups, monitoring, health checks, replication, and other system-level operations.  System accounts are distinct from user accounts, although both are database accounts.  - **System Accounts**: Created during Cluster setup by the KubeBlocks operator, these accounts have higher privileges for system management and are fully managed through a declarative API by the operator. - **User Accounts**: Managed by users or administrator. User account permissions should follow the principle of least privilege, granting only the necessary access rights to complete their required tasks.  This field is immutable.",
 						MarkdownDescription: "An array of 'SystemAccount' objects that define the system accounts needed for the management operations of the Component.  Each 'SystemAccount' includes:  - Account name. - The SQL statement template: Used to create the system account. - Password Source: Either generated based on certain rules or retrieved from a Secret.  Use cases for system accounts typically involve tasks like system initialization, backups, monitoring, health checks, replication, and other system-level operations.  System accounts are distinct from user accounts, although both are database accounts.  - **System Accounts**: Created during Cluster setup by the KubeBlocks operator, these accounts have higher privileges for system management and are fully managed through a declarative API by the operator. - **User Accounts**: Managed by users or administrator. User account permissions should follow the principle of least privilege, granting only the necessary access rights to complete their required tasks.  This field is immutable.",
@@ -16423,8 +16457,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"vars": schema.ListNestedAttribute{
-						Description:         "Defines variables which are determined after Cluster instantiation and reflect dynamic or runtime attributes of instantiated Clusters. These variables serve as placeholders for setting environment variables in Pods and Actions, or for rendering configuration and script templates before actual values are finalized.  These variables are placed in front of the environment variables declared in the Pod if used as environment variables.  Variable values can be sourced from:  - ConfigMap: Select and extract a value from a specific key within a ConfigMap. - Secret: Select and extract a value from a specific key within a Secret. - Pod: Retrieves values (including ports) from a selected Pod. - Service: Retrieves values (including address, port, NodePort) from a selected Service. Intended to obtain the address of a ComponentService within the same Cluster. - Credential: Retrieves account name and password from a SystemAccount variable. - ServiceRef: Retrieves address, port, account name and password from a selected ServiceRefDeclaration. Designed to obtain the address bound to a ServiceRef, such as a ClusterService or ComponentService of another cluster or an external service. - Component: Retrieves values from a selected Component, including replicas and instance name list.  This field is immutable.",
-						MarkdownDescription: "Defines variables which are determined after Cluster instantiation and reflect dynamic or runtime attributes of instantiated Clusters. These variables serve as placeholders for setting environment variables in Pods and Actions, or for rendering configuration and script templates before actual values are finalized.  These variables are placed in front of the environment variables declared in the Pod if used as environment variables.  Variable values can be sourced from:  - ConfigMap: Select and extract a value from a specific key within a ConfigMap. - Secret: Select and extract a value from a specific key within a Secret. - Pod: Retrieves values (including ports) from a selected Pod. - Service: Retrieves values (including address, port, NodePort) from a selected Service. Intended to obtain the address of a ComponentService within the same Cluster. - Credential: Retrieves account name and password from a SystemAccount variable. - ServiceRef: Retrieves address, port, account name and password from a selected ServiceRefDeclaration. Designed to obtain the address bound to a ServiceRef, such as a ClusterService or ComponentService of another cluster or an external service. - Component: Retrieves values from a selected Component, including replicas and instance name list.  This field is immutable.",
+						Description:         "Defines variables which are determined after Cluster instantiation and reflect dynamic or runtime attributes of instantiated Clusters. These variables serve as placeholders for setting environment variables in Pods and Actions, or for rendering configuration and script templates before actual values are finalized.  These variables are placed in front of the environment variables declared in the Pod if used as environment variables.  Variable values can be sourced from:  - ConfigMap: Select and extract a value from a specific key within a ConfigMap. - Secret: Select and extract a value from a specific key within a Secret. - HostNetwork: Retrieves values (including ports) from host-network resources. - Service: Retrieves values (including address, port, NodePort) from a selected Service. Intended to obtain the address of a ComponentService within the same Cluster. - Credential: Retrieves account name and password from a SystemAccount variable. - ServiceRef: Retrieves address, port, account name and password from a selected ServiceRefDeclaration. Designed to obtain the address bound to a ServiceRef, such as a ClusterService or ComponentService of another cluster or an external service. - Component: Retrieves values from a selected Component, including replicas and instance name list.  This field is immutable.",
+						MarkdownDescription: "Defines variables which are determined after Cluster instantiation and reflect dynamic or runtime attributes of instantiated Clusters. These variables serve as placeholders for setting environment variables in Pods and Actions, or for rendering configuration and script templates before actual values are finalized.  These variables are placed in front of the environment variables declared in the Pod if used as environment variables.  Variable values can be sourced from:  - ConfigMap: Select and extract a value from a specific key within a ConfigMap. - Secret: Select and extract a value from a specific key within a Secret. - HostNetwork: Retrieves values (including ports) from host-network resources. - Service: Retrieves values (including address, port, NodePort) from a selected Service. Intended to obtain the address of a ComponentService within the same Cluster. - Credential: Retrieves account name and password from a SystemAccount variable. - ServiceRef: Retrieves address, port, account name and password from a selected ServiceRefDeclaration. Designed to obtain the address bound to a ServiceRef, such as a ClusterService or ComponentService of another cluster or an external service. - Component: Retrieves values from a selected Component, including replicas and instance name list.  This field is immutable.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -16741,9 +16775,9 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											Computed: false,
 										},
 
-										"pod_var_ref": schema.SingleNestedAttribute{
-											Description:         "Selects a defined var of a Pod.",
-											MarkdownDescription: "Selects a defined var of a Pod.",
+										"host_network_var_ref": schema.SingleNestedAttribute{
+											Description:         "Selects a defined var of host-network resources.",
+											MarkdownDescription: "Selects a defined var of host-network resources.",
 											Attributes: map[string]schema.Attribute{
 												"comp_def": schema.StringAttribute{
 													Description:         "CompDef specifies the definition used by the component that the referent object resident in. If not specified, the component itself will be used.",

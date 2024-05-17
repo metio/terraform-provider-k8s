@@ -81,7 +81,7 @@ Optional:
 - `nomad_sd_configs` (Attributes List) NomadSDConfigs defines a list of Nomad service discovery configurations. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs))
 - `openstack_sd_configs` (Attributes List) OpenStackSDConfigs defines a list of OpenStack service discovery configurations. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs))
 - `params` (Map of List of String) Optional HTTP URL parameters
-- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--proxy_connect_header))
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `relabelings` (Attributes List) RelabelConfigs defines how to rewrite the target's labels before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--relabelings))
@@ -127,7 +127,7 @@ Required:
 
 Optional:
 
-- `authentication_method` (String) # The authentication method, either OAuth or ManagedIdentity.See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview
+- `authentication_method` (String) # The authentication method, either 'OAuth' or 'ManagedIdentity' or 'SDK'.See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overviewSDK authentication method uses environment variables by default.See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authentication
 - `client_id` (String) Optional client ID. Only required with the OAuth authentication method.
 - `client_secret` (Attributes) Optional client secret. Only required with the OAuth authentication method. (see [below for nested schema](#nestedatt--spec--azure_sd_configs--client_secret))
 - `environment` (String) The Azure environment.
@@ -205,7 +205,7 @@ Optional:
 - `node_meta` (Map of String) Node metadata key/value pairs to filter nodes for a given service.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--oauth2))
 - `partition` (String) Admin Partitions are only supported in Consul Enterprise.
-- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--proxy_connect_header))
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `refresh_interval` (String) The time after which the provided names are refreshed.On large setup it might be a good idea to increase this value because the catalog will change all the time.If unset, Prometheus uses its default value.
@@ -336,19 +336,6 @@ Optional:
 
 
 
-<a id="nestedatt--spec--consul_sd_configs--proxy_connect_header"></a>
-### Nested Schema for `spec.consul_sd_configs.proxy_connect_header`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
 <a id="nestedatt--spec--consul_sd_configs--tls_config"></a>
 ### Nested Schema for `spec.consul_sd_configs.tls_config`
 
@@ -469,7 +456,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization'. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--oauth2))
 - `port` (Number) The port to scrape metrics from.
-- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--proxy_connect_header))
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `refresh_interval` (String) Refresh interval to re-read the instance list.
@@ -558,19 +545,6 @@ Optional:
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
-
-
-<a id="nestedatt--spec--digital_ocean_sd_configs--proxy_connect_header"></a>
-### Nested Schema for `spec.digital_ocean_sd_configs.proxy_connect_header`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 <a id="nestedatt--spec--digital_ocean_sd_configs--tls_config"></a>
@@ -701,7 +675,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization'. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--oauth2))
 - `port` (Number) The port to scrape metrics from.
-- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--proxy_connect_header))
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `refresh_interval` (String) Time after which the container is refreshed.
@@ -834,19 +808,6 @@ Optional:
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
-
-
-<a id="nestedatt--spec--docker_sd_configs--proxy_connect_header"></a>
-### Nested Schema for `spec.docker_sd_configs.proxy_connect_header`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 <a id="nestedatt--spec--docker_sd_configs--tls_config"></a>
@@ -1009,7 +970,7 @@ Optional:
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization' or 'basic_auth'. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--oauth2))
-- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--proxy_connect_header))
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `refresh_interval` (String) Refresh interval to re-read the instance list.
@@ -1133,19 +1094,6 @@ Optional:
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
-
-
-<a id="nestedatt--spec--eureka_sd_configs--proxy_connect_header"></a>
-### Nested Schema for `spec.eureka_sd_configs.proxy_connect_header`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 <a id="nestedatt--spec--eureka_sd_configs--tls_config"></a>
@@ -1288,7 +1236,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be used at the same time as 'basic_auth' or 'authorization'. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--oauth2))
 - `port` (Number) The port to scrape metrics from.
-- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--proxy_connect_header))
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `refresh_interval` (String) The time after which the servers are refreshed.
@@ -1414,19 +1362,6 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hetzner_sd_configs--proxy_connect_header"></a>
-### Nested Schema for `spec.hetzner_sd_configs.proxy_connect_header`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
 <a id="nestedatt--spec--hetzner_sd_configs--tls_config"></a>
 ### Nested Schema for `spec.hetzner_sd_configs.tls_config`
 
@@ -1535,7 +1470,7 @@ Optional:
 - `authorization` (Attributes) Authorization header configuration to authenticate against the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--http_sd_configs--authorization))
 - `basic_auth` (Attributes) BasicAuth information to authenticate against the target HTTP endpoint.More info: https://prometheus.io/docs/operating/configuration/#endpoints (see [below for nested schema](#nestedatt--spec--http_sd_configs--basic_auth))
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--http_sd_configs--proxy_connect_header))
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `refresh_interval` (String) RefreshInterval configures the refresh interval at which Prometheus will re-query theendpoint to update the target list.
@@ -1596,19 +1531,6 @@ Optional:
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
-
-
-<a id="nestedatt--spec--http_sd_configs--proxy_connect_header"></a>
-### Nested Schema for `spec.http_sd_configs.proxy_connect_header`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 <a id="nestedatt--spec--http_sd_configs--tls_config"></a>
@@ -1725,7 +1647,7 @@ Optional:
 - `namespaces` (Attributes) Optional namespace discovery. If omitted, Prometheus discovers targets across all namespaces. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--namespaces))
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--oauth2))
-- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--proxy_connect_header))
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `selectors` (Attributes List) Selector to select objects. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--selectors))
@@ -1868,19 +1790,6 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kubernetes_sd_configs--proxy_connect_header"></a>
-### Nested Schema for `spec.kubernetes_sd_configs.proxy_connect_header`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
 <a id="nestedatt--spec--kubernetes_sd_configs--selectors"></a>
 ### Nested Schema for `spec.kubernetes_sd_configs.selectors`
 
@@ -2007,7 +1916,7 @@ Optional:
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--oauth2))
-- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--proxy_connect_header))
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `refresh_interval` (String) The time to wait between polling update requests.
@@ -2131,19 +2040,6 @@ Optional:
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
-
-
-<a id="nestedatt--spec--kuma_sd_configs--proxy_connect_header"></a>
-### Nested Schema for `spec.kuma_sd_configs.proxy_connect_header`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 <a id="nestedatt--spec--kuma_sd_configs--tls_config"></a>
@@ -2273,7 +2169,7 @@ Optional:
 - `namespace` (String)
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization' or 'basic_auth'. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2))
-- `proxy_connect_header` (Attributes) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--proxy_connect_header))
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `refresh_interval` (String) Duration is a valid time duration that can be parsed by Prometheus model.ParseDuration() function.Supported units: y, w, d, h, m, s, msExamples: '30s', '1m', '1h20m15s', '15d'
@@ -2399,19 +2295,6 @@ Optional:
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
-
-
-<a id="nestedatt--spec--nomad_sd_configs--proxy_connect_header"></a>
-### Nested Schema for `spec.nomad_sd_configs.proxy_connect_header`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 <a id="nestedatt--spec--nomad_sd_configs--tls_config"></a>
@@ -2657,19 +2540,6 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-
-
-<a id="nestedatt--spec--proxy_connect_header"></a>
-### Nested Schema for `spec.proxy_connect_header`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 <a id="nestedatt--spec--relabelings"></a>

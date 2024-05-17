@@ -564,6 +564,11 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 		Type                   *string `tfsdk:"type" json:"type,omitempty"`
 		Upgrade                *struct {
 			ClusterVersionRef *string `tfsdk:"cluster_version_ref" json:"clusterVersionRef,omitempty"`
+			Components        *[]struct {
+				ComponentDefinitionName *string `tfsdk:"component_definition_name" json:"componentDefinitionName,omitempty"`
+				ComponentName           *string `tfsdk:"component_name" json:"componentName,omitempty"`
+				ServiceVersion          *string `tfsdk:"service_version" json:"serviceVersion,omitempty"`
+			} `tfsdk:"components" json:"components,omitempty"`
 		} `tfsdk:"upgrade" json:"upgrade,omitempty"`
 		VerticalScaling *[]map[string]string `tfsdk:"vertical_scaling" json:"verticalScaling,omitempty"`
 		VolumeExpansion *[]struct {
@@ -936,8 +941,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"pod_selector": schema.MapAttribute{
-												Description:         "Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
-												MarkdownDescription: "Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
+												Description:         "Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'podSelector' must be specified. If both are specified, a pod must match both conditions to be selected.",
+												MarkdownDescription: "Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'podSelector' must be specified. If both are specified, a pod must match both conditions to be selected.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1004,8 +1009,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"role_selector": schema.StringAttribute{
-												Description:         "Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
-												MarkdownDescription: "Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.",
+												Description:         "Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'podSelector' must be specified. If both are specified, a pod must match both conditions to be selected.",
+												MarkdownDescription: "Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'podSelector' must be specified. If both are specified, a pod must match both conditions to be selected.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4203,11 +4208,52 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "Specifies the desired new version of the Cluster.  Note: This field is immutable once set.",
 						Attributes: map[string]schema.Attribute{
 							"cluster_version_ref": schema.StringAttribute{
-								Description:         "Specifies the name of the target ClusterVersion for the upgrade.  This field is deprecated since v0.9 because ClusterVersion is deprecated.",
-								MarkdownDescription: "Specifies the name of the target ClusterVersion for the upgrade.  This field is deprecated since v0.9 because ClusterVersion is deprecated.",
-								Required:            true,
-								Optional:            false,
+								Description:         "Deprecated: since v0.9 because ClusterVersion is deprecated. Specifies the name of the target ClusterVersion for the upgrade.",
+								MarkdownDescription: "Deprecated: since v0.9 because ClusterVersion is deprecated. Specifies the name of the target ClusterVersion for the upgrade.",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
+							},
+
+							"components": schema.ListNestedAttribute{
+								Description:         "Lists components to be upgrade based on desired ComponentDefinition and ServiceVersion. From the perspective of cluster API, the reasonable combinations should be: 1. (comp-def, service-ver) - upgrade to the specified service version and component definition, the user takes the responsibility to ensure that they are compatible. 2. ('', service-ver) - upgrade to the specified service version, let the operator choose the latest compatible component definition. 3. (comp-def, '') - upgrade to the specified component definition, let the operator choose the latest compatible service version. 4. ('', '') - upgrade to the latest service version and component definition, the operator will ensure the compatibility between the selected versions.",
+								MarkdownDescription: "Lists components to be upgrade based on desired ComponentDefinition and ServiceVersion. From the perspective of cluster API, the reasonable combinations should be: 1. (comp-def, service-ver) - upgrade to the specified service version and component definition, the user takes the responsibility to ensure that they are compatible. 2. ('', service-ver) - upgrade to the specified service version, let the operator choose the latest compatible component definition. 3. (comp-def, '') - upgrade to the specified component definition, let the operator choose the latest compatible service version. 4. ('', '') - upgrade to the latest service version and component definition, the operator will ensure the compatibility between the selected versions.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"component_definition_name": schema.StringAttribute{
+											Description:         "Specifies the name of the ComponentDefinition.",
+											MarkdownDescription: "Specifies the name of the ComponentDefinition.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtMost(64),
+											},
+										},
+
+										"component_name": schema.StringAttribute{
+											Description:         "Specifies the name of the Component.",
+											MarkdownDescription: "Specifies the name of the Component.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"service_version": schema.StringAttribute{
+											Description:         "Specifies the version of the Service expected to be provisioned by this Component. Referring to the ServiceVersion defined by the ComponentDefinition and ComponentVersion. And ServiceVersion in ClusterComponentSpec is optional, when no version is specified, use the latest available version in ComponentVersion.",
+											MarkdownDescription: "Specifies the version of the Service expected to be provisioned by this Component. Referring to the ServiceVersion defined by the ComponentDefinition and ComponentVersion. And ServiceVersion in ClusterComponentSpec is optional, when no version is specified, use the latest available version in ComponentVersion.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtMost(32),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

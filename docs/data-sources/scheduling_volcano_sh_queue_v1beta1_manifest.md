@@ -30,7 +30,7 @@ data "k8s_scheduling_volcano_sh_queue_v1beta1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) Specification of the desired behavior of the queue. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Specification of the desired behavior of the queue.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,6 +56,7 @@ Optional:
 
 - `affinity` (Attributes) If specified, the pod owned by the queue will be scheduled with constraint (see [below for nested schema](#nestedatt--spec--affinity))
 - `capability` (Map of String) ResourceList is a set of (resource name, quantity) pairs.
+- `deserved` (Map of String) The amount of resources configured by the user. This part of resource can be shared with other queues and reclaimed back.
 - `extend_clusters` (Attributes List) extendCluster indicate the jobs in this Queue will be dispatched to these clusters. (see [below for nested schema](#nestedatt--spec--extend_clusters))
 - `guarantee` (Attributes) Guarantee indicate configuration about resource reservation (see [below for nested schema](#nestedatt--spec--guarantee))
 - `parent` (String) Parent define the parent of queue

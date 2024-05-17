@@ -167,6 +167,7 @@ type LimitadorKuadrantIoLimitadorV1Alpha1ManifestData struct {
 				} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 			} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
+		Image  *string `tfsdk:"image" json:"image,omitempty"`
 		Limits *[]struct {
 			Conditions *[]string `tfsdk:"conditions" json:"conditions,omitempty"`
 			Max_value  *int64    `tfsdk:"max_value" json:"max_value,omitempty"`
@@ -219,9 +220,7 @@ type LimitadorKuadrantIoLimitadorV1Alpha1ManifestData struct {
 				Options *struct {
 					Flush_period     *int64 `tfsdk:"flush_period" json:"flush-period,omitempty"`
 					Max_cached       *int64 `tfsdk:"max_cached" json:"max-cached,omitempty"`
-					Ratio            *int64 `tfsdk:"ratio" json:"ratio,omitempty"`
 					Response_timeout *int64 `tfsdk:"response_timeout" json:"response-timeout,omitempty"`
-					Ttl              *int64 `tfsdk:"ttl" json:"ttl,omitempty"`
 				} `tfsdk:"options" json:"options,omitempty"`
 			} `tfsdk:"redis_cached" json:"redis-cached,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
@@ -1117,6 +1116,14 @@ func (r *LimitadorKuadrantIoLimitadorV1Alpha1Manifest) Schema(_ context.Context,
 						Computed: false,
 					},
 
+					"image": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"limits": schema.ListNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -1444,25 +1451,9 @@ func (r *LimitadorKuadrantIoLimitadorV1Alpha1Manifest) Schema(_ context.Context,
 												Computed:            false,
 											},
 
-											"ratio": schema.Int64Attribute{
-												Description:         "Ratio to apply to the TTL from Redis on cached counters [default: 10]",
-												MarkdownDescription: "Ratio to apply to the TTL from Redis on cached counters [default: 10]",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"response_timeout": schema.Int64Attribute{
 												Description:         "ResponseTimeout defines the timeout for Redis commands in milliseconds [default: 350]",
 												MarkdownDescription: "ResponseTimeout defines the timeout for Redis commands in milliseconds [default: 350]",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"ttl": schema.Int64Attribute{
-												Description:         "TTL for cached counters in milliseconds [default: 5000]",
-												MarkdownDescription: "TTL for cached counters in milliseconds [default: 5000]",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1524,8 +1515,8 @@ func (r *LimitadorKuadrantIoLimitadorV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "[Deprecated] Use spec.image instead. Docker tag used as limitador image. The repo is hardcoded to quay.io/kuadrant/limitador",
+						MarkdownDescription: "[Deprecated] Use spec.image instead. Docker tag used as limitador image. The repo is hardcoded to quay.io/kuadrant/limitador",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

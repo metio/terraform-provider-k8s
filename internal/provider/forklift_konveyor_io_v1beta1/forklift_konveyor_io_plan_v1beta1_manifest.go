@@ -66,6 +66,7 @@ type ForkliftKonveyorIoPlanV1Beta1ManifestData struct {
 			} `tfsdk:"storage" json:"storage,omitempty"`
 		} `tfsdk:"map" json:"map,omitempty"`
 		PreserveClusterCpuModel *bool `tfsdk:"preserve_cluster_cpu_model" json:"preserveClusterCpuModel,omitempty"`
+		PreserveStaticIPs       *bool `tfsdk:"preserve_static_i_ps" json:"preserveStaticIPs,omitempty"`
 		Provider                *struct {
 			Destination *struct {
 				ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
@@ -353,6 +354,14 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 					"preserve_cluster_cpu_model": schema.BoolAttribute{
 						Description:         "Preserve the CPU model and flags the VM runs with in its oVirt cluster.",
 						MarkdownDescription: "Preserve the CPU model and flags the VM runs with in its oVirt cluster.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"preserve_static_i_ps": schema.BoolAttribute{
+						Description:         "Preserve static IPs of VMs in vSphere (Windows only)",
+						MarkdownDescription: "Preserve static IPs of VMs in vSphere (Windows only)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

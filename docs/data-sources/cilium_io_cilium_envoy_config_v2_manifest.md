@@ -70,7 +70,7 @@ Required:
 Optional:
 
 - `namespace` (String) Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace defaults to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.
-- `number` (List of String) Port is the port number, which can be used for filtering in case of underlying is exposing multiple port numbers.
+- `number` (List of String) Ports is a set of port numbers, which can be used for filtering in case of underlying is exposing multiple port numbers.
 
 
 <a id="nestedatt--spec--node_selector"></a>
@@ -106,3 +106,4 @@ Optional:
 
 - `listener` (String) Listener specifies the name of the Envoy listener the service traffic is redirected to. The listener must be specified in the Envoy 'resources' of the same CiliumEnvoyConfig.  If omitted, the first listener specified in 'resources' is used.
 - `namespace` (String) Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace this is overridden to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.
+- `ports` (List of String) Ports is a set of service's frontend ports that should be redirected to the Envoy listener. By default all frontend ports of the service are redirected.

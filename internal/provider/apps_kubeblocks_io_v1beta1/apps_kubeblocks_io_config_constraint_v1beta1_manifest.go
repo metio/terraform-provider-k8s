@@ -43,12 +43,7 @@ type AppsKubeblocksIoConfigConstraintV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		ConfigSchema *struct {
-			Cue          *string            `tfsdk:"cue" json:"cue,omitempty"`
-			SchemaInJSON *map[string]string `tfsdk:"schema_in_json" json:"schemaInJSON,omitempty"`
-			TopLevelKey  *string            `tfsdk:"top_level_key" json:"topLevelKey,omitempty"`
-		} `tfsdk:"config_schema" json:"configSchema,omitempty"`
-		DownwardAPITriggeredActions *[]struct {
+		DownwardAPIChangeTriggeredActions *[]struct {
 			Command *[]string `tfsdk:"command" json:"command,omitempty"`
 			Items   *[]struct {
 				FieldRef *struct {
@@ -69,7 +64,7 @@ type AppsKubeblocksIoConfigConstraintV1Beta1ManifestData struct {
 				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				ScriptConfigMapRef *string `tfsdk:"script_config_map_ref" json:"scriptConfigMapRef,omitempty"`
 			} `tfsdk:"script_config" json:"scriptConfig,omitempty"`
-		} `tfsdk:"downward_api_triggered_actions" json:"downwardAPITriggeredActions,omitempty"`
+		} `tfsdk:"downward_api_change_triggered_actions" json:"downwardAPIChangeTriggeredActions,omitempty"`
 		DynamicParameters *[]string `tfsdk:"dynamic_parameters" json:"dynamicParameters,omitempty"`
 		FileFormatConfig  *struct {
 			Format    *string `tfsdk:"format" json:"format,omitempty"`
@@ -79,7 +74,12 @@ type AppsKubeblocksIoConfigConstraintV1Beta1ManifestData struct {
 		} `tfsdk:"file_format_config" json:"fileFormatConfig,omitempty"`
 		ImmutableParameters   *[]string `tfsdk:"immutable_parameters" json:"immutableParameters,omitempty"`
 		MergeReloadAndRestart *bool     `tfsdk:"merge_reload_and_restart" json:"mergeReloadAndRestart,omitempty"`
-		ReloadAction          *struct {
+		ParametersSchema      *struct {
+			Cue          *string            `tfsdk:"cue" json:"cue,omitempty"`
+			SchemaInJSON *map[string]string `tfsdk:"schema_in_json" json:"schemaInJSON,omitempty"`
+			TopLevelKey  *string            `tfsdk:"top_level_key" json:"topLevelKey,omitempty"`
+		} `tfsdk:"parameters_schema" json:"parametersSchema,omitempty"`
+		ReloadAction *struct {
 			AutoTrigger *struct {
 				ProcessName *string `tfsdk:"process_name" json:"processName,omitempty"`
 			} `tfsdk:"auto_trigger" json:"autoTrigger,omitempty"`
@@ -102,6 +102,14 @@ type AppsKubeblocksIoConfigConstraintV1Beta1ManifestData struct {
 					} `tfsdk:"tool_configs" json:"toolConfigs,omitempty"`
 				} `tfsdk:"tools_setup" json:"toolsSetup,omitempty"`
 			} `tfsdk:"shell_trigger" json:"shellTrigger,omitempty"`
+			TargetPodSelector *struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 			TplScriptTrigger *struct {
 				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				ScriptConfigMapRef *string `tfsdk:"script_config_map_ref" json:"scriptConfigMapRef,omitempty"`
@@ -112,16 +120,8 @@ type AppsKubeblocksIoConfigConstraintV1Beta1ManifestData struct {
 				Signal      *string `tfsdk:"signal" json:"signal,omitempty"`
 			} `tfsdk:"unix_signal_trigger" json:"unixSignalTrigger,omitempty"`
 		} `tfsdk:"reload_action" json:"reloadAction,omitempty"`
-		ReloadStaticParamsBeforeRestart *bool `tfsdk:"reload_static_params_before_restart" json:"reloadStaticParamsBeforeRestart,omitempty"`
-		ReloadedPodSelector             *struct {
-			MatchExpressions *[]struct {
-				Key      *string   `tfsdk:"key" json:"key,omitempty"`
-				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-				Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-		} `tfsdk:"reloaded_pod_selector" json:"reloadedPodSelector,omitempty"`
-		StaticParameters *[]string `tfsdk:"static_parameters" json:"staticParameters,omitempty"`
+		ReloadStaticParamsBeforeRestart *bool     `tfsdk:"reload_static_params_before_restart" json:"reloadStaticParamsBeforeRestart,omitempty"`
+		StaticParameters                *[]string `tfsdk:"static_parameters" json:"staticParameters,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -190,41 +190,7 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 				Description:         "ConfigConstraintSpec defines the desired state of ConfigConstraint",
 				MarkdownDescription: "ConfigConstraintSpec defines the desired state of ConfigConstraint",
 				Attributes: map[string]schema.Attribute{
-					"config_schema": schema.SingleNestedAttribute{
-						Description:         "Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values).",
-						MarkdownDescription: "Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values).",
-						Attributes: map[string]schema.Attribute{
-							"cue": schema.StringAttribute{
-								Description:         "Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values).  CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common.  This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.",
-								MarkdownDescription: "Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values).  CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common.  This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"schema_in_json": schema.MapAttribute{
-								Description:         "Generated from the 'cue' field and transformed into a JSON format.",
-								MarkdownDescription: "Generated from the 'cue' field and transformed into a JSON format.",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"top_level_key": schema.StringAttribute{
-								Description:         "Specifies the top-level key in the 'configSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configSchema.cue'.",
-								MarkdownDescription: "Specifies the top-level key in the 'configSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configSchema.cue'.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"downward_api_triggered_actions": schema.ListNestedAttribute{
+					"downward_api_change_triggered_actions": schema.ListNestedAttribute{
 						Description:         "TODO: migrate DownwardAPITriggeredActions to ComponentDefinition.spec.lifecycleActions Specifies a list of actions to execute specified commands based on Pod labels.  It utilizes the K8s Downward API to mount label information as a volume into the pod. The 'config-manager' sidecar container watches for changes in the role label and dynamically invoke registered commands (usually execute some SQL statements) when a change is detected.  It is designed for scenarios where:  - Replicas with different roles have different configurations, such as Redis primary & secondary replicas. - After a role switch (e.g., from secondary to primary), some changes in configuration are needed to reflect the new role.",
 						MarkdownDescription: "TODO: migrate DownwardAPITriggeredActions to ComponentDefinition.spec.lifecycleActions Specifies a list of actions to execute specified commands based on Pod labels.  It utilizes the K8s Downward API to mount label information as a volume into the pod. The 'config-manager' sidecar container watches for changes in the role label and dynamically invoke registered commands (usually execute some SQL statements) when a change is detected.  It is designed for scenarios where:  - Replicas with different roles have different configurations, such as Redis primary & secondary replicas. - After a role switch (e.g., from secondary to primary), some changes in configuration are needed to reflect the new role.",
 						NestedObject: schema.NestedAttributeObject{
@@ -444,6 +410,40 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"parameters_schema": schema.SingleNestedAttribute{
+						Description:         "Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values).",
+						MarkdownDescription: "Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values).",
+						Attributes: map[string]schema.Attribute{
+							"cue": schema.StringAttribute{
+								Description:         "Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values).  CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common.  This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.",
+								MarkdownDescription: "Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values).  CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common.  This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"schema_in_json": schema.MapAttribute{
+								Description:         "Generated from the 'cue' field and transformed into a JSON format.",
+								MarkdownDescription: "Generated from the 'cue' field and transformed into a JSON format.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"top_level_key": schema.StringAttribute{
+								Description:         "Specifies the top-level key in the 'configSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configSchema.cue'.",
+								MarkdownDescription: "Specifies the top-level key in the 'configSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configSchema.cue'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"reload_action": schema.SingleNestedAttribute{
 						Description:         "Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'reloadAction' is set.  If 'reloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml dynamicReloadAction: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true '''",
 						MarkdownDescription: "Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'reloadAction' is set.  If 'reloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml dynamicReloadAction: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true '''",
@@ -604,6 +604,60 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 								Computed: false,
 							},
 
+							"target_pod_selector": schema.SingleNestedAttribute{
+								Description:         "Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'reloadedPodSelector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'reloadedPodSelector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload.",
+								MarkdownDescription: "Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'reloadedPodSelector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'reloadedPodSelector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload.",
+								Attributes: map[string]schema.Attribute{
+									"match_expressions": schema.ListNestedAttribute{
+										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "key is the label key that the selector applies to.",
+													MarkdownDescription: "key is the label key that the selector applies to.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"operator": schema.StringAttribute{
+													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"values": schema.ListAttribute{
+													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"match_labels": schema.MapAttribute{
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"tpl_script_trigger": schema.SingleNestedAttribute{
 								Description:         "Enables reloading process using a Go template script.",
 								MarkdownDescription: "Enables reloading process using a Go template script.",
@@ -680,60 +734,6 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-					},
-
-					"reloaded_pod_selector": schema.SingleNestedAttribute{
-						Description:         "Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'reloadedPodSelector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'reloadedPodSelector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload.",
-						MarkdownDescription: "Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'reloadedPodSelector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'reloadedPodSelector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload.",
-						Attributes: map[string]schema.Attribute{
-							"match_expressions": schema.ListNestedAttribute{
-								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "key is the label key that the selector applies to.",
-											MarkdownDescription: "key is the label key that the selector applies to.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
 					},
 
 					"static_parameters": schema.ListAttribute{

@@ -101,6 +101,7 @@ type AcidZalanDoOperatorConfigurationV1ManifestData struct {
 			Enable_pod_antiaffinity                 *bool              `tfsdk:"enable_pod_antiaffinity" json:"enable_pod_antiaffinity,omitempty"`
 			Enable_pod_disruption_budget            *bool              `tfsdk:"enable_pod_disruption_budget" json:"enable_pod_disruption_budget,omitempty"`
 			Enable_readiness_probe                  *bool              `tfsdk:"enable_readiness_probe" json:"enable_readiness_probe,omitempty"`
+			Enable_secrets_deletion                 *bool              `tfsdk:"enable_secrets_deletion" json:"enable_secrets_deletion,omitempty"`
 			Enable_sidecars                         *bool              `tfsdk:"enable_sidecars" json:"enable_sidecars,omitempty"`
 			Ignored_annotations                     *[]string          `tfsdk:"ignored_annotations" json:"ignored_annotations,omitempty"`
 			Infrastructure_roles_secret_name        *string            `tfsdk:"infrastructure_roles_secret_name" json:"infrastructure_roles_secret_name,omitempty"`
@@ -779,6 +780,14 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 							},
 
 							"enable_readiness_probe": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enable_secrets_deletion": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

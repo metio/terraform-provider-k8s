@@ -53,6 +53,7 @@ type SchedulingVolcanoShQueueV1Beta1ManifestData struct {
 			} `tfsdk:"node_group_anti_affinity" json:"nodeGroupAntiAffinity,omitempty"`
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
 		Capability     *map[string]string `tfsdk:"capability" json:"capability,omitempty"`
+		Deserved       *map[string]string `tfsdk:"deserved" json:"deserved,omitempty"`
 		ExtendClusters *[]struct {
 			Capacity *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
 			Name     *string            `tfsdk:"name" json:"name,omitempty"`
@@ -130,8 +131,8 @@ func (r *SchedulingVolcanoShQueueV1Beta1Manifest) Schema(_ context.Context, _ da
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Specification of the desired behavior of the queue. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
-				MarkdownDescription: "Specification of the desired behavior of the queue. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
+				Description:         "Specification of the desired behavior of the queue.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
+				MarkdownDescription: "Specification of the desired behavior of the queue.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
 				Attributes: map[string]schema.Attribute{
 					"affinity": schema.SingleNestedAttribute{
 						Description:         "If specified, the pod owned by the queue will be scheduled with constraint",
@@ -199,6 +200,15 @@ func (r *SchedulingVolcanoShQueueV1Beta1Manifest) Schema(_ context.Context, _ da
 					"capability": schema.MapAttribute{
 						Description:         "ResourceList is a set of (resource name, quantity) pairs.",
 						MarkdownDescription: "ResourceList is a set of (resource name, quantity) pairs.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"deserved": schema.MapAttribute{
+						Description:         "The amount of resources configured by the user. This part of resource can be shared with other queues and reclaimed back.",
+						MarkdownDescription: "The amount of resources configured by the user. This part of resource can be shared with other queues and reclaimed back.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

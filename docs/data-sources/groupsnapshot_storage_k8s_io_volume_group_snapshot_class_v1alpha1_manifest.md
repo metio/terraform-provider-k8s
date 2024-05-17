@@ -3,12 +3,12 @@
 page_title: "k8s_groupsnapshot_storage_k8s_io_volume_group_snapshot_class_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "groupsnapshot.storage.k8s.io"
 description: |-
-  VolumeGroupSnapshotClass specifies parameters that a underlying storage system uses when creating a volume group snapshot. A specific VolumeGroupSnapshotClass is used by specifying its name in a VolumeGroupSnapshot object. VolumeGroupSnapshotClasses are non-namespaced.
+  VolumeGroupSnapshotClass specifies parameters that a underlying storage systemuses when creating a volume group snapshot. A specific VolumeGroupSnapshotClassis used by specifying its name in a VolumeGroupSnapshot object.VolumeGroupSnapshotClasses are non-namespaced.
 ---
 
 # k8s_groupsnapshot_storage_k8s_io_volume_group_snapshot_class_v1alpha1_manifest (Data Source)
 
-VolumeGroupSnapshotClass specifies parameters that a underlying storage system uses when creating a volume group snapshot. A specific VolumeGroupSnapshotClass is used by specifying its name in a VolumeGroupSnapshot object. VolumeGroupSnapshotClasses are non-namespaced.
+VolumeGroupSnapshotClass specifies parameters that a underlying storage systemuses when creating a volume group snapshot. A specific VolumeGroupSnapshotClassis used by specifying its name in a VolumeGroupSnapshot object.VolumeGroupSnapshotClasses are non-namespaced.
 
 ## Example Usage
 
@@ -26,13 +26,13 @@ data "k8s_groupsnapshot_storage_k8s_io_volume_group_snapshot_class_v1alpha1_mani
 
 ### Required
 
-- `deletion_policy` (String) DeletionPolicy determines whether a VolumeGroupSnapshotContent created through the VolumeGroupSnapshotClass should be deleted when its bound VolumeGroupSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are kept. 'Delete' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are deleted. Required.
-- `driver` (String) Driver is the name of the storage driver expected to handle this VolumeGroupSnapshotClass. Required.
+- `deletion_policy` (String) DeletionPolicy determines whether a VolumeGroupSnapshotContent createdthrough the VolumeGroupSnapshotClass should be deleted when its boundVolumeGroupSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are kept.'Delete' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are deleted.Required.
+- `driver` (String) Driver is the name of the storage driver expected to handle this VolumeGroupSnapshotClass.Required.
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
 
 ### Optional
 
-- `parameters` (Map of String) Parameters is a key-value map with storage driver specific parameters for creating group snapshots. These values are opaque to Kubernetes and are passed directly to the driver.
+- `parameters` (Map of String) Parameters is a key-value map with storage driver specific parameters forcreating group snapshots.These values are opaque to Kubernetes and are passed directly to the driver.
 
 ### Read-Only
 

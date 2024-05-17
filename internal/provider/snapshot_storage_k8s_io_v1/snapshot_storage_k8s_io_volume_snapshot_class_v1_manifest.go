@@ -52,8 +52,8 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest) Metadata(_ context.C
 
 func (r *SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VolumeSnapshotClass specifies parameters that a underlying storage system uses when creating a volume snapshot. A specific VolumeSnapshotClass is used by specifying its name in a VolumeSnapshot object. VolumeSnapshotClasses are non-namespaced",
-		MarkdownDescription: "VolumeSnapshotClass specifies parameters that a underlying storage system uses when creating a volume snapshot. A specific VolumeSnapshotClass is used by specifying its name in a VolumeSnapshot object. VolumeSnapshotClasses are non-namespaced",
+		Description:         "VolumeSnapshotClass specifies parameters that a underlying storage system uses whencreating a volume snapshot. A specific VolumeSnapshotClass is used by specifying itsname in a VolumeSnapshot object.VolumeSnapshotClasses are non-namespaced",
+		MarkdownDescription: "VolumeSnapshotClass specifies parameters that a underlying storage system uses whencreating a volume snapshot. A specific VolumeSnapshotClass is used by specifying itsname in a VolumeSnapshot object.VolumeSnapshotClasses are non-namespaced",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -108,8 +108,8 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest) Schema(_ context.Con
 			},
 
 			"deletion_policy": schema.StringAttribute{
-				Description:         "deletionPolicy determines whether a VolumeSnapshotContent created through the VolumeSnapshotClass should be deleted when its bound VolumeSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept. 'Delete' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted. Required.",
-				MarkdownDescription: "deletionPolicy determines whether a VolumeSnapshotContent created through the VolumeSnapshotClass should be deleted when its bound VolumeSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept. 'Delete' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted. Required.",
+				Description:         "deletionPolicy determines whether a VolumeSnapshotContent created throughthe VolumeSnapshotClass should be deleted when its bound VolumeSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept.'Delete' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted.Required.",
+				MarkdownDescription: "deletionPolicy determines whether a VolumeSnapshotContent created throughthe VolumeSnapshotClass should be deleted when its bound VolumeSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept.'Delete' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted.Required.",
 				Required:            true,
 				Optional:            false,
 				Computed:            false,
@@ -119,16 +119,16 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest) Schema(_ context.Con
 			},
 
 			"driver": schema.StringAttribute{
-				Description:         "driver is the name of the storage driver that handles this VolumeSnapshotClass. Required.",
-				MarkdownDescription: "driver is the name of the storage driver that handles this VolumeSnapshotClass. Required.",
+				Description:         "driver is the name of the storage driver that handles this VolumeSnapshotClass.Required.",
+				MarkdownDescription: "driver is the name of the storage driver that handles this VolumeSnapshotClass.Required.",
 				Required:            true,
 				Optional:            false,
 				Computed:            false,
 			},
 
 			"parameters": schema.MapAttribute{
-				Description:         "parameters is a key-value map with storage driver specific parameters for creating snapshots. These values are opaque to Kubernetes.",
-				MarkdownDescription: "parameters is a key-value map with storage driver specific parameters for creating snapshots. These values are opaque to Kubernetes.",
+				Description:         "parameters is a key-value map with storage driver specific parameters for creating snapshots.These values are opaque to Kubernetes.",
+				MarkdownDescription: "parameters is a key-value map with storage driver specific parameters for creating snapshots.These values are opaque to Kubernetes.",
 				ElementType:         types.StringType,
 				Required:            false,
 				Optional:            true,

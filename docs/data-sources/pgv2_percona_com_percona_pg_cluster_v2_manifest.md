@@ -2021,6 +2021,7 @@ Optional:
 - `resources` (Attributes) Compute resources of a PostgreSQL container. (see [below for nested schema](#nestedatt--spec--instances--resources))
 - `security_context` (Attributes) SecurityContext defines the security settings for a PostgreSQL pod. (see [below for nested schema](#nestedatt--spec--instances--security_context))
 - `sidecars` (Attributes List) Custom sidecars for PostgreSQL instance pods. Changing this value causesPostgreSQL to restart. (see [below for nested schema](#nestedatt--spec--instances--sidecars))
+- `tablespace_volumes` (Attributes List) The list of tablespaces volumes to mount for this postgrescluster This field requires enabling TablespaceVolumes feature gate (see [below for nested schema](#nestedatt--spec--instances--tablespace_volumes))
 - `tolerations` (Attributes List) Tolerations of a PostgreSQL pod. Changing this value causes PostgreSQL to restart.More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration (see [below for nested schema](#nestedatt--spec--instances--tolerations))
 - `topology_spread_constraints` (Attributes List) Topology spread constraints of a PostgreSQL pod. Changing this value causesPostgreSQL to restart.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/ (see [below for nested schema](#nestedatt--spec--instances--topology_spread_constraints))
 - `volume_mounts` (Attributes List) The list of volume mounts to mount to PostgreSQL instance pods. Chaning this value causesPostgreSQL to restart. (see [below for nested schema](#nestedatt--spec--instances--volume_mounts))
@@ -3845,6 +3846,97 @@ Optional:
 - `recursive_read_only` (String) RecursiveReadOnly specifies whether read-only mounts should be handledrecursively.If ReadOnly is false, this field has no meaning and must be unspecified.If ReadOnly is true, and this field is set to Disabled, the mount is not maderecursively read-only.  If this field is set to IfPossible, the mount is maderecursively read-only, if it is supported by the container runtime.  If thisfield is set to Enabled, the mount is made recursively read-only if it issupported by the container runtime, otherwise the pod will not be started andan error will be generated to indicate the reason.If this field is set to IfPossible or Enabled, MountPropagation must be set toNone (or be unspecified, which defaults to None).If this field is not specified, it is treated as an equivalent of Disabled.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
+
+
+
+<a id="nestedatt--spec--instances--tablespace_volumes"></a>
+### Nested Schema for `spec.instances.tablespace_volumes`
+
+Required:
+
+- `data_volume_claim_spec` (Attributes) Defines a PersistentVolumeClaim for a tablespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes (see [below for nested schema](#nestedatt--spec--instances--tablespace_volumes--data_volume_claim_spec))
+- `name` (String) The name for the tablespace, used as the path name for the volume. Must be unique in the instance set since they become the directory names.
+
+<a id="nestedatt--spec--instances--tablespace_volumes--data_volume_claim_spec"></a>
+### Nested Schema for `spec.instances.tablespace_volumes.data_volume_claim_spec`
+
+Optional:
+
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--instances--tablespace_volumes--name--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--instances--tablespace_volumes--name--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--instances--tablespace_volumes--name--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--instances--tablespace_volumes--name--selector))
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
+
+<a id="nestedatt--spec--instances--tablespace_volumes--name--data_source"></a>
+### Nested Schema for `spec.instances.tablespace_volumes.name.data_source`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+
+
+<a id="nestedatt--spec--instances--tablespace_volumes--name--data_source_ref"></a>
+### Nested Schema for `spec.instances.tablespace_volumes.name.data_source_ref`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+
+
+<a id="nestedatt--spec--instances--tablespace_volumes--name--resources"></a>
+### Nested Schema for `spec.instances.tablespace_volumes.name.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--instances--tablespace_volumes--name--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--instances--tablespace_volumes--name--resources--claims"></a>
+### Nested Schema for `spec.instances.tablespace_volumes.name.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+<a id="nestedatt--spec--instances--tablespace_volumes--name--selector"></a>
+### Nested Schema for `spec.instances.tablespace_volumes.name.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--instances--tablespace_volumes--name--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--instances--tablespace_volumes--name--selector--match_expressions"></a>
+### Nested Schema for `spec.instances.tablespace_volumes.name.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
 
 
 

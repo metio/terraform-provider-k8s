@@ -235,8 +235,8 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"health_check": schema.SingleNestedAttribute{
-						Description:         "HealthCheckSpec configures health checks in the DNS provider. By default this health check will be applied to each unique DNS A Record for the listeners assigned to the target gateway",
-						MarkdownDescription: "HealthCheckSpec configures health checks in the DNS provider. By default this health check will be applied to each unique DNS A Record for the listeners assigned to the target gateway",
+						Description:         "HealthCheckSpec configures health checks in the DNS provider.By default this health check will be applied to each unique DNS A Record forthe listeners assigned to the target gateway",
+						MarkdownDescription: "HealthCheckSpec configures health checks in the DNS provider.By default this health check will be applied to each unique DNS A Record forthe listeners assigned to the target gateway",
 						Attributes: map[string]schema.Attribute{
 							"endpoint": schema.StringAttribute{
 								Description:         "",
@@ -280,8 +280,8 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						MarkdownDescription: "managedZone is a reference to a ManagedZone instance to which this record will publish its endpoints.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "'name' is the name of the managed zone. Required",
-								MarkdownDescription: "'name' is the name of the managed zone. Required",
+								Description:         "'name' is the name of the managed zone.Required",
+								MarkdownDescription: "'name' is the name of the managed zone.Required",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -305,8 +305,8 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"root_host": schema.StringAttribute{
-						Description:         "rootHost is the single root for all endpoints in a DNSRecord. it is expected all defined endpoints are children of or equal to this rootHost",
-						MarkdownDescription: "rootHost is the single root for all endpoints in a DNSRecord. it is expected all defined endpoints are children of or equal to this rootHost",
+						Description:         "rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHost",
+						MarkdownDescription: "rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHost",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

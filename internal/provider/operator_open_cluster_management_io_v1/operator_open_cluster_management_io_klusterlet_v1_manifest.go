@@ -98,7 +98,8 @@ type OperatorOpenClusterManagementIoKlusterletV1ManifestData struct {
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"resource_requirement" json:"resourceRequirement,omitempty"`
 		WorkConfiguration *struct {
-			FeatureGates *[]struct {
+			AppliedManifestWorkEvictionGracePeriod *string `tfsdk:"applied_manifest_work_eviction_grace_period" json:"appliedManifestWorkEvictionGracePeriod,omitempty"`
+			FeatureGates                           *[]struct {
 				Feature *string `tfsdk:"feature" json:"feature,omitempty"`
 				Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
 			} `tfsdk:"feature_gates" json:"featureGates,omitempty"`
@@ -279,7 +280,7 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.LengthAtMost(63),
+							stringvalidator.LengthAtMost(57),
 							stringvalidator.RegexMatches(regexp.MustCompile(`^open-cluster-management-[-a-z0-9]*[a-z0-9]$`), ""),
 						},
 					},
@@ -560,6 +561,17 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 						Description:         "WorkConfiguration contains the configuration of work",
 						MarkdownDescription: "WorkConfiguration contains the configuration of work",
 						Attributes: map[string]schema.Attribute{
+							"applied_manifest_work_eviction_grace_period": schema.StringAttribute{
+								Description:         "AppliedManifestWorkEvictionGracePeriod is the eviction grace period the work agent will wait before evicting the AppliedManifestWorks, whose corresponding ManifestWorks are missing on the hub cluster, from the managed cluster. If not present, the default value of the work agent will be used.",
+								MarkdownDescription: "AppliedManifestWorkEvictionGracePeriod is the eviction grace period the work agent will wait before evicting the AppliedManifestWorks, whose corresponding ManifestWorks are missing on the hub cluster, from the managed cluster. If not present, the default value of the work agent will be used.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(s|m|h))+$`), ""),
+								},
+							},
+
 							"feature_gates": schema.ListNestedAttribute{
 								Description:         "FeatureGates represents the list of feature gates for work If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
 								MarkdownDescription: "FeatureGates represents the list of feature gates for work If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",

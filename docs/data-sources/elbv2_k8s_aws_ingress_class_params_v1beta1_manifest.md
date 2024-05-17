@@ -54,7 +54,7 @@ Optional:
 
 Optional:
 
-- `certficate_arn` (List of String) CertificateARN specifies the ARN of the certificates for all Ingresses that belong to IngressClass with this IngressClassParams.
+- `certificate_arn` (List of String) CertificateArn specifies the ARN of the certificates for all Ingresses that belong to IngressClass with this IngressClassParams.
 - `group` (Attributes) Group defines the IngressGroup for all Ingresses that belong to IngressClass with this IngressClassParams. (see [below for nested schema](#nestedatt--spec--group))
 - `inbound_cid_rs` (List of String) InboundCIDRs specifies the CIDRs that are allowed to access the Ingresses that belong to IngressClass with this IngressClassParams.
 - `ip_address_type` (String) IPAddressType defines the ip address type for all Ingresses that belong to IngressClass with this IngressClassParams.
