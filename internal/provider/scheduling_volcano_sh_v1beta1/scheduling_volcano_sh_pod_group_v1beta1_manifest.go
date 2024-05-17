@@ -125,20 +125,20 @@ func (r *SchedulingVolcanoShPodGroupV1Beta1Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Specification of the desired behavior of the pod group. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
-				MarkdownDescription: "Specification of the desired behavior of the pod group. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
+				Description:         "Specification of the desired behavior of the pod group.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
+				MarkdownDescription: "Specification of the desired behavior of the pod group.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
 				Attributes: map[string]schema.Attribute{
 					"min_member": schema.Int64Attribute{
-						Description:         "MinMember defines the minimal number of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.",
-						MarkdownDescription: "MinMember defines the minimal number of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.",
+						Description:         "MinMember defines the minimal number of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.",
+						MarkdownDescription: "MinMember defines the minimal number of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"min_resources": schema.MapAttribute{
-						Description:         "MinResources defines the minimal resource of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.",
-						MarkdownDescription: "MinResources defines the minimal resource of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.",
+						Description:         "MinResources defines the minimal resource of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.",
+						MarkdownDescription: "MinResources defines the minimal resource of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -146,8 +146,8 @@ func (r *SchedulingVolcanoShPodGroupV1Beta1Manifest) Schema(_ context.Context, _
 					},
 
 					"min_task_member": schema.MapAttribute{
-						Description:         "MinTaskMember defines the minimal number of pods to run each task in the pod group; if there's not enough resources to start each task, the scheduler will not start anyone.",
-						MarkdownDescription: "MinTaskMember defines the minimal number of pods to run each task in the pod group; if there's not enough resources to start each task, the scheduler will not start anyone.",
+						Description:         "MinTaskMember defines the minimal number of pods to run each task in the pod group;if there's not enough resources to start each task, the schedulerwill not start anyone.",
+						MarkdownDescription: "MinTaskMember defines the minimal number of pods to run each task in the pod group;if there's not enough resources to start each task, the schedulerwill not start anyone.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -155,16 +155,16 @@ func (r *SchedulingVolcanoShPodGroupV1Beta1Manifest) Schema(_ context.Context, _
 					},
 
 					"priority_class_name": schema.StringAttribute{
-						Description:         "If specified, indicates the PodGroup's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the PodGroup priority will be default or zero if there is no default.",
-						MarkdownDescription: "If specified, indicates the PodGroup's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the PodGroup priority will be default or zero if there is no default.",
+						Description:         "If specified, indicates the PodGroup's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the PodGroup priority will be default or zero if there is nodefault.",
+						MarkdownDescription: "If specified, indicates the PodGroup's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the PodGroup priority will be default or zero if there is nodefault.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"queue": schema.StringAttribute{
-						Description:         "Queue defines the queue to allocate resource for PodGroup; if queue does not exist, the PodGroup will not be scheduled. Defaults to 'default' Queue with the lowest weight.",
-						MarkdownDescription: "Queue defines the queue to allocate resource for PodGroup; if queue does not exist, the PodGroup will not be scheduled. Defaults to 'default' Queue with the lowest weight.",
+						Description:         "Queue defines the queue to allocate resource for PodGroup; if queue does not exist,the PodGroup will not be scheduled. Defaults to 'default' Queue with the lowest weight.",
+						MarkdownDescription: "Queue defines the queue to allocate resource for PodGroup; if queue does not exist,the PodGroup will not be scheduled. Defaults to 'default' Queue with the lowest weight.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

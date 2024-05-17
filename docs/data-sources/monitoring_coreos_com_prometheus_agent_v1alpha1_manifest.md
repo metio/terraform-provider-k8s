@@ -2155,8 +2155,9 @@ Optional:
 Optional:
 
 - `cloud` (String) The Azure Cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
-- `managed_identity` (Attributes) ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth'. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--managed_identity))
-- `oauth` (Attributes) OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity'.It requires Prometheus >= v2.48.0. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--oauth))
+- `managed_identity` (Attributes) ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth' or 'sdk'. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--managed_identity))
+- `oauth` (Attributes) OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity' or 'sdk'.It requires Prometheus >= v2.48.0. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--oauth))
+- `sdk` (Attributes) SDK defines the Azure SDK config that is being used to authenticate.See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authenticationCannot be set at the same time as 'oauth' or 'managedIdentity'.It requires Prometheus >= 2.52.0. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--sdk))
 
 <a id="nestedatt--spec--remote_write--azure_ad--managed_identity"></a>
 ### Nested Schema for `spec.remote_write.azure_ad.managed_identity`
@@ -2172,11 +2173,11 @@ Required:
 Required:
 
 - `client_id` (String) 'clientID' is the clientId of the Azure Active Directory application that is being used to authenticate.
-- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the client secret of the Azure Active Directory application that is being used to authenticate. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--oauth--client_secret))
-- `tenant_id` (String) 'tenantID' is the tenant ID of the Azure Active Directory application that is being used to authenticate.
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the client secret of the Azure Active Directory application that is being used to authenticate. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--sdk--client_secret))
+- `tenant_id` (String) 'tenantId' is the tenant ID of the Azure Active Directory application that is being used to authenticate.
 
-<a id="nestedatt--spec--remote_write--azure_ad--oauth--client_secret"></a>
-### Nested Schema for `spec.remote_write.azure_ad.oauth.client_secret`
+<a id="nestedatt--spec--remote_write--azure_ad--sdk--client_secret"></a>
+### Nested Schema for `spec.remote_write.azure_ad.sdk.client_secret`
 
 Required:
 
@@ -2187,6 +2188,14 @@ Optional:
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
+
+
+<a id="nestedatt--spec--remote_write--azure_ad--sdk"></a>
+### Nested Schema for `spec.remote_write.azure_ad.sdk`
+
+Optional:
+
+- `tenant_id` (String) 'tenantId' is the tenant ID of the azure active directory application that is being used to authenticate.
 
 
 
@@ -2492,9 +2501,9 @@ Required:
 
 Optional:
 
-- `default` (Boolean) Default indicates that the scrape applies to all scrape objects that don't configure an explicit scrape class name.Only one scrape class can be set as default.
+- `default` (Boolean) Default indicates that the scrape applies to all scrape objects thatdon't configure an explicit scrape class name.Only one scrape class can be set as the default.
 - `relabelings` (Attributes List) Relabelings configures the relabeling rules to apply to all scrape targets.The Operator automatically adds relabelings for a few standard Kubernetes fieldslike '__meta_kubernetes_namespace' and '__meta_kubernetes_service_name'.Then the Operator adds the scrape class relabelings defined here.Then the Operator adds the target-specific relabelings defined in the scrape object.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--scrape_classes--relabelings))
-- `tls_config` (Attributes) TLSConfig section for scrapes. (see [below for nested schema](#nestedatt--spec--scrape_classes--tls_config))
+- `tls_config` (Attributes) TLSConfig defines the TLS settings to use for the scrape. When thescrape objects define their own CA, certificate and/or key, they takeprecedence over the corresponding scrape class fields.For now only the 'caFile', 'certFile' and 'keyFile' fields are supported. (see [below for nested schema](#nestedatt--spec--scrape_classes--tls_config))
 
 <a id="nestedatt--spec--scrape_classes--relabelings"></a>
 ### Nested Schema for `spec.scrape_classes.relabelings`

@@ -76,6 +76,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/azure_microsoft_com_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/azure_microsoft_com_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/b3scale_infra_run_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/b3scale_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/batch_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/batch_volcano_sh_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/beat_k8s_elastic_co_v1beta1"
@@ -478,6 +479,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/storage_kubeblocks_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/storageos_com_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/sts_min_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/sts_min_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/stunner_l7mp_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/stunner_l7mp_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/submariner_io_v1alpha1"
@@ -516,6 +518,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/work_karmada_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/work_karmada_io_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/workload_codeflare_dev_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/workload_codeflare_dev_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/workloads_kubeblocks_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/zonecontrol_k8s_aws_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/zookeeper_pravega_io_v1beta1"
@@ -1005,6 +1008,8 @@ func allDataSources() []func() datasource.DataSource {
 		azure_microsoft_com_v1beta1.NewAzureMicrosoftComAzureSqlServerV1Beta1Manifest,
 		// b3scale_infra_run_v1.NewB3ScaleInfraRunBbbfrontendV1DataSource,
 		b3scale_infra_run_v1.NewB3ScaleInfraRunBbbfrontendV1Manifest,
+		// b3scale_io_v1.NewB3ScaleIoBbbfrontendV1DataSource,
+		b3scale_io_v1.NewB3ScaleIoBbbfrontendV1Manifest,
 		// batch_v1.NewBatchCronJobV1DataSource,
 		batch_v1.NewBatchCronJobV1Manifest,
 		// batch_v1.NewBatchJobV1DataSource,
@@ -3619,6 +3624,8 @@ func allDataSources() []func() datasource.DataSource {
 		storageos_com_v1.NewStorageosComStorageOsclusterV1Manifest,
 		// sts_min_io_v1alpha1.NewStsMinIoPolicyBindingV1Alpha1DataSource,
 		sts_min_io_v1alpha1.NewStsMinIoPolicyBindingV1Alpha1Manifest,
+		// sts_min_io_v1beta1.NewStsMinIoPolicyBindingV1Beta1DataSource,
+		sts_min_io_v1beta1.NewStsMinIoPolicyBindingV1Beta1Manifest,
 		// stunner_l7mp_io_v1.NewStunnerL7MpIoDataplaneV1DataSource,
 		stunner_l7mp_io_v1.NewStunnerL7MpIoDataplaneV1Manifest,
 		// stunner_l7mp_io_v1.NewStunnerL7MpIoGatewayConfigV1DataSource,
@@ -3847,6 +3854,8 @@ func allDataSources() []func() datasource.DataSource {
 		workload_codeflare_dev_v1beta1.NewWorkloadCodeflareDevAppWrapperV1Beta1Manifest,
 		// workload_codeflare_dev_v1beta1.NewWorkloadCodeflareDevSchedulingSpecV1Beta1DataSource,
 		workload_codeflare_dev_v1beta1.NewWorkloadCodeflareDevSchedulingSpecV1Beta1Manifest,
+		// workload_codeflare_dev_v1beta2.NewWorkloadCodeflareDevAppWrapperV1Beta2DataSource,
+		workload_codeflare_dev_v1beta2.NewWorkloadCodeflareDevAppWrapperV1Beta2Manifest,
 		// workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoInstanceSetV1Alpha1DataSource,
 		workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoInstanceSetV1Alpha1Manifest,
 		// workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1DataSource,

@@ -158,8 +158,8 @@ func (r *NetworkingIstioIoWorkloadGroupV1Manifest) Schema(_ context.Context, _ d
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "'WorkloadGroup' enables specifying the properties of a single workload for bootstrap and provides a template for 'WorkloadEntry', similar to how 'Deployment' specifies properties of workloads via 'Pod' templates.",
-				MarkdownDescription: "'WorkloadGroup' enables specifying the properties of a single workload for bootstrap and provides a template for 'WorkloadEntry', similar to how 'Deployment' specifies properties of workloads via 'Pod' templates.",
+				Description:         "Describes a collection of workload instances. See more details at: https://istio.io/docs/reference/config/networking/workload-group.html",
+				MarkdownDescription: "Describes a collection of workload instances. See more details at: https://istio.io/docs/reference/config/networking/workload-group.html",
 				Attributes: map[string]schema.Attribute{
 					"metadata": schema.SingleNestedAttribute{
 						Description:         "Metadata that will be used for all corresponding 'WorkloadEntries'.",

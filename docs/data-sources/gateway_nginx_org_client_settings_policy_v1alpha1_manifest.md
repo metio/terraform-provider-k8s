@@ -68,10 +68,6 @@ Required:
 - `kind` (String) Kind is kind of the target resource.
 - `name` (String) Name is the name of the target resource.
 
-Optional:
-
-- `namespace` (String) Namespace is the namespace of the referent. When unspecified, the localnamespace is inferred. Even when policy targets a resource in a differentnamespace, it MUST only apply to traffic originating from the samenamespace as the policy.
-
 
 <a id="nestedatt--spec--body"></a>
 ### Nested Schema for `spec.body`

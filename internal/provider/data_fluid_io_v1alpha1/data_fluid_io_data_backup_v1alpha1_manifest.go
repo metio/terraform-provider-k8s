@@ -46,6 +46,16 @@ type DataFluidIoDataBackupV1Alpha1ManifestData struct {
 		BackupPath *string `tfsdk:"backup_path" json:"backupPath,omitempty"`
 		Dataset    *string `tfsdk:"dataset" json:"dataset,omitempty"`
 		RunAfter   *struct {
+			AffinityStrategy *struct {
+				Policy  *string `tfsdk:"policy" json:"policy,omitempty"`
+				Prefers *[]struct {
+					Name   *string `tfsdk:"name" json:"name,omitempty"`
+					Weight *int64  `tfsdk:"weight" json:"weight,omitempty"`
+				} `tfsdk:"prefers" json:"prefers,omitempty"`
+				Requires *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"requires" json:"requires,omitempty"`
+			} `tfsdk:"affinity_strategy" json:"affinityStrategy,omitempty"`
 			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
@@ -158,6 +168,69 @@ func (r *DataFluidIoDataBackupV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Description:         "Specifies that the preceding operation in a workflow",
 						MarkdownDescription: "Specifies that the preceding operation in a workflow",
 						Attributes: map[string]schema.Attribute{
+							"affinity_strategy": schema.SingleNestedAttribute{
+								Description:         "AffinityStrategy specifies the pod affinity strategy with the referent operation.",
+								MarkdownDescription: "AffinityStrategy specifies the pod affinity strategy with the referent operation.",
+								Attributes: map[string]schema.Attribute{
+									"policy": schema.StringAttribute{
+										Description:         "Policy one of: '', 'Require', 'Prefer'",
+										MarkdownDescription: "Policy one of: '', 'Require', 'Prefer'",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"prefers": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"weight": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"requires": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent operation",
 								MarkdownDescription: "API version of the referent operation",

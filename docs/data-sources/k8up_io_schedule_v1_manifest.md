@@ -61,6 +61,7 @@ Optional:
 - `check` (Attributes) CheckSchedule manages the schedules for the checks (see [below for nested schema](#nestedatt--spec--check))
 - `failed_jobs_history_limit` (Number) FailedJobsHistoryLimit amount of failed jobs to keep for later analysis.KeepJobs is used property is not specified.
 - `keep_jobs` (Number) KeepJobs amount of jobs to keep for later analysis.Deprecated: Use FailedJobsHistoryLimit and SuccessfulJobsHistoryLimit respectively.
+- `pod_config_ref` (Attributes) PodConfigRef will apply the given template to all job definitions in this Schedule.It can be overriden for specific jobs if necessary. (see [below for nested schema](#nestedatt--spec--pod_config_ref))
 - `pod_security_context` (Attributes) PodSecurityContext describes the security context with which actions (such as backups) shall be executed. (see [below for nested schema](#nestedatt--spec--pod_security_context))
 - `prune` (Attributes) PruneSchedule manages the schedules for the prunes (see [below for nested schema](#nestedatt--spec--prune))
 - `resource_requirements_template` (Attributes) ResourceRequirementsTemplate describes the compute resource requirements (cpu, memory, etc.) (see [below for nested schema](#nestedatt--spec--resource_requirements_template))
@@ -77,6 +78,7 @@ Optional:
 - `concurrent_runs_allowed` (Boolean)
 - `failed_jobs_history_limit` (Number) FailedJobsHistoryLimit amount of failed jobs to keep for later analysis.KeepJobs is used property is not specified.
 - `keep_jobs` (Number) KeepJobs amount of jobs to keep for later analysis.Deprecated: Use FailedJobsHistoryLimit and SuccessfulJobsHistoryLimit respectively.
+- `pod_config_ref` (Attributes) PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing. (see [below for nested schema](#nestedatt--spec--archive--pod_config_ref))
 - `pod_security_context` (Attributes) PodSecurityContext describes the security context with which this action shall be executed. (see [below for nested schema](#nestedatt--spec--archive--pod_security_context))
 - `resources` (Attributes) Resources describes the compute resource requirements (cpu, memory, etc.) (see [below for nested schema](#nestedatt--spec--archive--resources))
 - `restore_filter` (String)
@@ -370,6 +372,14 @@ Optional:
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
 
+
+
+<a id="nestedatt--spec--archive--pod_config_ref"></a>
+### Nested Schema for `spec.archive.pod_config_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--archive--pod_security_context"></a>
@@ -906,6 +916,7 @@ Optional:
 - `concurrent_runs_allowed` (Boolean)
 - `failed_jobs_history_limit` (Number) FailedJobsHistoryLimit amount of failed jobs to keep for later analysis.KeepJobs is used property is not specified.
 - `keep_jobs` (Number) KeepJobs amount of jobs to keep for later analysis.Deprecated: Use FailedJobsHistoryLimit and SuccessfulJobsHistoryLimit respectively.
+- `pod_config_ref` (Attributes) PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing. (see [below for nested schema](#nestedatt--spec--backup--pod_config_ref))
 - `pod_security_context` (Attributes) PodSecurityContext describes the security context with which this action shall be executed. (see [below for nested schema](#nestedatt--spec--backup--pod_security_context))
 - `prom_url` (String) PromURL sets a prometheus push URL where the backup container send metrics to
 - `resources` (Attributes) Resources describes the compute resource requirements (cpu, memory, etc.) (see [below for nested schema](#nestedatt--spec--backup--resources))
@@ -1200,6 +1211,14 @@ Optional:
 
 
 
+<a id="nestedatt--spec--backup--pod_config_ref"></a>
+### Nested Schema for `spec.backup.pod_config_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
 <a id="nestedatt--spec--backup--pod_security_context"></a>
 ### Nested Schema for `spec.backup.pod_security_context`
 
@@ -1363,6 +1382,7 @@ Optional:
 - `concurrent_runs_allowed` (Boolean)
 - `failed_jobs_history_limit` (Number) FailedJobsHistoryLimit amount of failed jobs to keep for later analysis.KeepJobs is used property is not specified.
 - `keep_jobs` (Number) KeepJobs amount of jobs to keep for later analysis.Deprecated: Use FailedJobsHistoryLimit and SuccessfulJobsHistoryLimit respectively.
+- `pod_config_ref` (Attributes) PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing. (see [below for nested schema](#nestedatt--spec--check--pod_config_ref))
 - `pod_security_context` (Attributes) PodSecurityContext describes the security context with which this action shall be executed. (see [below for nested schema](#nestedatt--spec--check--pod_security_context))
 - `prom_url` (String) PromURL sets a prometheus push URL where the backup container send metrics to
 - `resources` (Attributes) Resources describes the compute resource requirements (cpu, memory, etc.) (see [below for nested schema](#nestedatt--spec--check--resources))
@@ -1655,6 +1675,14 @@ Optional:
 
 
 
+<a id="nestedatt--spec--check--pod_config_ref"></a>
+### Nested Schema for `spec.check.pod_config_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
 <a id="nestedatt--spec--check--pod_security_context"></a>
 ### Nested Schema for `spec.check.pod_security_context`
 
@@ -1808,6 +1836,14 @@ Optional:
 
 
 
+<a id="nestedatt--spec--pod_config_ref"></a>
+### Nested Schema for `spec.pod_config_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
 <a id="nestedatt--spec--pod_security_context"></a>
 ### Nested Schema for `spec.pod_security_context`
 
@@ -1878,6 +1914,7 @@ Optional:
 - `concurrent_runs_allowed` (Boolean)
 - `failed_jobs_history_limit` (Number) FailedJobsHistoryLimit amount of failed jobs to keep for later analysis.KeepJobs is used property is not specified.
 - `keep_jobs` (Number) KeepJobs amount of jobs to keep for later analysis.Deprecated: Use FailedJobsHistoryLimit and SuccessfulJobsHistoryLimit respectively.
+- `pod_config_ref` (Attributes) PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing. (see [below for nested schema](#nestedatt--spec--prune--pod_config_ref))
 - `pod_security_context` (Attributes) PodSecurityContext describes the security context with which this action shall be executed. (see [below for nested schema](#nestedatt--spec--prune--pod_security_context))
 - `resources` (Attributes) Resources describes the compute resource requirements (cpu, memory, etc.) (see [below for nested schema](#nestedatt--spec--prune--resources))
 - `retention` (Attributes) Retention sets how many backups should be kept after a forget and prune (see [below for nested schema](#nestedatt--spec--prune--retention))
@@ -2170,6 +2207,14 @@ Optional:
 
 
 
+<a id="nestedatt--spec--prune--pod_config_ref"></a>
+### Nested Schema for `spec.prune.pod_config_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
 <a id="nestedatt--spec--prune--pod_security_context"></a>
 ### Nested Schema for `spec.prune.pod_security_context`
 
@@ -2367,6 +2412,7 @@ Optional:
 - `concurrent_runs_allowed` (Boolean)
 - `failed_jobs_history_limit` (Number) FailedJobsHistoryLimit amount of failed jobs to keep for later analysis.KeepJobs is used property is not specified.
 - `keep_jobs` (Number) KeepJobs amount of jobs to keep for later analysis.Deprecated: Use FailedJobsHistoryLimit and SuccessfulJobsHistoryLimit respectively.
+- `pod_config_ref` (Attributes) PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing. (see [below for nested schema](#nestedatt--spec--restore--pod_config_ref))
 - `pod_security_context` (Attributes) PodSecurityContext describes the security context with which this action shall be executed. (see [below for nested schema](#nestedatt--spec--restore--pod_security_context))
 - `resources` (Attributes) Resources describes the compute resource requirements (cpu, memory, etc.) (see [below for nested schema](#nestedatt--spec--restore--resources))
 - `restore_filter` (String)
@@ -2660,6 +2706,14 @@ Optional:
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
 
+
+
+<a id="nestedatt--spec--restore--pod_config_ref"></a>
+### Nested Schema for `spec.restore.pod_config_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--restore--pod_security_context"></a>

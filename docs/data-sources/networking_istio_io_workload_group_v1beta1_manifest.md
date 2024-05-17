@@ -30,7 +30,7 @@ data "k8s_networking_istio_io_workload_group_v1beta1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) 'WorkloadGroup' enables specifying the properties of a single workload for bootstrap and provides a template for 'WorkloadEntry', similar to how 'Deployment' specifies properties of workloads via 'Pod' templates. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Describes a collection of workload instances. See more details at: https://istio.io/docs/reference/config/networking/workload-group.html (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

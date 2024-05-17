@@ -68,8 +68,8 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Manifest) Metadata(_ context
 
 func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VolumeSnapshotContent represents the actual 'on-disk' snapshot object in the underlying storage system",
-		MarkdownDescription: "VolumeSnapshotContent represents the actual 'on-disk' snapshot object in the underlying storage system",
+		Description:         "VolumeSnapshotContent represents the actual 'on-disk' snapshot object in theunderlying storage system",
+		MarkdownDescription: "VolumeSnapshotContent represents the actual 'on-disk' snapshot object in theunderlying storage system",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -124,12 +124,12 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Manifest) Schema(_ context.C
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "spec defines properties of a VolumeSnapshotContent created by the underlying storage system. Required.",
-				MarkdownDescription: "spec defines properties of a VolumeSnapshotContent created by the underlying storage system. Required.",
+				Description:         "spec defines properties of a VolumeSnapshotContent created by the underlying storage system.Required.",
+				MarkdownDescription: "spec defines properties of a VolumeSnapshotContent created by the underlying storage system.Required.",
 				Attributes: map[string]schema.Attribute{
 					"deletion_policy": schema.StringAttribute{
-						Description:         "deletionPolicy determines whether this VolumeSnapshotContent and its physical snapshot on the underlying storage system should be deleted when its bound VolumeSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept. 'Delete' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted. For dynamically provisioned snapshots, this field will automatically be filled in by the CSI snapshotter sidecar with the 'DeletionPolicy' field defined in the corresponding VolumeSnapshotClass. For pre-existing snapshots, users MUST specify this field when creating the VolumeSnapshotContent object. Required.",
-						MarkdownDescription: "deletionPolicy determines whether this VolumeSnapshotContent and its physical snapshot on the underlying storage system should be deleted when its bound VolumeSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept. 'Delete' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted. For dynamically provisioned snapshots, this field will automatically be filled in by the CSI snapshotter sidecar with the 'DeletionPolicy' field defined in the corresponding VolumeSnapshotClass. For pre-existing snapshots, users MUST specify this field when creating the VolumeSnapshotContent object. Required.",
+						Description:         "deletionPolicy determines whether this VolumeSnapshotContent and its physical snapshot onthe underlying storage system should be deleted when its bound VolumeSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept.'Delete' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted.For dynamically provisioned snapshots, this field will automatically be filled in by theCSI snapshotter sidecar with the 'DeletionPolicy' field defined in the correspondingVolumeSnapshotClass.For pre-existing snapshots, users MUST specify this field when creating the VolumeSnapshotContent object.Required.",
+						MarkdownDescription: "deletionPolicy determines whether this VolumeSnapshotContent and its physical snapshot onthe underlying storage system should be deleted when its bound VolumeSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept.'Delete' means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted.For dynamically provisioned snapshots, this field will automatically be filled in by theCSI snapshotter sidecar with the 'DeletionPolicy' field defined in the correspondingVolumeSnapshotClass.For pre-existing snapshots, users MUST specify this field when creating the VolumeSnapshotContent object.Required.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -139,28 +139,28 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Manifest) Schema(_ context.C
 					},
 
 					"driver": schema.StringAttribute{
-						Description:         "driver is the name of the CSI driver used to create the physical snapshot on the underlying storage system. This MUST be the same as the name returned by the CSI GetPluginName() call for that driver. Required.",
-						MarkdownDescription: "driver is the name of the CSI driver used to create the physical snapshot on the underlying storage system. This MUST be the same as the name returned by the CSI GetPluginName() call for that driver. Required.",
+						Description:         "driver is the name of the CSI driver used to create the physical snapshot onthe underlying storage system.This MUST be the same as the name returned by the CSI GetPluginName() call forthat driver.Required.",
+						MarkdownDescription: "driver is the name of the CSI driver used to create the physical snapshot onthe underlying storage system.This MUST be the same as the name returned by the CSI GetPluginName() call forthat driver.Required.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"source": schema.SingleNestedAttribute{
-						Description:         "source specifies whether the snapshot is (or should be) dynamically provisioned or already exists, and just requires a Kubernetes object representation. This field is immutable after creation. Required.",
-						MarkdownDescription: "source specifies whether the snapshot is (or should be) dynamically provisioned or already exists, and just requires a Kubernetes object representation. This field is immutable after creation. Required.",
+						Description:         "source specifies whether the snapshot is (or should be) dynamically provisionedor already exists, and just requires a Kubernetes object representation.This field is immutable after creation.Required.",
+						MarkdownDescription: "source specifies whether the snapshot is (or should be) dynamically provisionedor already exists, and just requires a Kubernetes object representation.This field is immutable after creation.Required.",
 						Attributes: map[string]schema.Attribute{
 							"snapshot_handle": schema.StringAttribute{
-								Description:         "snapshotHandle specifies the CSI 'snapshot_id' of a pre-existing snapshot on the underlying storage system for which a Kubernetes object representation was (or should be) created. This field is immutable.",
-								MarkdownDescription: "snapshotHandle specifies the CSI 'snapshot_id' of a pre-existing snapshot on the underlying storage system for which a Kubernetes object representation was (or should be) created. This field is immutable.",
+								Description:         "snapshotHandle specifies the CSI 'snapshot_id' of a pre-existing snapshot onthe underlying storage system for which a Kubernetes object representationwas (or should be) created.This field is immutable.",
+								MarkdownDescription: "snapshotHandle specifies the CSI 'snapshot_id' of a pre-existing snapshot onthe underlying storage system for which a Kubernetes object representationwas (or should be) created.This field is immutable.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"volume_handle": schema.StringAttribute{
-								Description:         "volumeHandle specifies the CSI 'volume_id' of the volume from which a snapshot should be dynamically taken from. This field is immutable.",
-								MarkdownDescription: "volumeHandle specifies the CSI 'volume_id' of the volume from which a snapshot should be dynamically taken from. This field is immutable.",
+								Description:         "volumeHandle specifies the CSI 'volume_id' of the volume from which a snapshotshould be dynamically taken from.This field is immutable.",
+								MarkdownDescription: "volumeHandle specifies the CSI 'volume_id' of the volume from which a snapshotshould be dynamically taken from.This field is immutable.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -172,24 +172,24 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Manifest) Schema(_ context.C
 					},
 
 					"source_volume_mode": schema.StringAttribute{
-						Description:         "SourceVolumeMode is the mode of the volume whose snapshot is taken. Can be either “Filesystem” or “Block”. If not specified, it indicates the source volume's mode is unknown. This field is immutable. This field is an alpha field.",
-						MarkdownDescription: "SourceVolumeMode is the mode of the volume whose snapshot is taken. Can be either “Filesystem” or “Block”. If not specified, it indicates the source volume's mode is unknown. This field is immutable. This field is an alpha field.",
+						Description:         "SourceVolumeMode is the mode of the volume whose snapshot is taken.Can be either “Filesystem” or “Block”.If not specified, it indicates the source volume's mode is unknown.This field is immutable.This field is an alpha field.",
+						MarkdownDescription: "SourceVolumeMode is the mode of the volume whose snapshot is taken.Can be either “Filesystem” or “Block”.If not specified, it indicates the source volume's mode is unknown.This field is immutable.This field is an alpha field.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"volume_snapshot_class_name": schema.StringAttribute{
-						Description:         "name of the VolumeSnapshotClass from which this snapshot was (or will be) created. Note that after provisioning, the VolumeSnapshotClass may be deleted or recreated with different set of values, and as such, should not be referenced post-snapshot creation.",
-						MarkdownDescription: "name of the VolumeSnapshotClass from which this snapshot was (or will be) created. Note that after provisioning, the VolumeSnapshotClass may be deleted or recreated with different set of values, and as such, should not be referenced post-snapshot creation.",
+						Description:         "name of the VolumeSnapshotClass from which this snapshot was (or will be)created.Note that after provisioning, the VolumeSnapshotClass may be deleted orrecreated with different set of values, and as such, should not be referencedpost-snapshot creation.",
+						MarkdownDescription: "name of the VolumeSnapshotClass from which this snapshot was (or will be)created.Note that after provisioning, the VolumeSnapshotClass may be deleted orrecreated with different set of values, and as such, should not be referencedpost-snapshot creation.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"volume_snapshot_ref": schema.SingleNestedAttribute{
-						Description:         "volumeSnapshotRef specifies the VolumeSnapshot object to which this VolumeSnapshotContent object is bound. VolumeSnapshot.Spec.VolumeSnapshotContentName field must reference to this VolumeSnapshotContent's name for the bidirectional binding to be valid. For a pre-existing VolumeSnapshotContent object, name and namespace of the VolumeSnapshot object MUST be provided for binding to happen. This field is immutable after creation. Required.",
-						MarkdownDescription: "volumeSnapshotRef specifies the VolumeSnapshot object to which this VolumeSnapshotContent object is bound. VolumeSnapshot.Spec.VolumeSnapshotContentName field must reference to this VolumeSnapshotContent's name for the bidirectional binding to be valid. For a pre-existing VolumeSnapshotContent object, name and namespace of the VolumeSnapshot object MUST be provided for binding to happen. This field is immutable after creation. Required.",
+						Description:         "volumeSnapshotRef specifies the VolumeSnapshot object to which thisVolumeSnapshotContent object is bound.VolumeSnapshot.Spec.VolumeSnapshotContentName field must reference tothis VolumeSnapshotContent's name for the bidirectional binding to be valid.For a pre-existing VolumeSnapshotContent object, name and namespace of theVolumeSnapshot object MUST be provided for binding to happen.This field is immutable after creation.Required.",
+						MarkdownDescription: "volumeSnapshotRef specifies the VolumeSnapshot object to which thisVolumeSnapshotContent object is bound.VolumeSnapshot.Spec.VolumeSnapshotContentName field must reference tothis VolumeSnapshotContent's name for the bidirectional binding to be valid.For a pre-existing VolumeSnapshotContent object, name and namespace of theVolumeSnapshot object MUST be provided for binding to happen.This field is immutable after creation.Required.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -200,48 +200,48 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Manifest) Schema(_ context.C
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uid": schema.StringAttribute{
-								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

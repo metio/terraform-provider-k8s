@@ -65,6 +65,7 @@ Optional:
 - `archived` (Boolean) Whether this plan should be archived.
 - `description` (String) Description
 - `preserve_cluster_cpu_model` (Boolean) Preserve the CPU model and flags the VM runs with in its oVirt cluster.
+- `preserve_static_i_ps` (Boolean) Preserve static IPs of VMs in vSphere (Windows only)
 - `transfer_network` (Attributes) The network attachment definition that should be used for disk transfer. (see [below for nested schema](#nestedatt--spec--transfer_network))
 - `warm` (Boolean) Whether this is a warm migration.
 

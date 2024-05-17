@@ -1990,6 +1990,7 @@ Optional:
 - `chunk_size` (Number)
 - `compression` (Boolean)
 - `compresslevel` (Number)
+- `disk_buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--disk_buffer))
 - `flush_grace_period` (Number)
 - `log_fifo_size` (Number)
 - `max_object_size` (Number)
@@ -2056,6 +2057,23 @@ Optional:
 - `optional` (Boolean)
 
 
+
+
+<a id="nestedatt--spec--s3--disk_buffer"></a>
+### Nested Schema for `spec.s3.disk_buffer`
+
+Required:
+
+- `disk_buf_size` (Number)
+- `reliable` (Boolean)
+
+Optional:
+
+- `compaction` (Boolean)
+- `dir` (String)
+- `mem_buf_length` (Number)
+- `mem_buf_size` (Number)
+- `q_out_size` (Number)
 
 
 <a id="nestedatt--spec--s3--secret_key"></a>

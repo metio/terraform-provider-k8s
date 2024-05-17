@@ -900,8 +900,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "name is a unique name of a task.",
-									MarkdownDescription: "name is a unique name of a task.",
+									Description:         "name specifies the name of a task.",
+									MarkdownDescription: "name specifies the name of a task.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4683,8 +4683,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "name is a unique name of a task.",
-									MarkdownDescription: "name is a unique name of a task.",
+									Description:         "name specifies the name of a task.",
+									MarkdownDescription: "name specifies the name of a task.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

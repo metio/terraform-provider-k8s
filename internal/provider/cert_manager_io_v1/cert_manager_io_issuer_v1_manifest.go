@@ -146,6 +146,14 @@ type CertManagerIoIssuerV1ManifestData struct {
 							Key  *string `tfsdk:"key" json:"key,omitempty"`
 							Name *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"access_key_id_secret_ref" json:"accessKeyIDSecretRef,omitempty"`
+						Auth *struct {
+							Kubernetes *struct {
+								ServiceAccountRef *struct {
+									Audiences *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
+									Name      *string   `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"service_account_ref" json:"serviceAccountRef,omitempty"`
+							} `tfsdk:"kubernetes" json:"kubernetes,omitempty"`
+						} `tfsdk:"auth" json:"auth,omitempty"`
 						HostedZoneID             *string `tfsdk:"hosted_zone_id" json:"hostedZoneID,omitempty"`
 						Region                   *string `tfsdk:"region" json:"region,omitempty"`
 						Role                     *string `tfsdk:"role" json:"role,omitempty"`
@@ -1142,6 +1150,50 @@ func (r *CertManagerIoIssuerV1Manifest) Schema(_ context.Context, _ datasource.S
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"auth": schema.SingleNestedAttribute{
+															Description:         "Auth configures how cert-manager authenticates.",
+															MarkdownDescription: "Auth configures how cert-manager authenticates.",
+															Attributes: map[string]schema.Attribute{
+																"kubernetes": schema.SingleNestedAttribute{
+																	Description:         "Kubernetes authenticates with Route53 using AssumeRoleWithWebIdentityby passing a bound ServiceAccount token.",
+																	MarkdownDescription: "Kubernetes authenticates with Route53 using AssumeRoleWithWebIdentityby passing a bound ServiceAccount token.",
+																	Attributes: map[string]schema.Attribute{
+																		"service_account_ref": schema.SingleNestedAttribute{
+																			Description:         "A reference to a service account that will be used to request a boundtoken (also known as 'projected token'). To use this field, you mustconfigure an RBAC rule to let cert-manager request a token.",
+																			MarkdownDescription: "A reference to a service account that will be used to request a boundtoken (also known as 'projected token'). To use this field, you mustconfigure an RBAC rule to let cert-manager request a token.",
+																			Attributes: map[string]schema.Attribute{
+																				"audiences": schema.ListAttribute{
+																					Description:         "TokenAudiences is an optional list of audiences to include in thetoken passed to AWS. The default token consisting of the issuer's namespaceand name is always included.If unset the audience defaults to 'sts.amazonaws.com'.",
+																					MarkdownDescription: "TokenAudiences is an optional list of audiences to include in thetoken passed to AWS. The default token consisting of the issuer's namespaceand name is always included.If unset the audience defaults to 'sts.amazonaws.com'.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the ServiceAccount used to request a token.",
+																					MarkdownDescription: "Name of the ServiceAccount used to request a token.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: true,
+																			Optional: false,
+																			Computed: false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
 																},
 															},
 															Required: false,

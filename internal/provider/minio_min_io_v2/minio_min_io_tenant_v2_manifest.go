@@ -961,6 +961,9 @@ type MinioMinIoTenantV2ManifestData struct {
 					Port   *string `tfsdk:"port" json:"port,omitempty"`
 					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				Sleep *struct {
+					Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+				} `tfsdk:"sleep" json:"sleep,omitempty"`
 				TcpSocket *struct {
 					Host *string `tfsdk:"host" json:"host,omitempty"`
 					Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -980,6 +983,9 @@ type MinioMinIoTenantV2ManifestData struct {
 					Port   *string `tfsdk:"port" json:"port,omitempty"`
 					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				Sleep *struct {
+					Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+				} `tfsdk:"sleep" json:"sleep,omitempty"`
 				TcpSocket *struct {
 					Host *string `tfsdk:"host" json:"host,omitempty"`
 					Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -8211,6 +8217,23 @@ func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.Sche
 										Computed: false,
 									},
 
+									"sleep": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"tcp_socket": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -8323,6 +8346,23 @@ func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.Sche
 												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"sleep": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 										},

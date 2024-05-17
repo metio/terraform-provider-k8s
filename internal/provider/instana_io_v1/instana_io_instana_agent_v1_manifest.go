@@ -411,8 +411,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 						MarkdownDescription: "Agent deployment specific fields.",
 						Attributes: map[string]schema.Attribute{
 							"additional_backends": schema.ListNestedAttribute{
-								Description:         "These are additional backends the Instana agent will report to besides the one configured via the 'agent.endpointHost', 'agent.endpointPort' and 'agent.key' setting.",
-								MarkdownDescription: "These are additional backends the Instana agent will report to besides the one configured via the 'agent.endpointHost', 'agent.endpointPort' and 'agent.key' setting.",
+								Description:         "These are additional backends the Instana agent will report to besidesthe one configured via the 'agent.endpointHost', 'agent.endpointPort' and 'agent.key' setting.",
+								MarkdownDescription: "These are additional backends the Instana agent will report to besidesthe one configured via the 'agent.endpointHost', 'agent.endpointPort' and 'agent.key' setting.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"endpoint_host": schema.StringAttribute{
@@ -458,8 +458,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 								MarkdownDescription: "Mount in a ConfigMap with Agent configuration. Alternative to the 'configuration_yaml' field.",
 								Attributes: map[string]schema.Attribute{
 									"auto_mount_config_entries": schema.BoolAttribute{
-										Description:         "When setting this to true, the Helm chart will automatically look up the entries of the default instana-agent ConfigMap, and mount as agent configuration files under /opt/instana/agent/etc/instana all entries with keys that match the 'configuration-*.yaml' scheme",
-										MarkdownDescription: "When setting this to true, the Helm chart will automatically look up the entries of the default instana-agent ConfigMap, and mount as agent configuration files under /opt/instana/agent/etc/instana all entries with keys that match the 'configuration-*.yaml' scheme",
+										Description:         "When setting this to true, the Helm chart will automatically look up the entriesof the default instana-agent ConfigMap, and mount as agent configuration filesunder /opt/instana/agent/etc/instana all entries with keys that match the'configuration-*.yaml' scheme",
+										MarkdownDescription: "When setting this to true, the Helm chart will automatically look up the entriesof the default instana-agent ConfigMap, and mount as agent configuration filesunder /opt/instana/agent/etc/instana all entries with keys that match the'configuration-*.yaml' scheme",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -479,8 +479,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"download_key": schema.StringAttribute{
-								Description:         "The DownloadKey, sometimes known as 'sales key', that allows you to download software from Instana. It might be needed to specify this in addition to the Key.",
-								MarkdownDescription: "The DownloadKey, sometimes known as 'sales key', that allows you to download software from Instana. It might be needed to specify this in addition to the Key.",
+								Description:         "The DownloadKey, sometimes known as 'sales key', that allows you to download software from Instana. It might be needed tospecify this in addition to the Key.",
+								MarkdownDescription: "The DownloadKey, sometimes known as 'sales key', that allows you to download software from Instana. It might be needed tospecify this in addition to the Key.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -503,8 +503,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"env": schema.MapAttribute{
-								Description:         "Use the 'env' field to set additional environment variables for the Instana Agent, for example: env:   INSTANA_AGENT_TAGS: dev",
-								MarkdownDescription: "Use the 'env' field to set additional environment variables for the Instana Agent, for example: env:   INSTANA_AGENT_TAGS: dev",
+								Description:         "Use the 'env' field to set additional environment variables for the Instana Agent, for example:env:  INSTANA_AGENT_TAGS: dev",
+								MarkdownDescription: "Use the 'env' field to set additional environment variables for the Instana Agent, for example:env:  INSTANA_AGENT_TAGS: dev",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -533,8 +533,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 								MarkdownDescription: "Override the container image used for the Instana Agent pods.",
 								Attributes: map[string]schema.Attribute{
 									"digest": schema.StringAttribute{
-										Description:         "Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag', which will then be ignored.",
-										MarkdownDescription: "Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag', which will then be ignored.",
+										Description:         "Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag',which will then be ignored.",
+										MarkdownDescription: "Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag',which will then be ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -557,8 +557,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 									},
 
 									"pull_secrets": schema.ListNestedAttribute{
-										Description:         "PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with 'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret.",
-										MarkdownDescription: "PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with 'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret.",
+										Description:         "PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret.",
+										MarkdownDescription: "PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -589,8 +589,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"instana_mvn_repo_url": schema.StringAttribute{
-								Description:         "Override for the Maven repository URL when the Agent needs to connect to a locally provided Maven repository 'proxy' Alternative to 'Host' for referencing a different Maven repo.",
-								MarkdownDescription: "Override for the Maven repository URL when the Agent needs to connect to a locally provided Maven repository 'proxy' Alternative to 'Host' for referencing a different Maven repo.",
+								Description:         "Override for the Maven repository URL when the Agent needs to connect to a locally provided Maven repository 'proxy'Alternative to 'Host' for referencing a different Maven repo.",
+								MarkdownDescription: "Override for the Maven repository URL when the Agent needs to connect to a locally provided Maven repository 'proxy'Alternative to 'Host' for referencing a different Maven repo.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -605,16 +605,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"keys_secret": schema.StringAttribute{
-								Description:         "Rather than specifying the Key and optionally the DownloadKey, you can 'bring your own secret' creating it in the namespace in which you install the 'instana-agent' and specify its name in the 'KeysSecret' field. The secret you create must contain a field called 'key' and optionally one called 'downloadKey', which contain, respectively, the values you'd otherwise set in '.agent.key' and 'agent.downloadKey'.",
-								MarkdownDescription: "Rather than specifying the Key and optionally the DownloadKey, you can 'bring your own secret' creating it in the namespace in which you install the 'instana-agent' and specify its name in the 'KeysSecret' field. The secret you create must contain a field called 'key' and optionally one called 'downloadKey', which contain, respectively, the values you'd otherwise set in '.agent.key' and 'agent.downloadKey'.",
+								Description:         "Rather than specifying the Key and optionally the DownloadKey, you can 'bring yourown secret' creating it in the namespace in which you install the 'instana-agent' andspecify its name in the 'KeysSecret' field. The secret you create must contain a field called 'key' and optionally onecalled 'downloadKey', which contain, respectively, the values you'd otherwise set in '.agent.key' and 'agent.downloadKey'.",
+								MarkdownDescription: "Rather than specifying the Key and optionally the DownloadKey, you can 'bring yourown secret' creating it in the namespace in which you install the 'instana-agent' andspecify its name in the 'KeysSecret' field. The secret you create must contain a field called 'key' and optionally onecalled 'downloadKey', which contain, respectively, the values you'd otherwise set in '.agent.key' and 'agent.downloadKey'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"listen_address": schema.StringAttribute{
-								Description:         "ListenAddress is the IP addresses the Agent HTTP server will listen on. Normally this will just be localhost ('127.0.0.1'), the pod public IP and any container runtime bridge interfaces. Set 'listenAddress: *' for making the Agent listen on all network interfaces.",
-								MarkdownDescription: "ListenAddress is the IP addresses the Agent HTTP server will listen on. Normally this will just be localhost ('127.0.0.1'), the pod public IP and any container runtime bridge interfaces. Set 'listenAddress: *' for making the Agent listen on all network interfaces.",
+								Description:         "ListenAddress is the IP addresses the Agent HTTP server will listen on. Normally this will just be localhost ('127.0.0.1'),the pod public IP and any container runtime bridge interfaces. Set 'listenAddress: *' for making the Agent listen on allnetwork interfaces.",
+								MarkdownDescription: "ListenAddress is the IP addresses the Agent HTTP server will listen on. Normally this will just be localhost ('127.0.0.1'),the pod public IP and any container runtime bridge interfaces. Set 'listenAddress: *' for making the Agent listen on allnetwork interfaces.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -629,8 +629,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"mode": schema.StringAttribute{
-								Description:         "Set agent mode, possible options are APM, INFRASTRUCTURE or AWS. KUBERNETES should not be used but instead enabled via 'kubernetes.deployment.enabled: true'.",
-								MarkdownDescription: "Set agent mode, possible options are APM, INFRASTRUCTURE or AWS. KUBERNETES should not be used but instead enabled via 'kubernetes.deployment.enabled: true'.",
+								Description:         "Set agent mode, possible options are APM, INFRASTRUCTURE or AWS. KUBERNETES should not be used but instead enabled via'kubernetes.deployment.enabled: true'.",
+								MarkdownDescription: "Set agent mode, possible options are APM, INFRASTRUCTURE or AWS. KUBERNETES should not be used but instead enabled via'kubernetes.deployment.enabled: true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -641,16 +641,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 								MarkdownDescription: "Override Agent Pod specific settings such as annotations, labels and resources.",
 								Attributes: map[string]schema.Attribute{
 									"affinity": schema.SingleNestedAttribute{
-										Description:         "agent.pod.affinity are affinities to influence agent pod assignment. https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/",
-										MarkdownDescription: "agent.pod.affinity are affinities to influence agent pod assignment. https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/",
+										Description:         "agent.pod.affinity are affinities to influence agent pod assignment.https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/",
+										MarkdownDescription: "agent.pod.affinity are affinities to influence agent pod assignment.https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/",
 										Attributes: map[string]schema.Attribute{
 											"node_affinity": schema.SingleNestedAttribute{
 												Description:         "Describes node affinity scheduling rules for the pod.",
 												MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
 												Attributes: map[string]schema.Attribute{
 													"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
-														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+														Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"preference": schema.SingleNestedAttribute{
@@ -671,16 +671,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																						MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																						Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																						MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																						Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -707,16 +707,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																						MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																						Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																						MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																						Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -749,8 +749,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 													},
 
 													"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-														Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
-														MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+														Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+														MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
 														Attributes: map[string]schema.Attribute{
 															"node_selector_terms": schema.ListNestedAttribute{
 																Description:         "Required. A list of node selector terms. The terms are ORed.",
@@ -771,16 +771,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																						MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																						Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																						MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																						Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -807,16 +807,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																						MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																						Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																						MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																						Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -850,8 +850,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 												MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
 												Attributes: map[string]schema.Attribute{
 													"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+														Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"pod_affinity_term": schema.SingleNestedAttribute{
@@ -876,16 +876,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																							},
 
 																							"operator": schema.StringAttribute{
-																								Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																								MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"values": schema.ListAttribute{
-																								Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -899,8 +899,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																				},
 
 																				"match_labels": schema.MapAttribute{
-																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -913,8 +913,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
-																			Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																			MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																			Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																			MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
 																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -930,16 +930,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																							},
 
 																							"operator": schema.StringAttribute{
-																								Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																								MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"values": schema.ListAttribute{
-																								Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -953,8 +953,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																				},
 
 																				"match_labels": schema.MapAttribute{
-																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -967,8 +967,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																		},
 
 																		"namespaces": schema.ListAttribute{
-																			Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																			MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																			Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																			MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -976,8 +976,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																		},
 
 																		"topology_key": schema.StringAttribute{
-																			Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																			MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																			Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																			MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -989,8 +989,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																},
 
 																"weight": schema.Int64Attribute{
-																	Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-																	MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																	Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																	MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1003,8 +1003,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 													},
 
 													"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-														Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-														MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+														Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+														MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"label_selector": schema.SingleNestedAttribute{
@@ -1025,16 +1025,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1048,8 +1048,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1062,8 +1062,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1079,16 +1079,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1102,8 +1102,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1116,8 +1116,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1125,8 +1125,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1148,8 +1148,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 												MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
 												Attributes: map[string]schema.Attribute{
 													"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+														Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"pod_affinity_term": schema.SingleNestedAttribute{
@@ -1174,16 +1174,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																							},
 
 																							"operator": schema.StringAttribute{
-																								Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																								MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"values": schema.ListAttribute{
-																								Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -1197,8 +1197,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																				},
 
 																				"match_labels": schema.MapAttribute{
-																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1211,8 +1211,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
-																			Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																			MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																			Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																			MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
 																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1228,16 +1228,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																							},
 
 																							"operator": schema.StringAttribute{
-																								Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																								MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"values": schema.ListAttribute{
-																								Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																								Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -1251,8 +1251,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																				},
 
 																				"match_labels": schema.MapAttribute{
-																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1265,8 +1265,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																		},
 
 																		"namespaces": schema.ListAttribute{
-																			Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																			MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																			Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																			MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1274,8 +1274,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																		},
 
 																		"topology_key": schema.StringAttribute{
-																			Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																			MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																			Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																			MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -1287,8 +1287,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																},
 
 																"weight": schema.Int64Attribute{
-																	Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-																	MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																	Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																	MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1301,8 +1301,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 													},
 
 													"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-														Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-														MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+														Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+														MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"label_selector": schema.SingleNestedAttribute{
@@ -1323,16 +1323,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1346,8 +1346,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1360,8 +1360,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1377,16 +1377,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1400,8 +1400,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1414,8 +1414,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1423,8 +1423,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1465,8 +1465,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1474,16 +1474,16 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 									},
 
 									"priority_class_name": schema.StringAttribute{
-										Description:         "agent.pod.priorityClassName is the name of an existing PriorityClass that should be set on the agent pods https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/",
-										MarkdownDescription: "agent.pod.priorityClassName is the name of an existing PriorityClass that should be set on the agent pods https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/",
+										Description:         "agent.pod.priorityClassName is the name of an existing PriorityClass that should be set on the agent podshttps://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/",
+										MarkdownDescription: "agent.pod.priorityClassName is the name of an existing PriorityClass that should be set on the agent podshttps://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1496,40 +1496,40 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1603,8 +1603,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"tls": schema.SingleNestedAttribute{
-								Description:         "TLS for end-to-end encryption between the Instana Agent and clients accessing the Agent. The Instana Agent does not yet allow enforcing TLS encryption, enabling makes it possible for clients to 'opt-in'. So TLS is only enabled on a connection when requested by the client.",
-								MarkdownDescription: "TLS for end-to-end encryption between the Instana Agent and clients accessing the Agent. The Instana Agent does not yet allow enforcing TLS encryption, enabling makes it possible for clients to 'opt-in'. So TLS is only enabled on a connection when requested by the client.",
+								Description:         "TLS for end-to-end encryption between the Instana Agent and clients accessing the Agent.The Instana Agent does not yet allow enforcing TLS encryption, enabling makes it possible for clients to 'opt-in'.So TLS is only enabled on a connection when requested by the client.",
+								MarkdownDescription: "TLS for end-to-end encryption between the Instana Agent and clients accessing the Agent.The Instana Agent does not yet allow enforcing TLS encryption, enabling makes it possible for clients to 'opt-in'.So TLS is only enabled on a connection when requested by the client.",
 								Attributes: map[string]schema.Attribute{
 									"certificate": schema.StringAttribute{
 										Description:         "certificate (together with key) is the alternative to an existing Secret. Must be base64 encoded.",
@@ -1640,20 +1640,20 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 								MarkdownDescription: "Control how to update the Agent DaemonSet",
 								Attributes: map[string]schema.Attribute{
 									"rolling_update": schema.SingleNestedAttribute{
-										Description:         "Rolling update config params. Present only if type = 'RollingUpdate'. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be. Same as Deployment 'strategy.rollingUpdate'. See https://github.com/kubernetes/kubernetes/issues/35345",
-										MarkdownDescription: "Rolling update config params. Present only if type = 'RollingUpdate'. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be. Same as Deployment 'strategy.rollingUpdate'. See https://github.com/kubernetes/kubernetes/issues/35345",
+										Description:         "Rolling update config params. Present only if type = 'RollingUpdate'.---TODO: Update this to follow our convention for oneOf, whatever we decide itto be. Same as Deployment 'strategy.rollingUpdate'.See https://github.com/kubernetes/kubernetes/issues/35345",
+										MarkdownDescription: "Rolling update config params. Present only if type = 'RollingUpdate'.---TODO: Update this to follow our convention for oneOf, whatever we decide itto be. Same as Deployment 'strategy.rollingUpdate'.See https://github.com/kubernetes/kubernetes/issues/35345",
 										Attributes: map[string]schema.Attribute{
 											"max_surge": schema.StringAttribute{
-												Description:         "The maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediatedly created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption. This is beta field and enabled/disabled by DaemonSetUpdateSurge feature gate.",
-												MarkdownDescription: "The maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediatedly created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption. This is beta field and enabled/disabled by DaemonSetUpdateSurge feature gate.",
+												Description:         "The maximum number of nodes with an existing available DaemonSet pod thatcan have an updated DaemonSet pod during during an update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up to a minimum of 1.Default value is 0.Example: when this is set to 30%, at most 30% of the total number of nodesthat should be running the daemon pod (i.e. status.desiredNumberScheduled)can have their a new pod created before the old pod is marked as deleted.The update starts by launching new pods on 30% of nodes. Once an updatedpod is available (Ready for at least minReadySeconds) the old DaemonSet podon that node is marked deleted. If the old pod becomes unavailable for anyreason (Ready transitions to false, is evicted, or is drained) an updatedpod is immediatedly created on that node without considering surge limits.Allowing surge implies the possibility that the resources consumed by thedaemonset on any given node can double if the readiness check fails, andso resource intensive daemonsets should take into account that they maycause evictions during disruption.This is beta field and enabled/disabled by DaemonSetUpdateSurge feature gate.",
+												MarkdownDescription: "The maximum number of nodes with an existing available DaemonSet pod thatcan have an updated DaemonSet pod during during an update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up to a minimum of 1.Default value is 0.Example: when this is set to 30%, at most 30% of the total number of nodesthat should be running the daemon pod (i.e. status.desiredNumberScheduled)can have their a new pod created before the old pod is marked as deleted.The update starts by launching new pods on 30% of nodes. Once an updatedpod is available (Ready for at least minReadySeconds) the old DaemonSet podon that node is marked deleted. If the old pod becomes unavailable for anyreason (Ready transitions to false, is evicted, or is drained) an updatedpod is immediatedly created on that node without considering surge limits.Allowing surge implies the possibility that the resources consumed by thedaemonset on any given node can double if the readiness check fails, andso resource intensive daemonsets should take into account that they maycause evictions during disruption.This is beta field and enabled/disabled by DaemonSetUpdateSurge feature gate.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_unavailable": schema.StringAttribute{
-												Description:         "The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxSurge is 0 Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.",
-												MarkdownDescription: "The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxSurge is 0 Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.",
+												Description:         "The maximum number of DaemonSet pods that can be unavailable during theupdate. Value can be an absolute number (ex: 5) or a percentage of totalnumber of DaemonSet pods at the start of the update (ex: 10%). Absolutenumber is calculated from percentage by rounding up.This cannot be 0 if MaxSurge is 0Default value is 1.Example: when this is set to 30%, at most 30% of the total number of nodesthat should be running the daemon pod (i.e. status.desiredNumberScheduled)can have their pods stopped for an update at any given time. The updatestarts by stopping at most 30% of those DaemonSet pods and then bringsup new DaemonSet pods in their place. Once the new pods are available,it then proceeds onto other DaemonSet pods, thus ensuring that at least70% of original number of DaemonSet pods are available at all times duringthe update.",
+												MarkdownDescription: "The maximum number of DaemonSet pods that can be unavailable during theupdate. Value can be an absolute number (ex: 5) or a percentage of totalnumber of DaemonSet pods at the start of the update (ex: 10%). Absolutenumber is calculated from percentage by rounding up.This cannot be 0 if MaxSurge is 0Default value is 1.Example: when this is set to 30%, at most 30% of the total number of nodesthat should be running the daemon pod (i.e. status.desiredNumberScheduled)can have their pods stopped for an update at any given time. The updatestarts by stopping at most 30% of those DaemonSet pods and then bringsup new DaemonSet pods in their place. Once the new pods are available,it then proceeds onto other DaemonSet pods, thus ensuring that at least70% of original number of DaemonSet pods are available at all times duringthe update.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1868,8 +1868,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"cluster": schema.SingleNestedAttribute{
-						Description:         "Name of the cluster, that will be assigned to this cluster in Instana. Either specifying the 'cluster.name' or 'zone.name' is mandatory.",
-						MarkdownDescription: "Name of the cluster, that will be assigned to this cluster in Instana. Either specifying the 'cluster.name' or 'zone.name' is mandatory.",
+						Description:         "Name of the cluster, that will be assigned to this cluster in Instana. Either specifying the 'cluster.name' or 'zone.name'is mandatory.",
+						MarkdownDescription: "Name of the cluster, that will be assigned to this cluster in Instana. Either specifying the 'cluster.name' or 'zone.name'is mandatory.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "",
@@ -1930,8 +1930,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 										MarkdownDescription: "Override pod resource requirements for the Kubernetes Sensor pods.",
 										Attributes: map[string]schema.Attribute{
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1939,8 +1939,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1970,8 +1970,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"digest": schema.StringAttribute{
-										Description:         "Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag', which will then be ignored.",
-										MarkdownDescription: "Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag', which will then be ignored.",
+										Description:         "Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag',which will then be ignored.",
+										MarkdownDescription: "Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag',which will then be ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1994,8 +1994,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 									},
 
 									"pull_secrets": schema.ListNestedAttribute{
-										Description:         "PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with 'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret.",
-										MarkdownDescription: "PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with 'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret.",
+										Description:         "PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret.",
+										MarkdownDescription: "PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -2031,8 +2031,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"kubernetes": schema.SingleNestedAttribute{
-						Description:         "Allows for installment of the Kubernetes Sensor as separate pod. Which allows for better tailored resource settings (mainly memory) both for the Agent pods and the Kubernetes Sensor pod.",
-						MarkdownDescription: "Allows for installment of the Kubernetes Sensor as separate pod. Which allows for better tailored resource settings (mainly memory) both for the Agent pods and the Kubernetes Sensor pod.",
+						Description:         "Allows for installment of the Kubernetes Sensor as separate pod. Which allows for better tailored resource settings(mainly memory) both for the Agent pods and the Kubernetes Sensor pod.",
+						MarkdownDescription: "Allows for installment of the Kubernetes Sensor as separate pod. Which allows for better tailored resource settings(mainly memory) both for the Agent pods and the Kubernetes Sensor pod.",
 						Attributes: map[string]schema.Attribute{
 							"deployment": schema.SingleNestedAttribute{
 								Description:         "",
@@ -2059,8 +2059,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 										MarkdownDescription: "Override pod resource requirements for the Kubernetes Sensor pods.",
 										Attributes: map[string]schema.Attribute{
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2068,8 +2068,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2100,8 +2100,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"openshift": schema.BoolAttribute{
-						Description:         "Set to 'True' to indicate the Operator is being deployed in a OpenShift cluster. Provides a hint so that RBAC etc is configured correctly.",
-						MarkdownDescription: "Set to 'True' to indicate the Operator is being deployed in a OpenShift cluster. Provides a hint so that RBAC etc is configured correctly.",
+						Description:         "Set to 'True' to indicate the Operator is being deployed in a OpenShift cluster. Provides a hint so that RBAC etc isconfigured correctly.",
+						MarkdownDescription: "Set to 'True' to indicate the Operator is being deployed in a OpenShift cluster. Provides a hint so that RBAC etc isconfigured correctly.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2167,8 +2167,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"pinned_chart_version": schema.StringAttribute{
-						Description:         "Specifying the PinnedChartVersion allows for 'pinning' the Helm Chart used by the Operator for installing the Agent DaemonSet. Normally the Operator will always install and update to the latest Helm Chart version. The Operator will check and make sure no 'unsupported' Chart versions can be selected.",
-						MarkdownDescription: "Specifying the PinnedChartVersion allows for 'pinning' the Helm Chart used by the Operator for installing the Agent DaemonSet. Normally the Operator will always install and update to the latest Helm Chart version. The Operator will check and make sure no 'unsupported' Chart versions can be selected.",
+						Description:         "Specifying the PinnedChartVersion allows for 'pinning' the Helm Chart used by the Operator for installing the AgentDaemonSet. Normally the Operator will always install and update to the latest Helm Chart version.The Operator will check and make sure no 'unsupported' Chart versions can be selected.",
+						MarkdownDescription: "Specifying the PinnedChartVersion allows for 'pinning' the Helm Chart used by the Operator for installing the AgentDaemonSet. Normally the Operator will always install and update to the latest Helm Chart version.The Operator will check and make sure no 'unsupported' Chart versions can be selected.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2243,8 +2243,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"service": schema.SingleNestedAttribute{
-						Description:         "Specifies whether to create the instana-agent 'Service' to expose within the cluster. The Service can then be used e.g. for the Prometheus remote-write, OpenTelemetry GRCP endpoint and other APIs. Note: Requires Kubernetes 1.17+, as it uses topologyKeys.",
-						MarkdownDescription: "Specifies whether to create the instana-agent 'Service' to expose within the cluster. The Service can then be used e.g. for the Prometheus remote-write, OpenTelemetry GRCP endpoint and other APIs. Note: Requires Kubernetes 1.17+, as it uses topologyKeys.",
+						Description:         "Specifies whether to create the instana-agent 'Service' to expose within the cluster. The Service can then be used e.g.for the Prometheus remote-write, OpenTelemetry GRCP endpoint and other APIs.Note: Requires Kubernetes 1.17+, as it uses topologyKeys.",
+						MarkdownDescription: "Specifies whether to create the instana-agent 'Service' to expose within the cluster. The Service can then be used e.g.for the Prometheus remote-write, OpenTelemetry GRCP endpoint and other APIs.Note: Requires Kubernetes 1.17+, as it uses topologyKeys.",
 						Attributes: map[string]schema.Attribute{
 							"create": schema.BoolAttribute{
 								Description:         "",

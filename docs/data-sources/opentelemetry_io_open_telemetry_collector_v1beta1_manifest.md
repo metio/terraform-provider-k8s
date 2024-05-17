@@ -84,6 +84,7 @@ Optional:
 - `pod_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_security_context))
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ports))
 - `priority_class_name` (String)
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--readiness_probe))
 - `replicas` (Number)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--security_context))
@@ -2306,6 +2307,19 @@ Optional:
 - `node_port` (Number)
 - `protocol` (String)
 - `target_port` (String)
+
+
+<a id="nestedatt--spec--readiness_probe"></a>
+### Nested Schema for `spec.readiness_probe`
+
+Optional:
+
+- `failure_threshold` (Number)
+- `initial_delay_seconds` (Number)
+- `period_seconds` (Number)
+- `success_threshold` (Number)
+- `termination_grace_period_seconds` (Number)
+- `timeout_seconds` (Number)
 
 
 <a id="nestedatt--spec--resources"></a>

@@ -3197,6 +3197,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--post_start--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--post_start--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--post_start--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--post_start--tcp_socket))
 
 <a id="nestedatt--spec--lifecycle--post_start--exec"></a>
@@ -3231,6 +3232,14 @@ Required:
 
 
 
+<a id="nestedatt--spec--lifecycle--post_start--sleep"></a>
+### Nested Schema for `spec.lifecycle.post_start.sleep`
+
+Required:
+
+- `seconds` (Number)
+
+
 <a id="nestedatt--spec--lifecycle--post_start--tcp_socket"></a>
 ### Nested Schema for `spec.lifecycle.post_start.tcp_socket`
 
@@ -3251,6 +3260,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--lifecycle--pre_stop--exec"></a>
@@ -3283,6 +3293,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--lifecycle--pre_stop--tcp_socket"></a>

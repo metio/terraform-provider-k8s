@@ -114,6 +114,10 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				Name     *string            `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool              `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"custom_secrets" json:"custom_secrets,omitempty"`
+			Dns *struct {
+				Config *map[string]string `tfsdk:"config" json:"config,omitempty"`
+				Policy *string            `tfsdk:"policy" json:"policy,omitempty"`
+			} `tfsdk:"dns" json:"dns,omitempty"`
 			Host_aliases *[]struct {
 				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
@@ -1014,6 +1018,32 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 											Optional:            true,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"dns": schema.SingleNestedAttribute{
+								Description:         "The Kiali server pod's DNS configuration. Kubernetes supports different DNS policies and configurations.For further details, consult the Kubernetes documentation - https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/",
+								MarkdownDescription: "The Kiali server pod's DNS configuration. Kubernetes supports different DNS policies and configurations.For further details, consult the Kubernetes documentation - https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/",
+								Attributes: map[string]schema.Attribute{
+									"config": schema.MapAttribute{
+										Description:         "DNS configuration that is applied to the DNS policy. See the Kubernetes documentation for the different configuration settings that are supported.",
+										MarkdownDescription: "DNS configuration that is applied to the DNS policy. See the Kubernetes documentation for the different configuration settings that are supported.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"policy": schema.StringAttribute{
+										Description:         "DNS policy. See the Kubernetes documentation for the different policies that are supported.",
+										MarkdownDescription: "DNS policy. See the Kubernetes documentation for the different policies that are supported.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,

@@ -154,7 +154,10 @@ type K8UpIoScheduleV1ManifestData struct {
 			ConcurrentRunsAllowed  *bool  `tfsdk:"concurrent_runs_allowed" json:"concurrentRunsAllowed,omitempty"`
 			FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
 			KeepJobs               *int64 `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
-			PodSecurityContext     *struct {
+			PodConfigRef           *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"pod_config_ref" json:"podConfigRef,omitempty"`
+			PodSecurityContext *struct {
 				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -472,7 +475,10 @@ type K8UpIoScheduleV1ManifestData struct {
 			ConcurrentRunsAllowed  *bool  `tfsdk:"concurrent_runs_allowed" json:"concurrentRunsAllowed,omitempty"`
 			FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
 			KeepJobs               *int64 `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
-			PodSecurityContext     *struct {
+			PodConfigRef           *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"pod_config_ref" json:"podConfigRef,omitempty"`
+			PodSecurityContext *struct {
 				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -651,7 +657,10 @@ type K8UpIoScheduleV1ManifestData struct {
 			ConcurrentRunsAllowed  *bool  `tfsdk:"concurrent_runs_allowed" json:"concurrentRunsAllowed,omitempty"`
 			FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
 			KeepJobs               *int64 `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
-			PodSecurityContext     *struct {
+			PodConfigRef           *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"pod_config_ref" json:"podConfigRef,omitempty"`
+			PodSecurityContext *struct {
 				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -719,7 +728,10 @@ type K8UpIoScheduleV1ManifestData struct {
 		} `tfsdk:"check" json:"check,omitempty"`
 		FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
 		KeepJobs               *int64 `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
-		PodSecurityContext     *struct {
+		PodConfigRef           *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"pod_config_ref" json:"podConfigRef,omitempty"`
+		PodSecurityContext *struct {
 			FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 			FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 			RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -858,7 +870,10 @@ type K8UpIoScheduleV1ManifestData struct {
 			ConcurrentRunsAllowed  *bool  `tfsdk:"concurrent_runs_allowed" json:"concurrentRunsAllowed,omitempty"`
 			FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
 			KeepJobs               *int64 `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
-			PodSecurityContext     *struct {
+			PodConfigRef           *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"pod_config_ref" json:"podConfigRef,omitempty"`
+			PodSecurityContext *struct {
 				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1052,7 +1067,10 @@ type K8UpIoScheduleV1ManifestData struct {
 			ConcurrentRunsAllowed  *bool  `tfsdk:"concurrent_runs_allowed" json:"concurrentRunsAllowed,omitempty"`
 			FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
 			KeepJobs               *int64 `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
-			PodSecurityContext     *struct {
+			PodConfigRef           *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"pod_config_ref" json:"podConfigRef,omitempty"`
+			PodSecurityContext *struct {
 				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1952,6 +1970,23 @@ func (r *K8UpIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Schema
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"pod_config_ref": schema.SingleNestedAttribute{
+								Description:         "PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing.",
+								MarkdownDescription: "PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_security_context": schema.SingleNestedAttribute{
@@ -4039,6 +4074,23 @@ func (r *K8UpIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Schema
 								Computed:            false,
 							},
 
+							"pod_config_ref": schema.SingleNestedAttribute{
+								Description:         "PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing.",
+								MarkdownDescription: "PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"pod_security_context": schema.SingleNestedAttribute{
 								Description:         "PodSecurityContext describes the security context with which this action shall be executed.",
 								MarkdownDescription: "PodSecurityContext describes the security context with which this action shall be executed.",
@@ -5223,6 +5275,23 @@ func (r *K8UpIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Schema
 								Computed:            false,
 							},
 
+							"pod_config_ref": schema.SingleNestedAttribute{
+								Description:         "PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing.",
+								MarkdownDescription: "PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"pod_security_context": schema.SingleNestedAttribute{
 								Description:         "PodSecurityContext describes the security context with which this action shall be executed.",
 								MarkdownDescription: "PodSecurityContext describes the security context with which this action shall be executed.",
@@ -5684,6 +5753,23 @@ func (r *K8UpIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Schema
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"pod_config_ref": schema.SingleNestedAttribute{
+						Description:         "PodConfigRef will apply the given template to all job definitions in this Schedule.It can be overriden for specific jobs if necessary.",
+						MarkdownDescription: "PodConfigRef will apply the given template to all job definitions in this Schedule.It can be overriden for specific jobs if necessary.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"pod_security_context": schema.SingleNestedAttribute{
@@ -6596,6 +6682,23 @@ func (r *K8UpIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Schema
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"pod_config_ref": schema.SingleNestedAttribute{
+								Description:         "PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing.",
+								MarkdownDescription: "PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_security_context": schema.SingleNestedAttribute{
@@ -7885,6 +7988,23 @@ func (r *K8UpIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Schema
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"pod_config_ref": schema.SingleNestedAttribute{
+								Description:         "PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing.",
+								MarkdownDescription: "PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_security_context": schema.SingleNestedAttribute{

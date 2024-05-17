@@ -30,7 +30,7 @@ data "k8s_scheduling_volcano_sh_pod_group_v1beta1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) Specification of the desired behavior of the pod group. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Specification of the desired behavior of the pod group.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,8 +55,8 @@ Optional:
 
 Optional:
 
-- `min_member` (Number) MinMember defines the minimal number of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.
-- `min_resources` (Map of String) MinResources defines the minimal resource of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.
-- `min_task_member` (Map of String) MinTaskMember defines the minimal number of pods to run each task in the pod group; if there's not enough resources to start each task, the scheduler will not start anyone.
-- `priority_class_name` (String) If specified, indicates the PodGroup's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the PodGroup priority will be default or zero if there is no default.
-- `queue` (String) Queue defines the queue to allocate resource for PodGroup; if queue does not exist, the PodGroup will not be scheduled. Defaults to 'default' Queue with the lowest weight.
+- `min_member` (Number) MinMember defines the minimal number of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.
+- `min_resources` (Map of String) MinResources defines the minimal resource of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.
+- `min_task_member` (Map of String) MinTaskMember defines the minimal number of pods to run each task in the pod group;if there's not enough resources to start each task, the schedulerwill not start anyone.
+- `priority_class_name` (String) If specified, indicates the PodGroup's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the PodGroup priority will be default or zero if there is nodefault.
+- `queue` (String) Queue defines the queue to allocate resource for PodGroup; if queue does not exist,the PodGroup will not be scheduled. Defaults to 'default' Queue with the lowest weight.

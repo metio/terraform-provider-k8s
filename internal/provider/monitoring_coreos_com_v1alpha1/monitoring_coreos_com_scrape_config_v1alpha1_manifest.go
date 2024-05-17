@@ -92,17 +92,13 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
 				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			ProxyConnectHeader *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
-			Region               *string `tfsdk:"region" json:"region,omitempty"`
-			Server               *string `tfsdk:"server" json:"server,omitempty"`
-			TagSeparator         *string `tfsdk:"tag_separator" json:"tagSeparator,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string            `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Region               *string            `tfsdk:"region" json:"region,omitempty"`
+			Server               *string            `tfsdk:"server" json:"server,omitempty"`
+			TagSeparator         *string            `tfsdk:"tag_separator" json:"tagSeparator,omitempty"`
 			TlsConfig            *struct {
 				Ca *struct {
 					ConfigMap *struct {
@@ -222,20 +218,16 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
 				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			Partition          *string `tfsdk:"partition" json:"partition,omitempty"`
-			ProxyConnectHeader *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-			ProxyFromEnvironment *bool     `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-			ProxyUrl             *string   `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			RefreshInterval      *string   `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
-			Scheme               *string   `tfsdk:"scheme" json:"scheme,omitempty"`
-			Server               *string   `tfsdk:"server" json:"server,omitempty"`
-			Services             *[]string `tfsdk:"services" json:"services,omitempty"`
-			TagSeparator         *string   `tfsdk:"tag_separator" json:"tagSeparator,omitempty"`
-			Tags                 *[]string `tfsdk:"tags" json:"tags,omitempty"`
+			Partition            *string            `tfsdk:"partition" json:"partition,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string            `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Scheme               *string            `tfsdk:"scheme" json:"scheme,omitempty"`
+			Server               *string            `tfsdk:"server" json:"server,omitempty"`
+			Services             *[]string          `tfsdk:"services" json:"services,omitempty"`
+			TagSeparator         *string            `tfsdk:"tag_separator" json:"tagSeparator,omitempty"`
+			Tags                 *[]string          `tfsdk:"tags" json:"tags,omitempty"`
 			TlsConfig            *struct {
 				Ca *struct {
 					ConfigMap *struct {
@@ -309,15 +301,11 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
 				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			Port               *int64 `tfsdk:"port" json:"port,omitempty"`
-			ProxyConnectHeader *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string            `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
 			TlsConfig            *struct {
 				Ca *struct {
 					ConfigMap *struct {
@@ -410,15 +398,11 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
 				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			Port               *int64 `tfsdk:"port" json:"port,omitempty"`
-			ProxyConnectHeader *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string            `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
 			TlsConfig            *struct {
 				Ca *struct {
 					ConfigMap *struct {
@@ -520,15 +504,11 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
 				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			ProxyConnectHeader *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
-			Server               *string `tfsdk:"server" json:"server,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string            `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Server               *string            `tfsdk:"server" json:"server,omitempty"`
 			TlsConfig            *struct {
 				Ca *struct {
 					ConfigMap *struct {
@@ -621,16 +601,12 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
 				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			Port               *int64 `tfsdk:"port" json:"port,omitempty"`
-			ProxyConnectHeader *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
-			Role                 *string `tfsdk:"role" json:"role,omitempty"`
+			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string            `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Role                 *string            `tfsdk:"role" json:"role,omitempty"`
 			TlsConfig            *struct {
 				Ca *struct {
 					ConfigMap *struct {
@@ -688,15 +664,11 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"username" json:"username,omitempty"`
 			} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
-			NoProxy            *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
-			ProxyConnectHeader *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string            `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
 			TlsConfig            *struct {
 				Ca *struct {
 					ConfigMap *struct {
@@ -787,14 +759,10 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
 				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			ProxyConnectHeader *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			Role                 *string `tfsdk:"role" json:"role,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			Role                 *string            `tfsdk:"role" json:"role,omitempty"`
 			Selectors            *[]struct {
 				Field *string `tfsdk:"field" json:"field,omitempty"`
 				Label *string `tfsdk:"label" json:"label,omitempty"`
@@ -882,15 +850,11 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
 				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			ProxyConnectHeader *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-			ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-			ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			RefreshInterval      *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
-			Server               *string `tfsdk:"server" json:"server,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			RefreshInterval      *string            `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Server               *string            `tfsdk:"server" json:"server,omitempty"`
 			TlsConfig            *struct {
 				Ca *struct {
 					ConfigMap *struct {
@@ -999,14 +963,10 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 			Userid   *string `tfsdk:"userid" json:"userid,omitempty"`
 			Username *string `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"openstack_sd_configs" json:"openstackSDConfigs,omitempty"`
-		Params             *map[string][]string `tfsdk:"params" json:"params,omitempty"`
-		ProxyConnectHeader *struct {
-			Key      *string `tfsdk:"key" json:"key,omitempty"`
-			Name     *string `tfsdk:"name" json:"name,omitempty"`
-			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-		} `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-		ProxyFromEnvironment *bool   `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-		ProxyUrl             *string `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+		Params               *map[string][]string `tfsdk:"params" json:"params,omitempty"`
+		ProxyConnectHeader   *map[string]string   `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+		ProxyFromEnvironment *bool                `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+		ProxyUrl             *string              `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 		Relabelings          *[]struct {
 			Action       *string   `tfsdk:"action" json:"action,omitempty"`
 			Modulus      *int64    `tfsdk:"modulus" json:"modulus,omitempty"`
@@ -1457,37 +1417,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Computed: false,
 								},
 
-								"proxy_connect_header": schema.SingleNestedAttribute{
+								"proxy_connect_header": schema.MapAttribute{
 									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret or its key must be defined",
-											MarkdownDescription: "Specify whether the Secret or its key must be defined",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
@@ -1817,13 +1753,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authentication_method": schema.StringAttribute{
-									Description:         "# The authentication method, either OAuth or ManagedIdentity.See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview",
-									MarkdownDescription: "# The authentication method, either OAuth or ManagedIdentity.See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview",
+									Description:         "# The authentication method, either 'OAuth' or 'ManagedIdentity' or 'SDK'.See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overviewSDK authentication method uses environment variables by default.See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authentication",
+									MarkdownDescription: "# The authentication method, either 'OAuth' or 'ManagedIdentity' or 'SDK'.See https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overviewSDK authentication method uses environment variables by default.See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authentication",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.OneOf("OAuth", "ManagedIdentity"),
+										stringvalidator.OneOf("OAuth", "ManagedIdentity", "SDK"),
 									},
 								},
 
@@ -2344,37 +2280,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Computed:            false,
 								},
 
-								"proxy_connect_header": schema.SingleNestedAttribute{
+								"proxy_connect_header": schema.MapAttribute{
 									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret or its key must be defined",
-											MarkdownDescription: "Specify whether the Secret or its key must be defined",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
@@ -2935,37 +2847,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Computed:            false,
 								},
 
-								"proxy_connect_header": schema.SingleNestedAttribute{
+								"proxy_connect_header": schema.MapAttribute{
 									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret or its key must be defined",
-											MarkdownDescription: "Specify whether the Secret or its key must be defined",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
@@ -3617,37 +3505,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Computed:            false,
 								},
 
-								"proxy_connect_header": schema.SingleNestedAttribute{
+								"proxy_connect_header": schema.MapAttribute{
 									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret or its key must be defined",
-											MarkdownDescription: "Specify whether the Secret or its key must be defined",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
@@ -4342,37 +4206,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Computed: false,
 								},
 
-								"proxy_connect_header": schema.SingleNestedAttribute{
+								"proxy_connect_header": schema.MapAttribute{
 									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret or its key must be defined",
-											MarkdownDescription: "Specify whether the Secret or its key must be defined",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
@@ -5037,37 +4877,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Computed:            false,
 								},
 
-								"proxy_connect_header": schema.SingleNestedAttribute{
+								"proxy_connect_header": schema.MapAttribute{
 									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret or its key must be defined",
-											MarkdownDescription: "Specify whether the Secret or its key must be defined",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
@@ -5479,37 +5295,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Computed:            false,
 								},
 
-								"proxy_connect_header": schema.SingleNestedAttribute{
+								"proxy_connect_header": schema.MapAttribute{
 									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret or its key must be defined",
-											MarkdownDescription: "Specify whether the Secret or its key must be defined",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
@@ -6127,37 +5919,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Computed: false,
 								},
 
-								"proxy_connect_header": schema.SingleNestedAttribute{
+								"proxy_connect_header": schema.MapAttribute{
 									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret or its key must be defined",
-											MarkdownDescription: "Specify whether the Secret or its key must be defined",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
@@ -6761,37 +6529,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Computed: false,
 								},
 
-								"proxy_connect_header": schema.SingleNestedAttribute{
+								"proxy_connect_header": schema.MapAttribute{
 									Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret or its key must be defined",
-											MarkdownDescription: "Specify whether the Secret or its key must be defined",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
@@ -7586,37 +7330,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
-					"proxy_connect_header": schema.SingleNestedAttribute{
+					"proxy_connect_header": schema.MapAttribute{
 						Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 						MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-						Attributes: map[string]schema.Attribute{
-							"key": schema.StringAttribute{
-								Description:         "The key of the secret to select from.  Must be a valid secret key.",
-								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-							},
-
-							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"optional": schema.BoolAttribute{
-								Description:         "Specify whether the Secret or its key must be defined",
-								MarkdownDescription: "Specify whether the Secret or its key must be defined",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"proxy_from_environment": schema.BoolAttribute{

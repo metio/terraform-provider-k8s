@@ -122,8 +122,8 @@ func (r *NodeinfoVolcanoShNumatopologyV1Alpha1Manifest) Schema(_ context.Context
 				MarkdownDescription: "Specification of the numa information of the worker node",
 				Attributes: map[string]schema.Attribute{
 					"cpu_detail": schema.SingleNestedAttribute{
-						Description:         "Specifies the cpu topology info Key is cpu id",
-						MarkdownDescription: "Specifies the cpu topology info Key is cpu id",
+						Description:         "Specifies the cpu topology infoKey is cpu id",
+						MarkdownDescription: "Specifies the cpu topology infoKey is cpu id",
 						Attributes: map[string]schema.Attribute{
 							"core": schema.Int64Attribute{
 								Description:         "",
@@ -155,8 +155,8 @@ func (r *NodeinfoVolcanoShNumatopologyV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"numares": schema.SingleNestedAttribute{
-						Description:         "Specifies the numa info for the resource Key is resource name",
-						MarkdownDescription: "Specifies the numa info for the resource Key is resource name",
+						Description:         "Specifies the numa info for the resourceKey is resource name",
+						MarkdownDescription: "Specifies the numa info for the resourceKey is resource name",
 						Attributes: map[string]schema.Attribute{
 							"allocatable": schema.StringAttribute{
 								Description:         "",
@@ -189,8 +189,8 @@ func (r *NodeinfoVolcanoShNumatopologyV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"res_reserved": schema.MapAttribute{
-						Description:         "Specifies the reserved resource of the node Key is resource name",
-						MarkdownDescription: "Specifies the reserved resource of the node Key is resource name",
+						Description:         "Specifies the reserved resource of the nodeKey is resource name",
+						MarkdownDescription: "Specifies the reserved resource of the nodeKey is resource name",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

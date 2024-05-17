@@ -530,9 +530,38 @@ Required:
 
 Optional:
 
+- `authentication` (Attributes) Authentication defines the options for the oauth proxy used to protect jaeger UI (see [below for nested schema](#nestedatt--spec--jaegerui--authentication))
 - `ingress` (Attributes) Ingress defines the Ingress configuration for the Jaeger UI. (see [below for nested schema](#nestedatt--spec--jaegerui--ingress))
 - `resources` (Attributes) Resources defines the compute resource requirements of the Jaeger UI container. (see [below for nested schema](#nestedatt--spec--jaegerui--resources))
 - `route` (Attributes) Route defines the OpenShift route configuration for the Jaeger UI. (see [below for nested schema](#nestedatt--spec--jaegerui--route))
+
+<a id="nestedatt--spec--jaegerui--authentication"></a>
+### Nested Schema for `spec.jaegerui.authentication`
+
+Optional:
+
+- `enabled` (Boolean) Defines if the authentication will be enabled for jaeger UI.
+- `resources` (Attributes) Resources defines the compute resource requirements of the OAuth Proxy container. The OAuth Proxy performs authentication and authorization of incoming requests to Jaeger UI when multi-tenancy is disabled. (see [below for nested schema](#nestedatt--spec--jaegerui--authentication--resources))
+- `sar` (String) SAR defines the SAR to be used in the oauth-proxy default is '{'namespace': '<tempo_stack_namespace>', 'resource': 'pods', 'verb': 'get'}
+
+<a id="nestedatt--spec--jaegerui--authentication--resources"></a>
+### Nested Schema for `spec.jaegerui.authentication.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--jaegerui--authentication--sar--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--jaegerui--authentication--sar--claims"></a>
+### Nested Schema for `spec.jaegerui.authentication.sar.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
 
 <a id="nestedatt--spec--jaegerui--ingress"></a>
 ### Nested Schema for `spec.jaegerui.ingress`

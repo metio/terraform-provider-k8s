@@ -412,9 +412,20 @@ Optional:
 
 Optional:
 
+- `client_certificate` (Attributes) The Azure ClientCertificate of the service principle used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--tenant_id--client_certificate))
 - `client_id` (Attributes) The Azure clientId of the service principle or managed identity used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--tenant_id--client_id))
 - `client_secret` (Attributes) The Azure ClientSecret of the service principle used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--tenant_id--client_secret))
 - `tenant_id` (Attributes) The Azure tenantId of the managed identity used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--tenant_id--tenant_id))
+
+<a id="nestedatt--spec--provider--azurekv--tenant_id--client_certificate"></a>
+### Nested Schema for `spec.provider.azurekv.tenant_id.client_certificate`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
 
 <a id="nestedatt--spec--provider--azurekv--tenant_id--client_id"></a>
 ### Nested Schema for `spec.provider.azurekv.tenant_id.client_id`

@@ -167,9 +167,9 @@ Optional:
 - `annotations` (Map of String) Contains cloud provider related parameters if ServiceType is LoadBalancer.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer.
 - `ip_families` (List of String) A list of IP families (e.g., IPv4, IPv6) assigned to this Service.  Usually assigned automatically based on the cluster configuration and the 'ipFamilyPolicy' field. If specified manually, the requested IP family must be available in the cluster and allowed by the 'ipFamilyPolicy'. If the requested IP family is not available or not allowed, the Service creation will fail.  Valid values:  - 'IPv4' - 'IPv6'  This field may hold a maximum of two entries (dual-stack families, in either order).  Common combinations of 'ipFamilies' and 'ipFamilyPolicy' are:  - ipFamilies=[] + ipFamilyPolicy='PreferDualStack' : The Service prefers dual-stack but can fall back to single-stack if the cluster does not support dual-stack. The IP family is automatically assigned based on the cluster configuration. - ipFamilies=['IPV4','IPV6'] + ipFamilyPolicy='RequiredDualStack' : The Service requires dual-stack and will only be created if the cluster supports both IPv4 and IPv6. The primary IP family is IPV4. - ipFamilies=['IPV6','IPV4'] + ipFamilyPolicy='RequiredDualStack' : The Service requires dual-stack and will only be created if the cluster supports both IPv4 and IPv6. The primary IP family is IPV6. - ipFamilies=['IPV4'] + ipFamilyPolicy='SingleStack' : The Service uses a single-stack with IPv4 only. - ipFamilies=['IPV6'] + ipFamilyPolicy='SingleStack' : The Service uses a single-stack with IPv6 only.
 - `ip_family_policy` (String) Specifies whether the Service should use a single IP family (SingleStack) or two IP families (DualStack).  Possible values:  - 'SingleStack' (default) : The Service uses a single IP family. If no value is provided, IPFamilyPolicy defaults to SingleStack. - 'PreferDualStack' : The Service prefers to use two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. - 'RequiredDualStack' : The Service requires two IP families on dual-stack configured clusters. If the cluster is not configured for dual-stack, the Service creation fails.
-- `pod_selector` (Map of String) Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.
+- `pod_selector` (Map of String) Routes service traffic to pods with matching label keys and values. If specified, the service will only be exposed to pods matching the selector.  Note: At least one of 'roleSelector' or 'podSelector' must be specified. If both are specified, a pod must match both conditions to be selected.
 - `ports` (Attributes List) Specifies Port definitions that are to be exposed by a ClusterService.  If not specified, the Port definitions from non-NodePort and non-LoadBalancer type ComponentService defined in the ComponentDefinition ('componentDefinition.spec.services') will be used. If no matching ComponentService is found, the expose operation will fail.  More info: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports (see [below for nested schema](#nestedatt--spec--expose--services--ports))
-- `role_selector` (String) Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'selector' must be specified. If both are specified, a pod must match both conditions to be selected.
+- `role_selector` (String) Specifies a role to target with the service. If specified, the service will only be exposed to pods with the matching role.  Note: At least one of 'roleSelector' or 'podSelector' must be specified. If both are specified, a pod must match both conditions to be selected.
 - `service_type` (String) Determines how the Service is exposed. Defaults to 'ClusterIP'. Valid options are 'ClusterIP', 'NodePort', and 'LoadBalancer'.  - 'ClusterIP': allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, they are determined by manual construction of an Endpoints object or EndpointSlice objects. - 'NodePort': builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. - 'LoadBalancer': builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP.  Note: although K8s Service type allows the 'ExternalName' type, it is not a valid option for the expose operation.  For more info, see: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.
 
 <a id="nestedatt--spec--expose--services--ports"></a>
@@ -1419,9 +1419,23 @@ Required:
 <a id="nestedatt--spec--upgrade"></a>
 ### Nested Schema for `spec.upgrade`
 
+Optional:
+
+- `cluster_version_ref` (String) Deprecated: since v0.9 because ClusterVersion is deprecated. Specifies the name of the target ClusterVersion for the upgrade.
+- `components` (Attributes List) Lists components to be upgrade based on desired ComponentDefinition and ServiceVersion. From the perspective of cluster API, the reasonable combinations should be: 1. (comp-def, service-ver) - upgrade to the specified service version and component definition, the user takes the responsibility to ensure that they are compatible. 2. ('', service-ver) - upgrade to the specified service version, let the operator choose the latest compatible component definition. 3. (comp-def, '') - upgrade to the specified component definition, let the operator choose the latest compatible service version. 4. ('', '') - upgrade to the latest service version and component definition, the operator will ensure the compatibility between the selected versions. (see [below for nested schema](#nestedatt--spec--upgrade--components))
+
+<a id="nestedatt--spec--upgrade--components"></a>
+### Nested Schema for `spec.upgrade.components`
+
 Required:
 
-- `cluster_version_ref` (String) Specifies the name of the target ClusterVersion for the upgrade.  This field is deprecated since v0.9 because ClusterVersion is deprecated.
+- `component_name` (String) Specifies the name of the Component.
+
+Optional:
+
+- `component_definition_name` (String) Specifies the name of the ComponentDefinition.
+- `service_version` (String) Specifies the version of the Service expected to be provisioned by this Component. Referring to the ServiceVersion defined by the ComponentDefinition and ComponentVersion. And ServiceVersion in ClusterComponentSpec is optional, when no version is specified, use the latest available version in ComponentVersion.
+
 
 
 <a id="nestedatt--spec--volume_expansion"></a>

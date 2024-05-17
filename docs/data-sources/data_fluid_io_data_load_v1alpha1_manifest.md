@@ -201,8 +201,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -260,8 +260,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -335,8 +335,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -394,8 +394,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -470,8 +470,17 @@ Optional:
 
 Optional:
 
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--resources--claims"></a>
+### Nested Schema for `spec.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
 
 
 <a id="nestedatt--spec--run_after"></a>
@@ -484,8 +493,36 @@ Required:
 
 Optional:
 
+- `affinity_strategy` (Attributes) AffinityStrategy specifies the pod affinity strategy with the referent operation. (see [below for nested schema](#nestedatt--spec--run_after--affinity_strategy))
 - `api_version` (String) API version of the referent operation
 - `namespace` (String) Namespace specifies the namespace of the referent operation.
+
+<a id="nestedatt--spec--run_after--affinity_strategy"></a>
+### Nested Schema for `spec.run_after.affinity_strategy`
+
+Optional:
+
+- `policy` (String) Policy one of: '', 'Require', 'Prefer'
+- `prefers` (Attributes List) (see [below for nested schema](#nestedatt--spec--run_after--affinity_strategy--prefers))
+- `requires` (Attributes List) (see [below for nested schema](#nestedatt--spec--run_after--affinity_strategy--requires))
+
+<a id="nestedatt--spec--run_after--affinity_strategy--prefers"></a>
+### Nested Schema for `spec.run_after.affinity_strategy.prefers`
+
+Required:
+
+- `name` (String)
+- `weight` (Number)
+
+
+<a id="nestedatt--spec--run_after--affinity_strategy--requires"></a>
+### Nested Schema for `spec.run_after.affinity_strategy.requires`
+
+Required:
+
+- `name` (String)
+
+
 
 
 <a id="nestedatt--spec--target"></a>

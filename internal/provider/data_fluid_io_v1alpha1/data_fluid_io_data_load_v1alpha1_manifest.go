@@ -179,10 +179,23 @@ type DataFluidIoDataLoadV1Alpha1ManifestData struct {
 		} `tfsdk:"pod_metadata" json:"podMetadata,omitempty"`
 		Policy    *string `tfsdk:"policy" json:"policy,omitempty"`
 		Resources *struct {
+			Claims *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
 		RunAfter *struct {
+			AffinityStrategy *struct {
+				Policy  *string `tfsdk:"policy" json:"policy,omitempty"`
+				Prefers *[]struct {
+					Name   *string `tfsdk:"name" json:"name,omitempty"`
+					Weight *int64  `tfsdk:"weight" json:"weight,omitempty"`
+				} `tfsdk:"prefers" json:"prefers,omitempty"`
+				Requires *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"requires" json:"requires,omitempty"`
+			} `tfsdk:"affinity_strategy" json:"affinityStrategy,omitempty"`
 			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
@@ -555,8 +568,8 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -609,8 +622,8 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -704,8 +717,8 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"namespace_selector": schema.SingleNestedAttribute{
-													Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-													MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+													Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+													MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -758,8 +771,8 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"namespaces": schema.ListAttribute{
-													Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-													MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+													Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+													MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -853,8 +866,8 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -907,8 +920,8 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1002,8 +1015,8 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"namespace_selector": schema.SingleNestedAttribute{
-													Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-													MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+													Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+													MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1056,8 +1069,8 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"namespaces": schema.ListAttribute{
-													Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-													MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+													Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+													MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1181,6 +1194,25 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Description:         "Resources that will be requested by the DataLoad job. <br>",
 						MarkdownDescription: "Resources that will be requested by the DataLoad job. <br>",
 						Attributes: map[string]schema.Attribute{
+							"claims": schema.ListNestedAttribute{
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"limits": schema.MapAttribute{
 								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -1208,6 +1240,69 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Description:         "Specifies that the preceding operation in a workflow",
 						MarkdownDescription: "Specifies that the preceding operation in a workflow",
 						Attributes: map[string]schema.Attribute{
+							"affinity_strategy": schema.SingleNestedAttribute{
+								Description:         "AffinityStrategy specifies the pod affinity strategy with the referent operation.",
+								MarkdownDescription: "AffinityStrategy specifies the pod affinity strategy with the referent operation.",
+								Attributes: map[string]schema.Attribute{
+									"policy": schema.StringAttribute{
+										Description:         "Policy one of: '', 'Require', 'Prefer'",
+										MarkdownDescription: "Policy one of: '', 'Require', 'Prefer'",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"prefers": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"weight": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"requires": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent operation",
 								MarkdownDescription: "API version of the referent operation",

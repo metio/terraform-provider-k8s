@@ -71,8 +71,36 @@ Required:
 
 Optional:
 
+- `affinity_strategy` (Attributes) AffinityStrategy specifies the pod affinity strategy with the referent operation. (see [below for nested schema](#nestedatt--spec--run_after--affinity_strategy))
 - `api_version` (String) API version of the referent operation
 - `namespace` (String) Namespace specifies the namespace of the referent operation.
+
+<a id="nestedatt--spec--run_after--affinity_strategy"></a>
+### Nested Schema for `spec.run_after.affinity_strategy`
+
+Optional:
+
+- `policy` (String) Policy one of: '', 'Require', 'Prefer'
+- `prefers` (Attributes List) (see [below for nested schema](#nestedatt--spec--run_after--affinity_strategy--prefers))
+- `requires` (Attributes List) (see [below for nested schema](#nestedatt--spec--run_after--affinity_strategy--requires))
+
+<a id="nestedatt--spec--run_after--affinity_strategy--prefers"></a>
+### Nested Schema for `spec.run_after.affinity_strategy.prefers`
+
+Required:
+
+- `name` (String)
+- `weight` (Number)
+
+
+<a id="nestedatt--spec--run_after--affinity_strategy--requires"></a>
+### Nested Schema for `spec.run_after.affinity_strategy.requires`
+
+Required:
+
+- `name` (String)
+
+
 
 
 <a id="nestedatt--spec--run_as"></a>

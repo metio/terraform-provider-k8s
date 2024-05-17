@@ -849,6 +849,9 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 					} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
 					TenantId *string `tfsdk:"tenant_id" json:"tenantId,omitempty"`
 				} `tfsdk:"oauth" json:"oauth,omitempty"`
+				Sdk *struct {
+					TenantId *string `tfsdk:"tenant_id" json:"tenantId,omitempty"`
+				} `tfsdk:"sdk" json:"sdk,omitempty"`
 			} `tfsdk:"azure_ad" json:"azureAd,omitempty"`
 			BasicAuth *struct {
 				Password *struct {
@@ -7063,8 +7066,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"managed_identity": schema.SingleNestedAttribute{
-											Description:         "ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth'.",
-											MarkdownDescription: "ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth'.",
+											Description:         "ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth' or 'sdk'.",
+											MarkdownDescription: "ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth' or 'sdk'.",
 											Attributes: map[string]schema.Attribute{
 												"client_id": schema.StringAttribute{
 													Description:         "The client id",
@@ -7080,8 +7083,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"oauth": schema.SingleNestedAttribute{
-											Description:         "OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity'.It requires Prometheus >= v2.48.0.",
-											MarkdownDescription: "OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity'.It requires Prometheus >= v2.48.0.",
+											Description:         "OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity' or 'sdk'.It requires Prometheus >= v2.48.0.",
+											MarkdownDescription: "OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity' or 'sdk'.It requires Prometheus >= v2.48.0.",
 											Attributes: map[string]schema.Attribute{
 												"client_id": schema.StringAttribute{
 													Description:         "'clientID' is the clientId of the Azure Active Directory application that is being used to authenticate.",
@@ -7128,13 +7131,33 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"tenant_id": schema.StringAttribute{
-													Description:         "'tenantID' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
-													MarkdownDescription: "'tenantID' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
+													Description:         "'tenantId' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
+													MarkdownDescription: "'tenantId' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 													Validators: []validator.String{
 														stringvalidator.LengthAtLeast(1),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9a-zA-Z-.]+$`), ""),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"sdk": schema.SingleNestedAttribute{
+											Description:         "SDK defines the Azure SDK config that is being used to authenticate.See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authenticationCannot be set at the same time as 'oauth' or 'managedIdentity'.It requires Prometheus >= 2.52.0.",
+											MarkdownDescription: "SDK defines the Azure SDK config that is being used to authenticate.See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authenticationCannot be set at the same time as 'oauth' or 'managedIdentity'.It requires Prometheus >= 2.52.0.",
+											Attributes: map[string]schema.Attribute{
+												"tenant_id": schema.StringAttribute{
+													Description:         "'tenantId' is the tenant ID of the azure active directory application that is being used to authenticate.",
+													MarkdownDescription: "'tenantId' is the tenant ID of the azure active directory application that is being used to authenticate.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
 														stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9a-zA-Z-.]+$`), ""),
 													},
 												},
@@ -8075,8 +8098,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.BoolAttribute{
-									Description:         "Default indicates that the scrape applies to all scrape objects that don't configure an explicit scrape class name.Only one scrape class can be set as default.",
-									MarkdownDescription: "Default indicates that the scrape applies to all scrape objects that don't configure an explicit scrape class name.Only one scrape class can be set as default.",
+									Description:         "Default indicates that the scrape applies to all scrape objects thatdon't configure an explicit scrape class name.Only one scrape class can be set as the default.",
+									MarkdownDescription: "Default indicates that the scrape applies to all scrape objects thatdon't configure an explicit scrape class name.Only one scrape class can be set as the default.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -8165,8 +8188,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 								},
 
 								"tls_config": schema.SingleNestedAttribute{
-									Description:         "TLSConfig section for scrapes.",
-									MarkdownDescription: "TLSConfig section for scrapes.",
+									Description:         "TLSConfig defines the TLS settings to use for the scrape. When thescrape objects define their own CA, certificate and/or key, they takeprecedence over the corresponding scrape class fields.For now only the 'caFile', 'certFile' and 'keyFile' fields are supported.",
+									MarkdownDescription: "TLSConfig defines the TLS settings to use for the scrape. When thescrape objects define their own CA, certificate and/or key, they takeprecedence over the corresponding scrape class fields.For now only the 'caFile', 'certFile' and 'keyFile' fields are supported.",
 									Attributes: map[string]schema.Attribute{
 										"ca": schema.SingleNestedAttribute{
 											Description:         "Certificate authority used when verifying server certificates.",

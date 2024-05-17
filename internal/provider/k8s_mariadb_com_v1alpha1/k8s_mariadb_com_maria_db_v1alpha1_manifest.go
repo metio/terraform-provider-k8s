@@ -14317,8 +14317,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Image name to be used by the MaxScale instances. The supported format is '<image>:<tag>'.Only MaxScale official images are supported.",
-								MarkdownDescription: "Image name to be used by the MaxScale instances. The supported format is '<image>:<tag>'.Only MaxScale official images are supported.",
+								Description:         "Image name to be used by the MaxScale instances. The supported format is '<image>:<tag>'.Only MariaDB official images are supported.",
+								MarkdownDescription: "Image name to be used by the MaxScale instances. The supported format is '<image>:<tag>'.Only MariaDB official images are supported.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -27444,8 +27444,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"password_secret_key_ref": schema.SingleNestedAttribute{
-						Description:         "PasswordSecretKeyRef is a reference to the password of the initial user provided via a Secret.",
-						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password of the initial user provided via a Secret.",
+						Description:         "PasswordSecretKeyRef is a Secret reference to the password of the initial user created on bootstrap.",
+						MarkdownDescription: "PasswordSecretKeyRef is a Secret reference to the password of the initial user created on bootstrap.",
 						Attributes: map[string]schema.Attribute{
 							"generate": schema.BoolAttribute{
 								Description:         "Generate indicates whether the Secret should be generated if the Secret referenced is not present.",
@@ -28193,8 +28193,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"replication": schema.SingleNestedAttribute{
-						Description:         "Replication configures high availability via replication.",
-						MarkdownDescription: "Replication configures high availability via replication.",
+						Description:         "Replication configures high availability via replication. This feature is still in alpha, use Galera if you are looking for a more production-ready HA.",
+						MarkdownDescription: "Replication configures high availability via replication. This feature is still in alpha, use Galera if you are looking for a more production-ready HA.",
 						Attributes: map[string]schema.Attribute{
 							"enabled": schema.BoolAttribute{
 								Description:         "Enabled is a flag to enable Replication.",
@@ -28393,8 +28393,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"root_empty_password": schema.BoolAttribute{
-						Description:         "RootEmptyPassword indicates if the root password should be empty.",
-						MarkdownDescription: "RootEmptyPassword indicates if the root password should be empty.",
+						Description:         "RootEmptyPassword indicates if the root password should be empty. Don't use this feature in production, it is only intended for development and test environments.",
+						MarkdownDescription: "RootEmptyPassword indicates if the root password should be empty. Don't use this feature in production, it is only intended for development and test environments.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -30447,8 +30447,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"username": schema.StringAttribute{
-						Description:         "Username is the username of the user to be created on bootstrap.",
-						MarkdownDescription: "Username is the username of the user to be created on bootstrap.",
+						Description:         "Username is the username of the initial user created on bootstrap.",
+						MarkdownDescription: "Username is the username of the initial user created on bootstrap.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

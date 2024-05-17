@@ -279,8 +279,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "HelmReleaseSpec defines the desired state of a Helm release.",
 				Attributes: map[string]schema.Attribute{
 					"chart": schema.SingleNestedAttribute{
-						Description:         "Chart defines the template of the v1beta2.HelmChart that should be createdfor this HelmRelease.",
-						MarkdownDescription: "Chart defines the template of the v1beta2.HelmChart that should be createdfor this HelmRelease.",
+						Description:         "Chart defines the template of the v1.HelmChart that should be createdfor this HelmRelease.",
+						MarkdownDescription: "Chart defines the template of the v1.HelmChart that should be createdfor this HelmRelease.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
 								Description:         "ObjectMeta holds the template for metadata like labels and annotations.",
@@ -310,8 +310,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"spec": schema.SingleNestedAttribute{
-								Description:         "Spec holds the template for the v1beta2.HelmChartSpec for this HelmRelease.",
-								MarkdownDescription: "Spec holds the template for the v1beta2.HelmChartSpec for this HelmRelease.",
+								Description:         "Spec holds the template for the v1.HelmChartSpec for this HelmRelease.",
+								MarkdownDescription: "Spec holds the template for the v1.HelmChartSpec for this HelmRelease.",
 								Attributes: map[string]schema.Attribute{
 									"chart": schema.StringAttribute{
 										Description:         "The name or path the Helm chart is available at in the SourceRef.",
@@ -454,8 +454,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"version": schema.StringAttribute{
-										Description:         "Version semver expression, ignored for charts from v1beta2.GitRepository andv1beta2.Bucket sources. Defaults to latest when omitted.",
-										MarkdownDescription: "Version semver expression, ignored for charts from v1beta2.GitRepository andv1beta2.Bucket sources. Defaults to latest when omitted.",
+										Description:         "Version semver expression, ignored for charts from v1.GitRepository andv1beta2.Bucket sources. Defaults to latest when omitted.",
+										MarkdownDescription: "Version semver expression, ignored for charts from v1.GitRepository andv1beta2.Bucket sources. Defaults to latest when omitted.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

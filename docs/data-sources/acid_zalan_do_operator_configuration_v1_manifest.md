@@ -141,6 +141,7 @@ Optional:
 - `enable_pod_antiaffinity` (Boolean)
 - `enable_pod_disruption_budget` (Boolean)
 - `enable_readiness_probe` (Boolean)
+- `enable_secrets_deletion` (Boolean)
 - `enable_sidecars` (Boolean)
 - `ignored_annotations` (List of String)
 - `infrastructure_roles_secret_name` (String)

@@ -85,8 +85,9 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 				} `tfsdk:"config_map" json:"configMap,omitempty"`
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"configs" json:"configs,omitempty"`
-			EnabledLogs *[]string `tfsdk:"enabled_logs" json:"enabledLogs,omitempty"`
-			Instances   *[]struct {
+			DisableExporter *bool     `tfsdk:"disable_exporter" json:"disableExporter,omitempty"`
+			EnabledLogs     *[]string `tfsdk:"enabled_logs" json:"enabledLogs,omitempty"`
+			Instances       *[]struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Env         *[]struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -463,7 +464,7 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 			} `tfsdk:"issuer" json:"issuer,omitempty"`
-			MonitorEnabled   *bool     `tfsdk:"monitor_enabled" json:"monitorEnabled,omitempty"`
+			Monitor          *bool     `tfsdk:"monitor" json:"monitor,omitempty"`
 			Name             *string   `tfsdk:"name" json:"name,omitempty"`
 			OfflineInstances *[]string `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
 			Replicas         *int64    `tfsdk:"replicas" json:"replicas,omitempty"`
@@ -652,7 +653,6 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 				PodService  *bool              `tfsdk:"pod_service" json:"podService,omitempty"`
 				ServiceType *string            `tfsdk:"service_type" json:"serviceType,omitempty"`
 			} `tfsdk:"services" json:"services,omitempty"`
-			Sidecars     *[]string `tfsdk:"sidecars" json:"sidecars,omitempty"`
 			SwitchPolicy *struct {
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"switch_policy" json:"switchPolicy,omitempty"`
@@ -897,8 +897,9 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"config_map" json:"configMap,omitempty"`
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"configs" json:"configs,omitempty"`
-				EnabledLogs *[]string `tfsdk:"enabled_logs" json:"enabledLogs,omitempty"`
-				Instances   *[]struct {
+				DisableExporter *bool     `tfsdk:"disable_exporter" json:"disableExporter,omitempty"`
+				EnabledLogs     *[]string `tfsdk:"enabled_logs" json:"enabledLogs,omitempty"`
+				Instances       *[]struct {
 					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 					Env         *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -1275,7 +1276,7 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 				} `tfsdk:"issuer" json:"issuer,omitempty"`
-				MonitorEnabled   *bool     `tfsdk:"monitor_enabled" json:"monitorEnabled,omitempty"`
+				Monitor          *bool     `tfsdk:"monitor" json:"monitor,omitempty"`
 				Name             *string   `tfsdk:"name" json:"name,omitempty"`
 				OfflineInstances *[]string `tfsdk:"offline_instances" json:"offlineInstances,omitempty"`
 				Replicas         *int64    `tfsdk:"replicas" json:"replicas,omitempty"`
@@ -1464,7 +1465,6 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 					PodService  *bool              `tfsdk:"pod_service" json:"podService,omitempty"`
 					ServiceType *string            `tfsdk:"service_type" json:"serviceType,omitempty"`
 				} `tfsdk:"services" json:"services,omitempty"`
-				Sidecars     *[]string `tfsdk:"sidecars" json:"sidecars,omitempty"`
 				SwitchPolicy *struct {
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"switch_policy" json:"switchPolicy,omitempty"`
@@ -1925,6 +1925,14 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"disable_exporter": schema.BoolAttribute{
+									Description:         "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will not be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
+									MarkdownDescription: "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will not be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"enabled_logs": schema.ListAttribute{
@@ -4463,9 +4471,9 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 									Computed: false,
 								},
 
-								"monitor_enabled": schema.BoolAttribute{
-									Description:         "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
-									MarkdownDescription: "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
+								"monitor": schema.BoolAttribute{
+									Description:         "Deprecated since v0.9 Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
+									MarkdownDescription: "Deprecated since v0.9 Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -5747,15 +5755,6 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 									Required: false,
 									Optional: true,
 									Computed: false,
-								},
-
-								"sidecars": schema.ListAttribute{
-									Description:         "Defines the sidecar containers that will be attached to the Component's main container.",
-									MarkdownDescription: "Defines the sidecar containers that will be attached to the Component's main container.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
 								},
 
 								"switch_policy": schema.SingleNestedAttribute{
@@ -7439,6 +7438,14 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"disable_exporter": schema.BoolAttribute{
+											Description:         "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will not be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
+											MarkdownDescription: "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will not be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"enabled_logs": schema.ListAttribute{
@@ -9977,9 +9984,9 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											Computed: false,
 										},
 
-										"monitor_enabled": schema.BoolAttribute{
-											Description:         "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
-											MarkdownDescription: "Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
+										"monitor": schema.BoolAttribute{
+											Description:         "Deprecated since v0.9 Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
+											MarkdownDescription: "Deprecated since v0.9 Determines whether metrics exporter information is annotated on the Component's headless Service.  If set to true, the following annotations will be patched into the Service:  - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme'  These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -11261,15 +11268,6 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											Required: false,
 											Optional: true,
 											Computed: false,
-										},
-
-										"sidecars": schema.ListAttribute{
-											Description:         "Defines the sidecar containers that will be attached to the Component's main container.",
-											MarkdownDescription: "Defines the sidecar containers that will be attached to the Component's main container.",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
 										},
 
 										"switch_policy": schema.SingleNestedAttribute{

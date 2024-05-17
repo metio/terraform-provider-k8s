@@ -74,7 +74,7 @@ Optional:
 - `my_cnf` (String) MyCnf allows to specify the my.cnf file mounted by Mariadb.
 - `my_cnf_config_map_key_ref` (Attributes) MyCnfConfigMapKeyRef is a reference to the my.cnf config file provided via a ConfigMap.If not provided, it will be defaulted with reference to a ConfigMap with the contents of the MyCnf field. (see [below for nested schema](#nestedatt--spec--my_cnf_config_map_key_ref))
 - `node_selector` (Map of String) NodeSelector to be used in the Pod.
-- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a reference to the password of the initial user provided via a Secret. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
+- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a Secret reference to the password of the initial user created on bootstrap. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget defines the budget for replica availability. (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata defines extra metadata for the Pod. (see [below for nested schema](#nestedatt--spec--pod_metadata))
 - `pod_security_context` (Attributes) SecurityContext holds pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--pod_security_context))
@@ -84,9 +84,9 @@ Optional:
 - `priority_class_name` (String) PriorityClassName to be used in the Pod.
 - `readiness_probe` (Attributes) ReadinessProbe to be used in the Container. (see [below for nested schema](#nestedatt--spec--readiness_probe))
 - `replicas` (Number) Replicas indicates the number of desired instances.
-- `replication` (Attributes) Replication configures high availability via replication. (see [below for nested schema](#nestedatt--spec--replication))
+- `replication` (Attributes) Replication configures high availability via replication. This feature is still in alpha, use Galera if you are looking for a more production-ready HA. (see [below for nested schema](#nestedatt--spec--replication))
 - `resources` (Attributes) Resouces describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--resources))
-- `root_empty_password` (Boolean) RootEmptyPassword indicates if the root password should be empty.
+- `root_empty_password` (Boolean) RootEmptyPassword indicates if the root password should be empty. Don't use this feature in production, it is only intended for development and test environments.
 - `root_password_secret_key_ref` (Attributes) RootPasswordSecretKeyRef is a reference to a Secret key containing the root password. (see [below for nested schema](#nestedatt--spec--root_password_secret_key_ref))
 - `secondary_connection` (Attributes) SecondaryConnection defines templates to configure the secondary Connection object. (see [below for nested schema](#nestedatt--spec--secondary_connection))
 - `secondary_service` (Attributes) SecondaryService defines templates to configure the secondary Service object. (see [below for nested schema](#nestedatt--spec--secondary_service))
@@ -98,7 +98,7 @@ Optional:
 - `tolerations` (Attributes List) Tolerations to be used in the Pod. (see [below for nested schema](#nestedatt--spec--tolerations))
 - `topology_spread_constraints` (Attributes List) TopologySpreadConstraints to be used in the Pod. (see [below for nested schema](#nestedatt--spec--topology_spread_constraints))
 - `update_strategy` (Attributes) PodDisruptionBudget defines the update strategy for the StatefulSet object. (see [below for nested schema](#nestedatt--spec--update_strategy))
-- `username` (String) Username is the username of the user to be created on bootstrap.
+- `username` (String) Username is the username of the initial user created on bootstrap.
 - `volume_mounts` (Attributes List) VolumeMounts to be used in the Container. (see [below for nested schema](#nestedatt--spec--volume_mounts))
 - `volumes` (Attributes List) Volumes to be used in the Pod. (see [below for nested schema](#nestedatt--spec--volumes))
 
@@ -3705,7 +3705,7 @@ Optional:
 - `connection` (Attributes) Connection provides a template to define the Connection for MaxScale. (see [below for nested schema](#nestedatt--spec--max_scale--connection))
 - `enabled` (Boolean) Enabled is a flag to enable a MaxScale instance to be used with the current MariaDB.
 - `gui_kubernetes_service` (Attributes) GuiKubernetesService define a template for a Kubernetes Service object to connect to MaxScale's GUI. (see [below for nested schema](#nestedatt--spec--max_scale--gui_kubernetes_service))
-- `image` (String) Image name to be used by the MaxScale instances. The supported format is '<image>:<tag>'.Only MaxScale official images are supported.
+- `image` (String) Image name to be used by the MaxScale instances. The supported format is '<image>:<tag>'.Only MariaDB official images are supported.
 - `image_pull_policy` (String) ImagePullPolicy is the image pull policy. One of 'Always', 'Never' or 'IfNotPresent'. If not defined, it defaults to 'IfNotPresent'.
 - `kubernetes_service` (Attributes) KubernetesService defines a template for a Kubernetes Service object to connect to MaxScale. (see [below for nested schema](#nestedatt--spec--max_scale--kubernetes_service))
 - `metrics` (Attributes) Metrics configures metrics and how to scrape them. (see [below for nested schema](#nestedatt--spec--max_scale--metrics))

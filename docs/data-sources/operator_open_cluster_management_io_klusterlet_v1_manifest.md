@@ -190,6 +190,7 @@ Required:
 
 Optional:
 
+- `applied_manifest_work_eviction_grace_period` (String) AppliedManifestWorkEvictionGracePeriod is the eviction grace period the work agent will wait before evicting the AppliedManifestWorks, whose corresponding ManifestWorks are missing on the hub cluster, from the managed cluster. If not present, the default value of the work agent will be used.
 - `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for work If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--work_configuration--feature_gates))
 - `kube_api_burst` (Number) KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100
 - `kube_apiqps` (Number) KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50

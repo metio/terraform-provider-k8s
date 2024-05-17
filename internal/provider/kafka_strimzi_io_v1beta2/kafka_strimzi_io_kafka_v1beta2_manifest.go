@@ -1305,6 +1305,7 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					Bootstrap *struct {
 						AlternativeNames *[]string          `tfsdk:"alternative_names" json:"alternativeNames,omitempty"`
 						Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+						ExternalIPs      *[]string          `tfsdk:"external_i_ps" json:"externalIPs,omitempty"`
 						Host             *string            `tfsdk:"host" json:"host,omitempty"`
 						Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 						LoadBalancerIP   *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
@@ -1320,6 +1321,7 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 						AdvertisedPort *int64             `tfsdk:"advertised_port" json:"advertisedPort,omitempty"`
 						Annotations    *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 						Broker         *int64             `tfsdk:"broker" json:"broker,omitempty"`
+						ExternalIPs    *[]string          `tfsdk:"external_i_ps" json:"externalIPs,omitempty"`
 						Host           *string            `tfsdk:"host" json:"host,omitempty"`
 						Labels         *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 						LoadBalancerIP *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
@@ -1412,10 +1414,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
 			Storage *struct {
-				Class       *string `tfsdk:"class" json:"class,omitempty"`
-				DeleteClaim *bool   `tfsdk:"delete_claim" json:"deleteClaim,omitempty"`
-				Id          *int64  `tfsdk:"id" json:"id,omitempty"`
-				Overrides   *[]struct {
+				Class         *string `tfsdk:"class" json:"class,omitempty"`
+				DeleteClaim   *bool   `tfsdk:"delete_claim" json:"deleteClaim,omitempty"`
+				Id            *int64  `tfsdk:"id" json:"id,omitempty"`
+				KraftMetadata *string `tfsdk:"kraft_metadata" json:"kraftMetadata,omitempty"`
+				Overrides     *[]struct {
 					Broker *int64  `tfsdk:"broker" json:"broker,omitempty"`
 					Class  *string `tfsdk:"class" json:"class,omitempty"`
 				} `tfsdk:"overrides" json:"overrides,omitempty"`
@@ -1424,10 +1427,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 				SizeLimit *string            `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
 				Type      *string            `tfsdk:"type" json:"type,omitempty"`
 				Volumes   *[]struct {
-					Class       *string `tfsdk:"class" json:"class,omitempty"`
-					DeleteClaim *bool   `tfsdk:"delete_claim" json:"deleteClaim,omitempty"`
-					Id          *int64  `tfsdk:"id" json:"id,omitempty"`
-					Overrides   *[]struct {
+					Class         *string `tfsdk:"class" json:"class,omitempty"`
+					DeleteClaim   *bool   `tfsdk:"delete_claim" json:"deleteClaim,omitempty"`
+					Id            *int64  `tfsdk:"id" json:"id,omitempty"`
+					KraftMetadata *string `tfsdk:"kraft_metadata" json:"kraftMetadata,omitempty"`
+					Overrides     *[]struct {
 						Broker *int64  `tfsdk:"broker" json:"broker,omitempty"`
 						Class  *string `tfsdk:"class" json:"class,omitempty"`
 					} `tfsdk:"overrides" json:"overrides,omitempty"`
@@ -2173,10 +2177,11 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
 			Storage *struct {
-				Class       *string `tfsdk:"class" json:"class,omitempty"`
-				DeleteClaim *bool   `tfsdk:"delete_claim" json:"deleteClaim,omitempty"`
-				Id          *int64  `tfsdk:"id" json:"id,omitempty"`
-				Overrides   *[]struct {
+				Class         *string `tfsdk:"class" json:"class,omitempty"`
+				DeleteClaim   *bool   `tfsdk:"delete_claim" json:"deleteClaim,omitempty"`
+				Id            *int64  `tfsdk:"id" json:"id,omitempty"`
+				KraftMetadata *string `tfsdk:"kraft_metadata" json:"kraftMetadata,omitempty"`
+				Overrides     *[]struct {
 					Broker *int64  `tfsdk:"broker" json:"broker,omitempty"`
 					Class  *string `tfsdk:"class" json:"class,omitempty"`
 				} `tfsdk:"overrides" json:"overrides,omitempty"`
@@ -11425,6 +11430,15 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 															Computed:            false,
 														},
 
+														"external_i_ps": schema.ListAttribute{
+															Description:         "External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This field is helpful when 'nodeport' without 'externalIP' is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. This field can only be used with 'nodeport' type listener.",
+															MarkdownDescription: "External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This field is helpful when 'nodeport' without 'externalIP' is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. This field can only be used with 'nodeport' type listener.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"host": schema.StringAttribute{
 															Description:         "The bootstrap host. This field will be used in the Ingress resource or in the Route resource to specify the desired hostname. This field can be used only with 'route' (optional) or 'ingress' (required) type listeners.",
 															MarkdownDescription: "The bootstrap host. This field will be used in the Ingress resource or in the Route resource to specify the desired hostname. This field can be used only with 'route' (optional) or 'ingress' (required) type listeners.",
@@ -11531,6 +11545,15 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																MarkdownDescription: "ID of the kafka broker (broker identifier). Broker IDs start from 0 and correspond to the number of broker replicas.",
 																Required:            true,
 																Optional:            false,
+																Computed:            false,
+															},
+
+															"external_i_ps": schema.ListAttribute{
+																Description:         "External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This field is helpful when 'nodeport' without 'externalIP' is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. This field can only be used with 'nodeport' type listener.",
+																MarkdownDescription: "External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This field is helpful when 'nodeport' without 'externalIP' is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. This field can only be used with 'nodeport' type listener.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 
@@ -12244,6 +12267,17 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 										},
 									},
 
+									"kraft_metadata": schema.StringAttribute{
+										Description:         "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is 'shared'. At most one volume can have this property set.",
+										MarkdownDescription: "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is 'shared'. At most one volume can have this property set.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("shared"),
+										},
+									},
+
 									"overrides": schema.ListNestedAttribute{
 										Description:         "Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers.",
 										MarkdownDescription: "Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers.",
@@ -12332,13 +12366,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"id": schema.Int64Attribute{
-													Description:         "Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.",
-													MarkdownDescription: "Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.",
+													Description:         "Storage identification number. Mandatory for storage volumes defined with a 'jbod' storage type configuration.",
+													MarkdownDescription: "Storage identification number. Mandatory for storage volumes defined with a 'jbod' storage type configuration.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.Int64{
 														int64validator.AtLeast(0),
+													},
+												},
+
+												"kraft_metadata": schema.StringAttribute{
+													Description:         "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is 'shared'. At most one volume can have this property set.",
+													MarkdownDescription: "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is 'shared'. At most one volume can have this property set.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("shared"),
 													},
 												},
 
@@ -17430,13 +17475,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"id": schema.Int64Attribute{
-										Description:         "Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.",
-										MarkdownDescription: "Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.",
+										Description:         "Storage identification number. Mandatory for storage volumes defined with a 'jbod' storage type configuration.",
+										MarkdownDescription: "Storage identification number. Mandatory for storage volumes defined with a 'jbod' storage type configuration.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.Int64{
 											int64validator.AtLeast(0),
+										},
+									},
+
+									"kraft_metadata": schema.StringAttribute{
+										Description:         "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is 'shared'. At most one volume can have this property set.",
+										MarkdownDescription: "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is 'shared'. At most one volume can have this property set.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("shared"),
 										},
 									},
 

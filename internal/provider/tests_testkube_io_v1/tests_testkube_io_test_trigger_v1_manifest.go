@@ -284,7 +284,7 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datas
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("created", "modified", "deleted", "deployment-scale-update", "deployment-image-update", "deployment-env-update", "deployment-containers-modified"),
+							stringvalidator.OneOf("created", "modified", "deleted", "deployment-scale-update", "deployment-image-update", "deployment-env-update", "deployment-containers-modified", "event-start-test", "event-end-test-success", "event-end-test-failed", "event-end-test-aborted", "event-end-test-timeout", "event-start-testsuite", "event-end-testsuite-success", "event-end-testsuite-failed", "event-end-testsuite-aborted", "event-end-testsuite-timeout", "event-queue-testworkflow", "event-start-testworkflow", "event-end-testworkflow-success", "event-end-testworkflow-failed", "event-end-testworkflow-aborted", "event-created", "event-updated", "event-deleted"),
 						},
 					},
 

@@ -77,4 +77,4 @@ Required:
 
 Required:
 
-- `name` (String) 'name' is the name of the managed zone. Required
+- `name` (String) 'name' is the name of the managed zone.Required

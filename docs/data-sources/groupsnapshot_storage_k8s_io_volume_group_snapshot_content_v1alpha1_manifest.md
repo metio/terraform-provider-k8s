@@ -3,12 +3,12 @@
 page_title: "k8s_groupsnapshot_storage_k8s_io_volume_group_snapshot_content_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "groupsnapshot.storage.k8s.io"
 description: |-
-  VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot object in the underlying storage system
+  VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot objectin the underlying storage system
 ---
 
 # k8s_groupsnapshot_storage_k8s_io_volume_group_snapshot_content_v1alpha1_manifest (Data Source)
 
-VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot object in the underlying storage system
+VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot objectin the underlying storage system
 
 ## Example Usage
 
@@ -27,7 +27,7 @@ data "k8s_groupsnapshot_storage_k8s_io_volume_group_snapshot_content_v1alpha1_ma
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) Spec defines properties of a VolumeGroupSnapshotContent created by the underlying storage system. Required. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Spec defines properties of a VolumeGroupSnapshotContent created by the underlying storage system.Required. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -51,30 +51,30 @@ Optional:
 
 Required:
 
-- `deletion_policy` (String) DeletionPolicy determines whether this VolumeGroupSnapshotContent and the physical group snapshot on the underlying storage system should be deleted when the bound VolumeGroupSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are kept. 'Delete' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are deleted. For dynamically provisioned group snapshots, this field will automatically be filled in by the CSI snapshotter sidecar with the 'DeletionPolicy' field defined in the corresponding VolumeGroupSnapshotClass. For pre-existing snapshots, users MUST specify this field when creating the VolumeGroupSnapshotContent object. Required.
-- `driver` (String) Driver is the name of the CSI driver used to create the physical group snapshot on the underlying storage system. This MUST be the same as the name returned by the CSI GetPluginName() call for that driver. Required.
-- `source` (Attributes) Source specifies whether the snapshot is (or should be) dynamically provisioned or already exists, and just requires a Kubernetes object representation. This field is immutable after creation. Required. (see [below for nested schema](#nestedatt--spec--source))
-- `volume_group_snapshot_ref` (Attributes) VolumeGroupSnapshotRef specifies the VolumeGroupSnapshot object to which this VolumeGroupSnapshotContent object is bound. VolumeGroupSnapshot.Spec.VolumeGroupSnapshotContentName field must reference to this VolumeGroupSnapshotContent's name for the bidirectional binding to be valid. For a pre-existing VolumeGroupSnapshotContent object, name and namespace of the VolumeGroupSnapshot object MUST be provided for binding to happen. This field is immutable after creation. Required. (see [below for nested schema](#nestedatt--spec--volume_group_snapshot_ref))
+- `deletion_policy` (String) DeletionPolicy determines whether this VolumeGroupSnapshotContent and thephysical group snapshot on the underlying storage system should be deletedwhen the bound VolumeGroupSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are kept.'Delete' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are deleted.For dynamically provisioned group snapshots, this field will automaticallybe filled in by the CSI snapshotter sidecar with the 'DeletionPolicy' fielddefined in the corresponding VolumeGroupSnapshotClass.For pre-existing snapshots, users MUST specify this field when creating theVolumeGroupSnapshotContent object.Required.
+- `driver` (String) Driver is the name of the CSI driver used to create the physical group snapshot onthe underlying storage system.This MUST be the same as the name returned by the CSI GetPluginName() call forthat driver.Required.
+- `source` (Attributes) Source specifies whether the snapshot is (or should be) dynamically provisionedor already exists, and just requires a Kubernetes object representation.This field is immutable after creation.Required. (see [below for nested schema](#nestedatt--spec--source))
+- `volume_group_snapshot_ref` (Attributes) VolumeGroupSnapshotRef specifies the VolumeGroupSnapshot object to which thisVolumeGroupSnapshotContent object is bound.VolumeGroupSnapshot.Spec.VolumeGroupSnapshotContentName field must reference tothis VolumeGroupSnapshotContent's name for the bidirectional binding to be valid.For a pre-existing VolumeGroupSnapshotContent object, name and namespace of theVolumeGroupSnapshot object MUST be provided for binding to happen.This field is immutable after creation.Required. (see [below for nested schema](#nestedatt--spec--volume_group_snapshot_ref))
 
 Optional:
 
-- `volume_group_snapshot_class_name` (String) VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClass from which this group snapshot was (or will be) created. Note that after provisioning, the VolumeGroupSnapshotClass may be deleted or recreated with different set of values, and as such, should not be referenced post-snapshot creation. For dynamic provisioning, this field must be set. This field may be unset for pre-provisioned snapshots.
+- `volume_group_snapshot_class_name` (String) VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClass fromwhich this group snapshot was (or will be) created.Note that after provisioning, the VolumeGroupSnapshotClass may be deleted orrecreated with different set of values, and as such, should not be referencedpost-snapshot creation.For dynamic provisioning, this field must be set.This field may be unset for pre-provisioned snapshots.
 
 <a id="nestedatt--spec--source"></a>
 ### Nested Schema for `spec.source`
 
 Optional:
 
-- `group_snapshot_handles` (Attributes) GroupSnapshotHandles specifies the CSI 'group_snapshot_id' of a pre-existing group snapshot and a list of CSI 'snapshot_id' of pre-existing snapshots on the underlying storage system for which a Kubernetes object representation was (or should be) created. This field is immutable. (see [below for nested schema](#nestedatt--spec--source--group_snapshot_handles))
-- `volume_handles` (List of String) VolumeHandles is a list of volume handles on the backend to be snapshotted together. It is specified for dynamic provisioning of the VolumeGroupSnapshot. This field is immutable.
+- `group_snapshot_handles` (Attributes) GroupSnapshotHandles specifies the CSI 'group_snapshot_id' of a pre-existinggroup snapshot and a list of CSI 'snapshot_id' of pre-existing snapshotson the underlying storage system for which a Kubernetes objectrepresentation was (or should be) created.This field is immutable. (see [below for nested schema](#nestedatt--spec--source--group_snapshot_handles))
+- `volume_handles` (List of String) VolumeHandles is a list of volume handles on the backend to be snapshottedtogether. It is specified for dynamic provisioning of the VolumeGroupSnapshot.This field is immutable.
 
 <a id="nestedatt--spec--source--group_snapshot_handles"></a>
 ### Nested Schema for `spec.source.group_snapshot_handles`
 
 Required:
 
-- `volume_group_snapshot_handle` (String) VolumeGroupSnapshotHandle specifies the CSI 'group_snapshot_id' of a pre-existing group snapshot on the underlying storage system for which a Kubernetes object representation was (or should be) created. This field is immutable. Required.
-- `volume_snapshot_handles` (List of String) VolumeSnapshotHandles is a list of CSI 'snapshot_id' of pre-existing snapshots on the underlying storage system for which Kubernetes objects representation were (or should be) created. This field is immutable. Required.
+- `volume_group_snapshot_handle` (String) VolumeGroupSnapshotHandle specifies the CSI 'group_snapshot_id' of a pre-existinggroup snapshot on the underlying storage system for which a Kubernetes objectrepresentation was (or should be) created.This field is immutable.Required.
+- `volume_snapshot_handles` (List of String) VolumeSnapshotHandles is a list of CSI 'snapshot_id' of pre-existingsnapshots on the underlying storage system for which Kubernetes objectsrepresentation were (or should be) created.This field is immutable.Required.
 
 
 
@@ -84,9 +84,9 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids

@@ -57,8 +57,8 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotV1Manifest) Metadata(_ context.Contex
 
 func (r *SnapshotStorageK8SIoVolumeSnapshotV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VolumeSnapshot is a user's request for either creating a point-in-time snapshot of a persistent volume, or binding to a pre-existing snapshot.",
-		MarkdownDescription: "VolumeSnapshot is a user's request for either creating a point-in-time snapshot of a persistent volume, or binding to a pre-existing snapshot.",
+		Description:         "VolumeSnapshot is a user's request for either creating a point-in-timesnapshot of a persistent volume, or binding to a pre-existing snapshot.",
+		MarkdownDescription: "VolumeSnapshot is a user's request for either creating a point-in-timesnapshot of a persistent volume, or binding to a pre-existing snapshot.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -125,24 +125,24 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotV1Manifest) Schema(_ context.Context,
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "spec defines the desired characteristics of a snapshot requested by a user. More info: https://kubernetes.io/docs/concepts/storage/volume-snapshots#volumesnapshots Required.",
-				MarkdownDescription: "spec defines the desired characteristics of a snapshot requested by a user. More info: https://kubernetes.io/docs/concepts/storage/volume-snapshots#volumesnapshots Required.",
+				Description:         "spec defines the desired characteristics of a snapshot requested by a user.More info: https://kubernetes.io/docs/concepts/storage/volume-snapshots#volumesnapshotsRequired.",
+				MarkdownDescription: "spec defines the desired characteristics of a snapshot requested by a user.More info: https://kubernetes.io/docs/concepts/storage/volume-snapshots#volumesnapshotsRequired.",
 				Attributes: map[string]schema.Attribute{
 					"source": schema.SingleNestedAttribute{
-						Description:         "source specifies where a snapshot will be created from. This field is immutable after creation. Required.",
-						MarkdownDescription: "source specifies where a snapshot will be created from. This field is immutable after creation. Required.",
+						Description:         "source specifies where a snapshot will be created from.This field is immutable after creation.Required.",
+						MarkdownDescription: "source specifies where a snapshot will be created from.This field is immutable after creation.Required.",
 						Attributes: map[string]schema.Attribute{
 							"persistent_volume_claim_name": schema.StringAttribute{
-								Description:         "persistentVolumeClaimName specifies the name of the PersistentVolumeClaim object representing the volume from which a snapshot should be created. This PVC is assumed to be in the same namespace as the VolumeSnapshot object. This field should be set if the snapshot does not exists, and needs to be created. This field is immutable.",
-								MarkdownDescription: "persistentVolumeClaimName specifies the name of the PersistentVolumeClaim object representing the volume from which a snapshot should be created. This PVC is assumed to be in the same namespace as the VolumeSnapshot object. This field should be set if the snapshot does not exists, and needs to be created. This field is immutable.",
+								Description:         "persistentVolumeClaimName specifies the name of the PersistentVolumeClaimobject representing the volume from which a snapshot should be created.This PVC is assumed to be in the same namespace as the VolumeSnapshotobject.This field should be set if the snapshot does not exists, and needs to becreated.This field is immutable.",
+								MarkdownDescription: "persistentVolumeClaimName specifies the name of the PersistentVolumeClaimobject representing the volume from which a snapshot should be created.This PVC is assumed to be in the same namespace as the VolumeSnapshotobject.This field should be set if the snapshot does not exists, and needs to becreated.This field is immutable.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"volume_snapshot_content_name": schema.StringAttribute{
-								Description:         "volumeSnapshotContentName specifies the name of a pre-existing VolumeSnapshotContent object representing an existing volume snapshot. This field should be set if the snapshot already exists and only needs a representation in Kubernetes. This field is immutable.",
-								MarkdownDescription: "volumeSnapshotContentName specifies the name of a pre-existing VolumeSnapshotContent object representing an existing volume snapshot. This field should be set if the snapshot already exists and only needs a representation in Kubernetes. This field is immutable.",
+								Description:         "volumeSnapshotContentName specifies the name of a pre-existing VolumeSnapshotContentobject representing an existing volume snapshot.This field should be set if the snapshot already exists and only needs a representation in Kubernetes.This field is immutable.",
+								MarkdownDescription: "volumeSnapshotContentName specifies the name of a pre-existing VolumeSnapshotContentobject representing an existing volume snapshot.This field should be set if the snapshot already exists and only needs a representation in Kubernetes.This field is immutable.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -154,8 +154,8 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotV1Manifest) Schema(_ context.Context,
 					},
 
 					"volume_snapshot_class_name": schema.StringAttribute{
-						Description:         "VolumeSnapshotClassName is the name of the VolumeSnapshotClass requested by the VolumeSnapshot. VolumeSnapshotClassName may be left nil to indicate that the default SnapshotClass should be used. A given cluster may have multiple default Volume SnapshotClasses: one default per CSI Driver. If a VolumeSnapshot does not specify a SnapshotClass, VolumeSnapshotSource will be checked to figure out what the associated CSI Driver is, and the default VolumeSnapshotClass associated with that CSI Driver will be used. If more than one VolumeSnapshotClass exist for a given CSI Driver and more than one have been marked as default, CreateSnapshot will fail and generate an event. Empty string is not allowed for this field.",
-						MarkdownDescription: "VolumeSnapshotClassName is the name of the VolumeSnapshotClass requested by the VolumeSnapshot. VolumeSnapshotClassName may be left nil to indicate that the default SnapshotClass should be used. A given cluster may have multiple default Volume SnapshotClasses: one default per CSI Driver. If a VolumeSnapshot does not specify a SnapshotClass, VolumeSnapshotSource will be checked to figure out what the associated CSI Driver is, and the default VolumeSnapshotClass associated with that CSI Driver will be used. If more than one VolumeSnapshotClass exist for a given CSI Driver and more than one have been marked as default, CreateSnapshot will fail and generate an event. Empty string is not allowed for this field.",
+						Description:         "VolumeSnapshotClassName is the name of the VolumeSnapshotClassrequested by the VolumeSnapshot.VolumeSnapshotClassName may be left nil to indicate that the defaultSnapshotClass should be used.A given cluster may have multiple default Volume SnapshotClasses: onedefault per CSI Driver. If a VolumeSnapshot does not specify a SnapshotClass,VolumeSnapshotSource will be checked to figure out what the associatedCSI Driver is, and the default VolumeSnapshotClass associated with thatCSI Driver will be used. If more than one VolumeSnapshotClass exist fora given CSI Driver and more than one have been marked as default,CreateSnapshot will fail and generate an event.Empty string is not allowed for this field.",
+						MarkdownDescription: "VolumeSnapshotClassName is the name of the VolumeSnapshotClassrequested by the VolumeSnapshot.VolumeSnapshotClassName may be left nil to indicate that the defaultSnapshotClass should be used.A given cluster may have multiple default Volume SnapshotClasses: onedefault per CSI Driver. If a VolumeSnapshot does not specify a SnapshotClass,VolumeSnapshotSource will be checked to figure out what the associatedCSI Driver is, and the default VolumeSnapshotClass associated with thatCSI Driver will be used. If more than one VolumeSnapshotClass exist fora given CSI Driver and more than one have been marked as default,CreateSnapshot will fail and generate an event.Empty string is not allowed for this field.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

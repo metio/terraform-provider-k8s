@@ -608,16 +608,32 @@ Required:
 
 Optional:
 
+- `alert_relabelings` (Attributes List) Relabeling configs applied before sending alerts to a specific Alertmanager.It requires Prometheus >= v2.51.0. (see [below for nested schema](#nestedatt--spec--alerting--alertmanagers--alert_relabelings))
 - `api_version` (String) Version of the Alertmanager API that Prometheus uses to send alerts.It can be 'v1' or 'v2'.
 - `authorization` (Attributes) Authorization section for Alertmanager.Cannot be set at the same time as 'basicAuth', 'bearerTokenFile' or 'sigv4'. (see [below for nested schema](#nestedatt--spec--alerting--alertmanagers--authorization))
 - `basic_auth` (Attributes) BasicAuth configuration for Alertmanager.Cannot be set at the same time as 'bearerTokenFile', 'authorization' or 'sigv4'. (see [below for nested schema](#nestedatt--spec--alerting--alertmanagers--basic_auth))
 - `bearer_token_file` (String) File to read bearer token for Alertmanager.Cannot be set at the same time as 'basicAuth', 'authorization', or 'sigv4'.Deprecated: this will be removed in a future release. Prefer using 'authorization'.
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `path_prefix` (String) Prefix for the HTTP path alerts are pushed to.
+- `relabelings` (Attributes List) Relabel configuration applied to the discovered Alertmanagers. (see [below for nested schema](#nestedatt--spec--alerting--alertmanagers--relabelings))
 - `scheme` (String) Scheme to use when firing alerts.
 - `sigv4` (Attributes) Sigv4 allows to configures AWS's Signature Verification 4 for the URL.It requires Prometheus >= v2.48.0.Cannot be set at the same time as 'basicAuth', 'bearerTokenFile' or 'authorization'. (see [below for nested schema](#nestedatt--spec--alerting--alertmanagers--sigv4))
 - `timeout` (String) Timeout is a per-target Alertmanager timeout when pushing alerts.
 - `tls_config` (Attributes) TLS Config to use for Alertmanager. (see [below for nested schema](#nestedatt--spec--alerting--alertmanagers--tls_config))
+
+<a id="nestedatt--spec--alerting--alertmanagers--alert_relabelings"></a>
+### Nested Schema for `spec.alerting.alertmanagers.alert_relabelings`
+
+Optional:
+
+- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `regex` (String) Regular expression against which the extracted value is matched.
+- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `separator` (String) Separator is the string between concatenated SourceLabels.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
+
 
 <a id="nestedatt--spec--alerting--alertmanagers--authorization"></a>
 ### Nested Schema for `spec.alerting.alertmanagers.authorization`
@@ -674,6 +690,20 @@ Optional:
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
+
+
+<a id="nestedatt--spec--alerting--alertmanagers--relabelings"></a>
+### Nested Schema for `spec.alerting.alertmanagers.relabelings`
+
+Optional:
+
+- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `regex` (String) Regular expression against which the extracted value is matched.
+- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `separator` (String) Separator is the string between concatenated SourceLabels.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
 
 
 <a id="nestedatt--spec--alerting--alertmanagers--sigv4"></a>
@@ -2699,8 +2729,9 @@ Optional:
 Optional:
 
 - `cloud` (String) The Azure Cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
-- `managed_identity` (Attributes) ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth'. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--managed_identity))
-- `oauth` (Attributes) OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity'.It requires Prometheus >= v2.48.0. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--oauth))
+- `managed_identity` (Attributes) ManagedIdentity defines the Azure User-assigned Managed identity.Cannot be set at the same time as 'oauth' or 'sdk'. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--managed_identity))
+- `oauth` (Attributes) OAuth defines the oauth config that is being used to authenticate.Cannot be set at the same time as 'managedIdentity' or 'sdk'.It requires Prometheus >= v2.48.0. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--oauth))
+- `sdk` (Attributes) SDK defines the Azure SDK config that is being used to authenticate.See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authenticationCannot be set at the same time as 'oauth' or 'managedIdentity'.It requires Prometheus >= 2.52.0. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--sdk))
 
 <a id="nestedatt--spec--remote_write--azure_ad--managed_identity"></a>
 ### Nested Schema for `spec.remote_write.azure_ad.managed_identity`
@@ -2716,11 +2747,11 @@ Required:
 Required:
 
 - `client_id` (String) 'clientID' is the clientId of the Azure Active Directory application that is being used to authenticate.
-- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the client secret of the Azure Active Directory application that is being used to authenticate. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--oauth--client_secret))
-- `tenant_id` (String) 'tenantID' is the tenant ID of the Azure Active Directory application that is being used to authenticate.
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the client secret of the Azure Active Directory application that is being used to authenticate. (see [below for nested schema](#nestedatt--spec--remote_write--azure_ad--sdk--client_secret))
+- `tenant_id` (String) 'tenantId' is the tenant ID of the Azure Active Directory application that is being used to authenticate.
 
-<a id="nestedatt--spec--remote_write--azure_ad--oauth--client_secret"></a>
-### Nested Schema for `spec.remote_write.azure_ad.oauth.client_secret`
+<a id="nestedatt--spec--remote_write--azure_ad--sdk--client_secret"></a>
+### Nested Schema for `spec.remote_write.azure_ad.sdk.client_secret`
 
 Required:
 
@@ -2731,6 +2762,14 @@ Optional:
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
+
+
+<a id="nestedatt--spec--remote_write--azure_ad--sdk"></a>
+### Nested Schema for `spec.remote_write.azure_ad.sdk`
+
+Optional:
+
+- `tenant_id` (String) 'tenantId' is the tenant ID of the azure active directory application that is being used to authenticate.
 
 
 
@@ -3098,9 +3137,9 @@ Required:
 
 Optional:
 
-- `default` (Boolean) Default indicates that the scrape applies to all scrape objects that don't configure an explicit scrape class name.Only one scrape class can be set as default.
+- `default` (Boolean) Default indicates that the scrape applies to all scrape objects thatdon't configure an explicit scrape class name.Only one scrape class can be set as the default.
 - `relabelings` (Attributes List) Relabelings configures the relabeling rules to apply to all scrape targets.The Operator automatically adds relabelings for a few standard Kubernetes fieldslike '__meta_kubernetes_namespace' and '__meta_kubernetes_service_name'.Then the Operator adds the scrape class relabelings defined here.Then the Operator adds the target-specific relabelings defined in the scrape object.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--scrape_classes--relabelings))
-- `tls_config` (Attributes) TLSConfig section for scrapes. (see [below for nested schema](#nestedatt--spec--scrape_classes--tls_config))
+- `tls_config` (Attributes) TLSConfig defines the TLS settings to use for the scrape. When thescrape objects define their own CA, certificate and/or key, they takeprecedence over the corresponding scrape class fields.For now only the 'caFile', 'certFile' and 'keyFile' fields are supported. (see [below for nested schema](#nestedatt--spec--scrape_classes--tls_config))
 
 <a id="nestedatt--spec--scrape_classes--relabelings"></a>
 ### Nested Schema for `spec.scrape_classes.relabelings`

@@ -656,7 +656,7 @@ Optional:
 
 Optional:
 
-- `authentication` (Attributes) Oauth defines the options for the oauth proxy used to protect jaeger UI (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication))
+- `authentication` (Attributes) Authentication defines the options for the oauth proxy used to protect jaeger UI (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication))
 - `enabled` (Boolean) Enabled defines if the Jaeger Query component should be created.
 - `ingress` (Attributes) Ingress defines the options for the Jaeger Query ingress. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--ingress))
 - `monitor_tab` (Attributes) MonitorTab defines the monitor tab configuration. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--monitor_tab))
@@ -669,7 +669,26 @@ Optional:
 Optional:
 
 - `enabled` (Boolean) Defines if the authentication will be enabled for jaeger UI.
+- `resources` (Attributes) Resources defines the compute resource requirements of the OAuth Proxy container. The OAuth Proxy performs authentication and authorization of incoming requests to Jaeger UI when multi-tenancy is disabled. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication--resources))
 - `sar` (String) SAR defines the SAR to be used in the oauth-proxy default is '{'namespace': '<tempo_stack_namespace>', 'resource': 'pods', 'verb': 'get'}
+
+<a id="nestedatt--spec--template--query_frontend--jaeger_query--authentication--resources"></a>
+### Nested Schema for `spec.template.query_frontend.jaeger_query.authentication.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication--sar--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--template--query_frontend--jaeger_query--authentication--sar--claims"></a>
+### Nested Schema for `spec.template.query_frontend.jaeger_query.authentication.sar.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
 
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--ingress"></a>

@@ -256,6 +256,7 @@ type FluentbitFluentIoClusterOutputV1Alpha2ManifestData struct {
 			SelfHostname       *string `tfsdk:"self_hostname" json:"selfHostname,omitempty"`
 			SendOptions        *bool   `tfsdk:"send_options" json:"sendOptions,omitempty"`
 			SharedKey          *string `tfsdk:"shared_key" json:"sharedKey,omitempty"`
+			Tag                *string `tfsdk:"tag" json:"tag,omitempty"`
 			TimeAsInteger      *bool   `tfsdk:"time_as_integer" json:"timeAsInteger,omitempty"`
 			Tls                *struct {
 				CaFile      *string `tfsdk:"ca_file" json:"caFile,omitempty"`
@@ -2424,6 +2425,14 @@ func (r *FluentbitFluentIoClusterOutputV1Alpha2Manifest) Schema(_ context.Contex
 							"shared_key": schema.StringAttribute{
 								Description:         "A key string known by the remote Fluentd used for authorization.",
 								MarkdownDescription: "A key string known by the remote Fluentd used for authorization.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tag": schema.StringAttribute{
+								Description:         "Overwrite the tag as we transmit. This allows the receiving pipeline start fresh, or to attribute source.",
+								MarkdownDescription: "Overwrite the tag as we transmit. This allows the receiving pipeline start fresh, or to attribute source.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

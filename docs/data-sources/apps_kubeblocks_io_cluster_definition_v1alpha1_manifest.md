@@ -69,15 +69,16 @@ Required:
 
 Optional:
 
-- `builtin_monitor_container` (Attributes) Defines the built-in metrics exporter container. (see [below for nested schema](#nestedatt--spec--component_defs--builtin_monitor_container))
 - `character_type` (String) Defines well-known database component name, such as mongos(mongodb), proxy(redis), mariadb(mysql).
 - `component_def_ref` (Attributes List) Used to inject values from other components into the current component. Values will be saved and updated in a configmap and mounted to the current component. (see [below for nested schema](#nestedatt--spec--component_defs--component_def_ref))
 - `config_specs` (Attributes List) Defines the template of configurations. (see [below for nested schema](#nestedatt--spec--component_defs--config_specs))
 - `consensus_spec` (Attributes) Defines spec for 'Consensus' workloads. It's required if the workload type is 'Consensus'. (see [below for nested schema](#nestedatt--spec--component_defs--consensus_spec))
 - `custom_label_specs` (Attributes List) Used for custom label tags which you want to add to the component resources. (see [below for nested schema](#nestedatt--spec--component_defs--custom_label_specs))
 - `description` (String) Description of the component definition.
+- `exporter` (Attributes) Defines the metrics exporter. (see [below for nested schema](#nestedatt--spec--component_defs--exporter))
 - `horizontal_scale_policy` (Attributes) Defines the behavior of horizontal scale. (see [below for nested schema](#nestedatt--spec--component_defs--horizontal_scale_policy))
 - `log_configs` (Attributes List) Specify the logging files which can be observed and configured by cluster users. (see [below for nested schema](#nestedatt--spec--component_defs--log_configs))
+- `monitor` (Attributes) Deprecated since v0.9 monitor is monitoring config which provided by provider. (see [below for nested schema](#nestedatt--spec--component_defs--monitor))
 - `pod_spec` (Attributes) Defines the pod spec template of component. (see [below for nested schema](#nestedatt--spec--component_defs--pod_spec))
 - `post_start_spec` (Attributes) Defines the command to be executed when the component is ready, and the command will only be executed once after the component becomes ready. (see [below for nested schema](#nestedatt--spec--component_defs--post_start_spec))
 - `probes` (Attributes) Settings for health checks. (see [below for nested schema](#nestedatt--spec--component_defs--probes))
@@ -86,27 +87,12 @@ Optional:
 - `script_specs` (Attributes List) Defines the template of scripts. (see [below for nested schema](#nestedatt--spec--component_defs--script_specs))
 - `service` (Attributes) Defines the service spec. (see [below for nested schema](#nestedatt--spec--component_defs--service))
 - `service_ref_declarations` (Attributes List) Used to declare the service reference of the current component. (see [below for nested schema](#nestedatt--spec--component_defs--service_ref_declarations))
-- `sidecar_container_specs` (Map of String) Defines the sidecar containers that will be attached to the component's main container.
 - `stateful_spec` (Attributes) Defines spec for 'Stateful' workloads. (see [below for nested schema](#nestedatt--spec--component_defs--stateful_spec))
 - `stateless_spec` (Attributes) Defines spec for 'Stateless' workloads. (see [below for nested schema](#nestedatt--spec--component_defs--stateless_spec))
 - `switchover_spec` (Attributes) Defines command to do switchover. In particular, when workloadType=Replication, the command defined in switchoverSpec will only be executed under the condition of cluster.componentSpecs[x].SwitchPolicy.type=Noop. (see [below for nested schema](#nestedatt--spec--component_defs--switchover_spec))
 - `system_accounts` (Attributes) Defines system accounts needed to manage the component, and the statement to create them. (see [below for nested schema](#nestedatt--spec--component_defs--system_accounts))
 - `volume_protection_spec` (Attributes) Defines settings to do volume protect. (see [below for nested schema](#nestedatt--spec--component_defs--volume_protection_spec))
 - `volume_types` (Attributes List) Used to describe the purpose of the volumes mapping the name of the VolumeMounts in the PodSpec.Container field, such as data volume, log volume, etc. When backing up the volume, the volume can be correctly backed up according to the volumeType.  For example:  - 'name: data, type: data' means that the volume named 'data' is used to store 'data'. - 'name: binlog, type: log' means that the volume named 'binlog' is used to store 'log'.  NOTE: When volumeTypes is not defined, the backup function will not be supported, even if a persistent volume has been specified. (see [below for nested schema](#nestedatt--spec--component_defs--volume_types))
-
-<a id="nestedatt--spec--component_defs--builtin_monitor_container"></a>
-### Nested Schema for `spec.component_defs.builtin_monitor_container`
-
-Required:
-
-- `name` (String) Specifies the name of the built-in metrics exporter container.
-
-Optional:
-
-- `metrics_path` (String) Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').
-- `metrics_port` (String) Specifies the port name to scrape for metrics.
-- `protocol` (String) Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.
-
 
 <a id="nestedatt--spec--component_defs--component_def_ref"></a>
 ### Nested Schema for `spec.component_defs.component_def_ref`
@@ -280,6 +266,17 @@ Optional:
 
 
 
+<a id="nestedatt--spec--component_defs--exporter"></a>
+### Nested Schema for `spec.component_defs.exporter`
+
+Optional:
+
+- `container_name` (String) Specifies the name of the built-in metrics exporter container.
+- `scrape_path` (String) Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').
+- `scrape_port` (String) Specifies the port name to scrape for metrics.
+- `scrape_scheme` (String) Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.
+
+
 <a id="nestedatt--spec--component_defs--horizontal_scale_policy"></a>
 ### Nested Schema for `spec.component_defs.horizontal_scale_policy`
 
@@ -297,6 +294,27 @@ Required:
 
 - `file_path_pattern` (String) Specifies the paths or patterns identifying where the log files are stored. This field allows the system to locate and manage log files effectively.  Examples:  - /home/postgres/pgdata/pgroot/data/log/postgresql-* - /data/mysql/log/mysqld-error.log
 - `name` (String) Specifies a descriptive label for the log type, such as 'slow' for a MySQL slow log file. It provides a clear identification of the log's purpose and content.
+
+
+<a id="nestedatt--spec--component_defs--monitor"></a>
+### Nested Schema for `spec.component_defs.monitor`
+
+Optional:
+
+- `built_in` (Boolean) builtIn is a switch to enable KubeBlocks builtIn monitoring. If BuiltIn is set to true, monitor metrics will be scraped automatically. If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.
+- `exporter_config` (Attributes) exporterConfig provided by provider, which specify necessary information to Time Series Database. exporterConfig is valid when builtIn is false. (see [below for nested schema](#nestedatt--spec--component_defs--monitor--exporter_config))
+
+<a id="nestedatt--spec--component_defs--monitor--exporter_config"></a>
+### Nested Schema for `spec.component_defs.monitor.exporter_config`
+
+Required:
+
+- `scrape_port` (String) scrapePort is exporter port for Time Series Database to scrape metrics.
+
+Optional:
+
+- `scrape_path` (String) scrapePath is exporter url path for Time Series Database to scrape metrics.
+
 
 
 <a id="nestedatt--spec--component_defs--pod_spec"></a>

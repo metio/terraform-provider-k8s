@@ -168,6 +168,11 @@ type ExternalSecretsIoSecretStoreV1Beta1ManifestData struct {
 			} `tfsdk:"aws" json:"aws,omitempty"`
 			Azurekv *struct {
 				AuthSecretRef *struct {
+					ClientCertificate *struct {
+						Key       *string `tfsdk:"key" json:"key,omitempty"`
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"client_certificate" json:"clientCertificate,omitempty"`
 					ClientId *struct {
 						Key       *string `tfsdk:"key" json:"key,omitempty"`
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -1624,6 +1629,39 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Manifest) Schema(_ context.Context, 
 										Description:         "Auth configures how the operator authenticates with Azure. Required for ServicePrincipal auth type. Optional for WorkloadIdentity.",
 										MarkdownDescription: "Auth configures how the operator authenticates with Azure. Required for ServicePrincipal auth type. Optional for WorkloadIdentity.",
 										Attributes: map[string]schema.Attribute{
+											"client_certificate": schema.SingleNestedAttribute{
+												Description:         "The Azure ClientCertificate of the service principle used for authentication.",
+												MarkdownDescription: "The Azure ClientCertificate of the service principle used for authentication.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "The name of the Secret resource being referred to.",
+														MarkdownDescription: "The name of the Secret resource being referred to.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"client_id": schema.SingleNestedAttribute{
 												Description:         "The Azure clientId of the service principle or managed identity used for authentication.",
 												MarkdownDescription: "The Azure clientId of the service principle or managed identity used for authentication.",

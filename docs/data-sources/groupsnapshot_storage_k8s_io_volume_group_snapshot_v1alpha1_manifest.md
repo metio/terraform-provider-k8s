@@ -3,12 +3,12 @@
 page_title: "k8s_groupsnapshot_storage_k8s_io_volume_group_snapshot_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "groupsnapshot.storage.k8s.io"
 description: |-
-  VolumeGroupSnapshot is a user's request for creating either a point-in-time group snapshot or binding to a pre-existing group snapshot.
+  VolumeGroupSnapshot is a user's request for creating either a point-in-timegroup snapshot or binding to a pre-existing group snapshot.
 ---
 
 # k8s_groupsnapshot_storage_k8s_io_volume_group_snapshot_v1alpha1_manifest (Data Source)
 
-VolumeGroupSnapshot is a user's request for creating either a point-in-time group snapshot or binding to a pre-existing group snapshot.
+VolumeGroupSnapshot is a user's request for creating either a point-in-timegroup snapshot or binding to a pre-existing group snapshot.
 
 ## Example Usage
 
@@ -27,7 +27,7 @@ data "k8s_groupsnapshot_storage_k8s_io_volume_group_snapshot_v1alpha1_manifest" 
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) Spec defines the desired characteristics of a group snapshot requested by a user. Required. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Spec defines the desired characteristics of a group snapshot requested by a user.Required. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -52,19 +52,19 @@ Optional:
 
 Required:
 
-- `source` (Attributes) Source specifies where a group snapshot will be created from. This field is immutable after creation. Required. (see [below for nested schema](#nestedatt--spec--source))
+- `source` (Attributes) Source specifies where a group snapshot will be created from.This field is immutable after creation.Required. (see [below for nested schema](#nestedatt--spec--source))
 
 Optional:
 
-- `volume_group_snapshot_class_name` (String) VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClass requested by the VolumeGroupSnapshot. VolumeGroupSnapshotClassName may be left nil to indicate that the default class will be used. Empty string is not allowed for this field.
+- `volume_group_snapshot_class_name` (String) VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClassrequested by the VolumeGroupSnapshot.VolumeGroupSnapshotClassName may be left nil to indicate that the defaultclass will be used.Empty string is not allowed for this field.
 
 <a id="nestedatt--spec--source"></a>
 ### Nested Schema for `spec.source`
 
 Optional:
 
-- `selector` (Attributes) Selector is a label query over persistent volume claims that are to be grouped together for snapshotting. This labelSelector will be used to match the label added to a PVC. If the label is added or removed to a volume after a group snapshot is created, the existing group snapshots won't be modified. Once a VolumeGroupSnapshotContent is created and the sidecar starts to process it, the volume list will not change with retries. (see [below for nested schema](#nestedatt--spec--source--selector))
-- `volume_group_snapshot_content_name` (String) VolumeGroupSnapshotContentName specifies the name of a pre-existing VolumeGroupSnapshotContent object representing an existing volume group snapshot. This field should be set if the volume group snapshot already exists and only needs a representation in Kubernetes. This field is immutable.
+- `selector` (Attributes) Selector is a label query over persistent volume claims that are to begrouped together for snapshotting.This labelSelector will be used to match the label added to a PVC.If the label is added or removed to a volume after a group snapshotis created, the existing group snapshots won't be modified.Once a VolumeGroupSnapshotContent is created and the sidecar starts to processit, the volume list will not change with retries. (see [below for nested schema](#nestedatt--spec--source--selector))
+- `volume_group_snapshot_content_name` (String) VolumeGroupSnapshotContentName specifies the name of a pre-existing VolumeGroupSnapshotContentobject representing an existing volume group snapshot.This field should be set if the volume group snapshot already exists andonly needs a representation in Kubernetes.This field is immutable.
 
 <a id="nestedatt--spec--source--selector"></a>
 ### Nested Schema for `spec.source.selector`
@@ -72,7 +72,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--source--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--source--selector--match_expressions"></a>
 ### Nested Schema for `spec.source.selector.match_expressions`
@@ -80,8 +80,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.

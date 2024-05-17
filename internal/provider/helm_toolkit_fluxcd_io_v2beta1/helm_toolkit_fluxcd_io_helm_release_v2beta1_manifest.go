@@ -70,6 +70,12 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1ManifestData struct {
 				Version *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
 		} `tfsdk:"chart" json:"chart,omitempty"`
+		ChartRef *struct {
+			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name       *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+		} `tfsdk:"chart_ref" json:"chartRef,omitempty"`
 		DependsOn *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -470,8 +476,60 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Manifest) Schema(_ context.Context
 								Computed: false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"chart_ref": schema.SingleNestedAttribute{
+						Description:         "ChartRef holds a reference to a source controller resource containing theHelm chart artifact.Note: this field is provisional to the v2 API, and not actively usedby v2beta1 HelmReleases.",
+						MarkdownDescription: "ChartRef holds a reference to a source controller resource containing theHelm chart artifact.Note: this field is provisional to the v2 API, and not actively usedby v2beta1 HelmReleases.",
+						Attributes: map[string]schema.Attribute{
+							"api_version": schema.StringAttribute{
+								Description:         "APIVersion of the referent.",
+								MarkdownDescription: "APIVersion of the referent.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kind": schema.StringAttribute{
+								Description:         "Kind of the referent.",
+								MarkdownDescription: "Kind of the referent.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("OCIRepository", "HelmChart"),
+								},
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(253),
+								},
+							},
+
+							"namespace": schema.StringAttribute{
+								Description:         "Namespace of the referent, defaults to the namespace of the Kubernetesresource object that contains the reference.",
+								MarkdownDescription: "Namespace of the referent, defaults to the namespace of the Kubernetesresource object that contains the reference.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(63),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

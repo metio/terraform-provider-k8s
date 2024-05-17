@@ -55,11 +55,12 @@ Optional:
 
 Required:
 
-- `chart` (Attributes) Chart defines the template of the v1beta2.HelmChart that should be createdfor this HelmRelease. (see [below for nested schema](#nestedatt--spec--chart))
 - `interval` (String) Interval at which to reconcile the Helm release.This interval is approximate and may be subject to jitter to ensureefficient use of resources.
 
 Optional:
 
+- `chart` (Attributes) Chart defines the template of the v1beta2.HelmChart that should be createdfor this HelmRelease. (see [below for nested schema](#nestedatt--spec--chart))
+- `chart_ref` (Attributes) ChartRef holds a reference to a source controller resource containing theHelm chart artifact.Note: this field is provisional to the v2 API, and not actively usedby v2beta1 HelmReleases. (see [below for nested schema](#nestedatt--spec--chart_ref))
 - `depends_on` (Attributes List) DependsOn may contain a meta.NamespacedObjectReference slice withreferences to HelmRelease resources that must be ready before this HelmReleasecan be reconciled. (see [below for nested schema](#nestedatt--spec--depends_on))
 - `drift_detection` (Attributes) DriftDetection holds the configuration for detecting and handlingdifferences between the manifest in the Helm storage and the resourcescurrently existing in the cluster.Note: this field is provisional to the v2beta2 API, and not actively usedby v2beta1 HelmReleases. (see [below for nested schema](#nestedatt--spec--drift_detection))
 - `install` (Attributes) Install holds the configuration for Helm install actions for this HelmRelease. (see [below for nested schema](#nestedatt--spec--install))
@@ -151,6 +152,20 @@ Optional:
 - `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 
+
+
+<a id="nestedatt--spec--chart_ref"></a>
+### Nested Schema for `spec.chart_ref`
+
+Required:
+
+- `kind` (String) Kind of the referent.
+- `name` (String) Name of the referent.
+
+Optional:
+
+- `api_version` (String) APIVersion of the referent.
+- `namespace` (String) Namespace of the referent, defaults to the namespace of the Kubernetesresource object that contains the reference.
 
 
 <a id="nestedatt--spec--depends_on"></a>

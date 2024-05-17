@@ -1911,6 +1911,41 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"sidecars" json:"sidecars,omitempty"`
+			TablespaceVolumes *[]struct {
+				DataVolumeClaimSpec *struct {
+					AccessModes *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
+					DataSource  *struct {
+						ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+						Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"data_source" json:"dataSource,omitempty"`
+					DataSourceRef *struct {
+						ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+						Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
+					Resources *struct {
+						Claims *[]struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"claims" json:"claims,omitempty"`
+						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+					} `tfsdk:"resources" json:"resources,omitempty"`
+					Selector *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"selector" json:"selector,omitempty"`
+					StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+					VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+					VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+				} `tfsdk:"data_volume_claim_spec" json:"dataVolumeClaimSpec,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"tablespace_volumes" json:"tablespaceVolumes,omitempty"`
 			Tolerations *[]struct {
 				Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 				Key               *string `tfsdk:"key" json:"key,omitempty"`
@@ -15192,6 +15227,245 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"tablespace_volumes": schema.ListNestedAttribute{
+									Description:         "The list of tablespaces volumes to mount for this postgrescluster This field requires enabling TablespaceVolumes feature gate",
+									MarkdownDescription: "The list of tablespaces volumes to mount for this postgrescluster This field requires enabling TablespaceVolumes feature gate",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"data_volume_claim_spec": schema.SingleNestedAttribute{
+												Description:         "Defines a PersistentVolumeClaim for a tablespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes",
+												MarkdownDescription: "Defines a PersistentVolumeClaim for a tablespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes",
+												Attributes: map[string]schema.Attribute{
+													"access_modes": schema.ListAttribute{
+														Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+														MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"data_source": schema.SingleNestedAttribute{
+														Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
+														MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
+														Attributes: map[string]schema.Attribute{
+															"api_group": schema.StringAttribute{
+																Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kind": schema.StringAttribute{
+																Description:         "Kind is the type of resource being referenced",
+																MarkdownDescription: "Kind is the type of resource being referenced",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name is the name of resource being referenced",
+																MarkdownDescription: "Name is the name of resource being referenced",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"data_source_ref": schema.SingleNestedAttribute{
+														Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+														MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+														Attributes: map[string]schema.Attribute{
+															"api_group": schema.StringAttribute{
+																Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kind": schema.StringAttribute{
+																Description:         "Kind is the type of resource being referenced",
+																MarkdownDescription: "Kind is the type of resource being referenced",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name is the name of resource being referenced",
+																MarkdownDescription: "Name is the name of resource being referenced",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"namespace": schema.StringAttribute{
+																Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resources": schema.SingleNestedAttribute{
+														Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+														MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+														Attributes: map[string]schema.Attribute{
+															"claims": schema.ListNestedAttribute{
+																Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																			MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"limits": schema.MapAttribute{
+																Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"requests": schema.MapAttribute{
+																Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"selector": schema.SingleNestedAttribute{
+														Description:         "selector is a label query over volumes to consider for binding.",
+														MarkdownDescription: "selector is a label query over volumes to consider for binding.",
+														Attributes: map[string]schema.Attribute{
+															"match_expressions": schema.ListNestedAttribute{
+																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "key is the label key that the selector applies to.",
+																			MarkdownDescription: "key is the label key that the selector applies to.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"operator": schema.StringAttribute{
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"values": schema.ListAttribute{
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": schema.MapAttribute{
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"storage_class_name": schema.StringAttribute{
+														Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+														MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"volume_mode": schema.StringAttribute{
+														Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
+														MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"volume_name": schema.StringAttribute{
+														Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
+														MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "The name for the tablespace, used as the path name for the volume. Must be unique in the instance set since they become the directory names.",
+												MarkdownDescription: "The name for the tablespace, used as the path name for the volume. Must be unique in the instance set since they become the directory names.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z][a-z0-9]*$`), ""),
+												},
 											},
 										},
 									},

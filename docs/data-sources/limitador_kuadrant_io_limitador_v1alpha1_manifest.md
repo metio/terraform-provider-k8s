@@ -56,6 +56,7 @@ Optional:
 Optional:
 
 - `affinity` (Attributes) Affinity is a group of affinity scheduling rules. (see [below for nested schema](#nestedatt--spec--affinity))
+- `image` (String)
 - `limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--limits))
 - `listener` (Attributes) (see [below for nested schema](#nestedatt--spec--listener))
 - `pdb` (Attributes) (see [below for nested schema](#nestedatt--spec--pdb))
@@ -66,7 +67,7 @@ Optional:
 - `telemetry` (String) Telemetry defines the level of metrics Limitador will expose to the user
 - `tracing` (Attributes) (see [below for nested schema](#nestedatt--spec--tracing))
 - `verbosity` (Number) Sets the level of verbosity
-- `version` (String)
+- `version` (String) [Deprecated] Use spec.image instead. Docker tag used as limitador image. The repo is hardcoded to quay.io/kuadrant/limitador
 
 <a id="nestedatt--spec--affinity"></a>
 ### Nested Schema for `spec.affinity`
@@ -585,9 +586,7 @@ Optional:
 
 - `flush_period` (Number) FlushPeriod for counters in milliseconds [default: 1000]
 - `max_cached` (Number) MaxCached refers to the maximum amount of counters cached [default: 10000]
-- `ratio` (Number) Ratio to apply to the TTL from Redis on cached counters [default: 10]
 - `response_timeout` (Number) ResponseTimeout defines the timeout for Redis commands in milliseconds [default: 350]
-- `ttl` (Number) TTL for cached counters in milliseconds [default: 5000]
 
 
 

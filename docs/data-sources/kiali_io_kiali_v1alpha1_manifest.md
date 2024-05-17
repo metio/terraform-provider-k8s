@@ -196,6 +196,7 @@ Optional:
 - `cluster_wide_access` (Boolean) Determines if the Kiali server will be granted cluster-wide permissions to see all namespaces. When true, this provides more efficient caching within the Kiali server. It must be 'true' if 'deployment.accessible_namespaces' is left unset. To limit the namespaces for which Kiali has permissions, set to 'false' and list the desired namespaces in 'deployment.accessible_namespaces'. When not set, this value will default to 'false' if 'deployment.accessible_namespaces' is set to a list of namespaces; otherwise this will be 'true'.
 - `configmap_annotations` (Map of String) Custom annotations to be created on the Kiali ConfigMap.
 - `custom_secrets` (Attributes List) Defines additional secrets that are to be mounted in the Kiali pod.These are useful to contain certs that are used by Kiali to securely connect to third party systems(for example, see 'external_services.tracing.auth.ca_file').These secrets must be created by an external mechanism. Kiali will not generate these secrets; itis assumed these secrets are externally managed. You can define 0, 1, or more secrets.An example configuration is,'''custom_secrets:- name: mysecret  mount: /mysecret-path- name: my-other-secret  mount: /my-other-secret-location  optional: true''' (see [below for nested schema](#nestedatt--spec--deployment--custom_secrets))
+- `dns` (Attributes) The Kiali server pod's DNS configuration. Kubernetes supports different DNS policies and configurations.For further details, consult the Kubernetes documentation - https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/ (see [below for nested schema](#nestedatt--spec--deployment--dns))
 - `host_aliases` (Attributes List) This is content for the Kubernetes 'hostAliases' setting for the Kiali server.This allows you to modify the Kiali server pod '/etc/hosts' file.A typical way to configure this setting is,'''host_aliases:- ip: 192.168.1.100  hostnames:  - 'foo.local'  - 'bar.local''''For details on the content of this setting, see https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/#adding-additional-entries-with-hostaliases (see [below for nested schema](#nestedatt--spec--deployment--host_aliases))
 - `hpa` (Attributes) Determines what (if any) HorizontalPodAutoscaler should be created to autoscale the Kiali pod.A typical way to configure HPA for Kiali is,'''hpa:  api_version: 'autoscaling/v2'  spec:    maxReplicas: 2    minReplicas: 1    metrics:    - type: Resource      resource:        name: cpu        target:          type: Utilization          averageUtilization: 50''' (see [below for nested schema](#nestedatt--spec--deployment--hpa))
 - `image_digest` (String) If 'deployment.image_version' is a digest hash, this value indicates what type of digest it is. A typical value would be 'sha256'. Note: do NOT prefix this value with a '@'.
@@ -243,6 +244,15 @@ Optional:
 
 - `csi` (Map of String) Defines CSI-specific settings that allows a secret from an external CSI secret store to be injected in the pod via a volume mount. For details, see https://secrets-store-csi-driver.sigs.k8s.io/
 - `optional` (Boolean) Indicates if the secret may or may not exist at the time the Kiali pod starts. This will default to 'false' if not specified. This is ignored if 'csi' is specified - CSI secrets must exist when specified.
+
+
+<a id="nestedatt--spec--deployment--dns"></a>
+### Nested Schema for `spec.deployment.dns`
+
+Optional:
+
+- `config` (Map of String) DNS configuration that is applied to the DNS policy. See the Kubernetes documentation for the different configuration settings that are supported.
+- `policy` (String) DNS policy. See the Kubernetes documentation for the different policies that are supported.
 
 
 <a id="nestedatt--spec--deployment--host_aliases"></a>

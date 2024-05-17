@@ -804,11 +804,20 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"access_key" json:"access_key,omitempty"`
-			Bucket               *string `tfsdk:"bucket" json:"bucket,omitempty"`
-			Canned_acl           *string `tfsdk:"canned_acl" json:"canned_acl,omitempty"`
-			Chunk_size           *int64  `tfsdk:"chunk_size" json:"chunk_size,omitempty"`
-			Compression          *bool   `tfsdk:"compression" json:"compression,omitempty"`
-			Compresslevel        *int64  `tfsdk:"compresslevel" json:"compresslevel,omitempty"`
+			Bucket        *string `tfsdk:"bucket" json:"bucket,omitempty"`
+			Canned_acl    *string `tfsdk:"canned_acl" json:"canned_acl,omitempty"`
+			Chunk_size    *int64  `tfsdk:"chunk_size" json:"chunk_size,omitempty"`
+			Compression   *bool   `tfsdk:"compression" json:"compression,omitempty"`
+			Compresslevel *int64  `tfsdk:"compresslevel" json:"compresslevel,omitempty"`
+			Disk_buffer   *struct {
+				Compaction     *bool   `tfsdk:"compaction" json:"compaction,omitempty"`
+				Dir            *string `tfsdk:"dir" json:"dir,omitempty"`
+				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
+				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
+				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
+				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
+			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Flush_grace_period   *int64  `tfsdk:"flush_grace_period" json:"flush_grace_period,omitempty"`
 			Log_fifo_size        *int64  `tfsdk:"log_fifo_size" json:"log-fifo-size,omitempty"`
 			Max_object_size      *int64  `tfsdk:"max_object_size" json:"max_object_size,omitempty"`
@@ -6364,6 +6373,71 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"disk_buffer": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"compaction": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dir": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"disk_buf_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"mem_buf_length": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"mem_buf_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"q_out_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"reliable": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"flush_grace_period": schema.Int64Attribute{

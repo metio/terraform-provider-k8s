@@ -59,6 +59,7 @@ Optional:
 - `backend` (Attributes) Backend contains the restic repo where the job should backup to. (see [below for nested schema](#nestedatt--spec--backend))
 - `failed_jobs_history_limit` (Number) FailedJobsHistoryLimit amount of failed jobs to keep for later analysis.KeepJobs is used property is not specified.
 - `keep_jobs` (Number) KeepJobs amount of jobs to keep for later analysis.Deprecated: Use FailedJobsHistoryLimit and SuccessfulJobsHistoryLimit respectively.
+- `pod_config_ref` (Attributes) PodConfigRef describes the pod spec with wich this action shall be executed.It takes precedence over the Resources or PodSecurityContext field.It does not allow changing the image or the command of the resulting pod.This is for advanced use-cases only. Please only set this if you know what you're doing. (see [below for nested schema](#nestedatt--spec--pod_config_ref))
 - `pod_security_context` (Attributes) PodSecurityContext describes the security context with which this action shall be executed. (see [below for nested schema](#nestedatt--spec--pod_security_context))
 - `prom_url` (String) PromURL sets a prometheus push URL where the backup container send metrics to
 - `resources` (Attributes) Resources describes the compute resource requirements (cpu, memory, etc.) (see [below for nested schema](#nestedatt--spec--resources))
@@ -350,6 +351,14 @@ Optional:
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
 
+
+
+<a id="nestedatt--spec--pod_config_ref"></a>
+### Nested Schema for `spec.pod_config_ref`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--pod_security_context"></a>

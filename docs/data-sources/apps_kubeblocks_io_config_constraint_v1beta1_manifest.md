@@ -58,14 +58,13 @@ Required:
 
 Optional:
 
-- `config_schema` (Attributes) Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values). (see [below for nested schema](#nestedatt--spec--config_schema))
-- `downward_api_triggered_actions` (Attributes List) TODO: migrate DownwardAPITriggeredActions to ComponentDefinition.spec.lifecycleActions Specifies a list of actions to execute specified commands based on Pod labels.  It utilizes the K8s Downward API to mount label information as a volume into the pod. The 'config-manager' sidecar container watches for changes in the role label and dynamically invoke registered commands (usually execute some SQL statements) when a change is detected.  It is designed for scenarios where:  - Replicas with different roles have different configurations, such as Redis primary & secondary replicas. - After a role switch (e.g., from secondary to primary), some changes in configuration are needed to reflect the new role. (see [below for nested schema](#nestedatt--spec--downward_api_triggered_actions))
+- `downward_api_change_triggered_actions` (Attributes List) TODO: migrate DownwardAPITriggeredActions to ComponentDefinition.spec.lifecycleActions Specifies a list of actions to execute specified commands based on Pod labels.  It utilizes the K8s Downward API to mount label information as a volume into the pod. The 'config-manager' sidecar container watches for changes in the role label and dynamically invoke registered commands (usually execute some SQL statements) when a change is detected.  It is designed for scenarios where:  - Replicas with different roles have different configurations, such as Redis primary & secondary replicas. - After a role switch (e.g., from secondary to primary), some changes in configuration are needed to reflect the new role. (see [below for nested schema](#nestedatt--spec--downward_api_change_triggered_actions))
 - `dynamic_parameters` (List of String) List dynamic parameters. Modifications to these parameters trigger a configuration reload without requiring a process restart.
 - `immutable_parameters` (List of String) Lists the parameters that cannot be modified once set. Attempting to change any of these parameters will be ignored.
 - `merge_reload_and_restart` (Boolean) Indicates whether to consolidate dynamic reload and restart actions into a single restart.  - If true, updates requiring both actions will result in only a restart, merging the actions. - If false, updates will trigger both actions executed sequentially: first dynamic reload, then restart.  This flag allows for more efficient handling of configuration changes by potentially eliminating an unnecessary reload step.
+- `parameters_schema` (Attributes) Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values). (see [below for nested schema](#nestedatt--spec--parameters_schema))
 - `reload_action` (Attributes) Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates.  Dynamic reloading is triggered only if both of the following conditions are met:  1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'reloadAction' is set.  If 'reloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered.  Example: '''yaml dynamicReloadAction: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true ''' (see [below for nested schema](#nestedatt--spec--reload_action))
 - `reload_static_params_before_restart` (Boolean) Configures whether the dynamic reload specified in 'reloadAction' applies only to dynamic parameters or to all parameters (including static parameters).  - false (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - true: Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.
-- `reloaded_pod_selector` (Attributes) Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'reloadedPodSelector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'reloadedPodSelector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload. (see [below for nested schema](#nestedatt--spec--reloaded_pod_selector))
 - `static_parameters` (List of String) List static parameters. Modifications to any of these parameters require a restart of the process to take effect.
 
 <a id="nestedatt--spec--file_format_config"></a>
@@ -88,32 +87,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--config_schema"></a>
-### Nested Schema for `spec.config_schema`
-
-Optional:
-
-- `cue` (String) Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values).  CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common.  This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.
-- `schema_in_json` (Map of String) Generated from the 'cue' field and transformed into a JSON format.
-- `top_level_key` (String) Specifies the top-level key in the 'configSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configSchema.cue'.
-
-
-<a id="nestedatt--spec--downward_api_triggered_actions"></a>
-### Nested Schema for `spec.downward_api_triggered_actions`
+<a id="nestedatt--spec--downward_api_change_triggered_actions"></a>
+### Nested Schema for `spec.downward_api_change_triggered_actions`
 
 Required:
 
-- `items` (Attributes List) Represents a list of files under the Downward API volume. (see [below for nested schema](#nestedatt--spec--downward_api_triggered_actions--items))
+- `items` (Attributes List) Represents a list of files under the Downward API volume. (see [below for nested schema](#nestedatt--spec--downward_api_change_triggered_actions--items))
 - `mount_point` (String) Specifies the mount point of the Downward API volume.
 - `name` (String) Specifies the name of the field. It must be a string of maximum length 63. The name should match the regex pattern '^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$'.
 
 Optional:
 
 - `command` (List of String) Specifies the command to be triggered when changes are detected in Downward API volume files. It relies on the inotify mechanism in the config-manager sidecar to monitor file changes.
-- `script_config` (Attributes) ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the DownwardAction to perform specific tasks or configurations. (see [below for nested schema](#nestedatt--spec--downward_api_triggered_actions--script_config))
+- `script_config` (Attributes) ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the DownwardAction to perform specific tasks or configurations. (see [below for nested schema](#nestedatt--spec--downward_api_change_triggered_actions--script_config))
 
-<a id="nestedatt--spec--downward_api_triggered_actions--items"></a>
-### Nested Schema for `spec.downward_api_triggered_actions.items`
+<a id="nestedatt--spec--downward_api_change_triggered_actions--items"></a>
+### Nested Schema for `spec.downward_api_change_triggered_actions.items`
 
 Required:
 
@@ -121,12 +110,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--downward_api_triggered_actions--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--downward_api_change_triggered_actions--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--downward_api_triggered_actions--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--downward_api_change_triggered_actions--items--resource_field_ref))
 
-<a id="nestedatt--spec--downward_api_triggered_actions--items--field_ref"></a>
-### Nested Schema for `spec.downward_api_triggered_actions.items.field_ref`
+<a id="nestedatt--spec--downward_api_change_triggered_actions--items--field_ref"></a>
+### Nested Schema for `spec.downward_api_change_triggered_actions.items.field_ref`
 
 Required:
 
@@ -137,8 +126,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--downward_api_triggered_actions--items--resource_field_ref"></a>
-### Nested Schema for `spec.downward_api_triggered_actions.items.resource_field_ref`
+<a id="nestedatt--spec--downward_api_change_triggered_actions--items--resource_field_ref"></a>
+### Nested Schema for `spec.downward_api_change_triggered_actions.items.resource_field_ref`
 
 Required:
 
@@ -151,8 +140,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--downward_api_triggered_actions--script_config"></a>
-### Nested Schema for `spec.downward_api_triggered_actions.script_config`
+<a id="nestedatt--spec--downward_api_change_triggered_actions--script_config"></a>
+### Nested Schema for `spec.downward_api_change_triggered_actions.script_config`
 
 Required:
 
@@ -164,6 +153,16 @@ Optional:
 
 
 
+<a id="nestedatt--spec--parameters_schema"></a>
+### Nested Schema for `spec.parameters_schema`
+
+Optional:
+
+- `cue` (String) Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values).  CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common.  This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.
+- `schema_in_json` (Map of String) Generated from the 'cue' field and transformed into a JSON format.
+- `top_level_key` (String) Specifies the top-level key in the 'configSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configSchema.cue'.
+
+
 <a id="nestedatt--spec--reload_action"></a>
 ### Nested Schema for `spec.reload_action`
 
@@ -171,6 +170,7 @@ Optional:
 
 - `auto_trigger` (Attributes) Automatically perform the reload when specified conditions are met. (see [below for nested schema](#nestedatt--spec--reload_action--auto_trigger))
 - `shell_trigger` (Attributes) Allows to execute a custom shell script to reload the process. (see [below for nested schema](#nestedatt--spec--reload_action--shell_trigger))
+- `target_pod_selector` (Attributes) Used to match labels on the pod to determine whether a dynamic reload should be performed.  In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'reloadedPodSelector' allows you to specify label selectors to target the desired pods for the reload process.  If the 'reloadedPodSelector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload. (see [below for nested schema](#nestedatt--spec--reload_action--target_pod_selector))
 - `tpl_script_trigger` (Attributes) Enables reloading process using a Go template script. (see [below for nested schema](#nestedatt--spec--reload_action--tpl_script_trigger))
 - `unix_signal_trigger` (Attributes) Used to trigger a reload by sending a specific Unix signal to the process. (see [below for nested schema](#nestedatt--spec--reload_action--unix_signal_trigger))
 
@@ -233,6 +233,28 @@ Optional:
 
 
 
+<a id="nestedatt--spec--reload_action--target_pod_selector"></a>
+### Nested Schema for `spec.reload_action.target_pod_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--reload_action--target_pod_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--reload_action--target_pod_selector--match_expressions"></a>
+### Nested Schema for `spec.reload_action.target_pod_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
 <a id="nestedatt--spec--reload_action--tpl_script_trigger"></a>
 ### Nested Schema for `spec.reload_action.tpl_script_trigger`
 
@@ -253,25 +275,3 @@ Required:
 
 - `process_name` (String) Identifies the name of the process to which the Unix signal will be sent.
 - `signal` (String) Specifies a valid Unix signal to be sent. For a comprehensive list of all Unix signals, see: ../../pkg/configuration/configmap/handler.go:allUnixSignals
-
-
-
-<a id="nestedatt--spec--reloaded_pod_selector"></a>
-### Nested Schema for `spec.reloaded_pod_selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--reloaded_pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--reloaded_pod_selector--match_expressions"></a>
-### Nested Schema for `spec.reloaded_pod_selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.

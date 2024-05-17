@@ -45,12 +45,6 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		ComponentDefs *[]struct {
-			BuiltinMonitorContainer *struct {
-				MetricsPath *string `tfsdk:"metrics_path" json:"metricsPath,omitempty"`
-				MetricsPort *string `tfsdk:"metrics_port" json:"metricsPort,omitempty"`
-				Name        *string `tfsdk:"name" json:"name,omitempty"`
-				Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
-			} `tfsdk:"builtin_monitor_container" json:"builtinMonitorContainer,omitempty"`
 			CharacterType   *string `tfsdk:"character_type" json:"characterType,omitempty"`
 			ComponentDefRef *[]struct {
 				ComponentDefName *string `tfsdk:"component_def_name" json:"componentDefName,omitempty"`
@@ -117,7 +111,13 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 				} `tfsdk:"resources" json:"resources,omitempty"`
 				Value *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"custom_label_specs" json:"customLabelSpecs,omitempty"`
-			Description           *string `tfsdk:"description" json:"description,omitempty"`
+			Description *string `tfsdk:"description" json:"description,omitempty"`
+			Exporter    *struct {
+				ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+				ScrapePath    *string `tfsdk:"scrape_path" json:"scrapePath,omitempty"`
+				ScrapePort    *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
+				ScrapeScheme  *string `tfsdk:"scrape_scheme" json:"scrapeScheme,omitempty"`
+			} `tfsdk:"exporter" json:"exporter,omitempty"`
 			HorizontalScalePolicy *struct {
 				BackupPolicyTemplateName *string `tfsdk:"backup_policy_template_name" json:"backupPolicyTemplateName,omitempty"`
 				Type                     *string `tfsdk:"type" json:"type,omitempty"`
@@ -127,6 +127,13 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 				FilePathPattern *string `tfsdk:"file_path_pattern" json:"filePathPattern,omitempty"`
 				Name            *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"log_configs" json:"logConfigs,omitempty"`
+			Monitor *struct {
+				BuiltIn        *bool `tfsdk:"built_in" json:"builtIn,omitempty"`
+				ExporterConfig *struct {
+					ScrapePath *string `tfsdk:"scrape_path" json:"scrapePath,omitempty"`
+					ScrapePort *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
+				} `tfsdk:"exporter_config" json:"exporterConfig,omitempty"`
+			} `tfsdk:"monitor" json:"monitor,omitempty"`
 			Name    *string `tfsdk:"name" json:"name,omitempty"`
 			PodSpec *struct {
 				ActiveDeadlineSeconds *int64 `tfsdk:"active_deadline_seconds" json:"activeDeadlineSeconds,omitempty"`
@@ -1491,8 +1498,7 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 					ServiceVersion *string `tfsdk:"service_version" json:"serviceVersion,omitempty"`
 				} `tfsdk:"service_ref_declaration_specs" json:"serviceRefDeclarationSpecs,omitempty"`
 			} `tfsdk:"service_ref_declarations" json:"serviceRefDeclarations,omitempty"`
-			SidecarContainerSpecs *map[string]string `tfsdk:"sidecar_container_specs" json:"sidecarContainerSpecs,omitempty"`
-			StatefulSpec          *struct {
+			StatefulSpec *struct {
 				LlPodManagementPolicy *string `tfsdk:"ll_pod_management_policy" json:"llPodManagementPolicy,omitempty"`
 				LlUpdateStrategy      *struct {
 					RollingUpdate *struct {
@@ -1668,50 +1674,6 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 						MarkdownDescription: "Provides the definitions for the cluster components.  Deprecated since v0.9. Components should now be individually defined using ComponentDefinition and collectively referenced via 'topology.components'. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
-								"builtin_monitor_container": schema.SingleNestedAttribute{
-									Description:         "Defines the built-in metrics exporter container.",
-									MarkdownDescription: "Defines the built-in metrics exporter container.",
-									Attributes: map[string]schema.Attribute{
-										"metrics_path": schema.StringAttribute{
-											Description:         "Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
-											MarkdownDescription: "Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"metrics_port": schema.StringAttribute{
-											Description:         "Specifies the port name to scrape for metrics.",
-											MarkdownDescription: "Specifies the port name to scrape for metrics.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"name": schema.StringAttribute{
-											Description:         "Specifies the name of the built-in metrics exporter container.",
-											MarkdownDescription: "Specifies the name of the built-in metrics exporter container.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
-										"protocol": schema.StringAttribute{
-											Description:         "Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
-											MarkdownDescription: "Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.OneOf("http", "https"),
-											},
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
 								"character_type": schema.StringAttribute{
 									Description:         "Defines well-known database component name, such as mongos(mongodb), proxy(redis), mariadb(mysql).",
 									MarkdownDescription: "Defines well-known database component name, such as mongos(mongodb), proxy(redis), mariadb(mysql).",
@@ -2229,6 +2191,50 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 									Computed:            false,
 								},
 
+								"exporter": schema.SingleNestedAttribute{
+									Description:         "Defines the metrics exporter.",
+									MarkdownDescription: "Defines the metrics exporter.",
+									Attributes: map[string]schema.Attribute{
+										"container_name": schema.StringAttribute{
+											Description:         "Specifies the name of the built-in metrics exporter container.",
+											MarkdownDescription: "Specifies the name of the built-in metrics exporter container.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scrape_path": schema.StringAttribute{
+											Description:         "Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+											MarkdownDescription: "Specifies the http/https url path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scrape_port": schema.StringAttribute{
+											Description:         "Specifies the port name to scrape for metrics.",
+											MarkdownDescription: "Specifies the port name to scrape for metrics.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scrape_scheme": schema.StringAttribute{
+											Description:         "Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
+											MarkdownDescription: "Specifies the schema to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("http", "https"),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"horizontal_scale_policy": schema.SingleNestedAttribute{
 									Description:         "Defines the behavior of horizontal scale.",
 									MarkdownDescription: "Defines the behavior of horizontal scale.",
@@ -2291,6 +2297,51 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 													stringvalidator.LengthAtMost(128),
 												},
 											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"monitor": schema.SingleNestedAttribute{
+									Description:         "Deprecated since v0.9 monitor is monitoring config which provided by provider.",
+									MarkdownDescription: "Deprecated since v0.9 monitor is monitoring config which provided by provider.",
+									Attributes: map[string]schema.Attribute{
+										"built_in": schema.BoolAttribute{
+											Description:         "builtIn is a switch to enable KubeBlocks builtIn monitoring. If BuiltIn is set to true, monitor metrics will be scraped automatically. If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.",
+											MarkdownDescription: "builtIn is a switch to enable KubeBlocks builtIn monitoring. If BuiltIn is set to true, monitor metrics will be scraped automatically. If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"exporter_config": schema.SingleNestedAttribute{
+											Description:         "exporterConfig provided by provider, which specify necessary information to Time Series Database. exporterConfig is valid when builtIn is false.",
+											MarkdownDescription: "exporterConfig provided by provider, which specify necessary information to Time Series Database. exporterConfig is valid when builtIn is false.",
+											Attributes: map[string]schema.Attribute{
+												"scrape_path": schema.StringAttribute{
+													Description:         "scrapePath is exporter url path for Time Series Database to scrape metrics.",
+													MarkdownDescription: "scrapePath is exporter url path for Time Series Database to scrape metrics.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtMost(128),
+													},
+												},
+
+												"scrape_port": schema.StringAttribute{
+													Description:         "scrapePort is exporter port for Time Series Database to scrape metrics.",
+													MarkdownDescription: "scrapePort is exporter port for Time Series Database to scrape metrics.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 									},
 									Required: false,
@@ -11511,15 +11562,6 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 									Required: false,
 									Optional: true,
 									Computed: false,
-								},
-
-								"sidecar_container_specs": schema.MapAttribute{
-									Description:         "Defines the sidecar containers that will be attached to the component's main container.",
-									MarkdownDescription: "Defines the sidecar containers that will be attached to the component's main container.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
 								},
 
 								"stateful_spec": schema.SingleNestedAttribute{
