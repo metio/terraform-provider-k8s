@@ -16,8 +16,8 @@ Configuration is the resource that contains the configuration used to run tests.
 data "k8s_chainsaw_kyverno_io_configuration_v1alpha2_manifest" "example" {
   metadata = {
     name = "some-name"
-
   }
+  spec = {}
 }
 ```
 
