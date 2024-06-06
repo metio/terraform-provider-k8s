@@ -146,12 +146,12 @@ Optional:
 
 Optional:
 
-- `ext_vars` (Attributes List) ExtVars is a list of Jsonnet External Variables (see [below for nested schema](#nestedatt--spec--source--directory--recurse--ext_vars))
+- `ext_vars` (Attributes List) ExtVars is a list of Jsonnet External Variables (see [below for nested schema](#nestedatt--spec--source--directory--jsonnet--ext_vars))
 - `libs` (List of String) Additional library search dirs
-- `tlas` (Attributes List) TLAS is a list of Jsonnet Top-level Arguments (see [below for nested schema](#nestedatt--spec--source--directory--recurse--tlas))
+- `tlas` (Attributes List) TLAS is a list of Jsonnet Top-level Arguments (see [below for nested schema](#nestedatt--spec--source--directory--jsonnet--tlas))
 
-<a id="nestedatt--spec--source--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.source.directory.recurse.ext_vars`
+<a id="nestedatt--spec--source--directory--jsonnet--ext_vars"></a>
+### Nested Schema for `spec.source.directory.jsonnet.ext_vars`
 
 Required:
 
@@ -163,8 +163,8 @@ Optional:
 - `code` (Boolean)
 
 
-<a id="nestedatt--spec--source--directory--recurse--tlas"></a>
-### Nested Schema for `spec.source.directory.recurse.tlas`
+<a id="nestedatt--spec--source--directory--jsonnet--tlas"></a>
+### Nested Schema for `spec.source.directory.jsonnet.tlas`
 
 Required:
 
@@ -241,10 +241,10 @@ Optional:
 - `options` (Map of String)
 - `patch` (String)
 - `path` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--source--kustomize--version--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--source--kustomize--patches--target))
 
-<a id="nestedatt--spec--source--kustomize--version--target"></a>
-### Nested Schema for `spec.source.kustomize.version.target`
+<a id="nestedatt--spec--source--kustomize--patches--target"></a>
+### Nested Schema for `spec.source.kustomize.patches.target`
 
 Optional:
 
@@ -332,12 +332,12 @@ Optional:
 
 Optional:
 
-- `ext_vars` (Attributes List) ExtVars is a list of Jsonnet External Variables (see [below for nested schema](#nestedatt--spec--sources--directory--recurse--ext_vars))
+- `ext_vars` (Attributes List) ExtVars is a list of Jsonnet External Variables (see [below for nested schema](#nestedatt--spec--sources--directory--jsonnet--ext_vars))
 - `libs` (List of String) Additional library search dirs
-- `tlas` (Attributes List) TLAS is a list of Jsonnet Top-level Arguments (see [below for nested schema](#nestedatt--spec--sources--directory--recurse--tlas))
+- `tlas` (Attributes List) TLAS is a list of Jsonnet Top-level Arguments (see [below for nested schema](#nestedatt--spec--sources--directory--jsonnet--tlas))
 
-<a id="nestedatt--spec--sources--directory--recurse--ext_vars"></a>
-### Nested Schema for `spec.sources.directory.recurse.ext_vars`
+<a id="nestedatt--spec--sources--directory--jsonnet--ext_vars"></a>
+### Nested Schema for `spec.sources.directory.jsonnet.ext_vars`
 
 Required:
 
@@ -349,8 +349,8 @@ Optional:
 - `code` (Boolean)
 
 
-<a id="nestedatt--spec--sources--directory--recurse--tlas"></a>
-### Nested Schema for `spec.sources.directory.recurse.tlas`
+<a id="nestedatt--spec--sources--directory--jsonnet--tlas"></a>
+### Nested Schema for `spec.sources.directory.jsonnet.tlas`
 
 Required:
 
@@ -427,10 +427,10 @@ Optional:
 - `options` (Map of String)
 - `patch` (String)
 - `path` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--sources--kustomize--version--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--sources--kustomize--patches--target))
 
-<a id="nestedatt--spec--sources--kustomize--version--target"></a>
-### Nested Schema for `spec.sources.kustomize.version.target`
+<a id="nestedatt--spec--sources--kustomize--patches--target"></a>
+### Nested Schema for `spec.sources.kustomize.patches.target`
 
 Optional:
 
@@ -637,20 +637,20 @@ Optional:
 
 - `exclude` (String) Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
 - `include` (String) Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-- `jsonnet` (Attributes) Jsonnet holds options specific to Jsonnet (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--jsonnet))
+- `jsonnet` (Attributes) Jsonnet holds options specific to Jsonnet (see [below for nested schema](#nestedatt--operation--sync--source--directory--jsonnet))
 - `recurse` (Boolean) Recurse specifies whether to scan a directory recursively for manifests
 
-<a id="nestedatt--operation--sync--source--target_revision--jsonnet"></a>
-### Nested Schema for `operation.sync.source.target_revision.jsonnet`
+<a id="nestedatt--operation--sync--source--directory--jsonnet"></a>
+### Nested Schema for `operation.sync.source.directory.jsonnet`
 
 Optional:
 
-- `ext_vars` (Attributes List) ExtVars is a list of Jsonnet External Variables (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--jsonnet--ext_vars))
+- `ext_vars` (Attributes List) ExtVars is a list of Jsonnet External Variables (see [below for nested schema](#nestedatt--operation--sync--source--directory--jsonnet--ext_vars))
 - `libs` (List of String) Additional library search dirs
-- `tlas` (Attributes List) TLAS is a list of Jsonnet Top-level Arguments (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--jsonnet--tlas))
+- `tlas` (Attributes List) TLAS is a list of Jsonnet Top-level Arguments (see [below for nested schema](#nestedatt--operation--sync--source--directory--jsonnet--tlas))
 
-<a id="nestedatt--operation--sync--source--target_revision--jsonnet--ext_vars"></a>
-### Nested Schema for `operation.sync.source.target_revision.jsonnet.ext_vars`
+<a id="nestedatt--operation--sync--source--directory--jsonnet--ext_vars"></a>
+### Nested Schema for `operation.sync.source.directory.jsonnet.ext_vars`
 
 Required:
 
@@ -662,8 +662,8 @@ Optional:
 - `code` (Boolean)
 
 
-<a id="nestedatt--operation--sync--source--target_revision--jsonnet--tlas"></a>
-### Nested Schema for `operation.sync.source.target_revision.jsonnet.tlas`
+<a id="nestedatt--operation--sync--source--directory--jsonnet--tlas"></a>
+### Nested Schema for `operation.sync.source.directory.jsonnet.tlas`
 
 Required:
 
@@ -682,9 +682,9 @@ Optional:
 
 Optional:
 
-- `file_parameters` (Attributes List) FileParameters are file parameters to the helm template (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--file_parameters))
+- `file_parameters` (Attributes List) FileParameters are file parameters to the helm template (see [below for nested schema](#nestedatt--operation--sync--source--helm--file_parameters))
 - `ignore_missing_value_files` (Boolean) IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values
-- `parameters` (Attributes List) Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--parameters))
+- `parameters` (Attributes List) Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation (see [below for nested schema](#nestedatt--operation--sync--source--helm--parameters))
 - `pass_credentials` (Boolean) PassCredentials pass credentials to all domains (Helm's --pass-credentials)
 - `release_name` (String) ReleaseName is the Helm release name to use. If omitted it will use the application name
 - `skip_crds` (Boolean) SkipCrds skips custom resource definition installation step (Helm's --skip-crds)
@@ -693,8 +693,8 @@ Optional:
 - `values_object` (Map of String) ValuesObject specifies Helm values to be passed to helm template, defined as a map. This takes precedence over Values.
 - `version` (String) Version is the Helm version to use for templating ('3')
 
-<a id="nestedatt--operation--sync--source--target_revision--file_parameters"></a>
-### Nested Schema for `operation.sync.source.target_revision.file_parameters`
+<a id="nestedatt--operation--sync--source--helm--file_parameters"></a>
+### Nested Schema for `operation.sync.source.helm.file_parameters`
 
 Optional:
 
@@ -702,8 +702,8 @@ Optional:
 - `path` (String) Path is the path to the file containing the values for the Helm parameter
 
 
-<a id="nestedatt--operation--sync--source--target_revision--parameters"></a>
-### Nested Schema for `operation.sync.source.target_revision.parameters`
+<a id="nestedatt--operation--sync--source--helm--parameters"></a>
+### Nested Schema for `operation.sync.source.helm.parameters`
 
 Optional:
 
@@ -728,22 +728,22 @@ Optional:
 - `name_prefix` (String) NamePrefix is a prefix appended to resources for Kustomize apps
 - `name_suffix` (String) NameSuffix is a suffix appended to resources for Kustomize apps
 - `namespace` (String) Namespace sets the namespace that Kustomize adds to all resources
-- `patches` (Attributes List) Patches is a list of Kustomize patches (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--patches))
-- `replicas` (Attributes List) Replicas is a list of Kustomize Replicas override specifications (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--replicas))
+- `patches` (Attributes List) Patches is a list of Kustomize patches (see [below for nested schema](#nestedatt--operation--sync--source--kustomize--patches))
+- `replicas` (Attributes List) Replicas is a list of Kustomize Replicas override specifications (see [below for nested schema](#nestedatt--operation--sync--source--kustomize--replicas))
 - `version` (String) Version controls which version of Kustomize to use for rendering manifests
 
-<a id="nestedatt--operation--sync--source--target_revision--patches"></a>
-### Nested Schema for `operation.sync.source.target_revision.patches`
+<a id="nestedatt--operation--sync--source--kustomize--patches"></a>
+### Nested Schema for `operation.sync.source.kustomize.patches`
 
 Optional:
 
 - `options` (Map of String)
 - `patch` (String)
 - `path` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--patches--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--operation--sync--source--kustomize--patches--target))
 
-<a id="nestedatt--operation--sync--source--target_revision--patches--target"></a>
-### Nested Schema for `operation.sync.source.target_revision.patches.target`
+<a id="nestedatt--operation--sync--source--kustomize--patches--target"></a>
+### Nested Schema for `operation.sync.source.kustomize.patches.target`
 
 Optional:
 
@@ -757,8 +757,8 @@ Optional:
 
 
 
-<a id="nestedatt--operation--sync--source--target_revision--replicas"></a>
-### Nested Schema for `operation.sync.source.target_revision.replicas`
+<a id="nestedatt--operation--sync--source--kustomize--replicas"></a>
+### Nested Schema for `operation.sync.source.kustomize.replicas`
 
 Required:
 
@@ -772,12 +772,12 @@ Required:
 
 Optional:
 
-- `env` (Attributes List) Env is a list of environment variable entries (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--env))
+- `env` (Attributes List) Env is a list of environment variable entries (see [below for nested schema](#nestedatt--operation--sync--source--plugin--env))
 - `name` (String)
-- `parameters` (Attributes List) (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--parameters))
+- `parameters` (Attributes List) (see [below for nested schema](#nestedatt--operation--sync--source--plugin--parameters))
 
-<a id="nestedatt--operation--sync--source--target_revision--env"></a>
-### Nested Schema for `operation.sync.source.target_revision.env`
+<a id="nestedatt--operation--sync--source--plugin--env"></a>
+### Nested Schema for `operation.sync.source.plugin.env`
 
 Required:
 
@@ -785,8 +785,8 @@ Required:
 - `value` (String) Value is the value of the variable
 
 
-<a id="nestedatt--operation--sync--source--target_revision--parameters"></a>
-### Nested Schema for `operation.sync.source.target_revision.parameters`
+<a id="nestedatt--operation--sync--source--plugin--parameters"></a>
+### Nested Schema for `operation.sync.source.plugin.parameters`
 
 Optional:
 
@@ -823,20 +823,20 @@ Optional:
 
 - `exclude` (String) Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
 - `include` (String) Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-- `jsonnet` (Attributes) Jsonnet holds options specific to Jsonnet (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--jsonnet))
+- `jsonnet` (Attributes) Jsonnet holds options specific to Jsonnet (see [below for nested schema](#nestedatt--operation--sync--sources--directory--jsonnet))
 - `recurse` (Boolean) Recurse specifies whether to scan a directory recursively for manifests
 
-<a id="nestedatt--operation--sync--sources--target_revision--jsonnet"></a>
-### Nested Schema for `operation.sync.sources.target_revision.jsonnet`
+<a id="nestedatt--operation--sync--sources--directory--jsonnet"></a>
+### Nested Schema for `operation.sync.sources.directory.jsonnet`
 
 Optional:
 
-- `ext_vars` (Attributes List) ExtVars is a list of Jsonnet External Variables (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--jsonnet--ext_vars))
+- `ext_vars` (Attributes List) ExtVars is a list of Jsonnet External Variables (see [below for nested schema](#nestedatt--operation--sync--sources--directory--jsonnet--ext_vars))
 - `libs` (List of String) Additional library search dirs
-- `tlas` (Attributes List) TLAS is a list of Jsonnet Top-level Arguments (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--jsonnet--tlas))
+- `tlas` (Attributes List) TLAS is a list of Jsonnet Top-level Arguments (see [below for nested schema](#nestedatt--operation--sync--sources--directory--jsonnet--tlas))
 
-<a id="nestedatt--operation--sync--sources--target_revision--jsonnet--ext_vars"></a>
-### Nested Schema for `operation.sync.sources.target_revision.jsonnet.ext_vars`
+<a id="nestedatt--operation--sync--sources--directory--jsonnet--ext_vars"></a>
+### Nested Schema for `operation.sync.sources.directory.jsonnet.ext_vars`
 
 Required:
 
@@ -848,8 +848,8 @@ Optional:
 - `code` (Boolean)
 
 
-<a id="nestedatt--operation--sync--sources--target_revision--jsonnet--tlas"></a>
-### Nested Schema for `operation.sync.sources.target_revision.jsonnet.tlas`
+<a id="nestedatt--operation--sync--sources--directory--jsonnet--tlas"></a>
+### Nested Schema for `operation.sync.sources.directory.jsonnet.tlas`
 
 Required:
 
@@ -868,9 +868,9 @@ Optional:
 
 Optional:
 
-- `file_parameters` (Attributes List) FileParameters are file parameters to the helm template (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--file_parameters))
+- `file_parameters` (Attributes List) FileParameters are file parameters to the helm template (see [below for nested schema](#nestedatt--operation--sync--sources--helm--file_parameters))
 - `ignore_missing_value_files` (Boolean) IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values
-- `parameters` (Attributes List) Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--parameters))
+- `parameters` (Attributes List) Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation (see [below for nested schema](#nestedatt--operation--sync--sources--helm--parameters))
 - `pass_credentials` (Boolean) PassCredentials pass credentials to all domains (Helm's --pass-credentials)
 - `release_name` (String) ReleaseName is the Helm release name to use. If omitted it will use the application name
 - `skip_crds` (Boolean) SkipCrds skips custom resource definition installation step (Helm's --skip-crds)
@@ -879,8 +879,8 @@ Optional:
 - `values_object` (Map of String) ValuesObject specifies Helm values to be passed to helm template, defined as a map. This takes precedence over Values.
 - `version` (String) Version is the Helm version to use for templating ('3')
 
-<a id="nestedatt--operation--sync--sources--target_revision--file_parameters"></a>
-### Nested Schema for `operation.sync.sources.target_revision.file_parameters`
+<a id="nestedatt--operation--sync--sources--helm--file_parameters"></a>
+### Nested Schema for `operation.sync.sources.helm.file_parameters`
 
 Optional:
 
@@ -888,8 +888,8 @@ Optional:
 - `path` (String) Path is the path to the file containing the values for the Helm parameter
 
 
-<a id="nestedatt--operation--sync--sources--target_revision--parameters"></a>
-### Nested Schema for `operation.sync.sources.target_revision.parameters`
+<a id="nestedatt--operation--sync--sources--helm--parameters"></a>
+### Nested Schema for `operation.sync.sources.helm.parameters`
 
 Optional:
 
@@ -914,22 +914,22 @@ Optional:
 - `name_prefix` (String) NamePrefix is a prefix appended to resources for Kustomize apps
 - `name_suffix` (String) NameSuffix is a suffix appended to resources for Kustomize apps
 - `namespace` (String) Namespace sets the namespace that Kustomize adds to all resources
-- `patches` (Attributes List) Patches is a list of Kustomize patches (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--patches))
-- `replicas` (Attributes List) Replicas is a list of Kustomize Replicas override specifications (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--replicas))
+- `patches` (Attributes List) Patches is a list of Kustomize patches (see [below for nested schema](#nestedatt--operation--sync--sources--kustomize--patches))
+- `replicas` (Attributes List) Replicas is a list of Kustomize Replicas override specifications (see [below for nested schema](#nestedatt--operation--sync--sources--kustomize--replicas))
 - `version` (String) Version controls which version of Kustomize to use for rendering manifests
 
-<a id="nestedatt--operation--sync--sources--target_revision--patches"></a>
-### Nested Schema for `operation.sync.sources.target_revision.patches`
+<a id="nestedatt--operation--sync--sources--kustomize--patches"></a>
+### Nested Schema for `operation.sync.sources.kustomize.patches`
 
 Optional:
 
 - `options` (Map of String)
 - `patch` (String)
 - `path` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--patches--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--operation--sync--sources--kustomize--patches--target))
 
-<a id="nestedatt--operation--sync--sources--target_revision--patches--target"></a>
-### Nested Schema for `operation.sync.sources.target_revision.patches.target`
+<a id="nestedatt--operation--sync--sources--kustomize--patches--target"></a>
+### Nested Schema for `operation.sync.sources.kustomize.patches.target`
 
 Optional:
 
@@ -943,8 +943,8 @@ Optional:
 
 
 
-<a id="nestedatt--operation--sync--sources--target_revision--replicas"></a>
-### Nested Schema for `operation.sync.sources.target_revision.replicas`
+<a id="nestedatt--operation--sync--sources--kustomize--replicas"></a>
+### Nested Schema for `operation.sync.sources.kustomize.replicas`
 
 Required:
 
@@ -958,12 +958,12 @@ Required:
 
 Optional:
 
-- `env` (Attributes List) Env is a list of environment variable entries (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--env))
+- `env` (Attributes List) Env is a list of environment variable entries (see [below for nested schema](#nestedatt--operation--sync--sources--plugin--env))
 - `name` (String)
-- `parameters` (Attributes List) (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--parameters))
+- `parameters` (Attributes List) (see [below for nested schema](#nestedatt--operation--sync--sources--plugin--parameters))
 
-<a id="nestedatt--operation--sync--sources--target_revision--env"></a>
-### Nested Schema for `operation.sync.sources.target_revision.env`
+<a id="nestedatt--operation--sync--sources--plugin--env"></a>
+### Nested Schema for `operation.sync.sources.plugin.env`
 
 Required:
 
@@ -971,8 +971,8 @@ Required:
 - `value` (String) Value is the value of the variable
 
 
-<a id="nestedatt--operation--sync--sources--target_revision--parameters"></a>
-### Nested Schema for `operation.sync.sources.target_revision.parameters`
+<a id="nestedatt--operation--sync--sources--plugin--parameters"></a>
+### Nested Schema for `operation.sync.sources.plugin.parameters`
 
 Optional:
 

@@ -253,11 +253,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--pod_metrics_endpoints--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.oauth2.scopes.config_map`
+<a id="nestedatt--spec--pod_metrics_endpoints--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.pod_metrics_endpoints.oauth2.client_id.config_map`
 
 Required:
 
@@ -269,8 +269,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--pod_metrics_endpoints--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.oauth2.scopes.secret`
+<a id="nestedatt--spec--pod_metrics_endpoints--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.pod_metrics_endpoints.oauth2.client_id.secret`
 
 Required:
 
@@ -327,11 +327,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config--ca--secret))
 
-<a id="nestedatt--spec--pod_metrics_endpoints--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.tls_config.server_name.config_map`
+<a id="nestedatt--spec--pod_metrics_endpoints--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.pod_metrics_endpoints.tls_config.ca.config_map`
 
 Required:
 
@@ -343,8 +343,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--pod_metrics_endpoints--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.tls_config.server_name.secret`
+<a id="nestedatt--spec--pod_metrics_endpoints--tls_config--ca--secret"></a>
+### Nested Schema for `spec.pod_metrics_endpoints.tls_config.ca.secret`
 
 Required:
 
@@ -362,11 +362,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config--cert--secret))
 
-<a id="nestedatt--spec--pod_metrics_endpoints--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.tls_config.server_name.config_map`
+<a id="nestedatt--spec--pod_metrics_endpoints--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.pod_metrics_endpoints.tls_config.cert.config_map`
 
 Required:
 
@@ -378,8 +378,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--pod_metrics_endpoints--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.pod_metrics_endpoints.tls_config.server_name.secret`
+<a id="nestedatt--spec--pod_metrics_endpoints--tls_config--cert--secret"></a>
+### Nested Schema for `spec.pod_metrics_endpoints.tls_config.cert.secret`
 
 Required:
 

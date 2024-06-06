@@ -128,20 +128,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--apparatus--containers--env--value_from))
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--value_from"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.value_from`
+<a id="nestedatt--spec--apparatus--containers--env--value_from"></a>
+### Nested Schema for `spec.apparatus.containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--apparatus--containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--apparatus--containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--apparatus--containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--apparatus--containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.value_from.config_map_key_ref`
+<a id="nestedatt--spec--apparatus--containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.apparatus.containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -153,8 +153,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.value_from.field_ref`
+<a id="nestedatt--spec--apparatus--containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.apparatus.containers.env.value_from.field_ref`
 
 Required:
 
@@ -165,8 +165,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.value_from.resource_field_ref`
+<a id="nestedatt--spec--apparatus--containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.apparatus.containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -178,8 +178,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.value_from.secret_key_ref`
+<a id="nestedatt--spec--apparatus--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.apparatus.containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -198,12 +198,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--apparatus--containers--env_from--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--apparatus--containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.config_map_ref`
+<a id="nestedatt--spec--apparatus--containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.apparatus.containers.env_from.config_map_ref`
 
 Optional:
 
@@ -211,8 +211,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--secret_ref"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.secret_ref`
+<a id="nestedatt--spec--apparatus--containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.apparatus.containers.env_from.secret_ref`
 
 Optional:
 
@@ -226,28 +226,28 @@ Optional:
 
 Optional:
 
-- `post_start` (Attributes) PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--post_start))
-- `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--pre_stop))
+- `post_start` (Attributes) PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--apparatus--containers--lifecycle--post_start))
+- `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--apparatus--containers--lifecycle--pre_stop))
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--post_start"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.post_start`
+<a id="nestedatt--spec--apparatus--containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.apparatus.containers.lifecycle.post_start`
 
 Optional:
 
-- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--post_start--exec))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--post_start--http_get))
-- `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--post_start--tcp_socket))
+- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--apparatus--containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--apparatus--containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--apparatus--containers--lifecycle--post_start--tcp_socket))
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--post_start--exec"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.post_start.exec`
+<a id="nestedatt--spec--apparatus--containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.apparatus.containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--post_start--http_get"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.post_start.http_get`
+<a id="nestedatt--spec--apparatus--containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.apparatus.containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -256,12 +256,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--post_start--tcp_socket--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--apparatus--containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--post_start--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.post_start.tcp_socket.http_headers`
+<a id="nestedatt--spec--apparatus--containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.apparatus.containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -270,8 +270,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--post_start--tcp_socket"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.post_start.tcp_socket`
+<a id="nestedatt--spec--apparatus--containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.apparatus.containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -283,25 +283,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--pre_stop"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.pre_stop`
+<a id="nestedatt--spec--apparatus--containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.apparatus.containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--pre_stop--exec))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--pre_stop--tcp_socket))
+- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--apparatus--containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--apparatus--containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--apparatus--containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.pre_stop.exec`
+<a id="nestedatt--spec--apparatus--containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.apparatus.containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--apparatus--containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.apparatus.containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -310,12 +310,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--apparatus--containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--apparatus--containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.apparatus.containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -324,8 +324,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--apparatus--containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.apparatus.containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -343,27 +343,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--exec))
+- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--apparatus--containers--liveness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--grpc))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--http_get))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--apparatus--containers--liveness_probe--grpc))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--apparatus--containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--apparatus--containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--exec"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.exec`
+<a id="nestedatt--spec--apparatus--containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.apparatus.containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.grpc`
+<a id="nestedatt--spec--apparatus--containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.apparatus.containers.liveness_probe.grpc`
 
 Required:
 
@@ -374,8 +374,8 @@ Optional:
 - `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.http_get`
+<a id="nestedatt--spec--apparatus--containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.apparatus.containers.liveness_probe.http_get`
 
 Required:
 
@@ -384,12 +384,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--http_get--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--apparatus--containers--liveness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.http_get.http_headers`
+<a id="nestedatt--spec--apparatus--containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.apparatus.containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -398,8 +398,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.tcp_socket`
+<a id="nestedatt--spec--apparatus--containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.apparatus.containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -431,27 +431,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--exec))
+- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--apparatus--containers--readiness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--grpc))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--http_get))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--apparatus--containers--readiness_probe--grpc))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--apparatus--containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--apparatus--containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--exec"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.exec`
+<a id="nestedatt--spec--apparatus--containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.apparatus.containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.grpc`
+<a id="nestedatt--spec--apparatus--containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.apparatus.containers.readiness_probe.grpc`
 
 Required:
 
@@ -462,8 +462,8 @@ Optional:
 - `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.http_get`
+<a id="nestedatt--spec--apparatus--containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.apparatus.containers.readiness_probe.http_get`
 
 Required:
 
@@ -472,12 +472,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--http_get--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--apparatus--containers--readiness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.http_get.http_headers`
+<a id="nestedatt--spec--apparatus--containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.apparatus.containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -486,8 +486,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.tcp_socket`
+<a id="nestedatt--spec--apparatus--containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.apparatus.containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -504,12 +504,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. (see [below for nested schema](#nestedatt--spec--apparatus--containers--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--claims"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.claims`
+<a id="nestedatt--spec--apparatus--containers--resources--claims"></a>
+### Nested Schema for `spec.apparatus.containers.resources.claims`
 
 Required:
 
@@ -523,19 +523,19 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
-- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--capabilities))
+- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--apparatus--containers--security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
 - `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
 - `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.
 - `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
 - `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
-- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--se_linux_options))
-- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--seccomp_profile))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--windows_options))
+- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--apparatus--containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--apparatus--containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--apparatus--containers--security_context--windows_options))
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--capabilities"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.capabilities`
+<a id="nestedatt--spec--apparatus--containers--security_context--capabilities"></a>
+### Nested Schema for `spec.apparatus.containers.security_context.capabilities`
 
 Optional:
 
@@ -543,8 +543,8 @@ Optional:
 - `drop` (List of String) Removed capabilities
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.se_linux_options`
+<a id="nestedatt--spec--apparatus--containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.apparatus.containers.security_context.se_linux_options`
 
 Optional:
 
@@ -554,8 +554,8 @@ Optional:
 - `user` (String) User is a SELinux user label that applies to the container.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.seccomp_profile`
+<a id="nestedatt--spec--apparatus--containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.apparatus.containers.security_context.seccomp_profile`
 
 Required:
 
@@ -566,8 +566,8 @@ Optional:
 - `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--windows_options"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.windows_options`
+<a id="nestedatt--spec--apparatus--containers--security_context--windows_options"></a>
+### Nested Schema for `spec.apparatus.containers.security_context.windows_options`
 
 Optional:
 
@@ -583,27 +583,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--exec))
+- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--apparatus--containers--startup_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--grpc))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--http_get))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--apparatus--containers--startup_probe--grpc))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--apparatus--containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--apparatus--containers--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--exec"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.exec`
+<a id="nestedatt--spec--apparatus--containers--startup_probe--exec"></a>
+### Nested Schema for `spec.apparatus.containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--grpc"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.grpc`
+<a id="nestedatt--spec--apparatus--containers--startup_probe--grpc"></a>
+### Nested Schema for `spec.apparatus.containers.startup_probe.grpc`
 
 Required:
 
@@ -614,8 +614,8 @@ Optional:
 - `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--http_get"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.http_get`
+<a id="nestedatt--spec--apparatus--containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.apparatus.containers.startup_probe.http_get`
 
 Required:
 
@@ -624,12 +624,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--apparatus--containers--working_dir--http_get--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--apparatus--containers--startup_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--http_get--http_headers"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.http_get.http_headers`
+<a id="nestedatt--spec--apparatus--containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.apparatus.containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -638,8 +638,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--apparatus--containers--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.apparatus.containers.working_dir.tcp_socket`
+<a id="nestedatt--spec--apparatus--containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.apparatus.containers.startup_probe.tcp_socket`
 
 Required:
 

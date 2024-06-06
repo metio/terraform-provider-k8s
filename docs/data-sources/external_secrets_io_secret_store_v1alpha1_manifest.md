@@ -100,11 +100,11 @@ Optional:
 
 Optional:
 
-- `kubernetes_auth` (Attributes) Kubernetes authenticates with Akeyless by passing the ServiceAccounttoken stored in the named Secret resource. (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider--kubernetes_auth))
-- `secret_ref` (Attributes) Reference to a Secret that contains the detailsto authenticate with Akeyless. (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider--secret_ref))
+- `kubernetes_auth` (Attributes) Kubernetes authenticates with Akeyless by passing the ServiceAccounttoken stored in the named Secret resource. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth))
+- `secret_ref` (Attributes) Reference to a Secret that contains the detailsto authenticate with Akeyless. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref))
 
-<a id="nestedatt--spec--provider--akeyless--ca_provider--kubernetes_auth"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider.kubernetes_auth`
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth`
 
 Required:
 
@@ -113,11 +113,11 @@ Required:
 
 Optional:
 
-- `secret_ref` (Attributes) Optional secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Akeyless. If a name is specified without a key,'token' is the default. If one is not specified, the one bound tothe controller will be used. (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider--kubernetes_auth--secret_ref))
-- `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Akeyless. If the service account selector is not supplied,the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider--kubernetes_auth--service_account_ref))
+- `secret_ref` (Attributes) Optional secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Akeyless. If a name is specified without a key,'token' is the default. If one is not specified, the one bound tothe controller will be used. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--secret_ref))
+- `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Akeyless. If the service account selector is not supplied,the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--service_account_ref))
 
-<a id="nestedatt--spec--provider--akeyless--ca_provider--kubernetes_auth--secret_ref"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider.kubernetes_auth.secret_ref`
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--secret_ref"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth.secret_ref`
 
 Optional:
 
@@ -126,8 +126,8 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
-<a id="nestedatt--spec--provider--akeyless--ca_provider--kubernetes_auth--service_account_ref"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider.kubernetes_auth.service_account_ref`
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--service_account_ref"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth.service_account_ref`
 
 Required:
 
@@ -140,27 +140,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--provider--akeyless--ca_provider--secret_ref"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider.secret_ref`
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.secret_ref`
 
 Optional:
 
-- `access_id` (Attributes) The SecretAccessID is used for authentication (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider--secret_ref--access_id))
-- `access_type` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider--secret_ref--access_type))
-- `access_type_param` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider--secret_ref--access_type_param))
+- `access_id` (Attributes) The SecretAccessID is used for authentication (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_id))
+- `access_type` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_type))
+- `access_type_param` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_type_param))
 
-<a id="nestedatt--spec--provider--akeyless--ca_provider--secret_ref--access_id"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider.secret_ref.access_id`
-
-Optional:
-
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
-- `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
-
-
-<a id="nestedatt--spec--provider--akeyless--ca_provider--secret_ref--access_type"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider.secret_ref.access_type`
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_id"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.secret_ref.access_id`
 
 Optional:
 
@@ -169,8 +159,18 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
-<a id="nestedatt--spec--provider--akeyless--ca_provider--secret_ref--access_type_param"></a>
-### Nested Schema for `spec.provider.akeyless.ca_provider.secret_ref.access_type_param`
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_type"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.secret_ref.access_type`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_type_param"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.secret_ref.access_type_param`
 
 Optional:
 
@@ -209,11 +209,11 @@ Required:
 
 Optional:
 
-- `rrsa` (Attributes) Authenticate against Alibaba using RRSA. (see [below for nested schema](#nestedatt--spec--provider--alibaba--region_id--rrsa))
-- `secret_ref` (Attributes) AlibabaAuthSecretRef holds secret references for Alibaba credentials. (see [below for nested schema](#nestedatt--spec--provider--alibaba--region_id--secret_ref))
+- `rrsa` (Attributes) Authenticate against Alibaba using RRSA. (see [below for nested schema](#nestedatt--spec--provider--alibaba--auth--rrsa))
+- `secret_ref` (Attributes) AlibabaAuthSecretRef holds secret references for Alibaba credentials. (see [below for nested schema](#nestedatt--spec--provider--alibaba--auth--secret_ref))
 
-<a id="nestedatt--spec--provider--alibaba--region_id--rrsa"></a>
-### Nested Schema for `spec.provider.alibaba.region_id.rrsa`
+<a id="nestedatt--spec--provider--alibaba--auth--rrsa"></a>
+### Nested Schema for `spec.provider.alibaba.auth.rrsa`
 
 Required:
 
@@ -223,16 +223,16 @@ Required:
 - `session_name` (String)
 
 
-<a id="nestedatt--spec--provider--alibaba--region_id--secret_ref"></a>
-### Nested Schema for `spec.provider.alibaba.region_id.secret_ref`
+<a id="nestedatt--spec--provider--alibaba--auth--secret_ref"></a>
+### Nested Schema for `spec.provider.alibaba.auth.secret_ref`
 
 Required:
 
-- `access_key_id_secret_ref` (Attributes) The AccessKeyID is used for authentication (see [below for nested schema](#nestedatt--spec--provider--alibaba--region_id--secret_ref--access_key_id_secret_ref))
-- `access_key_secret_secret_ref` (Attributes) The AccessKeySecret is used for authentication (see [below for nested schema](#nestedatt--spec--provider--alibaba--region_id--secret_ref--access_key_secret_secret_ref))
+- `access_key_id_secret_ref` (Attributes) The AccessKeyID is used for authentication (see [below for nested schema](#nestedatt--spec--provider--alibaba--auth--secret_ref--access_key_id_secret_ref))
+- `access_key_secret_secret_ref` (Attributes) The AccessKeySecret is used for authentication (see [below for nested schema](#nestedatt--spec--provider--alibaba--auth--secret_ref--access_key_secret_secret_ref))
 
-<a id="nestedatt--spec--provider--alibaba--region_id--secret_ref--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.provider.alibaba.region_id.secret_ref.access_key_id_secret_ref`
+<a id="nestedatt--spec--provider--alibaba--auth--secret_ref--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.provider.alibaba.auth.secret_ref.access_key_id_secret_ref`
 
 Optional:
 
@@ -241,8 +241,8 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
-<a id="nestedatt--spec--provider--alibaba--region_id--secret_ref--access_key_secret_secret_ref"></a>
-### Nested Schema for `spec.provider.alibaba.region_id.secret_ref.access_key_secret_secret_ref`
+<a id="nestedatt--spec--provider--alibaba--auth--secret_ref--access_key_secret_secret_ref"></a>
+### Nested Schema for `spec.provider.alibaba.auth.secret_ref.access_key_secret_secret_ref`
 
 Optional:
 
@@ -272,18 +272,18 @@ Optional:
 
 Optional:
 
-- `jwt` (Attributes) Authenticate against AWS using service account tokens. (see [below for nested schema](#nestedatt--spec--provider--aws--role--jwt))
-- `secret_ref` (Attributes) AWSAuthSecretRef holds secret references for AWS credentialsboth AccessKeyID and SecretAccessKey must be defined in order to properly authenticate. (see [below for nested schema](#nestedatt--spec--provider--aws--role--secret_ref))
+- `jwt` (Attributes) Authenticate against AWS using service account tokens. (see [below for nested schema](#nestedatt--spec--provider--aws--auth--jwt))
+- `secret_ref` (Attributes) AWSAuthSecretRef holds secret references for AWS credentialsboth AccessKeyID and SecretAccessKey must be defined in order to properly authenticate. (see [below for nested schema](#nestedatt--spec--provider--aws--auth--secret_ref))
 
-<a id="nestedatt--spec--provider--aws--role--jwt"></a>
-### Nested Schema for `spec.provider.aws.role.jwt`
+<a id="nestedatt--spec--provider--aws--auth--jwt"></a>
+### Nested Schema for `spec.provider.aws.auth.jwt`
 
 Optional:
 
-- `service_account_ref` (Attributes) A reference to a ServiceAccount resource. (see [below for nested schema](#nestedatt--spec--provider--aws--role--jwt--service_account_ref))
+- `service_account_ref` (Attributes) A reference to a ServiceAccount resource. (see [below for nested schema](#nestedatt--spec--provider--aws--auth--jwt--service_account_ref))
 
-<a id="nestedatt--spec--provider--aws--role--jwt--service_account_ref"></a>
-### Nested Schema for `spec.provider.aws.role.jwt.service_account_ref`
+<a id="nestedatt--spec--provider--aws--auth--jwt--service_account_ref"></a>
+### Nested Schema for `spec.provider.aws.auth.jwt.service_account_ref`
 
 Required:
 
@@ -296,16 +296,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--provider--aws--role--secret_ref"></a>
-### Nested Schema for `spec.provider.aws.role.secret_ref`
+<a id="nestedatt--spec--provider--aws--auth--secret_ref"></a>
+### Nested Schema for `spec.provider.aws.auth.secret_ref`
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) The AccessKeyID is used for authentication (see [below for nested schema](#nestedatt--spec--provider--aws--role--secret_ref--access_key_id_secret_ref))
-- `secret_access_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication (see [below for nested schema](#nestedatt--spec--provider--aws--role--secret_ref--secret_access_key_secret_ref))
+- `access_key_id_secret_ref` (Attributes) The AccessKeyID is used for authentication (see [below for nested schema](#nestedatt--spec--provider--aws--auth--secret_ref--access_key_id_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication (see [below for nested schema](#nestedatt--spec--provider--aws--auth--secret_ref--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--provider--aws--role--secret_ref--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.provider.aws.role.secret_ref.access_key_id_secret_ref`
+<a id="nestedatt--spec--provider--aws--auth--secret_ref--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.provider.aws.auth.secret_ref.access_key_id_secret_ref`
 
 Optional:
 
@@ -314,8 +314,8 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
-<a id="nestedatt--spec--provider--aws--role--secret_ref--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.provider.aws.role.secret_ref.secret_access_key_secret_ref`
+<a id="nestedatt--spec--provider--aws--auth--secret_ref--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.provider.aws.auth.secret_ref.secret_access_key_secret_ref`
 
 Optional:
 
@@ -347,11 +347,11 @@ Optional:
 
 Optional:
 
-- `client_id` (Attributes) The Azure clientId of the service principle used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--tenant_id--client_id))
-- `client_secret` (Attributes) The Azure ClientSecret of the service principle used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--tenant_id--client_secret))
+- `client_id` (Attributes) The Azure clientId of the service principle used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--auth_secret_ref--client_id))
+- `client_secret` (Attributes) The Azure ClientSecret of the service principle used for authentication. (see [below for nested schema](#nestedatt--spec--provider--azurekv--auth_secret_ref--client_secret))
 
-<a id="nestedatt--spec--provider--azurekv--tenant_id--client_id"></a>
-### Nested Schema for `spec.provider.azurekv.tenant_id.client_id`
+<a id="nestedatt--spec--provider--azurekv--auth_secret_ref--client_id"></a>
+### Nested Schema for `spec.provider.azurekv.auth_secret_ref.client_id`
 
 Optional:
 
@@ -360,8 +360,8 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
-<a id="nestedatt--spec--provider--azurekv--tenant_id--client_secret"></a>
-### Nested Schema for `spec.provider.azurekv.tenant_id.client_secret`
+<a id="nestedatt--spec--provider--azurekv--auth_secret_ref--client_secret"></a>
+### Nested Schema for `spec.provider.azurekv.auth_secret_ref.client_secret`
 
 Optional:
 
@@ -420,18 +420,18 @@ Optional:
 
 Optional:
 
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--gcpsm--project_id--secret_ref))
-- `workload_identity` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--gcpsm--project_id--workload_identity))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--gcpsm--auth--secret_ref))
+- `workload_identity` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--gcpsm--auth--workload_identity))
 
-<a id="nestedatt--spec--provider--gcpsm--project_id--secret_ref"></a>
-### Nested Schema for `spec.provider.gcpsm.project_id.secret_ref`
+<a id="nestedatt--spec--provider--gcpsm--auth--secret_ref"></a>
+### Nested Schema for `spec.provider.gcpsm.auth.secret_ref`
 
 Optional:
 
-- `secret_access_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication (see [below for nested schema](#nestedatt--spec--provider--gcpsm--project_id--secret_ref--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication (see [below for nested schema](#nestedatt--spec--provider--gcpsm--auth--secret_ref--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--provider--gcpsm--project_id--secret_ref--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.provider.gcpsm.project_id.secret_ref.secret_access_key_secret_ref`
+<a id="nestedatt--spec--provider--gcpsm--auth--secret_ref--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.provider.gcpsm.auth.secret_ref.secret_access_key_secret_ref`
 
 Optional:
 
@@ -441,21 +441,21 @@ Optional:
 
 
 
-<a id="nestedatt--spec--provider--gcpsm--project_id--workload_identity"></a>
-### Nested Schema for `spec.provider.gcpsm.project_id.workload_identity`
+<a id="nestedatt--spec--provider--gcpsm--auth--workload_identity"></a>
+### Nested Schema for `spec.provider.gcpsm.auth.workload_identity`
 
 Required:
 
 - `cluster_location` (String)
 - `cluster_name` (String)
-- `service_account_ref` (Attributes) A reference to a ServiceAccount resource. (see [below for nested schema](#nestedatt--spec--provider--gcpsm--project_id--workload_identity--service_account_ref))
+- `service_account_ref` (Attributes) A reference to a ServiceAccount resource. (see [below for nested schema](#nestedatt--spec--provider--gcpsm--auth--workload_identity--service_account_ref))
 
 Optional:
 
 - `cluster_project_id` (String)
 
-<a id="nestedatt--spec--provider--gcpsm--project_id--workload_identity--service_account_ref"></a>
-### Nested Schema for `spec.provider.gcpsm.project_id.workload_identity.service_account_ref`
+<a id="nestedatt--spec--provider--gcpsm--auth--workload_identity--service_account_ref"></a>
+### Nested Schema for `spec.provider.gcpsm.auth.workload_identity.service_account_ref`
 
 Required:
 
@@ -487,17 +487,17 @@ Optional:
 
 Required:
 
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--gitlab--url--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--gitlab--auth--secret_ref))
 
-<a id="nestedatt--spec--provider--gitlab--url--secret_ref"></a>
-### Nested Schema for `spec.provider.gitlab.url.secret_ref`
+<a id="nestedatt--spec--provider--gitlab--auth--secret_ref"></a>
+### Nested Schema for `spec.provider.gitlab.auth.secret_ref`
 
 Optional:
 
-- `access_token` (Attributes) AccessToken is used for authentication. (see [below for nested schema](#nestedatt--spec--provider--gitlab--url--secret_ref--access_token))
+- `access_token` (Attributes) AccessToken is used for authentication. (see [below for nested schema](#nestedatt--spec--provider--gitlab--auth--secret_ref--access_token))
 
-<a id="nestedatt--spec--provider--gitlab--url--secret_ref--access_token"></a>
-### Nested Schema for `spec.provider.gitlab.url.secret_ref.access_token`
+<a id="nestedatt--spec--provider--gitlab--auth--secret_ref--access_token"></a>
+### Nested Schema for `spec.provider.gitlab.auth.secret_ref.access_token`
 
 Optional:
 
@@ -525,17 +525,17 @@ Optional:
 
 Required:
 
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--ibm--service_url--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--ibm--auth--secret_ref))
 
-<a id="nestedatt--spec--provider--ibm--service_url--secret_ref"></a>
-### Nested Schema for `spec.provider.ibm.service_url.secret_ref`
+<a id="nestedatt--spec--provider--ibm--auth--secret_ref"></a>
+### Nested Schema for `spec.provider.ibm.auth.secret_ref`
 
 Optional:
 
-- `secret_api_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication (see [below for nested schema](#nestedatt--spec--provider--ibm--service_url--secret_ref--secret_api_key_secret_ref))
+- `secret_api_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication (see [below for nested schema](#nestedatt--spec--provider--ibm--auth--secret_ref--secret_api_key_secret_ref))
 
-<a id="nestedatt--spec--provider--ibm--service_url--secret_ref--secret_api_key_secret_ref"></a>
-### Nested Schema for `spec.provider.ibm.service_url.secret_ref.secret_api_key_secret_ref`
+<a id="nestedatt--spec--provider--ibm--auth--secret_ref--secret_api_key_secret_ref"></a>
+### Nested Schema for `spec.provider.ibm.auth.secret_ref.secret_api_key_secret_ref`
 
 Optional:
 
@@ -564,30 +564,20 @@ Optional:
 
 Optional:
 
-- `cert` (Attributes) has both clientCert and clientKey as secretKeySelector (see [below for nested schema](#nestedatt--spec--provider--kubernetes--server--cert))
-- `service_account` (Attributes) points to a service account that should be used for authentication (see [below for nested schema](#nestedatt--spec--provider--kubernetes--server--service_account))
-- `token` (Attributes) use static token to authenticate with (see [below for nested schema](#nestedatt--spec--provider--kubernetes--server--token))
+- `cert` (Attributes) has both clientCert and clientKey as secretKeySelector (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--cert))
+- `service_account` (Attributes) points to a service account that should be used for authentication (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--service_account))
+- `token` (Attributes) use static token to authenticate with (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--token))
 
-<a id="nestedatt--spec--provider--kubernetes--server--cert"></a>
-### Nested Schema for `spec.provider.kubernetes.server.cert`
-
-Optional:
-
-- `client_cert` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--server--cert--client_cert))
-- `client_key` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--server--cert--client_key))
-
-<a id="nestedatt--spec--provider--kubernetes--server--cert--client_cert"></a>
-### Nested Schema for `spec.provider.kubernetes.server.cert.client_cert`
+<a id="nestedatt--spec--provider--kubernetes--auth--cert"></a>
+### Nested Schema for `spec.provider.kubernetes.auth.cert`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
-- `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `client_cert` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--cert--client_cert))
+- `client_key` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--cert--client_key))
 
-
-<a id="nestedatt--spec--provider--kubernetes--server--cert--client_key"></a>
-### Nested Schema for `spec.provider.kubernetes.server.cert.client_key`
+<a id="nestedatt--spec--provider--kubernetes--auth--cert--client_cert"></a>
+### Nested Schema for `spec.provider.kubernetes.auth.cert.client_cert`
 
 Optional:
 
@@ -596,16 +586,26 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
-
-<a id="nestedatt--spec--provider--kubernetes--server--service_account"></a>
-### Nested Schema for `spec.provider.kubernetes.server.service_account`
+<a id="nestedatt--spec--provider--kubernetes--auth--cert--client_key"></a>
+### Nested Schema for `spec.provider.kubernetes.auth.cert.client_key`
 
 Optional:
 
-- `service_account` (Attributes) A reference to a ServiceAccount resource. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--server--service_account--service_account))
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
-<a id="nestedatt--spec--provider--kubernetes--server--service_account--service_account"></a>
-### Nested Schema for `spec.provider.kubernetes.server.service_account.service_account`
+
+
+<a id="nestedatt--spec--provider--kubernetes--auth--service_account"></a>
+### Nested Schema for `spec.provider.kubernetes.auth.service_account`
+
+Optional:
+
+- `service_account` (Attributes) A reference to a ServiceAccount resource. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--service_account--service_account))
+
+<a id="nestedatt--spec--provider--kubernetes--auth--service_account--service_account"></a>
+### Nested Schema for `spec.provider.kubernetes.auth.service_account.service_account`
 
 Required:
 
@@ -618,15 +618,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--provider--kubernetes--server--token"></a>
-### Nested Schema for `spec.provider.kubernetes.server.token`
+<a id="nestedatt--spec--provider--kubernetes--auth--token"></a>
+### Nested Schema for `spec.provider.kubernetes.auth.token`
 
 Optional:
 
-- `bearer_token` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--server--token--bearer_token))
+- `bearer_token` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--token--bearer_token))
 
-<a id="nestedatt--spec--provider--kubernetes--server--token--bearer_token"></a>
-### Nested Schema for `spec.provider.kubernetes.server.token.bearer_token`
+<a id="nestedatt--spec--provider--kubernetes--auth--token--bearer_token"></a>
+### Nested Schema for `spec.provider.kubernetes.auth.token.bearer_token`
 
 Optional:
 
@@ -683,20 +683,20 @@ Optional:
 
 Required:
 
-- `secret_ref` (Attributes) SecretRef to pass through sensitive information. (see [below for nested schema](#nestedatt--spec--provider--oracle--service_account_ref--secret_ref))
+- `secret_ref` (Attributes) SecretRef to pass through sensitive information. (see [below for nested schema](#nestedatt--spec--provider--oracle--auth--secret_ref))
 - `tenancy` (String) Tenancy is the tenancy OCID where user is located.
 - `user` (String) User is an access OCID specific to the account.
 
-<a id="nestedatt--spec--provider--oracle--service_account_ref--secret_ref"></a>
-### Nested Schema for `spec.provider.oracle.service_account_ref.secret_ref`
+<a id="nestedatt--spec--provider--oracle--auth--secret_ref"></a>
+### Nested Schema for `spec.provider.oracle.auth.secret_ref`
 
 Required:
 
-- `fingerprint` (Attributes) Fingerprint is the fingerprint of the API private key. (see [below for nested schema](#nestedatt--spec--provider--oracle--service_account_ref--secret_ref--fingerprint))
-- `privatekey` (Attributes) PrivateKey is the user's API Signing Key in PEM format, used for authentication. (see [below for nested schema](#nestedatt--spec--provider--oracle--service_account_ref--secret_ref--privatekey))
+- `fingerprint` (Attributes) Fingerprint is the fingerprint of the API private key. (see [below for nested schema](#nestedatt--spec--provider--oracle--auth--secret_ref--fingerprint))
+- `privatekey` (Attributes) PrivateKey is the user's API Signing Key in PEM format, used for authentication. (see [below for nested schema](#nestedatt--spec--provider--oracle--auth--secret_ref--privatekey))
 
-<a id="nestedatt--spec--provider--oracle--service_account_ref--secret_ref--fingerprint"></a>
-### Nested Schema for `spec.provider.oracle.service_account_ref.secret_ref.fingerprint`
+<a id="nestedatt--spec--provider--oracle--auth--secret_ref--fingerprint"></a>
+### Nested Schema for `spec.provider.oracle.auth.secret_ref.fingerprint`
 
 Optional:
 
@@ -705,8 +705,8 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
-<a id="nestedatt--spec--provider--oracle--service_account_ref--secret_ref--privatekey"></a>
-### Nested Schema for `spec.provider.oracle.service_account_ref.secret_ref.privatekey`
+<a id="nestedatt--spec--provider--oracle--auth--secret_ref--privatekey"></a>
+### Nested Schema for `spec.provider.oracle.auth.secret_ref.privatekey`
 
 Optional:
 
@@ -745,17 +745,17 @@ Required:
 
 Required:
 
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--passworddepot--host--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--passworddepot--auth--secret_ref))
 
-<a id="nestedatt--spec--provider--passworddepot--host--secret_ref"></a>
-### Nested Schema for `spec.provider.passworddepot.host.secret_ref`
+<a id="nestedatt--spec--provider--passworddepot--auth--secret_ref"></a>
+### Nested Schema for `spec.provider.passworddepot.auth.secret_ref`
 
 Optional:
 
-- `credentials` (Attributes) Username / Password is used for authentication. (see [below for nested schema](#nestedatt--spec--provider--passworddepot--host--secret_ref--credentials))
+- `credentials` (Attributes) Username / Password is used for authentication. (see [below for nested schema](#nestedatt--spec--provider--passworddepot--auth--secret_ref--credentials))
 
-<a id="nestedatt--spec--provider--passworddepot--host--secret_ref--credentials"></a>
-### Nested Schema for `spec.provider.passworddepot.host.secret_ref.credentials`
+<a id="nestedatt--spec--provider--passworddepot--auth--secret_ref--credentials"></a>
+### Nested Schema for `spec.provider.passworddepot.auth.secret_ref.credentials`
 
 Optional:
 
@@ -790,53 +790,24 @@ Optional:
 
 Optional:
 
-- `app_role` (Attributes) AppRole authenticates with Vault using the App Role auth mechanism,with the role and secret stored in a Kubernetes Secret resource. (see [below for nested schema](#nestedatt--spec--provider--vault--version--app_role))
-- `cert` (Attributes) Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificateCert authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--version--cert))
-- `jwt` (Attributes) Jwt authenticates with Vault by passing role and JWT token using theJWT/OIDC authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--version--jwt))
-- `kubernetes` (Attributes) Kubernetes authenticates with Vault by passing the ServiceAccounttoken stored in the named Secret resource to the Vault server. (see [below for nested schema](#nestedatt--spec--provider--vault--version--kubernetes))
-- `ldap` (Attributes) Ldap authenticates with Vault by passing username/password pair usingthe LDAP authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--version--ldap))
-- `token_secret_ref` (Attributes) TokenSecretRef authenticates with Vault by presenting a token. (see [below for nested schema](#nestedatt--spec--provider--vault--version--token_secret_ref))
+- `app_role` (Attributes) AppRole authenticates with Vault using the App Role auth mechanism,with the role and secret stored in a Kubernetes Secret resource. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--app_role))
+- `cert` (Attributes) Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificateCert authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--cert))
+- `jwt` (Attributes) Jwt authenticates with Vault by passing role and JWT token using theJWT/OIDC authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--jwt))
+- `kubernetes` (Attributes) Kubernetes authenticates with Vault by passing the ServiceAccounttoken stored in the named Secret resource to the Vault server. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--kubernetes))
+- `ldap` (Attributes) Ldap authenticates with Vault by passing username/password pair usingthe LDAP authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--ldap))
+- `token_secret_ref` (Attributes) TokenSecretRef authenticates with Vault by presenting a token. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--token_secret_ref))
 
-<a id="nestedatt--spec--provider--vault--version--app_role"></a>
-### Nested Schema for `spec.provider.vault.version.app_role`
+<a id="nestedatt--spec--provider--vault--auth--app_role"></a>
+### Nested Schema for `spec.provider.vault.auth.app_role`
 
 Required:
 
 - `path` (String) Path where the App Role authentication backend is mountedin Vault, e.g: 'approle'
 - `role_id` (String) RoleID configured in the App Role authentication backend when settingup the authentication backend in Vault.
-- `secret_ref` (Attributes) Reference to a key in a Secret that contains the App Role secret usedto authenticate with Vault.The 'key' field must be specified and denotes which entry within the Secretresource is used as the app role secret. (see [below for nested schema](#nestedatt--spec--provider--vault--version--app_role--secret_ref))
+- `secret_ref` (Attributes) Reference to a key in a Secret that contains the App Role secret usedto authenticate with Vault.The 'key' field must be specified and denotes which entry within the Secretresource is used as the app role secret. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--app_role--secret_ref))
 
-<a id="nestedatt--spec--provider--vault--version--app_role--secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.app_role.secret_ref`
-
-Optional:
-
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
-- `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
-
-
-
-<a id="nestedatt--spec--provider--vault--version--cert"></a>
-### Nested Schema for `spec.provider.vault.version.cert`
-
-Optional:
-
-- `client_cert` (Attributes) ClientCert is a certificate to authenticate using the Cert Vaultauthentication method (see [below for nested schema](#nestedatt--spec--provider--vault--version--cert--client_cert))
-- `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing client private key toauthenticate with Vault using the Cert authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--version--cert--secret_ref))
-
-<a id="nestedatt--spec--provider--vault--version--cert--client_cert"></a>
-### Nested Schema for `spec.provider.vault.version.cert.client_cert`
-
-Optional:
-
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
-- `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
-
-
-<a id="nestedatt--spec--provider--vault--version--cert--secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.cert.secret_ref`
+<a id="nestedatt--spec--provider--vault--auth--app_role--secret_ref"></a>
+### Nested Schema for `spec.provider.vault.auth.app_role.secret_ref`
 
 Optional:
 
@@ -846,8 +817,37 @@ Optional:
 
 
 
-<a id="nestedatt--spec--provider--vault--version--jwt"></a>
-### Nested Schema for `spec.provider.vault.version.jwt`
+<a id="nestedatt--spec--provider--vault--auth--cert"></a>
+### Nested Schema for `spec.provider.vault.auth.cert`
+
+Optional:
+
+- `client_cert` (Attributes) ClientCert is a certificate to authenticate using the Cert Vaultauthentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--cert--client_cert))
+- `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing client private key toauthenticate with Vault using the Cert authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--cert--secret_ref))
+
+<a id="nestedatt--spec--provider--vault--auth--cert--client_cert"></a>
+### Nested Schema for `spec.provider.vault.auth.cert.client_cert`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+<a id="nestedatt--spec--provider--vault--auth--cert--secret_ref"></a>
+### Nested Schema for `spec.provider.vault.auth.cert.secret_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+<a id="nestedatt--spec--provider--vault--auth--jwt"></a>
+### Nested Schema for `spec.provider.vault.auth.jwt`
 
 Required:
 
@@ -855,24 +855,24 @@ Required:
 
 Optional:
 
-- `kubernetes_service_account_token` (Attributes) Optional ServiceAccountToken specifies the Kubernetes service account for which to requesta token for with the 'TokenRequest' API. (see [below for nested schema](#nestedatt--spec--provider--vault--version--jwt--kubernetes_service_account_token))
+- `kubernetes_service_account_token` (Attributes) Optional ServiceAccountToken specifies the Kubernetes service account for which to requesta token for with the 'TokenRequest' API. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--jwt--kubernetes_service_account_token))
 - `role` (String) Role is a JWT role to authenticate using the JWT/OIDC Vaultauthentication method
-- `secret_ref` (Attributes) Optional SecretRef that refers to a key in a Secret resource containing JWT token toauthenticate with Vault using the JWT/OIDC authentication method. (see [below for nested schema](#nestedatt--spec--provider--vault--version--jwt--secret_ref))
+- `secret_ref` (Attributes) Optional SecretRef that refers to a key in a Secret resource containing JWT token toauthenticate with Vault using the JWT/OIDC authentication method. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--jwt--secret_ref))
 
-<a id="nestedatt--spec--provider--vault--version--jwt--kubernetes_service_account_token"></a>
-### Nested Schema for `spec.provider.vault.version.jwt.kubernetes_service_account_token`
+<a id="nestedatt--spec--provider--vault--auth--jwt--kubernetes_service_account_token"></a>
+### Nested Schema for `spec.provider.vault.auth.jwt.kubernetes_service_account_token`
 
 Required:
 
-- `service_account_ref` (Attributes) Service account field containing the name of a kubernetes ServiceAccount. (see [below for nested schema](#nestedatt--spec--provider--vault--version--jwt--secret_ref--service_account_ref))
+- `service_account_ref` (Attributes) Service account field containing the name of a kubernetes ServiceAccount. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--jwt--kubernetes_service_account_token--service_account_ref))
 
 Optional:
 
 - `audiences` (List of String) Optional audiences field that will be used to request a temporary Kubernetes serviceaccount token for the service account referenced by 'serviceAccountRef'.Defaults to a single audience 'vault' it not specified.
 - `expiration_seconds` (Number) Optional expiration time in seconds that will be used to request a temporaryKubernetes service account token for the service account referenced by'serviceAccountRef'.Defaults to 10 minutes.
 
-<a id="nestedatt--spec--provider--vault--version--jwt--secret_ref--service_account_ref"></a>
-### Nested Schema for `spec.provider.vault.version.jwt.secret_ref.service_account_ref`
+<a id="nestedatt--spec--provider--vault--auth--jwt--kubernetes_service_account_token--service_account_ref"></a>
+### Nested Schema for `spec.provider.vault.auth.jwt.kubernetes_service_account_token.service_account_ref`
 
 Required:
 
@@ -885,8 +885,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--provider--vault--version--jwt--secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.jwt.secret_ref`
+<a id="nestedatt--spec--provider--vault--auth--jwt--secret_ref"></a>
+### Nested Schema for `spec.provider.vault.auth.jwt.secret_ref`
 
 Optional:
 
@@ -896,8 +896,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--provider--vault--version--kubernetes"></a>
-### Nested Schema for `spec.provider.vault.version.kubernetes`
+<a id="nestedatt--spec--provider--vault--auth--kubernetes"></a>
+### Nested Schema for `spec.provider.vault.auth.kubernetes`
 
 Required:
 
@@ -906,11 +906,11 @@ Required:
 
 Optional:
 
-- `secret_ref` (Attributes) Optional secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Vault. If a name is specified without a key,'token' is the default. If one is not specified, the one bound tothe controller will be used. (see [below for nested schema](#nestedatt--spec--provider--vault--version--kubernetes--secret_ref))
-- `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Vault. If the service account selector is not supplied,the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--vault--version--kubernetes--service_account_ref))
+- `secret_ref` (Attributes) Optional secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Vault. If a name is specified without a key,'token' is the default. If one is not specified, the one bound tothe controller will be used. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--kubernetes--secret_ref))
+- `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Vault. If the service account selector is not supplied,the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--kubernetes--service_account_ref))
 
-<a id="nestedatt--spec--provider--vault--version--kubernetes--secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.kubernetes.secret_ref`
+<a id="nestedatt--spec--provider--vault--auth--kubernetes--secret_ref"></a>
+### Nested Schema for `spec.provider.vault.auth.kubernetes.secret_ref`
 
 Optional:
 
@@ -919,8 +919,8 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
-<a id="nestedatt--spec--provider--vault--version--kubernetes--service_account_ref"></a>
-### Nested Schema for `spec.provider.vault.version.kubernetes.service_account_ref`
+<a id="nestedatt--spec--provider--vault--auth--kubernetes--service_account_ref"></a>
+### Nested Schema for `spec.provider.vault.auth.kubernetes.service_account_ref`
 
 Required:
 
@@ -933,8 +933,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--provider--vault--version--ldap"></a>
-### Nested Schema for `spec.provider.vault.version.ldap`
+<a id="nestedatt--spec--provider--vault--auth--ldap"></a>
+### Nested Schema for `spec.provider.vault.auth.ldap`
 
 Required:
 
@@ -943,10 +943,10 @@ Required:
 
 Optional:
 
-- `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing password for the LDAPuser used to authenticate with Vault using the LDAP authenticationmethod (see [below for nested schema](#nestedatt--spec--provider--vault--version--ldap--secret_ref))
+- `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing password for the LDAPuser used to authenticate with Vault using the LDAP authenticationmethod (see [below for nested schema](#nestedatt--spec--provider--vault--auth--ldap--secret_ref))
 
-<a id="nestedatt--spec--provider--vault--version--ldap--secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.ldap.secret_ref`
+<a id="nestedatt--spec--provider--vault--auth--ldap--secret_ref"></a>
+### Nested Schema for `spec.provider.vault.auth.ldap.secret_ref`
 
 Optional:
 
@@ -956,8 +956,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--provider--vault--version--token_secret_ref"></a>
-### Nested Schema for `spec.provider.vault.version.token_secret_ref`
+<a id="nestedatt--spec--provider--vault--auth--token_secret_ref"></a>
+### Nested Schema for `spec.provider.vault.auth.token_secret_ref`
 
 Optional:
 
@@ -1028,10 +1028,10 @@ Optional:
 Required:
 
 - `name` (String) Name of this secret in templates
-- `secret_ref` (Attributes) Secret ref to fill in credentials (see [below for nested schema](#nestedatt--spec--provider--webhook--timeout--secret_ref))
+- `secret_ref` (Attributes) Secret ref to fill in credentials (see [below for nested schema](#nestedatt--spec--provider--webhook--secrets--secret_ref))
 
-<a id="nestedatt--spec--provider--webhook--timeout--secret_ref"></a>
-### Nested Schema for `spec.provider.webhook.timeout.secret_ref`
+<a id="nestedatt--spec--provider--webhook--secrets--secret_ref"></a>
+### Nested Schema for `spec.provider.webhook.secrets.secret_ref`
 
 Optional:
 
@@ -1059,10 +1059,10 @@ Optional:
 
 Optional:
 
-- `authorized_key_secret_ref` (Attributes) The authorized key used for authentication (see [below for nested schema](#nestedatt--spec--provider--yandexlockbox--ca_provider--authorized_key_secret_ref))
+- `authorized_key_secret_ref` (Attributes) The authorized key used for authentication (see [below for nested schema](#nestedatt--spec--provider--yandexlockbox--auth--authorized_key_secret_ref))
 
-<a id="nestedatt--spec--provider--yandexlockbox--ca_provider--authorized_key_secret_ref"></a>
-### Nested Schema for `spec.provider.yandexlockbox.ca_provider.authorized_key_secret_ref`
+<a id="nestedatt--spec--provider--yandexlockbox--auth--authorized_key_secret_ref"></a>
+### Nested Schema for `spec.provider.yandexlockbox.auth.authorized_key_secret_ref`
 
 Optional:
 

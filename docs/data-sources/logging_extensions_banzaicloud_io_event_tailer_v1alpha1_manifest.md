@@ -125,12 +125,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--container_overrides--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--container_overrides--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--container_overrides--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.container_overrides.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--container_overrides--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.container_overrides.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -198,12 +198,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--container_overrides--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--container_overrides--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--container_overrides--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.container_overrides.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--container_overrides--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.container_overrides.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -530,27 +530,27 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--workload_overrides--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.workload_overrides.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--workload_overrides--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.workload_overrides.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--workload_overrides--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -562,8 +562,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--workload_overrides--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.workload_overrides.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -577,23 +577,23 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--workload_overrides--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.workload_overrides.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+<a id="nestedatt--spec--workload_overrides--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.workload_overrides.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+<a id="nestedatt--spec--workload_overrides--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
 
 Required:
 
@@ -605,8 +605,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--workload_overrides--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.workload_overrides.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
 
 Required:
 
@@ -626,19 +626,19 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -646,22 +646,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -674,16 +674,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -698,8 +698,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -707,22 +707,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -735,16 +735,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -784,22 +784,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -812,16 +812,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -856,11 +856,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -878,11 +878,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -918,27 +918,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--exec"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.exec`
+<a id="nestedatt--spec--workload_overrides--containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.workload_overrides.containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--grpc"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.grpc`
+<a id="nestedatt--spec--workload_overrides--containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.workload_overrides.containers.liveness_probe.grpc`
 
 Required:
 
@@ -949,8 +949,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--http_get"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.http_get`
+<a id="nestedatt--spec--workload_overrides--containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.workload_overrides.containers.liveness_probe.http_get`
 
 Required:
 
@@ -959,12 +959,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--http_get--http_headers"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.http_get.http_headers`
+<a id="nestedatt--spec--workload_overrides--containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.workload_overrides.containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -973,8 +973,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--tcp_socket"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.tcp_socket`
+<a id="nestedatt--spec--workload_overrides--containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.workload_overrides.containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -991,27 +991,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--exec"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.exec`
+<a id="nestedatt--spec--workload_overrides--containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.workload_overrides.containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--grpc"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.grpc`
+<a id="nestedatt--spec--workload_overrides--containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.workload_overrides.containers.readiness_probe.grpc`
 
 Required:
 
@@ -1022,8 +1022,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--http_get"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.http_get`
+<a id="nestedatt--spec--workload_overrides--containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.workload_overrides.containers.readiness_probe.http_get`
 
 Required:
 
@@ -1032,12 +1032,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--http_get--http_headers"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.http_get.http_headers`
+<a id="nestedatt--spec--workload_overrides--containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.workload_overrides.containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -1046,8 +1046,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--tcp_socket"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.tcp_socket`
+<a id="nestedatt--spec--workload_overrides--containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.workload_overrides.containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -1064,12 +1064,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--claims"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.claims`
+<a id="nestedatt--spec--workload_overrides--containers--resources--claims"></a>
+### Nested Schema for `spec.workload_overrides.containers.resources.claims`
 
 Required:
 
@@ -1083,19 +1083,19 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--volume_mounts--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--containers--security_context--windows_options))
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--capabilities"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.capabilities`
+<a id="nestedatt--spec--workload_overrides--containers--security_context--capabilities"></a>
+### Nested Schema for `spec.workload_overrides.containers.security_context.capabilities`
 
 Optional:
 
@@ -1103,8 +1103,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--se_linux_options"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.se_linux_options`
+<a id="nestedatt--spec--workload_overrides--containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.workload_overrides.containers.security_context.se_linux_options`
 
 Optional:
 
@@ -1114,8 +1114,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--seccomp_profile"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.seccomp_profile`
+<a id="nestedatt--spec--workload_overrides--containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.workload_overrides.containers.security_context.seccomp_profile`
 
 Required:
 
@@ -1126,8 +1126,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--containers--volume_mounts--windows_options"></a>
-### Nested Schema for `spec.workload_overrides.containers.volume_mounts.windows_options`
+<a id="nestedatt--spec--workload_overrides--containers--security_context--windows_options"></a>
+### Nested Schema for `spec.workload_overrides.containers.security_context.windows_options`
 
 Optional:
 
@@ -1183,27 +1183,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--exec"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.exec`
+<a id="nestedatt--spec--workload_overrides--init_containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--grpc"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.grpc`
+<a id="nestedatt--spec--workload_overrides--init_containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.liveness_probe.grpc`
 
 Required:
 
@@ -1214,8 +1214,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--http_get"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.http_get`
+<a id="nestedatt--spec--workload_overrides--init_containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.liveness_probe.http_get`
 
 Required:
 
@@ -1224,12 +1224,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--http_get--http_headers"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.http_get.http_headers`
+<a id="nestedatt--spec--workload_overrides--init_containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -1238,8 +1238,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--tcp_socket"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.tcp_socket`
+<a id="nestedatt--spec--workload_overrides--init_containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -1256,27 +1256,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--exec"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.exec`
+<a id="nestedatt--spec--workload_overrides--init_containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--grpc"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.grpc`
+<a id="nestedatt--spec--workload_overrides--init_containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.readiness_probe.grpc`
 
 Required:
 
@@ -1287,8 +1287,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--http_get"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.http_get`
+<a id="nestedatt--spec--workload_overrides--init_containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.readiness_probe.http_get`
 
 Required:
 
@@ -1297,12 +1297,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--http_get--http_headers"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.http_get.http_headers`
+<a id="nestedatt--spec--workload_overrides--init_containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -1311,8 +1311,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--tcp_socket"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.tcp_socket`
+<a id="nestedatt--spec--workload_overrides--init_containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -1329,12 +1329,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--claims"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.claims`
+<a id="nestedatt--spec--workload_overrides--init_containers--resources--claims"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.resources.claims`
 
 Required:
 
@@ -1348,19 +1348,19 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--volume_mounts--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--init_containers--security_context--windows_options))
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--capabilities"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.capabilities`
+<a id="nestedatt--spec--workload_overrides--init_containers--security_context--capabilities"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.security_context.capabilities`
 
 Optional:
 
@@ -1368,8 +1368,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--se_linux_options"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.se_linux_options`
+<a id="nestedatt--spec--workload_overrides--init_containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -1379,8 +1379,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--seccomp_profile"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.seccomp_profile`
+<a id="nestedatt--spec--workload_overrides--init_containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -1391,8 +1391,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--init_containers--volume_mounts--windows_options"></a>
-### Nested Schema for `spec.workload_overrides.init_containers.volume_mounts.windows_options`
+<a id="nestedatt--spec--workload_overrides--init_containers--security_context--windows_options"></a>
+### Nested Schema for `spec.workload_overrides.init_containers.security_context.windows_options`
 
 Optional:
 
@@ -1586,11 +1586,11 @@ Optional:
 - `path` (String)
 - `read_only` (Boolean)
 - `secret_file` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--cephfs--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -1609,10 +1609,10 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--cinder--secret_ref))
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.cinder.secret_ref`
 
 Optional:
 
@@ -1626,12 +1626,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--workload_overrides--volumes--config_map--items"></a>
+### Nested Schema for `spec.workload_overrides.volumes.config_map.items`
 
 Required:
 
@@ -1654,12 +1654,12 @@ Required:
 Optional:
 
 - `fs_type` (String)
-- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--csi--node_publish_secret_ref))
 - `read_only` (Boolean)
 - `volume_attributes` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -1673,10 +1673,10 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--downward_api--items))
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--workload_overrides--volumes--downward_api--items"></a>
+### Nested Schema for `spec.workload_overrides.volumes.downward_api.items`
 
 Required:
 
@@ -1684,12 +1684,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -1700,8 +1700,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -1729,36 +1729,36 @@ Optional:
 
 Optional:
 
-- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.workload_overrides.volumes.ephemeral.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--spec))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec))
 
 Optional:
 
 - `metadata` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.workload_overrides.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String)
-- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--resources))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
 - `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.workload_overrides.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -1770,8 +1770,8 @@ Optional:
 - `api_group` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -1784,8 +1784,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.workload_overrides.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -1793,16 +1793,16 @@ Optional:
 - `requests` (Map of String)
 
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.workload_overrides.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
+<a id="nestedatt--spec--workload_overrides--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -1842,10 +1842,10 @@ Optional:
 - `fs_type` (String)
 - `options` (Map of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.flex_volume.secret_ref`
 
 Optional:
 
@@ -1932,10 +1932,10 @@ Optional:
 - `iscsi_interface` (String)
 - `portals` (List of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--iscsi--secret_ref))
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -1999,21 +1999,21 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources))
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources`
 
 Optional:
 
-- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--cluster_trust_bundle))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--service_account_token))
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.cluster_trust_bundle`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -2021,21 +2021,21 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--cluster_trust_bundle--label_selector))
 - `name` (String)
 - `optional` (Boolean)
 - `signer_name` (String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token.label_selector`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.cluster_trust_bundle.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token.signer_name.match_expressions`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
 
 Required:
 
@@ -2049,17 +2049,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -2072,15 +2072,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -2088,12 +2088,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -2104,8 +2104,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -2119,17 +2119,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--projected--sources--secret--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -2142,8 +2142,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--workload_overrides--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.workload_overrides.volumes.projected.sources.service_account_token`
 
 Required:
 
@@ -2187,11 +2187,11 @@ Optional:
 - `keyring` (String)
 - `pool` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--rbd--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -2205,7 +2205,7 @@ Optional:
 Required:
 
 - `gateway` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--scale_io--secret_ref))
 - `system` (String)
 
 Optional:
@@ -2218,8 +2218,8 @@ Optional:
 - `storage_pool` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -2233,12 +2233,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--workload_overrides--volumes--secret--items"></a>
+### Nested Schema for `spec.workload_overrides.volumes.secret.items`
 
 Required:
 
@@ -2258,12 +2258,12 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--storageos--secret_ref))
 - `volume_name` (String)
 - `volume_namespace` (String)
 
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--workload_overrides--volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.workload_overrides.volumes.storageos.secret_ref`
 
 Optional:
 

@@ -85,12 +85,12 @@ Required:
 
 Optional:
 
-- `json_patches` (Attributes List) JsonPatches specifies list of jsonpatches to apply to on Envoy's Clusterresource (see [below for nested schema](#nestedatt--spec--default--append_modifications--virtual_host--json_patches))
-- `match` (Attributes) Match is a set of conditions that have to be matched for modification operation to happen. (see [below for nested schema](#nestedatt--spec--default--append_modifications--virtual_host--match))
+- `json_patches` (Attributes List) JsonPatches specifies list of jsonpatches to apply to on Envoy's Clusterresource (see [below for nested schema](#nestedatt--spec--default--append_modifications--cluster--json_patches))
+- `match` (Attributes) Match is a set of conditions that have to be matched for modification operation to happen. (see [below for nested schema](#nestedatt--spec--default--append_modifications--cluster--match))
 - `value` (String) Value of xDS resource in YAML format to add or patch.
 
-<a id="nestedatt--spec--default--append_modifications--virtual_host--json_patches"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host.json_patches`
+<a id="nestedatt--spec--default--append_modifications--cluster--json_patches"></a>
+### Nested Schema for `spec.default.append_modifications.cluster.json_patches`
 
 Required:
 
@@ -103,8 +103,8 @@ Optional:
 - `value` (Map of String) Value must be a valid json value used by replace and add operations.
 
 
-<a id="nestedatt--spec--default--append_modifications--virtual_host--match"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host.match`
+<a id="nestedatt--spec--default--append_modifications--cluster--match"></a>
+### Nested Schema for `spec.default.append_modifications.cluster.match`
 
 Optional:
 
@@ -122,12 +122,12 @@ Required:
 
 Optional:
 
-- `json_patches` (Attributes List) JsonPatches specifies list of jsonpatches to apply to on Envoy'sHTTP Filter available in HTTP Connection Manager in a Listener resource. (see [below for nested schema](#nestedatt--spec--default--append_modifications--virtual_host--json_patches))
-- `match` (Attributes) Match is a set of conditions that have to be matched for modification operation to happen. (see [below for nested schema](#nestedatt--spec--default--append_modifications--virtual_host--match))
+- `json_patches` (Attributes List) JsonPatches specifies list of jsonpatches to apply to on Envoy'sHTTP Filter available in HTTP Connection Manager in a Listener resource. (see [below for nested schema](#nestedatt--spec--default--append_modifications--http_filter--json_patches))
+- `match` (Attributes) Match is a set of conditions that have to be matched for modification operation to happen. (see [below for nested schema](#nestedatt--spec--default--append_modifications--http_filter--match))
 - `value` (String) Value of xDS resource in YAML format to add or patch.
 
-<a id="nestedatt--spec--default--append_modifications--virtual_host--json_patches"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host.json_patches`
+<a id="nestedatt--spec--default--append_modifications--http_filter--json_patches"></a>
+### Nested Schema for `spec.default.append_modifications.http_filter.json_patches`
 
 Required:
 
@@ -140,8 +140,8 @@ Optional:
 - `value` (Map of String) Value must be a valid json value used by replace and add operations.
 
 
-<a id="nestedatt--spec--default--append_modifications--virtual_host--match"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host.match`
+<a id="nestedatt--spec--default--append_modifications--http_filter--match"></a>
+### Nested Schema for `spec.default.append_modifications.http_filter.match`
 
 Optional:
 
@@ -161,12 +161,12 @@ Required:
 
 Optional:
 
-- `json_patches` (Attributes List) JsonPatches specifies list of jsonpatches to apply to on Envoy's Listenerresource (see [below for nested schema](#nestedatt--spec--default--append_modifications--virtual_host--json_patches))
-- `match` (Attributes) Match is a set of conditions that have to be matched for modification operation to happen. (see [below for nested schema](#nestedatt--spec--default--append_modifications--virtual_host--match))
+- `json_patches` (Attributes List) JsonPatches specifies list of jsonpatches to apply to on Envoy's Listenerresource (see [below for nested schema](#nestedatt--spec--default--append_modifications--listener--json_patches))
+- `match` (Attributes) Match is a set of conditions that have to be matched for modification operation to happen. (see [below for nested schema](#nestedatt--spec--default--append_modifications--listener--match))
 - `value` (String) Value of xDS resource in YAML format to add or patch.
 
-<a id="nestedatt--spec--default--append_modifications--virtual_host--json_patches"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host.json_patches`
+<a id="nestedatt--spec--default--append_modifications--listener--json_patches"></a>
+### Nested Schema for `spec.default.append_modifications.listener.json_patches`
 
 Required:
 
@@ -179,8 +179,8 @@ Optional:
 - `value` (Map of String) Value must be a valid json value used by replace and add operations.
 
 
-<a id="nestedatt--spec--default--append_modifications--virtual_host--match"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host.match`
+<a id="nestedatt--spec--default--append_modifications--listener--match"></a>
+### Nested Schema for `spec.default.append_modifications.listener.match`
 
 Optional:
 
@@ -199,12 +199,12 @@ Required:
 
 Optional:
 
-- `json_patches` (Attributes List) JsonPatches specifies list of jsonpatches to apply to on Envoy Listener'sfilter. (see [below for nested schema](#nestedatt--spec--default--append_modifications--virtual_host--json_patches))
-- `match` (Attributes) Match is a set of conditions that have to be matched for modification operation to happen. (see [below for nested schema](#nestedatt--spec--default--append_modifications--virtual_host--match))
+- `json_patches` (Attributes List) JsonPatches specifies list of jsonpatches to apply to on Envoy Listener'sfilter. (see [below for nested schema](#nestedatt--spec--default--append_modifications--network_filter--json_patches))
+- `match` (Attributes) Match is a set of conditions that have to be matched for modification operation to happen. (see [below for nested schema](#nestedatt--spec--default--append_modifications--network_filter--match))
 - `value` (String) Value of xDS resource in YAML format to add or patch.
 
-<a id="nestedatt--spec--default--append_modifications--virtual_host--json_patches"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host.json_patches`
+<a id="nestedatt--spec--default--append_modifications--network_filter--json_patches"></a>
+### Nested Schema for `spec.default.append_modifications.network_filter.json_patches`
 
 Required:
 
@@ -217,8 +217,8 @@ Optional:
 - `value` (Map of String) Value must be a valid json value used by replace and add operations.
 
 
-<a id="nestedatt--spec--default--append_modifications--virtual_host--match"></a>
-### Nested Schema for `spec.default.append_modifications.virtual_host.match`
+<a id="nestedatt--spec--default--append_modifications--network_filter--match"></a>
+### Nested Schema for `spec.default.append_modifications.network_filter.match`
 
 Optional:
 

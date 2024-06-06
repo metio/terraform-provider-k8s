@@ -157,20 +157,20 @@ Required:
 
 Optional:
 
-- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--cockroachdb--primary_key--attributes))
-- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--cockroachdb--primary_key--constraints))
+- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--cockroachdb--columns--attributes))
+- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--cockroachdb--columns--constraints))
 - `default` (String)
 
-<a id="nestedatt--spec--schema--cockroachdb--primary_key--attributes"></a>
-### Nested Schema for `spec.schema.cockroachdb.primary_key.attributes`
+<a id="nestedatt--spec--schema--cockroachdb--columns--attributes"></a>
+### Nested Schema for `spec.schema.cockroachdb.columns.attributes`
 
 Optional:
 
 - `auto_increment` (Boolean)
 
 
-<a id="nestedatt--spec--schema--cockroachdb--primary_key--constraints"></a>
-### Nested Schema for `spec.schema.cockroachdb.primary_key.constraints`
+<a id="nestedatt--spec--schema--cockroachdb--columns--constraints"></a>
+### Nested Schema for `spec.schema.cockroachdb.columns.constraints`
 
 Optional:
 
@@ -184,15 +184,15 @@ Optional:
 Required:
 
 - `columns` (List of String)
-- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--cockroachdb--primary_key--references))
+- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--cockroachdb--foreign_keys--references))
 
 Optional:
 
 - `name` (String)
 - `on_delete` (String)
 
-<a id="nestedatt--spec--schema--cockroachdb--primary_key--references"></a>
-### Nested Schema for `spec.schema.cockroachdb.primary_key.references`
+<a id="nestedatt--spec--schema--cockroachdb--foreign_keys--references"></a>
+### Nested Schema for `spec.schema.cockroachdb.foreign_keys.references`
 
 Required:
 
@@ -257,22 +257,22 @@ Required:
 
 Optional:
 
-- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--mysql--primary_key--attributes))
+- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--mysql--columns--attributes))
 - `charset` (String)
 - `collation` (String)
-- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--mysql--primary_key--constraints))
+- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--mysql--columns--constraints))
 - `default` (String)
 
-<a id="nestedatt--spec--schema--mysql--primary_key--attributes"></a>
-### Nested Schema for `spec.schema.mysql.primary_key.attributes`
+<a id="nestedatt--spec--schema--mysql--columns--attributes"></a>
+### Nested Schema for `spec.schema.mysql.columns.attributes`
 
 Optional:
 
 - `auto_increment` (Boolean)
 
 
-<a id="nestedatt--spec--schema--mysql--primary_key--constraints"></a>
-### Nested Schema for `spec.schema.mysql.primary_key.constraints`
+<a id="nestedatt--spec--schema--mysql--columns--constraints"></a>
+### Nested Schema for `spec.schema.mysql.columns.constraints`
 
 Optional:
 
@@ -286,15 +286,15 @@ Optional:
 Required:
 
 - `columns` (List of String)
-- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--mysql--primary_key--references))
+- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--mysql--foreign_keys--references))
 
 Optional:
 
 - `name` (String)
 - `on_delete` (String)
 
-<a id="nestedatt--spec--schema--mysql--primary_key--references"></a>
-### Nested Schema for `spec.schema.mysql.primary_key.references`
+<a id="nestedatt--spec--schema--mysql--foreign_keys--references"></a>
+### Nested Schema for `spec.schema.mysql.foreign_keys.references`
 
 Required:
 
@@ -340,20 +340,20 @@ Required:
 
 Optional:
 
-- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--postgres--primary_key--attributes))
-- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--postgres--primary_key--constraints))
+- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--postgres--columns--attributes))
+- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--postgres--columns--constraints))
 - `default` (String)
 
-<a id="nestedatt--spec--schema--postgres--primary_key--attributes"></a>
-### Nested Schema for `spec.schema.postgres.primary_key.attributes`
+<a id="nestedatt--spec--schema--postgres--columns--attributes"></a>
+### Nested Schema for `spec.schema.postgres.columns.attributes`
 
 Optional:
 
 - `auto_increment` (Boolean)
 
 
-<a id="nestedatt--spec--schema--postgres--primary_key--constraints"></a>
-### Nested Schema for `spec.schema.postgres.primary_key.constraints`
+<a id="nestedatt--spec--schema--postgres--columns--constraints"></a>
+### Nested Schema for `spec.schema.postgres.columns.constraints`
 
 Optional:
 
@@ -367,15 +367,15 @@ Optional:
 Required:
 
 - `columns` (List of String)
-- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--postgres--primary_key--references))
+- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--postgres--foreign_keys--references))
 
 Optional:
 
 - `name` (String)
 - `on_delete` (String)
 
-<a id="nestedatt--spec--schema--postgres--primary_key--references"></a>
-### Nested Schema for `spec.schema.postgres.primary_key.references`
+<a id="nestedatt--spec--schema--postgres--foreign_keys--references"></a>
+### Nested Schema for `spec.schema.postgres.foreign_keys.references`
 
 Required:
 
@@ -439,20 +439,20 @@ Required:
 
 Optional:
 
-- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--rqlite--strict--attributes))
-- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--rqlite--strict--constraints))
+- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--rqlite--columns--attributes))
+- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--rqlite--columns--constraints))
 - `default` (String)
 
-<a id="nestedatt--spec--schema--rqlite--strict--attributes"></a>
-### Nested Schema for `spec.schema.rqlite.strict.attributes`
+<a id="nestedatt--spec--schema--rqlite--columns--attributes"></a>
+### Nested Schema for `spec.schema.rqlite.columns.attributes`
 
 Optional:
 
 - `auto_increment` (Boolean)
 
 
-<a id="nestedatt--spec--schema--rqlite--strict--constraints"></a>
-### Nested Schema for `spec.schema.rqlite.strict.constraints`
+<a id="nestedatt--spec--schema--rqlite--columns--constraints"></a>
+### Nested Schema for `spec.schema.rqlite.columns.constraints`
 
 Optional:
 
@@ -466,15 +466,15 @@ Optional:
 Required:
 
 - `columns` (List of String)
-- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--rqlite--strict--references))
+- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--rqlite--foreign_keys--references))
 
 Optional:
 
 - `name` (String)
 - `on_delete` (String)
 
-<a id="nestedatt--spec--schema--rqlite--strict--references"></a>
-### Nested Schema for `spec.schema.rqlite.strict.references`
+<a id="nestedatt--spec--schema--rqlite--foreign_keys--references"></a>
+### Nested Schema for `spec.schema.rqlite.foreign_keys.references`
 
 Required:
 
@@ -520,20 +520,20 @@ Required:
 
 Optional:
 
-- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--sqlite--strict--attributes))
-- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--sqlite--strict--constraints))
+- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--sqlite--columns--attributes))
+- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--sqlite--columns--constraints))
 - `default` (String)
 
-<a id="nestedatt--spec--schema--sqlite--strict--attributes"></a>
-### Nested Schema for `spec.schema.sqlite.strict.attributes`
+<a id="nestedatt--spec--schema--sqlite--columns--attributes"></a>
+### Nested Schema for `spec.schema.sqlite.columns.attributes`
 
 Optional:
 
 - `auto_increment` (Boolean)
 
 
-<a id="nestedatt--spec--schema--sqlite--strict--constraints"></a>
-### Nested Schema for `spec.schema.sqlite.strict.constraints`
+<a id="nestedatt--spec--schema--sqlite--columns--constraints"></a>
+### Nested Schema for `spec.schema.sqlite.columns.constraints`
 
 Optional:
 
@@ -547,15 +547,15 @@ Optional:
 Required:
 
 - `columns` (List of String)
-- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--sqlite--strict--references))
+- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--sqlite--foreign_keys--references))
 
 Optional:
 
 - `name` (String)
 - `on_delete` (String)
 
-<a id="nestedatt--spec--schema--sqlite--strict--references"></a>
-### Nested Schema for `spec.schema.sqlite.strict.references`
+<a id="nestedatt--spec--schema--sqlite--foreign_keys--references"></a>
+### Nested Schema for `spec.schema.sqlite.foreign_keys.references`
 
 Required:
 
@@ -602,20 +602,20 @@ Required:
 
 Optional:
 
-- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--triggers--attributes))
-- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--triggers--constraints))
+- `attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--columns--attributes))
+- `constraints` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--columns--constraints))
 - `default` (String)
 
-<a id="nestedatt--spec--schema--timescaledb--triggers--attributes"></a>
-### Nested Schema for `spec.schema.timescaledb.triggers.attributes`
+<a id="nestedatt--spec--schema--timescaledb--columns--attributes"></a>
+### Nested Schema for `spec.schema.timescaledb.columns.attributes`
 
 Optional:
 
 - `auto_increment` (Boolean)
 
 
-<a id="nestedatt--spec--schema--timescaledb--triggers--constraints"></a>
-### Nested Schema for `spec.schema.timescaledb.triggers.constraints`
+<a id="nestedatt--spec--schema--timescaledb--columns--constraints"></a>
+### Nested Schema for `spec.schema.timescaledb.columns.constraints`
 
 Optional:
 
@@ -629,15 +629,15 @@ Optional:
 Required:
 
 - `columns` (List of String)
-- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--triggers--references))
+- `references` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--foreign_keys--references))
 
 Optional:
 
 - `name` (String)
 - `on_delete` (String)
 
-<a id="nestedatt--spec--schema--timescaledb--triggers--references"></a>
-### Nested Schema for `spec.schema.timescaledb.triggers.references`
+<a id="nestedatt--spec--schema--timescaledb--foreign_keys--references"></a>
+### Nested Schema for `spec.schema.timescaledb.foreign_keys.references`
 
 Required:
 
@@ -654,7 +654,7 @@ Optional:
 - `associated_schema_name` (String)
 - `associated_table_prefix` (String)
 - `chunk_time_interval` (String)
-- `compression` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--triggers--compression))
+- `compression` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--hypertable--compression))
 - `create_default_indexes` (Boolean)
 - `data_nodes` (List of String)
 - `if_not_exists` (Boolean)
@@ -663,12 +663,12 @@ Optional:
 - `partitioning_column` (String)
 - `partitioning_func` (String)
 - `replication_factor` (Number)
-- `retention` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--triggers--retention))
+- `retention` (Attributes) (see [below for nested schema](#nestedatt--spec--schema--timescaledb--hypertable--retention))
 - `time_column_name` (String)
 - `time_partitioning_func` (String)
 
-<a id="nestedatt--spec--schema--timescaledb--triggers--compression"></a>
-### Nested Schema for `spec.schema.timescaledb.triggers.compression`
+<a id="nestedatt--spec--schema--timescaledb--hypertable--compression"></a>
+### Nested Schema for `spec.schema.timescaledb.hypertable.compression`
 
 Required:
 
@@ -676,8 +676,8 @@ Required:
 - `segment_by` (String)
 
 
-<a id="nestedatt--spec--schema--timescaledb--triggers--retention"></a>
-### Nested Schema for `spec.schema.timescaledb.triggers.retention`
+<a id="nestedatt--spec--schema--timescaledb--hypertable--retention"></a>
+### Nested Schema for `spec.schema.timescaledb.hypertable.retention`
 
 Required:
 

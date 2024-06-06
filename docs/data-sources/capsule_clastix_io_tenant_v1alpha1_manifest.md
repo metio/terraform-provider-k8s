@@ -305,12 +305,12 @@ Optional:
 
 Optional:
 
-- `ip_block` (Attributes) ipBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--ports--ip_block))
-- `namespace_selector` (Attributes) namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--ports--namespace_selector))
-- `pod_selector` (Attributes) podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--ports--pod_selector))
+- `ip_block` (Attributes) ipBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--from--ip_block))
+- `namespace_selector` (Attributes) namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--from--namespace_selector))
+- `pod_selector` (Attributes) podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--from--pod_selector))
 
-<a id="nestedatt--spec--network_policies--ingress--ports--ip_block"></a>
-### Nested Schema for `spec.network_policies.ingress.ports.ip_block`
+<a id="nestedatt--spec--network_policies--ingress--from--ip_block"></a>
+### Nested Schema for `spec.network_policies.ingress.from.ip_block`
 
 Required:
 
@@ -321,16 +321,16 @@ Optional:
 - `except` (List of String) except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range
 
 
-<a id="nestedatt--spec--network_policies--ingress--ports--namespace_selector"></a>
-### Nested Schema for `spec.network_policies.ingress.ports.namespace_selector`
+<a id="nestedatt--spec--network_policies--ingress--from--namespace_selector"></a>
+### Nested Schema for `spec.network_policies.ingress.from.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--ports--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--from--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--network_policies--ingress--ports--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.network_policies.ingress.ports.namespace_selector.match_expressions`
+<a id="nestedatt--spec--network_policies--ingress--from--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.network_policies.ingress.from.namespace_selector.match_expressions`
 
 Required:
 
@@ -343,16 +343,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--network_policies--ingress--ports--pod_selector"></a>
-### Nested Schema for `spec.network_policies.ingress.ports.pod_selector`
+<a id="nestedatt--spec--network_policies--ingress--from--pod_selector"></a>
+### Nested Schema for `spec.network_policies.ingress.from.pod_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--ports--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--from--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--network_policies--ingress--ports--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.network_policies.ingress.ports.pod_selector.match_expressions`
+<a id="nestedatt--spec--network_policies--ingress--from--pod_selector--match_expressions"></a>
+### Nested Schema for `spec.network_policies.ingress.from.pod_selector.match_expressions`
 
 Required:
 

@@ -136,18 +136,18 @@ Optional:
 - `disabled` (Boolean) If true the HttpHealthCheck is disabled
 - `expected_statuses` (List of String) List of HTTP response statuses which are considered healthy
 - `path` (String) The HTTP path which will be requested during the health check(ie. /health)
-- `request_headers_to_add` (Attributes) The list of HTTP headers which should be added to each health checkrequest (see [below for nested schema](#nestedatt--spec--to--default--unhealthy_threshold--request_headers_to_add))
+- `request_headers_to_add` (Attributes) The list of HTTP headers which should be added to each health checkrequest (see [below for nested schema](#nestedatt--spec--to--default--http--request_headers_to_add))
 
-<a id="nestedatt--spec--to--default--unhealthy_threshold--request_headers_to_add"></a>
-### Nested Schema for `spec.to.default.unhealthy_threshold.request_headers_to_add`
+<a id="nestedatt--spec--to--default--http--request_headers_to_add"></a>
+### Nested Schema for `spec.to.default.http.request_headers_to_add`
 
 Optional:
 
-- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--unhealthy_threshold--request_headers_to_add--add))
-- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--unhealthy_threshold--request_headers_to_add--set))
+- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--http--request_headers_to_add--add))
+- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--http--request_headers_to_add--set))
 
-<a id="nestedatt--spec--to--default--unhealthy_threshold--request_headers_to_add--add"></a>
-### Nested Schema for `spec.to.default.unhealthy_threshold.request_headers_to_add.add`
+<a id="nestedatt--spec--to--default--http--request_headers_to_add--add"></a>
+### Nested Schema for `spec.to.default.http.request_headers_to_add.add`
 
 Required:
 
@@ -155,8 +155,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--to--default--unhealthy_threshold--request_headers_to_add--set"></a>
-### Nested Schema for `spec.to.default.unhealthy_threshold.request_headers_to_add.set`
+<a id="nestedatt--spec--to--default--http--request_headers_to_add--set"></a>
+### Nested Schema for `spec.to.default.http.request_headers_to_add.set`
 
 Required:
 

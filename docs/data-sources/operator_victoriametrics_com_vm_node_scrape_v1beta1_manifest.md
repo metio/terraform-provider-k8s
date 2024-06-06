@@ -402,12 +402,12 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--vm_scrape_params--proxy_client_config--tls_config--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--vm_scrape_params--proxy_client_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--vm_scrape_params--proxy_client_config--tls_config--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--vm_scrape_params--proxy_client_config--basic_auth--username))
 
-<a id="nestedatt--spec--vm_scrape_params--proxy_client_config--tls_config--password"></a>
-### Nested Schema for `spec.vm_scrape_params.proxy_client_config.tls_config.password`
+<a id="nestedatt--spec--vm_scrape_params--proxy_client_config--basic_auth--password"></a>
+### Nested Schema for `spec.vm_scrape_params.proxy_client_config.basic_auth.password`
 
 Required:
 
@@ -419,8 +419,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--vm_scrape_params--proxy_client_config--tls_config--username"></a>
-### Nested Schema for `spec.vm_scrape_params.proxy_client_config.tls_config.username`
+<a id="nestedatt--spec--vm_scrape_params--proxy_client_config--basic_auth--username"></a>
+### Nested Schema for `spec.vm_scrape_params.proxy_client_config.basic_auth.username`
 
 Required:
 

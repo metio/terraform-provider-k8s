@@ -106,10 +106,10 @@ Optional:
 
 Optional:
 
-- `pod` (Attributes) Describes how to create tasks as Pods. (see [below for nested schema](#nestedatt--spec--template--spec--task_pending_timeout_seconds--pod))
+- `pod` (Attributes) Describes how to create tasks as Pods. (see [below for nested schema](#nestedatt--spec--template--spec--task_template--pod))
 
-<a id="nestedatt--spec--template--spec--task_pending_timeout_seconds--pod"></a>
-### Nested Schema for `spec.template.spec.task_pending_timeout_seconds.pod`
+<a id="nestedatt--spec--template--spec--task_template--pod"></a>
+### Nested Schema for `spec.template.spec.task_template.pod`
 
 Optional:
 

@@ -92,11 +92,11 @@ Required:
 
 Optional:
 
-- `backend_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--matches--backend_refs))
-- `filters` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters))
+- `backend_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--default--backend_refs))
+- `filters` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--default--filters))
 
-<a id="nestedatt--spec--to--rules--matches--backend_refs"></a>
-### Nested Schema for `spec.to.rules.matches.backend_refs`
+<a id="nestedatt--spec--to--rules--default--backend_refs"></a>
+### Nested Schema for `spec.to.rules.default.backend_refs`
 
 Optional:
 
@@ -109,8 +109,8 @@ Optional:
 - `weight` (Number)
 
 
-<a id="nestedatt--spec--to--rules--matches--filters"></a>
-### Nested Schema for `spec.to.rules.matches.filters`
+<a id="nestedatt--spec--to--rules--default--filters"></a>
+### Nested Schema for `spec.to.rules.default.filters`
 
 Required:
 
@@ -118,32 +118,23 @@ Required:
 
 Optional:
 
-- `request_header_modifier` (Attributes) Only one action is supported per header name.Configuration to set or add multiple values for a header must use RFC 7230header value formatting, separating each value with a comma. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--request_header_modifier))
-- `request_mirror` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--request_mirror))
-- `request_redirect` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--request_redirect))
-- `response_header_modifier` (Attributes) Only one action is supported per header name.Configuration to set or add multiple values for a header must use RFC 7230header value formatting, separating each value with a comma. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--response_header_modifier))
-- `url_rewrite` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite))
+- `request_header_modifier` (Attributes) Only one action is supported per header name.Configuration to set or add multiple values for a header must use RFC 7230header value formatting, separating each value with a comma. (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--request_header_modifier))
+- `request_mirror` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--request_mirror))
+- `request_redirect` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--request_redirect))
+- `response_header_modifier` (Attributes) Only one action is supported per header name.Configuration to set or add multiple values for a header must use RFC 7230header value formatting, separating each value with a comma. (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--response_header_modifier))
+- `url_rewrite` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--url_rewrite))
 
-<a id="nestedatt--spec--to--rules--matches--filters--request_header_modifier"></a>
-### Nested Schema for `spec.to.rules.matches.filters.request_header_modifier`
+<a id="nestedatt--spec--to--rules--default--filters--request_header_modifier"></a>
+### Nested Schema for `spec.to.rules.default.filters.request_header_modifier`
 
 Optional:
 
-- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--add))
+- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--request_header_modifier--add))
 - `remove` (List of String)
-- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--set))
+- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--request_header_modifier--set))
 
-<a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--add"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.add`
-
-Required:
-
-- `name` (String)
-- `value` (String)
-
-
-<a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--set"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.set`
+<a id="nestedatt--spec--to--rules--default--filters--request_header_modifier--add"></a>
+### Nested Schema for `spec.to.rules.default.filters.request_header_modifier.add`
 
 Required:
 
@@ -151,20 +142,29 @@ Required:
 - `value` (String)
 
 
-
-<a id="nestedatt--spec--to--rules--matches--filters--request_mirror"></a>
-### Nested Schema for `spec.to.rules.matches.filters.request_mirror`
+<a id="nestedatt--spec--to--rules--default--filters--request_header_modifier--set"></a>
+### Nested Schema for `spec.to.rules.default.filters.request_header_modifier.set`
 
 Required:
 
-- `backend_ref` (Attributes) TODO forbid weight (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--backend_ref))
+- `name` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--to--rules--default--filters--request_mirror"></a>
+### Nested Schema for `spec.to.rules.default.filters.request_mirror`
+
+Required:
+
+- `backend_ref` (Attributes) TODO forbid weight (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--request_mirror--backend_ref))
 
 Optional:
 
 - `percentage` (String) Percentage of requests to mirror. If not specified, all requeststo the target cluster will be mirrored.
 
-<a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--backend_ref"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.backend_ref`
+<a id="nestedatt--spec--to--rules--default--filters--request_mirror--backend_ref"></a>
+### Nested Schema for `spec.to.rules.default.filters.request_mirror.backend_ref`
 
 Optional:
 
@@ -178,19 +178,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--to--rules--matches--filters--request_redirect"></a>
-### Nested Schema for `spec.to.rules.matches.filters.request_redirect`
+<a id="nestedatt--spec--to--rules--default--filters--request_redirect"></a>
+### Nested Schema for `spec.to.rules.default.filters.request_redirect`
 
 Optional:
 
 - `hostname` (String) PreciseHostname is the fully qualified domain name of a network host. Thismatches the RFC 1123 definition of a hostname with 1 notable exception thatnumeric IP addresses are not allowed.Note that as per RFC1035 and RFC1123, a *label* must consist of lower casealphanumeric characters or '-', and must start and end with an alphanumericcharacter. No other punctuation is allowed.
-- `path` (Attributes) Path defines parameters used to modify the path of the incoming request.The modified path is then used to construct the location header.When empty, the request path is used as-is. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--path))
+- `path` (Attributes) Path defines parameters used to modify the path of the incoming request.The modified path is then used to construct the location header.When empty, the request path is used as-is. (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--request_redirect--path))
 - `port` (Number) Port is the port to be used in the value of the 'Location'header in the response.When empty, port (if specified) of the request is used.
 - `scheme` (String)
 - `status_code` (Number) StatusCode is the HTTP status code to be used in response.
 
-<a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--path"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.path`
+<a id="nestedatt--spec--to--rules--default--filters--request_redirect--path"></a>
+### Nested Schema for `spec.to.rules.default.filters.request_redirect.path`
 
 Required:
 
@@ -203,26 +203,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--to--rules--matches--filters--response_header_modifier"></a>
-### Nested Schema for `spec.to.rules.matches.filters.response_header_modifier`
+<a id="nestedatt--spec--to--rules--default--filters--response_header_modifier"></a>
+### Nested Schema for `spec.to.rules.default.filters.response_header_modifier`
 
 Optional:
 
-- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--add))
+- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--response_header_modifier--add))
 - `remove` (List of String)
-- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--set))
+- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--response_header_modifier--set))
 
-<a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--add"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.add`
-
-Required:
-
-- `name` (String)
-- `value` (String)
-
-
-<a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--set"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.set`
+<a id="nestedatt--spec--to--rules--default--filters--response_header_modifier--add"></a>
+### Nested Schema for `spec.to.rules.default.filters.response_header_modifier.add`
 
 Required:
 
@@ -230,18 +221,27 @@ Required:
 - `value` (String)
 
 
+<a id="nestedatt--spec--to--rules--default--filters--response_header_modifier--set"></a>
+### Nested Schema for `spec.to.rules.default.filters.response_header_modifier.set`
 
-<a id="nestedatt--spec--to--rules--matches--filters--url_rewrite"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite`
+Required:
+
+- `name` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--to--rules--default--filters--url_rewrite"></a>
+### Nested Schema for `spec.to.rules.default.filters.url_rewrite`
 
 Optional:
 
 - `host_to_backend_hostname` (Boolean) HostToBackendHostname rewrites the hostname to the hostname of theupstream host. This option is only available when targeting MeshGateways.
 - `hostname` (String) Hostname is the value to be used to replace the host header value during forwarding.
-- `path` (Attributes) Path defines a path rewrite. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--path))
+- `path` (Attributes) Path defines a path rewrite. (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--url_rewrite--path))
 
-<a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--path"></a>
-### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.path`
+<a id="nestedatt--spec--to--rules--default--filters--url_rewrite--path"></a>
+### Nested Schema for `spec.to.rules.default.filters.url_rewrite.path`
 
 Required:
 

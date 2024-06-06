@@ -130,20 +130,20 @@ Optional:
 
 Optional:
 
-- `scale_down` (Attributes) scaleDown is scaling policy for scaling Down.If not set, the default value is to allow to scale down to minReplicas pods, with a300 second stabilization window (i.e., the highest recommendation forthe last 300sec is used). (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--name--scale_down))
-- `scale_up` (Attributes) scaleUp is scaling policy for scaling Up.If not set, the default value is the higher of:  * increase no more than 4 pods per 60 seconds  * double the number of pods per 60 secondsNo stabilization is used. (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--name--scale_up))
+- `scale_down` (Attributes) scaleDown is scaling policy for scaling Down.If not set, the default value is to allow to scale down to minReplicas pods, with a300 second stabilization window (i.e., the highest recommendation forthe last 300sec is used). (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_down))
+- `scale_up` (Attributes) scaleUp is scaling policy for scaling Up.If not set, the default value is the higher of:  * increase no more than 4 pods per 60 seconds  * double the number of pods per 60 secondsNo stabilization is used. (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_up))
 
-<a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--name--scale_down"></a>
-### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.name.scale_down`
+<a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_down"></a>
+### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.behavior.scale_down`
 
 Optional:
 
-- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--name--scale_down--policies))
+- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_down--policies))
 - `select_policy` (String) selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.
 - `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
-<a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--name--scale_down--policies"></a>
-### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.name.scale_down.policies`
+<a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_down--policies"></a>
+### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.behavior.scale_down.policies`
 
 Required:
 
@@ -153,17 +153,17 @@ Required:
 
 
 
-<a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--name--scale_up"></a>
-### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.name.scale_up`
+<a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_up"></a>
+### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.behavior.scale_up`
 
 Optional:
 
-- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--name--scale_up--policies))
+- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_up--policies))
 - `select_policy` (String) selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.
 - `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
-<a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--name--scale_up--policies"></a>
-### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.name.scale_up.policies`
+<a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_up--policies"></a>
+### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.behavior.scale_up.policies`
 
 Required:
 

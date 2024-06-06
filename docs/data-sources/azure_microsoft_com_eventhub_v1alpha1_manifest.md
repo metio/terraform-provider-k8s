@@ -105,10 +105,10 @@ Optional:
 - `archive_name_format` (String) ArchiveNameFormat - Blob naming convention for archive, e.g. {Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}. Here all the parameters (Namespace,EventHub .. etc) are mandatory irrespective of order
 - `blob_container` (String) BlobContainer - Blob container Name
 - `name` (String) Name - Name for capture destination
-- `storage_account` (Attributes) StorageAccount - Details of the storage account (see [below for nested schema](#nestedatt--spec--properties--capture_description--size_limit_in_bytes--storage_account))
+- `storage_account` (Attributes) StorageAccount - Details of the storage account (see [below for nested schema](#nestedatt--spec--properties--capture_description--destination--storage_account))
 
-<a id="nestedatt--spec--properties--capture_description--size_limit_in_bytes--storage_account"></a>
-### Nested Schema for `spec.properties.capture_description.size_limit_in_bytes.storage_account`
+<a id="nestedatt--spec--properties--capture_description--destination--storage_account"></a>
+### Nested Schema for `spec.properties.capture_description.destination.storage_account`
 
 Optional:
 

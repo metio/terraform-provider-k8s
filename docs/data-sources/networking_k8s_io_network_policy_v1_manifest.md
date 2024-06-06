@@ -129,11 +129,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--egress--to--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--egress--to--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--egress--to--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.egress.to.pod_selector.match_expressions`
+<a id="nestedatt--spec--egress--to--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.egress.to.namespace_selector.match_expressions`
 
 Required:
 
@@ -204,11 +204,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--ingress--from--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--ingress--from--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--ingress--from--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.ingress.from.pod_selector.match_expressions`
+<a id="nestedatt--spec--ingress--from--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.ingress.from.namespace_selector.match_expressions`
 
 Required:
 

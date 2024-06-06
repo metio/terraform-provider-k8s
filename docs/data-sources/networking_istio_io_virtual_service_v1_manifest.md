@@ -155,10 +155,10 @@ Optional:
 - `grpc_status` (String) GRPC status code to use to abort the request.
 - `http2_error` (String)
 - `http_status` (Number) HTTP status code to use to abort the Http request.
-- `percentage` (Attributes) Percentage of requests to be aborted with the error code provided. (see [below for nested schema](#nestedatt--spec--http--fault--delay--percentage))
+- `percentage` (Attributes) Percentage of requests to be aborted with the error code provided. (see [below for nested schema](#nestedatt--spec--http--fault--abort--percentage))
 
-<a id="nestedatt--spec--http--fault--delay--percentage"></a>
-### Nested Schema for `spec.http.fault.delay.percentage`
+<a id="nestedatt--spec--http--fault--abort--percentage"></a>
+### Nested Schema for `spec.http.fault.abort.percentage`
 
 Optional:
 
@@ -355,11 +355,11 @@ Required:
 
 Optional:
 
-- `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--http--mirrors--percentage--port))
+- `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--http--mirrors--destination--port))
 - `subset` (String) The name of a subset within the service.
 
-<a id="nestedatt--spec--http--mirrors--percentage--port"></a>
-### Nested Schema for `spec.http.mirrors.percentage.port`
+<a id="nestedatt--spec--http--mirrors--destination--port"></a>
+### Nested Schema for `spec.http.mirrors.destination.port`
 
 Optional:
 
@@ -440,11 +440,11 @@ Required:
 
 Optional:
 
-- `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--http--route--weight--port))
+- `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--http--route--destination--port))
 - `subset` (String) The name of a subset within the service.
 
-<a id="nestedatt--spec--http--route--weight--port"></a>
-### Nested Schema for `spec.http.route.weight.port`
+<a id="nestedatt--spec--http--route--destination--port"></a>
+### Nested Schema for `spec.http.route.destination.port`
 
 Optional:
 
@@ -457,11 +457,11 @@ Optional:
 
 Optional:
 
-- `request` (Attributes) (see [below for nested schema](#nestedatt--spec--http--route--weight--request))
-- `response` (Attributes) (see [below for nested schema](#nestedatt--spec--http--route--weight--response))
+- `request` (Attributes) (see [below for nested schema](#nestedatt--spec--http--route--headers--request))
+- `response` (Attributes) (see [below for nested schema](#nestedatt--spec--http--route--headers--response))
 
-<a id="nestedatt--spec--http--route--weight--request"></a>
-### Nested Schema for `spec.http.route.weight.request`
+<a id="nestedatt--spec--http--route--headers--request"></a>
+### Nested Schema for `spec.http.route.headers.request`
 
 Optional:
 
@@ -470,8 +470,8 @@ Optional:
 - `set` (Map of String)
 
 
-<a id="nestedatt--spec--http--route--weight--response"></a>
-### Nested Schema for `spec.http.route.weight.response`
+<a id="nestedatt--spec--http--route--headers--response"></a>
+### Nested Schema for `spec.http.route.headers.response`
 
 Optional:
 
@@ -524,11 +524,11 @@ Required:
 
 Optional:
 
-- `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--tcp--route--weight--port))
+- `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--tcp--route--destination--port))
 - `subset` (String) The name of a subset within the service.
 
-<a id="nestedatt--spec--tcp--route--weight--port"></a>
-### Nested Schema for `spec.tcp.route.weight.port`
+<a id="nestedatt--spec--tcp--route--destination--port"></a>
+### Nested Schema for `spec.tcp.route.destination.port`
 
 Optional:
 
@@ -585,11 +585,11 @@ Required:
 
 Optional:
 
-- `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--tls--route--weight--port))
+- `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--tls--route--destination--port))
 - `subset` (String) The name of a subset within the service.
 
-<a id="nestedatt--spec--tls--route--weight--port"></a>
-### Nested Schema for `spec.tls.route.weight.port`
+<a id="nestedatt--spec--tls--route--destination--port"></a>
+### Nested Schema for `spec.tls.route.destination.port`
 
 Optional:
 

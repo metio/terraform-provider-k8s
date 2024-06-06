@@ -83,34 +83,34 @@ Optional:
 
 Optional:
 
-- `preferred` (Attributes List) Preferred are the preferred hardware affinity terms. Hardware matching these terms are preferred according to theweights provided, but are not required. (see [below for nested schema](#nestedatt--spec--template--spec--template_override--preferred))
-- `required` (Attributes List) Required are the required hardware affinity terms.  The terms are OR'd together, hardware must match one term tobe considered. (see [below for nested schema](#nestedatt--spec--template--spec--template_override--required))
+- `preferred` (Attributes List) Preferred are the preferred hardware affinity terms. Hardware matching these terms are preferred according to theweights provided, but are not required. (see [below for nested schema](#nestedatt--spec--template--spec--hardware_affinity--preferred))
+- `required` (Attributes List) Required are the required hardware affinity terms.  The terms are OR'd together, hardware must match one term tobe considered. (see [below for nested schema](#nestedatt--spec--template--spec--hardware_affinity--required))
 
-<a id="nestedatt--spec--template--spec--template_override--preferred"></a>
-### Nested Schema for `spec.template.spec.template_override.preferred`
+<a id="nestedatt--spec--template--spec--hardware_affinity--preferred"></a>
+### Nested Schema for `spec.template.spec.hardware_affinity.preferred`
 
 Required:
 
-- `hardware_affinity_term` (Attributes) HardwareAffinityTerm is the term associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--template--spec--template_override--preferred--hardware_affinity_term))
+- `hardware_affinity_term` (Attributes) HardwareAffinityTerm is the term associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--template--spec--hardware_affinity--preferred--hardware_affinity_term))
 - `weight` (Number) Weight associated with matching the corresponding hardwareAffinityTerm, in the range 1-100.
 
-<a id="nestedatt--spec--template--spec--template_override--preferred--hardware_affinity_term"></a>
-### Nested Schema for `spec.template.spec.template_override.preferred.hardware_affinity_term`
+<a id="nestedatt--spec--template--spec--hardware_affinity--preferred--hardware_affinity_term"></a>
+### Nested Schema for `spec.template.spec.hardware_affinity.preferred.hardware_affinity_term`
 
 Required:
 
-- `label_selector` (Attributes) LabelSelector is used to select for particular hardware by label. (see [below for nested schema](#nestedatt--spec--template--spec--template_override--preferred--weight--label_selector))
+- `label_selector` (Attributes) LabelSelector is used to select for particular hardware by label. (see [below for nested schema](#nestedatt--spec--template--spec--hardware_affinity--preferred--hardware_affinity_term--label_selector))
 
-<a id="nestedatt--spec--template--spec--template_override--preferred--weight--label_selector"></a>
-### Nested Schema for `spec.template.spec.template_override.preferred.weight.label_selector`
+<a id="nestedatt--spec--template--spec--hardware_affinity--preferred--hardware_affinity_term--label_selector"></a>
+### Nested Schema for `spec.template.spec.hardware_affinity.preferred.hardware_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--template_override--preferred--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--hardware_affinity--preferred--hardware_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--template--spec--template_override--preferred--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.template.spec.template_override.preferred.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--template--spec--hardware_affinity--preferred--hardware_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.spec.hardware_affinity.preferred.hardware_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -125,23 +125,23 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--template_override--required"></a>
-### Nested Schema for `spec.template.spec.template_override.required`
+<a id="nestedatt--spec--template--spec--hardware_affinity--required"></a>
+### Nested Schema for `spec.template.spec.hardware_affinity.required`
 
 Required:
 
-- `label_selector` (Attributes) LabelSelector is used to select for particular hardware by label. (see [below for nested schema](#nestedatt--spec--template--spec--template_override--required--label_selector))
+- `label_selector` (Attributes) LabelSelector is used to select for particular hardware by label. (see [below for nested schema](#nestedatt--spec--template--spec--hardware_affinity--required--label_selector))
 
-<a id="nestedatt--spec--template--spec--template_override--required--label_selector"></a>
-### Nested Schema for `spec.template.spec.template_override.required.label_selector`
+<a id="nestedatt--spec--template--spec--hardware_affinity--required--label_selector"></a>
+### Nested Schema for `spec.template.spec.hardware_affinity.required.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--template_override--required--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--hardware_affinity--required--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--template--spec--template_override--required--label_selector--match_expressions"></a>
-### Nested Schema for `spec.template.spec.template_override.required.label_selector.match_expressions`
+<a id="nestedatt--spec--template--spec--hardware_affinity--required--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.spec.hardware_affinity.required.label_selector.match_expressions`
 
 Required:
 

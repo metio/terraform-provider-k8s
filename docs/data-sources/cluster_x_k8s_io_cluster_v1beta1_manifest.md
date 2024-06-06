@@ -161,12 +161,12 @@ Optional:
 - `enable` (Boolean) Enable controls if a MachineHealthCheck should be created for the target machines.If false: No MachineHealthCheck will be created.If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.If true: A MachineHealthCheck is guaranteed to be created. Cluster validation willblock if 'enable' is true and no MachineHealthCheck definition is available.
 - `max_unhealthy` (String) Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.
 - `node_startup_timeout` (String) Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.
-- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--topology--control_plane--replicas--remediation_template))
-- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--topology--control_plane--replicas--unhealthy_conditions))
+- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--topology--control_plane--machine_health_check--remediation_template))
+- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--topology--control_plane--machine_health_check--unhealthy_conditions))
 - `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines
 
-<a id="nestedatt--spec--topology--control_plane--replicas--remediation_template"></a>
-### Nested Schema for `spec.topology.control_plane.replicas.remediation_template`
+<a id="nestedatt--spec--topology--control_plane--machine_health_check--remediation_template"></a>
+### Nested Schema for `spec.topology.control_plane.machine_health_check.remediation_template`
 
 Optional:
 
@@ -179,8 +179,8 @@ Optional:
 - `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
-<a id="nestedatt--spec--topology--control_plane--replicas--unhealthy_conditions"></a>
-### Nested Schema for `spec.topology.control_plane.replicas.unhealthy_conditions`
+<a id="nestedatt--spec--topology--control_plane--machine_health_check--unhealthy_conditions"></a>
+### Nested Schema for `spec.topology.control_plane.machine_health_check.unhealthy_conditions`
 
 Required:
 
@@ -232,30 +232,30 @@ Required:
 Optional:
 
 - `failure_domain` (String) FailureDomain is the failure domain the machines will be created in.Must match a key in the FailureDomains map stored on the cluster object.
-- `machine_health_check` (Attributes) MachineHealthCheck allows to enable, disable and overridethe MachineHealthCheck configuration in the ClusterClass for this MachineDeployment. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_pools--machine_health_check))
-- `metadata` (Attributes) Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment.At runtime this metadata is merged with the corresponding metadata from the ClusterClass. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_pools--metadata))
+- `machine_health_check` (Attributes) MachineHealthCheck allows to enable, disable and overridethe MachineHealthCheck configuration in the ClusterClass for this MachineDeployment. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_deployments--machine_health_check))
+- `metadata` (Attributes) Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment.At runtime this metadata is merged with the corresponding metadata from the ClusterClass. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_deployments--metadata))
 - `min_ready_seconds` (Number) Minimum number of seconds for which a newly created machine shouldbe ready.Defaults to 0 (machine will be considered available as soon as itis ready)
 - `node_deletion_timeout` (String) NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machinehosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.
 - `node_drain_timeout` (String) NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'
 - `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.
 - `replicas` (Number) Replicas is the number of worker nodes belonging to this set.If the value is nil, the MachineDeployment is created without the number of Replicas (defaulting to 1)and it's assumed that an external entity (like cluster autoscaler) is responsible for the managementof this value.
-- `strategy` (Attributes) The deployment strategy to use to replace existing machines withnew ones. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_pools--strategy))
-- `variables` (Attributes) Variables can be used to customize the MachineDeployment through patches. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_pools--variables))
+- `strategy` (Attributes) The deployment strategy to use to replace existing machines withnew ones. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_deployments--strategy))
+- `variables` (Attributes) Variables can be used to customize the MachineDeployment through patches. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_deployments--variables))
 
-<a id="nestedatt--spec--topology--workers--machine_pools--machine_health_check"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.machine_health_check`
+<a id="nestedatt--spec--topology--workers--machine_deployments--machine_health_check"></a>
+### Nested Schema for `spec.topology.workers.machine_deployments.machine_health_check`
 
 Optional:
 
 - `enable` (Boolean) Enable controls if a MachineHealthCheck should be created for the target machines.If false: No MachineHealthCheck will be created.If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.If true: A MachineHealthCheck is guaranteed to be created. Cluster validation willblock if 'enable' is true and no MachineHealthCheck definition is available.
 - `max_unhealthy` (String) Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.
 - `node_startup_timeout` (String) Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.
-- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_pools--machine_health_check--remediation_template))
-- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_pools--machine_health_check--unhealthy_conditions))
+- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_deployments--machine_health_check--remediation_template))
+- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_deployments--machine_health_check--unhealthy_conditions))
 - `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines
 
-<a id="nestedatt--spec--topology--workers--machine_pools--machine_health_check--remediation_template"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.machine_health_check.remediation_template`
+<a id="nestedatt--spec--topology--workers--machine_deployments--machine_health_check--remediation_template"></a>
+### Nested Schema for `spec.topology.workers.machine_deployments.machine_health_check.remediation_template`
 
 Optional:
 
@@ -268,8 +268,8 @@ Optional:
 - `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
-<a id="nestedatt--spec--topology--workers--machine_pools--machine_health_check--unhealthy_conditions"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.machine_health_check.unhealthy_conditions`
+<a id="nestedatt--spec--topology--workers--machine_deployments--machine_health_check--unhealthy_conditions"></a>
+### Nested Schema for `spec.topology.workers.machine_deployments.machine_health_check.unhealthy_conditions`
 
 Required:
 
@@ -279,8 +279,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--topology--workers--machine_pools--metadata"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.metadata`
+<a id="nestedatt--spec--topology--workers--machine_deployments--metadata"></a>
+### Nested Schema for `spec.topology.workers.machine_deployments.metadata`
 
 Optional:
 
@@ -288,16 +288,16 @@ Optional:
 - `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
 
 
-<a id="nestedatt--spec--topology--workers--machine_pools--strategy"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.strategy`
+<a id="nestedatt--spec--topology--workers--machine_deployments--strategy"></a>
+### Nested Schema for `spec.topology.workers.machine_deployments.strategy`
 
 Optional:
 
-- `rolling_update` (Attributes) Rolling update config params. Present only ifMachineDeploymentStrategyType = RollingUpdate. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_pools--strategy--rolling_update))
+- `rolling_update` (Attributes) Rolling update config params. Present only ifMachineDeploymentStrategyType = RollingUpdate. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_deployments--strategy--rolling_update))
 - `type` (String) Type of deployment. Allowed values are RollingUpdate and OnDelete.The default is RollingUpdate.
 
-<a id="nestedatt--spec--topology--workers--machine_pools--strategy--rolling_update"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.strategy.rolling_update`
+<a id="nestedatt--spec--topology--workers--machine_deployments--strategy--rolling_update"></a>
+### Nested Schema for `spec.topology.workers.machine_deployments.strategy.rolling_update`
 
 Optional:
 
@@ -307,15 +307,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--topology--workers--machine_pools--variables"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.variables`
+<a id="nestedatt--spec--topology--workers--machine_deployments--variables"></a>
+### Nested Schema for `spec.topology.workers.machine_deployments.variables`
 
 Optional:
 
-- `overrides` (Attributes List) Overrides can be used to override Cluster level variables. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_pools--variables--overrides))
+- `overrides` (Attributes List) Overrides can be used to override Cluster level variables. (see [below for nested schema](#nestedatt--spec--topology--workers--machine_deployments--variables--overrides))
 
-<a id="nestedatt--spec--topology--workers--machine_pools--variables--overrides"></a>
-### Nested Schema for `spec.topology.workers.machine_pools.variables.overrides`
+<a id="nestedatt--spec--topology--workers--machine_deployments--variables--overrides"></a>
+### Nested Schema for `spec.topology.workers.machine_deployments.variables.overrides`
 
 Required:
 

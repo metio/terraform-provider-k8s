@@ -85,18 +85,18 @@ Required:
 
 Required:
 
-- `label_selector` (Attributes) LabelSelector is used to select for particular hardware by label. (see [below for nested schema](#nestedatt--spec--hardware_affinity--preferred--weight--label_selector))
+- `label_selector` (Attributes) LabelSelector is used to select for particular hardware by label. (see [below for nested schema](#nestedatt--spec--hardware_affinity--preferred--hardware_affinity_term--label_selector))
 
-<a id="nestedatt--spec--hardware_affinity--preferred--weight--label_selector"></a>
-### Nested Schema for `spec.hardware_affinity.preferred.weight.label_selector`
+<a id="nestedatt--spec--hardware_affinity--preferred--hardware_affinity_term--label_selector"></a>
+### Nested Schema for `spec.hardware_affinity.preferred.hardware_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--hardware_affinity--preferred--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--hardware_affinity--preferred--hardware_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--hardware_affinity--preferred--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.hardware_affinity.preferred.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--hardware_affinity--preferred--hardware_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.hardware_affinity.preferred.hardware_affinity_term.label_selector.match_expressions`
 
 Required:
 

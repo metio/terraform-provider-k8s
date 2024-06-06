@@ -262,13 +262,13 @@ Optional:
 - `decision_strategy` (String)
 - `id` (String)
 - `name` (String)
-- `policies` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--web_origins--policies))
+- `policies` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--authorization_settings--policies))
 - `policy_enforcement_mode` (String)
-- `resources` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--web_origins--resources))
-- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--web_origins--scopes))
+- `resources` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--authorization_settings--resources))
+- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--authorization_settings--scopes))
 
-<a id="nestedatt--spec--realm--applications--web_origins--policies"></a>
-### Nested Schema for `spec.realm.applications.web_origins.policies`
+<a id="nestedatt--spec--realm--applications--authorization_settings--policies"></a>
+### Nested Schema for `spec.realm.applications.authorization_settings.policies`
 
 Optional:
 
@@ -281,13 +281,13 @@ Optional:
 - `owner` (String)
 - `policies` (List of String)
 - `resources` (List of String)
-- `resources_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--web_origins--policies--resources_data))
+- `resources_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--authorization_settings--policies--resources_data))
 - `scopes` (List of String)
-- `scopes_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--web_origins--policies--scopes_data))
+- `scopes_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--authorization_settings--policies--scopes_data))
 - `type` (String)
 
-<a id="nestedatt--spec--realm--applications--web_origins--policies--resources_data"></a>
-### Nested Schema for `spec.realm.applications.web_origins.policies.resources_data`
+<a id="nestedatt--spec--realm--applications--authorization_settings--policies--resources_data"></a>
+### Nested Schema for `spec.realm.applications.authorization_settings.policies.resources_data`
 
 Optional:
 
@@ -296,14 +296,14 @@ Optional:
 - `display_name` (String)
 - `icon_uri` (String)
 - `name` (String)
-- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--applications--web_origins--policies--type--owner))
+- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--applications--authorization_settings--policies--resources_data--owner))
 - `owner_managed_access` (Boolean)
-- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--web_origins--policies--type--scopes))
+- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--authorization_settings--policies--resources_data--scopes))
 - `type` (String)
 - `uris` (List of String)
 
-<a id="nestedatt--spec--realm--applications--web_origins--policies--type--owner"></a>
-### Nested Schema for `spec.realm.applications.web_origins.policies.type.owner`
+<a id="nestedatt--spec--realm--applications--authorization_settings--policies--resources_data--owner"></a>
+### Nested Schema for `spec.realm.applications.authorization_settings.policies.resources_data.owner`
 
 Optional:
 
@@ -311,20 +311,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--realm--applications--web_origins--policies--type--scopes"></a>
-### Nested Schema for `spec.realm.applications.web_origins.policies.type.scopes`
-
-Optional:
-
-- `display_name` (String)
-- `icon_uri` (String)
-- `id` (String)
-- `name` (String)
-
-
-
-<a id="nestedatt--spec--realm--applications--web_origins--policies--scopes_data"></a>
-### Nested Schema for `spec.realm.applications.web_origins.policies.scopes_data`
+<a id="nestedatt--spec--realm--applications--authorization_settings--policies--resources_data--scopes"></a>
+### Nested Schema for `spec.realm.applications.authorization_settings.policies.resources_data.scopes`
 
 Optional:
 
@@ -335,8 +323,20 @@ Optional:
 
 
 
-<a id="nestedatt--spec--realm--applications--web_origins--resources"></a>
-### Nested Schema for `spec.realm.applications.web_origins.resources`
+<a id="nestedatt--spec--realm--applications--authorization_settings--policies--scopes_data"></a>
+### Nested Schema for `spec.realm.applications.authorization_settings.policies.scopes_data`
+
+Optional:
+
+- `display_name` (String)
+- `icon_uri` (String)
+- `id` (String)
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--realm--applications--authorization_settings--resources"></a>
+### Nested Schema for `spec.realm.applications.authorization_settings.resources`
 
 Optional:
 
@@ -345,14 +345,14 @@ Optional:
 - `display_name` (String)
 - `icon_uri` (String)
 - `name` (String)
-- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--applications--web_origins--resources--owner))
+- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--applications--authorization_settings--resources--owner))
 - `owner_managed_access` (Boolean)
-- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--web_origins--resources--scopes))
+- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--applications--authorization_settings--resources--scopes))
 - `type` (String)
 - `uris` (List of String)
 
-<a id="nestedatt--spec--realm--applications--web_origins--resources--owner"></a>
-### Nested Schema for `spec.realm.applications.web_origins.resources.owner`
+<a id="nestedatt--spec--realm--applications--authorization_settings--resources--owner"></a>
+### Nested Schema for `spec.realm.applications.authorization_settings.resources.owner`
 
 Optional:
 
@@ -360,8 +360,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--realm--applications--web_origins--resources--scopes"></a>
-### Nested Schema for `spec.realm.applications.web_origins.resources.scopes`
+<a id="nestedatt--spec--realm--applications--authorization_settings--resources--scopes"></a>
+### Nested Schema for `spec.realm.applications.authorization_settings.resources.scopes`
 
 Optional:
 
@@ -372,8 +372,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--realm--applications--web_origins--scopes"></a>
-### Nested Schema for `spec.realm.applications.web_origins.scopes`
+<a id="nestedatt--spec--realm--applications--authorization_settings--scopes"></a>
+### Nested Schema for `spec.realm.applications.authorization_settings.scopes`
 
 Optional:
 
@@ -578,13 +578,13 @@ Optional:
 - `decision_strategy` (String)
 - `id` (String)
 - `name` (String)
-- `policies` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--policies))
+- `policies` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--policies))
 - `policy_enforcement_mode` (String)
-- `resources` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--resources))
-- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--scopes))
+- `resources` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--resources))
+- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--scopes))
 
-<a id="nestedatt--spec--realm--clients--web_origins--policies"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies`
+<a id="nestedatt--spec--realm--clients--authorization_settings--policies"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.policies`
 
 Optional:
 
@@ -597,13 +597,13 @@ Optional:
 - `owner` (String)
 - `policies` (List of String)
 - `resources` (List of String)
-- `resources_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--policies--resources_data))
+- `resources_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--policies--resources_data))
 - `scopes` (List of String)
-- `scopes_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--policies--scopes_data))
+- `scopes_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--policies--scopes_data))
 - `type` (String)
 
-<a id="nestedatt--spec--realm--clients--web_origins--policies--resources_data"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies.resources_data`
+<a id="nestedatt--spec--realm--clients--authorization_settings--policies--resources_data"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.policies.resources_data`
 
 Optional:
 
@@ -612,14 +612,14 @@ Optional:
 - `display_name` (String)
 - `icon_uri` (String)
 - `name` (String)
-- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--policies--type--owner))
+- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--policies--resources_data--owner))
 - `owner_managed_access` (Boolean)
-- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--policies--type--scopes))
+- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--policies--resources_data--scopes))
 - `type` (String)
 - `uris` (List of String)
 
-<a id="nestedatt--spec--realm--clients--web_origins--policies--type--owner"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies.type.owner`
+<a id="nestedatt--spec--realm--clients--authorization_settings--policies--resources_data--owner"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.policies.resources_data.owner`
 
 Optional:
 
@@ -627,20 +627,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--realm--clients--web_origins--policies--type--scopes"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies.type.scopes`
-
-Optional:
-
-- `display_name` (String)
-- `icon_uri` (String)
-- `id` (String)
-- `name` (String)
-
-
-
-<a id="nestedatt--spec--realm--clients--web_origins--policies--scopes_data"></a>
-### Nested Schema for `spec.realm.clients.web_origins.policies.scopes_data`
+<a id="nestedatt--spec--realm--clients--authorization_settings--policies--resources_data--scopes"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.policies.resources_data.scopes`
 
 Optional:
 
@@ -651,8 +639,20 @@ Optional:
 
 
 
-<a id="nestedatt--spec--realm--clients--web_origins--resources"></a>
-### Nested Schema for `spec.realm.clients.web_origins.resources`
+<a id="nestedatt--spec--realm--clients--authorization_settings--policies--scopes_data"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.policies.scopes_data`
+
+Optional:
+
+- `display_name` (String)
+- `icon_uri` (String)
+- `id` (String)
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--realm--clients--authorization_settings--resources"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.resources`
 
 Optional:
 
@@ -661,14 +661,14 @@ Optional:
 - `display_name` (String)
 - `icon_uri` (String)
 - `name` (String)
-- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--resources--owner))
+- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--resources--owner))
 - `owner_managed_access` (Boolean)
-- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--web_origins--resources--scopes))
+- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--clients--authorization_settings--resources--scopes))
 - `type` (String)
 - `uris` (List of String)
 
-<a id="nestedatt--spec--realm--clients--web_origins--resources--owner"></a>
-### Nested Schema for `spec.realm.clients.web_origins.resources.owner`
+<a id="nestedatt--spec--realm--clients--authorization_settings--resources--owner"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.resources.owner`
 
 Optional:
 
@@ -676,8 +676,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--realm--clients--web_origins--resources--scopes"></a>
-### Nested Schema for `spec.realm.clients.web_origins.resources.scopes`
+<a id="nestedatt--spec--realm--clients--authorization_settings--resources--scopes"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.resources.scopes`
 
 Optional:
 
@@ -688,8 +688,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--realm--clients--web_origins--scopes"></a>
-### Nested Schema for `spec.realm.clients.web_origins.scopes`
+<a id="nestedatt--spec--realm--clients--authorization_settings--scopes"></a>
+### Nested Schema for `spec.realm.clients.authorization_settings.scopes`
 
 Optional:
 
@@ -954,13 +954,13 @@ Optional:
 - `decision_strategy` (String)
 - `id` (String)
 - `name` (String)
-- `policies` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--web_origins--policies))
+- `policies` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--authorization_settings--policies))
 - `policy_enforcement_mode` (String)
-- `resources` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--web_origins--resources))
-- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--web_origins--scopes))
+- `resources` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--authorization_settings--resources))
+- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--authorization_settings--scopes))
 
-<a id="nestedatt--spec--realm--oauth_clients--web_origins--policies"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.policies`
+<a id="nestedatt--spec--realm--oauth_clients--authorization_settings--policies"></a>
+### Nested Schema for `spec.realm.oauth_clients.authorization_settings.policies`
 
 Optional:
 
@@ -973,13 +973,13 @@ Optional:
 - `owner` (String)
 - `policies` (List of String)
 - `resources` (List of String)
-- `resources_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--web_origins--policies--resources_data))
+- `resources_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--authorization_settings--policies--resources_data))
 - `scopes` (List of String)
-- `scopes_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--web_origins--policies--scopes_data))
+- `scopes_data` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--authorization_settings--policies--scopes_data))
 - `type` (String)
 
-<a id="nestedatt--spec--realm--oauth_clients--web_origins--policies--resources_data"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.resources_data`
+<a id="nestedatt--spec--realm--oauth_clients--authorization_settings--policies--resources_data"></a>
+### Nested Schema for `spec.realm.oauth_clients.authorization_settings.policies.resources_data`
 
 Optional:
 
@@ -988,14 +988,14 @@ Optional:
 - `display_name` (String)
 - `icon_uri` (String)
 - `name` (String)
-- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--web_origins--policies--type--owner))
+- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--authorization_settings--policies--resources_data--owner))
 - `owner_managed_access` (Boolean)
-- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--web_origins--policies--type--scopes))
+- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--authorization_settings--policies--resources_data--scopes))
 - `type` (String)
 - `uris` (List of String)
 
-<a id="nestedatt--spec--realm--oauth_clients--web_origins--policies--type--owner"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.type.owner`
+<a id="nestedatt--spec--realm--oauth_clients--authorization_settings--policies--resources_data--owner"></a>
+### Nested Schema for `spec.realm.oauth_clients.authorization_settings.policies.resources_data.owner`
 
 Optional:
 
@@ -1003,20 +1003,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--realm--oauth_clients--web_origins--policies--type--scopes"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.type.scopes`
-
-Optional:
-
-- `display_name` (String)
-- `icon_uri` (String)
-- `id` (String)
-- `name` (String)
-
-
-
-<a id="nestedatt--spec--realm--oauth_clients--web_origins--policies--scopes_data"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.policies.scopes_data`
+<a id="nestedatt--spec--realm--oauth_clients--authorization_settings--policies--resources_data--scopes"></a>
+### Nested Schema for `spec.realm.oauth_clients.authorization_settings.policies.resources_data.scopes`
 
 Optional:
 
@@ -1027,8 +1015,20 @@ Optional:
 
 
 
-<a id="nestedatt--spec--realm--oauth_clients--web_origins--resources"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.resources`
+<a id="nestedatt--spec--realm--oauth_clients--authorization_settings--policies--scopes_data"></a>
+### Nested Schema for `spec.realm.oauth_clients.authorization_settings.policies.scopes_data`
+
+Optional:
+
+- `display_name` (String)
+- `icon_uri` (String)
+- `id` (String)
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--realm--oauth_clients--authorization_settings--resources"></a>
+### Nested Schema for `spec.realm.oauth_clients.authorization_settings.resources`
 
 Optional:
 
@@ -1037,14 +1037,14 @@ Optional:
 - `display_name` (String)
 - `icon_uri` (String)
 - `name` (String)
-- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--web_origins--resources--owner))
+- `owner` (Attributes) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--authorization_settings--resources--owner))
 - `owner_managed_access` (Boolean)
-- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--web_origins--resources--scopes))
+- `scopes` (Attributes List) (see [below for nested schema](#nestedatt--spec--realm--oauth_clients--authorization_settings--resources--scopes))
 - `type` (String)
 - `uris` (List of String)
 
-<a id="nestedatt--spec--realm--oauth_clients--web_origins--resources--owner"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.resources.owner`
+<a id="nestedatt--spec--realm--oauth_clients--authorization_settings--resources--owner"></a>
+### Nested Schema for `spec.realm.oauth_clients.authorization_settings.resources.owner`
 
 Optional:
 
@@ -1052,8 +1052,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--realm--oauth_clients--web_origins--resources--scopes"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.resources.scopes`
+<a id="nestedatt--spec--realm--oauth_clients--authorization_settings--resources--scopes"></a>
+### Nested Schema for `spec.realm.oauth_clients.authorization_settings.resources.scopes`
 
 Optional:
 
@@ -1064,8 +1064,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--realm--oauth_clients--web_origins--scopes"></a>
-### Nested Schema for `spec.realm.oauth_clients.web_origins.scopes`
+<a id="nestedatt--spec--realm--oauth_clients--authorization_settings--scopes"></a>
+### Nested Schema for `spec.realm.oauth_clients.authorization_settings.scopes`
 
 Optional:
 

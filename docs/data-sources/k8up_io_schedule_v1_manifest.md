@@ -111,13 +111,13 @@ Optional:
 
 Optional:
 
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--account_key_secret_ref))
-- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--account_name_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--azure--account_key_secret_ref))
+- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--azure--account_name_secret_ref))
 - `container` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--account_key_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.account_key_secret_ref`
+<a id="nestedatt--spec--archive--backend--azure--account_key_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.azure.account_key_secret_ref`
 
 Required:
 
@@ -129,8 +129,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--account_name_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.account_name_secret_ref`
+<a id="nestedatt--spec--archive--backend--azure--account_name_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.azure.account_name_secret_ref`
 
 Required:
 
@@ -148,13 +148,13 @@ Optional:
 
 Optional:
 
-- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--account_id_secret_ref))
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--account_key_secret_ref))
+- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--b2--account_id_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--b2--account_key_secret_ref))
 - `bucket` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--account_id_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.account_id_secret_ref`
+<a id="nestedatt--spec--archive--backend--b2--account_id_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.b2.account_id_secret_ref`
 
 Required:
 
@@ -166,8 +166,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--account_key_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.account_key_secret_ref`
+<a id="nestedatt--spec--archive--backend--b2--account_key_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.b2.account_key_secret_ref`
 
 Required:
 
@@ -185,12 +185,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--archive--backend--env_from--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--archive--backend--env_from--secret_ref))
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--config_map_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.config_map_ref`
+<a id="nestedatt--spec--archive--backend--env_from--config_map_ref"></a>
+### Nested Schema for `spec.archive.backend.env_from.config_map_ref`
 
 Optional:
 
@@ -198,8 +198,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--secret_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.secret_ref`
+<a id="nestedatt--spec--archive--backend--env_from--secret_ref"></a>
+### Nested Schema for `spec.archive.backend.env_from.secret_ref`
 
 Optional:
 
@@ -213,12 +213,12 @@ Optional:
 
 Optional:
 
-- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--access_token_secret_ref))
+- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--gcs--access_token_secret_ref))
 - `bucket` (String)
-- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--project_id_secret_ref))
+- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--gcs--project_id_secret_ref))
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--access_token_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.access_token_secret_ref`
+<a id="nestedatt--spec--archive--backend--gcs--access_token_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.gcs.access_token_secret_ref`
 
 Required:
 
@@ -230,8 +230,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--project_id_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.project_id_secret_ref`
+<a id="nestedatt--spec--archive--backend--gcs--project_id_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.gcs.project_id_secret_ref`
 
 Required:
 
@@ -270,12 +270,12 @@ Optional:
 
 Optional:
 
-- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--password_secret_reg))
+- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--rest--password_secret_reg))
 - `url` (String)
-- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--user_secret_ref))
+- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--rest--user_secret_ref))
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--password_secret_reg"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.password_secret_reg`
+<a id="nestedatt--spec--archive--backend--rest--password_secret_reg"></a>
+### Nested Schema for `spec.archive.backend.rest.password_secret_reg`
 
 Required:
 
@@ -287,8 +287,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--user_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.user_secret_ref`
+<a id="nestedatt--spec--archive--backend--rest--user_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.rest.user_secret_ref`
 
 Required:
 
@@ -306,13 +306,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--s3--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--volume_mounts--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--backend--s3--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.access_key_id_secret_ref`
+<a id="nestedatt--spec--archive--backend--s3--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.s3.access_key_id_secret_ref`
 
 Required:
 
@@ -324,8 +324,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--backend--volume_mounts--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.archive.backend.volume_mounts.secret_access_key_secret_ref`
+<a id="nestedatt--spec--archive--backend--s3--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.archive.backend.s3.secret_access_key_secret_ref`
 
 Required:
 
@@ -487,13 +487,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--restore_method--volume_mounts--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--restore_method--s3--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--restore_method--volume_mounts--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--archive--restore_method--s3--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--archive--restore_method--volume_mounts--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.archive.restore_method.volume_mounts.access_key_id_secret_ref`
+<a id="nestedatt--spec--archive--restore_method--s3--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.archive.restore_method.s3.access_key_id_secret_ref`
 
 Required:
 
@@ -505,8 +505,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--archive--restore_method--volume_mounts--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.archive.restore_method.volume_mounts.secret_access_key_secret_ref`
+<a id="nestedatt--spec--archive--restore_method--s3--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.archive.restore_method.s3.secret_access_key_secret_ref`
 
 Required:
 
@@ -565,12 +565,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--archive--volumes--secret--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--archive--volumes--config_map--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--archive--volumes--secret--items"></a>
-### Nested Schema for `spec.archive.volumes.secret.items`
+<a id="nestedatt--spec--archive--volumes--config_map--items"></a>
+### Nested Schema for `spec.archive.volumes.config_map.items`
 
 Required:
 
@@ -948,13 +948,13 @@ Optional:
 
 Optional:
 
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--account_key_secret_ref))
-- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--account_name_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--azure--account_key_secret_ref))
+- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--azure--account_name_secret_ref))
 - `container` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--account_key_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.account_key_secret_ref`
+<a id="nestedatt--spec--backup--backend--azure--account_key_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.azure.account_key_secret_ref`
 
 Required:
 
@@ -966,8 +966,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--account_name_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.account_name_secret_ref`
+<a id="nestedatt--spec--backup--backend--azure--account_name_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.azure.account_name_secret_ref`
 
 Required:
 
@@ -985,13 +985,13 @@ Optional:
 
 Optional:
 
-- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--account_id_secret_ref))
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--account_key_secret_ref))
+- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--b2--account_id_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--b2--account_key_secret_ref))
 - `bucket` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--account_id_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.account_id_secret_ref`
+<a id="nestedatt--spec--backup--backend--b2--account_id_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.b2.account_id_secret_ref`
 
 Required:
 
@@ -1003,8 +1003,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--account_key_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.account_key_secret_ref`
+<a id="nestedatt--spec--backup--backend--b2--account_key_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.b2.account_key_secret_ref`
 
 Required:
 
@@ -1022,12 +1022,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--backup--backend--env_from--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--backup--backend--env_from--secret_ref))
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--config_map_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.config_map_ref`
+<a id="nestedatt--spec--backup--backend--env_from--config_map_ref"></a>
+### Nested Schema for `spec.backup.backend.env_from.config_map_ref`
 
 Optional:
 
@@ -1035,8 +1035,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--secret_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.secret_ref`
+<a id="nestedatt--spec--backup--backend--env_from--secret_ref"></a>
+### Nested Schema for `spec.backup.backend.env_from.secret_ref`
 
 Optional:
 
@@ -1050,12 +1050,12 @@ Optional:
 
 Optional:
 
-- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--access_token_secret_ref))
+- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--gcs--access_token_secret_ref))
 - `bucket` (String)
-- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--project_id_secret_ref))
+- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--gcs--project_id_secret_ref))
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--access_token_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.access_token_secret_ref`
+<a id="nestedatt--spec--backup--backend--gcs--access_token_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.gcs.access_token_secret_ref`
 
 Required:
 
@@ -1067,8 +1067,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--project_id_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.project_id_secret_ref`
+<a id="nestedatt--spec--backup--backend--gcs--project_id_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.gcs.project_id_secret_ref`
 
 Required:
 
@@ -1107,12 +1107,12 @@ Optional:
 
 Optional:
 
-- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--password_secret_reg))
+- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--rest--password_secret_reg))
 - `url` (String)
-- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--user_secret_ref))
+- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--rest--user_secret_ref))
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--password_secret_reg"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.password_secret_reg`
+<a id="nestedatt--spec--backup--backend--rest--password_secret_reg"></a>
+### Nested Schema for `spec.backup.backend.rest.password_secret_reg`
 
 Required:
 
@@ -1124,8 +1124,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--user_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.user_secret_ref`
+<a id="nestedatt--spec--backup--backend--rest--user_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.rest.user_secret_ref`
 
 Required:
 
@@ -1143,13 +1143,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--s3--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--volume_mounts--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--backup--backend--s3--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.access_key_id_secret_ref`
+<a id="nestedatt--spec--backup--backend--s3--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.s3.access_key_id_secret_ref`
 
 Required:
 
@@ -1161,8 +1161,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--backup--backend--volume_mounts--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.backup.backend.volume_mounts.secret_access_key_secret_ref`
+<a id="nestedatt--spec--backup--backend--s3--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.backup.backend.s3.secret_access_key_secret_ref`
 
 Required:
 
@@ -1316,12 +1316,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--backup--volumes--secret--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--backup--volumes--config_map--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--backup--volumes--secret--items"></a>
-### Nested Schema for `spec.backup.volumes.secret.items`
+<a id="nestedatt--spec--backup--volumes--config_map--items"></a>
+### Nested Schema for `spec.backup.volumes.config_map.items`
 
 Required:
 
@@ -1412,13 +1412,13 @@ Optional:
 
 Optional:
 
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--account_key_secret_ref))
-- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--account_name_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--azure--account_key_secret_ref))
+- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--azure--account_name_secret_ref))
 - `container` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--check--backend--volume_mounts--account_key_secret_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.account_key_secret_ref`
+<a id="nestedatt--spec--check--backend--azure--account_key_secret_ref"></a>
+### Nested Schema for `spec.check.backend.azure.account_key_secret_ref`
 
 Required:
 
@@ -1430,8 +1430,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--check--backend--volume_mounts--account_name_secret_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.account_name_secret_ref`
+<a id="nestedatt--spec--check--backend--azure--account_name_secret_ref"></a>
+### Nested Schema for `spec.check.backend.azure.account_name_secret_ref`
 
 Required:
 
@@ -1449,13 +1449,13 @@ Optional:
 
 Optional:
 
-- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--account_id_secret_ref))
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--account_key_secret_ref))
+- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--b2--account_id_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--b2--account_key_secret_ref))
 - `bucket` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--check--backend--volume_mounts--account_id_secret_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.account_id_secret_ref`
+<a id="nestedatt--spec--check--backend--b2--account_id_secret_ref"></a>
+### Nested Schema for `spec.check.backend.b2.account_id_secret_ref`
 
 Required:
 
@@ -1467,8 +1467,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--check--backend--volume_mounts--account_key_secret_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.account_key_secret_ref`
+<a id="nestedatt--spec--check--backend--b2--account_key_secret_ref"></a>
+### Nested Schema for `spec.check.backend.b2.account_key_secret_ref`
 
 Required:
 
@@ -1486,12 +1486,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--check--backend--env_from--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--check--backend--env_from--secret_ref))
 
-<a id="nestedatt--spec--check--backend--volume_mounts--config_map_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.config_map_ref`
+<a id="nestedatt--spec--check--backend--env_from--config_map_ref"></a>
+### Nested Schema for `spec.check.backend.env_from.config_map_ref`
 
 Optional:
 
@@ -1499,8 +1499,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--check--backend--volume_mounts--secret_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.secret_ref`
+<a id="nestedatt--spec--check--backend--env_from--secret_ref"></a>
+### Nested Schema for `spec.check.backend.env_from.secret_ref`
 
 Optional:
 
@@ -1514,12 +1514,12 @@ Optional:
 
 Optional:
 
-- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--access_token_secret_ref))
+- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--gcs--access_token_secret_ref))
 - `bucket` (String)
-- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--project_id_secret_ref))
+- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--gcs--project_id_secret_ref))
 
-<a id="nestedatt--spec--check--backend--volume_mounts--access_token_secret_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.access_token_secret_ref`
+<a id="nestedatt--spec--check--backend--gcs--access_token_secret_ref"></a>
+### Nested Schema for `spec.check.backend.gcs.access_token_secret_ref`
 
 Required:
 
@@ -1531,8 +1531,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--check--backend--volume_mounts--project_id_secret_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.project_id_secret_ref`
+<a id="nestedatt--spec--check--backend--gcs--project_id_secret_ref"></a>
+### Nested Schema for `spec.check.backend.gcs.project_id_secret_ref`
 
 Required:
 
@@ -1571,12 +1571,12 @@ Optional:
 
 Optional:
 
-- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--password_secret_reg))
+- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--rest--password_secret_reg))
 - `url` (String)
-- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--user_secret_ref))
+- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--rest--user_secret_ref))
 
-<a id="nestedatt--spec--check--backend--volume_mounts--password_secret_reg"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.password_secret_reg`
+<a id="nestedatt--spec--check--backend--rest--password_secret_reg"></a>
+### Nested Schema for `spec.check.backend.rest.password_secret_reg`
 
 Required:
 
@@ -1588,8 +1588,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--check--backend--volume_mounts--user_secret_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.user_secret_ref`
+<a id="nestedatt--spec--check--backend--rest--user_secret_ref"></a>
+### Nested Schema for `spec.check.backend.rest.user_secret_ref`
 
 Required:
 
@@ -1607,13 +1607,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--s3--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--volume_mounts--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--check--backend--s3--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--check--backend--volume_mounts--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.access_key_id_secret_ref`
+<a id="nestedatt--spec--check--backend--s3--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.check.backend.s3.access_key_id_secret_ref`
 
 Required:
 
@@ -1625,8 +1625,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--check--backend--volume_mounts--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.check.backend.volume_mounts.secret_access_key_secret_ref`
+<a id="nestedatt--spec--check--backend--s3--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.check.backend.s3.secret_access_key_secret_ref`
 
 Required:
 
@@ -1780,12 +1780,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--check--volumes--secret--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--check--volumes--config_map--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--check--volumes--secret--items"></a>
-### Nested Schema for `spec.check.volumes.secret.items`
+<a id="nestedatt--spec--check--volumes--config_map--items"></a>
+### Nested Schema for `spec.check.volumes.config_map.items`
 
 Required:
 
@@ -1944,13 +1944,13 @@ Optional:
 
 Optional:
 
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--account_key_secret_ref))
-- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--account_name_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--azure--account_key_secret_ref))
+- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--azure--account_name_secret_ref))
 - `container` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--account_key_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.account_key_secret_ref`
+<a id="nestedatt--spec--prune--backend--azure--account_key_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.azure.account_key_secret_ref`
 
 Required:
 
@@ -1962,8 +1962,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--account_name_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.account_name_secret_ref`
+<a id="nestedatt--spec--prune--backend--azure--account_name_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.azure.account_name_secret_ref`
 
 Required:
 
@@ -1981,13 +1981,13 @@ Optional:
 
 Optional:
 
-- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--account_id_secret_ref))
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--account_key_secret_ref))
+- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--b2--account_id_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--b2--account_key_secret_ref))
 - `bucket` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--account_id_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.account_id_secret_ref`
+<a id="nestedatt--spec--prune--backend--b2--account_id_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.b2.account_id_secret_ref`
 
 Required:
 
@@ -1999,8 +1999,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--account_key_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.account_key_secret_ref`
+<a id="nestedatt--spec--prune--backend--b2--account_key_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.b2.account_key_secret_ref`
 
 Required:
 
@@ -2018,12 +2018,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--prune--backend--env_from--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--prune--backend--env_from--secret_ref))
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--config_map_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.config_map_ref`
+<a id="nestedatt--spec--prune--backend--env_from--config_map_ref"></a>
+### Nested Schema for `spec.prune.backend.env_from.config_map_ref`
 
 Optional:
 
@@ -2031,8 +2031,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--secret_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.secret_ref`
+<a id="nestedatt--spec--prune--backend--env_from--secret_ref"></a>
+### Nested Schema for `spec.prune.backend.env_from.secret_ref`
 
 Optional:
 
@@ -2046,12 +2046,12 @@ Optional:
 
 Optional:
 
-- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--access_token_secret_ref))
+- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--gcs--access_token_secret_ref))
 - `bucket` (String)
-- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--project_id_secret_ref))
+- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--gcs--project_id_secret_ref))
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--access_token_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.access_token_secret_ref`
+<a id="nestedatt--spec--prune--backend--gcs--access_token_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.gcs.access_token_secret_ref`
 
 Required:
 
@@ -2063,8 +2063,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--project_id_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.project_id_secret_ref`
+<a id="nestedatt--spec--prune--backend--gcs--project_id_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.gcs.project_id_secret_ref`
 
 Required:
 
@@ -2103,12 +2103,12 @@ Optional:
 
 Optional:
 
-- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--password_secret_reg))
+- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--rest--password_secret_reg))
 - `url` (String)
-- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--user_secret_ref))
+- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--rest--user_secret_ref))
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--password_secret_reg"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.password_secret_reg`
+<a id="nestedatt--spec--prune--backend--rest--password_secret_reg"></a>
+### Nested Schema for `spec.prune.backend.rest.password_secret_reg`
 
 Required:
 
@@ -2120,8 +2120,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--user_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.user_secret_ref`
+<a id="nestedatt--spec--prune--backend--rest--user_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.rest.user_secret_ref`
 
 Required:
 
@@ -2139,13 +2139,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--s3--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--volume_mounts--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--prune--backend--s3--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.access_key_id_secret_ref`
+<a id="nestedatt--spec--prune--backend--s3--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.s3.access_key_id_secret_ref`
 
 Required:
 
@@ -2157,8 +2157,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--prune--backend--volume_mounts--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.prune.backend.volume_mounts.secret_access_key_secret_ref`
+<a id="nestedatt--spec--prune--backend--s3--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.prune.backend.s3.secret_access_key_secret_ref`
 
 Required:
 
@@ -2328,12 +2328,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--prune--volumes--secret--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--prune--volumes--config_map--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--prune--volumes--secret--items"></a>
-### Nested Schema for `spec.prune.volumes.secret.items`
+<a id="nestedatt--spec--prune--volumes--config_map--items"></a>
+### Nested Schema for `spec.prune.volumes.config_map.items`
 
 Required:
 
@@ -2445,13 +2445,13 @@ Optional:
 
 Optional:
 
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--account_key_secret_ref))
-- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--account_name_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--azure--account_key_secret_ref))
+- `account_name_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--azure--account_name_secret_ref))
 - `container` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--account_key_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.account_key_secret_ref`
+<a id="nestedatt--spec--restore--backend--azure--account_key_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.azure.account_key_secret_ref`
 
 Required:
 
@@ -2463,8 +2463,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--account_name_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.account_name_secret_ref`
+<a id="nestedatt--spec--restore--backend--azure--account_name_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.azure.account_name_secret_ref`
 
 Required:
 
@@ -2482,13 +2482,13 @@ Optional:
 
 Optional:
 
-- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--account_id_secret_ref))
-- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--account_key_secret_ref))
+- `account_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--b2--account_id_secret_ref))
+- `account_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--b2--account_key_secret_ref))
 - `bucket` (String)
 - `path` (String)
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--account_id_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.account_id_secret_ref`
+<a id="nestedatt--spec--restore--backend--b2--account_id_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.b2.account_id_secret_ref`
 
 Required:
 
@@ -2500,8 +2500,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--account_key_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.account_key_secret_ref`
+<a id="nestedatt--spec--restore--backend--b2--account_key_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.b2.account_key_secret_ref`
 
 Required:
 
@@ -2519,12 +2519,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--restore--backend--env_from--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--restore--backend--env_from--secret_ref))
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--config_map_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.config_map_ref`
+<a id="nestedatt--spec--restore--backend--env_from--config_map_ref"></a>
+### Nested Schema for `spec.restore.backend.env_from.config_map_ref`
 
 Optional:
 
@@ -2532,8 +2532,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--secret_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.secret_ref`
+<a id="nestedatt--spec--restore--backend--env_from--secret_ref"></a>
+### Nested Schema for `spec.restore.backend.env_from.secret_ref`
 
 Optional:
 
@@ -2547,12 +2547,12 @@ Optional:
 
 Optional:
 
-- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--access_token_secret_ref))
+- `access_token_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--gcs--access_token_secret_ref))
 - `bucket` (String)
-- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--project_id_secret_ref))
+- `project_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--gcs--project_id_secret_ref))
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--access_token_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.access_token_secret_ref`
+<a id="nestedatt--spec--restore--backend--gcs--access_token_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.gcs.access_token_secret_ref`
 
 Required:
 
@@ -2564,8 +2564,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--project_id_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.project_id_secret_ref`
+<a id="nestedatt--spec--restore--backend--gcs--project_id_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.gcs.project_id_secret_ref`
 
 Required:
 
@@ -2604,12 +2604,12 @@ Optional:
 
 Optional:
 
-- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--password_secret_reg))
+- `password_secret_reg` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--rest--password_secret_reg))
 - `url` (String)
-- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--user_secret_ref))
+- `user_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--rest--user_secret_ref))
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--password_secret_reg"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.password_secret_reg`
+<a id="nestedatt--spec--restore--backend--rest--password_secret_reg"></a>
+### Nested Schema for `spec.restore.backend.rest.password_secret_reg`
 
 Required:
 
@@ -2621,8 +2621,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--user_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.user_secret_ref`
+<a id="nestedatt--spec--restore--backend--rest--user_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.rest.user_secret_ref`
 
 Required:
 
@@ -2640,13 +2640,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--s3--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--volume_mounts--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--backend--s3--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.access_key_id_secret_ref`
+<a id="nestedatt--spec--restore--backend--s3--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.s3.access_key_id_secret_ref`
 
 Required:
 
@@ -2658,8 +2658,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--backend--volume_mounts--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.restore.backend.volume_mounts.secret_access_key_secret_ref`
+<a id="nestedatt--spec--restore--backend--s3--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.restore.backend.s3.secret_access_key_secret_ref`
 
 Required:
 
@@ -2821,13 +2821,13 @@ Optional:
 
 Optional:
 
-- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--restore_method--volume_mounts--access_key_id_secret_ref))
+- `access_key_id_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--restore_method--s3--access_key_id_secret_ref))
 - `bucket` (String)
 - `endpoint` (String)
-- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--restore_method--volume_mounts--secret_access_key_secret_ref))
+- `secret_access_key_secret_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--restore--restore_method--s3--secret_access_key_secret_ref))
 
-<a id="nestedatt--spec--restore--restore_method--volume_mounts--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.restore.restore_method.volume_mounts.access_key_id_secret_ref`
+<a id="nestedatt--spec--restore--restore_method--s3--access_key_id_secret_ref"></a>
+### Nested Schema for `spec.restore.restore_method.s3.access_key_id_secret_ref`
 
 Required:
 
@@ -2839,8 +2839,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--restore--restore_method--volume_mounts--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.restore.restore_method.volume_mounts.secret_access_key_secret_ref`
+<a id="nestedatt--spec--restore--restore_method--s3--secret_access_key_secret_ref"></a>
+### Nested Schema for `spec.restore.restore_method.s3.secret_access_key_secret_ref`
 
 Required:
 
@@ -2899,12 +2899,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--restore--volumes--secret--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--restore--volumes--config_map--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--restore--volumes--secret--items"></a>
-### Nested Schema for `spec.restore.volumes.secret.items`
+<a id="nestedatt--spec--restore--volumes--config_map--items"></a>
+### Nested Schema for `spec.restore.volumes.config_map.items`
 
 Required:
 

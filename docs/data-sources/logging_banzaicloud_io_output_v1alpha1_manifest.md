@@ -199,10 +199,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--api_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--api_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--api_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.api_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--api_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.api_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -291,10 +291,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--ca_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--ca_file--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--ca_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.ca_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--ca_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.ca_file.mount_from.secret_key_ref`
 
 Required:
 
@@ -343,10 +343,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--client_cert--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--client_cert--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--client_cert--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.client_cert.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--client_cert--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.client_cert.mount_from.secret_key_ref`
 
 Required:
 
@@ -395,10 +395,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--client_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--client_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--client_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.client_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--client_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.client_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -447,10 +447,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--client_key_pass--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--client_key_pass--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--client_key_pass--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.client_key_pass.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--client_key_pass--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.client_key_pass.mount_from.secret_key_ref`
 
 Required:
 
@@ -505,19 +505,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--access_key_id--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--access_key_id--value_from))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--access_key_id--mount_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.access_key_id.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--access_key_id--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--access_key_id--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.access_key_id.mount_from.secret_key_ref`
 
 Required:
 
@@ -530,15 +530,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--access_key_id--value_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -557,19 +557,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_arn--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_arn--value_from))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_arn--mount_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_arn.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_arn--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_arn--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_arn.mount_from.secret_key_ref`
 
 Required:
 
@@ -582,15 +582,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_arn--value_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_arn.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_arn--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_arn--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_arn.value_from.secret_key_ref`
 
 Required:
 
@@ -609,19 +609,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_session_name--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_session_name--value_from))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_session_name--mount_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_session_name.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_session_name--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_session_name--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_session_name.mount_from.secret_key_ref`
 
 Required:
 
@@ -634,15 +634,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_session_name--value_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_session_name.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_session_name--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_session_name--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_session_name.value_from.secret_key_ref`
 
 Required:
 
@@ -661,19 +661,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_web_identity_token_file--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_web_identity_token_file--value_from))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_web_identity_token_file--mount_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_web_identity_token_file.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_web_identity_token_file--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_web_identity_token_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_web_identity_token_file.mount_from.secret_key_ref`
 
 Required:
 
@@ -686,15 +686,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_web_identity_token_file--value_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_web_identity_token_file.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--assume_role_web_identity_token_file--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--assume_role_web_identity_token_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.assume_role_web_identity_token_file.value_from.secret_key_ref`
 
 Required:
 
@@ -713,19 +713,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--ecs_container_credentials_relative_uri--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--ecs_container_credentials_relative_uri--value_from))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--ecs_container_credentials_relative_uri--mount_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.ecs_container_credentials_relative_uri.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--ecs_container_credentials_relative_uri--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--ecs_container_credentials_relative_uri--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.ecs_container_credentials_relative_uri.mount_from.secret_key_ref`
 
 Required:
 
@@ -738,15 +738,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--ecs_container_credentials_relative_uri--value_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.ecs_container_credentials_relative_uri.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--ecs_container_credentials_relative_uri--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--ecs_container_credentials_relative_uri--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.ecs_container_credentials_relative_uri.value_from.secret_key_ref`
 
 Required:
 
@@ -765,19 +765,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--secret_access_key--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--secret_access_key--value_from))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--secret_access_key--mount_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.secret_access_key.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--secret_access_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--secret_access_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.secret_access_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -790,15 +790,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--secret_access_key--value_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -817,19 +817,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--sts_credentials_region--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--sts_credentials_region--value_from))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.sts_credentials_region.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.mount_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
 
 Required:
 
@@ -842,15 +842,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.sts_credentials_region.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--endpoint--url--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.endpoint.url.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
 
 Required:
 
@@ -889,10 +889,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--password--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--password--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--password--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.password.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--password--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.password.mount_from.secret_key_ref`
 
 Required:
 
@@ -941,10 +941,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--template_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_elasticsearch--template_file--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_elasticsearch--template_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_elasticsearch.template_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_elasticsearch--template_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_elasticsearch.template_file.mount_from.secret_key_ref`
 
 Required:
 
@@ -1015,10 +1015,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--azurestorage--azure_storage_account--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--azurestorage--azure_storage_account--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--azurestorage--azure_storage_account--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.azurestorage.azure_storage_account.value_from.secret_key_ref`
+<a id="nestedatt--spec--azurestorage--azure_storage_account--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.azurestorage.azure_storage_account.mount_from.secret_key_ref`
 
 Required:
 
@@ -1067,10 +1067,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--azurestorage--azure_storage_access_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--azurestorage--azure_storage_access_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--azurestorage--azure_storage_access_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.azurestorage.azure_storage_access_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--azurestorage--azure_storage_access_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.azurestorage.azure_storage_access_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -1119,10 +1119,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--azurestorage--azure_storage_sas_token--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--azurestorage--azure_storage_sas_token--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--azurestorage--azure_storage_sas_token--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.azurestorage.azure_storage_sas_token.value_from.secret_key_ref`
+<a id="nestedatt--spec--azurestorage--azure_storage_sas_token--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.azurestorage.azure_storage_sas_token.mount_from.secret_key_ref`
 
 Required:
 
@@ -1259,10 +1259,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--aws_key_id--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--aws_key_id--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--cloudwatch--aws_key_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.cloudwatch.aws_key_id.value_from.secret_key_ref`
+<a id="nestedatt--spec--cloudwatch--aws_key_id--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.cloudwatch.aws_key_id.mount_from.secret_key_ref`
 
 Required:
 
@@ -1311,10 +1311,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--aws_sec_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--aws_sec_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--cloudwatch--aws_sec_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.cloudwatch.aws_sec_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--cloudwatch--aws_sec_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.cloudwatch.aws_sec_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -1445,10 +1445,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--datadog--api_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--datadog--api_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--datadog--api_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.datadog.api_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--datadog--api_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.datadog.api_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -1637,10 +1637,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--api_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--api_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--elasticsearch--api_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.api_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--elasticsearch--api_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.api_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -1729,10 +1729,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--ca_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--ca_file--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--elasticsearch--ca_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.ca_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--elasticsearch--ca_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.ca_file.mount_from.secret_key_ref`
 
 Required:
 
@@ -1781,10 +1781,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--client_cert--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--client_cert--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--elasticsearch--client_cert--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.client_cert.value_from.secret_key_ref`
+<a id="nestedatt--spec--elasticsearch--client_cert--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.client_cert.mount_from.secret_key_ref`
 
 Required:
 
@@ -1833,10 +1833,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--client_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--client_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--elasticsearch--client_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.client_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--elasticsearch--client_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.client_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -1885,10 +1885,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--client_key_pass--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--client_key_pass--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--elasticsearch--client_key_pass--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.client_key_pass.value_from.secret_key_ref`
+<a id="nestedatt--spec--elasticsearch--client_key_pass--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.client_key_pass.mount_from.secret_key_ref`
 
 Required:
 
@@ -1937,10 +1937,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--password--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--password--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--elasticsearch--password--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.password.value_from.secret_key_ref`
+<a id="nestedatt--spec--elasticsearch--password--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.password.mount_from.secret_key_ref`
 
 Required:
 
@@ -1989,10 +1989,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--template_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--template_file--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--elasticsearch--template_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.elasticsearch.template_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--elasticsearch--template_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.elasticsearch.template_file.mount_from.secret_key_ref`
 
 Required:
 
@@ -2162,19 +2162,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--password--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--password--value_from))
 
-<a id="nestedatt--spec--forward--servers--weight--mount_from"></a>
-### Nested Schema for `spec.forward.servers.weight.mount_from`
+<a id="nestedatt--spec--forward--servers--password--mount_from"></a>
+### Nested Schema for `spec.forward.servers.password.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--password--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--servers--weight--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.servers.weight.mount_from.secret_key_ref`
+<a id="nestedatt--spec--forward--servers--password--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.servers.password.mount_from.secret_key_ref`
 
 Required:
 
@@ -2187,15 +2187,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--forward--servers--weight--value_from"></a>
-### Nested Schema for `spec.forward.servers.weight.value_from`
+<a id="nestedatt--spec--forward--servers--password--value_from"></a>
+### Nested Schema for `spec.forward.servers.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--servers--weight--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.servers.weight.value_from.secret_key_ref`
+<a id="nestedatt--spec--forward--servers--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.servers.password.value_from.secret_key_ref`
 
 Required:
 
@@ -2214,19 +2214,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--shared_key--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--shared_key--value_from))
 
-<a id="nestedatt--spec--forward--servers--weight--mount_from"></a>
-### Nested Schema for `spec.forward.servers.weight.mount_from`
+<a id="nestedatt--spec--forward--servers--shared_key--mount_from"></a>
+### Nested Schema for `spec.forward.servers.shared_key.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--shared_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--servers--weight--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.servers.weight.mount_from.secret_key_ref`
+<a id="nestedatt--spec--forward--servers--shared_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.servers.shared_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -2239,15 +2239,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--forward--servers--weight--value_from"></a>
-### Nested Schema for `spec.forward.servers.weight.value_from`
+<a id="nestedatt--spec--forward--servers--shared_key--value_from"></a>
+### Nested Schema for `spec.forward.servers.shared_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--shared_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--servers--weight--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.servers.weight.value_from.secret_key_ref`
+<a id="nestedatt--spec--forward--servers--shared_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.servers.shared_key.value_from.secret_key_ref`
 
 Required:
 
@@ -2266,19 +2266,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--username--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--username--value_from))
 
-<a id="nestedatt--spec--forward--servers--weight--mount_from"></a>
-### Nested Schema for `spec.forward.servers.weight.mount_from`
+<a id="nestedatt--spec--forward--servers--username--mount_from"></a>
+### Nested Schema for `spec.forward.servers.username.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--username--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--servers--weight--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.servers.weight.mount_from.secret_key_ref`
+<a id="nestedatt--spec--forward--servers--username--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.servers.username.mount_from.secret_key_ref`
 
 Required:
 
@@ -2291,15 +2291,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--forward--servers--weight--value_from"></a>
-### Nested Schema for `spec.forward.servers.weight.value_from`
+<a id="nestedatt--spec--forward--servers--username--value_from"></a>
+### Nested Schema for `spec.forward.servers.username.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--weight--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--servers--username--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--servers--weight--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.servers.weight.value_from.secret_key_ref`
+<a id="nestedatt--spec--forward--servers--username--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.servers.username.value_from.secret_key_ref`
 
 Required:
 
@@ -2382,10 +2382,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--tls_cert_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--tls_cert_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--tls_cert_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.tls_cert_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--forward--tls_cert_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.tls_cert_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -2434,10 +2434,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--tls_client_cert_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--tls_client_cert_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--tls_client_cert_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.tls_client_cert_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--forward--tls_client_cert_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.tls_client_cert_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -2486,10 +2486,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--tls_client_private_key_passphrase--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--tls_client_private_key_passphrase--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--tls_client_private_key_passphrase--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.tls_client_private_key_passphrase.value_from.secret_key_ref`
+<a id="nestedatt--spec--forward--tls_client_private_key_passphrase--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.tls_client_private_key_passphrase.mount_from.secret_key_ref`
 
 Required:
 
@@ -2538,10 +2538,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--tls_client_private_key_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--forward--tls_client_private_key_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--tls_client_private_key_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.tls_client_private_key_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--forward--tls_client_private_key_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.tls_client_private_key_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -2660,10 +2660,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--gcs--credentials_json--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--gcs--credentials_json--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--gcs--credentials_json--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.gcs.credentials_json.value_from.secret_key_ref`
+<a id="nestedatt--spec--gcs--credentials_json--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.gcs.credentials_json.mount_from.secret_key_ref`
 
 Required:
 
@@ -2818,19 +2818,19 @@ Required:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--auth--username--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--auth--password--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--auth--username--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--http--auth--password--value_from))
 
-<a id="nestedatt--spec--http--auth--username--mount_from"></a>
-### Nested Schema for `spec.http.auth.username.mount_from`
+<a id="nestedatt--spec--http--auth--password--mount_from"></a>
+### Nested Schema for `spec.http.auth.password.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--auth--username--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--auth--password--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--http--auth--username--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.http.auth.username.mount_from.secret_key_ref`
+<a id="nestedatt--spec--http--auth--password--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.auth.password.mount_from.secret_key_ref`
 
 Required:
 
@@ -2843,15 +2843,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http--auth--username--value_from"></a>
-### Nested Schema for `spec.http.auth.username.value_from`
+<a id="nestedatt--spec--http--auth--password--value_from"></a>
+### Nested Schema for `spec.http.auth.password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--auth--username--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--auth--password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--http--auth--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.http.auth.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--http--auth--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.auth.password.value_from.secret_key_ref`
 
 Required:
 
@@ -2982,10 +2982,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_ca_cert_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_ca_cert_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--http--tls_ca_cert_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.http.tls_ca_cert_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--http--tls_ca_cert_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.tls_ca_cert_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -3034,10 +3034,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_client_cert_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_client_cert_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--http--tls_client_cert_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.http.tls_client_cert_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--http--tls_client_cert_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.tls_client_cert_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -3086,10 +3086,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_private_key_passphrase--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_private_key_passphrase--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--http--tls_private_key_passphrase--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.http.tls_private_key_passphrase.value_from.secret_key_ref`
+<a id="nestedatt--spec--http--tls_private_key_passphrase--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.tls_private_key_passphrase.mount_from.secret_key_ref`
 
 Required:
 
@@ -3138,10 +3138,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_private_key_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls_private_key_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--http--tls_private_key_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.http.tls_private_key_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--http--tls_private_key_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.tls_private_key_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -3288,10 +3288,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--keytab--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--keytab--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--kafka--keytab--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.kafka.keytab.value_from.secret_key_ref`
+<a id="nestedatt--spec--kafka--keytab--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.kafka.keytab.mount_from.secret_key_ref`
 
 Required:
 
@@ -3340,10 +3340,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--password--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--password--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--kafka--password--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.kafka.password.value_from.secret_key_ref`
+<a id="nestedatt--spec--kafka--password--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.kafka.password.mount_from.secret_key_ref`
 
 Required:
 
@@ -3392,10 +3392,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--ssl_ca_cert--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--ssl_ca_cert--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--kafka--ssl_ca_cert--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.kafka.ssl_ca_cert.value_from.secret_key_ref`
+<a id="nestedatt--spec--kafka--ssl_ca_cert--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.kafka.ssl_ca_cert.mount_from.secret_key_ref`
 
 Required:
 
@@ -3444,10 +3444,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--ssl_client_cert--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--ssl_client_cert--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--kafka--ssl_client_cert--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.kafka.ssl_client_cert.value_from.secret_key_ref`
+<a id="nestedatt--spec--kafka--ssl_client_cert--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.kafka.ssl_client_cert.mount_from.secret_key_ref`
 
 Required:
 
@@ -3496,10 +3496,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--ssl_client_cert_chain--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--ssl_client_cert_chain--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--kafka--ssl_client_cert_chain--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.kafka.ssl_client_cert_chain.value_from.secret_key_ref`
+<a id="nestedatt--spec--kafka--ssl_client_cert_chain--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.kafka.ssl_client_cert_chain.mount_from.secret_key_ref`
 
 Required:
 
@@ -3548,10 +3548,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--ssl_client_cert_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--ssl_client_cert_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--kafka--ssl_client_cert_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.kafka.ssl_client_cert_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--kafka--ssl_client_cert_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.kafka.ssl_client_cert_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -3600,10 +3600,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--username--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--username--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--kafka--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.kafka.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--kafka--username--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.kafka.username.mount_from.secret_key_ref`
 
 Required:
 
@@ -3693,10 +3693,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_stream--aws_key_id--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_stream--aws_key_id--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--kinesis_stream--aws_key_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.kinesis_stream.aws_key_id.value_from.secret_key_ref`
+<a id="nestedatt--spec--kinesis_stream--aws_key_id--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.kinesis_stream.aws_key_id.mount_from.secret_key_ref`
 
 Required:
 
@@ -3745,10 +3745,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_stream--aws_sec_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_stream--aws_sec_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--kinesis_stream--aws_sec_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.kinesis_stream.aws_sec_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--kinesis_stream--aws_sec_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.kinesis_stream.aws_sec_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -3797,10 +3797,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_stream--aws_ses_token--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_stream--aws_ses_token--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--kinesis_stream--aws_ses_token--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.kinesis_stream.aws_ses_token.value_from.secret_key_ref`
+<a id="nestedatt--spec--kinesis_stream--aws_ses_token--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.kinesis_stream.aws_ses_token.mount_from.secret_key_ref`
 
 Required:
 
@@ -3987,19 +3987,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--logz--endpoint--url--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--logz--endpoint--token--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--logz--endpoint--url--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--logz--endpoint--token--value_from))
 
-<a id="nestedatt--spec--logz--endpoint--url--mount_from"></a>
-### Nested Schema for `spec.logz.endpoint.url.mount_from`
+<a id="nestedatt--spec--logz--endpoint--token--mount_from"></a>
+### Nested Schema for `spec.logz.endpoint.token.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--logz--endpoint--url--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--logz--endpoint--token--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--logz--endpoint--url--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.logz.endpoint.url.mount_from.secret_key_ref`
+<a id="nestedatt--spec--logz--endpoint--token--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.logz.endpoint.token.mount_from.secret_key_ref`
 
 Required:
 
@@ -4012,15 +4012,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--logz--endpoint--url--value_from"></a>
-### Nested Schema for `spec.logz.endpoint.url.value_from`
+<a id="nestedatt--spec--logz--endpoint--token--value_from"></a>
+### Nested Schema for `spec.logz.endpoint.token.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--logz--endpoint--url--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--logz--endpoint--token--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--logz--endpoint--url--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.logz.endpoint.url.value_from.secret_key_ref`
+<a id="nestedatt--spec--logz--endpoint--token--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.logz.endpoint.token.value_from.secret_key_ref`
 
 Required:
 
@@ -4154,10 +4154,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--ca_cert--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--ca_cert--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--loki--ca_cert--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.loki.ca_cert.value_from.secret_key_ref`
+<a id="nestedatt--spec--loki--ca_cert--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.ca_cert.mount_from.secret_key_ref`
 
 Required:
 
@@ -4206,10 +4206,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--cert--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--cert--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--loki--cert--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.loki.cert.value_from.secret_key_ref`
+<a id="nestedatt--spec--loki--cert--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.cert.mount_from.secret_key_ref`
 
 Required:
 
@@ -4258,10 +4258,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--loki--key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.loki.key.value_from.secret_key_ref`
+<a id="nestedatt--spec--loki--key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.key.mount_from.secret_key_ref`
 
 Required:
 
@@ -4310,10 +4310,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--password--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--password--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--loki--password--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.loki.password.value_from.secret_key_ref`
+<a id="nestedatt--spec--loki--password--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.password.mount_from.secret_key_ref`
 
 Required:
 
@@ -4362,10 +4362,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--username--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--username--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--loki--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.loki.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--loki--username--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.username.mount_from.secret_key_ref`
 
 Required:
 
@@ -4426,10 +4426,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--newrelic--api_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--newrelic--api_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--newrelic--api_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.newrelic.api_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--newrelic--api_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.newrelic.api_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -4528,10 +4528,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--newrelic--license_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--newrelic--license_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--newrelic--license_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.newrelic.license_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--newrelic--license_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.newrelic.license_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -4715,10 +4715,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--ca_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--ca_file--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--ca_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.ca_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--ca_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.ca_file.mount_from.secret_key_ref`
 
 Required:
 
@@ -4767,10 +4767,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--client_cert--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--client_cert--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--client_cert--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.client_cert.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--client_cert--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.client_cert.mount_from.secret_key_ref`
 
 Required:
 
@@ -4819,10 +4819,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--client_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--client_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--client_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.client_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--client_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.client_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -4871,10 +4871,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--client_key_pass--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--client_key_pass--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--client_key_pass--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.client_key_pass.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--client_key_pass--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.client_key_pass.mount_from.secret_key_ref`
 
 Required:
 
@@ -4932,19 +4932,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--access_key_id--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--access_key_id--value_from))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+<a id="nestedatt--spec--opensearch--endpoint--access_key_id--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.access_key_id.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--access_key_id--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--access_key_id--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.access_key_id.mount_from.secret_key_ref`
 
 Required:
 
@@ -4957,15 +4957,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+<a id="nestedatt--spec--opensearch--endpoint--access_key_id--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.access_key_id.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--access_key_id--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--access_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.access_key_id.value_from.secret_key_ref`
 
 Required:
 
@@ -4984,19 +4984,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_arn--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_arn--value_from))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_arn--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_arn.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_arn--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_arn--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_arn.mount_from.secret_key_ref`
 
 Required:
 
@@ -5009,15 +5009,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_arn--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_arn.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_arn--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_arn--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_arn.value_from.secret_key_ref`
 
 Required:
 
@@ -5036,19 +5036,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_session_name--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_session_name--value_from))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_session_name--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_session_name.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_session_name--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_session_name--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_session_name.mount_from.secret_key_ref`
 
 Required:
 
@@ -5061,15 +5061,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_session_name--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_session_name.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_session_name--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_session_name--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_session_name.value_from.secret_key_ref`
 
 Required:
 
@@ -5088,19 +5088,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file--value_from))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_web_identity_token_file.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_web_identity_token_file.mount_from.secret_key_ref`
 
 Required:
 
@@ -5113,15 +5113,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_web_identity_token_file.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.assume_role_web_identity_token_file.value_from.secret_key_ref`
 
 Required:
 
@@ -5140,19 +5140,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri--value_from))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+<a id="nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.ecs_container_credentials_relative_uri.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.ecs_container_credentials_relative_uri.mount_from.secret_key_ref`
 
 Required:
 
@@ -5165,15 +5165,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+<a id="nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.ecs_container_credentials_relative_uri.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.ecs_container_credentials_relative_uri.value_from.secret_key_ref`
 
 Required:
 
@@ -5192,19 +5192,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--secret_access_key--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--secret_access_key--value_from))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+<a id="nestedatt--spec--opensearch--endpoint--secret_access_key--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.secret_access_key.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--secret_access_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--secret_access_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.secret_access_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -5217,15 +5217,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+<a id="nestedatt--spec--opensearch--endpoint--secret_access_key--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.secret_access_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--secret_access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--endpoint--secret_access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.secret_access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -5306,10 +5306,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--password--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--password--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--password--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.password.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--password--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.password.mount_from.secret_key_ref`
 
 Required:
 
@@ -5358,10 +5358,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--template_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--template_file--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--template_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.template_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--template_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.template_file.mount_from.secret_key_ref`
 
 Required:
 
@@ -5442,10 +5442,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_id--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_id--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--oss--access_key_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.oss.access_key_id.value_from.secret_key_ref`
+<a id="nestedatt--spec--oss--access_key_id--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.oss.access_key_id.mount_from.secret_key_ref`
 
 Required:
 
@@ -5494,10 +5494,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--oss--access_key_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.oss.access_key_secret.value_from.secret_key_ref`
+<a id="nestedatt--spec--oss--access_key_secret--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.oss.access_key_secret.mount_from.secret_key_ref`
 
 Required:
 
@@ -5664,10 +5664,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--password--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--password--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--redis--password--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.redis.password.value_from.secret_key_ref`
+<a id="nestedatt--spec--redis--password--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.redis.password.mount_from.secret_key_ref`
 
 Required:
 
@@ -5794,10 +5794,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--aws_key_id--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--aws_key_id--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--s3--aws_key_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.s3.aws_key_id.value_from.secret_key_ref`
+<a id="nestedatt--spec--s3--aws_key_id--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.s3.aws_key_id.mount_from.secret_key_ref`
 
 Required:
 
@@ -5846,10 +5846,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--aws_sec_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--aws_sec_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--s3--aws_sec_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.s3.aws_sec_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--s3--aws_sec_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.s3.aws_sec_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -6024,10 +6024,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec--hec_token--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec--hec_token--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--splunk_hec--hec_token--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.splunk_hec.hec_token.value_from.secret_key_ref`
+<a id="nestedatt--spec--splunk_hec--hec_token--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec.hec_token.mount_from.secret_key_ref`
 
 Required:
 
@@ -6116,10 +6116,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec--ca_file--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec--ca_file--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--splunk_hec--ca_file--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.splunk_hec.ca_file.value_from.secret_key_ref`
+<a id="nestedatt--spec--splunk_hec--ca_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec.ca_file.mount_from.secret_key_ref`
 
 Required:
 
@@ -6168,10 +6168,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec--ca_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec--ca_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--splunk_hec--ca_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.splunk_hec.ca_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--splunk_hec--ca_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec.ca_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -6220,10 +6220,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec--client_cert--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec--client_cert--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--splunk_hec--client_cert--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.splunk_hec.client_cert.value_from.secret_key_ref`
+<a id="nestedatt--spec--splunk_hec--client_cert--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec.client_cert.mount_from.secret_key_ref`
 
 Required:
 
@@ -6272,10 +6272,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec--client_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec--client_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--splunk_hec--client_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.splunk_hec.client_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--splunk_hec--client_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec.client_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -6353,10 +6353,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sqs--aws_key_id--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sqs--aws_key_id--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--sqs--aws_key_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.sqs.aws_key_id.value_from.secret_key_ref`
+<a id="nestedatt--spec--sqs--aws_key_id--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.sqs.aws_key_id.mount_from.secret_key_ref`
 
 Required:
 
@@ -6405,10 +6405,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sqs--aws_sec_key--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sqs--aws_sec_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--sqs--aws_sec_key--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.sqs.aws_sec_key.value_from.secret_key_ref`
+<a id="nestedatt--spec--sqs--aws_sec_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.sqs.aws_sec_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -6530,10 +6530,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic--endpoint--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic--endpoint--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--sumologic--endpoint--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.sumologic.endpoint.value_from.secret_key_ref`
+<a id="nestedatt--spec--sumologic--endpoint--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.sumologic.endpoint.mount_from.secret_key_ref`
 
 Required:
 
@@ -6688,10 +6688,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog--client_cert_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog--client_cert_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--syslog--client_cert_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.syslog.client_cert_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--syslog--client_cert_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.syslog.client_cert_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -6755,10 +6755,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog--private_key_passphrase--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog--private_key_passphrase--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--syslog--private_key_passphrase--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.syslog.private_key_passphrase.value_from.secret_key_ref`
+<a id="nestedatt--spec--syslog--private_key_passphrase--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.syslog.private_key_passphrase.mount_from.secret_key_ref`
 
 Required:
 
@@ -6807,10 +6807,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog--private_key_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog--private_key_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--syslog--private_key_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.syslog.private_key_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--syslog--private_key_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.syslog.private_key_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -6859,10 +6859,10 @@ Optional:
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog--trusted_ca_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog--trusted_ca_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--syslog--trusted_ca_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.syslog.trusted_ca_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--syslog--trusted_ca_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.syslog.trusted_ca_path.mount_from.secret_key_ref`
 
 Required:
 

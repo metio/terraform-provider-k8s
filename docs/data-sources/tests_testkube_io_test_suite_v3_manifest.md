@@ -112,14 +112,14 @@ Optional:
 - `negative_test` (Boolean) negative test will fail the execution if it is a success and it will succeed if it is a failure
 - `pvc_template` (String) pvc template extensions
 - `pvc_template_reference` (String) pvc template extensions reference
-- `running_context` (Attributes) RunningContext for test or test suite execution (see [below for nested schema](#nestedatt--spec--after--execute--test--running_context))
+- `running_context` (Attributes) RunningContext for test or test suite execution (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--running_context))
 - `scraper_template` (String) scraper template extensions
 - `scraper_template_reference` (String) scraper template extensions reference
 - `sync` (Boolean) whether to start execution sync or async
-- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--after--execute--test--variables))
+- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables))
 
-<a id="nestedatt--spec--after--execute--test--running_context"></a>
-### Nested Schema for `spec.after.execute.test.running_context`
+<a id="nestedatt--spec--after--execute--execution_request--running_context"></a>
+### Nested Schema for `spec.after.execute.execution_request.running_context`
 
 Required:
 
@@ -130,28 +130,28 @@ Optional:
 - `context` (String) Context value depending from its type
 
 
-<a id="nestedatt--spec--after--execute--test--variables"></a>
-### Nested Schema for `spec.after.execute.test.variables`
+<a id="nestedatt--spec--after--execute--execution_request--variables"></a>
+### Nested Schema for `spec.after.execute.execution_request.variables`
 
 Optional:
 
 - `name` (String) variable name
 - `type` (String) variable type
 - `value` (String) variable string value
-- `value_from` (Attributes) or load it from var source (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from))
+- `value_from` (Attributes) or load it from var source (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from))
 
-<a id="nestedatt--spec--after--execute--test--variables--value_from"></a>
-### Nested Schema for `spec.after.execute.test.variables.value_from`
+<a id="nestedatt--spec--after--execute--execution_request--variables--value_from"></a>
+### Nested Schema for `spec.after.execute.execution_request.variables.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--after--execute--test--variables--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.after.execute.test.variables.value_from.config_map_key_ref`
+<a id="nestedatt--spec--after--execute--execution_request--variables--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.after.execute.execution_request.variables.value_from.config_map_key_ref`
 
 Required:
 
@@ -163,8 +163,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--after--execute--test--variables--value_from--field_ref"></a>
-### Nested Schema for `spec.after.execute.test.variables.value_from.field_ref`
+<a id="nestedatt--spec--after--execute--execution_request--variables--value_from--field_ref"></a>
+### Nested Schema for `spec.after.execute.execution_request.variables.value_from.field_ref`
 
 Required:
 
@@ -175,8 +175,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--after--execute--test--variables--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.after.execute.test.variables.value_from.resource_field_ref`
+<a id="nestedatt--spec--after--execute--execution_request--variables--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.after.execute.execution_request.variables.value_from.resource_field_ref`
 
 Required:
 
@@ -188,8 +188,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--after--execute--test--variables--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.after.execute.test.variables.value_from.secret_key_ref`
+<a id="nestedatt--spec--after--execute--execution_request--variables--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.after.execute.execution_request.variables.value_from.secret_key_ref`
 
 Required:
 
@@ -255,14 +255,14 @@ Optional:
 - `negative_test` (Boolean) negative test will fail the execution if it is a success and it will succeed if it is a failure
 - `pvc_template` (String) pvc template extensions
 - `pvc_template_reference` (String) pvc template extensions reference
-- `running_context` (Attributes) RunningContext for test or test suite execution (see [below for nested schema](#nestedatt--spec--before--execute--test--running_context))
+- `running_context` (Attributes) RunningContext for test or test suite execution (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--running_context))
 - `scraper_template` (String) scraper template extensions
 - `scraper_template_reference` (String) scraper template extensions reference
 - `sync` (Boolean) whether to start execution sync or async
-- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--before--execute--test--variables))
+- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables))
 
-<a id="nestedatt--spec--before--execute--test--running_context"></a>
-### Nested Schema for `spec.before.execute.test.running_context`
+<a id="nestedatt--spec--before--execute--execution_request--running_context"></a>
+### Nested Schema for `spec.before.execute.execution_request.running_context`
 
 Required:
 
@@ -273,28 +273,28 @@ Optional:
 - `context` (String) Context value depending from its type
 
 
-<a id="nestedatt--spec--before--execute--test--variables"></a>
-### Nested Schema for `spec.before.execute.test.variables`
+<a id="nestedatt--spec--before--execute--execution_request--variables"></a>
+### Nested Schema for `spec.before.execute.execution_request.variables`
 
 Optional:
 
 - `name` (String) variable name
 - `type` (String) variable type
 - `value` (String) variable string value
-- `value_from` (Attributes) or load it from var source (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from))
+- `value_from` (Attributes) or load it from var source (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from))
 
-<a id="nestedatt--spec--before--execute--test--variables--value_from"></a>
-### Nested Schema for `spec.before.execute.test.variables.value_from`
+<a id="nestedatt--spec--before--execute--execution_request--variables--value_from"></a>
+### Nested Schema for `spec.before.execute.execution_request.variables.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--before--execute--test--variables--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.before.execute.test.variables.value_from.config_map_key_ref`
+<a id="nestedatt--spec--before--execute--execution_request--variables--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.before.execute.execution_request.variables.value_from.config_map_key_ref`
 
 Required:
 
@@ -306,8 +306,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--before--execute--test--variables--value_from--field_ref"></a>
-### Nested Schema for `spec.before.execute.test.variables.value_from.field_ref`
+<a id="nestedatt--spec--before--execute--execution_request--variables--value_from--field_ref"></a>
+### Nested Schema for `spec.before.execute.execution_request.variables.value_from.field_ref`
 
 Required:
 
@@ -318,8 +318,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--before--execute--test--variables--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.before.execute.test.variables.value_from.resource_field_ref`
+<a id="nestedatt--spec--before--execute--execution_request--variables--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.before.execute.execution_request.variables.value_from.resource_field_ref`
 
 Required:
 
@@ -331,8 +331,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--before--execute--test--variables--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.before.execute.test.variables.value_from.secret_key_ref`
+<a id="nestedatt--spec--before--execute--execution_request--variables--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.before.execute.execution_request.variables.value_from.secret_key_ref`
 
 Required:
 
@@ -496,14 +496,14 @@ Optional:
 - `negative_test` (Boolean) negative test will fail the execution if it is a success and it will succeed if it is a failure
 - `pvc_template` (String) pvc template extensions
 - `pvc_template_reference` (String) pvc template extensions reference
-- `running_context` (Attributes) RunningContext for test or test suite execution (see [below for nested schema](#nestedatt--spec--steps--execute--test--running_context))
+- `running_context` (Attributes) RunningContext for test or test suite execution (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--running_context))
 - `scraper_template` (String) scraper template extensions
 - `scraper_template_reference` (String) scraper template extensions reference
 - `sync` (Boolean) whether to start execution sync or async
-- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables))
+- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables))
 
-<a id="nestedatt--spec--steps--execute--test--running_context"></a>
-### Nested Schema for `spec.steps.execute.test.running_context`
+<a id="nestedatt--spec--steps--execute--execution_request--running_context"></a>
+### Nested Schema for `spec.steps.execute.execution_request.running_context`
 
 Required:
 
@@ -514,28 +514,28 @@ Optional:
 - `context` (String) Context value depending from its type
 
 
-<a id="nestedatt--spec--steps--execute--test--variables"></a>
-### Nested Schema for `spec.steps.execute.test.variables`
+<a id="nestedatt--spec--steps--execute--execution_request--variables"></a>
+### Nested Schema for `spec.steps.execute.execution_request.variables`
 
 Optional:
 
 - `name` (String) variable name
 - `type` (String) variable type
 - `value` (String) variable string value
-- `value_from` (Attributes) or load it from var source (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from))
+- `value_from` (Attributes) or load it from var source (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from))
 
-<a id="nestedatt--spec--steps--execute--test--variables--value_from"></a>
-### Nested Schema for `spec.steps.execute.test.variables.value_from`
+<a id="nestedatt--spec--steps--execute--execution_request--variables--value_from"></a>
+### Nested Schema for `spec.steps.execute.execution_request.variables.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--steps--execute--test--variables--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.steps.execute.test.variables.value_from.config_map_key_ref`
+<a id="nestedatt--spec--steps--execute--execution_request--variables--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.steps.execute.execution_request.variables.value_from.config_map_key_ref`
 
 Required:
 
@@ -547,8 +547,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--steps--execute--test--variables--value_from--field_ref"></a>
-### Nested Schema for `spec.steps.execute.test.variables.value_from.field_ref`
+<a id="nestedatt--spec--steps--execute--execution_request--variables--value_from--field_ref"></a>
+### Nested Schema for `spec.steps.execute.execution_request.variables.value_from.field_ref`
 
 Required:
 
@@ -559,8 +559,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--steps--execute--test--variables--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.steps.execute.test.variables.value_from.resource_field_ref`
+<a id="nestedatt--spec--steps--execute--execution_request--variables--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.steps.execute.execution_request.variables.value_from.resource_field_ref`
 
 Required:
 
@@ -572,8 +572,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--steps--execute--test--variables--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.steps.execute.test.variables.value_from.secret_key_ref`
+<a id="nestedatt--spec--steps--execute--execution_request--variables--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.steps.execute.execution_request.variables.value_from.secret_key_ref`
 
 Required:
 

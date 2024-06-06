@@ -327,20 +327,20 @@ Optional:
 Optional:
 
 - `hash_source_ip` (Boolean) HashSourceIP should be set to true when request source IP hash basedload balancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.
-- `header_hash_options` (Attributes) HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--routes--load_balancer_policy--strategy--header_hash_options))
-- `query_parameter_hash_options` (Attributes) QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--routes--load_balancer_policy--strategy--query_parameter_hash_options))
+- `header_hash_options` (Attributes) HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--routes--load_balancer_policy--request_hash_policies--header_hash_options))
+- `query_parameter_hash_options` (Attributes) QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--routes--load_balancer_policy--request_hash_policies--query_parameter_hash_options))
 - `terminal` (Boolean) Terminal is a flag that allows for short-circuiting computing of a hashfor a given request. If set to true, and the request attribute specifiedin the attribute hash options is present, no further hash policies willbe used to calculate a hash for the request.
 
-<a id="nestedatt--spec--routes--load_balancer_policy--strategy--header_hash_options"></a>
-### Nested Schema for `spec.routes.load_balancer_policy.strategy.header_hash_options`
+<a id="nestedatt--spec--routes--load_balancer_policy--request_hash_policies--header_hash_options"></a>
+### Nested Schema for `spec.routes.load_balancer_policy.request_hash_policies.header_hash_options`
 
 Optional:
 
 - `header_name` (String) HeaderName is the name of the HTTP request header that will be used tocalculate the hash key. If the header specified is not present on arequest, no hash will be produced.
 
 
-<a id="nestedatt--spec--routes--load_balancer_policy--strategy--query_parameter_hash_options"></a>
-### Nested Schema for `spec.routes.load_balancer_policy.strategy.query_parameter_hash_options`
+<a id="nestedatt--spec--routes--load_balancer_policy--request_hash_policies--query_parameter_hash_options"></a>
+### Nested Schema for `spec.routes.load_balancer_policy.request_hash_policies.query_parameter_hash_options`
 
 Optional:
 
@@ -382,28 +382,28 @@ Optional:
 
 Optional:
 
-- `descriptors` (Attributes List) Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--local--descriptors))
+- `descriptors` (Attributes List) Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--global--descriptors))
 - `disabled` (Boolean) Disabled configures the HTTPProxy to not usethe default global rate limit policy defined by the Contour configuration.
 
-<a id="nestedatt--spec--routes--rate_limit_policy--local--descriptors"></a>
-### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors`
+<a id="nestedatt--spec--routes--rate_limit_policy--global--descriptors"></a>
+### Nested Schema for `spec.routes.rate_limit_policy.global.descriptors`
 
 Optional:
 
-- `entries` (Attributes List) Entries is the list of key-value pair generators. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries))
+- `entries` (Attributes List) Entries is the list of key-value pair generators. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--global--descriptors--entries))
 
-<a id="nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries"></a>
-### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries`
+<a id="nestedatt--spec--routes--rate_limit_policy--global--descriptors--entries"></a>
+### Nested Schema for `spec.routes.rate_limit_policy.global.descriptors.entries`
 
 Optional:
 
-- `generic_key` (Attributes) GenericKey defines a descriptor entry with a static key and value. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--generic_key))
+- `generic_key` (Attributes) GenericKey defines a descriptor entry with a static key and value. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--global--descriptors--entries--generic_key))
 - `remote_address` (Map of String) RemoteAddress defines a descriptor entry with a key of 'remote_address'and a value equal to the client's IP address (from x-forwarded-for).
-- `request_header` (Attributes) RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--request_header))
-- `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--request_header_value_match))
+- `request_header` (Attributes) RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--global--descriptors--entries--request_header))
+- `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--global--descriptors--entries--request_header_value_match))
 
-<a id="nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--generic_key"></a>
-### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries.generic_key`
+<a id="nestedatt--spec--routes--rate_limit_policy--global--descriptors--entries--generic_key"></a>
+### Nested Schema for `spec.routes.rate_limit_policy.global.descriptors.entries.generic_key`
 
 Optional:
 
@@ -411,8 +411,8 @@ Optional:
 - `value` (String) Value defines the value of the descriptor entry.
 
 
-<a id="nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--request_header"></a>
-### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries.request_header`
+<a id="nestedatt--spec--routes--rate_limit_policy--global--descriptors--entries--request_header"></a>
+### Nested Schema for `spec.routes.rate_limit_policy.global.descriptors.entries.request_header`
 
 Optional:
 
@@ -420,17 +420,17 @@ Optional:
 - `header_name` (String) HeaderName defines the name of the header to look for on the request.
 
 
-<a id="nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--request_header_value_match"></a>
-### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries.request_header_value_match`
+<a id="nestedatt--spec--routes--rate_limit_policy--global--descriptors--entries--request_header_value_match"></a>
+### Nested Schema for `spec.routes.rate_limit_policy.global.descriptors.entries.request_header_value_match`
 
 Optional:
 
 - `expect_match` (Boolean) ExpectMatch defines whether the request must positively match the matchcriteria in order to generate a descriptor entry (i.e. true), or notmatch the match criteria in order to generate a descriptor entry (i.e. false).The default is true.
-- `headers` (Attributes List) Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--request_header_value_match--headers))
+- `headers` (Attributes List) Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not. (see [below for nested schema](#nestedatt--spec--routes--rate_limit_policy--global--descriptors--entries--request_header_value_match--headers))
 - `value` (String) Value defines the value of the descriptor entry.
 
-<a id="nestedatt--spec--routes--rate_limit_policy--local--descriptors--entries--request_header_value_match--headers"></a>
-### Nested Schema for `spec.routes.rate_limit_policy.local.descriptors.entries.request_header_value_match.headers`
+<a id="nestedatt--spec--routes--rate_limit_policy--global--descriptors--entries--request_header_value_match--headers"></a>
+### Nested Schema for `spec.routes.rate_limit_policy.global.descriptors.entries.request_header_value_match.headers`
 
 Required:
 
@@ -567,21 +567,21 @@ Required:
 
 Optional:
 
-- `domain_rewrite` (Attributes) DomainRewrite enables rewriting the Set-Cookie Domain element.If not set, Domain will not be rewritten. (see [below for nested schema](#nestedatt--spec--routes--services--weight--domain_rewrite))
-- `path_rewrite` (Attributes) PathRewrite enables rewriting the Set-Cookie Path element.If not set, Path will not be rewritten. (see [below for nested schema](#nestedatt--spec--routes--services--weight--path_rewrite))
+- `domain_rewrite` (Attributes) DomainRewrite enables rewriting the Set-Cookie Domain element.If not set, Domain will not be rewritten. (see [below for nested schema](#nestedatt--spec--routes--services--cookie_rewrite_policies--domain_rewrite))
+- `path_rewrite` (Attributes) PathRewrite enables rewriting the Set-Cookie Path element.If not set, Path will not be rewritten. (see [below for nested schema](#nestedatt--spec--routes--services--cookie_rewrite_policies--path_rewrite))
 - `same_site` (String) SameSite enables rewriting the Set-Cookie SameSite element.If not set, SameSite attribute will not be rewritten.
 - `secure` (Boolean) Secure enables rewriting the Set-Cookie Secure element.If not set, Secure attribute will not be rewritten.
 
-<a id="nestedatt--spec--routes--services--weight--domain_rewrite"></a>
-### Nested Schema for `spec.routes.services.weight.domain_rewrite`
+<a id="nestedatt--spec--routes--services--cookie_rewrite_policies--domain_rewrite"></a>
+### Nested Schema for `spec.routes.services.cookie_rewrite_policies.domain_rewrite`
 
 Required:
 
 - `value` (String) Value is the value to rewrite the Domain attribute to.For now this is required.
 
 
-<a id="nestedatt--spec--routes--services--weight--path_rewrite"></a>
-### Nested Schema for `spec.routes.services.weight.path_rewrite`
+<a id="nestedatt--spec--routes--services--cookie_rewrite_policies--path_rewrite"></a>
+### Nested Schema for `spec.routes.services.cookie_rewrite_policies.path_rewrite`
 
 Required:
 
@@ -595,10 +595,10 @@ Required:
 Optional:
 
 - `remove` (List of String) Remove specifies a list of HTTP header names to remove.
-- `set` (Attributes List) Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value. (see [below for nested schema](#nestedatt--spec--routes--services--weight--set))
+- `set` (Attributes List) Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value. (see [below for nested schema](#nestedatt--spec--routes--services--request_headers_policy--set))
 
-<a id="nestedatt--spec--routes--services--weight--set"></a>
-### Nested Schema for `spec.routes.services.weight.set`
+<a id="nestedatt--spec--routes--services--request_headers_policy--set"></a>
+### Nested Schema for `spec.routes.services.request_headers_policy.set`
 
 Required:
 
@@ -613,10 +613,10 @@ Required:
 Optional:
 
 - `remove` (List of String) Remove specifies a list of HTTP header names to remove.
-- `set` (Attributes List) Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value. (see [below for nested schema](#nestedatt--spec--routes--services--weight--set))
+- `set` (Attributes List) Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value. (see [below for nested schema](#nestedatt--spec--routes--services--response_headers_policy--set))
 
-<a id="nestedatt--spec--routes--services--weight--set"></a>
-### Nested Schema for `spec.routes.services.weight.set`
+<a id="nestedatt--spec--routes--services--response_headers_policy--set"></a>
+### Nested Schema for `spec.routes.services.response_headers_policy.set`
 
 Required:
 
@@ -723,20 +723,20 @@ Optional:
 Optional:
 
 - `hash_source_ip` (Boolean) HashSourceIP should be set to true when request source IP hash basedload balancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.
-- `header_hash_options` (Attributes) HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--tcpproxy--load_balancer_policy--strategy--header_hash_options))
-- `query_parameter_hash_options` (Attributes) QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--tcpproxy--load_balancer_policy--strategy--query_parameter_hash_options))
+- `header_hash_options` (Attributes) HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--tcpproxy--load_balancer_policy--request_hash_policies--header_hash_options))
+- `query_parameter_hash_options` (Attributes) QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--tcpproxy--load_balancer_policy--request_hash_policies--query_parameter_hash_options))
 - `terminal` (Boolean) Terminal is a flag that allows for short-circuiting computing of a hashfor a given request. If set to true, and the request attribute specifiedin the attribute hash options is present, no further hash policies willbe used to calculate a hash for the request.
 
-<a id="nestedatt--spec--tcpproxy--load_balancer_policy--strategy--header_hash_options"></a>
-### Nested Schema for `spec.tcpproxy.load_balancer_policy.strategy.header_hash_options`
+<a id="nestedatt--spec--tcpproxy--load_balancer_policy--request_hash_policies--header_hash_options"></a>
+### Nested Schema for `spec.tcpproxy.load_balancer_policy.request_hash_policies.header_hash_options`
 
 Optional:
 
 - `header_name` (String) HeaderName is the name of the HTTP request header that will be used tocalculate the hash key. If the header specified is not present on arequest, no hash will be produced.
 
 
-<a id="nestedatt--spec--tcpproxy--load_balancer_policy--strategy--query_parameter_hash_options"></a>
-### Nested Schema for `spec.tcpproxy.load_balancer_policy.strategy.query_parameter_hash_options`
+<a id="nestedatt--spec--tcpproxy--load_balancer_policy--request_hash_policies--query_parameter_hash_options"></a>
+### Nested Schema for `spec.tcpproxy.load_balancer_policy.request_hash_policies.query_parameter_hash_options`
 
 Optional:
 
@@ -774,21 +774,21 @@ Required:
 
 Optional:
 
-- `domain_rewrite` (Attributes) DomainRewrite enables rewriting the Set-Cookie Domain element.If not set, Domain will not be rewritten. (see [below for nested schema](#nestedatt--spec--tcpproxy--services--weight--domain_rewrite))
-- `path_rewrite` (Attributes) PathRewrite enables rewriting the Set-Cookie Path element.If not set, Path will not be rewritten. (see [below for nested schema](#nestedatt--spec--tcpproxy--services--weight--path_rewrite))
+- `domain_rewrite` (Attributes) DomainRewrite enables rewriting the Set-Cookie Domain element.If not set, Domain will not be rewritten. (see [below for nested schema](#nestedatt--spec--tcpproxy--services--cookie_rewrite_policies--domain_rewrite))
+- `path_rewrite` (Attributes) PathRewrite enables rewriting the Set-Cookie Path element.If not set, Path will not be rewritten. (see [below for nested schema](#nestedatt--spec--tcpproxy--services--cookie_rewrite_policies--path_rewrite))
 - `same_site` (String) SameSite enables rewriting the Set-Cookie SameSite element.If not set, SameSite attribute will not be rewritten.
 - `secure` (Boolean) Secure enables rewriting the Set-Cookie Secure element.If not set, Secure attribute will not be rewritten.
 
-<a id="nestedatt--spec--tcpproxy--services--weight--domain_rewrite"></a>
-### Nested Schema for `spec.tcpproxy.services.weight.domain_rewrite`
+<a id="nestedatt--spec--tcpproxy--services--cookie_rewrite_policies--domain_rewrite"></a>
+### Nested Schema for `spec.tcpproxy.services.cookie_rewrite_policies.domain_rewrite`
 
 Required:
 
 - `value` (String) Value is the value to rewrite the Domain attribute to.For now this is required.
 
 
-<a id="nestedatt--spec--tcpproxy--services--weight--path_rewrite"></a>
-### Nested Schema for `spec.tcpproxy.services.weight.path_rewrite`
+<a id="nestedatt--spec--tcpproxy--services--cookie_rewrite_policies--path_rewrite"></a>
+### Nested Schema for `spec.tcpproxy.services.cookie_rewrite_policies.path_rewrite`
 
 Required:
 
@@ -802,10 +802,10 @@ Required:
 Optional:
 
 - `remove` (List of String) Remove specifies a list of HTTP header names to remove.
-- `set` (Attributes List) Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value. (see [below for nested schema](#nestedatt--spec--tcpproxy--services--weight--set))
+- `set` (Attributes List) Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value. (see [below for nested schema](#nestedatt--spec--tcpproxy--services--request_headers_policy--set))
 
-<a id="nestedatt--spec--tcpproxy--services--weight--set"></a>
-### Nested Schema for `spec.tcpproxy.services.weight.set`
+<a id="nestedatt--spec--tcpproxy--services--request_headers_policy--set"></a>
+### Nested Schema for `spec.tcpproxy.services.request_headers_policy.set`
 
 Required:
 
@@ -820,10 +820,10 @@ Required:
 Optional:
 
 - `remove` (List of String) Remove specifies a list of HTTP header names to remove.
-- `set` (Attributes List) Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value. (see [below for nested schema](#nestedatt--spec--tcpproxy--services--weight--set))
+- `set` (Attributes List) Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value. (see [below for nested schema](#nestedatt--spec--tcpproxy--services--response_headers_policy--set))
 
-<a id="nestedatt--spec--tcpproxy--services--weight--set"></a>
-### Nested Schema for `spec.tcpproxy.services.weight.set`
+<a id="nestedatt--spec--tcpproxy--services--response_headers_policy--set"></a>
+### Nested Schema for `spec.tcpproxy.services.response_headers_policy.set`
 
 Required:
 
@@ -980,10 +980,10 @@ Optional:
 - `cache_duration` (String) How long to cache the JWKS locally. If not specified,Envoy's default of 5m applies.
 - `dns_lookup_family` (String) The DNS IP address resolution policy for the JWKS URI.When configured as 'v4', the DNS resolver will only perform a lookupfor addresses in the IPv4 family. If 'v6' is configured, the DNS resolverwill only perform a lookup for addresses in the IPv6 family.If 'all' is configured, the DNS resolverwill perform a lookup for addresses in both the IPv4 and IPv6 family.If 'auto' is configured, the DNS resolver will first perform a lookupfor addresses in the IPv6 family and fallback to a lookup for addressesin the IPv4 family. If not specified, the Contour-wide setting definedin the config file or ContourConfiguration applies (defaults to 'auto').See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html#envoy-v3-api-enum-config-cluster-v3-cluster-dnslookupfamilyfor more information.
 - `timeout` (String) How long to wait for a response from the URI.If not specified, a default of 1s applies.
-- `validation` (Attributes) UpstreamValidation defines how to verify the JWKS's TLS certificate. (see [below for nested schema](#nestedatt--spec--virtualhost--jwt_providers--issuer--validation))
+- `validation` (Attributes) UpstreamValidation defines how to verify the JWKS's TLS certificate. (see [below for nested schema](#nestedatt--spec--virtualhost--jwt_providers--remote_jwks--validation))
 
-<a id="nestedatt--spec--virtualhost--jwt_providers--issuer--validation"></a>
-### Nested Schema for `spec.virtualhost.jwt_providers.issuer.validation`
+<a id="nestedatt--spec--virtualhost--jwt_providers--remote_jwks--validation"></a>
+### Nested Schema for `spec.virtualhost.jwt_providers.remote_jwks.validation`
 
 Required:
 
@@ -1010,28 +1010,28 @@ Optional:
 
 Optional:
 
-- `descriptors` (Attributes List) Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors))
+- `descriptors` (Attributes List) Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors))
 - `disabled` (Boolean) Disabled configures the HTTPProxy to not usethe default global rate limit policy defined by the Contour configuration.
 
-<a id="nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors"></a>
-### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors`
+<a id="nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors"></a>
+### Nested Schema for `spec.virtualhost.rate_limit_policy.global.descriptors`
 
 Optional:
 
-- `entries` (Attributes List) Entries is the list of key-value pair generators. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries))
+- `entries` (Attributes List) Entries is the list of key-value pair generators. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors--entries))
 
-<a id="nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries"></a>
-### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries`
+<a id="nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors--entries"></a>
+### Nested Schema for `spec.virtualhost.rate_limit_policy.global.descriptors.entries`
 
 Optional:
 
-- `generic_key` (Attributes) GenericKey defines a descriptor entry with a static key and value. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--generic_key))
+- `generic_key` (Attributes) GenericKey defines a descriptor entry with a static key and value. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors--entries--generic_key))
 - `remote_address` (Map of String) RemoteAddress defines a descriptor entry with a key of 'remote_address'and a value equal to the client's IP address (from x-forwarded-for).
-- `request_header` (Attributes) RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--request_header))
-- `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--request_header_value_match))
+- `request_header` (Attributes) RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors--entries--request_header))
+- `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors--entries--request_header_value_match))
 
-<a id="nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--generic_key"></a>
-### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries.generic_key`
+<a id="nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors--entries--generic_key"></a>
+### Nested Schema for `spec.virtualhost.rate_limit_policy.global.descriptors.entries.generic_key`
 
 Optional:
 
@@ -1039,8 +1039,8 @@ Optional:
 - `value` (String) Value defines the value of the descriptor entry.
 
 
-<a id="nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--request_header"></a>
-### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries.request_header`
+<a id="nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors--entries--request_header"></a>
+### Nested Schema for `spec.virtualhost.rate_limit_policy.global.descriptors.entries.request_header`
 
 Optional:
 
@@ -1048,17 +1048,17 @@ Optional:
 - `header_name` (String) HeaderName defines the name of the header to look for on the request.
 
 
-<a id="nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--request_header_value_match"></a>
-### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries.request_header_value_match`
+<a id="nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors--entries--request_header_value_match"></a>
+### Nested Schema for `spec.virtualhost.rate_limit_policy.global.descriptors.entries.request_header_value_match`
 
 Optional:
 
 - `expect_match` (Boolean) ExpectMatch defines whether the request must positively match the matchcriteria in order to generate a descriptor entry (i.e. true), or notmatch the match criteria in order to generate a descriptor entry (i.e. false).The default is true.
-- `headers` (Attributes List) Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--request_header_value_match--headers))
+- `headers` (Attributes List) Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not. (see [below for nested schema](#nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors--entries--request_header_value_match--headers))
 - `value` (String) Value defines the value of the descriptor entry.
 
-<a id="nestedatt--spec--virtualhost--rate_limit_policy--local--descriptors--entries--request_header_value_match--headers"></a>
-### Nested Schema for `spec.virtualhost.rate_limit_policy.local.descriptors.entries.request_header_value_match.headers`
+<a id="nestedatt--spec--virtualhost--rate_limit_policy--global--descriptors--entries--request_header_value_match--headers"></a>
+### Nested Schema for `spec.virtualhost.rate_limit_policy.global.descriptors.entries.request_header_value_match.headers`
 
 Required:
 
@@ -1126,12 +1126,12 @@ Optional:
 - `ca_secret` (String) Name of a Kubernetes secret that contains a CA certificate bundle.The secret must contain key named ca.crt.The client certificate must validate against the certificates in the bundle.If specified and SkipClientCertValidation is true, client certificates willbe required on requests.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.
 - `crl_only_verify_leaf_cert` (Boolean) If this option is set to true, only the certificate at the end of thecertificate chain will be subject to validation by CRL.
 - `crl_secret` (String) Name of a Kubernetes opaque secret that contains a concatenated list of PEM encoded CRLs.The secret must contain key named crl.pem.This field will be used to verify that a client certificate has not been revoked.CRLs must be available from all CAs, unless crlOnlyVerifyLeafCert is true.Large CRL lists are not supported since individual secrets are limited to 1MiB in size.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.
-- `forward_client_certificate` (Attributes) ForwardClientCertificate adds the selected data from the passed client TLS certificateto the x-forwarded-client-cert header. (see [below for nested schema](#nestedatt--spec--virtualhost--tls--secret_name--forward_client_certificate))
+- `forward_client_certificate` (Attributes) ForwardClientCertificate adds the selected data from the passed client TLS certificateto the x-forwarded-client-cert header. (see [below for nested schema](#nestedatt--spec--virtualhost--tls--client_validation--forward_client_certificate))
 - `optional_client_certificate` (Boolean) OptionalClientCertificate when set to true will request a client certificatebut allow the connection to continue if the client does not provide one.If a client certificate is sent, it will be verified according to theother properties, which includes disabling validation ifSkipClientCertValidation is set. Defaults to false.
 - `skip_client_cert_validation` (Boolean) SkipClientCertValidation disables downstream client certificatevalidation. Defaults to false. This field is intended to be used inconjunction with external authorization in order to enable the externalauthorization server to validate client certificates. When this fieldis set to true, client certificates are requested but not verified byEnvoy. If CACertificate is specified, client certificates are required onrequests, but not verified. If external authorization is in use, they arepresented to the external authorization server.
 
-<a id="nestedatt--spec--virtualhost--tls--secret_name--forward_client_certificate"></a>
-### Nested Schema for `spec.virtualhost.tls.secret_name.forward_client_certificate`
+<a id="nestedatt--spec--virtualhost--tls--client_validation--forward_client_certificate"></a>
+### Nested Schema for `spec.virtualhost.tls.client_validation.forward_client_certificate`
 
 Optional:
 

@@ -119,10 +119,10 @@ Optional:
 
 Required:
 
-- `weighted_targets` (Attributes List) An object that represents the targets that traffic is routed to when a request matches the route. (see [below for nested schema](#nestedatt--spec--routes--grpc_route--timeout--weighted_targets))
+- `weighted_targets` (Attributes List) An object that represents the targets that traffic is routed to when a request matches the route. (see [below for nested schema](#nestedatt--spec--routes--grpc_route--action--weighted_targets))
 
-<a id="nestedatt--spec--routes--grpc_route--timeout--weighted_targets"></a>
-### Nested Schema for `spec.routes.grpc_route.timeout.weighted_targets`
+<a id="nestedatt--spec--routes--grpc_route--action--weighted_targets"></a>
+### Nested Schema for `spec.routes.grpc_route.action.weighted_targets`
 
 Required:
 
@@ -132,10 +132,10 @@ Optional:
 
 - `port` (Number) Specifies the targeted port of the weighted object
 - `virtual_node_arn` (String) Amazon Resource Name to AppMesh VirtualNode object to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified.
-- `virtual_node_ref` (Attributes) Reference to Kubernetes VirtualNode CR in cluster to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified. (see [below for nested schema](#nestedatt--spec--routes--grpc_route--timeout--weighted_targets--virtual_node_ref))
+- `virtual_node_ref` (Attributes) Reference to Kubernetes VirtualNode CR in cluster to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified. (see [below for nested schema](#nestedatt--spec--routes--grpc_route--action--weighted_targets--virtual_node_ref))
 
-<a id="nestedatt--spec--routes--grpc_route--timeout--weighted_targets--virtual_node_ref"></a>
-### Nested Schema for `spec.routes.grpc_route.timeout.weighted_targets.virtual_node_ref`
+<a id="nestedatt--spec--routes--grpc_route--action--weighted_targets--virtual_node_ref"></a>
+### Nested Schema for `spec.routes.grpc_route.action.weighted_targets.virtual_node_ref`
 
 Required:
 
@@ -153,13 +153,13 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes List) An object that represents the data to match from the request. (see [below for nested schema](#nestedatt--spec--routes--grpc_route--timeout--metadata))
+- `metadata` (Attributes List) An object that represents the data to match from the request. (see [below for nested schema](#nestedatt--spec--routes--grpc_route--match--metadata))
 - `method_name` (String) The method name to match from the request. If you specify a name, you must also specify a serviceName.
 - `port` (Number) Specifies the port to match requests with
 - `service_name` (String) The fully qualified domain name for the service to match from the request.
 
-<a id="nestedatt--spec--routes--grpc_route--timeout--metadata"></a>
-### Nested Schema for `spec.routes.grpc_route.timeout.metadata`
+<a id="nestedatt--spec--routes--grpc_route--match--metadata"></a>
+### Nested Schema for `spec.routes.grpc_route.match.metadata`
 
 Required:
 
@@ -168,21 +168,21 @@ Required:
 Optional:
 
 - `invert` (Boolean) Specify True to match anything except the match criteria. The default value is False.
-- `match` (Attributes) An object that represents the data to match from the request. (see [below for nested schema](#nestedatt--spec--routes--grpc_route--timeout--metadata--match))
+- `match` (Attributes) An object that represents the data to match from the request. (see [below for nested schema](#nestedatt--spec--routes--grpc_route--match--metadata--match))
 
-<a id="nestedatt--spec--routes--grpc_route--timeout--metadata--match"></a>
-### Nested Schema for `spec.routes.grpc_route.timeout.metadata.match`
+<a id="nestedatt--spec--routes--grpc_route--match--metadata--match"></a>
+### Nested Schema for `spec.routes.grpc_route.match.metadata.match`
 
 Optional:
 
 - `exact` (String) The value sent by the client must match the specified value exactly.
 - `prefix` (String) The value sent by the client must begin with the specified characters.
-- `range` (Attributes) An object that represents the range of values to match on (see [below for nested schema](#nestedatt--spec--routes--grpc_route--timeout--metadata--match--range))
+- `range` (Attributes) An object that represents the range of values to match on (see [below for nested schema](#nestedatt--spec--routes--grpc_route--match--metadata--match--range))
 - `regex` (String) The value sent by the client must include the specified characters.
 - `suffix` (String) The value sent by the client must end with the specified characters.
 
-<a id="nestedatt--spec--routes--grpc_route--timeout--metadata--match--range"></a>
-### Nested Schema for `spec.routes.grpc_route.timeout.metadata.match.range`
+<a id="nestedatt--spec--routes--grpc_route--match--metadata--match--range"></a>
+### Nested Schema for `spec.routes.grpc_route.match.metadata.match.range`
 
 Required:
 
@@ -199,7 +199,7 @@ Required:
 Required:
 
 - `max_retries` (Number) The maximum number of retry attempts.
-- `per_retry_timeout` (Attributes) An object that represents a duration of time. (see [below for nested schema](#nestedatt--spec--routes--grpc_route--timeout--per_retry_timeout))
+- `per_retry_timeout` (Attributes) An object that represents a duration of time. (see [below for nested schema](#nestedatt--spec--routes--grpc_route--retry_policy--per_retry_timeout))
 
 Optional:
 
@@ -207,8 +207,8 @@ Optional:
 - `http_retry_events` (List of String)
 - `tcp_retry_events` (List of String)
 
-<a id="nestedatt--spec--routes--grpc_route--timeout--per_retry_timeout"></a>
-### Nested Schema for `spec.routes.grpc_route.timeout.per_retry_timeout`
+<a id="nestedatt--spec--routes--grpc_route--retry_policy--per_retry_timeout"></a>
+### Nested Schema for `spec.routes.grpc_route.retry_policy.per_retry_timeout`
 
 Required:
 
@@ -263,10 +263,10 @@ Optional:
 
 Required:
 
-- `weighted_targets` (Attributes List) An object that represents the targets that traffic is routed to when a request matches the route. (see [below for nested schema](#nestedatt--spec--routes--http2_route--timeout--weighted_targets))
+- `weighted_targets` (Attributes List) An object that represents the targets that traffic is routed to when a request matches the route. (see [below for nested schema](#nestedatt--spec--routes--http2_route--action--weighted_targets))
 
-<a id="nestedatt--spec--routes--http2_route--timeout--weighted_targets"></a>
-### Nested Schema for `spec.routes.http2_route.timeout.weighted_targets`
+<a id="nestedatt--spec--routes--http2_route--action--weighted_targets"></a>
+### Nested Schema for `spec.routes.http2_route.action.weighted_targets`
 
 Required:
 
@@ -276,10 +276,10 @@ Optional:
 
 - `port` (Number) Specifies the targeted port of the weighted object
 - `virtual_node_arn` (String) Amazon Resource Name to AppMesh VirtualNode object to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified.
-- `virtual_node_ref` (Attributes) Reference to Kubernetes VirtualNode CR in cluster to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified. (see [below for nested schema](#nestedatt--spec--routes--http2_route--timeout--weighted_targets--virtual_node_ref))
+- `virtual_node_ref` (Attributes) Reference to Kubernetes VirtualNode CR in cluster to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified. (see [below for nested schema](#nestedatt--spec--routes--http2_route--action--weighted_targets--virtual_node_ref))
 
-<a id="nestedatt--spec--routes--http2_route--timeout--weighted_targets--virtual_node_ref"></a>
-### Nested Schema for `spec.routes.http2_route.timeout.weighted_targets.virtual_node_ref`
+<a id="nestedatt--spec--routes--http2_route--action--weighted_targets--virtual_node_ref"></a>
+### Nested Schema for `spec.routes.http2_route.action.weighted_targets.virtual_node_ref`
 
 Required:
 
@@ -297,16 +297,16 @@ Optional:
 
 Optional:
 
-- `headers` (Attributes List) An object that represents the client request headers to match on. (see [below for nested schema](#nestedatt--spec--routes--http2_route--timeout--headers))
+- `headers` (Attributes List) An object that represents the client request headers to match on. (see [below for nested schema](#nestedatt--spec--routes--http2_route--match--headers))
 - `method` (String) The client request method to match on.
-- `path` (Attributes) The client specified Path to match on. (see [below for nested schema](#nestedatt--spec--routes--http2_route--timeout--path))
+- `path` (Attributes) The client specified Path to match on. (see [below for nested schema](#nestedatt--spec--routes--http2_route--match--path))
 - `port` (Number) Specifies the port to match requests with
 - `prefix` (String) Specifies the prefix to match requests with
-- `query_parameters` (Attributes List) The client specified queryParameters to match on (see [below for nested schema](#nestedatt--spec--routes--http2_route--timeout--query_parameters))
+- `query_parameters` (Attributes List) The client specified queryParameters to match on (see [below for nested schema](#nestedatt--spec--routes--http2_route--match--query_parameters))
 - `scheme` (String) The client request scheme to match on
 
-<a id="nestedatt--spec--routes--http2_route--timeout--headers"></a>
-### Nested Schema for `spec.routes.http2_route.timeout.headers`
+<a id="nestedatt--spec--routes--http2_route--match--headers"></a>
+### Nested Schema for `spec.routes.http2_route.match.headers`
 
 Required:
 
@@ -315,21 +315,21 @@ Required:
 Optional:
 
 - `invert` (Boolean) Specify True to match anything except the match criteria. The default value is False.
-- `match` (Attributes) The HeaderMatchMethod object. (see [below for nested schema](#nestedatt--spec--routes--http2_route--timeout--headers--match))
+- `match` (Attributes) The HeaderMatchMethod object. (see [below for nested schema](#nestedatt--spec--routes--http2_route--match--headers--match))
 
-<a id="nestedatt--spec--routes--http2_route--timeout--headers--match"></a>
-### Nested Schema for `spec.routes.http2_route.timeout.headers.match`
+<a id="nestedatt--spec--routes--http2_route--match--headers--match"></a>
+### Nested Schema for `spec.routes.http2_route.match.headers.match`
 
 Optional:
 
 - `exact` (String) The value sent by the client must match the specified value exactly.
 - `prefix` (String) The value sent by the client must begin with the specified characters.
-- `range` (Attributes) An object that represents the range of values to match on. (see [below for nested schema](#nestedatt--spec--routes--http2_route--timeout--headers--match--range))
+- `range` (Attributes) An object that represents the range of values to match on. (see [below for nested schema](#nestedatt--spec--routes--http2_route--match--headers--match--range))
 - `regex` (String) The value sent by the client must include the specified characters.
 - `suffix` (String) The value sent by the client must end with the specified characters.
 
-<a id="nestedatt--spec--routes--http2_route--timeout--headers--match--range"></a>
-### Nested Schema for `spec.routes.http2_route.timeout.headers.match.range`
+<a id="nestedatt--spec--routes--http2_route--match--headers--match--range"></a>
+### Nested Schema for `spec.routes.http2_route.match.headers.match.range`
 
 Required:
 
@@ -339,8 +339,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--routes--http2_route--timeout--path"></a>
-### Nested Schema for `spec.routes.http2_route.timeout.path`
+<a id="nestedatt--spec--routes--http2_route--match--path"></a>
+### Nested Schema for `spec.routes.http2_route.match.path`
 
 Optional:
 
@@ -348,8 +348,8 @@ Optional:
 - `regex` (String) The value sent by the client must end with the specified characters.
 
 
-<a id="nestedatt--spec--routes--http2_route--timeout--query_parameters"></a>
-### Nested Schema for `spec.routes.http2_route.timeout.query_parameters`
+<a id="nestedatt--spec--routes--http2_route--match--query_parameters"></a>
+### Nested Schema for `spec.routes.http2_route.match.query_parameters`
 
 Required:
 
@@ -357,10 +357,10 @@ Required:
 
 Optional:
 
-- `match` (Attributes) The QueryMatchMethod object. (see [below for nested schema](#nestedatt--spec--routes--http2_route--timeout--query_parameters--match))
+- `match` (Attributes) The QueryMatchMethod object. (see [below for nested schema](#nestedatt--spec--routes--http2_route--match--query_parameters--match))
 
-<a id="nestedatt--spec--routes--http2_route--timeout--query_parameters--match"></a>
-### Nested Schema for `spec.routes.http2_route.timeout.query_parameters.match`
+<a id="nestedatt--spec--routes--http2_route--match--query_parameters--match"></a>
+### Nested Schema for `spec.routes.http2_route.match.query_parameters.match`
 
 Optional:
 
@@ -375,15 +375,15 @@ Optional:
 Required:
 
 - `max_retries` (Number) The maximum number of retry attempts.
-- `per_retry_timeout` (Attributes) An object that represents a duration of time (see [below for nested schema](#nestedatt--spec--routes--http2_route--timeout--per_retry_timeout))
+- `per_retry_timeout` (Attributes) An object that represents a duration of time (see [below for nested schema](#nestedatt--spec--routes--http2_route--retry_policy--per_retry_timeout))
 
 Optional:
 
 - `http_retry_events` (List of String)
 - `tcp_retry_events` (List of String)
 
-<a id="nestedatt--spec--routes--http2_route--timeout--per_retry_timeout"></a>
-### Nested Schema for `spec.routes.http2_route.timeout.per_retry_timeout`
+<a id="nestedatt--spec--routes--http2_route--retry_policy--per_retry_timeout"></a>
+### Nested Schema for `spec.routes.http2_route.retry_policy.per_retry_timeout`
 
 Required:
 
@@ -438,10 +438,10 @@ Optional:
 
 Required:
 
-- `weighted_targets` (Attributes List) An object that represents the targets that traffic is routed to when a request matches the route. (see [below for nested schema](#nestedatt--spec--routes--http_route--timeout--weighted_targets))
+- `weighted_targets` (Attributes List) An object that represents the targets that traffic is routed to when a request matches the route. (see [below for nested schema](#nestedatt--spec--routes--http_route--action--weighted_targets))
 
-<a id="nestedatt--spec--routes--http_route--timeout--weighted_targets"></a>
-### Nested Schema for `spec.routes.http_route.timeout.weighted_targets`
+<a id="nestedatt--spec--routes--http_route--action--weighted_targets"></a>
+### Nested Schema for `spec.routes.http_route.action.weighted_targets`
 
 Required:
 
@@ -451,10 +451,10 @@ Optional:
 
 - `port` (Number) Specifies the targeted port of the weighted object
 - `virtual_node_arn` (String) Amazon Resource Name to AppMesh VirtualNode object to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified.
-- `virtual_node_ref` (Attributes) Reference to Kubernetes VirtualNode CR in cluster to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified. (see [below for nested schema](#nestedatt--spec--routes--http_route--timeout--weighted_targets--virtual_node_ref))
+- `virtual_node_ref` (Attributes) Reference to Kubernetes VirtualNode CR in cluster to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified. (see [below for nested schema](#nestedatt--spec--routes--http_route--action--weighted_targets--virtual_node_ref))
 
-<a id="nestedatt--spec--routes--http_route--timeout--weighted_targets--virtual_node_ref"></a>
-### Nested Schema for `spec.routes.http_route.timeout.weighted_targets.virtual_node_ref`
+<a id="nestedatt--spec--routes--http_route--action--weighted_targets--virtual_node_ref"></a>
+### Nested Schema for `spec.routes.http_route.action.weighted_targets.virtual_node_ref`
 
 Required:
 
@@ -472,16 +472,16 @@ Optional:
 
 Optional:
 
-- `headers` (Attributes List) An object that represents the client request headers to match on. (see [below for nested schema](#nestedatt--spec--routes--http_route--timeout--headers))
+- `headers` (Attributes List) An object that represents the client request headers to match on. (see [below for nested schema](#nestedatt--spec--routes--http_route--match--headers))
 - `method` (String) The client request method to match on.
-- `path` (Attributes) The client specified Path to match on. (see [below for nested schema](#nestedatt--spec--routes--http_route--timeout--path))
+- `path` (Attributes) The client specified Path to match on. (see [below for nested schema](#nestedatt--spec--routes--http_route--match--path))
 - `port` (Number) Specifies the port to match requests with
 - `prefix` (String) Specifies the prefix to match requests with
-- `query_parameters` (Attributes List) The client specified queryParameters to match on (see [below for nested schema](#nestedatt--spec--routes--http_route--timeout--query_parameters))
+- `query_parameters` (Attributes List) The client specified queryParameters to match on (see [below for nested schema](#nestedatt--spec--routes--http_route--match--query_parameters))
 - `scheme` (String) The client request scheme to match on
 
-<a id="nestedatt--spec--routes--http_route--timeout--headers"></a>
-### Nested Schema for `spec.routes.http_route.timeout.headers`
+<a id="nestedatt--spec--routes--http_route--match--headers"></a>
+### Nested Schema for `spec.routes.http_route.match.headers`
 
 Required:
 
@@ -490,21 +490,21 @@ Required:
 Optional:
 
 - `invert` (Boolean) Specify True to match anything except the match criteria. The default value is False.
-- `match` (Attributes) The HeaderMatchMethod object. (see [below for nested schema](#nestedatt--spec--routes--http_route--timeout--headers--match))
+- `match` (Attributes) The HeaderMatchMethod object. (see [below for nested schema](#nestedatt--spec--routes--http_route--match--headers--match))
 
-<a id="nestedatt--spec--routes--http_route--timeout--headers--match"></a>
-### Nested Schema for `spec.routes.http_route.timeout.headers.match`
+<a id="nestedatt--spec--routes--http_route--match--headers--match"></a>
+### Nested Schema for `spec.routes.http_route.match.headers.match`
 
 Optional:
 
 - `exact` (String) The value sent by the client must match the specified value exactly.
 - `prefix` (String) The value sent by the client must begin with the specified characters.
-- `range` (Attributes) An object that represents the range of values to match on. (see [below for nested schema](#nestedatt--spec--routes--http_route--timeout--headers--match--range))
+- `range` (Attributes) An object that represents the range of values to match on. (see [below for nested schema](#nestedatt--spec--routes--http_route--match--headers--match--range))
 - `regex` (String) The value sent by the client must include the specified characters.
 - `suffix` (String) The value sent by the client must end with the specified characters.
 
-<a id="nestedatt--spec--routes--http_route--timeout--headers--match--range"></a>
-### Nested Schema for `spec.routes.http_route.timeout.headers.match.range`
+<a id="nestedatt--spec--routes--http_route--match--headers--match--range"></a>
+### Nested Schema for `spec.routes.http_route.match.headers.match.range`
 
 Required:
 
@@ -514,8 +514,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--routes--http_route--timeout--path"></a>
-### Nested Schema for `spec.routes.http_route.timeout.path`
+<a id="nestedatt--spec--routes--http_route--match--path"></a>
+### Nested Schema for `spec.routes.http_route.match.path`
 
 Optional:
 
@@ -523,8 +523,8 @@ Optional:
 - `regex` (String) The value sent by the client must end with the specified characters.
 
 
-<a id="nestedatt--spec--routes--http_route--timeout--query_parameters"></a>
-### Nested Schema for `spec.routes.http_route.timeout.query_parameters`
+<a id="nestedatt--spec--routes--http_route--match--query_parameters"></a>
+### Nested Schema for `spec.routes.http_route.match.query_parameters`
 
 Required:
 
@@ -532,10 +532,10 @@ Required:
 
 Optional:
 
-- `match` (Attributes) The QueryMatchMethod object. (see [below for nested schema](#nestedatt--spec--routes--http_route--timeout--query_parameters--match))
+- `match` (Attributes) The QueryMatchMethod object. (see [below for nested schema](#nestedatt--spec--routes--http_route--match--query_parameters--match))
 
-<a id="nestedatt--spec--routes--http_route--timeout--query_parameters--match"></a>
-### Nested Schema for `spec.routes.http_route.timeout.query_parameters.match`
+<a id="nestedatt--spec--routes--http_route--match--query_parameters--match"></a>
+### Nested Schema for `spec.routes.http_route.match.query_parameters.match`
 
 Optional:
 
@@ -550,15 +550,15 @@ Optional:
 Required:
 
 - `max_retries` (Number) The maximum number of retry attempts.
-- `per_retry_timeout` (Attributes) An object that represents a duration of time (see [below for nested schema](#nestedatt--spec--routes--http_route--timeout--per_retry_timeout))
+- `per_retry_timeout` (Attributes) An object that represents a duration of time (see [below for nested schema](#nestedatt--spec--routes--http_route--retry_policy--per_retry_timeout))
 
 Optional:
 
 - `http_retry_events` (List of String)
 - `tcp_retry_events` (List of String)
 
-<a id="nestedatt--spec--routes--http_route--timeout--per_retry_timeout"></a>
-### Nested Schema for `spec.routes.http_route.timeout.per_retry_timeout`
+<a id="nestedatt--spec--routes--http_route--retry_policy--per_retry_timeout"></a>
+### Nested Schema for `spec.routes.http_route.retry_policy.per_retry_timeout`
 
 Required:
 
@@ -612,10 +612,10 @@ Optional:
 
 Required:
 
-- `weighted_targets` (Attributes List) An object that represents the targets that traffic is routed to when a request matches the route. (see [below for nested schema](#nestedatt--spec--routes--tcp_route--timeout--weighted_targets))
+- `weighted_targets` (Attributes List) An object that represents the targets that traffic is routed to when a request matches the route. (see [below for nested schema](#nestedatt--spec--routes--tcp_route--action--weighted_targets))
 
-<a id="nestedatt--spec--routes--tcp_route--timeout--weighted_targets"></a>
-### Nested Schema for `spec.routes.tcp_route.timeout.weighted_targets`
+<a id="nestedatt--spec--routes--tcp_route--action--weighted_targets"></a>
+### Nested Schema for `spec.routes.tcp_route.action.weighted_targets`
 
 Required:
 
@@ -625,10 +625,10 @@ Optional:
 
 - `port` (Number) Specifies the targeted port of the weighted object
 - `virtual_node_arn` (String) Amazon Resource Name to AppMesh VirtualNode object to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified.
-- `virtual_node_ref` (Attributes) Reference to Kubernetes VirtualNode CR in cluster to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified. (see [below for nested schema](#nestedatt--spec--routes--tcp_route--timeout--weighted_targets--virtual_node_ref))
+- `virtual_node_ref` (Attributes) Reference to Kubernetes VirtualNode CR in cluster to associate with the weighted target. Exactly one of 'virtualNodeRef' or 'virtualNodeARN' must be specified. (see [below for nested schema](#nestedatt--spec--routes--tcp_route--action--weighted_targets--virtual_node_ref))
 
-<a id="nestedatt--spec--routes--tcp_route--timeout--weighted_targets--virtual_node_ref"></a>
-### Nested Schema for `spec.routes.tcp_route.timeout.weighted_targets.virtual_node_ref`
+<a id="nestedatt--spec--routes--tcp_route--action--weighted_targets--virtual_node_ref"></a>
+### Nested Schema for `spec.routes.tcp_route.action.weighted_targets.virtual_node_ref`
 
 Required:
 

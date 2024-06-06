@@ -110,11 +110,11 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--metadata))
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--metadata))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--metadata"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.metadata`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--metadata"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.metadata`
 
 Optional:
 
@@ -125,56 +125,56 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec`
 
 Required:
 
-- `containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--containers))
+- `containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers))
 
 Optional:
 
 - `active_deadline_seconds` (Number)
-- `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--affinity))
+- `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity))
 - `automount_service_account_token` (Boolean)
-- `dns_config` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--dns_config))
+- `dns_config` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--dns_config))
 - `dns_policy` (String)
 - `enable_service_links` (Boolean)
-- `ephemeral_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--ephemeral_containers))
-- `host_aliases` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--host_aliases))
+- `ephemeral_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers))
+- `host_aliases` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--host_aliases))
 - `host_ipc` (Boolean)
 - `host_network` (Boolean)
 - `host_pid` (Boolean)
 - `host_users` (Boolean)
 - `hostname` (String)
-- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--image_pull_secrets))
-- `init_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--init_containers))
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--image_pull_secrets))
+- `init_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers))
 - `node_name` (String)
 - `node_selector` (Map of String)
-- `os` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--os))
+- `os` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--os))
 - `overhead` (Map of String)
 - `preemption_policy` (String)
 - `priority` (Number)
 - `priority_class_name` (String)
-- `readiness_gates` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--readiness_gates))
-- `resource_claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--resource_claims))
+- `readiness_gates` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--readiness_gates))
+- `resource_claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--resource_claims))
 - `restart_policy` (String)
 - `runtime_class_name` (String)
 - `scheduler_name` (String)
-- `scheduling_gates` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--scheduling_gates))
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--security_context))
+- `scheduling_gates` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--scheduling_gates))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context))
 - `service_account` (String)
 - `service_account_name` (String)
 - `set_hostname_as_fqdn` (Boolean)
 - `share_process_namespace` (Boolean)
 - `subdomain` (String)
 - `termination_grace_period_seconds` (Number)
-- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--tolerations))
-- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--topology_spread_constraints))
-- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--topology_spread_constraints))
+- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--containers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.containers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers`
 
 Required:
 
@@ -184,30 +184,30 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--readiness_probe))
-- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resize_policy))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resources))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--resources))
 - `restart_policy` (String)
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--startup_probe))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.env`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.env`
 
 Required:
 
@@ -216,20 +216,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env--value_from))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env--value_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.config_map_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -241,8 +241,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.env.value_from.field_ref`
 
 Required:
 
@@ -253,8 +253,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -266,8 +266,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.secret_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -281,26 +281,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.env_from`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.env_from.config_map_ref`
 
 Optional:
 
@@ -308,34 +299,43 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop))
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--post_start"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.post_start`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.exec`
+
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--tcp_socket))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -344,12 +344,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -358,8 +358,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -371,25 +371,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -398,12 +398,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -412,8 +412,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -426,32 +426,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.liveness_probe.grpc`
 
 Required:
 
@@ -462,8 +462,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.liveness_probe.http_get`
 
 Required:
 
@@ -472,12 +472,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -486,8 +486,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -499,8 +499,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--ports"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.ports`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--ports"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.ports`
 
 Required:
 
@@ -514,32 +514,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.readiness_probe.grpc`
 
 Required:
 
@@ -550,8 +550,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.readiness_probe.http_get`
 
 Required:
 
@@ -560,12 +560,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -574,8 +574,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -587,8 +587,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.resize_policy`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--resize_policy"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.resize_policy`
 
 Required:
 
@@ -596,17 +596,17 @@ Required:
 - `restart_policy` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resources"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.resources`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--resources"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.claims`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--resources--claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.resources.claims`
 
 Required:
 
@@ -614,25 +614,25 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--security_context"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.security_context`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--windows_options))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--capabilities"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.capabilities`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--capabilities"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.security_context.capabilities`
 
 Optional:
 
@@ -640,8 +640,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.se_linux_options`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.security_context.se_linux_options`
 
 Optional:
 
@@ -651,8 +651,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.seccomp_profile`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.security_context.seccomp_profile`
 
 Required:
 
@@ -663,8 +663,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--windows_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.windows_options`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--security_context--windows_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.security_context.windows_options`
 
 Optional:
 
@@ -675,32 +675,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.startup_probe`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.startup_probe.grpc`
 
 Required:
 
@@ -711,8 +711,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.startup_probe.http_get`
 
 Required:
 
@@ -721,12 +721,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -735,8 +735,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -748,8 +748,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.volume_devices`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--volume_devices"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.volume_devices`
 
 Required:
 
@@ -757,8 +757,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--containers--volume_mounts"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.containers.volume_mounts`
 
 Required:
 
@@ -774,41 +774,41 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--affinity"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.affinity`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity`
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--node_affinity"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.node_affinity`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -820,51 +820,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -878,25 +835,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_affinity"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -904,20 +904,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -930,16 +930,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -954,8 +954,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -963,20 +963,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -989,16 +989,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1013,24 +1013,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1038,20 +1038,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -1064,16 +1064,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -1088,8 +1088,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1097,20 +1097,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -1123,16 +1123,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1148,17 +1148,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--dns_config"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.dns_config`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--dns_config"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.dns_config`
 
 Optional:
 
 - `nameservers` (List of String)
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--options))
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--dns_config--options))
 - `searches` (List of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--options"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.options`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--dns_config--options"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.dns_config.options`
 
 Optional:
 
@@ -1167,8 +1167,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--ephemeral_containers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.ephemeral_containers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers`
 
 Required:
 
@@ -1178,31 +1178,31 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--readiness_probe))
-- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resize_policy))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resources))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--resources))
 - `restart_policy` (String)
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--startup_probe))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `target_container_name` (String)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.env`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.env`
 
 Required:
 
@@ -1211,20 +1211,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env--value_from))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env--value_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.config_map_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1236,8 +1236,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.env.value_from.field_ref`
 
 Required:
 
@@ -1248,8 +1248,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1261,8 +1261,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.secret_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -1276,26 +1276,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.env_from`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -1303,34 +1294,43 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop))
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--post_start"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.post_start`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.exec`
+
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -1339,12 +1339,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -1353,8 +1353,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -1366,25 +1366,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -1393,12 +1393,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1407,8 +1407,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -1421,32 +1421,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.liveness_probe.grpc`
 
 Required:
 
@@ -1457,8 +1457,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.liveness_probe.http_get`
 
 Required:
 
@@ -1467,12 +1467,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -1481,8 +1481,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -1494,8 +1494,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--ports"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.ports`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--ports"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.ports`
 
 Required:
 
@@ -1509,32 +1509,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.readiness_probe.grpc`
 
 Required:
 
@@ -1545,8 +1545,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.readiness_probe.http_get`
 
 Required:
 
@@ -1555,12 +1555,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -1569,8 +1569,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -1582,8 +1582,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.resize_policy`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--resize_policy"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.resize_policy`
 
 Required:
 
@@ -1591,17 +1591,17 @@ Required:
 - `restart_policy` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resources"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.resources`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--resources"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.claims`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--resources--claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.resources.claims`
 
 Required:
 
@@ -1609,25 +1609,25 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--security_context"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.security_context`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--windows_options))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--capabilities"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.capabilities`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--capabilities"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.security_context.capabilities`
 
 Optional:
 
@@ -1635,8 +1635,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.se_linux_options`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -1646,8 +1646,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.seccomp_profile`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -1658,8 +1658,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--windows_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.windows_options`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--security_context--windows_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.security_context.windows_options`
 
 Optional:
 
@@ -1670,32 +1670,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.startup_probe`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.startup_probe.grpc`
 
 Required:
 
@@ -1706,8 +1706,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.startup_probe.http_get`
 
 Required:
 
@@ -1716,12 +1716,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -1730,8 +1730,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -1743,8 +1743,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.volume_devices`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--volume_devices"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.volume_devices`
 
 Required:
 
@@ -1752,8 +1752,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--ephemeral_containers--volume_mounts"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.ephemeral_containers.volume_mounts`
 
 Required:
 
@@ -1769,8 +1769,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--host_aliases"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.host_aliases`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--host_aliases"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.host_aliases`
 
 Optional:
 
@@ -1778,16 +1778,16 @@ Optional:
 - `ip` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--image_pull_secrets"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.image_pull_secrets`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--image_pull_secrets"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.image_pull_secrets`
 
 Optional:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--init_containers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.init_containers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers`
 
 Required:
 
@@ -1797,30 +1797,30 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--readiness_probe))
-- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resize_policy))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resources))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--resources))
 - `restart_policy` (String)
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--startup_probe))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.env`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.env`
 
 Required:
 
@@ -1829,20 +1829,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env--value_from))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env--value_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.config_map_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1854,8 +1854,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.env.value_from.field_ref`
 
 Required:
 
@@ -1866,8 +1866,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1879,8 +1879,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.value_from.secret_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -1894,26 +1894,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--env_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.env_from`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -1921,34 +1912,43 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop))
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--post_start"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.post_start`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.exec`
+
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--tcp_socket))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -1957,12 +1957,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -1971,8 +1971,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -1984,25 +1984,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -2011,12 +2011,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -2025,8 +2025,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -2039,32 +2039,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.liveness_probe.grpc`
 
 Required:
 
@@ -2075,8 +2075,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.liveness_probe.http_get`
 
 Required:
 
@@ -2085,12 +2085,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -2099,8 +2099,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -2112,8 +2112,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--ports"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.ports`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--ports"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.ports`
 
 Required:
 
@@ -2127,32 +2127,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.readiness_probe.grpc`
 
 Required:
 
@@ -2163,8 +2163,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.readiness_probe.http_get`
 
 Required:
 
@@ -2173,12 +2173,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -2187,8 +2187,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -2200,8 +2200,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.resize_policy`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--resize_policy"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.resize_policy`
 
 Required:
 
@@ -2209,17 +2209,17 @@ Required:
 - `restart_policy` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--resources"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.resources`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--resources"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.claims`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--resources--claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -2227,25 +2227,25 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--security_context"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.security_context`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--windows_options))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--capabilities"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.capabilities`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--capabilities"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.security_context.capabilities`
 
 Optional:
 
@@ -2253,8 +2253,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.se_linux_options`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -2264,8 +2264,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.seccomp_profile`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -2276,8 +2276,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--windows_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.windows_options`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--security_context--windows_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.security_context.windows_options`
 
 Optional:
 
@@ -2288,32 +2288,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.startup_probe`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.startup_probe.grpc`
 
 Required:
 
@@ -2324,8 +2324,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.startup_probe.http_get`
 
 Required:
 
@@ -2334,12 +2334,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -2348,8 +2348,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -2361,8 +2361,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.volume_devices`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--volume_devices"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.volume_devices`
 
 Required:
 
@@ -2370,8 +2370,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--init_containers--volume_mounts"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.init_containers.volume_mounts`
 
 Required:
 
@@ -2387,24 +2387,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--os"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.os`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--os"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.os`
 
 Required:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--readiness_gates"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.readiness_gates`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--readiness_gates"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.readiness_gates`
 
 Required:
 
 - `condition_type` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--resource_claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.resource_claims`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--resource_claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.resource_claims`
 
 Required:
 
@@ -2412,10 +2412,10 @@ Required:
 
 Optional:
 
-- `source` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--source))
+- `source` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--resource_claims--source))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--source"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.source`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--resource_claims--source"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.resource_claims.source`
 
 Optional:
 
@@ -2424,16 +2424,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--scheduling_gates"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.scheduling_gates`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--scheduling_gates"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.scheduling_gates`
 
 Required:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--security_context"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.security_context`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.security_context`
 
 Optional:
 
@@ -2442,14 +2442,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--windows_options))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--se_linux_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.se_linux_options`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--se_linux_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.security_context.se_linux_options`
 
 Optional:
 
@@ -2459,8 +2459,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--seccomp_profile"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.seccomp_profile`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.security_context.seccomp_profile`
 
 Required:
 
@@ -2471,8 +2471,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--sysctls"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.sysctls`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--sysctls"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.security_context.sysctls`
 
 Required:
 
@@ -2480,8 +2480,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--windows_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.windows_options`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--security_context--windows_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.security_context.windows_options`
 
 Optional:
 
@@ -2492,8 +2492,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--tolerations"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.tolerations`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--tolerations"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.tolerations`
 
 Optional:
 
@@ -2504,8 +2504,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--topology_spread_constraints"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.topology_spread_constraints`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--topology_spread_constraints"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.topology_spread_constraints`
 
 Required:
 
@@ -2515,22 +2515,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `min_domains` (Number)
 - `node_affinity_policy` (String)
 - `node_taints_policy` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--label_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.label_selector`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--node_taints_policy--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.node_taints_policy.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -2544,8 +2544,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes`
 
 Required:
 
@@ -2553,38 +2553,38 @@ Required:
 
 Optional:
 
-- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--aws_elastic_block_store))
-- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--azure_disk))
-- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--azure_file))
-- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--cephfs))
-- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--cinder))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--config_map))
-- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--csi))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--downward_api))
-- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--empty_dir))
-- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--ephemeral))
-- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--fc))
-- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--flex_volume))
-- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--flocker))
-- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--gce_persistent_disk))
-- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--git_repo))
-- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--glusterfs))
-- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--host_path))
-- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--iscsi))
-- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--nfs))
-- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--persistent_volume_claim))
-- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--photon_persistent_disk))
-- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--portworx_volume))
-- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--projected))
-- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--quobyte))
-- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--rbd))
-- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--scale_io))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--secret))
-- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--storageos))
-- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume))
+- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--aws_elastic_block_store))
+- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--azure_disk))
+- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--azure_file))
+- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--cephfs))
+- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--cinder))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--config_map))
+- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--csi))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--downward_api))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--empty_dir))
+- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral))
+- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--fc))
+- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--flex_volume))
+- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--flocker))
+- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--gce_persistent_disk))
+- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--git_repo))
+- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--glusterfs))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--host_path))
+- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--iscsi))
+- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--nfs))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--photon_persistent_disk))
+- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--portworx_volume))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected))
+- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--quobyte))
+- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--rbd))
+- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--scale_io))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--secret))
+- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--storageos))
+- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--vsphere_volume))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.aws_elastic_block_store`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--aws_elastic_block_store"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -2597,8 +2597,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--azure_disk"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.azure_disk`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--azure_disk"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.azure_disk`
 
 Required:
 
@@ -2613,8 +2613,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--azure_file"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.azure_file`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--azure_file"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.azure_file`
 
 Required:
 
@@ -2626,8 +2626,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--cephfs"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.cephfs`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--cephfs"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.cephfs`
 
 Required:
 
@@ -2638,11 +2638,11 @@ Optional:
 - `path` (String)
 - `read_only` (Boolean)
 - `secret_file` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--cephfs--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -2650,8 +2650,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--cinder"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.cinder`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--cinder"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.cinder`
 
 Required:
 
@@ -2661,10 +2661,10 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--cinder--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.cinder.secret_ref`
 
 Optional:
 
@@ -2672,18 +2672,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--config_map"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.config_map`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--config_map"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.config_map`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--config_map--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.config_map.items`
 
 Required:
 
@@ -2696,8 +2696,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--csi"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.csi`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--csi"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.csi`
 
 Required:
 
@@ -2706,12 +2706,12 @@ Required:
 Optional:
 
 - `fs_type` (String)
-- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--csi--node_publish_secret_ref))
 - `read_only` (Boolean)
 - `volume_attributes` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -2719,16 +2719,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--downward_api"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.downward_api`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--downward_api"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.downward_api`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--downward_api--items))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--downward_api--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.downward_api.items`
 
 Required:
 
@@ -2736,12 +2736,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -2752,8 +2752,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -2767,8 +2767,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--empty_dir"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.empty_dir`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--empty_dir"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.empty_dir`
 
 Optional:
 
@@ -2776,40 +2776,40 @@ Optional:
 - `size_limit` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--ephemeral"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.ephemeral`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral`
 
 Optional:
 
-- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec))
 
 Optional:
 
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--metadata))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--metadata))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String)
-- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--data_source))
-- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--data_source_ref))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--resources))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--selector))
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.volume_claim_template.spec.data_source`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -2821,8 +2821,8 @@ Optional:
 - `api_group` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.volume_claim_template.spec.data_source_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -2835,17 +2835,17 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.volume_claim_template.spec.resources`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--volume_name--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--volume_name--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.volume_claim_template.spec.volume_name.claims`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral.volume_claim_template.spec.resources.claims`
 
 Required:
 
@@ -2853,16 +2853,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.volume_claim_template.spec.selector`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--volume_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.volume_claim_template.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -2876,8 +2876,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.volume_claim_template.metadata`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--ephemeral--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.ephemeral.volume_claim_template.metadata`
 
 Optional:
 
@@ -2890,8 +2890,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--fc"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.fc`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--fc"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.fc`
 
 Optional:
 
@@ -2902,8 +2902,8 @@ Optional:
 - `wwids` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--flex_volume"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.flex_volume`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--flex_volume"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.flex_volume`
 
 Required:
 
@@ -2914,10 +2914,10 @@ Optional:
 - `fs_type` (String)
 - `options` (Map of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.flex_volume.secret_ref`
 
 Optional:
 
@@ -2925,8 +2925,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--flocker"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.flocker`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--flocker"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.flocker`
 
 Optional:
 
@@ -2934,8 +2934,8 @@ Optional:
 - `dataset_uuid` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.gce_persistent_disk`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--gce_persistent_disk"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.gce_persistent_disk`
 
 Required:
 
@@ -2948,8 +2948,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--git_repo"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.git_repo`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--git_repo"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.git_repo`
 
 Required:
 
@@ -2961,8 +2961,8 @@ Optional:
 - `revision` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--glusterfs"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.glusterfs`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--glusterfs"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.glusterfs`
 
 Required:
 
@@ -2974,8 +2974,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--host_path"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.host_path`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--host_path"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.host_path`
 
 Required:
 
@@ -2986,8 +2986,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--iscsi"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.iscsi`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--iscsi"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.iscsi`
 
 Required:
 
@@ -3004,10 +3004,10 @@ Optional:
 - `iscsi_interface` (String)
 - `portals` (List of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--iscsi--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -3015,8 +3015,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--nfs"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.nfs`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--nfs"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.nfs`
 
 Required:
 
@@ -3028,8 +3028,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.persistent_volume_claim`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.persistent_volume_claim`
 
 Required:
 
@@ -3040,8 +3040,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.photon_persistent_disk`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--photon_persistent_disk"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.photon_persistent_disk`
 
 Required:
 
@@ -3052,8 +3052,8 @@ Optional:
 - `fs_type` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--portworx_volume"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.portworx_volume`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--portworx_volume"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.portworx_volume`
 
 Required:
 
@@ -3065,35 +3065,35 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--projected"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.projected`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected`
 
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.sources`
-
-Optional:
-
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--service_account_token))
-
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--config_map--items))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--config_map--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.sources.config_map.items`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -3106,15 +3106,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--downward_api--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--downward_api--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.sources.downward_api.items`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -3122,12 +3122,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--downward_api--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--downward_api--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.sources.downward_api.items.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -3138,8 +3138,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--downward_api--items--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.sources.downward_api.items.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -3153,17 +3153,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--secret--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--secret--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.sources.secret.items`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -3176,8 +3176,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.projected.sources.service_account_token`
 
 Required:
 
@@ -3191,8 +3191,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--quobyte"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.quobyte`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--quobyte"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.quobyte`
 
 Required:
 
@@ -3207,8 +3207,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--rbd"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.rbd`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--rbd"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.rbd`
 
 Required:
 
@@ -3221,11 +3221,11 @@ Optional:
 - `keyring` (String)
 - `pool` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--rbd--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -3233,13 +3233,13 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--scale_io"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.scale_io`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--scale_io"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.scale_io`
 
 Required:
 
 - `gateway` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--scale_io--secret_ref))
 - `system` (String)
 
 Optional:
@@ -3252,8 +3252,8 @@ Optional:
 - `storage_pool` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -3261,18 +3261,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--secret"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.secret`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--secret"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.secret`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--secret--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.secret.items`
 
 Required:
 
@@ -3285,19 +3285,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--storageos"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.storageos`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--storageos"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.storageos`
 
 Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--storageos--secret_ref))
 - `volume_name` (String)
 - `volume_namespace` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -3305,8 +3305,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--volumes--vsphere_volume"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.volumes.vsphere_volume`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--template--spec--volumes--vsphere_volume"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.template.spec.volumes.vsphere_volume`
 
 Required:
 
@@ -3329,12 +3329,12 @@ Optional:
 
 - `api_version` (String)
 - `kind` (String)
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--metadata))
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec))
-- `status` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--status))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--metadata))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--spec))
+- `status` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--metadata"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.metadata`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--metadata"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.head_service.metadata`
 
 Optional:
 
@@ -3345,8 +3345,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--spec"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.head_service.spec`
 
 Optional:
 
@@ -3363,15 +3363,15 @@ Optional:
 - `load_balancer_class` (String)
 - `load_balancer_ip` (String)
 - `load_balancer_source_ranges` (List of String)
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--ports))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--spec--ports))
 - `publish_not_ready_addresses` (Boolean)
 - `selector` (Map of String)
 - `session_affinity` (String)
-- `session_affinity_config` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--session_affinity_config))
+- `session_affinity_config` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--spec--session_affinity_config))
 - `type` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--ports"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.ports`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--spec--ports"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.head_service.spec.ports`
 
 Required:
 
@@ -3386,15 +3386,15 @@ Optional:
 - `target_port` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--session_affinity_config"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.session_affinity_config`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--spec--session_affinity_config"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.head_service.spec.session_affinity_config`
 
 Optional:
 
-- `client_ip` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--type--client_ip))
+- `client_ip` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--spec--session_affinity_config--client_ip))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--spec--type--client_ip"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.spec.type.client_ip`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--spec--session_affinity_config--client_ip"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.head_service.spec.session_affinity_config.client_ip`
 
 Optional:
 
@@ -3403,16 +3403,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--status"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.status`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.head_service.status`
 
 Optional:
 
-- `conditions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--status--conditions))
-- `load_balancer` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--status--load_balancer))
+- `conditions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status--conditions))
+- `load_balancer` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status--load_balancer))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--status--conditions"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.status.conditions`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status--conditions"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.head_service.status.conditions`
 
 Required:
 
@@ -3427,24 +3427,24 @@ Optional:
 - `observed_generation` (Number)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--status--load_balancer"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.status.load_balancer`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status--load_balancer"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.head_service.status.load_balancer`
 
 Optional:
 
-- `ingress` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--status--load_balancer--ingress))
+- `ingress` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status--load_balancer--ingress))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--status--load_balancer--ingress"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.status.load_balancer.ingress`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status--load_balancer--ingress"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.head_service.status.load_balancer.ingress`
 
 Optional:
 
 - `hostname` (String)
 - `ip` (String)
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--status--load_balancer--ingress--ports))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status--load_balancer--ingress--ports))
 
-<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--service_type--status--load_balancer--ingress--ports"></a>
-### Nested Schema for `spec.ray_cluster_spec.head_group_spec.service_type.status.load_balancer.ingress.ports`
+<a id="nestedatt--spec--ray_cluster_spec--head_group_spec--head_service--status--load_balancer--ingress--ports"></a>
+### Nested Schema for `spec.ray_cluster_spec.head_group_spec.head_service.status.load_balancer.ingress.ports`
 
 Required:
 
@@ -3486,20 +3486,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--env--value_from))
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--value_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.value_from`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--env--value_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.value_from.config_map_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -3511,8 +3511,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--value_from--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.value_from.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--env--value_from--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.env.value_from.field_ref`
 
 Required:
 
@@ -3523,8 +3523,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.value_from.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.env.value_from.resource_field_ref`
 
 Required:
 
@@ -3536,8 +3536,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.value_from.secret_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.env.value_from.secret_key_ref`
 
 Required:
 
@@ -3556,12 +3556,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--env_from--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--config_map_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.config_map_ref`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--env_from--config_map_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.env_from.config_map_ref`
 
 Optional:
 
@@ -3569,8 +3569,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--env_from--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.env_from.secret_ref`
 
 Optional:
 
@@ -3584,12 +3584,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.claims`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--resources--claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.resources.claims`
 
 Required:
 
@@ -3603,19 +3603,19 @@ Required:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--windows_options))
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--capabilities"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.capabilities`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--capabilities"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.security_context.capabilities`
 
 Optional:
 
@@ -3623,8 +3623,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--se_linux_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.se_linux_options`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--se_linux_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.security_context.se_linux_options`
 
 Optional:
 
@@ -3634,8 +3634,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--seccomp_profile"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.seccomp_profile`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.security_context.seccomp_profile`
 
 Required:
 
@@ -3646,8 +3646,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--volume_mounts--windows_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.volume_mounts.windows_options`
+<a id="nestedatt--spec--ray_cluster_spec--autoscaler_options--security_context--windows_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.autoscaler_options.security_context.windows_options`
 
 Optional:
 
@@ -3697,11 +3697,11 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--metadata))
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--metadata))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--metadata"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.metadata`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--metadata"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.metadata`
 
 Optional:
 
@@ -3712,56 +3712,56 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec`
 
 Required:
 
-- `containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--containers))
+- `containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers))
 
 Optional:
 
 - `active_deadline_seconds` (Number)
-- `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--affinity))
+- `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity))
 - `automount_service_account_token` (Boolean)
-- `dns_config` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--dns_config))
+- `dns_config` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--dns_config))
 - `dns_policy` (String)
 - `enable_service_links` (Boolean)
-- `ephemeral_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--ephemeral_containers))
-- `host_aliases` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--host_aliases))
+- `ephemeral_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers))
+- `host_aliases` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--host_aliases))
 - `host_ipc` (Boolean)
 - `host_network` (Boolean)
 - `host_pid` (Boolean)
 - `host_users` (Boolean)
 - `hostname` (String)
-- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--image_pull_secrets))
-- `init_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--init_containers))
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--image_pull_secrets))
+- `init_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers))
 - `node_name` (String)
 - `node_selector` (Map of String)
-- `os` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--os))
+- `os` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--os))
 - `overhead` (Map of String)
 - `preemption_policy` (String)
 - `priority` (Number)
 - `priority_class_name` (String)
-- `readiness_gates` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--readiness_gates))
-- `resource_claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--resource_claims))
+- `readiness_gates` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--readiness_gates))
+- `resource_claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--resource_claims))
 - `restart_policy` (String)
 - `runtime_class_name` (String)
 - `scheduler_name` (String)
-- `scheduling_gates` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--scheduling_gates))
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--security_context))
+- `scheduling_gates` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--scheduling_gates))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context))
 - `service_account` (String)
 - `service_account_name` (String)
 - `set_hostname_as_fqdn` (Boolean)
 - `share_process_namespace` (Boolean)
 - `subdomain` (String)
 - `termination_grace_period_seconds` (Number)
-- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--tolerations))
-- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--topology_spread_constraints))
-- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--topology_spread_constraints))
+- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--containers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.containers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers`
 
 Required:
 
@@ -3771,30 +3771,30 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--readiness_probe))
-- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resize_policy))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resources))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--resources))
 - `restart_policy` (String)
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--startup_probe))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.env`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.env`
 
 Required:
 
@@ -3803,20 +3803,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env--value_from))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env--value_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.config_map_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -3828,8 +3828,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.env.value_from.field_ref`
 
 Required:
 
@@ -3840,8 +3840,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -3853,8 +3853,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.secret_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -3868,26 +3868,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.env_from`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.env_from.config_map_ref`
 
 Optional:
 
@@ -3895,34 +3886,43 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop))
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--post_start"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.post_start`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.exec`
+
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--tcp_socket))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -3931,12 +3931,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -3945,8 +3945,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -3958,25 +3958,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -3985,12 +3985,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -3999,8 +3999,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -4013,32 +4013,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.liveness_probe.grpc`
 
 Required:
 
@@ -4049,8 +4049,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.liveness_probe.http_get`
 
 Required:
 
@@ -4059,12 +4059,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -4073,8 +4073,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -4086,8 +4086,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--ports"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.ports`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--ports"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.ports`
 
 Required:
 
@@ -4101,32 +4101,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.readiness_probe.grpc`
 
 Required:
 
@@ -4137,8 +4137,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.readiness_probe.http_get`
 
 Required:
 
@@ -4147,12 +4147,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -4161,8 +4161,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -4174,8 +4174,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.resize_policy`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--resize_policy"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.resize_policy`
 
 Required:
 
@@ -4183,17 +4183,17 @@ Required:
 - `restart_policy` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resources"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.resources`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--resources"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.claims`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--resources--claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.resources.claims`
 
 Required:
 
@@ -4201,25 +4201,25 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--security_context"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.security_context`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--windows_options))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--capabilities"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.capabilities`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--capabilities"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.security_context.capabilities`
 
 Optional:
 
@@ -4227,8 +4227,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.se_linux_options`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.security_context.se_linux_options`
 
 Optional:
 
@@ -4238,8 +4238,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.seccomp_profile`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.security_context.seccomp_profile`
 
 Required:
 
@@ -4250,8 +4250,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--windows_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.windows_options`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--security_context--windows_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.security_context.windows_options`
 
 Optional:
 
@@ -4262,32 +4262,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.startup_probe`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.startup_probe.grpc`
 
 Required:
 
@@ -4298,8 +4298,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.startup_probe.http_get`
 
 Required:
 
@@ -4308,12 +4308,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -4322,8 +4322,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -4335,8 +4335,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.volume_devices`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--volume_devices"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.volume_devices`
 
 Required:
 
@@ -4344,8 +4344,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--containers--volume_mounts"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.containers.volume_mounts`
 
 Required:
 
@@ -4361,41 +4361,41 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--affinity"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.affinity`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity`
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--node_affinity"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.node_affinity`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -4407,51 +4407,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -4465,25 +4422,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_affinity"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -4491,20 +4491,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -4517,16 +4517,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -4541,8 +4541,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -4550,20 +4550,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -4576,16 +4576,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -4600,24 +4600,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -4625,20 +4625,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -4651,16 +4651,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -4675,8 +4675,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -4684,20 +4684,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -4710,16 +4710,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -4735,17 +4735,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--dns_config"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.dns_config`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--dns_config"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.dns_config`
 
 Optional:
 
 - `nameservers` (List of String)
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--options))
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--dns_config--options))
 - `searches` (List of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--options"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.options`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--dns_config--options"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.dns_config.options`
 
 Optional:
 
@@ -4754,8 +4754,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--ephemeral_containers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.ephemeral_containers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers`
 
 Required:
 
@@ -4765,31 +4765,31 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--readiness_probe))
-- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resize_policy))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resources))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--resources))
 - `restart_policy` (String)
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--startup_probe))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `target_container_name` (String)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.env`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.env`
 
 Required:
 
@@ -4798,20 +4798,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env--value_from))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env--value_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.config_map_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -4823,8 +4823,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.env.value_from.field_ref`
 
 Required:
 
@@ -4835,8 +4835,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -4848,8 +4848,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.secret_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -4863,26 +4863,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.env_from`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -4890,34 +4881,43 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop))
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--post_start"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.post_start`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.exec`
+
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -4926,12 +4926,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -4940,8 +4940,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -4953,25 +4953,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -4980,12 +4980,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -4994,8 +4994,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -5008,32 +5008,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.liveness_probe.grpc`
 
 Required:
 
@@ -5044,8 +5044,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.liveness_probe.http_get`
 
 Required:
 
@@ -5054,12 +5054,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -5068,8 +5068,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -5081,8 +5081,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--ports"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.ports`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--ports"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.ports`
 
 Required:
 
@@ -5096,32 +5096,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.readiness_probe.grpc`
 
 Required:
 
@@ -5132,8 +5132,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.readiness_probe.http_get`
 
 Required:
 
@@ -5142,12 +5142,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -5156,8 +5156,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -5169,8 +5169,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.resize_policy`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--resize_policy"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.resize_policy`
 
 Required:
 
@@ -5178,17 +5178,17 @@ Required:
 - `restart_policy` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resources"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.resources`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--resources"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.claims`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--resources--claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.resources.claims`
 
 Required:
 
@@ -5196,25 +5196,25 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--security_context"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.security_context`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--windows_options))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--capabilities"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.capabilities`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--capabilities"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.security_context.capabilities`
 
 Optional:
 
@@ -5222,8 +5222,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.se_linux_options`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -5233,8 +5233,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.seccomp_profile`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -5245,8 +5245,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--windows_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.windows_options`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--security_context--windows_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.security_context.windows_options`
 
 Optional:
 
@@ -5257,32 +5257,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.startup_probe`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.startup_probe.grpc`
 
 Required:
 
@@ -5293,8 +5293,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.startup_probe.http_get`
 
 Required:
 
@@ -5303,12 +5303,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -5317,8 +5317,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -5330,8 +5330,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.volume_devices`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--volume_devices"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.volume_devices`
 
 Required:
 
@@ -5339,8 +5339,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--ephemeral_containers--volume_mounts"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.ephemeral_containers.volume_mounts`
 
 Required:
 
@@ -5356,8 +5356,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--host_aliases"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.host_aliases`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--host_aliases"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.host_aliases`
 
 Optional:
 
@@ -5365,16 +5365,16 @@ Optional:
 - `ip` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--image_pull_secrets"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.image_pull_secrets`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--image_pull_secrets"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.image_pull_secrets`
 
 Optional:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--init_containers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.init_containers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers`
 
 Required:
 
@@ -5384,30 +5384,30 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--readiness_probe))
-- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resize_policy))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resources))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--resources))
 - `restart_policy` (String)
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--startup_probe))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.env`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.env`
 
 Required:
 
@@ -5416,20 +5416,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env--value_from))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env--value_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.config_map_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -5441,8 +5441,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.env.value_from.field_ref`
 
 Required:
 
@@ -5453,8 +5453,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -5466,8 +5466,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.value_from.secret_key_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -5481,26 +5481,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--env_from"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.env_from`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env_from"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--config_map_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -5508,34 +5499,43 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop))
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--post_start"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.post_start`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.exec`
+
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--tcp_socket))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -5544,12 +5544,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -5558,8 +5558,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -5571,25 +5571,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -5598,12 +5598,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -5612,8 +5612,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.pre_stop.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -5626,32 +5626,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.liveness_probe.grpc`
 
 Required:
 
@@ -5662,8 +5662,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.liveness_probe.http_get`
 
 Required:
 
@@ -5672,12 +5672,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -5686,8 +5686,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -5699,8 +5699,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--ports"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.ports`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--ports"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.ports`
 
 Required:
 
@@ -5714,32 +5714,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.readiness_probe.grpc`
 
 Required:
 
@@ -5750,8 +5750,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.readiness_probe.http_get`
 
 Required:
 
@@ -5760,12 +5760,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -5774,8 +5774,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -5787,8 +5787,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.resize_policy`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--resize_policy"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.resize_policy`
 
 Required:
 
@@ -5796,17 +5796,17 @@ Required:
 - `restart_policy` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--resources"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.resources`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--resources"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.claims`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--resources--claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -5814,25 +5814,25 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--security_context"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.security_context`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--windows_options))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--capabilities"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.capabilities`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--capabilities"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.security_context.capabilities`
 
 Optional:
 
@@ -5840,8 +5840,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--se_linux_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.se_linux_options`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -5851,8 +5851,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--seccomp_profile"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.seccomp_profile`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -5863,8 +5863,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--windows_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.windows_options`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--security_context--windows_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.security_context.windows_options`
 
 Optional:
 
@@ -5875,32 +5875,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.startup_probe`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--exec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.exec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe--exec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--grpc"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.grpc`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe--grpc"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.startup_probe.grpc`
 
 Required:
 
@@ -5911,8 +5911,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--http_get"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.http_get`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.startup_probe.http_get`
 
 Required:
 
@@ -5921,12 +5921,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.timeout_seconds.http_headers`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -5935,8 +5935,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--working_dir--tcp_socket"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.working_dir.tcp_socket`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -5948,8 +5948,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.volume_devices`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--volume_devices"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.volume_devices`
 
 Required:
 
@@ -5957,8 +5957,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--init_containers--volume_mounts"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.init_containers.volume_mounts`
 
 Required:
 
@@ -5974,24 +5974,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--os"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.os`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--os"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.os`
 
 Required:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--readiness_gates"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.readiness_gates`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--readiness_gates"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.readiness_gates`
 
 Required:
 
 - `condition_type` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--resource_claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.resource_claims`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--resource_claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.resource_claims`
 
 Required:
 
@@ -5999,10 +5999,10 @@ Required:
 
 Optional:
 
-- `source` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--source))
+- `source` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--resource_claims--source))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--source"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.source`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--resource_claims--source"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.resource_claims.source`
 
 Optional:
 
@@ -6011,16 +6011,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--scheduling_gates"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.scheduling_gates`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--scheduling_gates"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.scheduling_gates`
 
 Required:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--security_context"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.security_context`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.security_context`
 
 Optional:
 
@@ -6029,14 +6029,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--windows_options))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--se_linux_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.se_linux_options`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--se_linux_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.security_context.se_linux_options`
 
 Optional:
 
@@ -6046,8 +6046,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--seccomp_profile"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.seccomp_profile`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.security_context.seccomp_profile`
 
 Required:
 
@@ -6058,8 +6058,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--sysctls"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.sysctls`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--sysctls"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.security_context.sysctls`
 
 Required:
 
@@ -6067,8 +6067,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--windows_options"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.windows_options`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--security_context--windows_options"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.security_context.windows_options`
 
 Optional:
 
@@ -6079,8 +6079,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--tolerations"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.tolerations`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--tolerations"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.tolerations`
 
 Optional:
 
@@ -6091,8 +6091,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--topology_spread_constraints"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.topology_spread_constraints`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--topology_spread_constraints"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.topology_spread_constraints`
 
 Required:
 
@@ -6102,22 +6102,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `min_domains` (Number)
 - `node_affinity_policy` (String)
 - `node_taints_policy` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--label_selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.label_selector`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--node_taints_policy--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.node_taints_policy.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -6131,8 +6131,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes`
 
 Required:
 
@@ -6140,38 +6140,38 @@ Required:
 
 Optional:
 
-- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--aws_elastic_block_store))
-- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--azure_disk))
-- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--azure_file))
-- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--cephfs))
-- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--cinder))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--config_map))
-- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--csi))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--downward_api))
-- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--empty_dir))
-- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--ephemeral))
-- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--fc))
-- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--flex_volume))
-- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--flocker))
-- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--gce_persistent_disk))
-- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--git_repo))
-- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--glusterfs))
-- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--host_path))
-- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--iscsi))
-- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--nfs))
-- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--persistent_volume_claim))
-- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--photon_persistent_disk))
-- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--portworx_volume))
-- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--projected))
-- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--quobyte))
-- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--rbd))
-- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--scale_io))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--secret))
-- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--storageos))
-- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume))
+- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--aws_elastic_block_store))
+- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--azure_disk))
+- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--azure_file))
+- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--cephfs))
+- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--cinder))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--config_map))
+- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--csi))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--downward_api))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--empty_dir))
+- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral))
+- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--fc))
+- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--flex_volume))
+- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--flocker))
+- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--gce_persistent_disk))
+- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--git_repo))
+- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--glusterfs))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--host_path))
+- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--iscsi))
+- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--nfs))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--photon_persistent_disk))
+- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--portworx_volume))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected))
+- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--quobyte))
+- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--rbd))
+- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--scale_io))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--secret))
+- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--storageos))
+- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--vsphere_volume))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--aws_elastic_block_store"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.aws_elastic_block_store`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--aws_elastic_block_store"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.aws_elastic_block_store`
 
 Required:
 
@@ -6184,8 +6184,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--azure_disk"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.azure_disk`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--azure_disk"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.azure_disk`
 
 Required:
 
@@ -6200,8 +6200,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--azure_file"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.azure_file`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--azure_file"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.azure_file`
 
 Required:
 
@@ -6213,8 +6213,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--cephfs"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.cephfs`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--cephfs"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.cephfs`
 
 Required:
 
@@ -6225,11 +6225,11 @@ Optional:
 - `path` (String)
 - `read_only` (Boolean)
 - `secret_file` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--cephfs--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -6237,8 +6237,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--cinder"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.cinder`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--cinder"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.cinder`
 
 Required:
 
@@ -6248,10 +6248,10 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--cinder--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.cinder.secret_ref`
 
 Optional:
 
@@ -6259,18 +6259,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--config_map"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.config_map`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--config_map"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.config_map`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--config_map--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.config_map.items`
 
 Required:
 
@@ -6283,8 +6283,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--csi"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.csi`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--csi"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.csi`
 
 Required:
 
@@ -6293,12 +6293,12 @@ Required:
 Optional:
 
 - `fs_type` (String)
-- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--csi--node_publish_secret_ref))
 - `read_only` (Boolean)
 - `volume_attributes` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -6306,16 +6306,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--downward_api"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.downward_api`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--downward_api"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.downward_api`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--downward_api--items))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--downward_api--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.downward_api.items`
 
 Required:
 
@@ -6323,12 +6323,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -6339,8 +6339,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -6354,8 +6354,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--empty_dir"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.empty_dir`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--empty_dir"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.empty_dir`
 
 Optional:
 
@@ -6363,40 +6363,40 @@ Optional:
 - `size_limit` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--ephemeral"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.ephemeral`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral`
 
 Optional:
 
-- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec))
 
 Optional:
 
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--metadata))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--metadata))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String)
-- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--data_source))
-- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--data_source_ref))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--resources))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--selector))
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.volume_claim_template.spec.data_source`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -6408,8 +6408,8 @@ Optional:
 - `api_group` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.volume_claim_template.spec.data_source_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -6422,17 +6422,17 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.volume_claim_template.spec.resources`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--volume_name--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--volume_name--claims"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.volume_claim_template.spec.volume_name.claims`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral.volume_claim_template.spec.resources.claims`
 
 Required:
 
@@ -6440,16 +6440,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.volume_claim_template.spec.selector`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--volume_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.volume_claim_template.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -6463,8 +6463,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.volume_claim_template.metadata`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--ephemeral--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.ephemeral.volume_claim_template.metadata`
 
 Optional:
 
@@ -6477,8 +6477,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--fc"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.fc`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--fc"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.fc`
 
 Optional:
 
@@ -6489,8 +6489,8 @@ Optional:
 - `wwids` (List of String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--flex_volume"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.flex_volume`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--flex_volume"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.flex_volume`
 
 Required:
 
@@ -6501,10 +6501,10 @@ Optional:
 - `fs_type` (String)
 - `options` (Map of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.flex_volume.secret_ref`
 
 Optional:
 
@@ -6512,8 +6512,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--flocker"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.flocker`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--flocker"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.flocker`
 
 Optional:
 
@@ -6521,8 +6521,8 @@ Optional:
 - `dataset_uuid` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--gce_persistent_disk"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.gce_persistent_disk`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--gce_persistent_disk"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.gce_persistent_disk`
 
 Required:
 
@@ -6535,8 +6535,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--git_repo"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.git_repo`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--git_repo"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.git_repo`
 
 Required:
 
@@ -6548,8 +6548,8 @@ Optional:
 - `revision` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--glusterfs"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.glusterfs`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--glusterfs"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.glusterfs`
 
 Required:
 
@@ -6561,8 +6561,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--host_path"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.host_path`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--host_path"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.host_path`
 
 Required:
 
@@ -6573,8 +6573,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--iscsi"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.iscsi`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--iscsi"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.iscsi`
 
 Required:
 
@@ -6591,10 +6591,10 @@ Optional:
 - `iscsi_interface` (String)
 - `portals` (List of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--iscsi--secret_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -6602,8 +6602,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--nfs"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.nfs`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--nfs"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.nfs`
 
 Required:
 
@@ -6615,8 +6615,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--persistent_volume_claim"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.persistent_volume_claim`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.persistent_volume_claim`
 
 Required:
 
@@ -6627,8 +6627,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--photon_persistent_disk"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.photon_persistent_disk`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--photon_persistent_disk"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.photon_persistent_disk`
 
 Required:
 
@@ -6639,8 +6639,8 @@ Optional:
 - `fs_type` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--portworx_volume"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.portworx_volume`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--portworx_volume"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.portworx_volume`
 
 Required:
 
@@ -6652,35 +6652,35 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--projected"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.projected`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected`
 
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.sources`
-
-Optional:
-
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--service_account_token))
-
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--config_map--items))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--config_map--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.sources.config_map.items`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -6693,15 +6693,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--downward_api--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--downward_api--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.sources.downward_api.items`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -6709,12 +6709,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--downward_api--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--downward_api--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.sources.downward_api.items.field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -6725,8 +6725,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--downward_api--items--resource_field_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.sources.downward_api.items.resource_field_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -6740,17 +6740,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--secret--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--secret--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.sources.secret.items`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -6763,8 +6763,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.projected.sources.service_account_token`
 
 Required:
 
@@ -6778,8 +6778,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--quobyte"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.quobyte`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--quobyte"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.quobyte`
 
 Required:
 
@@ -6794,8 +6794,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--rbd"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.rbd`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--rbd"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.rbd`
 
 Required:
 
@@ -6808,11 +6808,11 @@ Optional:
 - `keyring` (String)
 - `pool` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--rbd--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -6820,13 +6820,13 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--scale_io"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.scale_io`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--scale_io"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.scale_io`
 
 Required:
 
 - `gateway` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--scale_io--secret_ref))
 - `system` (String)
 
 Optional:
@@ -6839,8 +6839,8 @@ Optional:
 - `storage_pool` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -6848,18 +6848,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--secret"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.secret`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--secret"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.secret`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--secret--items"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.secret.items`
 
 Required:
 
@@ -6872,19 +6872,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--storageos"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.storageos`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--storageos"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.storageos`
 
 Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--storageos--secret_ref))
 - `volume_name` (String)
 - `volume_namespace` (String)
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -6892,8 +6892,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--scale_strategy--spec--volumes--vsphere_volume"></a>
-### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.scale_strategy.spec.volumes.vsphere_volume`
+<a id="nestedatt--spec--ray_cluster_spec--worker_group_specs--template--spec--volumes--vsphere_volume"></a>
+### Nested Schema for `spec.ray_cluster_spec.worker_group_specs.template.spec.volumes.vsphere_volume`
 
 Required:
 
@@ -7006,30 +7006,30 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe))
-- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--resize_policy))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--resources))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--resources))
 - `restart_policy` (String)
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--env"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.env`
 
 Required:
 
@@ -7038,20 +7038,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--env--value_from))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--env--value_from"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -7063,8 +7063,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.field_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.env.value_from.field_ref`
 
 Required:
 
@@ -7075,8 +7075,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -7088,8 +7088,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -7103,26 +7103,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env_from`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--env_from"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env_from--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env_from--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env_from.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env_from--secret_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env_from.secret_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.env_from.config_map_ref`
 
 Optional:
 
@@ -7130,34 +7121,43 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop))
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.post_start`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.exec`
+
+
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--tcp_socket))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -7166,12 +7166,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -7180,8 +7180,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -7193,25 +7193,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -7220,12 +7220,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -7234,8 +7234,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -7248,32 +7248,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.grpc`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.liveness_probe.grpc`
 
 Required:
 
@@ -7284,8 +7284,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.liveness_probe.http_get`
 
 Required:
 
@@ -7294,12 +7294,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -7308,8 +7308,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -7321,8 +7321,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ports"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.ports`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--ports"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.ports`
 
 Required:
 
@@ -7336,32 +7336,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.grpc`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.readiness_probe.grpc`
 
 Required:
 
@@ -7372,8 +7372,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.readiness_probe.http_get`
 
 Required:
 
@@ -7382,12 +7382,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -7396,8 +7396,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -7409,8 +7409,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.resize_policy`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--resize_policy"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.resize_policy`
 
 Required:
 
@@ -7418,17 +7418,17 @@ Required:
 - `restart_policy` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--resources"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.resources`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--resources"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--resources--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--resources--claims"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.resources.claims`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--resources--claims"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.resources.claims`
 
 Required:
 
@@ -7436,25 +7436,25 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--security_context"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--security_context--windows_options))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.capabilities`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--security_context--capabilities"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.security_context.capabilities`
 
 Optional:
 
@@ -7462,8 +7462,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.se_linux_options`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.security_context.se_linux_options`
 
 Optional:
 
@@ -7473,8 +7473,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.seccomp_profile`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.security_context.seccomp_profile`
 
 Required:
 
@@ -7485,8 +7485,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--windows_options"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.windows_options`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--security_context--windows_options"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.security_context.windows_options`
 
 Optional:
 
@@ -7497,32 +7497,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--startup_probe"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--startup_probe--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.grpc`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--startup_probe--grpc"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.startup_probe.grpc`
 
 Required:
 
@@ -7533,8 +7533,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.startup_probe.http_get`
 
 Required:
 
@@ -7543,12 +7543,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--containers--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -7557,8 +7557,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -7570,8 +7570,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.volume_devices`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--volume_devices"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.volume_devices`
 
 Required:
 
@@ -7579,8 +7579,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--submitter_pod_template--spec--containers--volume_mounts"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.containers.volume_mounts`
 
 Required:
 
@@ -7601,36 +7601,36 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.node_affinity`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -7642,51 +7642,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -7700,25 +7657,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -7726,20 +7726,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -7752,16 +7752,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -7776,8 +7776,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -7785,20 +7785,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -7811,16 +7811,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -7835,24 +7835,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -7860,20 +7860,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -7886,16 +7886,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -7910,8 +7910,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -7919,20 +7919,20 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -7945,16 +7945,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -7976,11 +7976,11 @@ Optional:
 Optional:
 
 - `nameservers` (List of String)
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--options))
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--dns_config--options))
 - `searches` (List of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--options"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.options`
+<a id="nestedatt--spec--submitter_pod_template--spec--dns_config--options"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.dns_config.options`
 
 Optional:
 
@@ -8000,31 +8000,31 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe))
-- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--resize_policy))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--resources))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--resources))
 - `restart_policy` (String)
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `target_container_name` (String)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.env`
 
 Required:
 
@@ -8033,20 +8033,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env--value_from))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env--value_from"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -8058,8 +8058,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.field_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.env.value_from.field_ref`
 
 Required:
 
@@ -8070,8 +8070,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -8083,8 +8083,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -8098,26 +8098,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env_from`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env_from"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env_from--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env_from--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env_from.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env_from--secret_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env_from.secret_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -8125,34 +8116,43 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop))
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.post_start`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.exec`
+
+
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -8161,12 +8161,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -8175,8 +8175,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -8188,25 +8188,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -8215,12 +8215,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -8229,8 +8229,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -8243,32 +8243,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.grpc`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.liveness_probe.grpc`
 
 Required:
 
@@ -8279,8 +8279,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.liveness_probe.http_get`
 
 Required:
 
@@ -8289,12 +8289,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -8303,8 +8303,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -8316,8 +8316,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ports"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.ports`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--ports"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.ports`
 
 Required:
 
@@ -8331,32 +8331,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.grpc`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.readiness_probe.grpc`
 
 Required:
 
@@ -8367,8 +8367,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.readiness_probe.http_get`
 
 Required:
 
@@ -8377,12 +8377,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -8391,8 +8391,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -8404,8 +8404,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.resize_policy`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--resize_policy"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.resize_policy`
 
 Required:
 
@@ -8413,17 +8413,17 @@ Required:
 - `restart_policy` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--resources"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.resources`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--resources"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--resources--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--resources--claims"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.resources.claims`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--resources--claims"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.resources.claims`
 
 Required:
 
@@ -8431,25 +8431,25 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--windows_options))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.capabilities`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--capabilities"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.security_context.capabilities`
 
 Optional:
 
@@ -8457,8 +8457,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.se_linux_options`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -8468,8 +8468,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.seccomp_profile`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -8480,8 +8480,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--windows_options"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.windows_options`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--security_context--windows_options"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.security_context.windows_options`
 
 Optional:
 
@@ -8492,32 +8492,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.grpc`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe--grpc"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.startup_probe.grpc`
 
 Required:
 
@@ -8528,8 +8528,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.startup_probe.http_get`
 
 Required:
 
@@ -8538,12 +8538,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -8552,8 +8552,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -8565,8 +8565,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.volume_devices`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--volume_devices"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.volume_devices`
 
 Required:
 
@@ -8574,8 +8574,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--submitter_pod_template--spec--ephemeral_containers--volume_mounts"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.ephemeral_containers.volume_mounts`
 
 Required:
 
@@ -8619,30 +8619,30 @@ Optional:
 
 - `args` (List of String)
 - `command` (List of String)
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env))
-- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env_from))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--env_from))
 - `image` (String)
 - `image_pull_policy` (String)
-- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe))
-- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ports))
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe))
-- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--resize_policy))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--resources))
+- `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe))
+- `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--ports))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--resize_policy))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--resources))
 - `restart_policy` (String)
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context))
-- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--security_context))
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe))
 - `stdin` (Boolean)
 - `stdin_once` (Boolean)
 - `termination_message_path` (String)
 - `termination_message_policy` (String)
 - `tty` (Boolean)
-- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--volume_devices))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--volume_mounts))
 - `working_dir` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--env"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.env`
 
 Required:
 
@@ -8651,20 +8651,20 @@ Required:
 Optional:
 
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--env--value_from))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--env--value_from"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -8676,8 +8676,8 @@ Optional:
 - `optional` (Boolean)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.field_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.env.value_from.field_ref`
 
 Required:
 
@@ -8688,8 +8688,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -8701,8 +8701,8 @@ Optional:
 - `divisor` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -8716,26 +8716,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env_from`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--env_from"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env_from--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--env_from--config_map_ref))
 - `prefix` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--env_from--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env_from.config_map_ref`
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--env_from--secret_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.env_from.secret_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -8743,34 +8734,43 @@ Optional:
 - `optional` (Boolean)
 
 
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle`
-
-Optional:
-
-- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--post_start))
-- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop))
-
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.post_start`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.env_from.secret_ref`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `name` (String)
+- `optional` (Boolean)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.exec`
+
+
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle`
+
+Optional:
+
+- `post_start` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start))
+- `pre_stop` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.post_start`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--tcp_socket))
+
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -8779,12 +8779,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -8793,8 +8793,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -8806,25 +8806,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -8833,12 +8833,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -8847,8 +8847,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -8861,32 +8861,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--grpc"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.grpc`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe--grpc"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.liveness_probe.grpc`
 
 Required:
 
@@ -8897,8 +8897,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.liveness_probe.http_get`
 
 Required:
 
@@ -8907,12 +8907,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -8921,8 +8921,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.liveness_probe.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -8934,8 +8934,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ports"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.ports`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--ports"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.ports`
 
 Required:
 
@@ -8949,32 +8949,32 @@ Optional:
 - `protocol` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--grpc"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.grpc`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe--grpc"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.readiness_probe.grpc`
 
 Required:
 
@@ -8985,8 +8985,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.readiness_probe.http_get`
 
 Required:
 
@@ -8995,12 +8995,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -9009,8 +9009,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.readiness_probe.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -9022,8 +9022,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--resize_policy"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.resize_policy`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--resize_policy"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.resize_policy`
 
 Required:
 
@@ -9031,17 +9031,17 @@ Required:
 - `restart_policy` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--resources"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.resources`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--resources"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--resources--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--resources--claims"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.resources.claims`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--resources--claims"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.resources.claims`
 
 Required:
 
@@ -9049,25 +9049,25 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--security_context"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--windows_options))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.capabilities`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--capabilities"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.security_context.capabilities`
 
 Optional:
 
@@ -9075,8 +9075,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.se_linux_options`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -9086,8 +9086,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.seccomp_profile`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.security_context.seccomp_profile`
 
 Required:
 
@@ -9098,8 +9098,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--security_context--windows_options"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.security_context.windows_options`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--security_context--windows_options"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.security_context.windows_options`
 
 Optional:
 
@@ -9110,32 +9110,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.exec`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe--exec"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--grpc"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.grpc`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe--grpc"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.startup_probe.grpc`
 
 Required:
 
@@ -9146,8 +9146,8 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.http_get`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.startup_probe.http_get`
 
 Required:
 
@@ -9156,12 +9156,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -9170,8 +9170,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.startup_probe.tcp_socket`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -9183,8 +9183,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.volume_devices`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--volume_devices"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.volume_devices`
 
 Required:
 
@@ -9192,8 +9192,8 @@ Required:
 - `name` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--submitter_pod_template--spec--init_containers--volume_mounts"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.init_containers.volume_mounts`
 
 Required:
 
@@ -9234,10 +9234,10 @@ Required:
 
 Optional:
 
-- `source` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--source))
+- `source` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--resource_claims--source))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--source"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.source`
+<a id="nestedatt--spec--submitter_pod_template--spec--resource_claims--source"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.resource_claims.source`
 
 Optional:
 
@@ -9264,14 +9264,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--security_context--windows_options))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--se_linux_options"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.se_linux_options`
+<a id="nestedatt--spec--submitter_pod_template--spec--security_context--se_linux_options"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.security_context.se_linux_options`
 
 Optional:
 
@@ -9281,8 +9281,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--seccomp_profile"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.seccomp_profile`
+<a id="nestedatt--spec--submitter_pod_template--spec--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.security_context.seccomp_profile`
 
 Required:
 
@@ -9293,8 +9293,8 @@ Optional:
 - `localhost_profile` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--sysctls"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.sysctls`
+<a id="nestedatt--spec--submitter_pod_template--spec--security_context--sysctls"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.security_context.sysctls`
 
 Required:
 
@@ -9302,8 +9302,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--windows_options"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.windows_options`
+<a id="nestedatt--spec--submitter_pod_template--spec--security_context--windows_options"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.security_context.windows_options`
 
 Optional:
 
@@ -9337,22 +9337,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `min_domains` (Number)
 - `node_affinity_policy` (String)
 - `node_taints_policy` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--label_selector"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.label_selector`
+<a id="nestedatt--spec--submitter_pod_template--spec--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--label_selector--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.label_selector.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -9622,16 +9622,16 @@ Optional:
 Optional:
 
 - `access_modes` (List of String)
-- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--resources))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -9643,8 +9643,8 @@ Optional:
 - `api_group` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -9657,17 +9657,17 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims))
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.metadata.volume_name.claims`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.spec.resources.claims`
 
 Required:
 
@@ -9675,16 +9675,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.metadata.volume_name.match_expressions`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -9910,12 +9910,12 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--config_map--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -9933,10 +9933,10 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -9944,12 +9944,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -9960,8 +9960,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -9980,12 +9980,12 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--secret--items))
 - `name` (String)
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--submitter_pod_template--spec--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.submitter_pod_template.spec.volumes.projected.sources.secret.items`
 
 Required:
 

@@ -125,28 +125,28 @@ Optional:
 
 - `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is dropping flows, such as when the BPF hashmap is full or the capacity limiter being triggered.<br>
 - `enable` (Boolean) Set 'enable' to 'true' to enable eBPF agent metrics collection.
-- `server` (Attributes) Metrics server endpoint configuration for Prometheus scraper (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--server))
+- `server` (Attributes) Metrics server endpoint configuration for Prometheus scraper (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server))
 
-<a id="nestedatt--spec--agent--ebpf--sampling--server"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.server`
+<a id="nestedatt--spec--agent--ebpf--metrics--server"></a>
+### Nested Schema for `spec.agent.ebpf.metrics.server`
 
 Optional:
 
 - `port` (Number) The prometheus HTTP port
-- `tls` (Attributes) TLS configuration. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--server--tls))
+- `tls` (Attributes) TLS configuration. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server--tls))
 
-<a id="nestedatt--spec--agent--ebpf--sampling--server--tls"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.server.tls`
+<a id="nestedatt--spec--agent--ebpf--metrics--server--tls"></a>
+### Nested Schema for `spec.agent.ebpf.metrics.server.tls`
 
 Optional:
 
 - `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.
-- `provided` (Attributes) TLS configuration when 'type' is set to 'PROVIDED'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--server--tls--provided))
-- `provided_ca_file` (Attributes) Reference to the CA file when 'type' is set to 'PROVIDED'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--server--tls--provided_ca_file))
+- `provided` (Attributes) TLS configuration when 'type' is set to 'PROVIDED'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server--tls--provided))
+- `provided_ca_file` (Attributes) Reference to the CA file when 'type' is set to 'PROVIDED'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server--tls--provided_ca_file))
 - `type` (String) Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.
 
-<a id="nestedatt--spec--agent--ebpf--sampling--server--tls--provided"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.server.tls.provided`
+<a id="nestedatt--spec--agent--ebpf--metrics--server--tls--provided"></a>
+### Nested Schema for `spec.agent.ebpf.metrics.server.tls.provided`
 
 Optional:
 
@@ -157,8 +157,8 @@ Optional:
 - `type` (String) Type for the certificate reference: 'configmap' or 'secret'
 
 
-<a id="nestedatt--spec--agent--ebpf--sampling--server--tls--provided_ca_file"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.server.tls.provided_ca_file`
+<a id="nestedatt--spec--agent--ebpf--metrics--server--tls--provided_ca_file"></a>
+### Nested Schema for `spec.agent.ebpf.metrics.server.tls.provided_ca_file`
 
 Optional:
 
@@ -176,12 +176,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--ebpf--sampling--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--ebpf--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--agent--ebpf--sampling--claims"></a>
-### Nested Schema for `spec.agent.ebpf.sampling.claims`
+<a id="nestedatt--spec--agent--ebpf--resources--claims"></a>
+### Nested Schema for `spec.agent.ebpf.resources.claims`
 
 Required:
 
@@ -257,23 +257,23 @@ Required:
 
 Optional:
 
-- `container_resource` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--container_resource))
-- `external` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external))
-- `object` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object))
-- `pods` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods))
-- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--resource))
+- `container_resource` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--container_resource))
+- `external` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external))
+- `object` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object))
+- `pods` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods))
+- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--resource))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--container_resource"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.container_resource`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--container_resource"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.container_resource`
 
 Required:
 
 - `container` (String)
 - `name` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--container_resource--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--container_resource--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--container_resource--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.container_resource.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--container_resource--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.container_resource.target`
 
 Required:
 
@@ -287,16 +287,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external`
 
 Required:
 
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.metric`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--metric"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.metric`
 
 Required:
 
@@ -304,18 +304,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--target--selector"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target.selector`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--external--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target.selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.metric.selector.match_expressions`
 
 Required:
 
@@ -329,8 +329,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--external--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.external.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--external--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.external.target`
 
 Required:
 
@@ -344,17 +344,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object`
 
 Required:
 
-- `described_object` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--described_object))
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target))
+- `described_object` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--described_object))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--described_object"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.described_object`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--described_object"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.described_object`
 
 Required:
 
@@ -366,8 +366,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.metric`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--metric"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.metric`
 
 Required:
 
@@ -375,18 +375,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--target--selector"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target.selector`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--object--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target.selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.metric.selector.match_expressions`
 
 Required:
 
@@ -400,8 +400,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--object--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.object.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--object--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.object.target`
 
 Required:
 
@@ -415,16 +415,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods`
 
 Required:
 
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--metric"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.metric`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.metric`
 
 Required:
 
@@ -432,18 +432,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target.selector`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target.selector.match_expressions`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.metric.selector.match_expressions`
 
 Required:
 
@@ -457,8 +457,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--pods--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.pods.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--pods--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.pods.target`
 
 Required:
 
@@ -472,16 +472,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--resource"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.resource`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--resource"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.resource`
 
 Required:
 
 - `name` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--status--resource--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--resource--target))
 
-<a id="nestedatt--spec--console_plugin--autoscaler--status--resource--target"></a>
-### Nested Schema for `spec.console_plugin.autoscaler.status.resource.target`
+<a id="nestedatt--spec--console_plugin--autoscaler--metrics--resource--target"></a>
+### Nested Schema for `spec.console_plugin.autoscaler.metrics.resource.target`
 
 Required:
 
@@ -581,12 +581,12 @@ Optional:
 
 Optional:
 
-- `client_id_reference` (Attributes) Reference to the secret or config map containing the client ID (see [below for nested schema](#nestedatt--spec--exporters--kafka--tls--client_id_reference))
-- `client_secret_reference` (Attributes) Reference to the secret or config map containing the client secret (see [below for nested schema](#nestedatt--spec--exporters--kafka--tls--client_secret_reference))
+- `client_id_reference` (Attributes) Reference to the secret or config map containing the client ID (see [below for nested schema](#nestedatt--spec--exporters--kafka--sasl--client_id_reference))
+- `client_secret_reference` (Attributes) Reference to the secret or config map containing the client secret (see [below for nested schema](#nestedatt--spec--exporters--kafka--sasl--client_secret_reference))
 - `type` (String) Type of SASL authentication to use, or 'DISABLED' if SASL is not used
 
-<a id="nestedatt--spec--exporters--kafka--tls--client_id_reference"></a>
-### Nested Schema for `spec.exporters.kafka.tls.client_id_reference`
+<a id="nestedatt--spec--exporters--kafka--sasl--client_id_reference"></a>
+### Nested Schema for `spec.exporters.kafka.sasl.client_id_reference`
 
 Optional:
 
@@ -596,8 +596,8 @@ Optional:
 - `type` (String) Type for the file reference: 'configmap' or 'secret'
 
 
-<a id="nestedatt--spec--exporters--kafka--tls--client_secret_reference"></a>
-### Nested Schema for `spec.exporters.kafka.tls.client_secret_reference`
+<a id="nestedatt--spec--exporters--kafka--sasl--client_secret_reference"></a>
+### Nested Schema for `spec.exporters.kafka.sasl.client_secret_reference`
 
 Optional:
 
@@ -874,23 +874,23 @@ Required:
 
 Optional:
 
-- `container_resource` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource))
-- `external` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external))
-- `object` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object))
-- `pods` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods))
-- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource))
+- `container_resource` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource))
+- `external` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external))
+- `object` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object))
+- `pods` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods))
+- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.container_resource`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.container_resource`
 
 Required:
 
 - `container` (String)
 - `name` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--container_resource--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.container_resource.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.container_resource.target`
 
 Required:
 
@@ -904,16 +904,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external`
 
 Required:
 
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.metric`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.metric`
 
 Required:
 
@@ -921,18 +921,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target.selector`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target.selector.match_expressions`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.metric.selector.match_expressions`
 
 Required:
 
@@ -946,8 +946,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--external--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.external.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.external.target`
 
 Required:
 
@@ -961,17 +961,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object`
 
 Required:
 
-- `described_object` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--described_object))
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target))
+- `described_object` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--described_object))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--described_object"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.described_object`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--described_object"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.described_object`
 
 Required:
 
@@ -983,8 +983,8 @@ Optional:
 - `api_version` (String)
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.metric`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.metric`
 
 Required:
 
@@ -992,18 +992,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target.selector`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target.selector.match_expressions`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.metric.selector.match_expressions`
 
 Required:
 
@@ -1017,8 +1017,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--object--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.object.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.object.target`
 
 Required:
 
@@ -1032,16 +1032,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods`
 
 Required:
 
-- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--metric))
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target))
+- `metric` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--metric"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.metric`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.metric`
 
 Required:
 
@@ -1049,18 +1049,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target.selector`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target.selector.match_expressions`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.metric.selector.match_expressions`
 
 Required:
 
@@ -1074,8 +1074,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--pods--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.pods.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.pods.target`
 
 Required:
 
@@ -1089,16 +1089,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.resource`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.resource`
 
 Required:
 
 - `name` (String)
-- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource--target))
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource--target))
 
-<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--status--resource--target"></a>
-### Nested Schema for `spec.processor.kafka_consumer_autoscaler.status.resource.target`
+<a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource--target"></a>
+### Nested Schema for `spec.processor.kafka_consumer_autoscaler.metrics.resource.target`
 
 Required:
 

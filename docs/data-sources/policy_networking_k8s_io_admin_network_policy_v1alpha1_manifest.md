@@ -102,11 +102,11 @@ Required:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--subject--pods--pod_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--subject--pods--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--subject--pods--pod_selector--match_expressions"></a>
-### Nested Schema for `spec.subject.pods.pod_selector.match_expressions`
+<a id="nestedatt--spec--subject--pods--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.subject.pods.namespace_selector.match_expressions`
 
 Required:
 
@@ -169,11 +169,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--egress--to--pods--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--egress--to--namespaces--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--egress--to--pods--match_expressions"></a>
-### Nested Schema for `spec.egress.to.pods.match_expressions`
+<a id="nestedatt--spec--egress--to--namespaces--match_expressions"></a>
+### Nested Schema for `spec.egress.to.namespaces.match_expressions`
 
 Required:
 
@@ -298,11 +298,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--ingress--from--pods--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--ingress--from--namespaces--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--ingress--from--pods--match_expressions"></a>
-### Nested Schema for `spec.ingress.from.pods.match_expressions`
+<a id="nestedatt--spec--ingress--from--namespaces--match_expressions"></a>
+### Nested Schema for `spec.ingress.from.namespaces.match_expressions`
 
 Required:
 

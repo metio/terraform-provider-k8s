@@ -102,39 +102,39 @@ Required:
 
 Optional:
 
-- `build` (Attributes) Build enables in-cluster builds for this mapping and allows overriding the Module's build settings. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--build))
+- `build` (Attributes) Build enables in-cluster builds for this mapping and allows overriding the Module's build settings. (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--build))
 - `in_tree_module_to_remove` (String) Deprecated: please use InTreeModulesToRemove.InTreeModuleToRemove specifies one in-tree kernel module that should be removed (if present)before loading the kernel module from the ContainerImage
 - `in_tree_modules_to_remove` (List of String) InTreeModulesToRemove specifies any number of  in-tree kernel modules that should be removed (if present)before loading the kernel module from the ContainerImage
 - `literal` (String) Literal defines a literal target kernel version to be matched exactly against node kernels.
 - `regexp` (String) Regexp is a regular expression to be match against node kernels.
-- `registry_tls` (Attributes) RegistryTLS set the TLS configs for accessing the registry of the module-loader's image. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--registry_tls))
-- `sign` (Attributes) Sign enables in-cluster signing for this mapping (see [below for nested schema](#nestedatt--spec--module_loader--container--version--sign))
+- `registry_tls` (Attributes) RegistryTLS set the TLS configs for accessing the registry of the module-loader's image. (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--registry_tls))
+- `sign` (Attributes) Sign enables in-cluster signing for this mapping (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--sign))
 
-<a id="nestedatt--spec--module_loader--container--version--build"></a>
-### Nested Schema for `spec.module_loader.container.version.build`
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--build"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.build`
 
 Required:
 
-- `dockerfile_config_map` (Attributes) ConfigMap that holds Dockerfile contents (see [below for nested schema](#nestedatt--spec--module_loader--container--version--build--dockerfile_config_map))
+- `dockerfile_config_map` (Attributes) ConfigMap that holds Dockerfile contents (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--build--dockerfile_config_map))
 
 Optional:
 
-- `base_image_registry_tls` (Attributes) BaseImageRegistryTLS contains settings determining how to access registries of the base images in the build-process' Dockerfile. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--build--base_image_registry_tls))
-- `build_args` (Attributes List) BuildArgs is an array of build variables that are provided to the image building backend. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--build--build_args))
-- `kaniko_params` (Attributes) KanikoParams is used to customize the building process of the image. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--build--kaniko_params))
-- `secrets` (Attributes List) Secrets is an optional list of secrets to be made available to the build system.Those secrets should be used for private resources such as a private Github repo.For container registries auth use module.spec.imagePullSecret instead. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--build--secrets))
+- `base_image_registry_tls` (Attributes) BaseImageRegistryTLS contains settings determining how to access registries of the base images in the build-process' Dockerfile. (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--build--base_image_registry_tls))
+- `build_args` (Attributes List) BuildArgs is an array of build variables that are provided to the image building backend. (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--build--build_args))
+- `kaniko_params` (Attributes) KanikoParams is used to customize the building process of the image. (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--build--kaniko_params))
+- `secrets` (Attributes List) Secrets is an optional list of secrets to be made available to the build system.Those secrets should be used for private resources such as a private Github repo.For container registries auth use module.spec.imagePullSecret instead. (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--build--secrets))
 - `selector` (Map of String) Selector describes on which nodes will run the building process.
 
-<a id="nestedatt--spec--module_loader--container--version--build--dockerfile_config_map"></a>
-### Nested Schema for `spec.module_loader.container.version.build.dockerfile_config_map`
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--build--dockerfile_config_map"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.build.dockerfile_config_map`
 
 Optional:
 
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
-<a id="nestedatt--spec--module_loader--container--version--build--base_image_registry_tls"></a>
-### Nested Schema for `spec.module_loader.container.version.build.base_image_registry_tls`
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--build--base_image_registry_tls"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.build.base_image_registry_tls`
 
 Optional:
 
@@ -142,8 +142,8 @@ Optional:
 - `insecure_skip_tls_verify` (Boolean) If InsecureSkipTLSVerify, the operator will accept any certificate provided by the registry.
 
 
-<a id="nestedatt--spec--module_loader--container--version--build--build_args"></a>
-### Nested Schema for `spec.module_loader.container.version.build.build_args`
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--build--build_args"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.build.build_args`
 
 Required:
 
@@ -151,16 +151,16 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--module_loader--container--version--build--kaniko_params"></a>
-### Nested Schema for `spec.module_loader.container.version.build.kaniko_params`
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--build--kaniko_params"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.build.kaniko_params`
 
 Optional:
 
 - `tag` (String) Kaniko image tag to use when creating the build Pod
 
 
-<a id="nestedatt--spec--module_loader--container--version--build--secrets"></a>
-### Nested Schema for `spec.module_loader.container.version.build.secrets`
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--build--secrets"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.build.secrets`
 
 Optional:
 
@@ -168,8 +168,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--module_loader--container--version--registry_tls"></a>
-### Nested Schema for `spec.module_loader.container.version.registry_tls`
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--registry_tls"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.registry_tls`
 
 Optional:
 
@@ -177,38 +177,38 @@ Optional:
 - `insecure_skip_tls_verify` (Boolean) If InsecureSkipTLSVerify, the operator will accept any certificate provided by the registry.
 
 
-<a id="nestedatt--spec--module_loader--container--version--sign"></a>
-### Nested Schema for `spec.module_loader.container.version.sign`
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--sign"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.sign`
 
 Required:
 
-- `cert_secret` (Attributes) a secret containing the public key used to sign kernel modules for secureboot (see [below for nested schema](#nestedatt--spec--module_loader--container--version--sign--cert_secret))
-- `key_secret` (Attributes) a secret containing the private key used to sign kernel modules for secureboot (see [below for nested schema](#nestedatt--spec--module_loader--container--version--sign--key_secret))
+- `cert_secret` (Attributes) a secret containing the public key used to sign kernel modules for secureboot (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--sign--cert_secret))
+- `key_secret` (Attributes) a secret containing the private key used to sign kernel modules for secureboot (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--sign--key_secret))
 
 Optional:
 
 - `files_to_sign` (List of String) paths inside the image for the kernel modules to sign (if ommited all kmods are signed)
 - `unsigned_image` (String) Image to sign, ignored if a Build is present, required otherwise
-- `unsigned_image_registry_tls` (Attributes) UnsignedImageRegistryTLS contains settings determining how to access registries of the unsigned image. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--sign--unsigned_image_registry_tls))
+- `unsigned_image_registry_tls` (Attributes) UnsignedImageRegistryTLS contains settings determining how to access registries of the unsigned image. (see [below for nested schema](#nestedatt--spec--module_loader--container--kernel_mappings--sign--unsigned_image_registry_tls))
 
-<a id="nestedatt--spec--module_loader--container--version--sign--cert_secret"></a>
-### Nested Schema for `spec.module_loader.container.version.sign.cert_secret`
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-
-
-<a id="nestedatt--spec--module_loader--container--version--sign--key_secret"></a>
-### Nested Schema for `spec.module_loader.container.version.sign.key_secret`
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--sign--cert_secret"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.sign.cert_secret`
 
 Optional:
 
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
-<a id="nestedatt--spec--module_loader--container--version--sign--unsigned_image_registry_tls"></a>
-### Nested Schema for `spec.module_loader.container.version.sign.unsigned_image_registry_tls`
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--sign--key_secret"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.sign.key_secret`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
+<a id="nestedatt--spec--module_loader--container--kernel_mappings--sign--unsigned_image_registry_tls"></a>
+### Nested Schema for `spec.module_loader.container.kernel_mappings.sign.unsigned_image_registry_tls`
 
 Optional:
 
@@ -223,16 +223,16 @@ Optional:
 
 Optional:
 
-- `args` (Attributes) Args is an optional list of arguments to be passed to modprobe before the name of the kernel module.The resulting commands will be: 'modprobe ${Args} module_name'. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--args))
+- `args` (Attributes) Args is an optional list of arguments to be passed to modprobe before the name of the kernel module.The resulting commands will be: 'modprobe ${Args} module_name'. (see [below for nested schema](#nestedatt--spec--module_loader--container--modprobe--args))
 - `dir_name` (String) DirName is the root directory for modules.It adds '-d ${DirName}' to the modprobe command-line.
 - `firmware_path` (String) FirmwarePath is the path of the firmware(s).The firmware(s) will be copied to the host for the kernel to find them.
 - `module_name` (String) ModuleName is the name of the Module to be loaded.This field can only be unset if rawArgs is set.
 - `modules_loading_order` (List of String) ModulesLoadingOrder defines the dependency between kernel modules loading, in caseit was not created by depmod (independent kernel modules).The list order should be: upmost module, then the module it depends on and so on.Example: if moduleA depends on first loading moduleB, and moduleB depends on first loading moduleCthe entry should look:ModulesLoadingOrder:   - moduleA   - moduleB   - moduleCIn order to load all 3 modules, moduleA shoud be defined in the ModuleName parameter of this struct
 - `parameters` (List of String) Parameters is an optional list of kernel module parameters to be provided to modprobe.They should be in the form of key=value and will be separated by spaces in the modprobe command.The resulting loading command will be: 'modprobe module_name ${Parameters}'.
-- `raw_args` (Attributes) If RawArgs are specified, they are passed straight to the modprobe binary; all other properties in thisobject are ignored.The resulting commands will be: 'modprobe ${RawArgs}'. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--raw_args))
+- `raw_args` (Attributes) If RawArgs are specified, they are passed straight to the modprobe binary; all other properties in thisobject are ignored.The resulting commands will be: 'modprobe ${RawArgs}'. (see [below for nested schema](#nestedatt--spec--module_loader--container--modprobe--raw_args))
 
-<a id="nestedatt--spec--module_loader--container--version--args"></a>
-### Nested Schema for `spec.module_loader.container.version.args`
+<a id="nestedatt--spec--module_loader--container--modprobe--args"></a>
+### Nested Schema for `spec.module_loader.container.modprobe.args`
 
 Optional:
 
@@ -240,8 +240,8 @@ Optional:
 - `unload` (List of String) Unload is an optional list of arguments to be used when unloading the kernel module.
 
 
-<a id="nestedatt--spec--module_loader--container--version--raw_args"></a>
-### Nested Schema for `spec.module_loader.container.version.raw_args`
+<a id="nestedatt--spec--module_loader--container--modprobe--raw_args"></a>
+### Nested Schema for `spec.module_loader.container.modprobe.raw_args`
 
 Optional:
 
@@ -255,26 +255,26 @@ Optional:
 
 Required:
 
-- `dockerfile_config_map` (Attributes) ConfigMap that holds Dockerfile contents (see [below for nested schema](#nestedatt--spec--module_loader--container--version--dockerfile_config_map))
+- `dockerfile_config_map` (Attributes) ConfigMap that holds Dockerfile contents (see [below for nested schema](#nestedatt--spec--module_loader--container--build--dockerfile_config_map))
 
 Optional:
 
-- `base_image_registry_tls` (Attributes) BaseImageRegistryTLS contains settings determining how to access registries of the base images in the build-process' Dockerfile. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--base_image_registry_tls))
-- `build_args` (Attributes List) BuildArgs is an array of build variables that are provided to the image building backend. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--build_args))
-- `kaniko_params` (Attributes) KanikoParams is used to customize the building process of the image. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--kaniko_params))
-- `secrets` (Attributes List) Secrets is an optional list of secrets to be made available to the build system.Those secrets should be used for private resources such as a private Github repo.For container registries auth use module.spec.imagePullSecret instead. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--secrets))
+- `base_image_registry_tls` (Attributes) BaseImageRegistryTLS contains settings determining how to access registries of the base images in the build-process' Dockerfile. (see [below for nested schema](#nestedatt--spec--module_loader--container--build--base_image_registry_tls))
+- `build_args` (Attributes List) BuildArgs is an array of build variables that are provided to the image building backend. (see [below for nested schema](#nestedatt--spec--module_loader--container--build--build_args))
+- `kaniko_params` (Attributes) KanikoParams is used to customize the building process of the image. (see [below for nested schema](#nestedatt--spec--module_loader--container--build--kaniko_params))
+- `secrets` (Attributes List) Secrets is an optional list of secrets to be made available to the build system.Those secrets should be used for private resources such as a private Github repo.For container registries auth use module.spec.imagePullSecret instead. (see [below for nested schema](#nestedatt--spec--module_loader--container--build--secrets))
 - `selector` (Map of String) Selector describes on which nodes will run the building process.
 
-<a id="nestedatt--spec--module_loader--container--version--dockerfile_config_map"></a>
-### Nested Schema for `spec.module_loader.container.version.dockerfile_config_map`
+<a id="nestedatt--spec--module_loader--container--build--dockerfile_config_map"></a>
+### Nested Schema for `spec.module_loader.container.build.dockerfile_config_map`
 
 Optional:
 
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
-<a id="nestedatt--spec--module_loader--container--version--base_image_registry_tls"></a>
-### Nested Schema for `spec.module_loader.container.version.base_image_registry_tls`
+<a id="nestedatt--spec--module_loader--container--build--base_image_registry_tls"></a>
+### Nested Schema for `spec.module_loader.container.build.base_image_registry_tls`
 
 Optional:
 
@@ -282,8 +282,8 @@ Optional:
 - `insecure_skip_tls_verify` (Boolean) If InsecureSkipTLSVerify, the operator will accept any certificate provided by the registry.
 
 
-<a id="nestedatt--spec--module_loader--container--version--build_args"></a>
-### Nested Schema for `spec.module_loader.container.version.build_args`
+<a id="nestedatt--spec--module_loader--container--build--build_args"></a>
+### Nested Schema for `spec.module_loader.container.build.build_args`
 
 Required:
 
@@ -291,16 +291,16 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--module_loader--container--version--kaniko_params"></a>
-### Nested Schema for `spec.module_loader.container.version.kaniko_params`
+<a id="nestedatt--spec--module_loader--container--build--kaniko_params"></a>
+### Nested Schema for `spec.module_loader.container.build.kaniko_params`
 
 Optional:
 
 - `tag` (String) Kaniko image tag to use when creating the build Pod
 
 
-<a id="nestedatt--spec--module_loader--container--version--secrets"></a>
-### Nested Schema for `spec.module_loader.container.version.secrets`
+<a id="nestedatt--spec--module_loader--container--build--secrets"></a>
+### Nested Schema for `spec.module_loader.container.build.secrets`
 
 Optional:
 
@@ -322,33 +322,33 @@ Optional:
 
 Required:
 
-- `cert_secret` (Attributes) a secret containing the public key used to sign kernel modules for secureboot (see [below for nested schema](#nestedatt--spec--module_loader--container--version--cert_secret))
-- `key_secret` (Attributes) a secret containing the private key used to sign kernel modules for secureboot (see [below for nested schema](#nestedatt--spec--module_loader--container--version--key_secret))
+- `cert_secret` (Attributes) a secret containing the public key used to sign kernel modules for secureboot (see [below for nested schema](#nestedatt--spec--module_loader--container--sign--cert_secret))
+- `key_secret` (Attributes) a secret containing the private key used to sign kernel modules for secureboot (see [below for nested schema](#nestedatt--spec--module_loader--container--sign--key_secret))
 
 Optional:
 
 - `files_to_sign` (List of String) paths inside the image for the kernel modules to sign (if ommited all kmods are signed)
 - `unsigned_image` (String) Image to sign, ignored if a Build is present, required otherwise
-- `unsigned_image_registry_tls` (Attributes) UnsignedImageRegistryTLS contains settings determining how to access registries of the unsigned image. (see [below for nested schema](#nestedatt--spec--module_loader--container--version--unsigned_image_registry_tls))
+- `unsigned_image_registry_tls` (Attributes) UnsignedImageRegistryTLS contains settings determining how to access registries of the unsigned image. (see [below for nested schema](#nestedatt--spec--module_loader--container--sign--unsigned_image_registry_tls))
 
-<a id="nestedatt--spec--module_loader--container--version--cert_secret"></a>
-### Nested Schema for `spec.module_loader.container.version.cert_secret`
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-
-
-<a id="nestedatt--spec--module_loader--container--version--key_secret"></a>
-### Nested Schema for `spec.module_loader.container.version.key_secret`
+<a id="nestedatt--spec--module_loader--container--sign--cert_secret"></a>
+### Nested Schema for `spec.module_loader.container.sign.cert_secret`
 
 Optional:
 
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
-<a id="nestedatt--spec--module_loader--container--version--unsigned_image_registry_tls"></a>
-### Nested Schema for `spec.module_loader.container.version.unsigned_image_registry_tls`
+<a id="nestedatt--spec--module_loader--container--sign--key_secret"></a>
+### Nested Schema for `spec.module_loader.container.sign.key_secret`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
+<a id="nestedatt--spec--module_loader--container--sign--unsigned_image_registry_tls"></a>
+### Nested Schema for `spec.module_loader.container.sign.unsigned_image_registry_tls`
 
 Optional:
 
@@ -397,20 +397,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--device_plugin--container--volume_mounts--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--device_plugin--container--env--value_from))
 
-<a id="nestedatt--spec--device_plugin--container--volume_mounts--value_from"></a>
-### Nested Schema for `spec.device_plugin.container.volume_mounts.value_from`
+<a id="nestedatt--spec--device_plugin--container--env--value_from"></a>
+### Nested Schema for `spec.device_plugin.container.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--device_plugin--container--volume_mounts--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--device_plugin--container--volume_mounts--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--device_plugin--container--volume_mounts--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--device_plugin--container--volume_mounts--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--device_plugin--container--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--device_plugin--container--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--device_plugin--container--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--device_plugin--container--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--device_plugin--container--volume_mounts--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.device_plugin.container.volume_mounts.value_from.config_map_key_ref`
+<a id="nestedatt--spec--device_plugin--container--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.device_plugin.container.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -422,8 +422,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--device_plugin--container--volume_mounts--value_from--field_ref"></a>
-### Nested Schema for `spec.device_plugin.container.volume_mounts.value_from.field_ref`
+<a id="nestedatt--spec--device_plugin--container--env--value_from--field_ref"></a>
+### Nested Schema for `spec.device_plugin.container.env.value_from.field_ref`
 
 Required:
 
@@ -434,8 +434,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--device_plugin--container--volume_mounts--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.device_plugin.container.volume_mounts.value_from.resource_field_ref`
+<a id="nestedatt--spec--device_plugin--container--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.device_plugin.container.env.value_from.resource_field_ref`
 
 Required:
 
@@ -447,8 +447,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--device_plugin--container--volume_mounts--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.device_plugin.container.volume_mounts.value_from.secret_key_ref`
+<a id="nestedatt--spec--device_plugin--container--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.device_plugin.container.env.value_from.secret_key_ref`
 
 Required:
 
@@ -467,12 +467,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--device_plugin--container--volume_mounts--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--device_plugin--container--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--device_plugin--container--volume_mounts--claims"></a>
-### Nested Schema for `spec.device_plugin.container.volume_mounts.claims`
+<a id="nestedatt--spec--device_plugin--container--resources--claims"></a>
+### Nested Schema for `spec.device_plugin.container.resources.claims`
 
 Required:
 
@@ -592,11 +592,11 @@ Optional:
 - `path` (String) path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
 - `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 - `secret_file` (String) secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secretMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
-- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty.More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--cephfs--secret_ref))
 - `user` (String) user is optional: User is the rados user name, default is adminMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--device_plugin--volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -615,10 +615,10 @@ Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://examples.k8s.io/mysql-cinder-pd/README.md
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.More info: https://examples.k8s.io/mysql-cinder-pd/README.md
-- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connectto OpenStack. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is optional: points to a secret object containing parameters used to connectto OpenStack. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--cinder--secret_ref))
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--device_plugin--volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.cinder.secret_ref`
 
 Optional:
 
@@ -632,12 +632,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--config_map--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--device_plugin--volumes--config_map--items"></a>
+### Nested Schema for `spec.device_plugin.volumes.config_map.items`
 
 Required:
 
@@ -660,12 +660,12 @@ Required:
 Optional:
 
 - `fs_type` (String) fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'.If not provided, the empty value is passed to the associated CSI driverwhich will determine the default filesystem to apply.
-- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containingsensitive information to pass to the CSI driver to complete the CSINodePublishVolume and NodeUnpublishVolume calls.This field is optional, and  may be empty if no secret is required. If thesecret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containingsensitive information to pass to the CSI driver to complete the CSINodePublishVolume and NodeUnpublishVolume calls.This field is optional, and  may be empty if no secret is required. If thesecret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--csi--node_publish_secret_ref))
 - `read_only` (Boolean) readOnly specifies a read-only configuration for the volume.Defaults to false (read/write).
 - `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSIdriver. Consult your driver's documentation for supported values.
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--device_plugin--volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -679,10 +679,10 @@ Optional:
 Optional:
 
 - `default_mode` (Number) Optional: mode bits to use on created files by default. Must be aOptional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--items))
+- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--downward_api--items))
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--device_plugin--volumes--downward_api--items"></a>
+### Nested Schema for `spec.device_plugin.volumes.downward_api.items`
 
 Required:
 
@@ -690,12 +690,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--device_plugin--volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -706,8 +706,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--device_plugin--volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -735,36 +735,36 @@ Optional:
 
 Optional:
 
-- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume.The pod in which this EphemeralVolumeSource is embedded will be theowner of the PVC, i.e. the PVC will be deleted together with thepod.  The name of the PVC will be '<pod name>-<volume name>' where'<volume name>' is the name from the 'PodSpec.Volumes' arrayentry. Pod validation will reject the pod if the concatenated nameis not valid for a PVC (for example, too long).An existing PVC with that name that is not owned by the podwill *not* be used for the pod to avoid using an unrelatedvolume by mistake. Starting the pod is then blocked untilthe unrelated PVC is removed. If such a pre-created PVC ismeant to be used by the pod, the PVC has to updated with anowner reference to the pod once the pod exists. Normallythis should not be necessary, but it may be useful whenmanually reconstructing a broken cluster.This field is read-only and no changes will be made by Kubernetesto the PVC after it has been created.Required, must not be nil. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume.The pod in which this EphemeralVolumeSource is embedded will be theowner of the PVC, i.e. the PVC will be deleted together with thepod.  The name of the PVC will be '<pod name>-<volume name>' where'<volume name>' is the name from the 'PodSpec.Volumes' arrayentry. Pod validation will reject the pod if the concatenated nameis not valid for a PVC (for example, too long).An existing PVC with that name that is not owned by the podwill *not* be used for the pod to avoid using an unrelatedvolume by mistake. Starting the pod is then blocked untilthe unrelated PVC is removed. If such a pre-created PVC ismeant to be used by the pod, the PVC has to updated with anowner reference to the pod once the pod exists. Normallythis should not be necessary, but it may be useful whenmanually reconstructing a broken cluster.This field is read-only and no changes will be made by Kubernetesto the PVC after it has been created.Required, must not be nil. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.device_plugin.volumes.ephemeral.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content iscopied unchanged into the PVC that gets created from thistemplate. The same fields as in a PersistentVolumeClaimare also valid here. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--spec))
+- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content iscopied unchanged into the PVC that gets created from thistemplate. The same fields as in a PersistentVolumeClaimare also valid here. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec))
 
 Optional:
 
 - `metadata` (Map of String) May contain labels and annotations that will be copied into the PVCwhen creating it. No other fields are allowed and will be rejected duringvalidation.
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.device_plugin.volumes.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--metadata--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.device_plugin.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -776,8 +776,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -790,8 +790,8 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.device_plugin.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
@@ -799,16 +799,16 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.device_plugin.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.match_expressions`
+<a id="nestedatt--spec--device_plugin--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.device_plugin.volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -848,10 +848,10 @@ Optional:
 - `fs_type` (String) fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
 - `options` (Map of String) options is Optional: this field holds extra command options if any.
 - `read_only` (Boolean) readOnly is Optional: defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containingsensitive information to pass to the plugin scripts. This may beempty if no secret object is specified. If the secret objectcontains more than one secret, all secrets are passed to the pluginscripts. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is Optional: secretRef is reference to the secret object containingsensitive information to pass to the plugin scripts. This may beempty if no secret object is specified. If the secret objectcontains more than one secret, all secrets are passed to the pluginscripts. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--device_plugin--volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.flex_volume.secret_ref`
 
 Optional:
 
@@ -938,10 +938,10 @@ Optional:
 - `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport.Defaults to 'default' (tcp).
 - `portals` (List of String) portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the portis other than default (typically TCP ports 860 and 3260).
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.
-- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is the CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--iscsi--secret_ref))
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--device_plugin--volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -1005,21 +1005,21 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources))
+- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources))
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources`
 
 Optional:
 
-- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' fieldof ClusterTrustBundle objects in an auto-updating file.Alpha, gated by the ClusterTrustBundleProjection feature gate.ClusterTrustBundle objects can either be selected by name, or by thecombination of signer name and a label selector.Kubelet performs aggressive normalization of the PEM contents writteninto the pod filesystem.  Esoteric PEM features such as inter-blockcomments and block headers are stripped.  Certificates are deduplicated.The ordering of certificates within the file is arbitrary, and Kubeletmay change the order over time. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--cluster_trust_bundle))
-- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' fieldof ClusterTrustBundle objects in an auto-updating file.Alpha, gated by the ClusterTrustBundleProjection feature gate.ClusterTrustBundle objects can either be selected by name, or by thecombination of signer name and a label selector.Kubelet performs aggressive normalization of the PEM contents writteninto the pod filesystem.  Esoteric PEM features such as inter-blockcomments and block headers are stripped.  Certificates are deduplicated.The ordering of certificates within the file is arbitrary, and Kubeletmay change the order over time. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--cluster_trust_bundle))
+- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--downward_api))
+- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--service_account_token))
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.cluster_trust_bundle`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.cluster_trust_bundle`
 
 Required:
 
@@ -1027,21 +1027,21 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector.  Only haseffect if signerName is set.  Mutually-exclusive with name.  If unset,interpreted as 'match nothing'.  If set but empty, interpreted as 'matcheverything'. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--label_selector))
+- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector.  Only haseffect if signerName is set.  Mutually-exclusive with name.  If unset,interpreted as 'match nothing'.  If set but empty, interpreted as 'matcheverything'. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--cluster_trust_bundle--label_selector))
 - `name` (String) Select a single ClusterTrustBundle by object name.  Mutually-exclusivewith signerName and labelSelector.
 - `optional` (Boolean) If true, don't block pod startup if the referenced ClusterTrustBundle(s)aren't available.  If using name, then the named ClusterTrustBundle isallowed not to exist.  If using signerName, then the combination ofsignerName and labelSelector is allowed to match zeroClusterTrustBundles.
 - `signer_name` (String) Select all ClusterTrustBundles that match this signer name.Mutually-exclusive with name.  The contents of all selectedClusterTrustBundles will be unified and deduplicated.
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.service_account_token.label_selector`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.cluster_trust_bundle.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.service_account_token.signer_name.match_expressions`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
 
 Required:
 
@@ -1055,17 +1055,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--config_map--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -1078,15 +1078,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -1094,12 +1094,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -1110,8 +1110,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -1125,17 +1125,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--projected--sources--secret--items))
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -1148,8 +1148,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--device_plugin--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.device_plugin.volumes.projected.sources.service_account_token`
 
 Required:
 
@@ -1193,11 +1193,11 @@ Optional:
 - `keyring` (String) keyring is the path to key ring for RBDUser.Default is /etc/ceph/keyring.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `pool` (String) pool is the rados pool name.Default is rbd.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If providedoverrides keyring.Default is nil.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef is name of the authentication secret for RBDUser. If providedoverrides keyring.Default is nil.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--rbd--secret_ref))
 - `user` (String) user is the rados user name.Default is admin.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--device_plugin--volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -1211,7 +1211,7 @@ Optional:
 Required:
 
 - `gateway` (String) gateway is the host address of the ScaleIO API Gateway.
-- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and othersensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef references to the secret for ScaleIO user and othersensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--scale_io--secret_ref))
 - `system` (String) system is the name of the storage system as configured in ScaleIO.
 
 Optional:
@@ -1224,8 +1224,8 @@ Optional:
 - `storage_pool` (String) storagePool is the ScaleIO Storage Pool associated with the protection domain.
 - `volume_name` (String) volumeName is the name of a volume already created in the ScaleIO systemthat is associated with this volume source.
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--device_plugin--volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -1239,12 +1239,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal valuesfor mode bits. Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--items))
+- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--secret--items))
 - `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
 - `secret_name` (String) secretName is the name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--device_plugin--volumes--secret--items"></a>
+### Nested Schema for `spec.device_plugin.volumes.secret.items`
 
 Required:
 
@@ -1264,12 +1264,12 @@ Optional:
 
 - `fs_type` (String) fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS APIcredentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) secretRef specifies the secret to use for obtaining the StorageOS APIcredentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--device_plugin--volumes--storageos--secret_ref))
 - `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volumenames are only unique within a namespace.
 - `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If nonamespace is specified then the Pod's namespace will be used.  This allows theKubernetes name scoping to be mirrored within StorageOS for tighter integration.Set VolumeName to any name to override the default behaviour.Set to 'default' if you are not using namespaces within StorageOS.Namespaces that do not pre-exist within StorageOS will be created.
 
-<a id="nestedatt--spec--device_plugin--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.device_plugin.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--device_plugin--volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.device_plugin.volumes.storageos.secret_ref`
 
 Optional:
 

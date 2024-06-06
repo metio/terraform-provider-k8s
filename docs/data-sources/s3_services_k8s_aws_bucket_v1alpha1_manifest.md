@@ -119,10 +119,10 @@ Optional:
 Optional:
 
 - `prefix` (String)
-- `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--analytics--filter--tag--tags))
+- `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--analytics--filter--and--tags))
 
-<a id="nestedatt--spec--analytics--filter--tag--tags"></a>
-### Nested Schema for `spec.analytics.filter.tag.tags`
+<a id="nestedatt--spec--analytics--filter--and--tags"></a>
+### Nested Schema for `spec.analytics.filter.and.tags`
 
 Optional:
 
@@ -258,10 +258,10 @@ Optional:
 Optional:
 
 - `prefix` (String)
-- `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--intelligent_tiering--filter--tag--tags))
+- `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--intelligent_tiering--filter--and--tags))
 
-<a id="nestedatt--spec--intelligent_tiering--filter--tag--tags"></a>
-### Nested Schema for `spec.intelligent_tiering.filter.tag.tags`
+<a id="nestedatt--spec--intelligent_tiering--filter--and--tags"></a>
+### Nested Schema for `spec.intelligent_tiering.filter.and.tags`
 
 Optional:
 
@@ -401,24 +401,24 @@ Optional:
 
 Optional:
 
-- `and` (Attributes) This is used in a Lifecycle Rule Filter to apply a logical AND to two ormore predicates. The Lifecycle Rule will apply to any object matching allof the predicates configured inside the And operator. (see [below for nested schema](#nestedatt--spec--lifecycle--rules--transitions--and))
+- `and` (Attributes) This is used in a Lifecycle Rule Filter to apply a logical AND to two ormore predicates. The Lifecycle Rule will apply to any object matching allof the predicates configured inside the And operator. (see [below for nested schema](#nestedatt--spec--lifecycle--rules--filter--and))
 - `object_size_greater_than` (Number)
 - `object_size_less_than` (Number)
 - `prefix` (String)
-- `tag` (Attributes) A container of a key value name pair. (see [below for nested schema](#nestedatt--spec--lifecycle--rules--transitions--tag))
+- `tag` (Attributes) A container of a key value name pair. (see [below for nested schema](#nestedatt--spec--lifecycle--rules--filter--tag))
 
-<a id="nestedatt--spec--lifecycle--rules--transitions--and"></a>
-### Nested Schema for `spec.lifecycle.rules.transitions.and`
+<a id="nestedatt--spec--lifecycle--rules--filter--and"></a>
+### Nested Schema for `spec.lifecycle.rules.filter.and`
 
 Optional:
 
 - `object_size_greater_than` (Number)
 - `object_size_less_than` (Number)
 - `prefix` (String)
-- `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--lifecycle--rules--transitions--and--tags))
+- `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--lifecycle--rules--filter--and--tags))
 
-<a id="nestedatt--spec--lifecycle--rules--transitions--and--tags"></a>
-### Nested Schema for `spec.lifecycle.rules.transitions.and.tags`
+<a id="nestedatt--spec--lifecycle--rules--filter--and--tags"></a>
+### Nested Schema for `spec.lifecycle.rules.filter.and.tags`
 
 Optional:
 
@@ -427,8 +427,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--lifecycle--rules--transitions--tag"></a>
-### Nested Schema for `spec.lifecycle.rules.transitions.tag`
+<a id="nestedatt--spec--lifecycle--rules--filter--tag"></a>
+### Nested Schema for `spec.lifecycle.rules.filter.tag`
 
 Optional:
 
@@ -489,11 +489,11 @@ Optional:
 
 Optional:
 
-- `grantee` (Attributes) Container for the person being granted permissions. (see [below for nested schema](#nestedatt--spec--logging--logging_enabled--target_prefix--grantee))
+- `grantee` (Attributes) Container for the person being granted permissions. (see [below for nested schema](#nestedatt--spec--logging--logging_enabled--target_grants--grantee))
 - `permission` (String)
 
-<a id="nestedatt--spec--logging--logging_enabled--target_prefix--grantee"></a>
-### Nested Schema for `spec.logging.logging_enabled.target_prefix.grantee`
+<a id="nestedatt--spec--logging--logging_enabled--target_grants--grantee"></a>
+### Nested Schema for `spec.logging.logging_enabled.target_grants.grantee`
 
 Optional:
 
@@ -532,10 +532,10 @@ Optional:
 
 - `access_point_arn` (String)
 - `prefix` (String)
-- `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--metrics--filter--tag--tags))
+- `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--metrics--filter--and--tags))
 
-<a id="nestedatt--spec--metrics--filter--tag--tags"></a>
-### Nested Schema for `spec.metrics.filter.tag.tags`
+<a id="nestedatt--spec--metrics--filter--and--tags"></a>
+### Nested Schema for `spec.metrics.filter.and.tags`
 
 Optional:
 
@@ -579,17 +579,17 @@ Optional:
 
 Optional:
 
-- `key` (Attributes) A container for object key name prefix and suffix filtering rules. (see [below for nested schema](#nestedatt--spec--notification--lambda_function_configurations--lambda_function_arn--key))
+- `key` (Attributes) A container for object key name prefix and suffix filtering rules. (see [below for nested schema](#nestedatt--spec--notification--lambda_function_configurations--filter--key))
 
-<a id="nestedatt--spec--notification--lambda_function_configurations--lambda_function_arn--key"></a>
-### Nested Schema for `spec.notification.lambda_function_configurations.lambda_function_arn.key`
+<a id="nestedatt--spec--notification--lambda_function_configurations--filter--key"></a>
+### Nested Schema for `spec.notification.lambda_function_configurations.filter.key`
 
 Optional:
 
-- `filter_rules` (Attributes List) A list of containers for the key-value pair that defines the criteria forthe filter rule. (see [below for nested schema](#nestedatt--spec--notification--lambda_function_configurations--lambda_function_arn--key--filter_rules))
+- `filter_rules` (Attributes List) A list of containers for the key-value pair that defines the criteria forthe filter rule. (see [below for nested schema](#nestedatt--spec--notification--lambda_function_configurations--filter--key--filter_rules))
 
-<a id="nestedatt--spec--notification--lambda_function_configurations--lambda_function_arn--key--filter_rules"></a>
-### Nested Schema for `spec.notification.lambda_function_configurations.lambda_function_arn.key.filter_rules`
+<a id="nestedatt--spec--notification--lambda_function_configurations--filter--key--filter_rules"></a>
+### Nested Schema for `spec.notification.lambda_function_configurations.filter.key.filter_rules`
 
 Optional:
 
@@ -615,17 +615,17 @@ Optional:
 
 Optional:
 
-- `key` (Attributes) A container for object key name prefix and suffix filtering rules. (see [below for nested schema](#nestedatt--spec--notification--queue_configurations--queue_arn--key))
+- `key` (Attributes) A container for object key name prefix and suffix filtering rules. (see [below for nested schema](#nestedatt--spec--notification--queue_configurations--filter--key))
 
-<a id="nestedatt--spec--notification--queue_configurations--queue_arn--key"></a>
-### Nested Schema for `spec.notification.queue_configurations.queue_arn.key`
+<a id="nestedatt--spec--notification--queue_configurations--filter--key"></a>
+### Nested Schema for `spec.notification.queue_configurations.filter.key`
 
 Optional:
 
-- `filter_rules` (Attributes List) A list of containers for the key-value pair that defines the criteria forthe filter rule. (see [below for nested schema](#nestedatt--spec--notification--queue_configurations--queue_arn--key--filter_rules))
+- `filter_rules` (Attributes List) A list of containers for the key-value pair that defines the criteria forthe filter rule. (see [below for nested schema](#nestedatt--spec--notification--queue_configurations--filter--key--filter_rules))
 
-<a id="nestedatt--spec--notification--queue_configurations--queue_arn--key--filter_rules"></a>
-### Nested Schema for `spec.notification.queue_configurations.queue_arn.key.filter_rules`
+<a id="nestedatt--spec--notification--queue_configurations--filter--key--filter_rules"></a>
+### Nested Schema for `spec.notification.queue_configurations.filter.key.filter_rules`
 
 Optional:
 
@@ -651,17 +651,17 @@ Optional:
 
 Optional:
 
-- `key` (Attributes) A container for object key name prefix and suffix filtering rules. (see [below for nested schema](#nestedatt--spec--notification--topic_configurations--topic_arn--key))
+- `key` (Attributes) A container for object key name prefix and suffix filtering rules. (see [below for nested schema](#nestedatt--spec--notification--topic_configurations--filter--key))
 
-<a id="nestedatt--spec--notification--topic_configurations--topic_arn--key"></a>
-### Nested Schema for `spec.notification.topic_configurations.topic_arn.key`
+<a id="nestedatt--spec--notification--topic_configurations--filter--key"></a>
+### Nested Schema for `spec.notification.topic_configurations.filter.key`
 
 Optional:
 
-- `filter_rules` (Attributes List) A list of containers for the key-value pair that defines the criteria forthe filter rule. (see [below for nested schema](#nestedatt--spec--notification--topic_configurations--topic_arn--key--filter_rules))
+- `filter_rules` (Attributes List) A list of containers for the key-value pair that defines the criteria forthe filter rule. (see [below for nested schema](#nestedatt--spec--notification--topic_configurations--filter--key--filter_rules))
 
-<a id="nestedatt--spec--notification--topic_configurations--topic_arn--key--filter_rules"></a>
-### Nested Schema for `spec.notification.topic_configurations.topic_arn.key.filter_rules`
+<a id="nestedatt--spec--notification--topic_configurations--filter--key--filter_rules"></a>
+### Nested Schema for `spec.notification.topic_configurations.filter.key.filter_rules`
 
 Optional:
 
@@ -736,40 +736,40 @@ Optional:
 
 Optional:
 
-- `access_control_translation` (Attributes) A container for information about access control for replicas. (see [below for nested schema](#nestedatt--spec--replication--rules--status--access_control_translation))
+- `access_control_translation` (Attributes) A container for information about access control for replicas. (see [below for nested schema](#nestedatt--spec--replication--rules--destination--access_control_translation))
 - `account` (String)
 - `bucket` (String)
-- `encryption_configuration` (Attributes) Specifies encryption-related information for an Amazon S3 bucket that isa destination for replicated objects. (see [below for nested schema](#nestedatt--spec--replication--rules--status--encryption_configuration))
-- `metrics` (Attributes) A container specifying replication metrics-related settings enabling replicationmetrics and events. (see [below for nested schema](#nestedatt--spec--replication--rules--status--metrics))
-- `replication_time` (Attributes) A container specifying S3 Replication Time Control (S3 RTC) related information,including whether S3 RTC is enabled and the time when all objects and operationson objects must be replicated. Must be specified together with a Metricsblock. (see [below for nested schema](#nestedatt--spec--replication--rules--status--replication_time))
+- `encryption_configuration` (Attributes) Specifies encryption-related information for an Amazon S3 bucket that isa destination for replicated objects. (see [below for nested schema](#nestedatt--spec--replication--rules--destination--encryption_configuration))
+- `metrics` (Attributes) A container specifying replication metrics-related settings enabling replicationmetrics and events. (see [below for nested schema](#nestedatt--spec--replication--rules--destination--metrics))
+- `replication_time` (Attributes) A container specifying S3 Replication Time Control (S3 RTC) related information,including whether S3 RTC is enabled and the time when all objects and operationson objects must be replicated. Must be specified together with a Metricsblock. (see [below for nested schema](#nestedatt--spec--replication--rules--destination--replication_time))
 - `storage_class` (String)
 
-<a id="nestedatt--spec--replication--rules--status--access_control_translation"></a>
-### Nested Schema for `spec.replication.rules.status.access_control_translation`
+<a id="nestedatt--spec--replication--rules--destination--access_control_translation"></a>
+### Nested Schema for `spec.replication.rules.destination.access_control_translation`
 
 Optional:
 
 - `owner` (String)
 
 
-<a id="nestedatt--spec--replication--rules--status--encryption_configuration"></a>
-### Nested Schema for `spec.replication.rules.status.encryption_configuration`
+<a id="nestedatt--spec--replication--rules--destination--encryption_configuration"></a>
+### Nested Schema for `spec.replication.rules.destination.encryption_configuration`
 
 Optional:
 
 - `replica_kms_key_id` (String)
 
 
-<a id="nestedatt--spec--replication--rules--status--metrics"></a>
-### Nested Schema for `spec.replication.rules.status.metrics`
+<a id="nestedatt--spec--replication--rules--destination--metrics"></a>
+### Nested Schema for `spec.replication.rules.destination.metrics`
 
 Optional:
 
-- `event_threshold` (Attributes) A container specifying the time value for S3 Replication Time Control (S3RTC) and replication metrics EventThreshold. (see [below for nested schema](#nestedatt--spec--replication--rules--status--metrics--event_threshold))
+- `event_threshold` (Attributes) A container specifying the time value for S3 Replication Time Control (S3RTC) and replication metrics EventThreshold. (see [below for nested schema](#nestedatt--spec--replication--rules--destination--metrics--event_threshold))
 - `status` (String)
 
-<a id="nestedatt--spec--replication--rules--status--metrics--event_threshold"></a>
-### Nested Schema for `spec.replication.rules.status.metrics.event_threshold`
+<a id="nestedatt--spec--replication--rules--destination--metrics--event_threshold"></a>
+### Nested Schema for `spec.replication.rules.destination.metrics.event_threshold`
 
 Optional:
 
@@ -777,16 +777,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replication--rules--status--replication_time"></a>
-### Nested Schema for `spec.replication.rules.status.replication_time`
+<a id="nestedatt--spec--replication--rules--destination--replication_time"></a>
+### Nested Schema for `spec.replication.rules.destination.replication_time`
 
 Optional:
 
 - `status` (String)
-- `time` (Attributes) A container specifying the time value for S3 Replication Time Control (S3RTC) and replication metrics EventThreshold. (see [below for nested schema](#nestedatt--spec--replication--rules--status--replication_time--time))
+- `time` (Attributes) A container specifying the time value for S3 Replication Time Control (S3RTC) and replication metrics EventThreshold. (see [below for nested schema](#nestedatt--spec--replication--rules--destination--replication_time--time))
 
-<a id="nestedatt--spec--replication--rules--status--replication_time--time"></a>
-### Nested Schema for `spec.replication.rules.status.replication_time.time`
+<a id="nestedatt--spec--replication--rules--destination--replication_time--time"></a>
+### Nested Schema for `spec.replication.rules.destination.replication_time.time`
 
 Optional:
 
@@ -808,20 +808,20 @@ Optional:
 
 Optional:
 
-- `and` (Attributes) A container for specifying rule filters. The filters determine the subsetof objects to which the rule applies. This element is required only if youspecify more than one filter.For example:   * If you specify both a Prefix and a Tag filter, wrap these filters in   an And tag.   * If you specify a filter based on multiple tags, wrap the Tag elements   in an And tag. (see [below for nested schema](#nestedatt--spec--replication--rules--status--and))
+- `and` (Attributes) A container for specifying rule filters. The filters determine the subsetof objects to which the rule applies. This element is required only if youspecify more than one filter.For example:   * If you specify both a Prefix and a Tag filter, wrap these filters in   an And tag.   * If you specify a filter based on multiple tags, wrap the Tag elements   in an And tag. (see [below for nested schema](#nestedatt--spec--replication--rules--filter--and))
 - `prefix` (String)
-- `tag` (Attributes) A container of a key value name pair. (see [below for nested schema](#nestedatt--spec--replication--rules--status--tag))
+- `tag` (Attributes) A container of a key value name pair. (see [below for nested schema](#nestedatt--spec--replication--rules--filter--tag))
 
-<a id="nestedatt--spec--replication--rules--status--and"></a>
-### Nested Schema for `spec.replication.rules.status.and`
+<a id="nestedatt--spec--replication--rules--filter--and"></a>
+### Nested Schema for `spec.replication.rules.filter.and`
 
 Optional:
 
 - `prefix` (String)
-- `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--replication--rules--status--and--tags))
+- `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--replication--rules--filter--and--tags))
 
-<a id="nestedatt--spec--replication--rules--status--and--tags"></a>
-### Nested Schema for `spec.replication.rules.status.and.tags`
+<a id="nestedatt--spec--replication--rules--filter--and--tags"></a>
+### Nested Schema for `spec.replication.rules.filter.and.tags`
 
 Optional:
 
@@ -830,8 +830,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replication--rules--status--tag"></a>
-### Nested Schema for `spec.replication.rules.status.tag`
+<a id="nestedatt--spec--replication--rules--filter--tag"></a>
+### Nested Schema for `spec.replication.rules.filter.tag`
 
 Optional:
 
@@ -845,19 +845,19 @@ Optional:
 
 Optional:
 
-- `replica_modifications` (Attributes) A filter that you can specify for selection for modifications on replicas.Amazon S3 doesn't replicate replica modifications by default. In the latestversion of replication configuration (when Filter is specified), you canspecify this element and set the status to Enabled to replicate modificationson replicas.If you don't specify the Filter element, Amazon S3 assumes that the replicationconfiguration is the earlier version, V1. In the earlier version, this elementis not allowed. (see [below for nested schema](#nestedatt--spec--replication--rules--status--replica_modifications))
-- `sse_kms_encrypted_objects` (Attributes) A container for filter information for the selection of S3 objects encryptedwith Amazon Web Services KMS. (see [below for nested schema](#nestedatt--spec--replication--rules--status--sse_kms_encrypted_objects))
+- `replica_modifications` (Attributes) A filter that you can specify for selection for modifications on replicas.Amazon S3 doesn't replicate replica modifications by default. In the latestversion of replication configuration (when Filter is specified), you canspecify this element and set the status to Enabled to replicate modificationson replicas.If you don't specify the Filter element, Amazon S3 assumes that the replicationconfiguration is the earlier version, V1. In the earlier version, this elementis not allowed. (see [below for nested schema](#nestedatt--spec--replication--rules--source_selection_criteria--replica_modifications))
+- `sse_kms_encrypted_objects` (Attributes) A container for filter information for the selection of S3 objects encryptedwith Amazon Web Services KMS. (see [below for nested schema](#nestedatt--spec--replication--rules--source_selection_criteria--sse_kms_encrypted_objects))
 
-<a id="nestedatt--spec--replication--rules--status--replica_modifications"></a>
-### Nested Schema for `spec.replication.rules.status.replica_modifications`
+<a id="nestedatt--spec--replication--rules--source_selection_criteria--replica_modifications"></a>
+### Nested Schema for `spec.replication.rules.source_selection_criteria.replica_modifications`
 
 Optional:
 
 - `status` (String)
 
 
-<a id="nestedatt--spec--replication--rules--status--sse_kms_encrypted_objects"></a>
-### Nested Schema for `spec.replication.rules.status.sse_kms_encrypted_objects`
+<a id="nestedatt--spec--replication--rules--source_selection_criteria--sse_kms_encrypted_objects"></a>
+### Nested Schema for `spec.replication.rules.source_selection_criteria.sse_kms_encrypted_objects`
 
 Optional:
 

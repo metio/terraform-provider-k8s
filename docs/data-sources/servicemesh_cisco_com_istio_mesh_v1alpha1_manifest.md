@@ -229,11 +229,11 @@ Optional:
 Optional:
 
 - `address` (String)
-- `tcp_keepalive` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--tcp_keepalive))
-- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--tls_settings))
+- `tcp_keepalive` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--envoy_access_log_service--tcp_keepalive))
+- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--envoy_access_log_service--tls_settings))
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--tcp_keepalive"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.tcp_keepalive`
+<a id="nestedatt--spec--config--default_config--envoy_access_log_service--tcp_keepalive"></a>
+### Nested Schema for `spec.config.default_config.envoy_access_log_service.tcp_keepalive`
 
 Optional:
 
@@ -242,8 +242,8 @@ Optional:
 - `time` (String)
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--tls_settings"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.tls_settings`
+<a id="nestedatt--spec--config--default_config--envoy_access_log_service--tls_settings"></a>
+### Nested Schema for `spec.config.default_config.envoy_access_log_service.tls_settings`
 
 Required:
 
@@ -267,11 +267,11 @@ Optional:
 Optional:
 
 - `address` (String)
-- `tcp_keepalive` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--tcp_keepalive))
-- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--tls_settings))
+- `tcp_keepalive` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--envoy_metrics_service--tcp_keepalive))
+- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--envoy_metrics_service--tls_settings))
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--tcp_keepalive"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.tcp_keepalive`
+<a id="nestedatt--spec--config--default_config--envoy_metrics_service--tcp_keepalive"></a>
+### Nested Schema for `spec.config.default_config.envoy_metrics_service.tcp_keepalive`
 
 Optional:
 
@@ -280,8 +280,8 @@ Optional:
 - `time` (String)
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--tls_settings"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.tls_settings`
+<a id="nestedatt--spec--config--default_config--envoy_metrics_service--tls_settings"></a>
+### Nested Schema for `spec.config.default_config.envoy_metrics_service.tls_settings`
 
 Required:
 
@@ -321,19 +321,19 @@ Optional:
 
 Optional:
 
-- `cryptomb` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--cryptomb))
-- `qat` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--qat))
+- `cryptomb` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--private_key_provider--cryptomb))
+- `qat` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--private_key_provider--qat))
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--cryptomb"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.cryptomb`
+<a id="nestedatt--spec--config--default_config--private_key_provider--cryptomb"></a>
+### Nested Schema for `spec.config.default_config.private_key_provider.cryptomb`
 
 Optional:
 
 - `poll_delay` (String)
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--qat"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.qat`
+<a id="nestedatt--spec--config--default_config--private_key_provider--qat"></a>
+### Nested Schema for `spec.config.default_config.private_key_provider.qat`
 
 Optional:
 
@@ -356,25 +356,25 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--http_get))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--readiness_probe--tcp_socket))
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--exec"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.exec`
+<a id="nestedatt--spec--config--default_config--readiness_probe--exec"></a>
+### Nested Schema for `spec.config.default_config.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--http_get"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.http_get`
+<a id="nestedatt--spec--config--default_config--readiness_probe--http_get"></a>
+### Nested Schema for `spec.config.default_config.readiness_probe.http_get`
 
 Required:
 
@@ -383,12 +383,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--config--default_config--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--http_get--http_headers"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.http_get.http_headers`
+<a id="nestedatt--spec--config--default_config--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.config.default_config.readiness_probe.http_get.http_headers`
 
 Optional:
 
@@ -397,8 +397,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--tcp_socket"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.tcp_socket`
+<a id="nestedatt--spec--config--default_config--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.config.default_config.readiness_probe.tcp_socket`
 
 Required:
 
@@ -424,36 +424,27 @@ Optional:
 
 Optional:
 
-- `custom_tags` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--custom_tags))
-- `datadog` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--datadog))
-- `lightstep` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--lightstep))
+- `custom_tags` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--tracing--custom_tags))
+- `datadog` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--tracing--datadog))
+- `lightstep` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--tracing--lightstep))
 - `max_path_tag_length` (Number)
-- `open_census_agent` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--open_census_agent))
+- `open_census_agent` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--tracing--open_census_agent))
 - `sampling` (Number)
-- `stackdriver` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--stackdriver))
-- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--tls_settings))
-- `zipkin` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--zipkin))
+- `stackdriver` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--tracing--stackdriver))
+- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--tracing--tls_settings))
+- `zipkin` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--tracing--zipkin))
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--custom_tags"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.custom_tags`
-
-Optional:
-
-- `environment` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--custom_tags--environment))
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--custom_tags--header))
-- `literal` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--zipkin_address--custom_tags--literal))
-
-<a id="nestedatt--spec--config--default_config--zipkin_address--custom_tags--environment"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.custom_tags.environment`
+<a id="nestedatt--spec--config--default_config--tracing--custom_tags"></a>
+### Nested Schema for `spec.config.default_config.tracing.custom_tags`
 
 Optional:
 
-- `default_value` (String)
-- `name` (String)
+- `environment` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--tracing--custom_tags--environment))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--tracing--custom_tags--header))
+- `literal` (Attributes) (see [below for nested schema](#nestedatt--spec--config--default_config--tracing--custom_tags--literal))
 
-
-<a id="nestedatt--spec--config--default_config--zipkin_address--custom_tags--header"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.custom_tags.header`
+<a id="nestedatt--spec--config--default_config--tracing--custom_tags--environment"></a>
+### Nested Schema for `spec.config.default_config.tracing.custom_tags.environment`
 
 Optional:
 
@@ -461,8 +452,17 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--custom_tags--literal"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.custom_tags.literal`
+<a id="nestedatt--spec--config--default_config--tracing--custom_tags--header"></a>
+### Nested Schema for `spec.config.default_config.tracing.custom_tags.header`
+
+Optional:
+
+- `default_value` (String)
+- `name` (String)
+
+
+<a id="nestedatt--spec--config--default_config--tracing--custom_tags--literal"></a>
+### Nested Schema for `spec.config.default_config.tracing.custom_tags.literal`
 
 Optional:
 
@@ -470,16 +470,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--datadog"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.datadog`
+<a id="nestedatt--spec--config--default_config--tracing--datadog"></a>
+### Nested Schema for `spec.config.default_config.tracing.datadog`
 
 Optional:
 
 - `address` (String)
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--lightstep"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.lightstep`
+<a id="nestedatt--spec--config--default_config--tracing--lightstep"></a>
+### Nested Schema for `spec.config.default_config.tracing.lightstep`
 
 Optional:
 
@@ -487,8 +487,8 @@ Optional:
 - `address` (String)
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--open_census_agent"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.open_census_agent`
+<a id="nestedatt--spec--config--default_config--tracing--open_census_agent"></a>
+### Nested Schema for `spec.config.default_config.tracing.open_census_agent`
 
 Optional:
 
@@ -496,8 +496,8 @@ Optional:
 - `context` (List of String)
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--stackdriver"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.stackdriver`
+<a id="nestedatt--spec--config--default_config--tracing--stackdriver"></a>
+### Nested Schema for `spec.config.default_config.tracing.stackdriver`
 
 Optional:
 
@@ -507,8 +507,8 @@ Optional:
 - `max_number_of_message_events` (Number)
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--tls_settings"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.tls_settings`
+<a id="nestedatt--spec--config--default_config--tracing--tls_settings"></a>
+### Nested Schema for `spec.config.default_config.tracing.tls_settings`
 
 Required:
 
@@ -525,8 +525,8 @@ Optional:
 - `subject_alt_names` (List of String)
 
 
-<a id="nestedatt--spec--config--default_config--zipkin_address--zipkin"></a>
-### Nested Schema for `spec.config.default_config.zipkin_address.zipkin`
+<a id="nestedatt--spec--config--default_config--tracing--zipkin"></a>
+### Nested Schema for `spec.config.default_config.tracing.zipkin`
 
 Optional:
 
@@ -615,14 +615,14 @@ Optional:
 Optional:
 
 - `fail_open` (Boolean)
-- `include_request_body_in_check` (Attributes) (see [below for nested schema](#nestedatt--spec--config--extension_providers--zipkin--include_request_body_in_check))
+- `include_request_body_in_check` (Attributes) (see [below for nested schema](#nestedatt--spec--config--extension_providers--envoy_ext_authz_grpc--include_request_body_in_check))
 - `port` (Number)
 - `service` (String)
 - `status_on_error` (String)
 - `timeout` (String)
 
-<a id="nestedatt--spec--config--extension_providers--zipkin--include_request_body_in_check"></a>
-### Nested Schema for `spec.config.extension_providers.zipkin.include_request_body_in_check`
+<a id="nestedatt--spec--config--extension_providers--envoy_ext_authz_grpc--include_request_body_in_check"></a>
+### Nested Schema for `spec.config.extension_providers.envoy_ext_authz_grpc.include_request_body_in_check`
 
 Optional:
 
@@ -643,7 +643,7 @@ Optional:
 - `headers_to_upstream_on_allow` (List of String)
 - `include_additional_headers_in_check` (Map of String)
 - `include_headers_in_check` (List of String)
-- `include_request_body_in_check` (Attributes) (see [below for nested schema](#nestedatt--spec--config--extension_providers--zipkin--include_request_body_in_check))
+- `include_request_body_in_check` (Attributes) (see [below for nested schema](#nestedatt--spec--config--extension_providers--envoy_ext_authz_http--include_request_body_in_check))
 - `include_request_headers_in_check` (List of String)
 - `path_prefix` (String)
 - `port` (Number)
@@ -651,8 +651,8 @@ Optional:
 - `status_on_error` (String)
 - `timeout` (String)
 
-<a id="nestedatt--spec--config--extension_providers--zipkin--include_request_body_in_check"></a>
-### Nested Schema for `spec.config.extension_providers.zipkin.include_request_body_in_check`
+<a id="nestedatt--spec--config--extension_providers--envoy_ext_authz_http--include_request_body_in_check"></a>
+### Nested Schema for `spec.config.extension_providers.envoy_ext_authz_http.include_request_body_in_check`
 
 Optional:
 
@@ -667,11 +667,11 @@ Optional:
 
 Optional:
 
-- `log_format` (Attributes) (see [below for nested schema](#nestedatt--spec--config--extension_providers--zipkin--log_format))
+- `log_format` (Attributes) (see [below for nested schema](#nestedatt--spec--config--extension_providers--envoy_file_access_log--log_format))
 - `path` (String)
 
-<a id="nestedatt--spec--config--extension_providers--zipkin--log_format"></a>
-### Nested Schema for `spec.config.extension_providers.zipkin.log_format`
+<a id="nestedatt--spec--config--extension_providers--envoy_file_access_log--log_format"></a>
+### Nested Schema for `spec.config.extension_providers.envoy_file_access_log.log_format`
 
 Optional:
 
@@ -699,13 +699,13 @@ Optional:
 
 Optional:
 
-- `log_format` (Attributes) (see [below for nested schema](#nestedatt--spec--config--extension_providers--zipkin--log_format))
+- `log_format` (Attributes) (see [below for nested schema](#nestedatt--spec--config--extension_providers--envoy_otel_als--log_format))
 - `log_name` (String)
 - `port` (Number)
 - `service` (String)
 
-<a id="nestedatt--spec--config--extension_providers--zipkin--log_format"></a>
-### Nested Schema for `spec.config.extension_providers.zipkin.log_format`
+<a id="nestedatt--spec--config--extension_providers--envoy_otel_als--log_format"></a>
+### Nested Schema for `spec.config.extension_providers.envoy_otel_als.log_format`
 
 Optional:
 
@@ -773,14 +773,14 @@ Optional:
 Optional:
 
 - `debug` (Boolean)
-- `logging` (Attributes) (see [below for nested schema](#nestedatt--spec--config--extension_providers--zipkin--logging))
+- `logging` (Attributes) (see [below for nested schema](#nestedatt--spec--config--extension_providers--stackdriver--logging))
 - `max_number_of_annotations` (Number)
 - `max_number_of_attributes` (Number)
 - `max_number_of_message_events` (Number)
 - `max_tag_length` (Number)
 
-<a id="nestedatt--spec--config--extension_providers--zipkin--logging"></a>
-### Nested Schema for `spec.config.extension_providers.zipkin.logging`
+<a id="nestedatt--spec--config--extension_providers--stackdriver--logging"></a>
+### Nested Schema for `spec.config.extension_providers.stackdriver.logging`
 
 Optional:
 

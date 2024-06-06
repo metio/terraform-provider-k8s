@@ -104,17 +104,17 @@ Optional:
 
 Required:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_key--value_from))
 
-<a id="nestedatt--spec--aws_secret_manager--credentials--access_token--value_from"></a>
-### Nested Schema for `spec.aws_secret_manager.credentials.access_token.value_from`
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_key--value_from"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_key.value_from`
 
 Required:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_secret_manager--credentials--access_token--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_secret_manager.credentials.access_token.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_key.value_from.secret_key_ref`
 
 Required:
 
@@ -129,17 +129,17 @@ Required:
 
 Required:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_secret_key--value_from))
 
-<a id="nestedatt--spec--aws_secret_manager--credentials--access_token--value_from"></a>
-### Nested Schema for `spec.aws_secret_manager.credentials.access_token.value_from`
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_secret_key--value_from"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_secret_key.value_from`
 
 Required:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_secret_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--aws_secret_manager--credentials--access_token--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.aws_secret_manager.credentials.access_token.value_from.secret_key_ref`
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_secret_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_secret_key.value_from.secret_key_ref`
 
 Required:
 
@@ -246,17 +246,17 @@ Required:
 
 Required:
 
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_key_vault--credentials--tenant_id--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_key_vault--credentials--client_secret--value_from))
 
-<a id="nestedatt--spec--azure_key_vault--credentials--tenant_id--value_from"></a>
-### Nested Schema for `spec.azure_key_vault.credentials.tenant_id.value_from`
+<a id="nestedatt--spec--azure_key_vault--credentials--client_secret--value_from"></a>
+### Nested Schema for `spec.azure_key_vault.credentials.client_secret.value_from`
 
 Required:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_key_vault--credentials--tenant_id--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_key_vault--credentials--client_secret--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--azure_key_vault--credentials--tenant_id--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.azure_key_vault.credentials.tenant_id.value_from.secret_key_ref`
+<a id="nestedatt--spec--azure_key_vault--credentials--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.azure_key_vault.credentials.client_secret.value_from.secret_key_ref`
 
 Required:
 

@@ -160,10 +160,10 @@ Optional:
 
 Optional:
 
-- `ca_certificate_refs` (Attributes List) CACertificateRefs contains one or more references toKubernetes objects that contain TLS certificates ofthe Certificate Authorities that can be usedas a trust anchor to validate the certificates presented by the client.A single CA certificate reference to a Kubernetes ConfigMaphas 'Core' support.Implementations MAY choose to support attaching multiple CA certificates toa Listener, but this behavior is implementation-specific.Support: Core - A single reference to a Kubernetes ConfigMapwith the CA certificate in a key named 'ca.crt'.Support: Implementation-specific (More than one reference, or other kindsof resources).References to a resource in a different namespace are invalid UNLESS thereis a ReferenceGrant in the target namespace that allows the certificateto be attached. If a ReferenceGrant does not allow this reference, the'ResolvedRefs' condition MUST be set to False for this listener with the'RefNotPermitted' reason. (see [below for nested schema](#nestedatt--spec--listeners--tls--options--ca_certificate_refs))
+- `ca_certificate_refs` (Attributes List) CACertificateRefs contains one or more references toKubernetes objects that contain TLS certificates ofthe Certificate Authorities that can be usedas a trust anchor to validate the certificates presented by the client.A single CA certificate reference to a Kubernetes ConfigMaphas 'Core' support.Implementations MAY choose to support attaching multiple CA certificates toa Listener, but this behavior is implementation-specific.Support: Core - A single reference to a Kubernetes ConfigMapwith the CA certificate in a key named 'ca.crt'.Support: Implementation-specific (More than one reference, or other kindsof resources).References to a resource in a different namespace are invalid UNLESS thereis a ReferenceGrant in the target namespace that allows the certificateto be attached. If a ReferenceGrant does not allow this reference, the'ResolvedRefs' condition MUST be set to False for this listener with the'RefNotPermitted' reason. (see [below for nested schema](#nestedatt--spec--listeners--tls--frontend_validation--ca_certificate_refs))
 
-<a id="nestedatt--spec--listeners--tls--options--ca_certificate_refs"></a>
-### Nested Schema for `spec.listeners.tls.options.ca_certificate_refs`
+<a id="nestedatt--spec--listeners--tls--frontend_validation--ca_certificate_refs"></a>
+### Nested Schema for `spec.listeners.tls.frontend_validation.ca_certificate_refs`
 
 Required:
 

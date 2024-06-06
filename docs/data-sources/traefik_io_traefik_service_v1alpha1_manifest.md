@@ -118,10 +118,10 @@ Optional:
 
 Optional:
 
-- `cookie` (Attributes) Cookie defines the sticky cookie configuration. (see [below for nested schema](#nestedatt--spec--mirroring--mirrors--weight--cookie))
+- `cookie` (Attributes) Cookie defines the sticky cookie configuration. (see [below for nested schema](#nestedatt--spec--mirroring--mirrors--sticky--cookie))
 
-<a id="nestedatt--spec--mirroring--mirrors--weight--cookie"></a>
-### Nested Schema for `spec.mirroring.mirrors.weight.cookie`
+<a id="nestedatt--spec--mirroring--mirrors--sticky--cookie"></a>
+### Nested Schema for `spec.mirroring.mirrors.sticky.cookie`
 
 Optional:
 
@@ -206,10 +206,10 @@ Optional:
 
 Optional:
 
-- `cookie` (Attributes) Cookie defines the sticky cookie configuration. (see [below for nested schema](#nestedatt--spec--weighted--services--weight--cookie))
+- `cookie` (Attributes) Cookie defines the sticky cookie configuration. (see [below for nested schema](#nestedatt--spec--weighted--services--sticky--cookie))
 
-<a id="nestedatt--spec--weighted--services--weight--cookie"></a>
-### Nested Schema for `spec.weighted.services.weight.cookie`
+<a id="nestedatt--spec--weighted--services--sticky--cookie"></a>
+### Nested Schema for `spec.weighted.services.sticky.cookie`
 
 Optional:
 

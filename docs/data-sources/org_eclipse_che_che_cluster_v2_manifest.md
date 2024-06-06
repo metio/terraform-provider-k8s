@@ -91,22 +91,22 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--containers))
-- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--security_context))
+- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers))
+- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--security_context))
 
-<a id="nestedatt--spec--components--che_server--proxy--containers"></a>
-### Nested Schema for `spec.components.che_server.proxy.containers`
+<a id="nestedatt--spec--components--che_server--deployment--containers"></a>
+### Nested Schema for `spec.components.che_server.deployment.containers`
 
 Optional:
 
-- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--containers--env))
+- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers--env))
 - `image` (String) Container image. Omit it or leave it empty to use the default container image provided by the Operator.
 - `image_pull_policy` (String) Image pull policy. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.
 - `name` (String) Container name.
-- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--containers--resources))
+- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers--resources))
 
-<a id="nestedatt--spec--components--che_server--proxy--containers--env"></a>
-### Nested Schema for `spec.components.che_server.proxy.containers.env`
+<a id="nestedatt--spec--components--che_server--deployment--containers--env"></a>
+### Nested Schema for `spec.components.che_server.deployment.containers.env`
 
 Required:
 
@@ -115,20 +115,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--containers--resources--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers--env--value_from))
 
-<a id="nestedatt--spec--components--che_server--proxy--containers--resources--value_from"></a>
-### Nested Schema for `spec.components.che_server.proxy.containers.resources.value_from`
+<a id="nestedatt--spec--components--che_server--deployment--containers--env--value_from"></a>
+### Nested Schema for `spec.components.che_server.deployment.containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--containers--resources--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--containers--resources--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--containers--resources--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--containers--resources--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--components--che_server--proxy--containers--resources--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.components.che_server.proxy.containers.resources.value_from.config_map_key_ref`
+<a id="nestedatt--spec--components--che_server--deployment--containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.components.che_server.deployment.containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -140,8 +140,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--components--che_server--proxy--containers--resources--value_from--field_ref"></a>
-### Nested Schema for `spec.components.che_server.proxy.containers.resources.value_from.field_ref`
+<a id="nestedatt--spec--components--che_server--deployment--containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.components.che_server.deployment.containers.env.value_from.field_ref`
 
 Required:
 
@@ -152,8 +152,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--components--che_server--proxy--containers--resources--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.components.che_server.proxy.containers.resources.value_from.resource_field_ref`
+<a id="nestedatt--spec--components--che_server--deployment--containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.components.che_server.deployment.containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -165,8 +165,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--components--che_server--proxy--containers--resources--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.components.che_server.proxy.containers.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--components--che_server--deployment--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.components.che_server.deployment.containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -180,25 +180,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--components--che_server--proxy--containers--resources"></a>
-### Nested Schema for `spec.components.che_server.proxy.containers.resources`
+<a id="nestedatt--spec--components--che_server--deployment--containers--resources"></a>
+### Nested Schema for `spec.components.che_server.deployment.containers.resources`
 
 Optional:
 
-- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--containers--resources--limits))
-- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--components--che_server--proxy--containers--resources--request))
+- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers--resources--limits))
+- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers--resources--request))
 
-<a id="nestedatt--spec--components--che_server--proxy--containers--resources--limits"></a>
-### Nested Schema for `spec.components.che_server.proxy.containers.resources.limits`
-
-Optional:
-
-- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-
-
-<a id="nestedatt--spec--components--che_server--proxy--containers--resources--request"></a>
-### Nested Schema for `spec.components.che_server.proxy.containers.resources.request`
+<a id="nestedatt--spec--components--che_server--deployment--containers--resources--limits"></a>
+### Nested Schema for `spec.components.che_server.deployment.containers.resources.limits`
 
 Optional:
 
@@ -206,10 +197,19 @@ Optional:
 - `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
+<a id="nestedatt--spec--components--che_server--deployment--containers--resources--request"></a>
+### Nested Schema for `spec.components.che_server.deployment.containers.resources.request`
+
+Optional:
+
+- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
+- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
-<a id="nestedatt--spec--components--che_server--proxy--security_context"></a>
-### Nested Schema for `spec.components.che_server.proxy.security_context`
+
+
+<a id="nestedatt--spec--components--che_server--deployment--security_context"></a>
+### Nested Schema for `spec.components.che_server.deployment.security_context`
 
 Optional:
 
@@ -245,10 +245,10 @@ Optional:
 
 Optional:
 
-- `logo` (Attributes) Dashboard logo. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--logo))
+- `logo` (Attributes) Dashboard logo. (see [below for nested schema](#nestedatt--spec--components--dashboard--branding--logo))
 
-<a id="nestedatt--spec--components--dashboard--log_level--logo"></a>
-### Nested Schema for `spec.components.dashboard.log_level.logo`
+<a id="nestedatt--spec--components--dashboard--branding--logo"></a>
+### Nested Schema for `spec.components.dashboard.branding.logo`
 
 Required:
 
@@ -262,22 +262,22 @@ Required:
 
 Optional:
 
-- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers))
-- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--security_context))
+- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers))
+- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--security_context))
 
-<a id="nestedatt--spec--components--dashboard--log_level--containers"></a>
-### Nested Schema for `spec.components.dashboard.log_level.containers`
+<a id="nestedatt--spec--components--dashboard--deployment--containers"></a>
+### Nested Schema for `spec.components.dashboard.deployment.containers`
 
 Optional:
 
-- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--env))
+- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers--env))
 - `image` (String) Container image. Omit it or leave it empty to use the default container image provided by the Operator.
 - `image_pull_policy` (String) Image pull policy. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.
 - `name` (String) Container name.
-- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources))
+- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers--resources))
 
-<a id="nestedatt--spec--components--dashboard--log_level--containers--env"></a>
-### Nested Schema for `spec.components.dashboard.log_level.containers.env`
+<a id="nestedatt--spec--components--dashboard--deployment--containers--env"></a>
+### Nested Schema for `spec.components.dashboard.deployment.containers.env`
 
 Required:
 
@@ -286,20 +286,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers--env--value_from))
 
-<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--value_from"></a>
-### Nested Schema for `spec.components.dashboard.log_level.containers.resources.value_from`
+<a id="nestedatt--spec--components--dashboard--deployment--containers--env--value_from"></a>
+### Nested Schema for `spec.components.dashboard.deployment.containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.components.dashboard.log_level.containers.resources.value_from.config_map_key_ref`
+<a id="nestedatt--spec--components--dashboard--deployment--containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.components.dashboard.deployment.containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -311,8 +311,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--field_ref"></a>
-### Nested Schema for `spec.components.dashboard.log_level.containers.resources.value_from.field_ref`
+<a id="nestedatt--spec--components--dashboard--deployment--containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.components.dashboard.deployment.containers.env.value_from.field_ref`
 
 Required:
 
@@ -323,8 +323,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.components.dashboard.log_level.containers.resources.value_from.resource_field_ref`
+<a id="nestedatt--spec--components--dashboard--deployment--containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.components.dashboard.deployment.containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -336,8 +336,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.components.dashboard.log_level.containers.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--components--dashboard--deployment--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.components.dashboard.deployment.containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -351,25 +351,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--components--dashboard--log_level--containers--resources"></a>
-### Nested Schema for `spec.components.dashboard.log_level.containers.resources`
+<a id="nestedatt--spec--components--dashboard--deployment--containers--resources"></a>
+### Nested Schema for `spec.components.dashboard.deployment.containers.resources`
 
 Optional:
 
-- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--limits))
-- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--request))
+- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers--resources--limits))
+- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers--resources--request))
 
-<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--limits"></a>
-### Nested Schema for `spec.components.dashboard.log_level.containers.resources.limits`
-
-Optional:
-
-- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-
-
-<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--request"></a>
-### Nested Schema for `spec.components.dashboard.log_level.containers.resources.request`
+<a id="nestedatt--spec--components--dashboard--deployment--containers--resources--limits"></a>
+### Nested Schema for `spec.components.dashboard.deployment.containers.resources.limits`
 
 Optional:
 
@@ -377,10 +368,19 @@ Optional:
 - `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
+<a id="nestedatt--spec--components--dashboard--deployment--containers--resources--request"></a>
+### Nested Schema for `spec.components.dashboard.deployment.containers.resources.request`
+
+Optional:
+
+- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
+- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
-<a id="nestedatt--spec--components--dashboard--log_level--security_context"></a>
-### Nested Schema for `spec.components.dashboard.log_level.security_context`
+
+
+<a id="nestedatt--spec--components--dashboard--deployment--security_context"></a>
+### Nested Schema for `spec.components.dashboard.deployment.security_context`
 
 Optional:
 
@@ -421,22 +421,22 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--containers))
-- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--security_context))
+- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers))
+- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--security_context))
 
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--containers"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.containers`
+<a id="nestedatt--spec--components--devfile_registry--deployment--containers"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.containers`
 
 Optional:
 
-- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--env))
+- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers--env))
 - `image` (String) Container image. Omit it or leave it empty to use the default container image provided by the Operator.
 - `image_pull_policy` (String) Image pull policy. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.
 - `name` (String) Container name.
-- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources))
+- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers--resources))
 
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--env"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.containers.env`
+<a id="nestedatt--spec--components--devfile_registry--deployment--containers--env"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.containers.env`
 
 Required:
 
@@ -445,20 +445,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers--env--value_from))
 
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--value_from"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.containers.resources.value_from`
+<a id="nestedatt--spec--components--devfile_registry--deployment--containers--env--value_from"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.containers.resources.value_from.config_map_key_ref`
+<a id="nestedatt--spec--components--devfile_registry--deployment--containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -470,8 +470,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--value_from--field_ref"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.containers.resources.value_from.field_ref`
+<a id="nestedatt--spec--components--devfile_registry--deployment--containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.containers.env.value_from.field_ref`
 
 Required:
 
@@ -482,8 +482,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.containers.resources.value_from.resource_field_ref`
+<a id="nestedatt--spec--components--devfile_registry--deployment--containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -495,8 +495,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.containers.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--components--devfile_registry--deployment--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -510,25 +510,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.containers.resources`
+<a id="nestedatt--spec--components--devfile_registry--deployment--containers--resources"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.containers.resources`
 
 Optional:
 
-- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--limits))
-- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--request))
+- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers--resources--limits))
+- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers--resources--request))
 
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--limits"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.containers.resources.limits`
-
-Optional:
-
-- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-
-
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--containers--resources--request"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.containers.resources.request`
+<a id="nestedatt--spec--components--devfile_registry--deployment--containers--resources--limits"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.containers.resources.limits`
 
 Optional:
 
@@ -536,10 +527,19 @@ Optional:
 - `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
+<a id="nestedatt--spec--components--devfile_registry--deployment--containers--resources--request"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.containers.resources.request`
+
+Optional:
+
+- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
+- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
-<a id="nestedatt--spec--components--devfile_registry--external_devfile_registries--security_context"></a>
-### Nested Schema for `spec.components.devfile_registry.external_devfile_registries.security_context`
+
+
+<a id="nestedatt--spec--components--devfile_registry--deployment--security_context"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.security_context`
 
 Optional:
 
@@ -609,22 +609,22 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--containers))
-- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--security_context))
+- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers))
+- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--security_context))
 
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--containers"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.containers`
+<a id="nestedatt--spec--components--plugin_registry--deployment--containers"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.containers`
 
 Optional:
 
-- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--containers--env))
+- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers--env))
 - `image` (String) Container image. Omit it or leave it empty to use the default container image provided by the Operator.
 - `image_pull_policy` (String) Image pull policy. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.
 - `name` (String) Container name.
-- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources))
+- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers--resources))
 
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--containers--env"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.containers.env`
+<a id="nestedatt--spec--components--plugin_registry--deployment--containers--env"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.containers.env`
 
 Required:
 
@@ -633,20 +633,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers--env--value_from))
 
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--value_from"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.containers.resources.value_from`
+<a id="nestedatt--spec--components--plugin_registry--deployment--containers--env--value_from"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.containers.resources.value_from.config_map_key_ref`
+<a id="nestedatt--spec--components--plugin_registry--deployment--containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -658,8 +658,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--value_from--field_ref"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.containers.resources.value_from.field_ref`
+<a id="nestedatt--spec--components--plugin_registry--deployment--containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.containers.env.value_from.field_ref`
 
 Required:
 
@@ -670,8 +670,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.containers.resources.value_from.resource_field_ref`
+<a id="nestedatt--spec--components--plugin_registry--deployment--containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -683,8 +683,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.containers.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--components--plugin_registry--deployment--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -698,25 +698,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.containers.resources`
+<a id="nestedatt--spec--components--plugin_registry--deployment--containers--resources"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.containers.resources`
 
 Optional:
 
-- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--limits))
-- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--request))
+- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers--resources--limits))
+- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers--resources--request))
 
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--limits"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.containers.resources.limits`
-
-Optional:
-
-- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-
-
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--containers--resources--request"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.containers.resources.request`
+<a id="nestedatt--spec--components--plugin_registry--deployment--containers--resources--limits"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.containers.resources.limits`
 
 Optional:
 
@@ -724,10 +715,19 @@ Optional:
 - `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
+<a id="nestedatt--spec--components--plugin_registry--deployment--containers--resources--request"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.containers.resources.request`
+
+Optional:
+
+- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
+- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
-<a id="nestedatt--spec--components--plugin_registry--open_vsx_url--security_context"></a>
-### Nested Schema for `spec.components.plugin_registry.open_vsx_url.security_context`
+
+
+<a id="nestedatt--spec--components--plugin_registry--deployment--security_context"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.security_context`
 
 Optional:
 
@@ -822,22 +822,22 @@ Required:
 
 Optional:
 
-- `annotation` (Attributes) Annotations that should be added to specific resources for this container (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--annotation))
+- `annotation` (Attributes) Annotations that should be added to specific resources for this container (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--container--annotation))
 - `args` (List of String) The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.  Defaults to an empty array, meaning use whatever is defined in the image.
 - `command` (List of String) The command to run in the dockerimage component instead of the default one provided in the image.  Defaults to an empty array, meaning use whatever is defined in the image.
 - `cpu_limit` (String)
 - `cpu_request` (String)
 - `dedicated_pod` (Boolean) Specify if a container should run in its own separated pod, instead of running as part of the main development environment pod.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--endpoints))
-- `env` (Attributes List) Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE' (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--env))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--container--endpoints))
+- `env` (Attributes List) Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE' (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--container--env))
 - `memory_limit` (String)
 - `memory_request` (String)
 - `mount_sources` (Boolean) Toggles whether or not the project source code should be mounted in the component.  Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.
 - `source_mapping` (String) Optional specification of the path in the container where project sources should be transferred/mounted when 'mountSources' is 'true'. When omitted, the default value of /projects is used.
-- `volume_mounts` (Attributes List) List of volumes mounts that should be mounted is this container. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--volume_mounts))
+- `volume_mounts` (Attributes List) List of volumes mounts that should be mounted is this container. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--container--volume_mounts))
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--annotation"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.annotation`
+<a id="nestedatt--spec--dev_environments--default_components--container--annotation"></a>
+### Nested Schema for `spec.dev_environments.default_components.container.annotation`
 
 Optional:
 
@@ -845,8 +845,8 @@ Optional:
 - `service` (Map of String) Annotations to be added to service
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--endpoints"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.endpoints`
+<a id="nestedatt--spec--dev_environments--default_components--container--endpoints"></a>
+### Nested Schema for `spec.dev_environments.default_components.container.endpoints`
 
 Required:
 
@@ -863,8 +863,8 @@ Optional:
 - `secure` (Boolean) Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--env"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.env`
+<a id="nestedatt--spec--dev_environments--default_components--container--env"></a>
+### Nested Schema for `spec.dev_environments.default_components.container.env`
 
 Required:
 
@@ -872,8 +872,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--volume_mounts"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.volume_mounts`
+<a id="nestedatt--spec--dev_environments--default_components--container--volume_mounts"></a>
+### Nested Schema for `spec.dev_environments.default_components.container.volume_mounts`
 
 Required:
 
@@ -904,24 +904,24 @@ Required:
 Optional:
 
 - `auto_build` (Boolean) Defines if the image should be built during startup.  Default value is 'false'
-- `dockerfile` (Attributes) Allows specifying dockerfile type build (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--dockerfile))
+- `dockerfile` (Attributes) Allows specifying dockerfile type build (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--image--dockerfile))
 - `image_type` (String) Type of image
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--dockerfile"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.dockerfile`
+<a id="nestedatt--spec--dev_environments--default_components--image--dockerfile"></a>
+### Nested Schema for `spec.dev_environments.default_components.image.dockerfile`
 
 Optional:
 
 - `args` (List of String) The arguments to supply to the dockerfile build.
 - `build_context` (String) Path of source directory to establish build context. Defaults to ${PROJECT_SOURCE} in the container
-- `devfile_registry` (Attributes) Dockerfile's Devfile Registry source (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--dockerfile--devfile_registry))
-- `git` (Attributes) Dockerfile's Git source (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--dockerfile--git))
+- `devfile_registry` (Attributes) Dockerfile's Devfile Registry source (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--image--dockerfile--devfile_registry))
+- `git` (Attributes) Dockerfile's Git source (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--image--dockerfile--git))
 - `root_required` (Boolean) Specify if a privileged builder pod is required.  Default value is 'false'
 - `src_type` (String) Type of Dockerfile src
 - `uri` (String) URI Reference of a Dockerfile. It can be a full URL or a relative URI from the current devfile as the base URI.
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--dockerfile--devfile_registry"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.dockerfile.devfile_registry`
+<a id="nestedatt--spec--dev_environments--default_components--image--dockerfile--devfile_registry"></a>
+### Nested Schema for `spec.dev_environments.default_components.image.dockerfile.devfile_registry`
 
 Required:
 
@@ -932,8 +932,8 @@ Optional:
 - `registry_url` (String) Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src. To ensure the Dockerfile gets resolved consistently in different environments, it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--dockerfile--git"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.dockerfile.git`
+<a id="nestedatt--spec--dev_environments--default_components--image--dockerfile--git"></a>
+### Nested Schema for `spec.dev_environments.default_components.image.dockerfile.git`
 
 Required:
 
@@ -941,11 +941,11 @@ Required:
 
 Optional:
 
-- `checkout_from` (Attributes) Defines from what the project should be checked out. Required if there are more than one remote configured (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--dockerfile--uri--checkout_from))
+- `checkout_from` (Attributes) Defines from what the project should be checked out. Required if there are more than one remote configured (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--image--dockerfile--git--checkout_from))
 - `file_location` (String) Location of the Dockerfile in the Git repository when using git as Dockerfile src. Defaults to Dockerfile.
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--dockerfile--uri--checkout_from"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.dockerfile.uri.checkout_from`
+<a id="nestedatt--spec--dev_environments--default_components--image--dockerfile--git--checkout_from"></a>
+### Nested Schema for `spec.dev_environments.default_components.image.dockerfile.git.checkout_from`
 
 Optional:
 
@@ -962,13 +962,13 @@ Optional:
 Optional:
 
 - `deploy_by_default` (Boolean) Defines if the component should be deployed during startup.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--endpoints))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--kubernetes--endpoints))
 - `inlined` (String) Inlined manifest
 - `location_type` (String) Type of Kubernetes-like location
 - `uri` (String) Location in a file fetched from a uri.
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--endpoints"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.endpoints`
+<a id="nestedatt--spec--dev_environments--default_components--kubernetes--endpoints"></a>
+### Nested Schema for `spec.dev_environments.default_components.kubernetes.endpoints`
 
 Required:
 
@@ -992,13 +992,13 @@ Optional:
 Optional:
 
 - `deploy_by_default` (Boolean) Defines if the component should be deployed during startup.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--endpoints))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--openshift--endpoints))
 - `inlined` (String) Inlined manifest
 - `location_type` (String) Type of Kubernetes-like location
 - `uri` (String) Location in a file fetched from a uri.
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--endpoints"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.endpoints`
+<a id="nestedatt--spec--dev_environments--default_components--openshift--endpoints"></a>
+### Nested Schema for `spec.dev_environments.default_components.openshift.endpoints`
 
 Required:
 
@@ -1021,17 +1021,17 @@ Optional:
 
 Optional:
 
-- `commands` (Attributes List) Overrides of commands encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--commands))
-- `components` (Attributes List) Overrides of components encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components))
+- `commands` (Attributes List) Overrides of commands encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--commands))
+- `components` (Attributes List) Overrides of components encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components))
 - `id` (String) Id in a registry that contains a Devfile yaml file
 - `import_reference_type` (String) type of location from where the referenced template structure should be retrieved
-- `kubernetes` (Attributes) Reference to a Kubernetes CRD of type DevWorkspaceTemplate (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--kubernetes))
+- `kubernetes` (Attributes) Reference to a Kubernetes CRD of type DevWorkspaceTemplate (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--kubernetes))
 - `registry_url` (String) Registry URL to pull the parent devfile from when using id in the parent reference. To ensure the parent devfile gets resolved consistently in different environments, it is recommended to always specify the 'registryUrl' when 'id' is used.
 - `uri` (String) URI Reference of a parent devfile YAML file. It can be a full URL or a relative URI with the current devfile as the base URI.
 - `version` (String) Specific stack/sample version to pull the parent devfile from, when using id in the parent reference. To specify 'version', 'id' must be defined and used as the import reference source. 'version' can be either a specific stack version, or 'latest'. If no 'version' specified, default version will be used.
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--commands"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.commands`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--commands"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.commands`
 
 Required:
 
@@ -1039,23 +1039,23 @@ Required:
 
 Optional:
 
-- `apply` (Attributes) Command that consists in applying a given component definition, typically bound to a devworkspace event.  For example, when an 'apply' command is bound to a 'preStart' event, and references a 'container' component, it will start the container as a K8S initContainer in the devworkspace POD, unless the component has its 'dedicatedPod' field set to 'true'.  When no 'apply' command exist for a given component, it is assumed the component will be applied at devworkspace start by default, unless 'deployByDefault' for that component is set to false. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--commands--apply))
+- `apply` (Attributes) Command that consists in applying a given component definition, typically bound to a devworkspace event.  For example, when an 'apply' command is bound to a 'preStart' event, and references a 'container' component, it will start the container as a K8S initContainer in the devworkspace POD, unless the component has its 'dedicatedPod' field set to 'true'.  When no 'apply' command exist for a given component, it is assumed the component will be applied at devworkspace start by default, unless 'deployByDefault' for that component is set to false. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--commands--apply))
 - `attributes` (Map of String) Map of implementation-dependant free-form YAML attributes.
 - `command_type` (String) Type of devworkspace command
-- `composite` (Attributes) Composite command that allows executing several sub-commands either sequentially or concurrently (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--commands--composite))
-- `exec` (Attributes) CLI Command executed in an existing component container (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--commands--exec))
+- `composite` (Attributes) Composite command that allows executing several sub-commands either sequentially or concurrently (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--commands--composite))
+- `exec` (Attributes) CLI Command executed in an existing component container (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--commands--exec))
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--commands--apply"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.commands.apply`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--commands--apply"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.commands.apply`
 
 Optional:
 
 - `component` (String) Describes component that will be applied
-- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--commands--exec--group))
+- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--commands--apply--group))
 - `label` (String) Optional label that provides a label for this command to be used in Editor UI menus for example
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--commands--exec--group"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.commands.exec.group`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--commands--apply--group"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.commands.apply.group`
 
 Optional:
 
@@ -1064,18 +1064,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--commands--composite"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.commands.composite`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--commands--composite"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.commands.composite`
 
 Optional:
 
 - `commands` (List of String) The commands that comprise this composite command
-- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--commands--exec--group))
+- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--commands--composite--group))
 - `label` (String) Optional label that provides a label for this command to be used in Editor UI menus for example
 - `parallel` (Boolean) Indicates if the sub-commands should be executed concurrently
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--commands--exec--group"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.commands.exec.group`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--commands--composite--group"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.commands.composite.group`
 
 Optional:
 
@@ -1084,21 +1084,21 @@ Optional:
 
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--commands--exec"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.commands.exec`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--commands--exec"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.commands.exec`
 
 Optional:
 
 - `command_line` (String) The actual command-line string  Special variables that can be used:   - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping.   - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.
 - `component` (String) Describes component to which given action relates
-- `env` (Attributes List) Optional list of environment variables that have to be set before running the command (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--commands--exec--env))
-- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--commands--exec--group))
+- `env` (Attributes List) Optional list of environment variables that have to be set before running the command (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--commands--exec--env))
+- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--commands--exec--group))
 - `hot_reload_capable` (Boolean) Specify whether the command is restarted or not when the source code changes. If set to 'true' the command won't be restarted. A *hotReloadCapable* 'run' or 'debug' command is expected to handle file changes on its own and won't be restarted. A *hotReloadCapable* 'build' command is expected to be executed only once and won't be executed again. This field is taken into account only for commands 'build', 'run' and 'debug' with 'isDefault' set to 'true'.  Default value is 'false'
 - `label` (String) Optional label that provides a label for this command to be used in Editor UI menus for example
 - `working_dir` (String) Working directory where the command should be executed  Special variables that can be used:   - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping.   - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--commands--exec--env"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.commands.exec.env`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--commands--exec--env"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.commands.exec.env`
 
 Required:
 
@@ -1109,8 +1109,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--commands--exec--group"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.commands.exec.group`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--commands--exec--group"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.commands.exec.group`
 
 Optional:
 
@@ -1120,8 +1120,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components`
 
 Required:
 
@@ -1131,34 +1131,34 @@ Optional:
 
 - `attributes` (Map of String) Map of implementation-dependant free-form YAML attributes.
 - `component_type` (String) Type of component
-- `container` (Attributes) Allows adding and configuring devworkspace-related containers (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--container))
-- `image` (Attributes) Allows specifying the definition of an image for outer loop builds (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--image))
-- `kubernetes` (Attributes) Allows importing into the devworkspace the Kubernetes resources defined in a given manifest. For example this allows reusing the Kubernetes definitions used to deploy some runtime components in production. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--kubernetes))
-- `openshift` (Attributes) Allows importing into the devworkspace the OpenShift resources defined in a given manifest. For example this allows reusing the OpenShift definitions used to deploy some runtime components in production. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--openshift))
-- `volume` (Attributes) Allows specifying the definition of a volume shared by several other components (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume))
+- `container` (Attributes) Allows adding and configuring devworkspace-related containers (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--container))
+- `image` (Attributes) Allows specifying the definition of an image for outer loop builds (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--image))
+- `kubernetes` (Attributes) Allows importing into the devworkspace the Kubernetes resources defined in a given manifest. For example this allows reusing the Kubernetes definitions used to deploy some runtime components in production. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--kubernetes))
+- `openshift` (Attributes) Allows importing into the devworkspace the OpenShift resources defined in a given manifest. For example this allows reusing the OpenShift definitions used to deploy some runtime components in production. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--openshift))
+- `volume` (Attributes) Allows specifying the definition of a volume shared by several other components (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--volume))
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--container"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.container`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--container"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.container`
 
 Optional:
 
-- `annotation` (Attributes) Annotations that should be added to specific resources for this container (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume--annotation))
+- `annotation` (Attributes) Annotations that should be added to specific resources for this container (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--container--annotation))
 - `args` (List of String) The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.  Defaults to an empty array, meaning use whatever is defined in the image.
 - `command` (List of String) The command to run in the dockerimage component instead of the default one provided in the image.  Defaults to an empty array, meaning use whatever is defined in the image.
 - `cpu_limit` (String)
 - `cpu_request` (String)
 - `dedicated_pod` (Boolean) Specify if a container should run in its own separated pod, instead of running as part of the main development environment pod.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume--endpoints))
-- `env` (Attributes List) Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE' (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume--env))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--container--endpoints))
+- `env` (Attributes List) Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE' (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--container--env))
 - `image` (String)
 - `memory_limit` (String)
 - `memory_request` (String)
 - `mount_sources` (Boolean) Toggles whether or not the project source code should be mounted in the component.  Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.
 - `source_mapping` (String) Optional specification of the path in the container where project sources should be transferred/mounted when 'mountSources' is 'true'. When omitted, the default value of /projects is used.
-- `volume_mounts` (Attributes List) List of volumes mounts that should be mounted is this container. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume--volume_mounts))
+- `volume_mounts` (Attributes List) List of volumes mounts that should be mounted is this container. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--container--volume_mounts))
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume--annotation"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume.annotation`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--container--annotation"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.container.annotation`
 
 Optional:
 
@@ -1166,8 +1166,8 @@ Optional:
 - `service` (Map of String) Annotations to be added to service
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume--endpoints"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume.endpoints`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--container--endpoints"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.container.endpoints`
 
 Required:
 
@@ -1184,8 +1184,8 @@ Optional:
 - `target_port` (Number) Port number to be used within the container component. The same port cannot be used by two different container components.
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume--env"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume.env`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--container--env"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.container.env`
 
 Required:
 
@@ -1196,8 +1196,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume--volume_mounts"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume.volume_mounts`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--container--volume_mounts"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.container.volume_mounts`
 
 Required:
 
@@ -1209,31 +1209,31 @@ Optional:
 
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--image"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.image`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--image"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.image`
 
 Optional:
 
 - `auto_build` (Boolean) Defines if the image should be built during startup.  Default value is 'false'
-- `dockerfile` (Attributes) Allows specifying dockerfile type build (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume--dockerfile))
+- `dockerfile` (Attributes) Allows specifying dockerfile type build (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--image--dockerfile))
 - `image_name` (String) Name of the image for the resulting outerloop build
 - `image_type` (String) Type of image
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume--dockerfile"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume.dockerfile`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--image--dockerfile"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.image.dockerfile`
 
 Optional:
 
 - `args` (List of String) The arguments to supply to the dockerfile build.
 - `build_context` (String) Path of source directory to establish build context. Defaults to ${PROJECT_SOURCE} in the container
-- `devfile_registry` (Attributes) Dockerfile's Devfile Registry source (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume--image_type--devfile_registry))
-- `git` (Attributes) Dockerfile's Git source (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume--image_type--git))
+- `devfile_registry` (Attributes) Dockerfile's Devfile Registry source (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--image--dockerfile--devfile_registry))
+- `git` (Attributes) Dockerfile's Git source (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--image--dockerfile--git))
 - `root_required` (Boolean) Specify if a privileged builder pod is required.  Default value is 'false'
 - `src_type` (String) Type of Dockerfile src
 - `uri` (String) URI Reference of a Dockerfile. It can be a full URL or a relative URI from the current devfile as the base URI.
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume--image_type--devfile_registry"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume.image_type.devfile_registry`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--image--dockerfile--devfile_registry"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.image.dockerfile.devfile_registry`
 
 Optional:
 
@@ -1241,17 +1241,17 @@ Optional:
 - `registry_url` (String) Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src. To ensure the Dockerfile gets resolved consistently in different environments, it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume--image_type--git"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume.image_type.git`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--image--dockerfile--git"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.image.dockerfile.git`
 
 Optional:
 
-- `checkout_from` (Attributes) Defines from what the project should be checked out. Required if there are more than one remote configured (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume--image_type--uri--checkout_from))
+- `checkout_from` (Attributes) Defines from what the project should be checked out. Required if there are more than one remote configured (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--image--dockerfile--git--checkout_from))
 - `file_location` (String) Location of the Dockerfile in the Git repository when using git as Dockerfile src. Defaults to Dockerfile.
 - `remotes` (Map of String) The remotes map which should be initialized in the git project. Projects must have at least one remote configured while StarterProjects & Image Component's Git source can only have at most one remote configured.
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume--image_type--uri--checkout_from"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume.image_type.uri.checkout_from`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--image--dockerfile--git--checkout_from"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.image.dockerfile.git.checkout_from`
 
 Optional:
 
@@ -1262,19 +1262,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--kubernetes"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.kubernetes`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--kubernetes"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.kubernetes`
 
 Optional:
 
 - `deploy_by_default` (Boolean) Defines if the component should be deployed during startup.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume--endpoints))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--kubernetes--endpoints))
 - `inlined` (String) Inlined manifest
 - `location_type` (String) Type of Kubernetes-like location
 - `uri` (String) Location in a file fetched from a uri.
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume--endpoints"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume.endpoints`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--kubernetes--endpoints"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.kubernetes.endpoints`
 
 Required:
 
@@ -1292,19 +1292,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--openshift"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.openshift`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--openshift"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.openshift`
 
 Optional:
 
 - `deploy_by_default` (Boolean) Defines if the component should be deployed during startup.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--volume--components--volume--endpoints))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--dev_environments--default_components--plugin--components--openshift--endpoints))
 - `inlined` (String) Inlined manifest
 - `location_type` (String) Type of Kubernetes-like location
 - `uri` (String) Location in a file fetched from a uri.
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume--endpoints"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume.endpoints`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--openshift--endpoints"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.openshift.endpoints`
 
 Required:
 
@@ -1322,8 +1322,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--components--volume"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.components.volume`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--components--volume"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.components.volume`
 
 Optional:
 
@@ -1332,8 +1332,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--dev_environments--default_components--volume--kubernetes"></a>
-### Nested Schema for `spec.dev_environments.default_components.volume.kubernetes`
+<a id="nestedatt--spec--dev_environments--default_components--plugin--kubernetes"></a>
+### Nested Schema for `spec.dev_environments.default_components.plugin.kubernetes`
 
 Required:
 
@@ -1394,20 +1394,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container--resources--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container--env--value_from))
 
-<a id="nestedatt--spec--dev_environments--gateway_container--resources--value_from"></a>
-### Nested Schema for `spec.dev_environments.gateway_container.resources.value_from`
+<a id="nestedatt--spec--dev_environments--gateway_container--env--value_from"></a>
+### Nested Schema for `spec.dev_environments.gateway_container.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container--resources--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container--resources--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container--resources--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container--resources--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--dev_environments--gateway_container--resources--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.dev_environments.gateway_container.resources.value_from.config_map_key_ref`
+<a id="nestedatt--spec--dev_environments--gateway_container--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.dev_environments.gateway_container.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1419,8 +1419,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--dev_environments--gateway_container--resources--value_from--field_ref"></a>
-### Nested Schema for `spec.dev_environments.gateway_container.resources.value_from.field_ref`
+<a id="nestedatt--spec--dev_environments--gateway_container--env--value_from--field_ref"></a>
+### Nested Schema for `spec.dev_environments.gateway_container.env.value_from.field_ref`
 
 Required:
 
@@ -1431,8 +1431,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--dev_environments--gateway_container--resources--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.dev_environments.gateway_container.resources.value_from.resource_field_ref`
+<a id="nestedatt--spec--dev_environments--gateway_container--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.dev_environments.gateway_container.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1444,8 +1444,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--dev_environments--gateway_container--resources--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.dev_environments.gateway_container.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--dev_environments--gateway_container--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.dev_environments.gateway_container.env.value_from.secret_key_ref`
 
 Required:
 
@@ -1516,20 +1516,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container--resources--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container--env--value_from))
 
-<a id="nestedatt--spec--dev_environments--project_clone_container--resources--value_from"></a>
-### Nested Schema for `spec.dev_environments.project_clone_container.resources.value_from`
+<a id="nestedatt--spec--dev_environments--project_clone_container--env--value_from"></a>
+### Nested Schema for `spec.dev_environments.project_clone_container.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container--resources--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container--resources--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container--resources--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container--resources--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--dev_environments--project_clone_container--resources--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.dev_environments.project_clone_container.resources.value_from.config_map_key_ref`
+<a id="nestedatt--spec--dev_environments--project_clone_container--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.dev_environments.project_clone_container.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1541,8 +1541,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--dev_environments--project_clone_container--resources--value_from--field_ref"></a>
-### Nested Schema for `spec.dev_environments.project_clone_container.resources.value_from.field_ref`
+<a id="nestedatt--spec--dev_environments--project_clone_container--env--value_from--field_ref"></a>
+### Nested Schema for `spec.dev_environments.project_clone_container.env.value_from.field_ref`
 
 Required:
 
@@ -1553,8 +1553,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--dev_environments--project_clone_container--resources--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.dev_environments.project_clone_container.resources.value_from.resource_field_ref`
+<a id="nestedatt--spec--dev_environments--project_clone_container--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.dev_environments.project_clone_container.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1566,8 +1566,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--dev_environments--project_clone_container--resources--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.dev_environments.project_clone_container.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--dev_environments--project_clone_container--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.dev_environments.project_clone_container.env.value_from.secret_key_ref`
 
 Required:
 
@@ -1623,19 +1623,19 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
-- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--dev_environments--security--pod_security_context--capabilities))
+- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--dev_environments--security--container_security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
 - `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
 - `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.
 - `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
 - `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
-- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--dev_environments--security--pod_security_context--se_linux_options))
-- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--dev_environments--security--pod_security_context--seccomp_profile))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--dev_environments--security--pod_security_context--windows_options))
+- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--dev_environments--security--container_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--dev_environments--security--container_security_context--seccomp_profile))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--dev_environments--security--container_security_context--windows_options))
 
-<a id="nestedatt--spec--dev_environments--security--pod_security_context--capabilities"></a>
-### Nested Schema for `spec.dev_environments.security.pod_security_context.capabilities`
+<a id="nestedatt--spec--dev_environments--security--container_security_context--capabilities"></a>
+### Nested Schema for `spec.dev_environments.security.container_security_context.capabilities`
 
 Optional:
 
@@ -1643,8 +1643,8 @@ Optional:
 - `drop` (List of String) Removed capabilities
 
 
-<a id="nestedatt--spec--dev_environments--security--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.dev_environments.security.pod_security_context.se_linux_options`
+<a id="nestedatt--spec--dev_environments--security--container_security_context--se_linux_options"></a>
+### Nested Schema for `spec.dev_environments.security.container_security_context.se_linux_options`
 
 Optional:
 
@@ -1654,8 +1654,8 @@ Optional:
 - `user` (String) User is a SELinux user label that applies to the container.
 
 
-<a id="nestedatt--spec--dev_environments--security--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.dev_environments.security.pod_security_context.seccomp_profile`
+<a id="nestedatt--spec--dev_environments--security--container_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.dev_environments.security.container_security_context.seccomp_profile`
 
 Required:
 
@@ -1666,8 +1666,8 @@ Optional:
 - `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
 
 
-<a id="nestedatt--spec--dev_environments--security--pod_security_context--windows_options"></a>
-### Nested Schema for `spec.dev_environments.security.pod_security_context.windows_options`
+<a id="nestedatt--spec--dev_environments--security--container_security_context--windows_options"></a>
+### Nested Schema for `spec.dev_environments.security.container_security_context.windows_options`
 
 Optional:
 
@@ -1912,32 +1912,32 @@ Optional:
 Optional:
 
 - `config_labels` (Map of String) Gateway configuration labels.
-- `deployment` (Attributes) Deployment override options. Since gateway deployment consists of several containers, they must be distinguished in the configuration by their names: - 'gateway' - 'configbump' - 'oauth-proxy' - 'kube-rbac-proxy' (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment))
-- `kube_rbac_proxy` (Attributes) Configuration for kube-rbac-proxy within the Che gateway pod. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--kube_rbac_proxy))
-- `o_auth_proxy` (Attributes) Configuration for oauth-proxy within the Che gateway pod. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--o_auth_proxy))
-- `traefik` (Attributes) Configuration for Traefik within the Che gateway pod. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--traefik))
+- `deployment` (Attributes) Deployment override options. Since gateway deployment consists of several containers, they must be distinguished in the configuration by their names: - 'gateway' - 'configbump' - 'oauth-proxy' - 'kube-rbac-proxy' (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment))
+- `kube_rbac_proxy` (Attributes) Configuration for kube-rbac-proxy within the Che gateway pod. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--kube_rbac_proxy))
+- `o_auth_proxy` (Attributes) Configuration for oauth-proxy within the Che gateway pod. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--o_auth_proxy))
+- `traefik` (Attributes) Configuration for Traefik within the Che gateway pod. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--traefik))
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment`
-
-Optional:
-
-- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--containers))
-- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context))
-
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--containers"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.containers`
+<a id="nestedatt--spec--networking--auth--gateway--deployment"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment`
 
 Optional:
 
-- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--env))
+- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers))
+- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--security_context))
+
+<a id="nestedatt--spec--networking--auth--gateway--deployment--containers"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.containers`
+
+Optional:
+
+- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers--env))
 - `image` (String) Container image. Omit it or leave it empty to use the default container image provided by the Operator.
 - `image_pull_policy` (String) Image pull policy. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.
 - `name` (String) Container name.
-- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources))
+- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers--resources))
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--env"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.security_context.env`
+<a id="nestedatt--spec--networking--auth--gateway--deployment--containers--env"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.containers.env`
 
 Required:
 
@@ -1946,20 +1946,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers--env--value_from))
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--value_from"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.security_context.resources.value_from`
+<a id="nestedatt--spec--networking--auth--gateway--deployment--containers--env--value_from"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.security_context.resources.value_from.config_map_key_ref`
+<a id="nestedatt--spec--networking--auth--gateway--deployment--containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1971,8 +1971,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--value_from--field_ref"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.security_context.resources.value_from.field_ref`
+<a id="nestedatt--spec--networking--auth--gateway--deployment--containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.containers.env.value_from.field_ref`
 
 Required:
 
@@ -1983,8 +1983,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.security_context.resources.value_from.resource_field_ref`
+<a id="nestedatt--spec--networking--auth--gateway--deployment--containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1996,8 +1996,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.security_context.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--networking--auth--gateway--deployment--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -2011,25 +2011,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.security_context.resources`
+<a id="nestedatt--spec--networking--auth--gateway--deployment--containers--resources"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.containers.resources`
 
 Optional:
 
-- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--limits))
-- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--request))
+- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers--resources--limits))
+- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers--resources--request))
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--limits"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.security_context.resources.limits`
-
-Optional:
-
-- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-
-
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context--resources--request"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.security_context.resources.request`
+<a id="nestedatt--spec--networking--auth--gateway--deployment--containers--resources--limits"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.containers.resources.limits`
 
 Optional:
 
@@ -2037,10 +2028,19 @@ Optional:
 - `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
+<a id="nestedatt--spec--networking--auth--gateway--deployment--containers--resources--request"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.containers.resources.request`
+
+Optional:
+
+- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
+- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--deployment--security_context"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.deployment.security_context`
+
+
+<a id="nestedatt--spec--networking--auth--gateway--deployment--security_context"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.security_context`
 
 Optional:
 
@@ -2049,24 +2049,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--kube_rbac_proxy"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.kube_rbac_proxy`
+<a id="nestedatt--spec--networking--auth--gateway--kube_rbac_proxy"></a>
+### Nested Schema for `spec.networking.auth.gateway.kube_rbac_proxy`
 
 Optional:
 
 - `log_level` (Number) The glog log level for the kube-rbac-proxy container within the gateway pod. Larger values represent a higher verbosity. The default value is '0'.
 
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--o_auth_proxy"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.o_auth_proxy`
+<a id="nestedatt--spec--networking--auth--gateway--o_auth_proxy"></a>
+### Nested Schema for `spec.networking.auth.gateway.o_auth_proxy`
 
 Optional:
 
 - `cookie_expire_seconds` (Number) Expire timeframe for cookie. If set to 0, cookie becomes a session-cookie which will expire when the browser is closed.
 
 
-<a id="nestedatt--spec--networking--auth--o_auth_secret--traefik"></a>
-### Nested Schema for `spec.networking.auth.o_auth_secret.traefik`
+<a id="nestedatt--spec--networking--auth--gateway--traefik"></a>
+### Nested Schema for `spec.networking.auth.gateway.traefik`
 
 Optional:
 

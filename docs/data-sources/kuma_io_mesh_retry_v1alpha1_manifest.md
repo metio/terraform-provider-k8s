@@ -110,14 +110,14 @@ Optional:
 
 Optional:
 
-- `back_off` (Attributes) BackOff is a configuration of durations which will be used in an exponentialbackoff strategy between retries. (see [below for nested schema](#nestedatt--spec--to--default--tcp--back_off))
+- `back_off` (Attributes) BackOff is a configuration of durations which will be used in an exponentialbackoff strategy between retries. (see [below for nested schema](#nestedatt--spec--to--default--grpc--back_off))
 - `num_retries` (Number) NumRetries is the number of attempts that will be made on failed (andretriable) requests. If not set, the default value is 1.
 - `per_try_timeout` (String) PerTryTimeout is the maximum amount of time each retry attempt can takebefore it times out. If not set, the global request timeout for the routewill be used. Setting this value to 0 will disable the per-try timeout.
-- `rate_limited_back_off` (Attributes) RateLimitedBackOff is a configuration of backoff which will be used whenthe upstream returns one of the headers configured. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off))
+- `rate_limited_back_off` (Attributes) RateLimitedBackOff is a configuration of backoff which will be used whenthe upstream returns one of the headers configured. (see [below for nested schema](#nestedatt--spec--to--default--grpc--rate_limited_back_off))
 - `retry_on` (List of String) RetryOn is a list of conditions which will cause a retry.
 
-<a id="nestedatt--spec--to--default--tcp--back_off"></a>
-### Nested Schema for `spec.to.default.tcp.back_off`
+<a id="nestedatt--spec--to--default--grpc--back_off"></a>
+### Nested Schema for `spec.to.default.grpc.back_off`
 
 Optional:
 
@@ -125,16 +125,16 @@ Optional:
 - `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries.Default is 10 times the 'BaseInterval'.
 
 
-<a id="nestedatt--spec--to--default--tcp--rate_limited_back_off"></a>
-### Nested Schema for `spec.to.default.tcp.rate_limited_back_off`
+<a id="nestedatt--spec--to--default--grpc--rate_limited_back_off"></a>
+### Nested Schema for `spec.to.default.grpc.rate_limited_back_off`
 
 Optional:
 
 - `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries.
-- `reset_headers` (Attributes List) ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset)to match against the response. Headers are tried in order, and matchedcase-insensitive. The first header to be parsed successfully is used.If no headers match the default exponential BackOff is used instead. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off--reset_headers))
+- `reset_headers` (Attributes List) ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset)to match against the response. Headers are tried in order, and matchedcase-insensitive. The first header to be parsed successfully is used.If no headers match the default exponential BackOff is used instead. (see [below for nested schema](#nestedatt--spec--to--default--grpc--rate_limited_back_off--reset_headers))
 
-<a id="nestedatt--spec--to--default--tcp--rate_limited_back_off--reset_headers"></a>
-### Nested Schema for `spec.to.default.tcp.rate_limited_back_off.reset_headers`
+<a id="nestedatt--spec--to--default--grpc--rate_limited_back_off--reset_headers"></a>
+### Nested Schema for `spec.to.default.grpc.rate_limited_back_off.reset_headers`
 
 Required:
 
@@ -149,18 +149,18 @@ Required:
 
 Optional:
 
-- `back_off` (Attributes) BackOff is a configuration of durations which will be used in exponentialbackoff strategy between retries. (see [below for nested schema](#nestedatt--spec--to--default--tcp--back_off))
-- `host_selection` (Attributes List) HostSelection is a list of predicates that dictate how hosts should be selectedwhen requests are retried. (see [below for nested schema](#nestedatt--spec--to--default--tcp--host_selection))
+- `back_off` (Attributes) BackOff is a configuration of durations which will be used in exponentialbackoff strategy between retries. (see [below for nested schema](#nestedatt--spec--to--default--http--back_off))
+- `host_selection` (Attributes List) HostSelection is a list of predicates that dictate how hosts should be selectedwhen requests are retried. (see [below for nested schema](#nestedatt--spec--to--default--http--host_selection))
 - `host_selection_max_attempts` (Number) HostSelectionMaxAttempts is the maximum number of times host selection will bereattempted before giving up, at which point the host that was last selected willbe routed to. If unspecified, this will default to retrying once.
 - `num_retries` (Number) NumRetries is the number of attempts that will be made on failed (andretriable) requests.  If not set, the default value is 1.
 - `per_try_timeout` (String) PerTryTimeout is the amount of time after which retry attempt should time out.If left unspecified, the global route timeout for the request will be used.Consequently, when using a 5xx based retry policy, a request that times outwill not be retried as the total timeout budget would have been exhausted.Setting this timeout to 0 will disable it.
-- `rate_limited_back_off` (Attributes) RateLimitedBackOff is a configuration of backoff which will be usedwhen the upstream returns one of the headers configured. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off))
-- `retriable_request_headers` (Attributes List) RetriableRequestHeaders is an HTTP headers which must be present in the requestfor retries to be attempted. (see [below for nested schema](#nestedatt--spec--to--default--tcp--retriable_request_headers))
-- `retriable_response_headers` (Attributes List) RetriableResponseHeaders is an HTTP response headers that trigger a retryif present in the response. A retry will be triggered if any of the headermatches the upstream response headers. (see [below for nested schema](#nestedatt--spec--to--default--tcp--retriable_response_headers))
+- `rate_limited_back_off` (Attributes) RateLimitedBackOff is a configuration of backoff which will be usedwhen the upstream returns one of the headers configured. (see [below for nested schema](#nestedatt--spec--to--default--http--rate_limited_back_off))
+- `retriable_request_headers` (Attributes List) RetriableRequestHeaders is an HTTP headers which must be present in the requestfor retries to be attempted. (see [below for nested schema](#nestedatt--spec--to--default--http--retriable_request_headers))
+- `retriable_response_headers` (Attributes List) RetriableResponseHeaders is an HTTP response headers that trigger a retryif present in the response. A retry will be triggered if any of the headermatches the upstream response headers. (see [below for nested schema](#nestedatt--spec--to--default--http--retriable_response_headers))
 - `retry_on` (List of String) RetryOn is a list of conditions which will cause a retry. Available values are:[5XX, GatewayError, Reset, Retriable4xx, ConnectFailure, EnvoyRatelimited,RefusedStream, Http3PostConnectFailure, HttpMethodConnect, HttpMethodDelete,HttpMethodGet, HttpMethodHead, HttpMethodOptions, HttpMethodPatch,HttpMethodPost, HttpMethodPut, HttpMethodTrace].Also, any HTTP status code (500, 503, etc.).
 
-<a id="nestedatt--spec--to--default--tcp--back_off"></a>
-### Nested Schema for `spec.to.default.tcp.back_off`
+<a id="nestedatt--spec--to--default--http--back_off"></a>
+### Nested Schema for `spec.to.default.http.back_off`
 
 Optional:
 
@@ -168,8 +168,8 @@ Optional:
 - `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries.Default is 10 times the 'BaseInterval'.
 
 
-<a id="nestedatt--spec--to--default--tcp--host_selection"></a>
-### Nested Schema for `spec.to.default.tcp.host_selection`
+<a id="nestedatt--spec--to--default--http--host_selection"></a>
+### Nested Schema for `spec.to.default.http.host_selection`
 
 Required:
 
@@ -181,16 +181,16 @@ Optional:
 - `update_frequency` (Number) UpdateFrequency is how often the priority load should be updated based on previously attempted priorities.Used for OmitPreviousPriorities.
 
 
-<a id="nestedatt--spec--to--default--tcp--rate_limited_back_off"></a>
-### Nested Schema for `spec.to.default.tcp.rate_limited_back_off`
+<a id="nestedatt--spec--to--default--http--rate_limited_back_off"></a>
+### Nested Schema for `spec.to.default.http.rate_limited_back_off`
 
 Optional:
 
 - `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries.
-- `reset_headers` (Attributes List) ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset)to match against the response. Headers are tried in order, and matchedcase-insensitive. The first header to be parsed successfully is used.If no headers match the default exponential BackOff is used instead. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off--reset_headers))
+- `reset_headers` (Attributes List) ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset)to match against the response. Headers are tried in order, and matchedcase-insensitive. The first header to be parsed successfully is used.If no headers match the default exponential BackOff is used instead. (see [below for nested schema](#nestedatt--spec--to--default--http--rate_limited_back_off--reset_headers))
 
-<a id="nestedatt--spec--to--default--tcp--rate_limited_back_off--reset_headers"></a>
-### Nested Schema for `spec.to.default.tcp.rate_limited_back_off.reset_headers`
+<a id="nestedatt--spec--to--default--http--rate_limited_back_off--reset_headers"></a>
+### Nested Schema for `spec.to.default.http.rate_limited_back_off.reset_headers`
 
 Required:
 
@@ -199,8 +199,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--to--default--tcp--retriable_request_headers"></a>
-### Nested Schema for `spec.to.default.tcp.retriable_request_headers`
+<a id="nestedatt--spec--to--default--http--retriable_request_headers"></a>
+### Nested Schema for `spec.to.default.http.retriable_request_headers`
 
 Required:
 
@@ -212,8 +212,8 @@ Optional:
 - `value` (String) Value is the value of HTTP Header to be matched.
 
 
-<a id="nestedatt--spec--to--default--tcp--retriable_response_headers"></a>
-### Nested Schema for `spec.to.default.tcp.retriable_response_headers`
+<a id="nestedatt--spec--to--default--http--retriable_response_headers"></a>
+### Nested Schema for `spec.to.default.http.retriable_response_headers`
 
 Required:
 

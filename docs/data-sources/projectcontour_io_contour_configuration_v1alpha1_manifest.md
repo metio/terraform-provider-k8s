@@ -447,20 +447,20 @@ Optional:
 
 Optional:
 
-- `entries` (Attributes List) Entries is the list of key-value pair generators. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries))
+- `entries` (Attributes List) Entries is the list of key-value pair generators. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors--entries))
 
-<a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries"></a>
-### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries`
+<a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors--entries"></a>
+### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.descriptors.entries`
 
 Optional:
 
-- `generic_key` (Attributes) GenericKey defines a descriptor entry with a static key and value. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--generic_key))
+- `generic_key` (Attributes) GenericKey defines a descriptor entry with a static key and value. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--generic_key))
 - `remote_address` (Map of String) RemoteAddress defines a descriptor entry with a key of 'remote_address'and a value equal to the client's IP address (from x-forwarded-for).
-- `request_header` (Attributes) RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--request_header))
-- `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--request_header_value_match))
+- `request_header` (Attributes) RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header))
+- `request_header_value_match` (Attributes) RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header_value_match))
 
-<a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--generic_key"></a>
-### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries.generic_key`
+<a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--generic_key"></a>
+### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.descriptors.entries.generic_key`
 
 Optional:
 
@@ -468,8 +468,8 @@ Optional:
 - `value` (String) Value defines the value of the descriptor entry.
 
 
-<a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--request_header"></a>
-### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries.request_header`
+<a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header"></a>
+### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.descriptors.entries.request_header`
 
 Optional:
 
@@ -477,17 +477,17 @@ Optional:
 - `header_name` (String) HeaderName defines the name of the header to look for on the request.
 
 
-<a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--request_header_value_match"></a>
-### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries.request_header_value_match`
+<a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header_value_match"></a>
+### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.descriptors.entries.request_header_value_match`
 
 Optional:
 
 - `expect_match` (Boolean) ExpectMatch defines whether the request must positively match the matchcriteria in order to generate a descriptor entry (i.e. true), or notmatch the match criteria in order to generate a descriptor entry (i.e. false).The default is true.
-- `headers` (Attributes List) Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--request_header_value_match--headers))
+- `headers` (Attributes List) Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not. (see [below for nested schema](#nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header_value_match--headers))
 - `value` (String) Value defines the value of the descriptor entry.
 
-<a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--disabled--entries--request_header_value_match--headers"></a>
-### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.disabled.entries.request_header_value_match.headers`
+<a id="nestedatt--spec--rate_limit_service--default_global_rate_limit_policy--descriptors--entries--request_header_value_match--headers"></a>
+### Nested Schema for `spec.rate_limit_service.default_global_rate_limit_policy.descriptors.entries.request_header_value_match.headers`
 
 Required:
 

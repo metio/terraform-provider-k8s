@@ -280,21 +280,21 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--target--template--type--config_map))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--target--template--template_from--config_map))
 - `literal` (String)
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--target--template--type--secret))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--target--template--template_from--secret))
 - `target` (String)
 
-<a id="nestedatt--spec--target--template--type--config_map"></a>
-### Nested Schema for `spec.target.template.type.config_map`
+<a id="nestedatt--spec--target--template--template_from--config_map"></a>
+### Nested Schema for `spec.target.template.template_from.config_map`
 
 Required:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--target--template--type--config_map--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--target--template--template_from--config_map--items))
 - `name` (String)
 
-<a id="nestedatt--spec--target--template--type--config_map--items"></a>
-### Nested Schema for `spec.target.template.type.config_map.items`
+<a id="nestedatt--spec--target--template--template_from--config_map--items"></a>
+### Nested Schema for `spec.target.template.template_from.config_map.items`
 
 Required:
 
@@ -306,16 +306,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--target--template--type--secret"></a>
-### Nested Schema for `spec.target.template.type.secret`
+<a id="nestedatt--spec--target--template--template_from--secret"></a>
+### Nested Schema for `spec.target.template.template_from.secret`
 
 Required:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--target--template--type--secret--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--target--template--template_from--secret--items))
 - `name` (String)
 
-<a id="nestedatt--spec--target--template--type--secret--items"></a>
-### Nested Schema for `spec.target.template.type.secret.items`
+<a id="nestedatt--spec--target--template--template_from--secret--items"></a>
+### Nested Schema for `spec.target.template.template_from.secret.items`
 
 Required:
 

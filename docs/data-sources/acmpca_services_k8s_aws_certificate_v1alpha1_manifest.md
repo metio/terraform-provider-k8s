@@ -102,18 +102,18 @@ Optional:
 Optional:
 
 - `cert_policy_id` (String)
-- `policy_qualifiers` (Attributes List) (see [below for nested schema](#nestedatt--spec--api_passthrough--extensions--subject_alternative_names--policy_qualifiers))
+- `policy_qualifiers` (Attributes List) (see [below for nested schema](#nestedatt--spec--api_passthrough--extensions--certificate_policies--policy_qualifiers))
 
-<a id="nestedatt--spec--api_passthrough--extensions--subject_alternative_names--policy_qualifiers"></a>
-### Nested Schema for `spec.api_passthrough.extensions.subject_alternative_names.policy_qualifiers`
+<a id="nestedatt--spec--api_passthrough--extensions--certificate_policies--policy_qualifiers"></a>
+### Nested Schema for `spec.api_passthrough.extensions.certificate_policies.policy_qualifiers`
 
 Optional:
 
 - `policy_qualifier_id` (String)
-- `qualifier` (Attributes) Defines a PolicyInformation qualifier. Amazon Web Services Private CA supportsthe certification practice statement (CPS) qualifier (https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.4)defined in RFC 5280. (see [below for nested schema](#nestedatt--spec--api_passthrough--extensions--subject_alternative_names--policy_qualifiers--qualifier))
+- `qualifier` (Attributes) Defines a PolicyInformation qualifier. Amazon Web Services Private CA supportsthe certification practice statement (CPS) qualifier (https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.4)defined in RFC 5280. (see [below for nested schema](#nestedatt--spec--api_passthrough--extensions--certificate_policies--policy_qualifiers--qualifier))
 
-<a id="nestedatt--spec--api_passthrough--extensions--subject_alternative_names--policy_qualifiers--qualifier"></a>
-### Nested Schema for `spec.api_passthrough.extensions.subject_alternative_names.policy_qualifiers.qualifier`
+<a id="nestedatt--spec--api_passthrough--extensions--certificate_policies--policy_qualifiers--qualifier"></a>
+### Nested Schema for `spec.api_passthrough.extensions.certificate_policies.policy_qualifiers.qualifier`
 
 Optional:
 

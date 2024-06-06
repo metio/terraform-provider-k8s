@@ -90,21 +90,21 @@ Optional:
 
 Optional:
 
-- `request_headers` (Attributes) ProxyRequestHeaders defines the request headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--action--return--request_headers))
-- `response_headers` (Attributes) ProxyResponseHeaders defines the response headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--action--return--response_headers))
+- `request_headers` (Attributes) ProxyRequestHeaders defines the request headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--action--proxy--request_headers))
+- `response_headers` (Attributes) ProxyResponseHeaders defines the response headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--action--proxy--response_headers))
 - `rewrite_path` (String)
 - `upstream` (String)
 
-<a id="nestedatt--spec--subroutes--action--return--request_headers"></a>
-### Nested Schema for `spec.subroutes.action.return.request_headers`
+<a id="nestedatt--spec--subroutes--action--proxy--request_headers"></a>
+### Nested Schema for `spec.subroutes.action.proxy.request_headers`
 
 Optional:
 
 - `pass` (Boolean)
-- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--action--return--request_headers--set))
+- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--action--proxy--request_headers--set))
 
-<a id="nestedatt--spec--subroutes--action--return--request_headers--set"></a>
-### Nested Schema for `spec.subroutes.action.return.request_headers.set`
+<a id="nestedatt--spec--subroutes--action--proxy--request_headers--set"></a>
+### Nested Schema for `spec.subroutes.action.proxy.request_headers.set`
 
 Optional:
 
@@ -113,18 +113,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--subroutes--action--return--response_headers"></a>
-### Nested Schema for `spec.subroutes.action.return.response_headers`
+<a id="nestedatt--spec--subroutes--action--proxy--response_headers"></a>
+### Nested Schema for `spec.subroutes.action.proxy.response_headers`
 
 Optional:
 
-- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--action--return--response_headers--add))
+- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--action--proxy--response_headers--add))
 - `hide` (List of String)
 - `ignore` (List of String)
 - `pass` (List of String)
 
-<a id="nestedatt--spec--subroutes--action--return--response_headers--add"></a>
-### Nested Schema for `spec.subroutes.action.return.response_headers.add`
+<a id="nestedatt--spec--subroutes--action--proxy--response_headers--add"></a>
+### Nested Schema for `spec.subroutes.action.proxy.response_headers.add`
 
 Optional:
 
@@ -219,30 +219,30 @@ Optional:
 Optional:
 
 - `pass` (String)
-- `proxy` (Attributes) ActionProxy defines a proxy in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--proxy))
-- `redirect` (Attributes) ActionRedirect defines a redirect in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--redirect))
-- `return` (Attributes) ActionReturn defines a return in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--return))
+- `proxy` (Attributes) ActionProxy defines a proxy in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--matches--action--proxy))
+- `redirect` (Attributes) ActionRedirect defines a redirect in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--matches--action--redirect))
+- `return` (Attributes) ActionReturn defines a return in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--matches--action--return))
 
-<a id="nestedatt--spec--subroutes--matches--splits--proxy"></a>
-### Nested Schema for `spec.subroutes.matches.splits.proxy`
+<a id="nestedatt--spec--subroutes--matches--action--proxy"></a>
+### Nested Schema for `spec.subroutes.matches.action.proxy`
 
 Optional:
 
-- `request_headers` (Attributes) ProxyRequestHeaders defines the request headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--proxy--request_headers))
-- `response_headers` (Attributes) ProxyResponseHeaders defines the response headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--proxy--response_headers))
+- `request_headers` (Attributes) ProxyRequestHeaders defines the request headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--matches--action--proxy--request_headers))
+- `response_headers` (Attributes) ProxyResponseHeaders defines the response headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--matches--action--proxy--response_headers))
 - `rewrite_path` (String)
 - `upstream` (String)
 
-<a id="nestedatt--spec--subroutes--matches--splits--proxy--request_headers"></a>
-### Nested Schema for `spec.subroutes.matches.splits.proxy.request_headers`
+<a id="nestedatt--spec--subroutes--matches--action--proxy--request_headers"></a>
+### Nested Schema for `spec.subroutes.matches.action.proxy.request_headers`
 
 Optional:
 
 - `pass` (Boolean)
-- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--proxy--upstream--set))
+- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--action--proxy--request_headers--set))
 
-<a id="nestedatt--spec--subroutes--matches--splits--proxy--upstream--set"></a>
-### Nested Schema for `spec.subroutes.matches.splits.proxy.upstream.set`
+<a id="nestedatt--spec--subroutes--matches--action--proxy--request_headers--set"></a>
+### Nested Schema for `spec.subroutes.matches.action.proxy.request_headers.set`
 
 Optional:
 
@@ -251,18 +251,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--subroutes--matches--splits--proxy--response_headers"></a>
-### Nested Schema for `spec.subroutes.matches.splits.proxy.response_headers`
+<a id="nestedatt--spec--subroutes--matches--action--proxy--response_headers"></a>
+### Nested Schema for `spec.subroutes.matches.action.proxy.response_headers`
 
 Optional:
 
-- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--proxy--upstream--add))
+- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--action--proxy--response_headers--add))
 - `hide` (List of String)
 - `ignore` (List of String)
 - `pass` (List of String)
 
-<a id="nestedatt--spec--subroutes--matches--splits--proxy--upstream--add"></a>
-### Nested Schema for `spec.subroutes.matches.splits.proxy.upstream.add`
+<a id="nestedatt--spec--subroutes--matches--action--proxy--response_headers--add"></a>
+### Nested Schema for `spec.subroutes.matches.action.proxy.response_headers.add`
 
 Optional:
 
@@ -273,8 +273,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--subroutes--matches--splits--redirect"></a>
-### Nested Schema for `spec.subroutes.matches.splits.redirect`
+<a id="nestedatt--spec--subroutes--matches--action--redirect"></a>
+### Nested Schema for `spec.subroutes.matches.action.redirect`
 
 Optional:
 
@@ -282,18 +282,18 @@ Optional:
 - `url` (String)
 
 
-<a id="nestedatt--spec--subroutes--matches--splits--return"></a>
-### Nested Schema for `spec.subroutes.matches.splits.return`
+<a id="nestedatt--spec--subroutes--matches--action--return"></a>
+### Nested Schema for `spec.subroutes.matches.action.return`
 
 Optional:
 
 - `body` (String)
 - `code` (Number)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--return--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--action--return--headers))
 - `type` (String)
 
-<a id="nestedatt--spec--subroutes--matches--splits--return--headers"></a>
-### Nested Schema for `spec.subroutes.matches.splits.return.headers`
+<a id="nestedatt--spec--subroutes--matches--action--return--headers"></a>
+### Nested Schema for `spec.subroutes.matches.action.return.headers`
 
 Optional:
 
@@ -338,21 +338,21 @@ Optional:
 
 Optional:
 
-- `request_headers` (Attributes) ProxyRequestHeaders defines the request headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--action--return--request_headers))
-- `response_headers` (Attributes) ProxyResponseHeaders defines the response headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--action--return--response_headers))
+- `request_headers` (Attributes) ProxyRequestHeaders defines the request headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--action--proxy--request_headers))
+- `response_headers` (Attributes) ProxyResponseHeaders defines the response headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--action--proxy--response_headers))
 - `rewrite_path` (String)
 - `upstream` (String)
 
-<a id="nestedatt--spec--subroutes--matches--splits--action--return--request_headers"></a>
-### Nested Schema for `spec.subroutes.matches.splits.action.return.request_headers`
+<a id="nestedatt--spec--subroutes--matches--splits--action--proxy--request_headers"></a>
+### Nested Schema for `spec.subroutes.matches.splits.action.proxy.request_headers`
 
 Optional:
 
 - `pass` (Boolean)
-- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--action--return--upstream--set))
+- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--action--proxy--request_headers--set))
 
-<a id="nestedatt--spec--subroutes--matches--splits--action--return--upstream--set"></a>
-### Nested Schema for `spec.subroutes.matches.splits.action.return.upstream.set`
+<a id="nestedatt--spec--subroutes--matches--splits--action--proxy--request_headers--set"></a>
+### Nested Schema for `spec.subroutes.matches.splits.action.proxy.request_headers.set`
 
 Optional:
 
@@ -361,18 +361,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--subroutes--matches--splits--action--return--response_headers"></a>
-### Nested Schema for `spec.subroutes.matches.splits.action.return.response_headers`
+<a id="nestedatt--spec--subroutes--matches--splits--action--proxy--response_headers"></a>
+### Nested Schema for `spec.subroutes.matches.splits.action.proxy.response_headers`
 
 Optional:
 
-- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--action--return--upstream--add))
+- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--matches--splits--action--proxy--response_headers--add))
 - `hide` (List of String)
 - `ignore` (List of String)
 - `pass` (List of String)
 
-<a id="nestedatt--spec--subroutes--matches--splits--action--return--upstream--add"></a>
-### Nested Schema for `spec.subroutes.matches.splits.action.return.upstream.add`
+<a id="nestedatt--spec--subroutes--matches--splits--action--proxy--response_headers--add"></a>
+### Nested Schema for `spec.subroutes.matches.splits.action.proxy.response_headers.add`
 
 Optional:
 
@@ -438,30 +438,30 @@ Optional:
 Optional:
 
 - `pass` (String)
-- `proxy` (Attributes) ActionProxy defines a proxy in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--splits--weight--proxy))
-- `redirect` (Attributes) ActionRedirect defines a redirect in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--splits--weight--redirect))
-- `return` (Attributes) ActionReturn defines a return in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--splits--weight--return))
+- `proxy` (Attributes) ActionProxy defines a proxy in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--splits--action--proxy))
+- `redirect` (Attributes) ActionRedirect defines a redirect in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--splits--action--redirect))
+- `return` (Attributes) ActionReturn defines a return in an Action. (see [below for nested schema](#nestedatt--spec--subroutes--splits--action--return))
 
-<a id="nestedatt--spec--subroutes--splits--weight--proxy"></a>
-### Nested Schema for `spec.subroutes.splits.weight.proxy`
+<a id="nestedatt--spec--subroutes--splits--action--proxy"></a>
+### Nested Schema for `spec.subroutes.splits.action.proxy`
 
 Optional:
 
-- `request_headers` (Attributes) ProxyRequestHeaders defines the request headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--splits--weight--proxy--request_headers))
-- `response_headers` (Attributes) ProxyResponseHeaders defines the response headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--splits--weight--proxy--response_headers))
+- `request_headers` (Attributes) ProxyRequestHeaders defines the request headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--splits--action--proxy--request_headers))
+- `response_headers` (Attributes) ProxyResponseHeaders defines the response headers manipulation in an ActionProxy. (see [below for nested schema](#nestedatt--spec--subroutes--splits--action--proxy--response_headers))
 - `rewrite_path` (String)
 - `upstream` (String)
 
-<a id="nestedatt--spec--subroutes--splits--weight--proxy--request_headers"></a>
-### Nested Schema for `spec.subroutes.splits.weight.proxy.request_headers`
+<a id="nestedatt--spec--subroutes--splits--action--proxy--request_headers"></a>
+### Nested Schema for `spec.subroutes.splits.action.proxy.request_headers`
 
 Optional:
 
 - `pass` (Boolean)
-- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--splits--weight--proxy--upstream--set))
+- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--splits--action--proxy--request_headers--set))
 
-<a id="nestedatt--spec--subroutes--splits--weight--proxy--upstream--set"></a>
-### Nested Schema for `spec.subroutes.splits.weight.proxy.upstream.set`
+<a id="nestedatt--spec--subroutes--splits--action--proxy--request_headers--set"></a>
+### Nested Schema for `spec.subroutes.splits.action.proxy.request_headers.set`
 
 Optional:
 
@@ -470,18 +470,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--subroutes--splits--weight--proxy--response_headers"></a>
-### Nested Schema for `spec.subroutes.splits.weight.proxy.response_headers`
+<a id="nestedatt--spec--subroutes--splits--action--proxy--response_headers"></a>
+### Nested Schema for `spec.subroutes.splits.action.proxy.response_headers`
 
 Optional:
 
-- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--splits--weight--proxy--upstream--add))
+- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--splits--action--proxy--response_headers--add))
 - `hide` (List of String)
 - `ignore` (List of String)
 - `pass` (List of String)
 
-<a id="nestedatt--spec--subroutes--splits--weight--proxy--upstream--add"></a>
-### Nested Schema for `spec.subroutes.splits.weight.proxy.upstream.add`
+<a id="nestedatt--spec--subroutes--splits--action--proxy--response_headers--add"></a>
+### Nested Schema for `spec.subroutes.splits.action.proxy.response_headers.add`
 
 Optional:
 
@@ -492,8 +492,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--subroutes--splits--weight--redirect"></a>
-### Nested Schema for `spec.subroutes.splits.weight.redirect`
+<a id="nestedatt--spec--subroutes--splits--action--redirect"></a>
+### Nested Schema for `spec.subroutes.splits.action.redirect`
 
 Optional:
 
@@ -501,18 +501,18 @@ Optional:
 - `url` (String)
 
 
-<a id="nestedatt--spec--subroutes--splits--weight--return"></a>
-### Nested Schema for `spec.subroutes.splits.weight.return`
+<a id="nestedatt--spec--subroutes--splits--action--return"></a>
+### Nested Schema for `spec.subroutes.splits.action.return`
 
 Optional:
 
 - `body` (String)
 - `code` (Number)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--splits--weight--return--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--subroutes--splits--action--return--headers))
 - `type` (String)
 
-<a id="nestedatt--spec--subroutes--splits--weight--return--headers"></a>
-### Nested Schema for `spec.subroutes.splits.weight.return.headers`
+<a id="nestedatt--spec--subroutes--splits--action--return--headers"></a>
+### Nested Schema for `spec.subroutes.splits.action.return.headers`
 
 Optional:
 

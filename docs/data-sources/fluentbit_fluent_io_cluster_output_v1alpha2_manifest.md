@@ -152,17 +152,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--azure_blob--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--azure_blob--tls--key_password--value_from))
 
-<a id="nestedatt--spec--azure_blob--tls--vhost--value_from"></a>
-### Nested Schema for `spec.azure_blob.tls.vhost.value_from`
+<a id="nestedatt--spec--azure_blob--tls--key_password--value_from"></a>
+### Nested Schema for `spec.azure_blob.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--azure_blob--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--azure_blob--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--azure_blob--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.azure_blob.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--azure_blob--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.azure_blob.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -453,17 +453,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--es--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--es--tls--key_password--value_from))
 
-<a id="nestedatt--spec--es--tls--vhost--value_from"></a>
-### Nested Schema for `spec.es.tls.vhost.value_from`
+<a id="nestedatt--spec--es--tls--key_password--value_from"></a>
+### Nested Schema for `spec.es.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--es--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--es--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--es--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.es.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--es--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.es.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -578,17 +578,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--forward--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--forward--tls--key_password--value_from))
 
-<a id="nestedatt--spec--forward--tls--vhost--value_from"></a>
-### Nested Schema for `spec.forward.tls.vhost.value_from`
+<a id="nestedatt--spec--forward--tls--key_password--value_from"></a>
+### Nested Schema for `spec.forward.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--forward--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--forward--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--forward--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.forward.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--forward--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.forward.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -669,17 +669,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--gelf--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--gelf--tls--key_password--value_from))
 
-<a id="nestedatt--spec--gelf--tls--vhost--value_from"></a>
-### Nested Schema for `spec.gelf.tls.vhost.value_from`
+<a id="nestedatt--spec--gelf--tls--key_password--value_from"></a>
+### Nested Schema for `spec.gelf.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--gelf--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--gelf--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--gelf--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.gelf.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--gelf--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.gelf.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -797,17 +797,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--http--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--http--tls--key_password--value_from))
 
-<a id="nestedatt--spec--http--tls--vhost--value_from"></a>
-### Nested Schema for `spec.http.tls.vhost.value_from`
+<a id="nestedatt--spec--http--tls--key_password--value_from"></a>
+### Nested Schema for `spec.http.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--http--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--http--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--http--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.http.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--http--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.http.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -952,17 +952,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--influx_db--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--influx_db--tls--key_password--value_from))
 
-<a id="nestedatt--spec--influx_db--tls--vhost--value_from"></a>
-### Nested Schema for `spec.influx_db.tls.vhost.value_from`
+<a id="nestedatt--spec--influx_db--tls--key_password--value_from"></a>
+### Nested Schema for `spec.influx_db.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--influx_db--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--influx_db--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--influx_db--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.influx_db.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--influx_db--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.influx_db.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -1145,17 +1145,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--loki--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--loki--tls--key_password--value_from))
 
-<a id="nestedatt--spec--loki--tls--vhost--value_from"></a>
-### Nested Schema for `spec.loki.tls.vhost.value_from`
+<a id="nestedatt--spec--loki--tls--key_password--value_from"></a>
+### Nested Schema for `spec.loki.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--loki--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--loki--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--loki--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.loki.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--loki--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -1288,17 +1288,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--opensearch--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--opensearch--tls--key_password--value_from))
 
-<a id="nestedatt--spec--opensearch--tls--vhost--value_from"></a>
-### Nested Schema for `spec.opensearch.tls.vhost.value_from`
+<a id="nestedatt--spec--opensearch--tls--key_password--value_from"></a>
+### Nested Schema for `spec.opensearch.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--opensearch--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--opensearch--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--opensearch--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opensearch.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--opensearch--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -1409,17 +1409,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--opentelemetry--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--opentelemetry--tls--key_password--value_from))
 
-<a id="nestedatt--spec--opentelemetry--tls--vhost--value_from"></a>
-### Nested Schema for `spec.opentelemetry.tls.vhost.value_from`
+<a id="nestedatt--spec--opentelemetry--tls--key_password--value_from"></a>
+### Nested Schema for `spec.opentelemetry.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--opentelemetry--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--opentelemetry--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--opentelemetry--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.opentelemetry.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--opentelemetry--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opentelemetry.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -1545,17 +1545,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--prometheus_remote_write--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--prometheus_remote_write--tls--key_password--value_from))
 
-<a id="nestedatt--spec--prometheus_remote_write--tls--vhost--value_from"></a>
-### Nested Schema for `spec.prometheus_remote_write.tls.vhost.value_from`
+<a id="nestedatt--spec--prometheus_remote_write--tls--key_password--value_from"></a>
+### Nested Schema for `spec.prometheus_remote_write.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--prometheus_remote_write--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--prometheus_remote_write--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--prometheus_remote_write--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.prometheus_remote_write.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--prometheus_remote_write--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.prometheus_remote_write.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -1627,17 +1627,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--s3--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--s3--tls--key_password--value_from))
 
-<a id="nestedatt--spec--s3--tls--vhost--value_from"></a>
-### Nested Schema for `spec.s3.tls.vhost.value_from`
+<a id="nestedatt--spec--s3--tls--key_password--value_from"></a>
+### Nested Schema for `spec.s3.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--s3--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--s3--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--s3--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.s3.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--s3--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.s3.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -1785,17 +1785,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--splunk--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--splunk--tls--key_password--value_from))
 
-<a id="nestedatt--spec--splunk--tls--vhost--value_from"></a>
-### Nested Schema for `spec.splunk.tls.vhost.value_from`
+<a id="nestedatt--spec--splunk--tls--key_password--value_from"></a>
+### Nested Schema for `spec.splunk.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--splunk--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--splunk--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--splunk--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.splunk.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--splunk--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -1947,17 +1947,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--syslog--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--syslog--tls--key_password--value_from))
 
-<a id="nestedatt--spec--syslog--tls--vhost--value_from"></a>
-### Nested Schema for `spec.syslog.tls.vhost.value_from`
+<a id="nestedatt--spec--syslog--tls--key_password--value_from"></a>
+### Nested Schema for `spec.syslog.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--syslog--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--syslog--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--syslog--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.syslog.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--syslog--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.syslog.tls.key_password.value_from.secret_key_ref`
 
 Required:
 
@@ -2004,17 +2004,17 @@ Optional:
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--tcp--tls--vhost--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--tcp--tls--key_password--value_from))
 
-<a id="nestedatt--spec--tcp--tls--vhost--value_from"></a>
-### Nested Schema for `spec.tcp.tls.vhost.value_from`
+<a id="nestedatt--spec--tcp--tls--key_password--value_from"></a>
+### Nested Schema for `spec.tcp.tls.key_password.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--tcp--tls--vhost--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--tcp--tls--key_password--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--tcp--tls--vhost--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.tcp.tls.vhost.value_from.secret_key_ref`
+<a id="nestedatt--spec--tcp--tls--key_password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.tcp.tls.key_password.value_from.secret_key_ref`
 
 Required:
 

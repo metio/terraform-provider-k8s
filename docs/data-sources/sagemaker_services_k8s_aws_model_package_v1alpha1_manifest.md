@@ -520,10 +520,10 @@ Optional:
 
 Optional:
 
-- `s3_data_source` (Attributes) Describes the S3 data source. (see [below for nested schema](#nestedatt--spec--validation_specification--validation_profiles--transform_job_definition--transform_input--split_type--s3_data_source))
+- `s3_data_source` (Attributes) Describes the S3 data source. (see [below for nested schema](#nestedatt--spec--validation_specification--validation_profiles--transform_job_definition--transform_input--data_source--s3_data_source))
 
-<a id="nestedatt--spec--validation_specification--validation_profiles--transform_job_definition--transform_input--split_type--s3_data_source"></a>
-### Nested Schema for `spec.validation_specification.validation_profiles.transform_job_definition.transform_input.split_type.s3_data_source`
+<a id="nestedatt--spec--validation_specification--validation_profiles--transform_job_definition--transform_input--data_source--s3_data_source"></a>
+### Nested Schema for `spec.validation_specification.validation_profiles.transform_job_definition.transform_input.data_source.s3_data_source`
 
 Optional:
 

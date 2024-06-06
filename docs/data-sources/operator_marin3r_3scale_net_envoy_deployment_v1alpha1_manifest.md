@@ -98,19 +98,19 @@ Optional:
 
 Required:
 
-- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
-<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields))
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_expressions`
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -122,8 +122,8 @@ Optional:
 - `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
-<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--preference--match_fields"></a>
-### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.preference.match_fields`
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -194,11 +194,11 @@ Optional:
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
-<a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -206,22 +206,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+<a id="nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -234,16 +234,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+<a id="nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -332,11 +332,11 @@ Optional:
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
-<a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -344,22 +344,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
-<a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+<a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -372,16 +372,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+<a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
-### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_expressions`
+<a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -538,20 +538,20 @@ Optional:
 
 Optional:
 
-- `scale_down` (Attributes) scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used). (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--scale_down))
-- `scale_up` (Attributes) scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of: * increase no more than 4 pods per 60 seconds * double the number of pods per 60 seconds No stabilization is used. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--scale_up))
+- `scale_down` (Attributes) scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used). (see [below for nested schema](#nestedatt--spec--replicas--dynamic--behavior--scale_down))
+- `scale_up` (Attributes) scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of: * increase no more than 4 pods per 60 seconds * double the number of pods per 60 seconds No stabilization is used. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--behavior--scale_up))
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--scale_down"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.scale_down`
+<a id="nestedatt--spec--replicas--dynamic--behavior--scale_down"></a>
+### Nested Schema for `spec.replicas.dynamic.behavior.scale_down`
 
 Optional:
 
-- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--scale_down--policies))
+- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--replicas--dynamic--behavior--scale_down--policies))
 - `select_policy` (String) selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.
 - `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--scale_down--policies"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.scale_down.policies`
+<a id="nestedatt--spec--replicas--dynamic--behavior--scale_down--policies"></a>
+### Nested Schema for `spec.replicas.dynamic.behavior.scale_down.policies`
 
 Required:
 
@@ -561,17 +561,17 @@ Required:
 
 
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--scale_up"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.scale_up`
+<a id="nestedatt--spec--replicas--dynamic--behavior--scale_up"></a>
+### Nested Schema for `spec.replicas.dynamic.behavior.scale_up`
 
 Optional:
 
-- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--scale_up--policies))
+- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--replicas--dynamic--behavior--scale_up--policies))
 - `select_policy` (String) selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.
 - `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--scale_up--policies"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.scale_up.policies`
+<a id="nestedatt--spec--replicas--dynamic--behavior--scale_up--policies"></a>
+### Nested Schema for `spec.replicas.dynamic.behavior.scale_up.policies`
 
 Required:
 
@@ -591,23 +591,23 @@ Required:
 
 Optional:
 
-- `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--container_resource))
-- `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--external))
-- `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--object))
-- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--pods))
-- `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--resource))
+- `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--container_resource))
+- `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--external))
+- `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--object))
+- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--pods))
+- `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--resource))
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--container_resource"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.container_resource`
+<a id="nestedatt--spec--replicas--dynamic--metrics--container_resource"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.container_resource`
 
 Required:
 
 - `container` (String) container is the name of the container in the pods of the scaling target
 - `name` (String) name is the name of the resource in question.
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--container_resource--target))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--container_resource--target))
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--container_resource--target"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.container_resource.target`
+<a id="nestedatt--spec--replicas--dynamic--metrics--container_resource--target"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.container_resource.target`
 
 Required:
 
@@ -621,16 +621,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--external"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.external`
+<a id="nestedatt--spec--replicas--dynamic--metrics--external"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.external`
 
 Required:
 
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--external--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--external--target))
+- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--external--metric))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--external--target))
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--external--metric"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.external.metric`
+<a id="nestedatt--spec--replicas--dynamic--metrics--external--metric"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.external.metric`
 
 Required:
 
@@ -638,18 +638,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--external--target--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--external--metric--selector))
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--external--target--selector"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.external.target.selector`
+<a id="nestedatt--spec--replicas--dynamic--metrics--external--metric--selector"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.external.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--external--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--external--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.external.target.selector.match_expressions`
+<a id="nestedatt--spec--replicas--dynamic--metrics--external--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.external.metric.selector.match_expressions`
 
 Required:
 
@@ -663,8 +663,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--external--target"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.external.target`
+<a id="nestedatt--spec--replicas--dynamic--metrics--external--target"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.external.target`
 
 Required:
 
@@ -678,17 +678,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--object"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.object`
+<a id="nestedatt--spec--replicas--dynamic--metrics--object"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.object`
 
 Required:
 
-- `described_object` (Attributes) describedObject specifies the descriptions of a object,such as kind,name apiVersion (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--object--described_object))
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--object--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--object--target))
+- `described_object` (Attributes) describedObject specifies the descriptions of a object,such as kind,name apiVersion (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--object--described_object))
+- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--object--metric))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--object--target))
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--object--described_object"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.object.described_object`
+<a id="nestedatt--spec--replicas--dynamic--metrics--object--described_object"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.object.described_object`
 
 Required:
 
@@ -700,8 +700,8 @@ Optional:
 - `api_version` (String) apiVersion is the API version of the referent
 
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--object--metric"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.object.metric`
+<a id="nestedatt--spec--replicas--dynamic--metrics--object--metric"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.object.metric`
 
 Required:
 
@@ -709,18 +709,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--object--target--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--object--metric--selector))
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--object--target--selector"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.object.target.selector`
+<a id="nestedatt--spec--replicas--dynamic--metrics--object--metric--selector"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.object.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--object--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--object--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.object.target.selector.match_expressions`
+<a id="nestedatt--spec--replicas--dynamic--metrics--object--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.object.metric.selector.match_expressions`
 
 Required:
 
@@ -734,8 +734,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--object--target"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.object.target`
+<a id="nestedatt--spec--replicas--dynamic--metrics--object--target"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.object.target`
 
 Required:
 
@@ -749,16 +749,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--pods"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.pods`
+<a id="nestedatt--spec--replicas--dynamic--metrics--pods"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.pods`
 
 Required:
 
-- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--pods--metric))
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--pods--target))
+- `metric` (Attributes) metric identifies the target metric by name and selector (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--pods--metric))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--pods--target))
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--pods--metric"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.pods.metric`
+<a id="nestedatt--spec--replicas--dynamic--metrics--pods--metric"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.pods.metric`
 
 Required:
 
@@ -766,18 +766,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--pods--target--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--pods--metric--selector))
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--pods--target--selector"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.pods.target.selector`
+<a id="nestedatt--spec--replicas--dynamic--metrics--pods--metric--selector"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.pods.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--pods--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--pods--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.pods.target.selector.match_expressions`
+<a id="nestedatt--spec--replicas--dynamic--metrics--pods--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.pods.metric.selector.match_expressions`
 
 Required:
 
@@ -791,8 +791,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--pods--target"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.pods.target`
+<a id="nestedatt--spec--replicas--dynamic--metrics--pods--target"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.pods.target`
 
 Required:
 
@@ -806,16 +806,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--resource"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.resource`
+<a id="nestedatt--spec--replicas--dynamic--metrics--resource"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.resource`
 
 Required:
 
 - `name` (String) name is the name of the resource in question.
-- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--replicas--dynamic--min_replicas--resource--target))
+- `target` (Attributes) target specifies the target value for the given metric (see [below for nested schema](#nestedatt--spec--replicas--dynamic--metrics--resource--target))
 
-<a id="nestedatt--spec--replicas--dynamic--min_replicas--resource--target"></a>
-### Nested Schema for `spec.replicas.dynamic.min_replicas.resource.target`
+<a id="nestedatt--spec--replicas--dynamic--metrics--resource--target"></a>
+### Nested Schema for `spec.replicas.dynamic.metrics.resource.target`
 
 Required:
 

@@ -530,11 +530,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -731,11 +731,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--mon--zones--volume_claim_template--spec--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--mon--zones--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--mon--zones--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.mon.zones.volume_claim_template.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--mon--zones--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.mon.zones.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -916,12 +916,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage--nodes--volume_claim_templates--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage--nodes--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--storage--nodes--volume_claim_templates--claims"></a>
-### Nested Schema for `spec.storage.nodes.volume_claim_templates.claims`
+<a id="nestedatt--spec--storage--nodes--resources--claims"></a>
+### Nested Schema for `spec.storage.nodes.resources.claims`
 
 Required:
 
@@ -1005,11 +1005,11 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--nodes--volume_claim_templates--spec--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--nodes--volume_claim_templates--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--storage--nodes--volume_claim_templates--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.storage.nodes.volume_claim_templates.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--storage--nodes--volume_claim_templates--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.storage.nodes.volume_claim_templates.spec.selector.match_expressions`
 
 Required:
 
@@ -1051,11 +1051,11 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--metadata))
-- `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec))
+- `metadata` (Attributes) Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--metadata))
+- `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec))
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--metadata"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.metadata`
+<a id="nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--metadata"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.volume_claim_templates.metadata`
 
 Optional:
 
@@ -1066,23 +1066,23 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.spec`
+<a id="nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.volume_claim_templates.spec`
 
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--data_source"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.spec.data_source`
+<a id="nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec--data_source"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.volume_claim_templates.spec.data_source`
 
 Required:
 
@@ -1094,8 +1094,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--data_source_ref"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.spec.data_source_ref`
+<a id="nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec--data_source_ref"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.volume_claim_templates.spec.data_source_ref`
 
 Required:
 
@@ -1108,8 +1108,8 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--resources"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.spec.resources`
+<a id="nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec--resources"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.volume_claim_templates.spec.resources`
 
 Optional:
 
@@ -1117,16 +1117,16 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.spec.selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec--selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.volume_claim_templates.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--volume_claim_templates--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.volume_claim_templates.spec.selector.match_expressions`
 
 Required:
 
@@ -1146,38 +1146,38 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity))
-- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--tolerations))
-- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--topology_spread_constraints))
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -1189,51 +1189,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -1247,25 +1204,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1273,22 +1273,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -1301,16 +1301,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -1325,8 +1325,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1334,22 +1334,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -1362,16 +1362,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1386,24 +1386,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1411,22 +1411,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -1439,16 +1439,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -1463,8 +1463,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1472,22 +1472,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -1500,16 +1500,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1524,8 +1524,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--tolerations"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.tolerations`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--tolerations"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.tolerations`
 
 Optional:
 
@@ -1536,8 +1536,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.topology_spread_constraints`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--topology_spread_constraints"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.topology_spread_constraints`
 
 Required:
 
@@ -1547,22 +1547,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `min_domains` (Number)
 - `node_affinity_policy` (String)
 - `node_taints_policy` (String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.topology_spread_constraints.label_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--node_taints_policy--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.topology_spread_constraints.node_taints_policy.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--placement--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.placement.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -1582,38 +1582,38 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity))
-- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--tolerations))
-- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--topology_spread_constraints))
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -1625,51 +1625,8 @@ Optional:
 - `values` (List of String)
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -1683,25 +1640,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1709,22 +1709,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -1737,16 +1737,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -1761,8 +1761,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1770,22 +1770,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -1798,16 +1798,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1822,24 +1822,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -1847,22 +1847,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -1875,16 +1875,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Required:
 
@@ -1899,8 +1899,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -1908,22 +1908,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `match_label_keys` (List of String)
 - `mismatch_label_keys` (List of String)
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -1936,16 +1936,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Required:
 
@@ -1960,8 +1960,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--tolerations"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.tolerations`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--tolerations"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.tolerations`
 
 Optional:
 
@@ -1972,8 +1972,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.topology_spread_constraints`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--topology_spread_constraints"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.topology_spread_constraints`
 
 Required:
 
@@ -1983,22 +1983,22 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--topology_spread_constraints--label_selector))
 - `match_label_keys` (List of String)
 - `min_domains` (Number)
 - `node_affinity_policy` (String)
 - `node_taints_policy` (String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.topology_spread_constraints.label_selector`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--node_taints_policy--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--node_taints_policy--match_expressions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.topology_spread_constraints.node_taints_policy.match_expressions`
+<a id="nestedatt--spec--storage--storage_class_device_sets--prepare_placement--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.prepare_placement.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -2018,12 +2018,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--claims"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.claims`
+<a id="nestedatt--spec--storage--storage_class_device_sets--resources--claims"></a>
+### Nested Schema for `spec.storage.storage_class_device_sets.resources.claims`
 
 Required:
 

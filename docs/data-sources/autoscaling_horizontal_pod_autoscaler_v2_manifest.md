@@ -182,18 +182,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--metrics--external--target--selector))
+- `selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--metrics--external--metric--selector))
 
-<a id="nestedatt--spec--metrics--external--target--selector"></a>
-### Nested Schema for `spec.metrics.external.target.selector`
+<a id="nestedatt--spec--metrics--external--metric--selector"></a>
+### Nested Schema for `spec.metrics.external.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--external--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--external--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--metrics--external--target--selector--match_expressions"></a>
-### Nested Schema for `spec.metrics.external.target.selector.match_expressions`
+<a id="nestedatt--spec--metrics--external--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.metrics.external.metric.selector.match_expressions`
 
 Required:
 
@@ -253,18 +253,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--metrics--object--target--selector))
+- `selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--metrics--object--metric--selector))
 
-<a id="nestedatt--spec--metrics--object--target--selector"></a>
-### Nested Schema for `spec.metrics.object.target.selector`
+<a id="nestedatt--spec--metrics--object--metric--selector"></a>
+### Nested Schema for `spec.metrics.object.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--object--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--object--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--metrics--object--target--selector--match_expressions"></a>
-### Nested Schema for `spec.metrics.object.target.selector.match_expressions`
+<a id="nestedatt--spec--metrics--object--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.metrics.object.metric.selector.match_expressions`
 
 Required:
 
@@ -310,18 +310,18 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--metrics--pods--target--selector))
+- `selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--metrics--pods--metric--selector))
 
-<a id="nestedatt--spec--metrics--pods--target--selector"></a>
-### Nested Schema for `spec.metrics.pods.target.selector`
+<a id="nestedatt--spec--metrics--pods--metric--selector"></a>
+### Nested Schema for `spec.metrics.pods.metric.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--pods--target--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--pods--metric--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--metrics--pods--target--selector--match_expressions"></a>
-### Nested Schema for `spec.metrics.pods.target.selector.match_expressions`
+<a id="nestedatt--spec--metrics--pods--metric--selector--match_expressions"></a>
+### Nested Schema for `spec.metrics.pods.metric.selector.match_expressions`
 
 Required:
 

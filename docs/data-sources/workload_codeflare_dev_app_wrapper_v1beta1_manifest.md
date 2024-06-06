@@ -207,10 +207,10 @@ Optional:
 
 Optional:
 
-- `client_ip` (Attributes) clientIP contains the configurations of Client IP based session affinity. (see [below for nested schema](#nestedatt--spec--service--spec--type--client_ip))
+- `client_ip` (Attributes) clientIP contains the configurations of Client IP based session affinity. (see [below for nested schema](#nestedatt--spec--service--spec--session_affinity_config--client_ip))
 
-<a id="nestedatt--spec--service--spec--type--client_ip"></a>
-### Nested Schema for `spec.service.spec.type.client_ip`
+<a id="nestedatt--spec--service--spec--session_affinity_config--client_ip"></a>
+### Nested Schema for `spec.service.spec.session_affinity_config.client_ip`
 
 Optional:
 

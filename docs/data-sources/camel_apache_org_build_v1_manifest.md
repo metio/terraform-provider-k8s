@@ -178,19 +178,19 @@ Optional:
 
 Optional:
 
-- `ca_secrets` (Attributes List) The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--ca_secrets))
+- `ca_secrets` (Attributes List) The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--ca_secrets))
 - `cli_options` (List of String) The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.
-- `extension` (Attributes List) The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--extension))
+- `extension` (Attributes List) The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--extension))
 - `local_repository` (String) The path of the local Maven repository.
-- `profiles` (Attributes List) A reference to the ConfigMap or Secret key that contains the Maven profile. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--profiles))
+- `profiles` (Attributes List) A reference to the ConfigMap or Secret key that contains the Maven profile. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--profiles))
 - `properties` (Map of String) The Maven properties.
-- `repositories` (Attributes List) additional repositories (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--repositories))
-- `servers` (Attributes List) Servers (auth) (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--servers))
-- `settings` (Attributes) A reference to the ConfigMap or Secret key that contains the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--settings))
-- `settings_security` (Attributes) A reference to the ConfigMap or Secret key that contains the security of the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--settings_security))
+- `repositories` (Attributes List) additional repositories (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--repositories))
+- `servers` (Attributes List) Servers (auth) (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--servers))
+- `settings` (Attributes) A reference to the ConfigMap or Secret key that contains the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--settings))
+- `settings_security` (Attributes) A reference to the ConfigMap or Secret key that contains the security of the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--settings_security))
 
-<a id="nestedatt--spec--tasks--builder--steps--ca_secrets"></a>
-### Nested Schema for `spec.tasks.builder.steps.ca_secrets`
+<a id="nestedatt--spec--tasks--builder--maven--ca_secrets"></a>
+### Nested Schema for `spec.tasks.builder.maven.ca_secrets`
 
 Required:
 
@@ -202,8 +202,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--tasks--builder--steps--extension"></a>
-### Nested Schema for `spec.tasks.builder.steps.extension`
+<a id="nestedatt--spec--tasks--builder--maven--extension"></a>
+### Nested Schema for `spec.tasks.builder.maven.extension`
 
 Required:
 
@@ -217,16 +217,16 @@ Optional:
 - `version` (String) Maven Version
 
 
-<a id="nestedatt--spec--tasks--builder--steps--profiles"></a>
-### Nested Schema for `spec.tasks.builder.steps.profiles`
+<a id="nestedatt--spec--tasks--builder--maven--profiles"></a>
+### Nested Schema for `spec.tasks.builder.maven.profiles`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--profiles--config_map_key_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--profiles--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--profiles--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--profiles--secret_key_ref))
 
-<a id="nestedatt--spec--tasks--builder--steps--profiles--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.builder.steps.profiles.config_map_key_ref`
+<a id="nestedatt--spec--tasks--builder--maven--profiles--config_map_key_ref"></a>
+### Nested Schema for `spec.tasks.builder.maven.profiles.config_map_key_ref`
 
 Required:
 
@@ -238,8 +238,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--tasks--builder--steps--profiles--secret_key_ref"></a>
-### Nested Schema for `spec.tasks.builder.steps.profiles.secret_key_ref`
+<a id="nestedatt--spec--tasks--builder--maven--profiles--secret_key_ref"></a>
+### Nested Schema for `spec.tasks.builder.maven.profiles.secret_key_ref`
 
 Required:
 
@@ -252,8 +252,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tasks--builder--steps--repositories"></a>
-### Nested Schema for `spec.tasks.builder.steps.repositories`
+<a id="nestedatt--spec--tasks--builder--maven--repositories"></a>
+### Nested Schema for `spec.tasks.builder.maven.repositories`
 
 Required:
 
@@ -263,24 +263,11 @@ Required:
 Optional:
 
 - `name` (String) name of the repository
-- `releases` (Attributes) can use stable releases (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--repositories--releases))
-- `snapshots` (Attributes) can use snapshot (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--repositories--snapshots))
+- `releases` (Attributes) can use stable releases (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--repositories--releases))
+- `snapshots` (Attributes) can use snapshot (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--repositories--snapshots))
 
-<a id="nestedatt--spec--tasks--builder--steps--repositories--releases"></a>
-### Nested Schema for `spec.tasks.builder.steps.repositories.releases`
-
-Required:
-
-- `enabled` (Boolean) is the policy activated or not
-
-Optional:
-
-- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
-- `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
-
-
-<a id="nestedatt--spec--tasks--builder--steps--repositories--snapshots"></a>
-### Nested Schema for `spec.tasks.builder.steps.repositories.snapshots`
+<a id="nestedatt--spec--tasks--builder--maven--repositories--releases"></a>
+### Nested Schema for `spec.tasks.builder.maven.repositories.releases`
 
 Required:
 
@@ -292,9 +279,22 @@ Optional:
 - `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
 
 
+<a id="nestedatt--spec--tasks--builder--maven--repositories--snapshots"></a>
+### Nested Schema for `spec.tasks.builder.maven.repositories.snapshots`
 
-<a id="nestedatt--spec--tasks--builder--steps--servers"></a>
-### Nested Schema for `spec.tasks.builder.steps.servers`
+Required:
+
+- `enabled` (Boolean) is the policy activated or not
+
+Optional:
+
+- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
+- `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
+
+
+
+<a id="nestedatt--spec--tasks--builder--maven--servers"></a>
+### Nested Schema for `spec.tasks.builder.maven.servers`
 
 Optional:
 
@@ -304,16 +304,16 @@ Optional:
 - `username` (String)
 
 
-<a id="nestedatt--spec--tasks--builder--steps--settings"></a>
-### Nested Schema for `spec.tasks.builder.steps.settings`
+<a id="nestedatt--spec--tasks--builder--maven--settings"></a>
+### Nested Schema for `spec.tasks.builder.maven.settings`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--settings--config_map_key_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--settings--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--settings--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--settings--secret_key_ref))
 
-<a id="nestedatt--spec--tasks--builder--steps--settings--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.builder.steps.settings.config_map_key_ref`
+<a id="nestedatt--spec--tasks--builder--maven--settings--config_map_key_ref"></a>
+### Nested Schema for `spec.tasks.builder.maven.settings.config_map_key_ref`
 
 Required:
 
@@ -325,8 +325,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--tasks--builder--steps--settings--secret_key_ref"></a>
-### Nested Schema for `spec.tasks.builder.steps.settings.secret_key_ref`
+<a id="nestedatt--spec--tasks--builder--maven--settings--secret_key_ref"></a>
+### Nested Schema for `spec.tasks.builder.maven.settings.secret_key_ref`
 
 Required:
 
@@ -339,16 +339,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tasks--builder--steps--settings_security"></a>
-### Nested Schema for `spec.tasks.builder.steps.settings_security`
+<a id="nestedatt--spec--tasks--builder--maven--settings_security"></a>
+### Nested Schema for `spec.tasks.builder.maven.settings_security`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--settings_security--config_map_key_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--settings_security--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--settings_security--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--settings_security--secret_key_ref))
 
-<a id="nestedatt--spec--tasks--builder--steps--settings_security--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.builder.steps.settings_security.config_map_key_ref`
+<a id="nestedatt--spec--tasks--builder--maven--settings_security--config_map_key_ref"></a>
+### Nested Schema for `spec.tasks.builder.maven.settings_security.config_map_key_ref`
 
 Required:
 
@@ -360,8 +360,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--tasks--builder--steps--settings_security--secret_key_ref"></a>
-### Nested Schema for `spec.tasks.builder.steps.settings_security.secret_key_ref`
+<a id="nestedatt--spec--tasks--builder--maven--settings_security--secret_key_ref"></a>
+### Nested Schema for `spec.tasks.builder.maven.settings_security.secret_key_ref`
 
 Required:
 
@@ -381,17 +381,17 @@ Optional:
 Required:
 
 - `application_class` (String) application entry point (main) to be executed
-- `dependencies` (Attributes List) list of dependencies needed to run the application (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--dependencies))
+- `dependencies` (Attributes List) list of dependencies needed to run the application (see [below for nested schema](#nestedatt--spec--tasks--builder--runtime--dependencies))
 - `provider` (String) Camel main application provider, ie, Camel Quarkus
 - `version` (String) Camel K Runtime version
 
 Optional:
 
-- `capabilities` (Attributes) features offered by this runtime (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--capabilities))
+- `capabilities` (Attributes) features offered by this runtime (see [below for nested schema](#nestedatt--spec--tasks--builder--runtime--capabilities))
 - `metadata` (Map of String) set of metadata
 
-<a id="nestedatt--spec--tasks--builder--steps--dependencies"></a>
-### Nested Schema for `spec.tasks.builder.steps.dependencies`
+<a id="nestedatt--spec--tasks--builder--runtime--dependencies"></a>
+### Nested Schema for `spec.tasks.builder.runtime.dependencies`
 
 Required:
 
@@ -405,18 +405,18 @@ Optional:
 - `version` (String) Maven Version
 
 
-<a id="nestedatt--spec--tasks--builder--steps--capabilities"></a>
-### Nested Schema for `spec.tasks.builder.steps.capabilities`
+<a id="nestedatt--spec--tasks--builder--runtime--capabilities"></a>
+### Nested Schema for `spec.tasks.builder.runtime.capabilities`
 
 Optional:
 
-- `build_time_properties` (Attributes List) Set of required Camel build time properties (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--capabilities--build_time_properties))
-- `dependencies` (Attributes List) List of required Maven dependencies (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--capabilities--dependencies))
+- `build_time_properties` (Attributes List) Set of required Camel build time properties (see [below for nested schema](#nestedatt--spec--tasks--builder--runtime--capabilities--build_time_properties))
+- `dependencies` (Attributes List) List of required Maven dependencies (see [below for nested schema](#nestedatt--spec--tasks--builder--runtime--capabilities--dependencies))
 - `metadata` (Map of String) Set of generic metadata
-- `runtime_properties` (Attributes List) Set of required Camel runtime properties (see [below for nested schema](#nestedatt--spec--tasks--builder--steps--capabilities--runtime_properties))
+- `runtime_properties` (Attributes List) Set of required Camel runtime properties (see [below for nested schema](#nestedatt--spec--tasks--builder--runtime--capabilities--runtime_properties))
 
-<a id="nestedatt--spec--tasks--builder--steps--capabilities--build_time_properties"></a>
-### Nested Schema for `spec.tasks.builder.steps.capabilities.build_time_properties`
+<a id="nestedatt--spec--tasks--builder--runtime--capabilities--build_time_properties"></a>
+### Nested Schema for `spec.tasks.builder.runtime.capabilities.build_time_properties`
 
 Required:
 
@@ -427,8 +427,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--tasks--builder--steps--capabilities--dependencies"></a>
-### Nested Schema for `spec.tasks.builder.steps.capabilities.dependencies`
+<a id="nestedatt--spec--tasks--builder--runtime--capabilities--dependencies"></a>
+### Nested Schema for `spec.tasks.builder.runtime.capabilities.dependencies`
 
 Required:
 
@@ -442,8 +442,8 @@ Optional:
 - `version` (String) Maven Version
 
 
-<a id="nestedatt--spec--tasks--builder--steps--capabilities--runtime_properties"></a>
-### Nested Schema for `spec.tasks.builder.steps.capabilities.runtime_properties`
+<a id="nestedatt--spec--tasks--builder--runtime--capabilities--runtime_properties"></a>
+### Nested Schema for `spec.tasks.builder.runtime.capabilities.runtime_properties`
 
 Required:
 
@@ -646,19 +646,19 @@ Optional:
 
 Optional:
 
-- `ca_secrets` (Attributes List) The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--ca_secrets))
+- `ca_secrets` (Attributes List) The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--ca_secrets))
 - `cli_options` (List of String) The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.
-- `extension` (Attributes List) The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--extension))
+- `extension` (Attributes List) The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--extension))
 - `local_repository` (String) The path of the local Maven repository.
-- `profiles` (Attributes List) A reference to the ConfigMap or Secret key that contains the Maven profile. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--profiles))
+- `profiles` (Attributes List) A reference to the ConfigMap or Secret key that contains the Maven profile. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--profiles))
 - `properties` (Map of String) The Maven properties.
-- `repositories` (Attributes List) additional repositories (see [below for nested schema](#nestedatt--spec--tasks--package--steps--repositories))
-- `servers` (Attributes List) Servers (auth) (see [below for nested schema](#nestedatt--spec--tasks--package--steps--servers))
-- `settings` (Attributes) A reference to the ConfigMap or Secret key that contains the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings))
-- `settings_security` (Attributes) A reference to the ConfigMap or Secret key that contains the security of the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings_security))
+- `repositories` (Attributes List) additional repositories (see [below for nested schema](#nestedatt--spec--tasks--package--maven--repositories))
+- `servers` (Attributes List) Servers (auth) (see [below for nested schema](#nestedatt--spec--tasks--package--maven--servers))
+- `settings` (Attributes) A reference to the ConfigMap or Secret key that contains the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--settings))
+- `settings_security` (Attributes) A reference to the ConfigMap or Secret key that contains the security of the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--settings_security))
 
-<a id="nestedatt--spec--tasks--package--steps--ca_secrets"></a>
-### Nested Schema for `spec.tasks.package.steps.ca_secrets`
+<a id="nestedatt--spec--tasks--package--maven--ca_secrets"></a>
+### Nested Schema for `spec.tasks.package.maven.ca_secrets`
 
 Required:
 
@@ -670,8 +670,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--tasks--package--steps--extension"></a>
-### Nested Schema for `spec.tasks.package.steps.extension`
+<a id="nestedatt--spec--tasks--package--maven--extension"></a>
+### Nested Schema for `spec.tasks.package.maven.extension`
 
 Required:
 
@@ -685,16 +685,16 @@ Optional:
 - `version` (String) Maven Version
 
 
-<a id="nestedatt--spec--tasks--package--steps--profiles"></a>
-### Nested Schema for `spec.tasks.package.steps.profiles`
+<a id="nestedatt--spec--tasks--package--maven--profiles"></a>
+### Nested Schema for `spec.tasks.package.maven.profiles`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--profiles--config_map_key_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--profiles--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--profiles--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--profiles--secret_key_ref))
 
-<a id="nestedatt--spec--tasks--package--steps--profiles--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.package.steps.profiles.config_map_key_ref`
+<a id="nestedatt--spec--tasks--package--maven--profiles--config_map_key_ref"></a>
+### Nested Schema for `spec.tasks.package.maven.profiles.config_map_key_ref`
 
 Required:
 
@@ -706,8 +706,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--tasks--package--steps--profiles--secret_key_ref"></a>
-### Nested Schema for `spec.tasks.package.steps.profiles.secret_key_ref`
+<a id="nestedatt--spec--tasks--package--maven--profiles--secret_key_ref"></a>
+### Nested Schema for `spec.tasks.package.maven.profiles.secret_key_ref`
 
 Required:
 
@@ -720,8 +720,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tasks--package--steps--repositories"></a>
-### Nested Schema for `spec.tasks.package.steps.repositories`
+<a id="nestedatt--spec--tasks--package--maven--repositories"></a>
+### Nested Schema for `spec.tasks.package.maven.repositories`
 
 Required:
 
@@ -731,24 +731,11 @@ Required:
 Optional:
 
 - `name` (String) name of the repository
-- `releases` (Attributes) can use stable releases (see [below for nested schema](#nestedatt--spec--tasks--package--steps--repositories--releases))
-- `snapshots` (Attributes) can use snapshot (see [below for nested schema](#nestedatt--spec--tasks--package--steps--repositories--snapshots))
+- `releases` (Attributes) can use stable releases (see [below for nested schema](#nestedatt--spec--tasks--package--maven--repositories--releases))
+- `snapshots` (Attributes) can use snapshot (see [below for nested schema](#nestedatt--spec--tasks--package--maven--repositories--snapshots))
 
-<a id="nestedatt--spec--tasks--package--steps--repositories--releases"></a>
-### Nested Schema for `spec.tasks.package.steps.repositories.releases`
-
-Required:
-
-- `enabled` (Boolean) is the policy activated or not
-
-Optional:
-
-- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
-- `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
-
-
-<a id="nestedatt--spec--tasks--package--steps--repositories--snapshots"></a>
-### Nested Schema for `spec.tasks.package.steps.repositories.snapshots`
+<a id="nestedatt--spec--tasks--package--maven--repositories--releases"></a>
+### Nested Schema for `spec.tasks.package.maven.repositories.releases`
 
 Required:
 
@@ -760,9 +747,22 @@ Optional:
 - `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
 
 
+<a id="nestedatt--spec--tasks--package--maven--repositories--snapshots"></a>
+### Nested Schema for `spec.tasks.package.maven.repositories.snapshots`
 
-<a id="nestedatt--spec--tasks--package--steps--servers"></a>
-### Nested Schema for `spec.tasks.package.steps.servers`
+Required:
+
+- `enabled` (Boolean) is the policy activated or not
+
+Optional:
+
+- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
+- `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
+
+
+
+<a id="nestedatt--spec--tasks--package--maven--servers"></a>
+### Nested Schema for `spec.tasks.package.maven.servers`
 
 Optional:
 
@@ -772,16 +772,16 @@ Optional:
 - `username` (String)
 
 
-<a id="nestedatt--spec--tasks--package--steps--settings"></a>
-### Nested Schema for `spec.tasks.package.steps.settings`
+<a id="nestedatt--spec--tasks--package--maven--settings"></a>
+### Nested Schema for `spec.tasks.package.maven.settings`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings--config_map_key_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--settings--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--settings--secret_key_ref))
 
-<a id="nestedatt--spec--tasks--package--steps--settings--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.package.steps.settings.config_map_key_ref`
+<a id="nestedatt--spec--tasks--package--maven--settings--config_map_key_ref"></a>
+### Nested Schema for `spec.tasks.package.maven.settings.config_map_key_ref`
 
 Required:
 
@@ -793,8 +793,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--tasks--package--steps--settings--secret_key_ref"></a>
-### Nested Schema for `spec.tasks.package.steps.settings.secret_key_ref`
+<a id="nestedatt--spec--tasks--package--maven--settings--secret_key_ref"></a>
+### Nested Schema for `spec.tasks.package.maven.settings.secret_key_ref`
 
 Required:
 
@@ -807,16 +807,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tasks--package--steps--settings_security"></a>
-### Nested Schema for `spec.tasks.package.steps.settings_security`
+<a id="nestedatt--spec--tasks--package--maven--settings_security"></a>
+### Nested Schema for `spec.tasks.package.maven.settings_security`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings_security--config_map_key_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings_security--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--settings_security--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--settings_security--secret_key_ref))
 
-<a id="nestedatt--spec--tasks--package--steps--settings_security--config_map_key_ref"></a>
-### Nested Schema for `spec.tasks.package.steps.settings_security.config_map_key_ref`
+<a id="nestedatt--spec--tasks--package--maven--settings_security--config_map_key_ref"></a>
+### Nested Schema for `spec.tasks.package.maven.settings_security.config_map_key_ref`
 
 Required:
 
@@ -828,8 +828,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--tasks--package--steps--settings_security--secret_key_ref"></a>
-### Nested Schema for `spec.tasks.package.steps.settings_security.secret_key_ref`
+<a id="nestedatt--spec--tasks--package--maven--settings_security--secret_key_ref"></a>
+### Nested Schema for `spec.tasks.package.maven.settings_security.secret_key_ref`
 
 Required:
 
@@ -849,17 +849,17 @@ Optional:
 Required:
 
 - `application_class` (String) application entry point (main) to be executed
-- `dependencies` (Attributes List) list of dependencies needed to run the application (see [below for nested schema](#nestedatt--spec--tasks--package--steps--dependencies))
+- `dependencies` (Attributes List) list of dependencies needed to run the application (see [below for nested schema](#nestedatt--spec--tasks--package--runtime--dependencies))
 - `provider` (String) Camel main application provider, ie, Camel Quarkus
 - `version` (String) Camel K Runtime version
 
 Optional:
 
-- `capabilities` (Attributes) features offered by this runtime (see [below for nested schema](#nestedatt--spec--tasks--package--steps--capabilities))
+- `capabilities` (Attributes) features offered by this runtime (see [below for nested schema](#nestedatt--spec--tasks--package--runtime--capabilities))
 - `metadata` (Map of String) set of metadata
 
-<a id="nestedatt--spec--tasks--package--steps--dependencies"></a>
-### Nested Schema for `spec.tasks.package.steps.dependencies`
+<a id="nestedatt--spec--tasks--package--runtime--dependencies"></a>
+### Nested Schema for `spec.tasks.package.runtime.dependencies`
 
 Required:
 
@@ -873,18 +873,18 @@ Optional:
 - `version` (String) Maven Version
 
 
-<a id="nestedatt--spec--tasks--package--steps--capabilities"></a>
-### Nested Schema for `spec.tasks.package.steps.capabilities`
+<a id="nestedatt--spec--tasks--package--runtime--capabilities"></a>
+### Nested Schema for `spec.tasks.package.runtime.capabilities`
 
 Optional:
 
-- `build_time_properties` (Attributes List) Set of required Camel build time properties (see [below for nested schema](#nestedatt--spec--tasks--package--steps--capabilities--build_time_properties))
-- `dependencies` (Attributes List) List of required Maven dependencies (see [below for nested schema](#nestedatt--spec--tasks--package--steps--capabilities--dependencies))
+- `build_time_properties` (Attributes List) Set of required Camel build time properties (see [below for nested schema](#nestedatt--spec--tasks--package--runtime--capabilities--build_time_properties))
+- `dependencies` (Attributes List) List of required Maven dependencies (see [below for nested schema](#nestedatt--spec--tasks--package--runtime--capabilities--dependencies))
 - `metadata` (Map of String) Set of generic metadata
-- `runtime_properties` (Attributes List) Set of required Camel runtime properties (see [below for nested schema](#nestedatt--spec--tasks--package--steps--capabilities--runtime_properties))
+- `runtime_properties` (Attributes List) Set of required Camel runtime properties (see [below for nested schema](#nestedatt--spec--tasks--package--runtime--capabilities--runtime_properties))
 
-<a id="nestedatt--spec--tasks--package--steps--capabilities--build_time_properties"></a>
-### Nested Schema for `spec.tasks.package.steps.capabilities.build_time_properties`
+<a id="nestedatt--spec--tasks--package--runtime--capabilities--build_time_properties"></a>
+### Nested Schema for `spec.tasks.package.runtime.capabilities.build_time_properties`
 
 Required:
 
@@ -895,8 +895,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--tasks--package--steps--capabilities--dependencies"></a>
-### Nested Schema for `spec.tasks.package.steps.capabilities.dependencies`
+<a id="nestedatt--spec--tasks--package--runtime--capabilities--dependencies"></a>
+### Nested Schema for `spec.tasks.package.runtime.capabilities.dependencies`
 
 Required:
 
@@ -910,8 +910,8 @@ Optional:
 - `version` (String) Maven Version
 
 
-<a id="nestedatt--spec--tasks--package--steps--capabilities--runtime_properties"></a>
-### Nested Schema for `spec.tasks.package.steps.capabilities.runtime_properties`
+<a id="nestedatt--spec--tasks--package--runtime--capabilities--runtime_properties"></a>
+### Nested Schema for `spec.tasks.package.runtime.capabilities.runtime_properties`
 
 Required:
 

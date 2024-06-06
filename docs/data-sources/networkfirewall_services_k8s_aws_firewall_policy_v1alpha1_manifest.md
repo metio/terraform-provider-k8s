@@ -135,17 +135,17 @@ Optional:
 
 Optional:
 
-- `publish_metric_action` (Attributes) Stateless inspection criteria that publishes the specified metrics to AmazonCloudWatch for the matching packet. This setting defines a CloudWatch dimensionvalue to be published. (see [below for nested schema](#nestedatt--spec--firewall_policy--stateless_custom_actions--action_name--publish_metric_action))
+- `publish_metric_action` (Attributes) Stateless inspection criteria that publishes the specified metrics to AmazonCloudWatch for the matching packet. This setting defines a CloudWatch dimensionvalue to be published. (see [below for nested schema](#nestedatt--spec--firewall_policy--stateless_custom_actions--action_definition--publish_metric_action))
 
-<a id="nestedatt--spec--firewall_policy--stateless_custom_actions--action_name--publish_metric_action"></a>
-### Nested Schema for `spec.firewall_policy.stateless_custom_actions.action_name.publish_metric_action`
+<a id="nestedatt--spec--firewall_policy--stateless_custom_actions--action_definition--publish_metric_action"></a>
+### Nested Schema for `spec.firewall_policy.stateless_custom_actions.action_definition.publish_metric_action`
 
 Optional:
 
-- `dimensions` (Attributes List) (see [below for nested schema](#nestedatt--spec--firewall_policy--stateless_custom_actions--action_name--publish_metric_action--dimensions))
+- `dimensions` (Attributes List) (see [below for nested schema](#nestedatt--spec--firewall_policy--stateless_custom_actions--action_definition--publish_metric_action--dimensions))
 
-<a id="nestedatt--spec--firewall_policy--stateless_custom_actions--action_name--publish_metric_action--dimensions"></a>
-### Nested Schema for `spec.firewall_policy.stateless_custom_actions.action_name.publish_metric_action.dimensions`
+<a id="nestedatt--spec--firewall_policy--stateless_custom_actions--action_definition--publish_metric_action--dimensions"></a>
+### Nested Schema for `spec.firewall_policy.stateless_custom_actions.action_definition.publish_metric_action.dimensions`
 
 Optional:
 

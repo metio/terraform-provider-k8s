@@ -207,7 +207,7 @@ Optional:
 Optional:
 
 - `concurrency` (Number)
-- `healthy` (Attributes) (see [below for nested schema](#nestedatt--spec--port_level_settings--health_check--passive--healthy))
+- `healthy` (Attributes) (see [below for nested schema](#nestedatt--spec--port_level_settings--health_check--active--healthy))
 - `host` (String)
 - `http_path` (String)
 - `port` (Number)
@@ -215,10 +215,10 @@ Optional:
 - `strict_tls` (Boolean)
 - `timeout` (Number)
 - `type` (String)
-- `unhealthy` (Attributes) (see [below for nested schema](#nestedatt--spec--port_level_settings--health_check--passive--unhealthy))
+- `unhealthy` (Attributes) (see [below for nested schema](#nestedatt--spec--port_level_settings--health_check--active--unhealthy))
 
-<a id="nestedatt--spec--port_level_settings--health_check--passive--healthy"></a>
-### Nested Schema for `spec.port_level_settings.health_check.passive.healthy`
+<a id="nestedatt--spec--port_level_settings--health_check--active--healthy"></a>
+### Nested Schema for `spec.port_level_settings.health_check.active.healthy`
 
 Optional:
 
@@ -227,8 +227,8 @@ Optional:
 - `successes` (Number)
 
 
-<a id="nestedatt--spec--port_level_settings--health_check--passive--unhealthy"></a>
-### Nested Schema for `spec.port_level_settings.health_check.passive.unhealthy`
+<a id="nestedatt--spec--port_level_settings--health_check--active--unhealthy"></a>
+### Nested Schema for `spec.port_level_settings.health_check.active.unhealthy`
 
 Optional:
 

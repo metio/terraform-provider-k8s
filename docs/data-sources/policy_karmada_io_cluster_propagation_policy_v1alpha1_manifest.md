@@ -164,10 +164,10 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of field selector requirements. (see [below for nested schema](#nestedatt--spec--placement--cluster_affinities--label_selector--match_expressions))
+- `match_expressions` (Attributes List) A list of field selector requirements. (see [below for nested schema](#nestedatt--spec--placement--cluster_affinities--field_selector--match_expressions))
 
-<a id="nestedatt--spec--placement--cluster_affinities--label_selector--match_expressions"></a>
-### Nested Schema for `spec.placement.cluster_affinities.label_selector.match_expressions`
+<a id="nestedatt--spec--placement--cluster_affinities--field_selector--match_expressions"></a>
+### Nested Schema for `spec.placement.cluster_affinities.field_selector.match_expressions`
 
 Required:
 
@@ -218,10 +218,10 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of field selector requirements. (see [below for nested schema](#nestedatt--spec--placement--cluster_affinity--label_selector--match_expressions))
+- `match_expressions` (Attributes List) A list of field selector requirements. (see [below for nested schema](#nestedatt--spec--placement--cluster_affinity--field_selector--match_expressions))
 
-<a id="nestedatt--spec--placement--cluster_affinity--label_selector--match_expressions"></a>
-### Nested Schema for `spec.placement.cluster_affinity.label_selector.match_expressions`
+<a id="nestedatt--spec--placement--cluster_affinity--field_selector--match_expressions"></a>
+### Nested Schema for `spec.placement.cluster_affinity.field_selector.match_expressions`
 
 Required:
 
@@ -301,18 +301,18 @@ Optional:
 
 - `cluster_names` (List of String) ClusterNames is the list of clusters to be selected.
 - `exclude` (List of String) ExcludedClusters is the list of clusters to be ignored.
-- `field_selector` (Attributes) FieldSelector is a filter to select member clusters by fields.The key(field) of the match expression should be 'provider', 'region', or 'zone',and the operator of the match expression should be 'In' or 'NotIn'.If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--field_selector))
-- `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels.If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--label_selector))
+- `field_selector` (Attributes) FieldSelector is a filter to select member clusters by fields.The key(field) of the match expression should be 'provider', 'region', or 'zone',and the operator of the match expression should be 'In' or 'NotIn'.If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--target_cluster--field_selector))
+- `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels.If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--target_cluster--label_selector))
 
-<a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--field_selector"></a>
-### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.weight.field_selector`
+<a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--target_cluster--field_selector"></a>
+### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.target_cluster.field_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of field selector requirements. (see [below for nested schema](#nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) A list of field selector requirements. (see [below for nested schema](#nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--target_cluster--field_selector--match_expressions))
 
-<a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--target_cluster--field_selector--match_expressions"></a>
+### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.target_cluster.field_selector.match_expressions`
 
 Required:
 
@@ -325,16 +325,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--label_selector"></a>
-### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.weight.label_selector`
+<a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--target_cluster--label_selector"></a>
+### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.target_cluster.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--target_cluster--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--placement--replica_scheduling--weight_preference--static_weight_list--target_cluster--label_selector--match_expressions"></a>
+### Nested Schema for `spec.placement.replica_scheduling.weight_preference.static_weight_list.target_cluster.label_selector.match_expressions`
 
 Required:
 

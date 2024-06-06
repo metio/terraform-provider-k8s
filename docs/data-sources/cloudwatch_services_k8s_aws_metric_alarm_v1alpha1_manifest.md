@@ -118,12 +118,12 @@ Optional:
 
 Optional:
 
-- `dimensions` (Attributes List) (see [below for nested schema](#nestedatt--spec--metrics--metric_stat--unit--dimensions))
+- `dimensions` (Attributes List) (see [below for nested schema](#nestedatt--spec--metrics--metric_stat--metric--dimensions))
 - `metric_name` (String)
 - `namespace` (String)
 
-<a id="nestedatt--spec--metrics--metric_stat--unit--dimensions"></a>
-### Nested Schema for `spec.metrics.metric_stat.unit.dimensions`
+<a id="nestedatt--spec--metrics--metric_stat--metric--dimensions"></a>
+### Nested Schema for `spec.metrics.metric_stat.metric.dimensions`
 
 Optional:
 

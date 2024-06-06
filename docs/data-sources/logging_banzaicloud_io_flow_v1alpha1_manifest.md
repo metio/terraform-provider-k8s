@@ -182,19 +182,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--ca_file--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--ca_file--value_from))
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.mount_from`
+<a id="nestedatt--spec--filters--enhance_k8s--ca_file--mount_from"></a>
+### Nested Schema for `spec.filters.enhance_k8s.ca_file.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--ca_file--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.mount_from.secret_key_ref`
+<a id="nestedatt--spec--filters--enhance_k8s--ca_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.enhance_k8s.ca_file.mount_from.secret_key_ref`
 
 Required:
 
@@ -207,15 +207,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.value_from`
+<a id="nestedatt--spec--filters--enhance_k8s--ca_file--value_from"></a>
+### Nested Schema for `spec.filters.enhance_k8s.ca_file.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--ca_file--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--enhance_k8s--ca_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.enhance_k8s.ca_file.value_from.secret_key_ref`
 
 Required:
 
@@ -234,19 +234,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--client_cert--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--client_cert--value_from))
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.mount_from`
+<a id="nestedatt--spec--filters--enhance_k8s--client_cert--mount_from"></a>
+### Nested Schema for `spec.filters.enhance_k8s.client_cert.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--client_cert--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.mount_from.secret_key_ref`
+<a id="nestedatt--spec--filters--enhance_k8s--client_cert--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.enhance_k8s.client_cert.mount_from.secret_key_ref`
 
 Required:
 
@@ -259,15 +259,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.value_from`
+<a id="nestedatt--spec--filters--enhance_k8s--client_cert--value_from"></a>
+### Nested Schema for `spec.filters.enhance_k8s.client_cert.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--client_cert--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--enhance_k8s--client_cert--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.enhance_k8s.client_cert.value_from.secret_key_ref`
 
 Required:
 
@@ -286,19 +286,19 @@ Optional:
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--client_key--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--client_key--value_from))
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.mount_from`
+<a id="nestedatt--spec--filters--enhance_k8s--client_key--mount_from"></a>
+### Nested Schema for `spec.filters.enhance_k8s.client_key.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--client_key--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--mount_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.mount_from.secret_key_ref`
+<a id="nestedatt--spec--filters--enhance_k8s--client_key--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.enhance_k8s.client_key.mount_from.secret_key_ref`
 
 Required:
 
@@ -311,15 +311,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.value_from`
+<a id="nestedatt--spec--filters--enhance_k8s--client_key--value_from"></a>
+### Nested Schema for `spec.filters.enhance_k8s.client_key.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--enhance_k8s--client_key--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--enhance_k8s--verify_ssl--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.enhance_k8s.verify_ssl.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--enhance_k8s--client_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.enhance_k8s.client_key.value_from.secret_key_ref`
 
 Required:
 
@@ -362,11 +362,11 @@ Optional:
 
 Optional:
 
-- `exclude` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--grep--regexp--exclude))
-- `regexp` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--grep--regexp--regexp))
+- `exclude` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--grep--and--exclude))
+- `regexp` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--grep--and--regexp))
 
-<a id="nestedatt--spec--filters--grep--regexp--exclude"></a>
-### Nested Schema for `spec.filters.grep.regexp.exclude`
+<a id="nestedatt--spec--filters--grep--and--exclude"></a>
+### Nested Schema for `spec.filters.grep.and.exclude`
 
 Required:
 
@@ -374,8 +374,8 @@ Required:
 - `pattern` (String)
 
 
-<a id="nestedatt--spec--filters--grep--regexp--regexp"></a>
-### Nested Schema for `spec.filters.grep.regexp.regexp`
+<a id="nestedatt--spec--filters--grep--and--regexp"></a>
+### Nested Schema for `spec.filters.grep.and.regexp`
 
 Required:
 
@@ -398,11 +398,11 @@ Required:
 
 Optional:
 
-- `exclude` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--grep--regexp--exclude))
-- `regexp` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--grep--regexp--regexp))
+- `exclude` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--grep--or--exclude))
+- `regexp` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--grep--or--regexp))
 
-<a id="nestedatt--spec--filters--grep--regexp--exclude"></a>
-### Nested Schema for `spec.filters.grep.regexp.exclude`
+<a id="nestedatt--spec--filters--grep--or--exclude"></a>
+### Nested Schema for `spec.filters.grep.or.exclude`
 
 Required:
 
@@ -410,8 +410,8 @@ Required:
 - `pattern` (String)
 
 
-<a id="nestedatt--spec--filters--grep--regexp--regexp"></a>
-### Nested Schema for `spec.filters.grep.regexp.regexp`
+<a id="nestedatt--spec--filters--grep--or--regexp"></a>
+### Nested Schema for `spec.filters.grep.or.regexp`
 
 Required:
 
@@ -460,7 +460,7 @@ Optional:
 
 Optional:
 
-- `custom_pattern_path` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path))
+- `custom_pattern_path` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--custom_pattern_path))
 - `delimiter` (String)
 - `delimiter_pattern` (String)
 - `estimate_current_event` (Boolean)
@@ -470,7 +470,7 @@ Optional:
 - `grok_failure_key` (String)
 - `grok_name_key` (String)
 - `grok_pattern` (String)
-- `grok_patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--grok_patterns))
+- `grok_patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--grok_patterns))
 - `keep_time_key` (Boolean)
 - `keys` (String)
 - `label_delimiter` (String)
@@ -479,7 +479,7 @@ Optional:
 - `multiline_start_regexp` (String)
 - `null_empty_string` (Boolean)
 - `null_value_pattern` (String)
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--patterns))
 - `time_format` (String)
 - `time_key` (String)
 - `time_type` (String)
@@ -488,24 +488,24 @@ Optional:
 - `types` (String)
 - `utc` (Boolean)
 
-<a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path`
+<a id="nestedatt--spec--filters--parser--parse--custom_pattern_path"></a>
+### Nested Schema for `spec.filters.parser.parse.custom_pattern_path`
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--custom_pattern_path--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--custom_pattern_path--value_from))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--mount_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.mount_from`
+<a id="nestedatt--spec--filters--parser--parse--custom_pattern_path--mount_from"></a>
+### Nested Schema for `spec.filters.parser.parse.custom_pattern_path.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--custom_pattern_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--parser--parse--custom_pattern_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.parser.parse.custom_pattern_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -518,15 +518,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.value_from`
+<a id="nestedatt--spec--filters--parser--parse--custom_pattern_path--value_from"></a>
+### Nested Schema for `spec.filters.parser.parse.custom_pattern_path.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--custom_pattern_path--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--parser--parse--custom_pattern_path--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.parser.parse.custom_pattern_path.value_from.secret_key_ref`
 
 Required:
 
@@ -540,8 +540,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--parser--reserve_time--grok_patterns"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.grok_patterns`
+<a id="nestedatt--spec--filters--parser--parse--grok_patterns"></a>
+### Nested Schema for `spec.filters.parser.parse.grok_patterns`
 
 Required:
 
@@ -556,19 +556,19 @@ Optional:
 - `timezone` (String)
 
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns`
+<a id="nestedatt--spec--filters--parser--parse--patterns"></a>
+### Nested Schema for `spec.filters.parser.parse.patterns`
 
 Optional:
 
-- `custom_pattern_path` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--custom_pattern_path))
+- `custom_pattern_path` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--patterns--custom_pattern_path))
 - `estimate_current_event` (Boolean)
 - `expression` (String)
 - `format` (String)
 - `grok_failure_key` (String)
 - `grok_name_key` (String)
 - `grok_pattern` (String)
-- `grok_patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--grok_patterns))
+- `grok_patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--patterns--grok_patterns))
 - `keep_time_key` (Boolean)
 - `local_time` (Boolean)
 - `multiline_start_regexp` (String)
@@ -582,24 +582,24 @@ Optional:
 - `types` (String)
 - `utc` (Boolean)
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--custom_pattern_path"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.custom_pattern_path`
+<a id="nestedatt--spec--filters--parser--parse--patterns--custom_pattern_path"></a>
+### Nested Schema for `spec.filters.parser.parse.patterns.custom_pattern_path`
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--utc--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--patterns--custom_pattern_path--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--patterns--custom_pattern_path--value_from))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--utc--mount_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.mount_from`
+<a id="nestedatt--spec--filters--parser--parse--patterns--custom_pattern_path--mount_from"></a>
+### Nested Schema for `spec.filters.parser.parse.patterns.custom_pattern_path.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--patterns--custom_pattern_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--parser--parse--patterns--custom_pattern_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.parser.parse.patterns.custom_pattern_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -612,15 +612,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.value_from`
+<a id="nestedatt--spec--filters--parser--parse--patterns--custom_pattern_path--value_from"></a>
+### Nested Schema for `spec.filters.parser.parse.patterns.custom_pattern_path.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parse--patterns--custom_pattern_path--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--parser--parse--patterns--custom_pattern_path--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.parser.parse.patterns.custom_pattern_path.value_from.secret_key_ref`
 
 Required:
 
@@ -634,8 +634,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--grok_patterns"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.grok_patterns`
+<a id="nestedatt--spec--filters--parser--parse--patterns--grok_patterns"></a>
+### Nested Schema for `spec.filters.parser.parse.patterns.grok_patterns`
 
 Required:
 
@@ -657,7 +657,7 @@ Optional:
 
 Optional:
 
-- `custom_pattern_path` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path))
+- `custom_pattern_path` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--custom_pattern_path))
 - `delimiter` (String)
 - `delimiter_pattern` (String)
 - `estimate_current_event` (Boolean)
@@ -667,7 +667,7 @@ Optional:
 - `grok_failure_key` (String)
 - `grok_name_key` (String)
 - `grok_pattern` (String)
-- `grok_patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--grok_patterns))
+- `grok_patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--grok_patterns))
 - `keep_time_key` (Boolean)
 - `keys` (String)
 - `label_delimiter` (String)
@@ -676,7 +676,7 @@ Optional:
 - `multiline_start_regexp` (String)
 - `null_empty_string` (Boolean)
 - `null_value_pattern` (String)
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--patterns))
 - `time_format` (String)
 - `time_key` (String)
 - `time_type` (String)
@@ -685,24 +685,24 @@ Optional:
 - `types` (String)
 - `utc` (Boolean)
 
-<a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path`
+<a id="nestedatt--spec--filters--parser--parsers--custom_pattern_path"></a>
+### Nested Schema for `spec.filters.parser.parsers.custom_pattern_path`
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--custom_pattern_path--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--custom_pattern_path--value_from))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--mount_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.mount_from`
+<a id="nestedatt--spec--filters--parser--parsers--custom_pattern_path--mount_from"></a>
+### Nested Schema for `spec.filters.parser.parsers.custom_pattern_path.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--custom_pattern_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--parser--parsers--custom_pattern_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.parser.parsers.custom_pattern_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -715,15 +715,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.value_from`
+<a id="nestedatt--spec--filters--parser--parsers--custom_pattern_path--value_from"></a>
+### Nested Schema for `spec.filters.parser.parsers.custom_pattern_path.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--custom_pattern_path--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--custom_pattern_path--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.custom_pattern_path.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--parser--parsers--custom_pattern_path--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.parser.parsers.custom_pattern_path.value_from.secret_key_ref`
 
 Required:
 
@@ -737,8 +737,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--parser--reserve_time--grok_patterns"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.grok_patterns`
+<a id="nestedatt--spec--filters--parser--parsers--grok_patterns"></a>
+### Nested Schema for `spec.filters.parser.parsers.grok_patterns`
 
 Required:
 
@@ -753,19 +753,19 @@ Optional:
 - `timezone` (String)
 
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns`
+<a id="nestedatt--spec--filters--parser--parsers--patterns"></a>
+### Nested Schema for `spec.filters.parser.parsers.patterns`
 
 Optional:
 
-- `custom_pattern_path` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--custom_pattern_path))
+- `custom_pattern_path` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--patterns--custom_pattern_path))
 - `estimate_current_event` (Boolean)
 - `expression` (String)
 - `format` (String)
 - `grok_failure_key` (String)
 - `grok_name_key` (String)
 - `grok_pattern` (String)
-- `grok_patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--grok_patterns))
+- `grok_patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--patterns--grok_patterns))
 - `keep_time_key` (Boolean)
 - `local_time` (Boolean)
 - `multiline_start_regexp` (String)
@@ -779,24 +779,24 @@ Optional:
 - `types` (String)
 - `utc` (Boolean)
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--custom_pattern_path"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.custom_pattern_path`
+<a id="nestedatt--spec--filters--parser--parsers--patterns--custom_pattern_path"></a>
+### Nested Schema for `spec.filters.parser.parsers.patterns.custom_pattern_path`
 
 Optional:
 
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--utc--mount_from))
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--patterns--custom_pattern_path--mount_from))
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--patterns--custom_pattern_path--value_from))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--utc--mount_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.mount_from`
+<a id="nestedatt--spec--filters--parser--parsers--patterns--custom_pattern_path--mount_from"></a>
+### Nested Schema for `spec.filters.parser.parsers.patterns.custom_pattern_path.mount_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--patterns--custom_pattern_path--mount_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--parser--parsers--patterns--custom_pattern_path--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.parser.parsers.patterns.custom_pattern_path.mount_from.secret_key_ref`
 
 Required:
 
@@ -809,15 +809,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.value_from`
+<a id="nestedatt--spec--filters--parser--parsers--patterns--custom_pattern_path--value_from"></a>
+### Nested Schema for `spec.filters.parser.parsers.patterns.custom_pattern_path.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--parser--parsers--patterns--custom_pattern_path--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--utc--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.utc.value_from.secret_key_ref`
+<a id="nestedatt--spec--filters--parser--parsers--patterns--custom_pattern_path--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.filters.parser.parsers.patterns.custom_pattern_path.value_from.secret_key_ref`
 
 Required:
 
@@ -831,8 +831,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--filters--parser--reserve_time--patterns--grok_patterns"></a>
-### Nested Schema for `spec.filters.parser.reserve_time.patterns.grok_patterns`
+<a id="nestedatt--spec--filters--parser--parsers--patterns--grok_patterns"></a>
+### Nested Schema for `spec.filters.parser.parsers.patterns.grok_patterns`
 
 Required:
 

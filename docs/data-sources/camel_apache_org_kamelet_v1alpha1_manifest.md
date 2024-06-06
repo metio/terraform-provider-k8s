@@ -116,15 +116,15 @@ Optional:
 - `description` (String)
 - `dollarschema` (String) JSONSchemaURL represents a schema url.
 - `example` (Map of String) JSON represents any valid JSON value. These types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil.
-- `external_docs` (Attributes) ExternalDocumentation allows referencing an external resource for extended documentation. (see [below for nested schema](#nestedatt--spec--data_types--types--scheme--external_docs))
+- `external_docs` (Attributes) ExternalDocumentation allows referencing an external resource for extended documentation. (see [below for nested schema](#nestedatt--spec--data_types--types--schema--external_docs))
 - `id` (String)
-- `properties` (Attributes) (see [below for nested schema](#nestedatt--spec--data_types--types--scheme--properties))
+- `properties` (Attributes) (see [below for nested schema](#nestedatt--spec--data_types--types--schema--properties))
 - `required` (List of String)
 - `title` (String)
 - `type` (String)
 
-<a id="nestedatt--spec--data_types--types--scheme--external_docs"></a>
-### Nested Schema for `spec.data_types.types.scheme.external_docs`
+<a id="nestedatt--spec--data_types--types--schema--external_docs"></a>
+### Nested Schema for `spec.data_types.types.schema.external_docs`
 
 Optional:
 
@@ -132,8 +132,8 @@ Optional:
 - `url` (String)
 
 
-<a id="nestedatt--spec--data_types--types--scheme--properties"></a>
-### Nested Schema for `spec.data_types.types.scheme.properties`
+<a id="nestedatt--spec--data_types--types--schema--properties"></a>
+### Nested Schema for `spec.data_types.types.schema.properties`
 
 Optional:
 

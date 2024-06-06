@@ -93,19 +93,19 @@ Optional:
 Optional:
 
 - `baselining_job_name` (String)
-- `constraints_resource` (Attributes) The constraints resource for a monitoring job. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--constraints_resource))
-- `statistics_resource` (Attributes) The statistics resource for a monitoring job. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--statistics_resource))
+- `constraints_resource` (Attributes) The constraints resource for a monitoring job. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--baseline_config--constraints_resource))
+- `statistics_resource` (Attributes) The statistics resource for a monitoring job. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--baseline_config--statistics_resource))
 
-<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--constraints_resource"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition.constraints_resource`
+<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--baseline_config--constraints_resource"></a>
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.baseline_config.constraints_resource`
 
 Optional:
 
 - `s3_uri` (String)
 
 
-<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--statistics_resource"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition.statistics_resource`
+<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--baseline_config--statistics_resource"></a>
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.baseline_config.statistics_resource`
 
 Optional:
 
@@ -130,10 +130,10 @@ Optional:
 
 Optional:
 
-- `endpoint_input` (Attributes) Input object for the endpoint (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--endpoint_input))
+- `endpoint_input` (Attributes) Input object for the endpoint (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_inputs--endpoint_input))
 
-<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--endpoint_input"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition.endpoint_input`
+<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_inputs--endpoint_input"></a>
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.monitoring_inputs.endpoint_input`
 
 Optional:
 
@@ -157,17 +157,17 @@ Optional:
 Optional:
 
 - `kms_key_id` (String)
-- `monitoring_outputs` (Attributes List) (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--monitoring_outputs))
+- `monitoring_outputs` (Attributes List) (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_output_config--monitoring_outputs))
 
-<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--monitoring_outputs"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition.monitoring_outputs`
+<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_output_config--monitoring_outputs"></a>
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.monitoring_output_config.monitoring_outputs`
 
 Optional:
 
-- `s3_output` (Attributes) Information about where and how you want to store the results of a monitoringjob. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--monitoring_outputs--s3_output))
+- `s3_output` (Attributes) Information about where and how you want to store the results of a monitoringjob. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_output_config--monitoring_outputs--s3_output))
 
-<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--monitoring_outputs--s3_output"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition.monitoring_outputs.s3_output`
+<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_output_config--monitoring_outputs--s3_output"></a>
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.monitoring_output_config.monitoring_outputs.s3_output`
 
 Optional:
 
@@ -183,10 +183,10 @@ Optional:
 
 Optional:
 
-- `cluster_config` (Attributes) Configuration for the cluster used to run model monitoring jobs. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--cluster_config))
+- `cluster_config` (Attributes) Configuration for the cluster used to run model monitoring jobs. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_resources--cluster_config))
 
-<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--cluster_config"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition.cluster_config`
+<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_resources--cluster_config"></a>
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.monitoring_resources.cluster_config`
 
 Optional:
 
@@ -204,10 +204,10 @@ Optional:
 
 - `enable_inter_container_traffic_encryption` (Boolean)
 - `enable_network_isolation` (Boolean)
-- `vpc_config` (Attributes) Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html). (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--vpc_config))
+- `vpc_config` (Attributes) Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html). (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--network_config--vpc_config))
 
-<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--vpc_config"></a>
-### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition.vpc_config`
+<a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--network_config--vpc_config"></a>
+### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.network_config.vpc_config`
 
 Optional:
 

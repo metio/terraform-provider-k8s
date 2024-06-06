@@ -93,7 +93,7 @@ Required:
 Required:
 
 - `class_name` (String)
-- `devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--device_classes--node_name--devices))
+- `devices` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--device_classes--classes--devices))
 - `volume_group` (String)
 
 Optional:
@@ -103,8 +103,8 @@ Optional:
 - `stripe` (Number)
 - `stripe_size` (String)
 
-<a id="nestedatt--spec--storage--device_classes--node_name--devices"></a>
-### Nested Schema for `spec.storage.device_classes.node_name.devices`
+<a id="nestedatt--spec--storage--device_classes--classes--devices"></a>
+### Nested Schema for `spec.storage.device_classes.classes.devices`
 
 Required:
 

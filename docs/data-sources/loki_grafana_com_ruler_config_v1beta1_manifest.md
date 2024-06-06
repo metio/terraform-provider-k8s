@@ -186,12 +186,12 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) Basic authentication configuration for reaching the alertmanager endpoints. (see [below for nested schema](#nestedatt--spec--overrides--alertmanager--relabel_configs--basic_auth))
-- `header_auth` (Attributes) Header authentication configuration for reaching the alertmanager endpoints. (see [below for nested schema](#nestedatt--spec--overrides--alertmanager--relabel_configs--header_auth))
-- `tls` (Attributes) TLS configuration for reaching the alertmanager endpoints. (see [below for nested schema](#nestedatt--spec--overrides--alertmanager--relabel_configs--tls))
+- `basic_auth` (Attributes) Basic authentication configuration for reaching the alertmanager endpoints. (see [below for nested schema](#nestedatt--spec--overrides--alertmanager--client--basic_auth))
+- `header_auth` (Attributes) Header authentication configuration for reaching the alertmanager endpoints. (see [below for nested schema](#nestedatt--spec--overrides--alertmanager--client--header_auth))
+- `tls` (Attributes) TLS configuration for reaching the alertmanager endpoints. (see [below for nested schema](#nestedatt--spec--overrides--alertmanager--client--tls))
 
-<a id="nestedatt--spec--overrides--alertmanager--relabel_configs--basic_auth"></a>
-### Nested Schema for `spec.overrides.alertmanager.relabel_configs.basic_auth`
+<a id="nestedatt--spec--overrides--alertmanager--client--basic_auth"></a>
+### Nested Schema for `spec.overrides.alertmanager.client.basic_auth`
 
 Optional:
 
@@ -199,8 +199,8 @@ Optional:
 - `username` (String) The subject's username for the basic authentication configuration.
 
 
-<a id="nestedatt--spec--overrides--alertmanager--relabel_configs--header_auth"></a>
-### Nested Schema for `spec.overrides.alertmanager.relabel_configs.header_auth`
+<a id="nestedatt--spec--overrides--alertmanager--client--header_auth"></a>
+### Nested Schema for `spec.overrides.alertmanager.client.header_auth`
 
 Optional:
 
@@ -209,8 +209,8 @@ Optional:
 - `type` (String) The authentication type for the header authentication configuration.
 
 
-<a id="nestedatt--spec--overrides--alertmanager--relabel_configs--tls"></a>
-### Nested Schema for `spec.overrides.alertmanager.relabel_configs.tls`
+<a id="nestedatt--spec--overrides--alertmanager--client--tls"></a>
+### Nested Schema for `spec.overrides.alertmanager.client.tls`
 
 Optional:
 

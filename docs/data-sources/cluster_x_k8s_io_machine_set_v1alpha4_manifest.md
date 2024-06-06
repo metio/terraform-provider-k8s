@@ -125,11 +125,11 @@ Optional:
 
 Optional:
 
-- `config_ref` (Attributes) ConfigRef is a reference to a bootstrap provider-specific resourcethat holds configuration details. The reference is optional toallow users/operators to specify Bootstrap.DataSecretName withoutthe need of a controller. (see [below for nested schema](#nestedatt--spec--template--spec--version--config_ref))
+- `config_ref` (Attributes) ConfigRef is a reference to a bootstrap provider-specific resourcethat holds configuration details. The reference is optional toallow users/operators to specify Bootstrap.DataSecretName withoutthe need of a controller. (see [below for nested schema](#nestedatt--spec--template--spec--bootstrap--config_ref))
 - `data_secret_name` (String) DataSecretName is the name of the secret that stores the bootstrap data script.If nil, the Machine should remain in the Pending state.
 
-<a id="nestedatt--spec--template--spec--version--config_ref"></a>
-### Nested Schema for `spec.template.spec.version.config_ref`
+<a id="nestedatt--spec--template--spec--bootstrap--config_ref"></a>
+### Nested Schema for `spec.template.spec.bootstrap.config_ref`
 
 Optional:
 

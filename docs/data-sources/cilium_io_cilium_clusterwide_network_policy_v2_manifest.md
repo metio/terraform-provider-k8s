@@ -210,15 +210,15 @@ Optional:
 
 Required:
 
-- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--spec--egress--to_ports--terminating_tls--envoy_config))
+- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--spec--egress--to_ports--listener--envoy_config))
 - `name` (String) Name is the name of the listener.
 
 Optional:
 
 - `priority` (Number) Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.
 
-<a id="nestedatt--spec--egress--to_ports--terminating_tls--envoy_config"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls.envoy_config`
+<a id="nestedatt--spec--egress--to_ports--listener--envoy_config"></a>
+### Nested Schema for `spec.egress.to_ports.listener.envoy_config`
 
 Required:
 
@@ -235,7 +235,7 @@ Optional:
 
 Required:
 
-- `secret` (Attributes) Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate. (see [below for nested schema](#nestedatt--spec--egress--to_ports--terminating_tls--secret))
+- `secret` (Attributes) Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate. (see [below for nested schema](#nestedatt--spec--egress--to_ports--originating_tls--secret))
 
 Optional:
 
@@ -243,8 +243,8 @@ Optional:
 - `private_key` (String) PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.
 - `trusted_ca` (String) TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.
 
-<a id="nestedatt--spec--egress--to_ports--terminating_tls--secret"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls.secret`
+<a id="nestedatt--spec--egress--to_ports--originating_tls--secret"></a>
+### Nested Schema for `spec.egress.to_ports.originating_tls.secret`
 
 Required:
 
@@ -273,14 +273,14 @@ Optional:
 
 Optional:
 
-- `dns` (Attributes List) DNS-specific rules. (see [below for nested schema](#nestedatt--spec--egress--to_ports--terminating_tls--dns))
-- `http` (Attributes List) HTTP specific rules. (see [below for nested schema](#nestedatt--spec--egress--to_ports--terminating_tls--http))
-- `kafka` (Attributes List) Kafka-specific rules. (see [below for nested schema](#nestedatt--spec--egress--to_ports--terminating_tls--kafka))
+- `dns` (Attributes List) DNS-specific rules. (see [below for nested schema](#nestedatt--spec--egress--to_ports--rules--dns))
+- `http` (Attributes List) HTTP specific rules. (see [below for nested schema](#nestedatt--spec--egress--to_ports--rules--http))
+- `kafka` (Attributes List) Kafka-specific rules. (see [below for nested schema](#nestedatt--spec--egress--to_ports--rules--kafka))
 - `l7` (List of Map of String) Key-value pair rules.
 - `l7proto` (String) Name of the L7 protocol for which the Key-value pair rules apply.
 
-<a id="nestedatt--spec--egress--to_ports--terminating_tls--dns"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls.dns`
+<a id="nestedatt--spec--egress--to_ports--rules--dns"></a>
+### Nested Schema for `spec.egress.to_ports.rules.dns`
 
 Optional:
 
@@ -288,19 +288,19 @@ Optional:
 - `match_pattern` (String) MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not
 
 
-<a id="nestedatt--spec--egress--to_ports--terminating_tls--http"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls.http`
+<a id="nestedatt--spec--egress--to_ports--rules--http"></a>
+### Nested Schema for `spec.egress.to_ports.rules.http`
 
 Optional:
 
-- `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--spec--egress--to_ports--terminating_tls--http--header_matches))
+- `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--spec--egress--to_ports--rules--http--header_matches))
 - `headers` (List of String) Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.
 - `host` (String) Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.
 - `method` (String) Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
-<a id="nestedatt--spec--egress--to_ports--terminating_tls--http--header_matches"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls.http.header_matches`
+<a id="nestedatt--spec--egress--to_ports--rules--http--header_matches"></a>
+### Nested Schema for `spec.egress.to_ports.rules.http.header_matches`
 
 Required:
 
@@ -309,11 +309,11 @@ Required:
 Optional:
 
 - `mismatch` (String) Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.
-- `secret` (Attributes) Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail. (see [below for nested schema](#nestedatt--spec--egress--to_ports--terminating_tls--http--path--secret))
+- `secret` (Attributes) Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail. (see [below for nested schema](#nestedatt--spec--egress--to_ports--rules--http--header_matches--secret))
 - `value` (String) Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.
 
-<a id="nestedatt--spec--egress--to_ports--terminating_tls--http--path--secret"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls.http.path.secret`
+<a id="nestedatt--spec--egress--to_ports--rules--http--header_matches--secret"></a>
+### Nested Schema for `spec.egress.to_ports.rules.http.header_matches.secret`
 
 Required:
 
@@ -326,8 +326,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--egress--to_ports--terminating_tls--kafka"></a>
-### Nested Schema for `spec.egress.to_ports.terminating_tls.kafka`
+<a id="nestedatt--spec--egress--to_ports--rules--kafka"></a>
+### Nested Schema for `spec.egress.to_ports.rules.kafka`
 
 Optional:
 
@@ -832,15 +832,15 @@ Optional:
 
 Required:
 
-- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--terminating_tls--envoy_config))
+- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--listener--envoy_config))
 - `name` (String) Name is the name of the listener.
 
 Optional:
 
 - `priority` (Number) Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.
 
-<a id="nestedatt--spec--ingress--to_ports--terminating_tls--envoy_config"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls.envoy_config`
+<a id="nestedatt--spec--ingress--to_ports--listener--envoy_config"></a>
+### Nested Schema for `spec.ingress.to_ports.listener.envoy_config`
 
 Required:
 
@@ -857,7 +857,7 @@ Optional:
 
 Required:
 
-- `secret` (Attributes) Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--terminating_tls--secret))
+- `secret` (Attributes) Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--originating_tls--secret))
 
 Optional:
 
@@ -865,8 +865,8 @@ Optional:
 - `private_key` (String) PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.
 - `trusted_ca` (String) TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.
 
-<a id="nestedatt--spec--ingress--to_ports--terminating_tls--secret"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls.secret`
+<a id="nestedatt--spec--ingress--to_ports--originating_tls--secret"></a>
+### Nested Schema for `spec.ingress.to_ports.originating_tls.secret`
 
 Required:
 
@@ -895,14 +895,14 @@ Optional:
 
 Optional:
 
-- `dns` (Attributes List) DNS-specific rules. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--terminating_tls--dns))
-- `http` (Attributes List) HTTP specific rules. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--terminating_tls--http))
-- `kafka` (Attributes List) Kafka-specific rules. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--terminating_tls--kafka))
+- `dns` (Attributes List) DNS-specific rules. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--rules--dns))
+- `http` (Attributes List) HTTP specific rules. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--rules--http))
+- `kafka` (Attributes List) Kafka-specific rules. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--rules--kafka))
 - `l7` (List of Map of String) Key-value pair rules.
 - `l7proto` (String) Name of the L7 protocol for which the Key-value pair rules apply.
 
-<a id="nestedatt--spec--ingress--to_ports--terminating_tls--dns"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls.dns`
+<a id="nestedatt--spec--ingress--to_ports--rules--dns"></a>
+### Nested Schema for `spec.ingress.to_ports.rules.dns`
 
 Optional:
 
@@ -910,19 +910,19 @@ Optional:
 - `match_pattern` (String) MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not
 
 
-<a id="nestedatt--spec--ingress--to_ports--terminating_tls--http"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls.http`
+<a id="nestedatt--spec--ingress--to_ports--rules--http"></a>
+### Nested Schema for `spec.ingress.to_ports.rules.http`
 
 Optional:
 
-- `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--terminating_tls--http--header_matches))
+- `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--rules--http--header_matches))
 - `headers` (List of String) Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.
 - `host` (String) Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.
 - `method` (String) Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
-<a id="nestedatt--spec--ingress--to_ports--terminating_tls--http--header_matches"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls.http.header_matches`
+<a id="nestedatt--spec--ingress--to_ports--rules--http--header_matches"></a>
+### Nested Schema for `spec.ingress.to_ports.rules.http.header_matches`
 
 Required:
 
@@ -931,11 +931,11 @@ Required:
 Optional:
 
 - `mismatch` (String) Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.
-- `secret` (Attributes) Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--terminating_tls--http--path--secret))
+- `secret` (Attributes) Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--rules--http--header_matches--secret))
 - `value` (String) Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.
 
-<a id="nestedatt--spec--ingress--to_ports--terminating_tls--http--path--secret"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls.http.path.secret`
+<a id="nestedatt--spec--ingress--to_ports--rules--http--header_matches--secret"></a>
+### Nested Schema for `spec.ingress.to_ports.rules.http.header_matches.secret`
 
 Required:
 
@@ -948,8 +948,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ingress--to_ports--terminating_tls--kafka"></a>
-### Nested Schema for `spec.ingress.to_ports.terminating_tls.kafka`
+<a id="nestedatt--spec--ingress--to_ports--rules--kafka"></a>
+### Nested Schema for `spec.ingress.to_ports.rules.kafka`
 
 Optional:
 
@@ -1336,15 +1336,15 @@ Optional:
 
 Required:
 
-- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--specs--egress--to_ports--terminating_tls--envoy_config))
+- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--specs--egress--to_ports--listener--envoy_config))
 - `name` (String) Name is the name of the listener.
 
 Optional:
 
 - `priority` (Number) Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.
 
-<a id="nestedatt--specs--egress--to_ports--terminating_tls--envoy_config"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls.envoy_config`
+<a id="nestedatt--specs--egress--to_ports--listener--envoy_config"></a>
+### Nested Schema for `specs.egress.to_ports.listener.envoy_config`
 
 Required:
 
@@ -1361,7 +1361,7 @@ Optional:
 
 Required:
 
-- `secret` (Attributes) Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate. (see [below for nested schema](#nestedatt--specs--egress--to_ports--terminating_tls--secret))
+- `secret` (Attributes) Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate. (see [below for nested schema](#nestedatt--specs--egress--to_ports--originating_tls--secret))
 
 Optional:
 
@@ -1369,8 +1369,8 @@ Optional:
 - `private_key` (String) PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.
 - `trusted_ca` (String) TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.
 
-<a id="nestedatt--specs--egress--to_ports--terminating_tls--secret"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls.secret`
+<a id="nestedatt--specs--egress--to_ports--originating_tls--secret"></a>
+### Nested Schema for `specs.egress.to_ports.originating_tls.secret`
 
 Required:
 
@@ -1399,14 +1399,14 @@ Optional:
 
 Optional:
 
-- `dns` (Attributes List) DNS-specific rules. (see [below for nested schema](#nestedatt--specs--egress--to_ports--terminating_tls--dns))
-- `http` (Attributes List) HTTP specific rules. (see [below for nested schema](#nestedatt--specs--egress--to_ports--terminating_tls--http))
-- `kafka` (Attributes List) Kafka-specific rules. (see [below for nested schema](#nestedatt--specs--egress--to_ports--terminating_tls--kafka))
+- `dns` (Attributes List) DNS-specific rules. (see [below for nested schema](#nestedatt--specs--egress--to_ports--rules--dns))
+- `http` (Attributes List) HTTP specific rules. (see [below for nested schema](#nestedatt--specs--egress--to_ports--rules--http))
+- `kafka` (Attributes List) Kafka-specific rules. (see [below for nested schema](#nestedatt--specs--egress--to_ports--rules--kafka))
 - `l7` (List of Map of String) Key-value pair rules.
 - `l7proto` (String) Name of the L7 protocol for which the Key-value pair rules apply.
 
-<a id="nestedatt--specs--egress--to_ports--terminating_tls--dns"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls.dns`
+<a id="nestedatt--specs--egress--to_ports--rules--dns"></a>
+### Nested Schema for `specs.egress.to_ports.rules.dns`
 
 Optional:
 
@@ -1414,19 +1414,19 @@ Optional:
 - `match_pattern` (String) MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not
 
 
-<a id="nestedatt--specs--egress--to_ports--terminating_tls--http"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls.http`
+<a id="nestedatt--specs--egress--to_ports--rules--http"></a>
+### Nested Schema for `specs.egress.to_ports.rules.http`
 
 Optional:
 
-- `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--specs--egress--to_ports--terminating_tls--http--header_matches))
+- `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--specs--egress--to_ports--rules--http--header_matches))
 - `headers` (List of String) Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.
 - `host` (String) Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.
 - `method` (String) Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
-<a id="nestedatt--specs--egress--to_ports--terminating_tls--http--header_matches"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls.http.header_matches`
+<a id="nestedatt--specs--egress--to_ports--rules--http--header_matches"></a>
+### Nested Schema for `specs.egress.to_ports.rules.http.header_matches`
 
 Required:
 
@@ -1435,11 +1435,11 @@ Required:
 Optional:
 
 - `mismatch` (String) Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.
-- `secret` (Attributes) Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail. (see [below for nested schema](#nestedatt--specs--egress--to_ports--terminating_tls--http--path--secret))
+- `secret` (Attributes) Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail. (see [below for nested schema](#nestedatt--specs--egress--to_ports--rules--http--header_matches--secret))
 - `value` (String) Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.
 
-<a id="nestedatt--specs--egress--to_ports--terminating_tls--http--path--secret"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls.http.path.secret`
+<a id="nestedatt--specs--egress--to_ports--rules--http--header_matches--secret"></a>
+### Nested Schema for `specs.egress.to_ports.rules.http.header_matches.secret`
 
 Required:
 
@@ -1452,8 +1452,8 @@ Optional:
 
 
 
-<a id="nestedatt--specs--egress--to_ports--terminating_tls--kafka"></a>
-### Nested Schema for `specs.egress.to_ports.terminating_tls.kafka`
+<a id="nestedatt--specs--egress--to_ports--rules--kafka"></a>
+### Nested Schema for `specs.egress.to_ports.rules.kafka`
 
 Optional:
 
@@ -1958,15 +1958,15 @@ Optional:
 
 Required:
 
-- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--terminating_tls--envoy_config))
+- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--listener--envoy_config))
 - `name` (String) Name is the name of the listener.
 
 Optional:
 
 - `priority` (Number) Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.
 
-<a id="nestedatt--specs--ingress--to_ports--terminating_tls--envoy_config"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls.envoy_config`
+<a id="nestedatt--specs--ingress--to_ports--listener--envoy_config"></a>
+### Nested Schema for `specs.ingress.to_ports.listener.envoy_config`
 
 Required:
 
@@ -1983,7 +1983,7 @@ Optional:
 
 Required:
 
-- `secret` (Attributes) Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--terminating_tls--secret))
+- `secret` (Attributes) Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--originating_tls--secret))
 
 Optional:
 
@@ -1991,8 +1991,8 @@ Optional:
 - `private_key` (String) PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.
 - `trusted_ca` (String) TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.
 
-<a id="nestedatt--specs--ingress--to_ports--terminating_tls--secret"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls.secret`
+<a id="nestedatt--specs--ingress--to_ports--originating_tls--secret"></a>
+### Nested Schema for `specs.ingress.to_ports.originating_tls.secret`
 
 Required:
 
@@ -2021,14 +2021,14 @@ Optional:
 
 Optional:
 
-- `dns` (Attributes List) DNS-specific rules. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--terminating_tls--dns))
-- `http` (Attributes List) HTTP specific rules. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--terminating_tls--http))
-- `kafka` (Attributes List) Kafka-specific rules. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--terminating_tls--kafka))
+- `dns` (Attributes List) DNS-specific rules. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--rules--dns))
+- `http` (Attributes List) HTTP specific rules. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--rules--http))
+- `kafka` (Attributes List) Kafka-specific rules. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--rules--kafka))
 - `l7` (List of Map of String) Key-value pair rules.
 - `l7proto` (String) Name of the L7 protocol for which the Key-value pair rules apply.
 
-<a id="nestedatt--specs--ingress--to_ports--terminating_tls--dns"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls.dns`
+<a id="nestedatt--specs--ingress--to_ports--rules--dns"></a>
+### Nested Schema for `specs.ingress.to_ports.rules.dns`
 
 Optional:
 
@@ -2036,19 +2036,19 @@ Optional:
 - `match_pattern` (String) MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not
 
 
-<a id="nestedatt--specs--ingress--to_ports--terminating_tls--http"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls.http`
+<a id="nestedatt--specs--ingress--to_ports--rules--http"></a>
+### Nested Schema for `specs.ingress.to_ports.rules.http`
 
 Optional:
 
-- `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--terminating_tls--http--header_matches))
+- `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--rules--http--header_matches))
 - `headers` (List of String) Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.
 - `host` (String) Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.
 - `method` (String) Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
-<a id="nestedatt--specs--ingress--to_ports--terminating_tls--http--header_matches"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls.http.header_matches`
+<a id="nestedatt--specs--ingress--to_ports--rules--http--header_matches"></a>
+### Nested Schema for `specs.ingress.to_ports.rules.http.header_matches`
 
 Required:
 
@@ -2057,11 +2057,11 @@ Required:
 Optional:
 
 - `mismatch` (String) Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.
-- `secret` (Attributes) Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--terminating_tls--http--path--secret))
+- `secret` (Attributes) Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--rules--http--header_matches--secret))
 - `value` (String) Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.
 
-<a id="nestedatt--specs--ingress--to_ports--terminating_tls--http--path--secret"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls.http.path.secret`
+<a id="nestedatt--specs--ingress--to_ports--rules--http--header_matches--secret"></a>
+### Nested Schema for `specs.ingress.to_ports.rules.http.header_matches.secret`
 
 Required:
 
@@ -2074,8 +2074,8 @@ Optional:
 
 
 
-<a id="nestedatt--specs--ingress--to_ports--terminating_tls--kafka"></a>
-### Nested Schema for `specs.ingress.to_ports.terminating_tls.kafka`
+<a id="nestedatt--specs--ingress--to_ports--rules--kafka"></a>
+### Nested Schema for `specs.ingress.to_ports.rules.kafka`
 
 Optional:
 

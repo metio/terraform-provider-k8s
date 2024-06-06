@@ -145,36 +145,23 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
-- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config))
+- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config))
 
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--basic_auth"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.basic_auth`
+<a id="nestedatt--spec--receivers--discord_configs--http_config--basic_auth"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth--username))
 
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.basic_auth.password`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--basic_auth--username"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.basic_auth.username`
+<a id="nestedatt--spec--receivers--discord_configs--http_config--basic_auth--password"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.basic_auth.password`
 
 Required:
 
@@ -186,9 +173,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--bearer_token_secret"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.bearer_token_secret`
+<a id="nestedatt--spec--receivers--discord_configs--http_config--basic_auth--username"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.basic_auth.username`
 
 Required:
 
@@ -200,30 +186,44 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.tls_config`
+
+<a id="nestedatt--spec--receivers--discord_configs--http_config--bearer_token_secret"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.bearer_token_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
 
 Optional:
 
-- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--ca))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--discord_configs--http_config--tls_config"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config--ca))
 - `ca_file` (String) Path to the CA cert in the container to use for the targets.
-- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--cert))
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config--cert))
 - `cert_file` (String) Path to the client cert file in the container for the targets.
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the container for the targets.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--key_secret))
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config--key_secret))
 - `server_name` (String) Used to verify the hostname for the targets.
 
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.tls_config.ca`
+<a id="nestedatt--spec--receivers--discord_configs--http_config--tls_config--ca"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.tls_config.ca`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config--ca--secret))
 
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--discord_configs--http_config--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.tls_config.ca.config_map`
 
 Required:
 
@@ -235,8 +235,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--discord_configs--http_config--tls_config--ca--secret"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.tls_config.ca.secret`
 
 Required:
 
@@ -249,16 +249,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.tls_config.cert`
+<a id="nestedatt--spec--receivers--discord_configs--http_config--tls_config--cert"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.tls_config.cert`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config--cert--secret))
 
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--discord_configs--http_config--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.tls_config.cert.config_map`
 
 Required:
 
@@ -270,8 +270,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--discord_configs--http_config--tls_config--cert--secret"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.tls_config.cert.secret`
 
 Required:
 
@@ -284,8 +284,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--discord_configs--webhook_url_secret--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.discord_configs.webhook_url_secret.tls_config.key_secret`
+<a id="nestedatt--spec--receivers--discord_configs--http_config--tls_config--key_secret"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.tls_config.key_secret`
 
 Required:
 
@@ -364,25 +364,25 @@ Optional:
 
 Optional:
 
-- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--to--ca))
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--tls_config--ca))
 - `ca_file` (String) Path to the CA cert in the container to use for the targets.
-- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--to--cert))
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--tls_config--cert))
 - `cert_file` (String) Path to the client cert file in the container for the targets.
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the container for the targets.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--to--key_secret))
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--tls_config--key_secret))
 - `server_name` (String) Used to verify the hostname for the targets.
 
-<a id="nestedatt--spec--receivers--email_configs--to--ca"></a>
-### Nested Schema for `spec.receivers.email_configs.to.ca`
+<a id="nestedatt--spec--receivers--email_configs--tls_config--ca"></a>
+### Nested Schema for `spec.receivers.email_configs.tls_config.ca`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--to--ca--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--to--ca--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--tls_config--ca--secret))
 
-<a id="nestedatt--spec--receivers--email_configs--to--ca--config_map"></a>
-### Nested Schema for `spec.receivers.email_configs.to.ca.config_map`
+<a id="nestedatt--spec--receivers--email_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.receivers.email_configs.tls_config.ca.config_map`
 
 Required:
 
@@ -394,8 +394,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--email_configs--to--ca--secret"></a>
-### Nested Schema for `spec.receivers.email_configs.to.ca.secret`
+<a id="nestedatt--spec--receivers--email_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.receivers.email_configs.tls_config.ca.secret`
 
 Required:
 
@@ -408,16 +408,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--email_configs--to--cert"></a>
-### Nested Schema for `spec.receivers.email_configs.to.cert`
+<a id="nestedatt--spec--receivers--email_configs--tls_config--cert"></a>
+### Nested Schema for `spec.receivers.email_configs.tls_config.cert`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--to--cert--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--to--cert--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--tls_config--cert--secret))
 
-<a id="nestedatt--spec--receivers--email_configs--to--cert--config_map"></a>
-### Nested Schema for `spec.receivers.email_configs.to.cert.config_map`
+<a id="nestedatt--spec--receivers--email_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.receivers.email_configs.tls_config.cert.config_map`
 
 Required:
 
@@ -429,8 +429,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--email_configs--to--cert--secret"></a>
-### Nested Schema for `spec.receivers.email_configs.to.cert.secret`
+<a id="nestedatt--spec--receivers--email_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.receivers.email_configs.tls_config.cert.secret`
 
 Required:
 
@@ -443,8 +443,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--email_configs--to--key_secret"></a>
-### Nested Schema for `spec.receivers.email_configs.to.key_secret`
+<a id="nestedatt--spec--receivers--email_configs--tls_config--key_secret"></a>
+### Nested Schema for `spec.receivers.email_configs.tls_config.key_secret`
 
 Required:
 
@@ -475,36 +475,23 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
-- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config))
+- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config))
 
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--basic_auth"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.basic_auth`
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--basic_auth"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--username))
 
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.basic_auth.password`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--basic_auth--username"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.basic_auth.username`
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--password"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.basic_auth.password`
 
 Required:
 
@@ -516,9 +503,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--bearer_token_secret"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.bearer_token_secret`
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--username"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.basic_auth.username`
 
 Required:
 
@@ -530,30 +516,44 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.tls_config`
+
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--bearer_token_secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.bearer_token_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
 
 Optional:
 
-- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--ca))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--tls_config"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config--ca))
 - `ca_file` (String) Path to the CA cert in the container to use for the targets.
-- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--cert))
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config--cert))
 - `cert_file` (String) Path to the client cert file in the container for the targets.
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the container for the targets.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--key_secret))
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config--key_secret))
 - `server_name` (String) Used to verify the hostname for the targets.
 
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.tls_config.ca`
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--tls_config--ca"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.tls_config.ca`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config--ca--secret))
 
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.tls_config.ca.config_map`
 
 Required:
 
@@ -565,8 +565,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--tls_config--ca--secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.tls_config.ca.secret`
 
 Required:
 
@@ -579,16 +579,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.tls_config.cert`
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--tls_config--cert"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.tls_config.cert`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config--cert--secret))
 
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.tls_config.cert.config_map`
 
 Required:
 
@@ -600,8 +600,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--tls_config--cert--secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.tls_config.cert.secret`
 
 Required:
 
@@ -614,8 +614,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--msteams_configs--webhook_url_secret--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.msteams_configs.webhook_url_secret.tls_config.key_secret`
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--tls_config--key_secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.tls_config.key_secret`
 
 Required:
 
@@ -849,14 +849,14 @@ Required:
 
 Optional:
 
-- `confirm` (Attributes) SlackConfirmationField protect users from destructive actions orparticularly distinguished decisions by asking them to confirm their buttonclick one more time.See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fieldsfor more information. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--confirm))
+- `confirm` (Attributes) SlackConfirmationField protect users from destructive actions orparticularly distinguished decisions by asking them to confirm their buttonclick one more time.See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fieldsfor more information. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--actions--confirm))
 - `name` (String)
 - `style` (String)
 - `url` (String)
 - `value` (String)
 
-<a id="nestedatt--spec--receivers--slack_configs--username--confirm"></a>
-### Nested Schema for `spec.receivers.slack_configs.username.confirm`
+<a id="nestedatt--spec--receivers--slack_configs--actions--confirm"></a>
+### Nested Schema for `spec.receivers.slack_configs.actions.confirm`
 
 Required:
 
@@ -918,36 +918,23 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
-- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--tls_config))
+- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config))
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.basic_auth`
+<a id="nestedatt--spec--receivers--sns_configs--http_config--basic_auth"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth--username))
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.basic_auth.password`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--username"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.basic_auth.username`
+<a id="nestedatt--spec--receivers--sns_configs--http_config--basic_auth--password"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.basic_auth.password`
 
 Required:
 
@@ -959,9 +946,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--bearer_token_secret"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.bearer_token_secret`
+<a id="nestedatt--spec--receivers--sns_configs--http_config--basic_auth--username"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.basic_auth.username`
 
 Required:
 
@@ -973,30 +959,44 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config`
+
+<a id="nestedatt--spec--receivers--sns_configs--http_config--bearer_token_secret"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.bearer_token_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
 
 Optional:
 
-- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--ca))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--sns_configs--http_config--tls_config"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config--ca))
 - `ca_file` (String) Path to the CA cert in the container to use for the targets.
-- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--cert))
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config--cert))
 - `cert_file` (String) Path to the client cert file in the container for the targets.
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the container for the targets.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--key_secret))
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config--key_secret))
 - `server_name` (String) Used to verify the hostname for the targets.
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.ca`
+<a id="nestedatt--spec--receivers--sns_configs--http_config--tls_config--ca"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.tls_config.ca`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config--ca--secret))
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--sns_configs--http_config--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.tls_config.ca.config_map`
 
 Required:
 
@@ -1008,8 +1008,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--sns_configs--http_config--tls_config--ca--secret"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.tls_config.ca.secret`
 
 Required:
 
@@ -1022,16 +1022,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.cert`
+<a id="nestedatt--spec--receivers--sns_configs--http_config--tls_config--cert"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.tls_config.cert`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config--cert--secret))
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--sns_configs--http_config--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.tls_config.cert.config_map`
 
 Required:
 
@@ -1043,8 +1043,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--sns_configs--http_config--tls_config--cert--secret"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.tls_config.cert.secret`
 
 Required:
 
@@ -1057,8 +1057,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.tls_config.key_secret`
+<a id="nestedatt--spec--receivers--sns_configs--http_config--tls_config--key_secret"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.tls_config.key_secret`
 
 Required:
 
@@ -1078,14 +1078,14 @@ Optional:
 Optional:
 
 - `access_key` (String) The AWS API keys. Both access_key and secret_key must be supplied or both must be blank.If blank the environment variables 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY' are used.
-- `access_key_selector` (Attributes) secret key selector to get the keys from a Kubernetes Secret (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--access_key_selector))
+- `access_key_selector` (Attributes) secret key selector to get the keys from a Kubernetes Secret (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--sigv4--access_key_selector))
 - `profile` (String) Named AWS profile used to authenticate
 - `region` (String) AWS region, if blank the region from the default credentials chain is used
 - `role_arn` (String) AWS Role ARN, an alternative to using AWS API keys
-- `secret_key_selector` (Attributes) secret key selector to get the keys from a Kubernetes Secret (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--secret_key_selector))
+- `secret_key_selector` (Attributes) secret key selector to get the keys from a Kubernetes Secret (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--sigv4--secret_key_selector))
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--access_key_selector"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.access_key_selector`
+<a id="nestedatt--spec--receivers--sns_configs--sigv4--access_key_selector"></a>
+### Nested Schema for `spec.receivers.sns_configs.sigv4.access_key_selector`
 
 Required:
 
@@ -1097,8 +1097,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--sns_configs--topic_arn--secret_key_selector"></a>
-### Nested Schema for `spec.receivers.sns_configs.topic_arn.secret_key_selector`
+<a id="nestedatt--spec--receivers--sns_configs--sigv4--secret_key_selector"></a>
+### Nested Schema for `spec.receivers.sns_configs.sigv4.secret_key_selector`
 
 Required:
 
@@ -1177,36 +1177,23 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
-- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--tls_config))
+- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config))
 
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--basic_auth"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.basic_auth`
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--basic_auth"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--username))
 
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.basic_auth.password`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--username"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.basic_auth.username`
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--password"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.basic_auth.password`
 
 Required:
 
@@ -1218,9 +1205,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--bearer_token_secret"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.bearer_token_secret`
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--username"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.basic_auth.username`
 
 Required:
 
@@ -1232,30 +1218,44 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config`
+
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--bearer_token_secret"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.bearer_token_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
 
 Optional:
 
-- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--tls_config--ca))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--tls_config"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config--ca))
 - `ca_file` (String) Path to the CA cert in the container to use for the targets.
-- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--tls_config--cert))
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config--cert))
 - `cert_file` (String) Path to the client cert file in the container for the targets.
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the container for the targets.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--tls_config--key_secret))
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config--key_secret))
 - `server_name` (String) Used to verify the hostname for the targets.
 
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.ca`
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--tls_config--ca"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.tls_config.ca`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config--ca--secret))
 
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.tls_config.ca.config_map`
 
 Required:
 
@@ -1267,8 +1267,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--tls_config--ca--secret"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.tls_config.ca.secret`
 
 Required:
 
@@ -1281,16 +1281,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.cert`
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--tls_config--cert"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.tls_config.cert`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config--cert--secret))
 
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.tls_config.cert.config_map`
 
 Required:
 
@@ -1302,8 +1302,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--tls_config--cert--secret"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.tls_config.cert.secret`
 
 Required:
 
@@ -1316,8 +1316,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.key_secret`
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--tls_config--key_secret"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.tls_config.key_secret`
 
 Required:
 
@@ -1348,36 +1348,23 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
-- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config))
+- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config))
 
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.basic_auth`
+<a id="nestedatt--spec--receivers--webex_configs--http_config--basic_auth"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth--username))
 
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.basic_auth.password`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--username"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.basic_auth.username`
+<a id="nestedatt--spec--receivers--webex_configs--http_config--basic_auth--password"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.basic_auth.password`
 
 Required:
 
@@ -1389,9 +1376,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--bearer_token_secret"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.bearer_token_secret`
+<a id="nestedatt--spec--receivers--webex_configs--http_config--basic_auth--username"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.basic_auth.username`
 
 Required:
 
@@ -1403,30 +1389,44 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config`
+
+<a id="nestedatt--spec--receivers--webex_configs--http_config--bearer_token_secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.bearer_token_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
 
 Optional:
 
-- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--ca))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--webex_configs--http_config--tls_config"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config--ca))
 - `ca_file` (String) Path to the CA cert in the container to use for the targets.
-- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--cert))
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config--cert))
 - `cert_file` (String) Path to the client cert file in the container for the targets.
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the container for the targets.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--key_secret))
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config--key_secret))
 - `server_name` (String) Used to verify the hostname for the targets.
 
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.ca`
+<a id="nestedatt--spec--receivers--webex_configs--http_config--tls_config--ca"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.tls_config.ca`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config--ca--secret))
 
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--webex_configs--http_config--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.tls_config.ca.config_map`
 
 Required:
 
@@ -1438,8 +1438,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--webex_configs--http_config--tls_config--ca--secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.tls_config.ca.secret`
 
 Required:
 
@@ -1452,16 +1452,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.cert`
+<a id="nestedatt--spec--receivers--webex_configs--http_config--tls_config--cert"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.tls_config.cert`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config--cert--secret))
 
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--webex_configs--http_config--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.tls_config.cert.config_map`
 
 Required:
 
@@ -1473,8 +1473,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--webex_configs--http_config--tls_config--cert--secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.tls_config.cert.secret`
 
 Required:
 
@@ -1487,8 +1487,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.key_secret`
+<a id="nestedatt--spec--receivers--webex_configs--http_config--tls_config--key_secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.tls_config.key_secret`
 
 Required:
 
@@ -1563,36 +1563,23 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
-- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--tls_config))
+- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config))
 
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--basic_auth"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.basic_auth`
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--basic_auth"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--username))
 
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.basic_auth.password`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--username"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.basic_auth.username`
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--password"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.basic_auth.password`
 
 Required:
 
@@ -1604,9 +1591,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--bearer_token_secret"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.bearer_token_secret`
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--username"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.basic_auth.username`
 
 Required:
 
@@ -1618,30 +1604,44 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config`
+
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--bearer_token_secret"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.bearer_token_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
 
 Optional:
 
-- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--tls_config--ca))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--tls_config"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config--ca))
 - `ca_file` (String) Path to the CA cert in the container to use for the targets.
-- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--tls_config--cert))
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config--cert))
 - `cert_file` (String) Path to the client cert file in the container for the targets.
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the container for the targets.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--tls_config--key_secret))
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config--key_secret))
 - `server_name` (String) Used to verify the hostname for the targets.
 
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.ca`
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--tls_config--ca"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.tls_config.ca`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config--ca--secret))
 
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.tls_config.ca.config_map`
 
 Required:
 
@@ -1653,8 +1653,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--tls_config--ca--secret"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.tls_config.ca.secret`
 
 Required:
 
@@ -1667,16 +1667,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.cert`
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--tls_config--cert"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.tls_config.cert`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config--cert--secret))
 
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name.config_map`
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.tls_config.cert.config_map`
 
 Required:
 
@@ -1688,8 +1688,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--tls_config--cert--secret"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.tls_config.cert.secret`
 
 Required:
 
@@ -1702,8 +1702,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--wechat_configs--to_user--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.wechat_configs.to_user.tls_config.key_secret`
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--tls_config--key_secret"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.tls_config.key_secret`
 
 Required:
 

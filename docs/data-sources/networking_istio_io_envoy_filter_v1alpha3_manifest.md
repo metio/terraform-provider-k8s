@@ -96,34 +96,34 @@ Optional:
 
 Optional:
 
-- `filter_chain` (Attributes) Match a specific filter chain in a listener. (see [below for nested schema](#nestedatt--spec--config_patches--match--route_configuration--filter_chain))
+- `filter_chain` (Attributes) Match a specific filter chain in a listener. (see [below for nested schema](#nestedatt--spec--config_patches--match--listener--filter_chain))
 - `listener_filter` (String) Match a specific listener filter.
 - `name` (String) Match a specific listener by its name.
 - `port_name` (String)
 - `port_number` (Number) The service port/gateway port to which traffic is being sent/received.
 
-<a id="nestedatt--spec--config_patches--match--route_configuration--filter_chain"></a>
-### Nested Schema for `spec.config_patches.match.route_configuration.filter_chain`
+<a id="nestedatt--spec--config_patches--match--listener--filter_chain"></a>
+### Nested Schema for `spec.config_patches.match.listener.filter_chain`
 
 Optional:
 
 - `application_protocols` (String) Applies only to sidecars.
 - `destination_port` (Number) The destination_port value used by a filter chain's match condition.
-- `filter` (Attributes) The name of a specific filter to apply the patch to. (see [below for nested schema](#nestedatt--spec--config_patches--match--route_configuration--filter_chain--filter))
+- `filter` (Attributes) The name of a specific filter to apply the patch to. (see [below for nested schema](#nestedatt--spec--config_patches--match--listener--filter_chain--filter))
 - `name` (String) The name assigned to the filter chain.
 - `sni` (String) The SNI value used by a filter chain's match condition.
 - `transport_protocol` (String) Applies only to 'SIDECAR_INBOUND' context.
 
-<a id="nestedatt--spec--config_patches--match--route_configuration--filter_chain--filter"></a>
-### Nested Schema for `spec.config_patches.match.route_configuration.filter_chain.filter`
+<a id="nestedatt--spec--config_patches--match--listener--filter_chain--filter"></a>
+### Nested Schema for `spec.config_patches.match.listener.filter_chain.filter`
 
 Optional:
 
 - `name` (String) The filter name to match on.
-- `sub_filter` (Attributes) The next level filter within this filter to match upon. (see [below for nested schema](#nestedatt--spec--config_patches--match--route_configuration--filter_chain--transport_protocol--sub_filter))
+- `sub_filter` (Attributes) The next level filter within this filter to match upon. (see [below for nested schema](#nestedatt--spec--config_patches--match--listener--filter_chain--filter--sub_filter))
 
-<a id="nestedatt--spec--config_patches--match--route_configuration--filter_chain--transport_protocol--sub_filter"></a>
-### Nested Schema for `spec.config_patches.match.route_configuration.filter_chain.transport_protocol.sub_filter`
+<a id="nestedatt--spec--config_patches--match--listener--filter_chain--filter--sub_filter"></a>
+### Nested Schema for `spec.config_patches.match.listener.filter_chain.filter.sub_filter`
 
 Optional:
 

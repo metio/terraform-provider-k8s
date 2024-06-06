@@ -213,11 +213,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--client_id--secret))
 
-<a id="nestedatt--spec--endpoints--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.endpoints.oauth2.scopes.config_map`
+<a id="nestedatt--spec--endpoints--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.endpoints.oauth2.client_id.config_map`
 
 Required:
 
@@ -229,8 +229,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--endpoints--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.endpoints.oauth2.scopes.secret`
+<a id="nestedatt--spec--endpoints--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.endpoints.oauth2.client_id.secret`
 
 Required:
 
@@ -293,11 +293,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config--ca--secret))
 
-<a id="nestedatt--spec--endpoints--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.endpoints.tls_config.server_name.config_map`
+<a id="nestedatt--spec--endpoints--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.endpoints.tls_config.ca.config_map`
 
 Required:
 
@@ -309,8 +309,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--endpoints--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.endpoints.tls_config.server_name.secret`
+<a id="nestedatt--spec--endpoints--tls_config--ca--secret"></a>
+### Nested Schema for `spec.endpoints.tls_config.ca.secret`
 
 Required:
 
@@ -328,11 +328,11 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config--cert--secret))
 
-<a id="nestedatt--spec--endpoints--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.endpoints.tls_config.server_name.config_map`
+<a id="nestedatt--spec--endpoints--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.endpoints.tls_config.cert.config_map`
 
 Required:
 
@@ -344,8 +344,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--endpoints--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.endpoints.tls_config.server_name.secret`
+<a id="nestedatt--spec--endpoints--tls_config--cert--secret"></a>
+### Nested Schema for `spec.endpoints.tls_config.cert.secret`
 
 Required:
 
@@ -393,35 +393,22 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) BasicAuth allow an endpoint to authenticate over basic authentication (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--basic_auth))
-- `bearer_token` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--bearer_token))
+- `basic_auth` (Attributes) BasicAuth allow an endpoint to authenticate over basic authentication (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth))
+- `bearer_token` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--bearer_token))
 - `bearer_token_file` (String)
-- `tls_config` (Attributes) TLSConfig specifies TLSConfig configuration parameters. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config))
+- `tls_config` (Attributes) TLSConfig specifies TLSConfig configuration parameters. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config))
 
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--basic_auth"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.basic_auth`
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth--username))
 
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--basic_auth--password"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.basic_auth.password`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--basic_auth--username"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.basic_auth.username`
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth--password"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.basic_auth.password`
 
 Required:
 
@@ -433,9 +420,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--bearer_token"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.bearer_token`
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth--username"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.basic_auth.username`
 
 Required:
 
@@ -447,30 +433,44 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.tls_config`
+
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--bearer_token"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.bearer_token`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
 
 Optional:
 
-- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--ca))
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--ca))
 - `ca_file` (String) Path to the CA cert in the container to use for the targets.
-- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--cert))
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--cert))
 - `cert_file` (String) Path to the client cert file in the container for the targets.
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the container for the targets.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--key_secret))
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--key_secret))
 - `server_name` (String) Used to verify the hostname for the targets.
 
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--ca"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.tls_config.ca`
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--ca"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.tls_config.ca`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--ca--secret))
 
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.tls_config.server_name.config_map`
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.tls_config.ca.config_map`
 
 Required:
 
@@ -482,8 +482,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.tls_config.server_name.secret`
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--ca--secret"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.tls_config.ca.secret`
 
 Required:
 
@@ -496,16 +496,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--cert"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.tls_config.cert`
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--cert"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.tls_config.cert`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--cert--secret))
 
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.tls_config.server_name.config_map`
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.tls_config.cert.config_map`
 
 Required:
 
@@ -517,8 +517,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.tls_config.server_name.secret`
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--cert--secret"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.tls_config.cert.secret`
 
 Required:
 
@@ -531,8 +531,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--endpoints--vm_scrape_params--stream_parse--tls_config--key_secret"></a>
-### Nested Schema for `spec.endpoints.vm_scrape_params.stream_parse.tls_config.key_secret`
+<a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--tls_config--key_secret"></a>
+### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.tls_config.key_secret`
 
 Required:
 

@@ -1265,22 +1265,22 @@ Required:
 
 Optional:
 
-- `annotation` (Attributes) Annotations that should be added to specific resources for this container (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--annotation))
+- `annotation` (Attributes) Annotations that should be added to specific resources for this container (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--container--annotation))
 - `args` (List of String) The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.  Defaults to an empty array, meaning use whatever is defined in the image.
 - `command` (List of String) The command to run in the dockerimage component instead of the default one provided in the image.  Defaults to an empty array, meaning use whatever is defined in the image.
 - `cpu_limit` (String)
 - `cpu_request` (String)
 - `dedicated_pod` (Boolean) Specify if a container should run in its own separated pod, instead of running as part of the main development environment pod.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--endpoints))
-- `env` (Attributes List) Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE' (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--env))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--container--endpoints))
+- `env` (Attributes List) Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE' (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--container--env))
 - `memory_limit` (String)
 - `memory_request` (String)
 - `mount_sources` (Boolean) Toggles whether or not the project source code should be mounted in the component.  Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.
 - `source_mapping` (String) Optional specification of the path in the container where project sources should be transferred/mounted when 'mountSources' is 'true'. When omitted, the default value of /projects is used.
-- `volume_mounts` (Attributes List) List of volumes mounts that should be mounted is this container. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--volume_mounts))
+- `volume_mounts` (Attributes List) List of volumes mounts that should be mounted is this container. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--container--volume_mounts))
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--annotation"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.annotation`
+<a id="nestedatt--spec--server--workspace_default_components--container--annotation"></a>
+### Nested Schema for `spec.server.workspace_default_components.container.annotation`
 
 Optional:
 
@@ -1288,8 +1288,8 @@ Optional:
 - `service` (Map of String) Annotations to be added to service
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--endpoints"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.endpoints`
+<a id="nestedatt--spec--server--workspace_default_components--container--endpoints"></a>
+### Nested Schema for `spec.server.workspace_default_components.container.endpoints`
 
 Required:
 
@@ -1306,8 +1306,8 @@ Optional:
 - `secure` (Boolean) Describes whether the endpoint should be secured and protected by some authentication process. This requires a protocol of 'https' or 'wss'.
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--env"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.env`
+<a id="nestedatt--spec--server--workspace_default_components--container--env"></a>
+### Nested Schema for `spec.server.workspace_default_components.container.env`
 
 Required:
 
@@ -1315,8 +1315,8 @@ Required:
 - `value` (String)
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--volume_mounts"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.volume_mounts`
+<a id="nestedatt--spec--server--workspace_default_components--container--volume_mounts"></a>
+### Nested Schema for `spec.server.workspace_default_components.container.volume_mounts`
 
 Required:
 
@@ -1347,24 +1347,24 @@ Required:
 Optional:
 
 - `auto_build` (Boolean) Defines if the image should be built during startup.  Default value is 'false'
-- `dockerfile` (Attributes) Allows specifying dockerfile type build (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--dockerfile))
+- `dockerfile` (Attributes) Allows specifying dockerfile type build (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--image--dockerfile))
 - `image_type` (String) Type of image
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--dockerfile"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.dockerfile`
+<a id="nestedatt--spec--server--workspace_default_components--image--dockerfile"></a>
+### Nested Schema for `spec.server.workspace_default_components.image.dockerfile`
 
 Optional:
 
 - `args` (List of String) The arguments to supply to the dockerfile build.
 - `build_context` (String) Path of source directory to establish build context. Defaults to ${PROJECT_SOURCE} in the container
-- `devfile_registry` (Attributes) Dockerfile's Devfile Registry source (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--dockerfile--devfile_registry))
-- `git` (Attributes) Dockerfile's Git source (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--dockerfile--git))
+- `devfile_registry` (Attributes) Dockerfile's Devfile Registry source (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--image--dockerfile--devfile_registry))
+- `git` (Attributes) Dockerfile's Git source (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--image--dockerfile--git))
 - `root_required` (Boolean) Specify if a privileged builder pod is required.  Default value is 'false'
 - `src_type` (String) Type of Dockerfile src
 - `uri` (String) URI Reference of a Dockerfile. It can be a full URL or a relative URI from the current devfile as the base URI.
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--dockerfile--devfile_registry"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.dockerfile.devfile_registry`
+<a id="nestedatt--spec--server--workspace_default_components--image--dockerfile--devfile_registry"></a>
+### Nested Schema for `spec.server.workspace_default_components.image.dockerfile.devfile_registry`
 
 Required:
 
@@ -1375,8 +1375,8 @@ Optional:
 - `registry_url` (String) Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src. To ensure the Dockerfile gets resolved consistently in different environments, it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--dockerfile--git"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.dockerfile.git`
+<a id="nestedatt--spec--server--workspace_default_components--image--dockerfile--git"></a>
+### Nested Schema for `spec.server.workspace_default_components.image.dockerfile.git`
 
 Required:
 
@@ -1384,11 +1384,11 @@ Required:
 
 Optional:
 
-- `checkout_from` (Attributes) Defines from what the project should be checked out. Required if there are more than one remote configured (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--dockerfile--uri--checkout_from))
+- `checkout_from` (Attributes) Defines from what the project should be checked out. Required if there are more than one remote configured (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--image--dockerfile--git--checkout_from))
 - `file_location` (String) Location of the Dockerfile in the Git repository when using git as Dockerfile src. Defaults to Dockerfile.
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--dockerfile--uri--checkout_from"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.dockerfile.uri.checkout_from`
+<a id="nestedatt--spec--server--workspace_default_components--image--dockerfile--git--checkout_from"></a>
+### Nested Schema for `spec.server.workspace_default_components.image.dockerfile.git.checkout_from`
 
 Optional:
 
@@ -1405,13 +1405,13 @@ Optional:
 Optional:
 
 - `deploy_by_default` (Boolean) Defines if the component should be deployed during startup.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--endpoints))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--kubernetes--endpoints))
 - `inlined` (String) Inlined manifest
 - `location_type` (String) Type of Kubernetes-like location
 - `uri` (String) Location in a file fetched from a uri.
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--endpoints"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.endpoints`
+<a id="nestedatt--spec--server--workspace_default_components--kubernetes--endpoints"></a>
+### Nested Schema for `spec.server.workspace_default_components.kubernetes.endpoints`
 
 Required:
 
@@ -1435,13 +1435,13 @@ Optional:
 Optional:
 
 - `deploy_by_default` (Boolean) Defines if the component should be deployed during startup.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--endpoints))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--openshift--endpoints))
 - `inlined` (String) Inlined manifest
 - `location_type` (String) Type of Kubernetes-like location
 - `uri` (String) Location in a file fetched from a uri.
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--endpoints"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.endpoints`
+<a id="nestedatt--spec--server--workspace_default_components--openshift--endpoints"></a>
+### Nested Schema for `spec.server.workspace_default_components.openshift.endpoints`
 
 Required:
 
@@ -1464,17 +1464,17 @@ Optional:
 
 Optional:
 
-- `commands` (Attributes List) Overrides of commands encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--commands))
-- `components` (Attributes List) Overrides of components encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components))
+- `commands` (Attributes List) Overrides of commands encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--commands))
+- `components` (Attributes List) Overrides of components encapsulated in a parent devfile or a plugin. Overriding is done according to K8S strategic merge patch standard rules. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components))
 - `id` (String) Id in a registry that contains a Devfile yaml file
 - `import_reference_type` (String) type of location from where the referenced template structure should be retrieved
-- `kubernetes` (Attributes) Reference to a Kubernetes CRD of type DevWorkspaceTemplate (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--kubernetes))
+- `kubernetes` (Attributes) Reference to a Kubernetes CRD of type DevWorkspaceTemplate (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--kubernetes))
 - `registry_url` (String) Registry URL to pull the parent devfile from when using id in the parent reference. To ensure the parent devfile gets resolved consistently in different environments, it is recommended to always specify the 'registryUrl' when 'id' is used.
 - `uri` (String) URI Reference of a parent devfile YAML file. It can be a full URL or a relative URI with the current devfile as the base URI.
 - `version` (String) Specific stack/sample version to pull the parent devfile from, when using id in the parent reference. To specify 'version', 'id' must be defined and used as the import reference source. 'version' can be either a specific stack version, or 'latest'. If no 'version' specified, default version will be used.
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--commands"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--commands"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.commands`
 
 Required:
 
@@ -1482,23 +1482,23 @@ Required:
 
 Optional:
 
-- `apply` (Attributes) Command that consists in applying a given component definition, typically bound to a devworkspace event.  For example, when an 'apply' command is bound to a 'preStart' event, and references a 'container' component, it will start the container as a K8S initContainer in the devworkspace POD, unless the component has its 'dedicatedPod' field set to 'true'.  When no 'apply' command exist for a given component, it is assumed the component will be applied at devworkspace start by default, unless 'deployByDefault' for that component is set to false. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--commands--apply))
+- `apply` (Attributes) Command that consists in applying a given component definition, typically bound to a devworkspace event.  For example, when an 'apply' command is bound to a 'preStart' event, and references a 'container' component, it will start the container as a K8S initContainer in the devworkspace POD, unless the component has its 'dedicatedPod' field set to 'true'.  When no 'apply' command exist for a given component, it is assumed the component will be applied at devworkspace start by default, unless 'deployByDefault' for that component is set to false. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--commands--apply))
 - `attributes` (Map of String) Map of implementation-dependant free-form YAML attributes.
 - `command_type` (String) Type of devworkspace command
-- `composite` (Attributes) Composite command that allows executing several sub-commands either sequentially or concurrently (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--commands--composite))
-- `exec` (Attributes) CLI Command executed in an existing component container (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--commands--exec))
+- `composite` (Attributes) Composite command that allows executing several sub-commands either sequentially or concurrently (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--commands--composite))
+- `exec` (Attributes) CLI Command executed in an existing component container (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--commands--exec))
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--commands--apply"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.apply`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--commands--apply"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.commands.apply`
 
 Optional:
 
 - `component` (String) Describes component that will be applied
-- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--commands--exec--group))
+- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--commands--apply--group))
 - `label` (String) Optional label that provides a label for this command to be used in Editor UI menus for example
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--commands--exec--group"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.group`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--commands--apply--group"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.commands.apply.group`
 
 Optional:
 
@@ -1507,18 +1507,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--commands--composite"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.composite`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--commands--composite"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.commands.composite`
 
 Optional:
 
 - `commands` (List of String) The commands that comprise this composite command
-- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--commands--exec--group))
+- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--commands--composite--group))
 - `label` (String) Optional label that provides a label for this command to be used in Editor UI menus for example
 - `parallel` (Boolean) Indicates if the sub-commands should be executed concurrently
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--commands--exec--group"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.group`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--commands--composite--group"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.commands.composite.group`
 
 Optional:
 
@@ -1527,21 +1527,21 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--commands--exec"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--commands--exec"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.commands.exec`
 
 Optional:
 
 - `command_line` (String) The actual command-line string  Special variables that can be used:   - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping.   - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.
 - `component` (String) Describes component to which given action relates
-- `env` (Attributes List) Optional list of environment variables that have to be set before running the command (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--commands--exec--env))
-- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--commands--exec--group))
+- `env` (Attributes List) Optional list of environment variables that have to be set before running the command (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--commands--exec--env))
+- `group` (Attributes) Defines the group this command is part of (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--commands--exec--group))
 - `hot_reload_capable` (Boolean) Specify whether the command is restarted or not when the source code changes. If set to 'true' the command won't be restarted. A *hotReloadCapable* 'run' or 'debug' command is expected to handle file changes on its own and won't be restarted. A *hotReloadCapable* 'build' command is expected to be executed only once and won't be executed again. This field is taken into account only for commands 'build', 'run' and 'debug' with 'isDefault' set to 'true'.  Default value is 'false'
 - `label` (String) Optional label that provides a label for this command to be used in Editor UI menus for example
 - `working_dir` (String) Working directory where the command should be executed  Special variables that can be used:   - '$PROJECTS_ROOT': A path where projects sources are mounted as defined by container component's sourceMapping.   - '$PROJECT_SOURCE': A path to a project source ($PROJECTS_ROOT/<project-name>). If there are multiple projects, this will point to the directory of the first one.
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--commands--exec--env"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.env`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--commands--exec--env"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.commands.exec.env`
 
 Required:
 
@@ -1552,8 +1552,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--commands--exec--group"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.commands.exec.group`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--commands--exec--group"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.commands.exec.group`
 
 Optional:
 
@@ -1563,8 +1563,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components`
 
 Required:
 
@@ -1574,34 +1574,34 @@ Optional:
 
 - `attributes` (Map of String) Map of implementation-dependant free-form YAML attributes.
 - `component_type` (String) Type of component
-- `container` (Attributes) Allows adding and configuring devworkspace-related containers (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--container))
-- `image` (Attributes) Allows specifying the definition of an image for outer loop builds (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--image))
-- `kubernetes` (Attributes) Allows importing into the devworkspace the Kubernetes resources defined in a given manifest. For example this allows reusing the Kubernetes definitions used to deploy some runtime components in production. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--kubernetes))
-- `openshift` (Attributes) Allows importing into the devworkspace the OpenShift resources defined in a given manifest. For example this allows reusing the OpenShift definitions used to deploy some runtime components in production. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--openshift))
-- `volume` (Attributes) Allows specifying the definition of a volume shared by several other components (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume))
+- `container` (Attributes) Allows adding and configuring devworkspace-related containers (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--container))
+- `image` (Attributes) Allows specifying the definition of an image for outer loop builds (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--image))
+- `kubernetes` (Attributes) Allows importing into the devworkspace the Kubernetes resources defined in a given manifest. For example this allows reusing the Kubernetes definitions used to deploy some runtime components in production. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--kubernetes))
+- `openshift` (Attributes) Allows importing into the devworkspace the OpenShift resources defined in a given manifest. For example this allows reusing the OpenShift definitions used to deploy some runtime components in production. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--openshift))
+- `volume` (Attributes) Allows specifying the definition of a volume shared by several other components (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--volume))
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--container"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.container`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--container"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.container`
 
 Optional:
 
-- `annotation` (Attributes) Annotations that should be added to specific resources for this container (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--annotation))
+- `annotation` (Attributes) Annotations that should be added to specific resources for this container (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--container--annotation))
 - `args` (List of String) The arguments to supply to the command running the dockerimage component. The arguments are supplied either to the default command provided in the image or to the overridden command.  Defaults to an empty array, meaning use whatever is defined in the image.
 - `command` (List of String) The command to run in the dockerimage component instead of the default one provided in the image.  Defaults to an empty array, meaning use whatever is defined in the image.
 - `cpu_limit` (String)
 - `cpu_request` (String)
 - `dedicated_pod` (Boolean) Specify if a container should run in its own separated pod, instead of running as part of the main development environment pod.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--endpoints))
-- `env` (Attributes List) Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE' (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--env))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--container--endpoints))
+- `env` (Attributes List) Environment variables used in this container.  The following variables are reserved and cannot be overridden via env:   - '$PROJECTS_ROOT'   - '$PROJECT_SOURCE' (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--container--env))
 - `image` (String)
 - `memory_limit` (String)
 - `memory_request` (String)
 - `mount_sources` (Boolean) Toggles whether or not the project source code should be mounted in the component.  Defaults to true for all component types except plugins and components that set 'dedicatedPod' to true.
 - `source_mapping` (String) Optional specification of the path in the container where project sources should be transferred/mounted when 'mountSources' is 'true'. When omitted, the default value of /projects is used.
-- `volume_mounts` (Attributes List) List of volumes mounts that should be mounted is this container. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--volume_mounts))
+- `volume_mounts` (Attributes List) List of volumes mounts that should be mounted is this container. (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--container--volume_mounts))
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--annotation"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.annotation`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--container--annotation"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.container.annotation`
 
 Optional:
 
@@ -1609,8 +1609,8 @@ Optional:
 - `service` (Map of String) Annotations to be added to service
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--endpoints"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.endpoints`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--container--endpoints"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.container.endpoints`
 
 Required:
 
@@ -1627,8 +1627,8 @@ Optional:
 - `target_port` (Number) Port number to be used within the container component. The same port cannot be used by two different container components.
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--env"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.env`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--container--env"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.container.env`
 
 Required:
 
@@ -1639,8 +1639,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--volume_mounts"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.volume_mounts`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--container--volume_mounts"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.container.volume_mounts`
 
 Required:
 
@@ -1652,31 +1652,31 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--image"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.image`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--image"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.image`
 
 Optional:
 
 - `auto_build` (Boolean) Defines if the image should be built during startup.  Default value is 'false'
-- `dockerfile` (Attributes) Allows specifying dockerfile type build (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--dockerfile))
+- `dockerfile` (Attributes) Allows specifying dockerfile type build (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--image--dockerfile))
 - `image_name` (String) Name of the image for the resulting outerloop build
 - `image_type` (String) Type of image
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--dockerfile"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.dockerfile`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--image--dockerfile"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.image.dockerfile`
 
 Optional:
 
 - `args` (List of String) The arguments to supply to the dockerfile build.
 - `build_context` (String) Path of source directory to establish build context. Defaults to ${PROJECT_SOURCE} in the container
-- `devfile_registry` (Attributes) Dockerfile's Devfile Registry source (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--image_type--devfile_registry))
-- `git` (Attributes) Dockerfile's Git source (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--image_type--git))
+- `devfile_registry` (Attributes) Dockerfile's Devfile Registry source (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--image--dockerfile--devfile_registry))
+- `git` (Attributes) Dockerfile's Git source (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--image--dockerfile--git))
 - `root_required` (Boolean) Specify if a privileged builder pod is required.  Default value is 'false'
 - `src_type` (String) Type of Dockerfile src
 - `uri` (String) URI Reference of a Dockerfile. It can be a full URL or a relative URI from the current devfile as the base URI.
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--image_type--devfile_registry"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.image_type.devfile_registry`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--image--dockerfile--devfile_registry"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.image.dockerfile.devfile_registry`
 
 Optional:
 
@@ -1684,17 +1684,17 @@ Optional:
 - `registry_url` (String) Devfile Registry URL to pull the Dockerfile from when using the Devfile Registry as Dockerfile src. To ensure the Dockerfile gets resolved consistently in different environments, it is recommended to always specify the 'devfileRegistryUrl' when 'Id' is used.
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--image_type--git"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.image_type.git`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--image--dockerfile--git"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.image.dockerfile.git`
 
 Optional:
 
-- `checkout_from` (Attributes) Defines from what the project should be checked out. Required if there are more than one remote configured (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--image_type--uri--checkout_from))
+- `checkout_from` (Attributes) Defines from what the project should be checked out. Required if there are more than one remote configured (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--image--dockerfile--git--checkout_from))
 - `file_location` (String) Location of the Dockerfile in the Git repository when using git as Dockerfile src. Defaults to Dockerfile.
 - `remotes` (Map of String) The remotes map which should be initialized in the git project. Projects must have at least one remote configured while StarterProjects & Image Component's Git source can only have at most one remote configured.
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--image_type--uri--checkout_from"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.image_type.uri.checkout_from`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--image--dockerfile--git--checkout_from"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.image.dockerfile.git.checkout_from`
 
 Optional:
 
@@ -1705,19 +1705,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--kubernetes"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.kubernetes`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--kubernetes"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.kubernetes`
 
 Optional:
 
 - `deploy_by_default` (Boolean) Defines if the component should be deployed during startup.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--endpoints))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--kubernetes--endpoints))
 - `inlined` (String) Inlined manifest
 - `location_type` (String) Type of Kubernetes-like location
 - `uri` (String) Location in a file fetched from a uri.
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--endpoints"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.endpoints`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--kubernetes--endpoints"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.kubernetes.endpoints`
 
 Required:
 
@@ -1735,19 +1735,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--openshift"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.openshift`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--openshift"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.openshift`
 
 Optional:
 
 - `deploy_by_default` (Boolean) Defines if the component should be deployed during startup.  Default value is 'false'
-- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--volume--components--volume--endpoints))
+- `endpoints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--workspace_default_components--plugin--components--openshift--endpoints))
 - `inlined` (String) Inlined manifest
 - `location_type` (String) Type of Kubernetes-like location
 - `uri` (String) Location in a file fetched from a uri.
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume--endpoints"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume.endpoints`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--openshift--endpoints"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.openshift.endpoints`
 
 Required:
 
@@ -1765,8 +1765,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--components--volume"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.components.volume`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--components--volume"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.components.volume`
 
 Optional:
 
@@ -1775,8 +1775,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--server--workspace_default_components--volume--kubernetes"></a>
-### Nested Schema for `spec.server.workspace_default_components.volume.kubernetes`
+<a id="nestedatt--spec--server--workspace_default_components--plugin--kubernetes"></a>
+### Nested Schema for `spec.server.workspace_default_components.plugin.kubernetes`
 
 Required:
 

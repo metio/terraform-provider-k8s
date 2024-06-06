@@ -123,20 +123,20 @@ Optional:
 
 Optional:
 
-- `blocks` (Attributes List) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--be_class--resctrl_qos--blocks))
+- `blocks` (Attributes List) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--be_class--blkio_qos--blocks))
 - `enable` (Boolean)
 
-<a id="nestedatt--spec--resource_qos_strategy--be_class--resctrl_qos--blocks"></a>
-### Nested Schema for `spec.resource_qos_strategy.be_class.resctrl_qos.blocks`
+<a id="nestedatt--spec--resource_qos_strategy--be_class--blkio_qos--blocks"></a>
+### Nested Schema for `spec.resource_qos_strategy.be_class.blkio_qos.blocks`
 
 Optional:
 
-- `io_cfg` (Attributes) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--be_class--resctrl_qos--blocks--io_cfg))
+- `io_cfg` (Attributes) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--be_class--blkio_qos--blocks--io_cfg))
 - `name` (String)
 - `type` (String)
 
-<a id="nestedatt--spec--resource_qos_strategy--be_class--resctrl_qos--blocks--io_cfg"></a>
-### Nested Schema for `spec.resource_qos_strategy.be_class.resctrl_qos.blocks.io_cfg`
+<a id="nestedatt--spec--resource_qos_strategy--be_class--blkio_qos--blocks--io_cfg"></a>
+### Nested Schema for `spec.resource_qos_strategy.be_class.blkio_qos.blocks.io_cfg`
 
 Optional:
 
@@ -228,20 +228,20 @@ Optional:
 
 Optional:
 
-- `blocks` (Attributes List) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--cgroup_root--resctrl_qos--blocks))
+- `blocks` (Attributes List) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--cgroup_root--blkio_qos--blocks))
 - `enable` (Boolean)
 
-<a id="nestedatt--spec--resource_qos_strategy--cgroup_root--resctrl_qos--blocks"></a>
-### Nested Schema for `spec.resource_qos_strategy.cgroup_root.resctrl_qos.blocks`
+<a id="nestedatt--spec--resource_qos_strategy--cgroup_root--blkio_qos--blocks"></a>
+### Nested Schema for `spec.resource_qos_strategy.cgroup_root.blkio_qos.blocks`
 
 Optional:
 
-- `io_cfg` (Attributes) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--cgroup_root--resctrl_qos--blocks--io_cfg))
+- `io_cfg` (Attributes) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--cgroup_root--blkio_qos--blocks--io_cfg))
 - `name` (String)
 - `type` (String)
 
-<a id="nestedatt--spec--resource_qos_strategy--cgroup_root--resctrl_qos--blocks--io_cfg"></a>
-### Nested Schema for `spec.resource_qos_strategy.cgroup_root.resctrl_qos.blocks.io_cfg`
+<a id="nestedatt--spec--resource_qos_strategy--cgroup_root--blkio_qos--blocks--io_cfg"></a>
+### Nested Schema for `spec.resource_qos_strategy.cgroup_root.blkio_qos.blocks.io_cfg`
 
 Optional:
 
@@ -333,20 +333,20 @@ Optional:
 
 Optional:
 
-- `blocks` (Attributes List) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--ls_class--resctrl_qos--blocks))
+- `blocks` (Attributes List) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--ls_class--blkio_qos--blocks))
 - `enable` (Boolean)
 
-<a id="nestedatt--spec--resource_qos_strategy--ls_class--resctrl_qos--blocks"></a>
-### Nested Schema for `spec.resource_qos_strategy.ls_class.resctrl_qos.blocks`
+<a id="nestedatt--spec--resource_qos_strategy--ls_class--blkio_qos--blocks"></a>
+### Nested Schema for `spec.resource_qos_strategy.ls_class.blkio_qos.blocks`
 
 Optional:
 
-- `io_cfg` (Attributes) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--ls_class--resctrl_qos--blocks--io_cfg))
+- `io_cfg` (Attributes) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--ls_class--blkio_qos--blocks--io_cfg))
 - `name` (String)
 - `type` (String)
 
-<a id="nestedatt--spec--resource_qos_strategy--ls_class--resctrl_qos--blocks--io_cfg"></a>
-### Nested Schema for `spec.resource_qos_strategy.ls_class.resctrl_qos.blocks.io_cfg`
+<a id="nestedatt--spec--resource_qos_strategy--ls_class--blkio_qos--blocks--io_cfg"></a>
+### Nested Schema for `spec.resource_qos_strategy.ls_class.blkio_qos.blocks.io_cfg`
 
 Optional:
 
@@ -438,20 +438,20 @@ Optional:
 
 Optional:
 
-- `blocks` (Attributes List) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--lsr_class--resctrl_qos--blocks))
+- `blocks` (Attributes List) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--lsr_class--blkio_qos--blocks))
 - `enable` (Boolean)
 
-<a id="nestedatt--spec--resource_qos_strategy--lsr_class--resctrl_qos--blocks"></a>
-### Nested Schema for `spec.resource_qos_strategy.lsr_class.resctrl_qos.blocks`
+<a id="nestedatt--spec--resource_qos_strategy--lsr_class--blkio_qos--blocks"></a>
+### Nested Schema for `spec.resource_qos_strategy.lsr_class.blkio_qos.blocks`
 
 Optional:
 
-- `io_cfg` (Attributes) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--lsr_class--resctrl_qos--blocks--io_cfg))
+- `io_cfg` (Attributes) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--lsr_class--blkio_qos--blocks--io_cfg))
 - `name` (String)
 - `type` (String)
 
-<a id="nestedatt--spec--resource_qos_strategy--lsr_class--resctrl_qos--blocks--io_cfg"></a>
-### Nested Schema for `spec.resource_qos_strategy.lsr_class.resctrl_qos.blocks.io_cfg`
+<a id="nestedatt--spec--resource_qos_strategy--lsr_class--blkio_qos--blocks--io_cfg"></a>
+### Nested Schema for `spec.resource_qos_strategy.lsr_class.blkio_qos.blocks.io_cfg`
 
 Optional:
 
@@ -552,20 +552,20 @@ Optional:
 
 Optional:
 
-- `blocks` (Attributes List) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--system_class--resctrl_qos--blocks))
+- `blocks` (Attributes List) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--system_class--blkio_qos--blocks))
 - `enable` (Boolean)
 
-<a id="nestedatt--spec--resource_qos_strategy--system_class--resctrl_qos--blocks"></a>
-### Nested Schema for `spec.resource_qos_strategy.system_class.resctrl_qos.blocks`
+<a id="nestedatt--spec--resource_qos_strategy--system_class--blkio_qos--blocks"></a>
+### Nested Schema for `spec.resource_qos_strategy.system_class.blkio_qos.blocks`
 
 Optional:
 
-- `io_cfg` (Attributes) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--system_class--resctrl_qos--blocks--io_cfg))
+- `io_cfg` (Attributes) (see [below for nested schema](#nestedatt--spec--resource_qos_strategy--system_class--blkio_qos--blocks--io_cfg))
 - `name` (String)
 - `type` (String)
 
-<a id="nestedatt--spec--resource_qos_strategy--system_class--resctrl_qos--blocks--io_cfg"></a>
-### Nested Schema for `spec.resource_qos_strategy.system_class.resctrl_qos.blocks.io_cfg`
+<a id="nestedatt--spec--resource_qos_strategy--system_class--blkio_qos--blocks--io_cfg"></a>
+### Nested Schema for `spec.resource_qos_strategy.system_class.blkio_qos.blocks.io_cfg`
 
 Optional:
 

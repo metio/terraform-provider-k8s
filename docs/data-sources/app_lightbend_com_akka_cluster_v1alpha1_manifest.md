@@ -151,28 +151,28 @@ Optional:
 
 - `args` (List of String) Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 - `command` (List of String) Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-- `env` (Attributes List) List of environment variables to set in the container. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env))
-- `env_from` (Attributes List) List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env_from))
+- `env` (Attributes List) List of environment variables to set in the container. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--containers--env))
+- `env_from` (Attributes List) List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--containers--env_from))
 - `image` (String) Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.
 - `image_pull_policy` (String) Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
-- `lifecycle` (Attributes) Actions that the management system should take in response to container lifecycle events. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe))
-- `ports` (Attributes List) List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ports))
-- `readiness_probe` (Attributes) Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe))
-- `resources` (Attributes) Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/ (see [below for nested schema](#nestedatt--spec--template--spec--volumes--resources))
-- `security_context` (Attributes) Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context))
-- `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. This is a beta feature enabled by the StartupProbe feature flag. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe))
+- `lifecycle` (Attributes) Actions that the management system should take in response to container lifecycle events. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle))
+- `liveness_probe` (Attributes) Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--containers--liveness_probe))
+- `ports` (Attributes List) List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--containers--ports))
+- `readiness_probe` (Attributes) Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--containers--readiness_probe))
+- `resources` (Attributes) Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/ (see [below for nested schema](#nestedatt--spec--template--spec--containers--resources))
+- `security_context` (Attributes) Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--template--spec--containers--security_context))
+- `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. This is a beta feature enabled by the StartupProbe feature flag. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--containers--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
 - `stdin_once` (Boolean) Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false
 - `termination_message_path` (String) Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
 - `termination_message_policy` (String) Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.
 - `tty` (Boolean) Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.
-- `volume_devices` (Attributes List) volumeDevices is the list of block devices to be used by the container. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) Pod volumes to mount into the container's filesystem. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) volumeDevices is the list of block devices to be used by the container. (see [below for nested schema](#nestedatt--spec--template--spec--containers--volume_devices))
+- `volume_mounts` (Attributes List) Pod volumes to mount into the container's filesystem. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--containers--volume_mounts))
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
-<a id="nestedatt--spec--template--spec--volumes--env"></a>
-### Nested Schema for `spec.template.spec.volumes.env`
+<a id="nestedatt--spec--template--spec--containers--env"></a>
+### Nested Schema for `spec.template.spec.containers.env`
 
 Required:
 
@@ -181,20 +181,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--template--spec--containers--env--value_from))
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from`
+<a id="nestedatt--spec--template--spec--containers--env--value_from"></a>
+### Nested Schema for `spec.template.spec.containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--template--spec--containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--template--spec--containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--template--spec--containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--template--spec--containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.template.spec.containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -206,8 +206,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.field_ref`
+<a id="nestedatt--spec--template--spec--containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.template.spec.containers.env.value_from.field_ref`
 
 Required:
 
@@ -218,8 +218,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--template--spec--containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.template.spec.containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -231,8 +231,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--template--spec--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.template.spec.containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -246,17 +246,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.template.spec.volumes.env_from`
+<a id="nestedatt--spec--template--spec--containers--env_from"></a>
+### Nested Schema for `spec.template.spec.containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env_from--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--template--spec--containers--env_from--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env_from--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--template--spec--containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--template--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env_from.config_map_ref`
+<a id="nestedatt--spec--template--spec--containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.template.spec.containers.env_from.config_map_ref`
 
 Optional:
 
@@ -264,8 +264,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--template--spec--volumes--env_from--secret_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env_from.secret_ref`
+<a id="nestedatt--spec--template--spec--containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.template.spec.containers.env_from.secret_ref`
 
 Optional:
 
@@ -274,33 +274,33 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle`
+<a id="nestedatt--spec--template--spec--containers--lifecycle"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle`
 
 Optional:
 
-- `post_start` (Attributes) PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--post_start))
-- `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop))
+- `post_start` (Attributes) PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--post_start))
+- `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--pre_stop))
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.post_start`
+<a id="nestedatt--spec--template--spec--containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.post_start`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--post_start--tcp_socket))
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--template--spec--containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--template--spec--containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -309,12 +309,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--template--spec--containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -323,8 +323,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--template--spec--containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -336,25 +336,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop`
+<a id="nestedatt--spec--template--spec--containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--template--spec--containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--template--spec--containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -363,12 +363,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--template--spec--containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -377,8 +377,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--template--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -391,30 +391,30 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--template--spec--containers--liveness_probe"></a>
+### Nested Schema for `spec.template.spec.containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--exec))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--containers--liveness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--http_get))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--containers--liveness_probe--tcp_socket))
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.exec`
+<a id="nestedatt--spec--template--spec--containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.template.spec.containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.http_get`
+<a id="nestedatt--spec--template--spec--containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.template.spec.containers.liveness_probe.http_get`
 
 Required:
 
@@ -423,12 +423,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--containers--liveness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--template--spec--containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -437,8 +437,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.tcp_socket`
+<a id="nestedatt--spec--template--spec--containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -450,8 +450,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--ports"></a>
-### Nested Schema for `spec.template.spec.volumes.ports`
+<a id="nestedatt--spec--template--spec--containers--ports"></a>
+### Nested Schema for `spec.template.spec.containers.ports`
 
 Required:
 
@@ -465,30 +465,30 @@ Optional:
 - `protocol` (String) Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.
 
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--template--spec--containers--readiness_probe"></a>
+### Nested Schema for `spec.template.spec.containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--exec))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--containers--readiness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--http_get))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--containers--readiness_probe--tcp_socket))
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.exec`
+<a id="nestedatt--spec--template--spec--containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.template.spec.containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.http_get`
+<a id="nestedatt--spec--template--spec--containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.template.spec.containers.readiness_probe.http_get`
 
 Required:
 
@@ -497,12 +497,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--containers--readiness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--template--spec--containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -511,8 +511,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.tcp_socket`
+<a id="nestedatt--spec--template--spec--containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -524,8 +524,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--resources"></a>
-### Nested Schema for `spec.template.spec.volumes.resources`
+<a id="nestedatt--spec--template--spec--containers--resources"></a>
+### Nested Schema for `spec.template.spec.containers.resources`
 
 Optional:
 
@@ -533,24 +533,24 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
 
 
-<a id="nestedatt--spec--template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context`
+<a id="nestedatt--spec--template--spec--containers--security_context"></a>
+### Nested Schema for `spec.template.spec.containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN
-- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context--capabilities))
+- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. (see [below for nested schema](#nestedatt--spec--template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.
 - `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.
 - `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false.
 - `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 - `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context--se_linux_options))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context--windows_options))
+- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--containers--security_context--se_linux_options))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--containers--security_context--windows_options))
 
-<a id="nestedatt--spec--template--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context.capabilities`
+<a id="nestedatt--spec--template--spec--containers--security_context--capabilities"></a>
+### Nested Schema for `spec.template.spec.containers.security_context.capabilities`
 
 Optional:
 
@@ -558,8 +558,8 @@ Optional:
 - `drop` (List of String) Removed capabilities
 
 
-<a id="nestedatt--spec--template--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context.se_linux_options`
+<a id="nestedatt--spec--template--spec--containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.template.spec.containers.security_context.se_linux_options`
 
 Optional:
 
@@ -569,8 +569,8 @@ Optional:
 - `user` (String) User is a SELinux user label that applies to the container.
 
 
-<a id="nestedatt--spec--template--spec--volumes--security_context--windows_options"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context.windows_options`
+<a id="nestedatt--spec--template--spec--containers--security_context--windows_options"></a>
+### Nested Schema for `spec.template.spec.containers.security_context.windows_options`
 
 Optional:
 
@@ -580,30 +580,30 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe`
+<a id="nestedatt--spec--template--spec--containers--startup_probe"></a>
+### Nested Schema for `spec.template.spec.containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--exec))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--containers--startup_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--http_get))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--containers--startup_probe--tcp_socket))
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.exec`
+<a id="nestedatt--spec--template--spec--containers--startup_probe--exec"></a>
+### Nested Schema for `spec.template.spec.containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.http_get`
+<a id="nestedatt--spec--template--spec--containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.template.spec.containers.startup_probe.http_get`
 
 Required:
 
@@ -612,12 +612,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--containers--startup_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--template--spec--containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -626,8 +626,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.tcp_socket`
+<a id="nestedatt--spec--template--spec--containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -639,8 +639,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.template.spec.volumes.volume_devices`
+<a id="nestedatt--spec--template--spec--containers--volume_devices"></a>
+### Nested Schema for `spec.template.spec.containers.volume_devices`
 
 Required:
 
@@ -648,8 +648,8 @@ Required:
 - `name` (String) name must match the name of a persistentVolumeClaim in the pod
 
 
-<a id="nestedatt--spec--template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.template.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--template--spec--containers--volume_mounts"></a>
+### Nested Schema for `spec.template.spec.containers.volume_mounts`
 
 Required:
 
@@ -670,36 +670,36 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--node_affinity))
-- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_affinity))
-- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_anti_affinity))
+- `node_affinity` (Attributes) Describes node affinity scheduling rules for the pod. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--node_affinity))
+- `pod_affinity` (Attributes) Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--template--spec--volumes--node_affinity"></a>
-### Nested Schema for `spec.template.spec.volumes.node_affinity`
+<a id="nestedatt--spec--template--spec--affinity--node_affinity"></a>
+### Nested Schema for `spec.template.spec.affinity.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--template--spec--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.spec.volumes.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
 
-<a id="nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+<a id="nestedatt--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Required:
 
@@ -711,51 +711,8 @@ Optional:
 - `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
-<a id="nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Required:
-
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
-
-Optional:
-
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
-
-
-
-
-<a id="nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Required:
-
-- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Required:
-
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
-
-Optional:
-
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
-
-
-<a id="nestedatt--spec--template--spec--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.template.spec.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--template--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.template.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Required:
 
@@ -769,25 +726,68 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--template--spec--volumes--pod_affinity"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--template--spec--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+<a id="nestedatt--spec--template--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.template.spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String) The label key that the selector applies to.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+
+Optional:
+
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--template--spec--affinity--pod_affinity"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
-<a id="nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -795,19 +795,19 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
 
-<a id="nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -822,8 +822,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -831,19 +831,19 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
 
-<a id="nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--template--spec--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -858,24 +858,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--pod_anti_affinity"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_anti_affinity`
+<a id="nestedatt--spec--template--spec--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--template--spec--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
-<a id="nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
@@ -883,19 +883,19 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 - `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
 
-<a id="nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
+<a id="nestedatt--spec--template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
@@ -910,8 +910,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
@@ -919,19 +919,19 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 - `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
 
-<a id="nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
-### Nested Schema for `spec.template.spec.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_expressions`
+<a id="nestedatt--spec--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
@@ -953,11 +953,11 @@ Optional:
 Optional:
 
 - `nameservers` (List of String) A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.
-- `options` (Attributes List) A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--options))
+- `options` (Attributes List) A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--template--spec--dns_config--options))
 - `searches` (List of String) A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
 
-<a id="nestedatt--spec--template--spec--volumes--options"></a>
-### Nested Schema for `spec.template.spec.volumes.options`
+<a id="nestedatt--spec--template--spec--dns_config--options"></a>
+### Nested Schema for `spec.template.spec.dns_config.options`
 
 Optional:
 
@@ -977,29 +977,29 @@ Optional:
 
 - `args` (List of String) Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 - `command` (List of String) Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-- `env` (Attributes List) List of environment variables to set in the container. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env))
-- `env_from` (Attributes List) List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env_from))
+- `env` (Attributes List) List of environment variables to set in the container. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--env))
+- `env_from` (Attributes List) List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--env_from))
 - `image` (String) Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images
 - `image_pull_policy` (String) Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
-- `lifecycle` (Attributes) Lifecycle is not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) Probes are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe))
-- `ports` (Attributes List) Ports are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ports))
-- `readiness_probe` (Attributes) Probes are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe))
-- `resources` (Attributes) Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--resources))
-- `security_context` (Attributes) SecurityContext is not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context))
-- `startup_probe` (Attributes) Probes are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe))
+- `lifecycle` (Attributes) Lifecycle is not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle))
+- `liveness_probe` (Attributes) Probes are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--liveness_probe))
+- `ports` (Attributes List) Ports are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--ports))
+- `readiness_probe` (Attributes) Probes are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--readiness_probe))
+- `resources` (Attributes) Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--resources))
+- `security_context` (Attributes) SecurityContext is not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--security_context))
+- `startup_probe` (Attributes) Probes are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
 - `stdin_once` (Boolean) Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false
 - `target_container_name` (String) If set, the name of the container from PodSpec that this ephemeral container targets. The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container. If not set then the ephemeral container is run in whatever namespaces are shared for the pod. Note that the container runtime must support this feature.
 - `termination_message_path` (String) Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
 - `termination_message_policy` (String) Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.
 - `tty` (Boolean) Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.
-- `volume_devices` (Attributes List) volumeDevices is the list of block devices to be used by the container. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) Pod volumes to mount into the container's filesystem. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) volumeDevices is the list of block devices to be used by the container. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--volume_devices))
+- `volume_mounts` (Attributes List) Pod volumes to mount into the container's filesystem. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--volume_mounts))
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
-<a id="nestedatt--spec--template--spec--volumes--env"></a>
-### Nested Schema for `spec.template.spec.volumes.env`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--env"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.env`
 
 Required:
 
@@ -1008,20 +1008,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--env--value_from))
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--env--value_from"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1033,8 +1033,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.field_ref`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.env.value_from.field_ref`
 
 Required:
 
@@ -1045,8 +1045,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1058,8 +1058,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -1073,17 +1073,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.template.spec.volumes.env_from`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--env_from"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env_from--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--env_from--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env_from--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--template--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env_from.config_map_ref`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -1091,8 +1091,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--template--spec--volumes--env_from--secret_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env_from.secret_ref`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.env_from.secret_ref`
 
 Optional:
 
@@ -1101,33 +1101,33 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle`
 
 Optional:
 
-- `post_start` (Attributes) PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--post_start))
-- `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop))
+- `post_start` (Attributes) PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start))
+- `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop))
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.post_start`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.post_start`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket))
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -1136,12 +1136,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -1150,8 +1150,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -1163,25 +1163,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -1190,12 +1190,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1204,8 +1204,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -1218,30 +1218,30 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--liveness_probe"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--exec))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--liveness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--http_get))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--liveness_probe--tcp_socket))
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.exec`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.http_get`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.liveness_probe.http_get`
 
 Required:
 
@@ -1250,12 +1250,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--liveness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -1264,8 +1264,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.tcp_socket`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -1277,8 +1277,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--ports"></a>
-### Nested Schema for `spec.template.spec.volumes.ports`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--ports"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.ports`
 
 Required:
 
@@ -1292,30 +1292,30 @@ Optional:
 - `protocol` (String) Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.
 
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--readiness_probe"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--exec))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--readiness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--http_get))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--readiness_probe--tcp_socket))
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.exec`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.http_get`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.readiness_probe.http_get`
 
 Required:
 
@@ -1324,12 +1324,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--readiness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -1338,8 +1338,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.tcp_socket`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -1351,8 +1351,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--resources"></a>
-### Nested Schema for `spec.template.spec.volumes.resources`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--resources"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.resources`
 
 Optional:
 
@@ -1360,24 +1360,24 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
 
 
-<a id="nestedatt--spec--template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--security_context"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN
-- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context--capabilities))
+- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.
 - `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.
 - `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false.
 - `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 - `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context--se_linux_options))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context--windows_options))
+- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--security_context--se_linux_options))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--security_context--windows_options))
 
-<a id="nestedatt--spec--template--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context.capabilities`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--security_context--capabilities"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.security_context.capabilities`
 
 Optional:
 
@@ -1385,8 +1385,8 @@ Optional:
 - `drop` (List of String) Removed capabilities
 
 
-<a id="nestedatt--spec--template--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context.se_linux_options`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -1396,8 +1396,8 @@ Optional:
 - `user` (String) User is a SELinux user label that applies to the container.
 
 
-<a id="nestedatt--spec--template--spec--volumes--security_context--windows_options"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context.windows_options`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--security_context--windows_options"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.security_context.windows_options`
 
 Optional:
 
@@ -1407,30 +1407,30 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--startup_probe"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--exec))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--startup_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--http_get))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--startup_probe--tcp_socket))
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.exec`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--startup_probe--exec"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.http_get`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.startup_probe.http_get`
 
 Required:
 
@@ -1439,12 +1439,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--ephemeral_containers--startup_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -1453,8 +1453,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.tcp_socket`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -1466,8 +1466,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.template.spec.volumes.volume_devices`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--volume_devices"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.volume_devices`
 
 Required:
 
@@ -1475,8 +1475,8 @@ Required:
 - `name` (String) name must match the name of a persistentVolumeClaim in the pod
 
 
-<a id="nestedatt--spec--template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.template.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--template--spec--ephemeral_containers--volume_mounts"></a>
+### Nested Schema for `spec.template.spec.ephemeral_containers.volume_mounts`
 
 Required:
 
@@ -1520,28 +1520,28 @@ Optional:
 
 - `args` (List of String) Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 - `command` (List of String) Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-- `env` (Attributes List) List of environment variables to set in the container. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env))
-- `env_from` (Attributes List) List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env_from))
+- `env` (Attributes List) List of environment variables to set in the container. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--env))
+- `env_from` (Attributes List) List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--env_from))
 - `image` (String) Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.
 - `image_pull_policy` (String) Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
-- `lifecycle` (Attributes) Actions that the management system should take in response to container lifecycle events. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle))
-- `liveness_probe` (Attributes) Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe))
-- `ports` (Attributes List) List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ports))
-- `readiness_probe` (Attributes) Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe))
-- `resources` (Attributes) Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/ (see [below for nested schema](#nestedatt--spec--template--spec--volumes--resources))
-- `security_context` (Attributes) Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context))
-- `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. This is a beta feature enabled by the StartupProbe feature flag. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe))
+- `lifecycle` (Attributes) Actions that the management system should take in response to container lifecycle events. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle))
+- `liveness_probe` (Attributes) Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--liveness_probe))
+- `ports` (Attributes List) List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--ports))
+- `readiness_probe` (Attributes) Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--readiness_probe))
+- `resources` (Attributes) Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/ (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--resources))
+- `security_context` (Attributes) Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--security_context))
+- `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. This is a beta feature enabled by the StartupProbe feature flag. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
 - `stdin_once` (Boolean) Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false
 - `termination_message_path` (String) Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
 - `termination_message_policy` (String) Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.
 - `tty` (Boolean) Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.
-- `volume_devices` (Attributes List) volumeDevices is the list of block devices to be used by the container. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--volume_devices))
-- `volume_mounts` (Attributes List) Pod volumes to mount into the container's filesystem. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--volume_mounts))
+- `volume_devices` (Attributes List) volumeDevices is the list of block devices to be used by the container. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--volume_devices))
+- `volume_mounts` (Attributes List) Pod volumes to mount into the container's filesystem. Cannot be updated. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--volume_mounts))
 - `working_dir` (String) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 
-<a id="nestedatt--spec--template--spec--volumes--env"></a>
-### Nested Schema for `spec.template.spec.volumes.env`
+<a id="nestedatt--spec--template--spec--init_containers--env"></a>
+### Nested Schema for `spec.template.spec.init_containers.env`
 
 Required:
 
@@ -1550,20 +1550,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--env--value_from))
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from`
+<a id="nestedatt--spec--template--spec--init_containers--env--value_from"></a>
+### Nested Schema for `spec.template.spec.init_containers.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--template--spec--init_containers--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.template.spec.init_containers.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -1575,8 +1575,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--field_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.field_ref`
+<a id="nestedatt--spec--template--spec--init_containers--env--value_from--field_ref"></a>
+### Nested Schema for `spec.template.spec.init_containers.env.value_from.field_ref`
 
 Required:
 
@@ -1587,8 +1587,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--template--spec--init_containers--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.template.spec.init_containers.env.value_from.resource_field_ref`
 
 Required:
 
@@ -1600,8 +1600,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--template--spec--volumes--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--template--spec--init_containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.template.spec.init_containers.env.value_from.secret_key_ref`
 
 Required:
 
@@ -1615,17 +1615,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--env_from"></a>
-### Nested Schema for `spec.template.spec.volumes.env_from`
+<a id="nestedatt--spec--template--spec--init_containers--env_from"></a>
+### Nested Schema for `spec.template.spec.init_containers.env_from`
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env_from--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--env_from--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--template--spec--volumes--env_from--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--env_from--secret_ref))
 
-<a id="nestedatt--spec--template--spec--volumes--env_from--config_map_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env_from.config_map_ref`
+<a id="nestedatt--spec--template--spec--init_containers--env_from--config_map_ref"></a>
+### Nested Schema for `spec.template.spec.init_containers.env_from.config_map_ref`
 
 Optional:
 
@@ -1633,8 +1633,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--template--spec--volumes--env_from--secret_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.env_from.secret_ref`
+<a id="nestedatt--spec--template--spec--init_containers--env_from--secret_ref"></a>
+### Nested Schema for `spec.template.spec.init_containers.env_from.secret_ref`
 
 Optional:
 
@@ -1643,33 +1643,33 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle`
 
 Optional:
 
-- `post_start` (Attributes) PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--post_start))
-- `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop))
+- `post_start` (Attributes) PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--post_start))
+- `pre_stop` (Attributes) PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop))
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--post_start"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.post_start`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--post_start"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.post_start`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--post_start--exec))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--post_start--tcp_socket))
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.post_start.http_get`
 
 Required:
 
@@ -1678,12 +1678,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--post_start--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.post_start.http_get.http_headers`
 
 Required:
 
@@ -1692,8 +1692,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.post_start.tcp_socket`
 
 Required:
 
@@ -1705,25 +1705,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.pre_stop`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--exec))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--http_get))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--exec"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.pre_stop.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--http_get"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.pre_stop.http_get`
 
 Required:
 
@@ -1732,12 +1732,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket.http_headers`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.pre_stop.http_get.http_headers`
 
 Required:
 
@@ -1746,8 +1746,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--template--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.init_containers.lifecycle.pre_stop.tcp_socket`
 
 Required:
 
@@ -1760,30 +1760,30 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe`
+<a id="nestedatt--spec--template--spec--init_containers--liveness_probe"></a>
+### Nested Schema for `spec.template.spec.init_containers.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--exec))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--liveness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--http_get))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--liveness_probe--tcp_socket))
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.exec`
+<a id="nestedatt--spec--template--spec--init_containers--liveness_probe--exec"></a>
+### Nested Schema for `spec.template.spec.init_containers.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.http_get`
+<a id="nestedatt--spec--template--spec--init_containers--liveness_probe--http_get"></a>
+### Nested Schema for `spec.template.spec.init_containers.liveness_probe.http_get`
 
 Required:
 
@@ -1792,12 +1792,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--liveness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--template--spec--init_containers--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.init_containers.liveness_probe.http_get.http_headers`
 
 Required:
 
@@ -1806,8 +1806,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.liveness_probe.tcp_socket`
+<a id="nestedatt--spec--template--spec--init_containers--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.init_containers.liveness_probe.tcp_socket`
 
 Required:
 
@@ -1819,8 +1819,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--ports"></a>
-### Nested Schema for `spec.template.spec.volumes.ports`
+<a id="nestedatt--spec--template--spec--init_containers--ports"></a>
+### Nested Schema for `spec.template.spec.init_containers.ports`
 
 Required:
 
@@ -1834,30 +1834,30 @@ Optional:
 - `protocol` (String) Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.
 
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe`
+<a id="nestedatt--spec--template--spec--init_containers--readiness_probe"></a>
+### Nested Schema for `spec.template.spec.init_containers.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--exec))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--readiness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--http_get))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--readiness_probe--tcp_socket))
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.exec`
+<a id="nestedatt--spec--template--spec--init_containers--readiness_probe--exec"></a>
+### Nested Schema for `spec.template.spec.init_containers.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.http_get`
+<a id="nestedatt--spec--template--spec--init_containers--readiness_probe--http_get"></a>
+### Nested Schema for `spec.template.spec.init_containers.readiness_probe.http_get`
 
 Required:
 
@@ -1866,12 +1866,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--readiness_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--template--spec--init_containers--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.init_containers.readiness_probe.http_get.http_headers`
 
 Required:
 
@@ -1880,8 +1880,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.readiness_probe.tcp_socket`
+<a id="nestedatt--spec--template--spec--init_containers--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.init_containers.readiness_probe.tcp_socket`
 
 Required:
 
@@ -1893,8 +1893,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--resources"></a>
-### Nested Schema for `spec.template.spec.volumes.resources`
+<a id="nestedatt--spec--template--spec--init_containers--resources"></a>
+### Nested Schema for `spec.template.spec.init_containers.resources`
 
 Optional:
 
@@ -1902,24 +1902,24 @@ Optional:
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
 
 
-<a id="nestedatt--spec--template--spec--volumes--security_context"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context`
+<a id="nestedatt--spec--template--spec--init_containers--security_context"></a>
+### Nested Schema for `spec.template.spec.init_containers.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN
-- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context--capabilities))
+- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.
 - `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.
 - `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false.
 - `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 - `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context--se_linux_options))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--security_context--windows_options))
+- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--security_context--se_linux_options))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--security_context--windows_options))
 
-<a id="nestedatt--spec--template--spec--volumes--security_context--capabilities"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context.capabilities`
+<a id="nestedatt--spec--template--spec--init_containers--security_context--capabilities"></a>
+### Nested Schema for `spec.template.spec.init_containers.security_context.capabilities`
 
 Optional:
 
@@ -1927,8 +1927,8 @@ Optional:
 - `drop` (List of String) Removed capabilities
 
 
-<a id="nestedatt--spec--template--spec--volumes--security_context--se_linux_options"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context.se_linux_options`
+<a id="nestedatt--spec--template--spec--init_containers--security_context--se_linux_options"></a>
+### Nested Schema for `spec.template.spec.init_containers.security_context.se_linux_options`
 
 Optional:
 
@@ -1938,8 +1938,8 @@ Optional:
 - `user` (String) User is a SELinux user label that applies to the container.
 
 
-<a id="nestedatt--spec--template--spec--volumes--security_context--windows_options"></a>
-### Nested Schema for `spec.template.spec.volumes.security_context.windows_options`
+<a id="nestedatt--spec--template--spec--init_containers--security_context--windows_options"></a>
+### Nested Schema for `spec.template.spec.init_containers.security_context.windows_options`
 
 Optional:
 
@@ -1949,30 +1949,30 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe`
+<a id="nestedatt--spec--template--spec--init_containers--startup_probe"></a>
+### Nested Schema for `spec.template.spec.init_containers.startup_probe`
 
 Optional:
 
-- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--exec))
+- `exec` (Attributes) One and only one of the following should be specified. Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--startup_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--http_get))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--tcp_socket))
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--startup_probe--tcp_socket))
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--exec"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.exec`
+<a id="nestedatt--spec--template--spec--init_containers--startup_probe--exec"></a>
+### Nested Schema for `spec.template.spec.init_containers.startup_probe.exec`
 
 Optional:
 
 - `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--http_get"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.http_get`
+<a id="nestedatt--spec--template--spec--init_containers--startup_probe--http_get"></a>
+### Nested Schema for `spec.template.spec.init_containers.startup_probe.http_get`
 
 Required:
 
@@ -1981,12 +1981,12 @@ Required:
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
-- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--startup_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--template--spec--init_containers--startup_probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
 - `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--template--spec--init_containers--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.template.spec.init_containers.startup_probe.http_get.http_headers`
 
 Required:
 
@@ -1995,8 +1995,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--startup_probe--tcp_socket"></a>
-### Nested Schema for `spec.template.spec.volumes.startup_probe.tcp_socket`
+<a id="nestedatt--spec--template--spec--init_containers--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.template.spec.init_containers.startup_probe.tcp_socket`
 
 Required:
 
@@ -2008,8 +2008,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--volume_devices"></a>
-### Nested Schema for `spec.template.spec.volumes.volume_devices`
+<a id="nestedatt--spec--template--spec--init_containers--volume_devices"></a>
+### Nested Schema for `spec.template.spec.init_containers.volume_devices`
 
 Required:
 
@@ -2017,8 +2017,8 @@ Required:
 - `name` (String) name must match the name of a persistentVolumeClaim in the pod
 
 
-<a id="nestedatt--spec--template--spec--volumes--volume_mounts"></a>
-### Nested Schema for `spec.template.spec.volumes.volume_mounts`
+<a id="nestedatt--spec--template--spec--init_containers--volume_mounts"></a>
+### Nested Schema for `spec.template.spec.init_containers.volume_mounts`
 
 Required:
 
@@ -2052,13 +2052,13 @@ Optional:
 - `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.
 - `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.
-- `se_linux_options` (Attributes) The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--se_linux_options))
+- `se_linux_options` (Attributes) The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. (see [below for nested schema](#nestedatt--spec--template--spec--security_context--se_linux_options))
 - `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container.
-- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--sysctls))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--windows_options))
+- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. (see [below for nested schema](#nestedatt--spec--template--spec--security_context--sysctls))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--template--spec--security_context--windows_options))
 
-<a id="nestedatt--spec--template--spec--volumes--se_linux_options"></a>
-### Nested Schema for `spec.template.spec.volumes.se_linux_options`
+<a id="nestedatt--spec--template--spec--security_context--se_linux_options"></a>
+### Nested Schema for `spec.template.spec.security_context.se_linux_options`
 
 Optional:
 
@@ -2068,8 +2068,8 @@ Optional:
 - `user` (String) User is a SELinux user label that applies to the container.
 
 
-<a id="nestedatt--spec--template--spec--volumes--sysctls"></a>
-### Nested Schema for `spec.template.spec.volumes.sysctls`
+<a id="nestedatt--spec--template--spec--security_context--sysctls"></a>
+### Nested Schema for `spec.template.spec.security_context.sysctls`
 
 Required:
 
@@ -2077,8 +2077,8 @@ Required:
 - `value` (String) Value of a property to set
 
 
-<a id="nestedatt--spec--template--spec--volumes--windows_options"></a>
-### Nested Schema for `spec.template.spec.volumes.windows_options`
+<a id="nestedatt--spec--template--spec--security_context--windows_options"></a>
+### Nested Schema for `spec.template.spec.security_context.windows_options`
 
 Optional:
 
@@ -2111,18 +2111,18 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--label_selector))
+- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--template--spec--topology_spread_constraints--label_selector))
 
-<a id="nestedatt--spec--template--spec--volumes--label_selector"></a>
-### Nested Schema for `spec.template.spec.volumes.label_selector`
+<a id="nestedatt--spec--template--spec--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.template.spec.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--label_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--template--spec--volumes--label_selector--match_expressions"></a>
-### Nested Schema for `spec.template.spec.volumes.label_selector.match_expressions`
+<a id="nestedatt--spec--template--spec--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.template.spec.topology_spread_constraints.label_selector.match_expressions`
 
 Required:
 
@@ -2558,22 +2558,22 @@ Optional:
 
 Optional:
 
-- `config_map` (Attributes) information about the configMap data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--default_mode--config_map))
-- `downward_api` (Attributes) information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--default_mode--downward_api))
-- `secret` (Attributes) information about the secret data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--default_mode--secret))
-- `service_account_token` (Attributes) information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token))
+- `config_map` (Attributes) information about the configMap data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--downward_api))
+- `secret` (Attributes) information about the secret data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--service_account_token))
 
-<a id="nestedatt--spec--template--spec--volumes--projected--default_mode--config_map"></a>
-### Nested Schema for `spec.template.spec.volumes.projected.default_mode.config_map`
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token--items))
+- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token--items"></a>
-### Nested Schema for `spec.template.spec.volumes.projected.default_mode.service_account_token.items`
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -2586,15 +2586,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--projected--default_mode--downward_api"></a>
-### Nested Schema for `spec.template.spec.volumes.projected.default_mode.downward_api`
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token--items))
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token--items"></a>
-### Nested Schema for `spec.template.spec.volumes.projected.default_mode.service_account_token.items`
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -2602,12 +2602,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.projected.default_mode.service_account_token.items.field_ref`
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -2618,8 +2618,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.template.spec.volumes.projected.default_mode.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -2633,17 +2633,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--projected--default_mode--secret"></a>
-### Nested Schema for `spec.template.spec.volumes.projected.default_mode.secret`
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token--items))
+- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--projected--sources--secret--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
-<a id="nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token--items"></a>
-### Nested Schema for `spec.template.spec.volumes.projected.default_mode.service_account_token.items`
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -2656,8 +2656,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--template--spec--volumes--projected--default_mode--service_account_token"></a>
-### Nested Schema for `spec.template.spec.volumes.projected.default_mode.service_account_token`
+<a id="nestedatt--spec--template--spec--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.template.spec.volumes.projected.sources.service_account_token`
 
 Required:
 

@@ -246,21 +246,21 @@ Optional:
 
 Optional:
 
-- `disks` (Attributes List) (see [below for nested schema](#nestedatt--spec--metadata--instance--userdata--disks))
-- `filesystems` (Attributes List) (see [below for nested schema](#nestedatt--spec--metadata--instance--userdata--filesystems))
-- `raid` (Attributes List) (see [below for nested schema](#nestedatt--spec--metadata--instance--userdata--raid))
+- `disks` (Attributes List) (see [below for nested schema](#nestedatt--spec--metadata--instance--storage--disks))
+- `filesystems` (Attributes List) (see [below for nested schema](#nestedatt--spec--metadata--instance--storage--filesystems))
+- `raid` (Attributes List) (see [below for nested schema](#nestedatt--spec--metadata--instance--storage--raid))
 
-<a id="nestedatt--spec--metadata--instance--userdata--disks"></a>
-### Nested Schema for `spec.metadata.instance.userdata.disks`
+<a id="nestedatt--spec--metadata--instance--storage--disks"></a>
+### Nested Schema for `spec.metadata.instance.storage.disks`
 
 Optional:
 
 - `device` (String)
-- `partitions` (Attributes List) (see [below for nested schema](#nestedatt--spec--metadata--instance--userdata--disks--partitions))
+- `partitions` (Attributes List) (see [below for nested schema](#nestedatt--spec--metadata--instance--storage--disks--partitions))
 - `wipe_table` (Boolean)
 
-<a id="nestedatt--spec--metadata--instance--userdata--disks--partitions"></a>
-### Nested Schema for `spec.metadata.instance.userdata.disks.partitions`
+<a id="nestedatt--spec--metadata--instance--storage--disks--partitions"></a>
+### Nested Schema for `spec.metadata.instance.storage.disks.partitions`
 
 Optional:
 
@@ -272,26 +272,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--metadata--instance--userdata--filesystems"></a>
-### Nested Schema for `spec.metadata.instance.userdata.filesystems`
+<a id="nestedatt--spec--metadata--instance--storage--filesystems"></a>
+### Nested Schema for `spec.metadata.instance.storage.filesystems`
 
 Optional:
 
-- `mount` (Attributes) (see [below for nested schema](#nestedatt--spec--metadata--instance--userdata--filesystems--mount))
+- `mount` (Attributes) (see [below for nested schema](#nestedatt--spec--metadata--instance--storage--filesystems--mount))
 
-<a id="nestedatt--spec--metadata--instance--userdata--filesystems--mount"></a>
-### Nested Schema for `spec.metadata.instance.userdata.filesystems.mount`
+<a id="nestedatt--spec--metadata--instance--storage--filesystems--mount"></a>
+### Nested Schema for `spec.metadata.instance.storage.filesystems.mount`
 
 Optional:
 
-- `create` (Attributes) (see [below for nested schema](#nestedatt--spec--metadata--instance--userdata--filesystems--mount--create))
+- `create` (Attributes) (see [below for nested schema](#nestedatt--spec--metadata--instance--storage--filesystems--mount--create))
 - `device` (String)
-- `files` (Attributes List) (see [below for nested schema](#nestedatt--spec--metadata--instance--userdata--filesystems--mount--files))
+- `files` (Attributes List) (see [below for nested schema](#nestedatt--spec--metadata--instance--storage--filesystems--mount--files))
 - `format` (String)
 - `point` (String)
 
-<a id="nestedatt--spec--metadata--instance--userdata--filesystems--mount--create"></a>
-### Nested Schema for `spec.metadata.instance.userdata.filesystems.mount.create`
+<a id="nestedatt--spec--metadata--instance--storage--filesystems--mount--create"></a>
+### Nested Schema for `spec.metadata.instance.storage.filesystems.mount.create`
 
 Optional:
 
@@ -299,8 +299,8 @@ Optional:
 - `options` (List of String)
 
 
-<a id="nestedatt--spec--metadata--instance--userdata--filesystems--mount--files"></a>
-### Nested Schema for `spec.metadata.instance.userdata.filesystems.mount.files`
+<a id="nestedatt--spec--metadata--instance--storage--filesystems--mount--files"></a>
+### Nested Schema for `spec.metadata.instance.storage.filesystems.mount.files`
 
 Optional:
 
@@ -313,8 +313,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--metadata--instance--userdata--raid"></a>
-### Nested Schema for `spec.metadata.instance.userdata.raid`
+<a id="nestedatt--spec--metadata--instance--storage--raid"></a>
+### Nested Schema for `spec.metadata.instance.storage.raid`
 
 Optional:
 

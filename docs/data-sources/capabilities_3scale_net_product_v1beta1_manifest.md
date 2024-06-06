@@ -324,23 +324,23 @@ Optional:
 
 Optional:
 
-- `app_key_app_id` (Attributes) AppKeyAppIDAuthenticationSpec defines the desired state of AppKey&AppId Authentication (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--app_key_app_id))
-- `oidc` (Attributes) OIDCSpec defines the desired configuration of OpenID Connect Authentication (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc))
-- `userkey` (Attributes) UserKeyAuthenticationSpec defines the desired state of User Key Authentication (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--userkey))
+- `app_key_app_id` (Attributes) AppKeyAppIDAuthenticationSpec defines the desired state of AppKey&AppId Authentication (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--app_key_app_id))
+- `oidc` (Attributes) OIDCSpec defines the desired configuration of OpenID Connect Authentication (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--oidc))
+- `userkey` (Attributes) UserKeyAuthenticationSpec defines the desired state of User Key Authentication (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--userkey))
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--app_key_app_id"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.app_key_app_id`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--app_key_app_id"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.app_key_app_id`
 
 Optional:
 
 - `app_id` (String) AppID is the name of the parameter that acts of behalf of app id
 - `app_key` (String) AppKey is the name of the parameter that acts of behalf of app key
 - `credentials` (String) CredentialsLoc available options: headers: As HTTP Headers query: As query parameters (GET) or body parameters (POST/PUT/DELETE) authorization: As HTTP Basic Authentication
-- `gateway_response` (Attributes) GatewayResponseSpec defines the desired gateway response configuration (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--app_key_app_id--gateway_response))
-- `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--app_key_app_id--security))
+- `gateway_response` (Attributes) GatewayResponseSpec defines the desired gateway response configuration (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--app_key_app_id--gateway_response))
+- `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--app_key_app_id--security))
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--app_key_app_id--gateway_response"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.app_key_app_id.gateway_response`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--app_key_app_id--gateway_response"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.app_key_app_id.gateway_response`
 
 Optional:
 
@@ -358,8 +358,8 @@ Optional:
 - `error_status_no_match` (Number) ErrorStatusNoMatch specifies the response code when no match error
 
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--app_key_app_id--security"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.app_key_app_id.security`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--app_key_app_id--security"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.app_key_app_id.security`
 
 Optional:
 
@@ -368,8 +368,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--oidc"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.oidc`
 
 Required:
 
@@ -377,17 +377,17 @@ Required:
 
 Optional:
 
-- `authentication_flow` (Attributes) AuthenticationFlow specifies OAuth2.0 authorization grant type (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--authentication_flow))
+- `authentication_flow` (Attributes) AuthenticationFlow specifies OAuth2.0 authorization grant type (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--oidc--authentication_flow))
 - `credentials` (String) Credentials Location available options: headers: As HTTP Headers query: As query parameters (GET) or body parameters (POST/PUT/DELETE) authorization: As HTTP Basic Authentication
-- `gateway_response` (Attributes) GatewayResponseSpec defines the desired gateway response configuration (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--gateway_response))
+- `gateway_response` (Attributes) GatewayResponseSpec defines the desired gateway response configuration (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--oidc--gateway_response))
 - `issuer_endpoint` (String) Issuer is the OIDC issuer
-- `issuer_endpoint_ref` (Attributes) IssuerEndpointRef  is the reference to OIDC issuer Secret that contains IssuerEndpoint (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--issuer_endpoint_ref))
+- `issuer_endpoint_ref` (Attributes) IssuerEndpointRef  is the reference to OIDC issuer Secret that contains IssuerEndpoint (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--oidc--issuer_endpoint_ref))
 - `jwt_claim_with_client_id` (String) JwtClaimWithClientID is the JSON Web Token (JWT) Claim with ClientID that contains the clientID. Defaults to 'azp'.
 - `jwt_claim_with_client_id_type` (String) JwtClaimWithClientIDType sets to process the ClientID Token Claim value as a string or as a liquid template.
-- `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--security))
+- `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--oidc--security))
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--authentication_flow"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc.authentication_flow`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--oidc--authentication_flow"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.oidc.authentication_flow`
 
 Required:
 
@@ -397,8 +397,8 @@ Required:
 - `standard_flow_enabled` (Boolean) OIDCIssuer is the OIDC issuer
 
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--gateway_response"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc.gateway_response`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--oidc--gateway_response"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.oidc.gateway_response`
 
 Optional:
 
@@ -416,8 +416,8 @@ Optional:
 - `error_status_no_match` (Number) ErrorStatusNoMatch specifies the response code when no match error
 
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--issuer_endpoint_ref"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc.issuer_endpoint_ref`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--oidc--issuer_endpoint_ref"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.oidc.issuer_endpoint_ref`
 
 Optional:
 
@@ -425,8 +425,8 @@ Optional:
 - `namespace` (String) namespace defines the space within which the secret name must be unique.
 
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--oidc--security"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.oidc.security`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--oidc--security"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.oidc.security`
 
 Optional:
 
@@ -435,18 +435,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--userkey"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.userkey`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--userkey"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.userkey`
 
 Optional:
 
 - `auth_user_key` (String)
 - `credentials` (String) Credentials Location available options: headers: As HTTP Headers query: As query parameters (GET) or body parameters (POST/PUT/DELETE) authorization: As HTTP Basic Authentication
-- `gateway_response` (Attributes) GatewayResponseSpec defines the desired gateway response configuration (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--userkey--gateway_response))
-- `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--userkey--security))
+- `gateway_response` (Attributes) GatewayResponseSpec defines the desired gateway response configuration (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--userkey--gateway_response))
+- `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--deployment--apicast_self_managed--authentication--userkey--security))
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--userkey--gateway_response"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.userkey.gateway_response`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--userkey--gateway_response"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.userkey.gateway_response`
 
 Optional:
 
@@ -464,8 +464,8 @@ Optional:
 - `error_status_no_match` (Number) ErrorStatusNoMatch specifies the response code when no match error
 
 
-<a id="nestedatt--spec--deployment--apicast_self_managed--staging_public_base_url--userkey--security"></a>
-### Nested Schema for `spec.deployment.apicast_self_managed.staging_public_base_url.userkey.security`
+<a id="nestedatt--spec--deployment--apicast_self_managed--authentication--userkey--security"></a>
+### Nested Schema for `spec.deployment.apicast_self_managed.authentication.userkey.security`
 
 Optional:
 

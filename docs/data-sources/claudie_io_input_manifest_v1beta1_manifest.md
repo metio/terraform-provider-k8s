@@ -231,14 +231,14 @@ Optional:
 Required:
 
 - `endpoint` (String) Endpoint under which Claudie will access this node.
-- `secret_ref` (Attributes) Secret reference to the private key of the node. (see [below for nested schema](#nestedatt--spec--node_pools--static--taints--secret_ref))
+- `secret_ref` (Attributes) Secret reference to the private key of the node. (see [below for nested schema](#nestedatt--spec--node_pools--static--nodes--secret_ref))
 
 Optional:
 
 - `username` (String) Username with root access. Used in SSH connection also.
 
-<a id="nestedatt--spec--node_pools--static--taints--secret_ref"></a>
-### Nested Schema for `spec.node_pools.static.taints.secret_ref`
+<a id="nestedatt--spec--node_pools--static--nodes--secret_ref"></a>
+### Nested Schema for `spec.node_pools.static.nodes.secret_ref`
 
 Optional:
 

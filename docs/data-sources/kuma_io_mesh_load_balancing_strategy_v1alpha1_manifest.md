@@ -113,14 +113,14 @@ Required:
 
 Optional:
 
-- `least_request` (Attributes) LeastRequest selects N random available hosts as specified in 'choiceCount' (2 by default)and picks the host which has the fewest active requests (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--least_request))
-- `maglev` (Attributes) Maglev implements consistent hashing to upstream hosts. Maglev can be used asa drop in replacement for the ring hash load balancer any place in whichconsistent hashing is desired. (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--maglev))
+- `least_request` (Attributes) LeastRequest selects N random available hosts as specified in 'choiceCount' (2 by default)and picks the host which has the fewest active requests (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--least_request))
+- `maglev` (Attributes) Maglev implements consistent hashing to upstream hosts. Maglev can be used asa drop in replacement for the ring hash load balancer any place in whichconsistent hashing is desired. (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--maglev))
 - `random` (Map of String) Random selects a random available host. The random load balancer generallyperforms better than round-robin if no health checking policy is configured.Random selection avoids bias towards the host in the set that comes after a failed host.
-- `ring_hash` (Attributes) RingHash  implements consistent hashing to upstream hosts. Each host is mappedonto a circle (the “ring”) by hashing its address; each request is then routedto a host by hashing some property of the request, and finding the nearestcorresponding host clockwise around the ring. (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--ring_hash))
+- `ring_hash` (Attributes) RingHash  implements consistent hashing to upstream hosts. Each host is mappedonto a circle (the “ring”) by hashing its address; each request is then routedto a host by hashing some property of the request, and finding the nearestcorresponding host clockwise around the ring. (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--ring_hash))
 - `round_robin` (Map of String) RoundRobin is a load balancing algorithm that distributes requestsacross available upstream hosts in round-robin order.
 
-<a id="nestedatt--spec--to--default--locality_awareness--least_request"></a>
-### Nested Schema for `spec.to.default.locality_awareness.least_request`
+<a id="nestedatt--spec--to--default--load_balancer--least_request"></a>
+### Nested Schema for `spec.to.default.load_balancer.least_request`
 
 Optional:
 
@@ -128,16 +128,16 @@ Optional:
 - `choice_count` (Number) ChoiceCount is the number of random healthy hosts from which the host withthe fewest active requests will be chosen. Defaults to 2 so that Envoy performstwo-choice selection if the field is not set.
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--maglev"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev`
+<a id="nestedatt--spec--to--default--load_balancer--maglev"></a>
+### Nested Schema for `spec.to.default.load_balancer.maglev`
 
 Optional:
 
-- `hash_policies` (Attributes List) HashPolicies specify a list of request/connection properties that are used to calculate a hash.These hash policies are executed in the specified order. If a hash policy has the “terminal” attributeset to true, and there is already a hash generated, the hash is returned immediately,ignoring the rest of the hash policy list. (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--maglev--hash_policies))
+- `hash_policies` (Attributes List) HashPolicies specify a list of request/connection properties that are used to calculate a hash.These hash policies are executed in the specified order. If a hash policy has the “terminal” attributeset to true, and there is already a hash generated, the hash is returned immediately,ignoring the rest of the hash policy list. (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--maglev--hash_policies))
 - `table_size` (Number) The table size for Maglev hashing. Maglev aims for “minimal disruption”rather than an absolute guarantee. Minimal disruption means that whenthe set of upstream hosts change, a connection will likely be sentto the same upstream as it was before. Increasing the table size reducesthe amount of disruption. The table size must be prime number limited to 5000011.If it is not specified, the default is 65537.
 
-<a id="nestedatt--spec--to--default--locality_awareness--maglev--hash_policies"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.hash_policies`
+<a id="nestedatt--spec--to--default--load_balancer--maglev--hash_policies"></a>
+### Nested Schema for `spec.to.default.load_balancer.maglev.hash_policies`
 
 Required:
 
@@ -145,23 +145,23 @@ Required:
 
 Optional:
 
-- `connection` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--maglev--table_size--connection))
-- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--maglev--table_size--cookie))
-- `filter_state` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--maglev--table_size--filter_state))
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--maglev--table_size--header))
-- `query_parameter` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--maglev--table_size--query_parameter))
+- `connection` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--maglev--hash_policies--connection))
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--maglev--hash_policies--cookie))
+- `filter_state` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--maglev--hash_policies--filter_state))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--maglev--hash_policies--header))
+- `query_parameter` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--maglev--hash_policies--query_parameter))
 - `terminal` (Boolean) Terminal is a flag that short-circuits the hash computing. This field providesa ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallbackto rest of the policy list”, it saves time when the terminal policy works.If true, and there is already a hash computed, ignore rest of the list of hash polices.
 
-<a id="nestedatt--spec--to--default--locality_awareness--maglev--table_size--connection"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.connection`
+<a id="nestedatt--spec--to--default--load_balancer--maglev--hash_policies--connection"></a>
+### Nested Schema for `spec.to.default.load_balancer.maglev.hash_policies.connection`
 
 Optional:
 
 - `source_ip` (Boolean) Hash on source IP address.
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--maglev--table_size--cookie"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.cookie`
+<a id="nestedatt--spec--to--default--load_balancer--maglev--hash_policies--cookie"></a>
+### Nested Schema for `spec.to.default.load_balancer.maglev.hash_policies.cookie`
 
 Required:
 
@@ -173,24 +173,24 @@ Optional:
 - `ttl` (String) If specified, a cookie with the TTL will be generated if the cookie is not present.
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--maglev--table_size--filter_state"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.filter_state`
+<a id="nestedatt--spec--to--default--load_balancer--maglev--hash_policies--filter_state"></a>
+### Nested Schema for `spec.to.default.load_balancer.maglev.hash_policies.filter_state`
 
 Required:
 
 - `key` (String) The name of the Object in the per-request filterState, which isan Envoy::Hashable object. If there is no data associated with the key,or the stored object is not Envoy::Hashable, no hash will be produced.
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--maglev--table_size--header"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.header`
+<a id="nestedatt--spec--to--default--load_balancer--maglev--hash_policies--header"></a>
+### Nested Schema for `spec.to.default.load_balancer.maglev.hash_policies.header`
 
 Required:
 
 - `name` (String) The name of the request header that will be used to obtain the hash key.
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--maglev--table_size--query_parameter"></a>
-### Nested Schema for `spec.to.default.locality_awareness.maglev.table_size.query_parameter`
+<a id="nestedatt--spec--to--default--load_balancer--maglev--hash_policies--query_parameter"></a>
+### Nested Schema for `spec.to.default.load_balancer.maglev.hash_policies.query_parameter`
 
 Required:
 
@@ -199,18 +199,18 @@ Required:
 
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--ring_hash"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash`
+<a id="nestedatt--spec--to--default--load_balancer--ring_hash"></a>
+### Nested Schema for `spec.to.default.load_balancer.ring_hash`
 
 Optional:
 
 - `hash_function` (String) HashFunction is a function used to hash hosts onto the ketama ring.The value defaults to XX_HASH. Available values – XX_HASH, MURMUR_HASH_2.
-- `hash_policies` (Attributes List) HashPolicies specify a list of request/connection properties that are used to calculate a hash.These hash policies are executed in the specified order. If a hash policy has the “terminal” attributeset to true, and there is already a hash generated, the hash is returned immediately,ignoring the rest of the hash policy list. (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--ring_hash--hash_policies))
+- `hash_policies` (Attributes List) HashPolicies specify a list of request/connection properties that are used to calculate a hash.These hash policies are executed in the specified order. If a hash policy has the “terminal” attributeset to true, and there is already a hash generated, the hash is returned immediately,ignoring the rest of the hash policy list. (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies))
 - `max_ring_size` (Number) Maximum hash ring size. Defaults to 8M entries, and limited to 8M entries,but can be lowered to further constrain resource use.
 - `min_ring_size` (Number) Minimum hash ring size. The larger the ring is (that is,the more hashes there are for each provided host) the better the request distributionwill reflect the desired weights. Defaults to 1024 entries, and limited to 8M entries.
 
-<a id="nestedatt--spec--to--default--locality_awareness--ring_hash--hash_policies"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.hash_policies`
+<a id="nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies"></a>
+### Nested Schema for `spec.to.default.load_balancer.ring_hash.hash_policies`
 
 Required:
 
@@ -218,23 +218,23 @@ Required:
 
 Optional:
 
-- `connection` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--connection))
-- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--cookie))
-- `filter_state` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--filter_state))
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--header))
-- `query_parameter` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--query_parameter))
+- `connection` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies--connection))
+- `cookie` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies--cookie))
+- `filter_state` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies--filter_state))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies--header))
+- `query_parameter` (Attributes) (see [below for nested schema](#nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies--query_parameter))
 - `terminal` (Boolean) Terminal is a flag that short-circuits the hash computing. This field providesa ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallbackto rest of the policy list”, it saves time when the terminal policy works.If true, and there is already a hash computed, ignore rest of the list of hash polices.
 
-<a id="nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--connection"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.connection`
+<a id="nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies--connection"></a>
+### Nested Schema for `spec.to.default.load_balancer.ring_hash.hash_policies.connection`
 
 Optional:
 
 - `source_ip` (Boolean) Hash on source IP address.
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--cookie"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.cookie`
+<a id="nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies--cookie"></a>
+### Nested Schema for `spec.to.default.load_balancer.ring_hash.hash_policies.cookie`
 
 Required:
 
@@ -246,24 +246,24 @@ Optional:
 - `ttl` (String) If specified, a cookie with the TTL will be generated if the cookie is not present.
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--filter_state"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.filter_state`
+<a id="nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies--filter_state"></a>
+### Nested Schema for `spec.to.default.load_balancer.ring_hash.hash_policies.filter_state`
 
 Required:
 
 - `key` (String) The name of the Object in the per-request filterState, which isan Envoy::Hashable object. If there is no data associated with the key,or the stored object is not Envoy::Hashable, no hash will be produced.
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--header"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.header`
+<a id="nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies--header"></a>
+### Nested Schema for `spec.to.default.load_balancer.ring_hash.hash_policies.header`
 
 Required:
 
 - `name` (String) The name of the request header that will be used to obtain the hash key.
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--ring_hash--min_ring_size--query_parameter"></a>
-### Nested Schema for `spec.to.default.locality_awareness.ring_hash.min_ring_size.query_parameter`
+<a id="nestedatt--spec--to--default--load_balancer--ring_hash--hash_policies--query_parameter"></a>
+### Nested Schema for `spec.to.default.load_balancer.ring_hash.hash_policies.query_parameter`
 
 Required:
 
@@ -295,14 +295,14 @@ Optional:
 
 Required:
 
-- `to` (Attributes) To defines to which zones the traffic should be load balanced (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--cross_zone--failover_threshold--to))
+- `to` (Attributes) To defines to which zones the traffic should be load balanced (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--cross_zone--failover--to))
 
 Optional:
 
-- `from` (Attributes) From defines the list of zones to which the rule applies (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--cross_zone--failover_threshold--from))
+- `from` (Attributes) From defines the list of zones to which the rule applies (see [below for nested schema](#nestedatt--spec--to--default--locality_awareness--cross_zone--failover--from))
 
-<a id="nestedatt--spec--to--default--locality_awareness--cross_zone--failover_threshold--to"></a>
-### Nested Schema for `spec.to.default.locality_awareness.cross_zone.failover_threshold.to`
+<a id="nestedatt--spec--to--default--locality_awareness--cross_zone--failover--to"></a>
+### Nested Schema for `spec.to.default.locality_awareness.cross_zone.failover.to`
 
 Required:
 
@@ -313,8 +313,8 @@ Optional:
 - `zones` (List of String)
 
 
-<a id="nestedatt--spec--to--default--locality_awareness--cross_zone--failover_threshold--from"></a>
-### Nested Schema for `spec.to.default.locality_awareness.cross_zone.failover_threshold.from`
+<a id="nestedatt--spec--to--default--locality_awareness--cross_zone--failover--from"></a>
+### Nested Schema for `spec.to.default.locality_awareness.cross_zone.failover.from`
 
 Required:
 

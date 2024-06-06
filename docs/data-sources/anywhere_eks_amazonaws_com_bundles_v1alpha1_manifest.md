@@ -562,10 +562,10 @@ Optional:
 
 Optional:
 
-- `bottlerocket` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--eks_d--raw--bottlerocket))
+- `bottlerocket` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--eks_d--ami--bottlerocket))
 
-<a id="nestedatt--spec--versions_bundles--eks_d--raw--bottlerocket"></a>
-### Nested Schema for `spec.versions_bundles.eks_d.raw.bottlerocket`
+<a id="nestedatt--spec--versions_bundles--eks_d--ami--bottlerocket"></a>
+### Nested Schema for `spec.versions_bundles.eks_d.ami.bottlerocket`
 
 Optional:
 
@@ -659,10 +659,10 @@ Optional:
 
 Optional:
 
-- `bottlerocket` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--eks_d--raw--bottlerocket))
+- `bottlerocket` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--eks_d--ova--bottlerocket))
 
-<a id="nestedatt--spec--versions_bundles--eks_d--raw--bottlerocket"></a>
-### Nested Schema for `spec.versions_bundles.eks_d.raw.bottlerocket`
+<a id="nestedatt--spec--versions_bundles--eks_d--ova--bottlerocket"></a>
+### Nested Schema for `spec.versions_bundles.eks_d.ova.bottlerocket`
 
 Optional:
 
@@ -1745,11 +1745,11 @@ Optional:
 
 Required:
 
-- `amd` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--vmlinuz--amd))
-- `arm` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--vmlinuz--arm))
+- `amd` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--initramfs--amd))
+- `arm` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--initramfs--arm))
 
-<a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--vmlinuz--amd"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.vmlinuz.amd`
+<a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--initramfs--amd"></a>
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.initramfs.amd`
 
 Optional:
 
@@ -1763,8 +1763,8 @@ Optional:
 - `uri` (String) The URI where the asset is located
 
 
-<a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--vmlinuz--arm"></a>
-### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.vmlinuz.arm`
+<a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--hook--initramfs--arm"></a>
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.hook.initramfs.arm`
 
 Optional:
 

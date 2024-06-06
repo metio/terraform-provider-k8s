@@ -235,20 +235,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--env--value_from))
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--value_from"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.value_from`
+<a id="nestedatt--spec--horizontal_scaling--instances--env--value_from"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.value_from.config_map_key_ref`
+<a id="nestedatt--spec--horizontal_scaling--instances--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -260,8 +260,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--value_from--field_ref"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.value_from.field_ref`
+<a id="nestedatt--spec--horizontal_scaling--instances--env--value_from--field_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.env.value_from.field_ref`
 
 Required:
 
@@ -272,8 +272,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.value_from.resource_field_ref`
+<a id="nestedatt--spec--horizontal_scaling--instances--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.env.value_from.resource_field_ref`
 
 Required:
 
@@ -285,8 +285,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.value_from.secret_key_ref`
+<a id="nestedatt--spec--horizontal_scaling--instances--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.env.value_from.secret_key_ref`
 
 Required:
 
@@ -305,12 +305,12 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--claims"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.claims`
+<a id="nestedatt--spec--horizontal_scaling--instances--resources--claims"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.resources.claims`
 
 Required:
 
@@ -339,29 +339,29 @@ Required:
 
 Optional:
 
-- `spec` (Attributes) Defines the desired characteristics of a PersistentVolumeClaim that will be created for the volume with the mount name specified in the 'name' field.  When a Pod is created for this ClusterComponent, a new PVC will be created based on the specification defined in the 'spec' field. The PVC will be associated with the volume mount specified by the 'name' field. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec))
+- `spec` (Attributes) Defines the desired characteristics of a PersistentVolumeClaim that will be created for the volume with the mount name specified in the 'name' field.  When a Pod is created for this ClusterComponent, a new PVC will be created based on the specification defined in the 'spec' field. The PVC will be associated with the volume mount specified by the 'name' field. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volume_claim_templates--spec))
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec`
+<a id="nestedatt--spec--horizontal_scaling--instances--volume_claim_templates--spec"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volume_claim_templates.spec`
 
 Optional:
 
 - `access_modes` (Map of String) Contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1.
-- `resources` (Attributes) Represents the minimum resources the volume should have. If the RecoverVolumeExpansionFailure feature is enabled, users are allowed to specify resource requirements that are lower than the previous value but must still be higher than the capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--resources))
+- `resources` (Attributes) Represents the minimum resources the volume should have. If the RecoverVolumeExpansionFailure feature is enabled, users are allowed to specify resource requirements that are lower than the previous value but must still be higher than the capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volume_claim_templates--spec--resources))
 - `storage_class_name` (String) The name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1.
 - `volume_mode` (String) Defines what type of volume is required by the claim, either Block or Filesystem.
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--resources"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.resources`
+<a id="nestedatt--spec--horizontal_scaling--instances--volume_claim_templates--spec--resources"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volume_claim_templates.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_mode--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volume_claim_templates--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--spec--volume_mode--claims"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.spec.volume_mode.claims`
+<a id="nestedatt--spec--horizontal_scaling--instances--volume_claim_templates--spec--resources--claims"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volume_claim_templates.spec.resources.claims`
 
 Required:
 
@@ -643,16 +643,16 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--data_source"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.data_source`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -664,8 +664,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--data_source_ref"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.data_source_ref`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -678,17 +678,17 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.resources`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.volume_name.claims`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.spec.resources.claims`
 
 Required:
 
@@ -696,16 +696,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.selector`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--metadata--volume_name--match_expressions"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.metadata.volume_name.match_expressions`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Required:
 
@@ -931,12 +931,12 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -954,10 +954,10 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items))
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -965,12 +965,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -981,8 +981,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -1001,12 +1001,12 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items))
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--secret--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
-<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--service_account_token--items"></a>
-### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.service_account_token.items`
+<a id="nestedatt--spec--horizontal_scaling--instances--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.horizontal_scaling.instances.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -1221,10 +1221,10 @@ Required:
 Optional:
 
 - `file_content` (String) Specifies the content of the entire configuration file. This field is used to update the complete configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.
-- `parameters` (Attributes List) Specifies a list of key-value pairs representing parameters and their corresponding values within a single configuration file. This field is used to override or set the values of parameters without modifying the entire configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both. (see [below for nested schema](#nestedatt--spec--reconfigure--configurations--policy--parameters))
+- `parameters` (Attributes List) Specifies a list of key-value pairs representing parameters and their corresponding values within a single configuration file. This field is used to override or set the values of parameters without modifying the entire configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both. (see [below for nested schema](#nestedatt--spec--reconfigure--configurations--keys--parameters))
 
-<a id="nestedatt--spec--reconfigure--configurations--policy--parameters"></a>
-### Nested Schema for `spec.reconfigure.configurations.policy.parameters`
+<a id="nestedatt--spec--reconfigure--configurations--keys--parameters"></a>
+### Nested Schema for `spec.reconfigure.configurations.keys.parameters`
 
 Required:
 
@@ -1268,10 +1268,10 @@ Required:
 Optional:
 
 - `file_content` (String) Specifies the content of the entire configuration file. This field is used to update the complete configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both.
-- `parameters` (Attributes List) Specifies a list of key-value pairs representing parameters and their corresponding values within a single configuration file. This field is used to override or set the values of parameters without modifying the entire configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both. (see [below for nested schema](#nestedatt--spec--reconfigures--configurations--policy--parameters))
+- `parameters` (Attributes List) Specifies a list of key-value pairs representing parameters and their corresponding values within a single configuration file. This field is used to override or set the values of parameters without modifying the entire configuration file.  Either the 'parameters' field or the 'fileContent' field must be set, but not both. (see [below for nested schema](#nestedatt--spec--reconfigures--configurations--keys--parameters))
 
-<a id="nestedatt--spec--reconfigures--configurations--policy--parameters"></a>
-### Nested Schema for `spec.reconfigures.configurations.policy.parameters`
+<a id="nestedatt--spec--reconfigures--configurations--keys--parameters"></a>
+### Nested Schema for `spec.reconfigures.configurations.keys.parameters`
 
 Required:
 

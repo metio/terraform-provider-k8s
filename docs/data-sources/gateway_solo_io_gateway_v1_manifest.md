@@ -122,32 +122,32 @@ Optional:
 
 Optional:
 
-- `allowed_vary_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers))
-- `caching_service_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--caching_service_ref))
+- `allowed_vary_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--caching--allowed_vary_headers))
+- `caching_service_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--caching--caching_service_ref))
 - `max_payload_size` (Number)
 - `timeout` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.allowed_vary_headers`
+<a id="nestedatt--spec--http_gateway--options--caching--allowed_vary_headers"></a>
+### Nested Schema for `spec.http_gateway.options.caching.allowed_vary_headers`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--caching--allowed_vary_headers--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.allowed_vary_headers.safe_regex`
+<a id="nestedatt--spec--http_gateway--options--caching--allowed_vary_headers--safe_regex"></a>
+### Nested Schema for `spec.http_gateway.options.caching.allowed_vary_headers.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--caching--allowed_vary_headers--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--allowed_vary_headers--suffix--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.allowed_vary_headers.suffix.google_re2`
+<a id="nestedatt--spec--http_gateway--options--caching--allowed_vary_headers--safe_regex--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.caching.allowed_vary_headers.safe_regex.google_re2`
 
 Optional:
 
@@ -156,8 +156,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--caching_service_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.caching_service_ref`
+<a id="nestedatt--spec--http_gateway--options--caching--caching_service_ref"></a>
+### Nested Schema for `spec.http_gateway.options.caching.caching_service_ref`
 
 Optional:
 
@@ -180,31 +180,31 @@ Optional:
 
 Optional:
 
-- `additional_origins` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--additional_origins))
-- `filter_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--filter_enabled))
-- `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--shadow_enabled))
+- `additional_origins` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--additional_origins))
+- `filter_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--filter_enabled))
+- `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--shadow_enabled))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--additional_origins"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.additional_origins`
+<a id="nestedatt--spec--http_gateway--options--csrf--additional_origins"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.additional_origins`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--additional_origins--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--additional_origins--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--additional_origins--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.additional_origins.safe_regex`
+<a id="nestedatt--spec--http_gateway--options--csrf--additional_origins--safe_regex"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.additional_origins.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--additional_origins--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--additional_origins--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--additional_origins--suffix--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.additional_origins.suffix.google_re2`
+<a id="nestedatt--spec--http_gateway--options--csrf--additional_origins--safe_regex--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.additional_origins.safe_regex.google_re2`
 
 Optional:
 
@@ -213,16 +213,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--filter_enabled"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.filter_enabled`
+<a id="nestedatt--spec--http_gateway--options--csrf--filter_enabled"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.filter_enabled`
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--filter_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--filter_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--filter_enabled--default_value"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.filter_enabled.default_value`
+<a id="nestedatt--spec--http_gateway--options--csrf--filter_enabled--default_value"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.filter_enabled.default_value`
 
 Optional:
 
@@ -231,16 +231,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--shadow_enabled"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.shadow_enabled`
+<a id="nestedatt--spec--http_gateway--options--csrf--shadow_enabled"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.shadow_enabled`
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--shadow_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--csrf--shadow_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.shadow_enabled.default_value`
+<a id="nestedatt--spec--http_gateway--options--csrf--shadow_enabled--default_value"></a>
+### Nested Schema for `spec.http_gateway.options.csrf.shadow_enabled.default_value`
 
 Optional:
 
@@ -255,48 +255,48 @@ Optional:
 
 Optional:
 
-- `dlp_rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules))
+- `dlp_rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules))
 - `enabled_for` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules`
 
 Optional:
 
-- `actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--actions))
-- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher))
+- `actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions))
+- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--actions"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.actions`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions`
 
 Optional:
 
 - `action_type` (String)
-- `custom_action` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--custom_action))
-- `key_value_action` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--key_value_action))
+- `custom_action` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action))
+- `key_value_action` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--key_value_action))
 - `shadow` (Boolean)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--custom_action"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.custom_action`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions.custom_action`
 
 Optional:
 
 - `mask_char` (String)
 - `name` (String)
-- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--percent))
+- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action--percent))
 - `regex` (List of String)
-- `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--regex_actions))
+- `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action--regex_actions))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--percent"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.shadow.percent`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action--percent"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions.custom_action.percent`
 
 Optional:
 
 - `value` (Number)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--regex_actions"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.shadow.regex_actions`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--custom_action--regex_actions"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions.custom_action.regex_actions`
 
 Optional:
 
@@ -305,18 +305,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--key_value_action"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.key_value_action`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--key_value_action"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions.key_value_action`
 
 Optional:
 
 - `key_to_mask` (String)
 - `mask_char` (String)
 - `name` (String)
-- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--percent))
+- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--key_value_action--percent))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--shadow--percent"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.shadow.percent`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--actions--key_value_action--percent"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.actions.key_value_action.percent`
 
 Optional:
 
@@ -325,22 +325,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.matcher`
 
 Optional:
 
 - `case_sensitive` (Boolean)
 - `connect_matcher` (Map of String)
 - `exact` (String)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher--headers))
 - `methods` (List of String)
 - `prefix` (String)
-- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--query_parameters))
+- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher--query_parameters))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--headers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.headers`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher--headers"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.matcher.headers`
 
 Optional:
 
@@ -350,8 +350,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dlp_rules--matcher--query_parameters"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dlp_rules.matcher.query_parameters`
+<a id="nestedatt--spec--http_gateway--options--dlp--dlp_rules--matcher--query_parameters"></a>
+### Nested Schema for `spec.http_gateway.options.dlp.dlp_rules.matcher.query_parameters`
 
 Optional:
 
@@ -368,36 +368,36 @@ Optional:
 
 Optional:
 
-- `dns_cache_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config))
+- `dns_cache_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config))
 - `save_upstream_address` (Boolean)
-- `ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config))
+- `ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config`
 
 Optional:
 
 - `apple_dns` (Map of String)
-- `cares_dns` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--cares_dns))
-- `dns_cache_circuit_breaker` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--dns_cache_circuit_breaker))
-- `dns_failure_refresh_rate` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--dns_failure_refresh_rate))
+- `cares_dns` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns))
+- `dns_cache_circuit_breaker` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_cache_circuit_breaker))
+- `dns_failure_refresh_rate` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_failure_refresh_rate))
 - `dns_lookup_family` (String)
 - `dns_query_timeout` (String)
 - `dns_refresh_rate` (String)
 - `host_ttl` (String)
 - `max_hosts` (Number)
-- `preresolve_hostnames` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames))
+- `preresolve_hostnames` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--preresolve_hostnames))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--cares_dns"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.cares_dns`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns`
 
 Optional:
 
-- `dns_resolver_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--dns_resolver_options))
-- `resolvers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers))
+- `dns_resolver_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--dns_resolver_options))
+- `resolvers` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--dns_resolver_options"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.dns_resolver_options`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--dns_resolver_options"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.dns_resolver_options`
 
 Optional:
 
@@ -405,16 +405,16 @@ Optional:
 - `use_tcp_for_dns_lookups` (Boolean)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.resolvers`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.resolvers`
 
 Optional:
 
-- `pipe` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers--pipe))
-- `socket_address` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers--socket_address))
+- `pipe` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--pipe))
+- `socket_address` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--socket_address))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers--pipe"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.resolvers.pipe`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--pipe"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.resolvers.pipe`
 
 Optional:
 
@@ -422,8 +422,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames--resolvers--socket_address"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames.resolvers.socket_address`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--socket_address"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.resolvers.socket_address`
 
 Optional:
 
@@ -437,16 +437,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--dns_cache_circuit_breaker"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.dns_cache_circuit_breaker`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_cache_circuit_breaker"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.dns_cache_circuit_breaker`
 
 Optional:
 
 - `max_pending_requests` (Number)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--dns_failure_refresh_rate"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.dns_failure_refresh_rate`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_failure_refresh_rate"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.dns_failure_refresh_rate`
 
 Optional:
 
@@ -454,8 +454,8 @@ Optional:
 - `max_interval` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--dns_cache_config--preresolve_hostnames"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.dns_cache_config.preresolve_hostnames`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--dns_cache_config--preresolve_hostnames"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.dns_cache_config.preresolve_hostnames`
 
 Optional:
 
@@ -468,22 +468,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config`
 
 Optional:
 
 - `allow_renegotiation` (Boolean)
 - `alpn_protocols` (List of String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--parameters))
-- `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--sds))
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--secret_ref))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--parameters))
+- `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--secret_ref))
 - `sni` (String)
-- `ssl_files` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--ssl_files))
+- `ssl_files` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--ssl_files))
 - `verify_subject_alt_name` (List of String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--parameters"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.parameters`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--parameters"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.parameters`
 
 Optional:
 
@@ -493,26 +493,26 @@ Optional:
 - `minimum_protocol_version` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--sds"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.sds`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.sds`
 
 Optional:
 
-- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--verify_subject_alt_name--call_credentials))
+- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials))
 - `certificates_secret_name` (String)
 - `cluster_name` (String)
 - `target_uri` (String)
 - `validation_context_name` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--verify_subject_alt_name--call_credentials"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.verify_subject_alt_name.call_credentials`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.sds.call_credentials`
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ssl_config--verify_subject_alt_name--validation_context_name--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--verify_subject_alt_name--validation_context_name--file_credential_source"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.verify_subject_alt_name.validation_context_name.file_credential_source`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 
@@ -522,8 +522,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--secret_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.secret_ref`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--secret_ref"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.secret_ref`
 
 Optional:
 
@@ -531,8 +531,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ssl_config--ssl_files"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ssl_config.ssl_files`
+<a id="nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--ssl_files"></a>
+### Nested Schema for `spec.http_gateway.options.dynamic_forward_proxy.ssl_config.ssl_files`
 
 Optional:
 
@@ -554,21 +554,21 @@ Optional:
 - `disable_clear_route_cache` (Boolean)
 - `failure_mode_allow` (Boolean)
 - `filter_metadata` (Map of String)
-- `filter_stage` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--filter_stage))
-- `forward_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules))
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service))
+- `filter_stage` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--filter_stage))
+- `forward_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--grpc_service))
 - `max_message_timeout` (String)
 - `message_timeout` (String)
 - `metadata_context_namespaces` (List of String)
-- `mutation_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules))
-- `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--processing_mode))
+- `mutation_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--mutation_rules))
+- `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
 - `stat_prefix` (String)
 - `typed_metadata_context_namespaces` (List of String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--filter_stage"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.filter_stage`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--filter_stage"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.filter_stage`
 
 Optional:
 
@@ -576,42 +576,42 @@ Optional:
 - `stage` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules`
 
 Optional:
 
-- `allowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--allowed_headers))
-- `disallowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers))
+- `allowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers))
+- `disallowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--allowed_headers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.allowed_headers`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.allowed_headers`
 
 Optional:
 
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.allowed_headers.patterns`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.safe_regex`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.allowed_headers.patterns.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.suffix.google_re2`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.allowed_headers.patterns.safe_regex.google_re2`
 
 Optional:
 
@@ -621,34 +621,34 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.disallowed_headers`
 
 Optional:
 
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.disallowed_headers.patterns`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.safe_regex`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.disallowed_headers.patterns.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--forward_rules--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.forward_rules.disallowed_headers.patterns.suffix.google_re2`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.forward_rules.disallowed_headers.patterns.safe_regex.google_re2`
 
 Optional:
 
@@ -659,19 +659,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--grpc_service"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.grpc_service`
 
 Optional:
 
 - `authority` (String)
-- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service--ext_proc_server_ref))
-- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service--initial_metadata))
-- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service--retry_policy))
+- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--grpc_service--ext_proc_server_ref))
+- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--grpc_service--initial_metadata))
+- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--grpc_service--retry_policy))
 - `timeout` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--ext_proc_server_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.ext_proc_server_ref`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--grpc_service--ext_proc_server_ref"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.grpc_service.ext_proc_server_ref`
 
 Optional:
 
@@ -679,8 +679,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--initial_metadata"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.initial_metadata`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--grpc_service--initial_metadata"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.grpc_service.initial_metadata`
 
 Optional:
 
@@ -688,16 +688,16 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--retry_policy"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.retry_policy`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--grpc_service--retry_policy"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.grpc_service.retry_policy`
 
 Optional:
 
 - `num_retries` (Number)
-- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service--timeout--retry_back_off))
+- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--grpc_service--retry_policy--retry_back_off))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service--timeout--retry_back_off"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service.timeout.retry_back_off`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--grpc_service--retry_policy--retry_back_off"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.grpc_service.retry_policy.retry_back_off`
 
 Optional:
 
@@ -707,29 +707,29 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--mutation_rules"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.mutation_rules`
 
 Optional:
 
 - `allow_all_routing` (Boolean)
 - `allow_envoy` (Boolean)
-- `allow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules--allow_expression))
+- `allow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--allow_expression))
 - `disallow_all` (Boolean)
-- `disallow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_expression))
+- `disallow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--disallow_expression))
 - `disallow_is_error` (Boolean)
 - `disallow_system` (Boolean)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--allow_expression"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.allow_expression`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--allow_expression"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.mutation_rules.allow_expression`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_system--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--allow_expression--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_system--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_system.google_re2`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--allow_expression--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.mutation_rules.allow_expression.google_re2`
 
 Optional:
 
@@ -737,16 +737,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_expression"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_expression`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--disallow_expression"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.mutation_rules.disallow_expression`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_system--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--disallow_expression--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--mutation_rules--disallow_system--google_re2"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.mutation_rules.disallow_system.google_re2`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--mutation_rules--disallow_expression--google_re2"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.mutation_rules.disallow_expression.google_re2`
 
 Optional:
 
@@ -755,8 +755,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--processing_mode"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.processing_mode`
+<a id="nestedatt--spec--http_gateway--options--ext_proc--processing_mode"></a>
+### Nested Schema for `spec.http_gateway.options.ext_proc.processing_mode`
 
 Optional:
 
@@ -775,19 +775,19 @@ Optional:
 Optional:
 
 - `clear_route_cache` (Boolean)
-- `extauthz_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--extauthz_server_ref))
+- `extauthz_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--extauthz_server_ref))
 - `failure_mode_allow` (Boolean)
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service))
-- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--http_service))
-- `request_body` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--request_body))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--grpc_service))
+- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--http_service))
+- `request_body` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--request_body))
 - `request_timeout` (String)
 - `stat_prefix` (String)
 - `status_on_error` (Number)
 - `transport_api_version` (String)
 - `user_id_header` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--extauthz_server_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.extauthz_server_ref`
+<a id="nestedatt--spec--http_gateway--options--extauth--extauthz_server_ref"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.extauthz_server_ref`
 
 Optional:
 
@@ -795,25 +795,25 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service`
+<a id="nestedatt--spec--http_gateway--options--extauth--grpc_service"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.grpc_service`
 
 Optional:
 
 - `authority` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--http_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.http_service`
+<a id="nestedatt--spec--http_gateway--options--extauth--http_service"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.http_service`
 
 Optional:
 
 - `path_prefix` (String)
-- `request` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--http_service--request))
-- `response` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--http_service--response))
+- `request` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--http_service--request))
+- `response` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--extauth--http_service--response))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--http_service--request"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.http_service.request`
+<a id="nestedatt--spec--http_gateway--options--extauth--http_service--request"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.http_service.request`
 
 Optional:
 
@@ -822,8 +822,8 @@ Optional:
 - `headers_to_add` (Map of String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--http_service--response"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.http_service.response`
+<a id="nestedatt--spec--http_gateway--options--extauth--http_service--response"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.http_service.response`
 
 Optional:
 
@@ -833,8 +833,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--request_body"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.request_body`
+<a id="nestedatt--spec--http_gateway--options--extauth--request_body"></a>
+### Nested Schema for `spec.http_gateway.options.extauth.request_body`
 
 Optional:
 
@@ -862,14 +862,14 @@ Optional:
 - `ignore_unknown_query_parameters` (Boolean)
 - `ignored_query_parameters` (List of String)
 - `match_incoming_request_route` (Boolean)
-- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--print_options))
+- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--grpc_json_transcoder--print_options))
 - `proto_descriptor` (String)
 - `proto_descriptor_bin` (String)
-- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--proto_descriptor_config_map))
+- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map))
 - `services` (List of String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--print_options"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.print_options`
+<a id="nestedatt--spec--http_gateway--options--grpc_json_transcoder--print_options"></a>
+### Nested Schema for `spec.http_gateway.options.grpc_json_transcoder.print_options`
 
 Optional:
 
@@ -879,16 +879,16 @@ Optional:
 - `preserve_proto_field_names` (Boolean)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--proto_descriptor_config_map"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.proto_descriptor_config_map`
+<a id="nestedatt--spec--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map"></a>
+### Nested Schema for `spec.http_gateway.options.grpc_json_transcoder.proto_descriptor_config_map`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--proto_descriptor_config_map--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref))
 - `key` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--proto_descriptor_config_map--config_map_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.proto_descriptor_config_map.config_map_ref`
+<a id="nestedatt--spec--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref"></a>
+### Nested Schema for `spec.http_gateway.options.grpc_json_transcoder.proto_descriptor_config_map.config_map_ref`
 
 Optional:
 
@@ -945,9 +945,9 @@ Optional:
 - `forward_client_cert_details` (String)
 - `generate_request_id` (Boolean)
 - `headers_with_underscores_action` (String)
-- `http2_protocol_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--http2_protocol_options))
+- `http2_protocol_options` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--http2_protocol_options))
 - `idle_timeout` (String)
-- `internal_address_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--internal_address_config))
+- `internal_address_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--internal_address_config))
 - `max_connection_duration` (String)
 - `max_headers_count` (Number)
 - `max_request_headers_kb` (Number)
@@ -964,19 +964,19 @@ Optional:
 - `request_timeout` (String)
 - `server_header_transformation` (String)
 - `server_name` (String)
-- `set_current_client_cert_details` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--set_current_client_cert_details))
+- `set_current_client_cert_details` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--set_current_client_cert_details))
 - `skip_xff_append` (Boolean)
 - `stream_idle_timeout` (String)
 - `strip_any_host_port` (Boolean)
-- `tracing` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing))
-- `upgrades` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--upgrades))
+- `tracing` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing))
+- `upgrades` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades))
 - `use_remote_address` (Boolean)
-- `uuid_request_id_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--uuid_request_id_config))
+- `uuid_request_id_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--uuid_request_id_config))
 - `via` (String)
 - `xff_num_trusted_hops` (Number)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--http2_protocol_options"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.http2_protocol_options`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--http2_protocol_options"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.http2_protocol_options`
 
 Optional:
 
@@ -986,16 +986,16 @@ Optional:
 - `override_stream_error_on_invalid_http_message` (Boolean)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--internal_address_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.internal_address_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--internal_address_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.internal_address_config`
 
 Optional:
 
-- `cidr_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--internal_address_config--cidr_ranges))
+- `cidr_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--internal_address_config--cidr_ranges))
 - `unix_sockets` (Boolean)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--internal_address_config--cidr_ranges"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.internal_address_config.cidr_ranges`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--internal_address_config--cidr_ranges"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.internal_address_config.cidr_ranges`
 
 Optional:
 
@@ -1004,8 +1004,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--set_current_client_cert_details"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.set_current_client_cert_details`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--set_current_client_cert_details"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.set_current_client_cert_details`
 
 Optional:
 
@@ -1016,32 +1016,32 @@ Optional:
 - `uri` (Boolean)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing`
 
 Optional:
 
-- `datadog_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--datadog_config))
-- `environment_variables_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--environment_variables_for_tags))
-- `literals_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--literals_for_tags))
-- `open_census_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--open_census_config))
-- `open_telemetry_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--open_telemetry_config))
+- `datadog_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config))
+- `environment_variables_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--environment_variables_for_tags))
+- `literals_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--literals_for_tags))
+- `open_census_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config))
+- `open_telemetry_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config))
 - `request_headers_for_tags` (List of String)
-- `trace_percentages` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--trace_percentages))
+- `trace_percentages` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--trace_percentages))
 - `verbose` (Boolean)
-- `zipkin_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config))
+- `zipkin_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--datadog_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.datadog_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.datadog_config`
 
 Optional:
 
 - `cluster_name` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config--collector_upstream_ref))
 - `service_name` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.datadog_config.collector_upstream_ref`
 
 Optional:
 
@@ -1050,8 +1050,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--environment_variables_for_tags"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.environment_variables_for_tags`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--environment_variables_for_tags"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.environment_variables_for_tags`
 
 Optional:
 
@@ -1060,8 +1060,8 @@ Optional:
 - `tag` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--literals_for_tags"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.literals_for_tags`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--literals_for_tags"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.literals_for_tags`
 
 Optional:
 
@@ -1069,20 +1069,20 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--open_census_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.open_census_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config`
 
 Optional:
 
-- `grpc_address` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--grpc_address))
+- `grpc_address` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--grpc_address))
 - `http_address` (String)
 - `incoming_trace_context` (List of String)
 - `ocagent_exporter_enabled` (Boolean)
 - `outgoing_trace_context` (List of String)
-- `trace_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config))
+- `trace_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--grpc_address"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.grpc_address`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--grpc_address"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.grpc_address`
 
 Optional:
 
@@ -1090,37 +1090,37 @@ Optional:
 - `target_uri` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config`
 
 Optional:
 
-- `constant_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--constant_sampler))
+- `constant_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--constant_sampler))
 - `max_number_of_annotations` (Number)
 - `max_number_of_attributes` (Number)
 - `max_number_of_links` (Number)
 - `max_number_of_message_events` (Number)
-- `probability_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--probability_sampler))
-- `rate_limiting_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--rate_limiting_sampler))
+- `probability_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--probability_sampler))
+- `rate_limiting_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--rate_limiting_sampler))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--constant_sampler"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config.constant_sampler`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--constant_sampler"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config.constant_sampler`
 
 Optional:
 
 - `decision` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--probability_sampler"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config.probability_sampler`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--probability_sampler"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config.probability_sampler`
 
 Optional:
 
 - `sampling_probability` (Number)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--trace_config--rate_limiting_sampler"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.trace_config.rate_limiting_sampler`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--rate_limiting_sampler"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config.rate_limiting_sampler`
 
 Optional:
 
@@ -1129,16 +1129,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--open_telemetry_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.open_telemetry_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_telemetry_config`
 
 Optional:
 
 - `cluster_name` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config--collector_upstream_ref))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.open_telemetry_config.collector_upstream_ref`
 
 Optional:
 
@@ -1147,8 +1147,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--trace_percentages"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.trace_percentages`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--trace_percentages"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.trace_percentages`
 
 Optional:
 
@@ -1157,20 +1157,20 @@ Optional:
 - `random_sample_percentage` (Number)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.zipkin_config`
 
 Optional:
 
 - `cluster_name` (String)
 - `collector_endpoint` (String)
 - `collector_endpoint_version` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config--collector_upstream_ref))
 - `shared_span_context` (Boolean)
 - `trace_id128bit` (Boolean)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.tracing.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.zipkin_config.collector_upstream_ref`
 
 Optional:
 
@@ -1180,33 +1180,33 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--upgrades"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.upgrades`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.upgrades`
 
 Optional:
 
-- `connect` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--upgrades--connect))
-- `websocket` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--upgrades--websocket))
+- `connect` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades--connect))
+- `websocket` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades--websocket))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--upgrades--connect"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.upgrades.connect`
-
-Optional:
-
-- `enabled` (Boolean)
-
-
-<a id="nestedatt--spec--http_gateway--options--wasm--upgrades--websocket"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.upgrades.websocket`
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades--connect"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.upgrades.connect`
 
 Optional:
 
 - `enabled` (Boolean)
 
 
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--upgrades--websocket"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.upgrades.websocket`
 
-<a id="nestedatt--spec--http_gateway--options--wasm--uuid_request_id_config"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.uuid_request_id_config`
+Optional:
+
+- `enabled` (Boolean)
+
+
+
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--uuid_request_id_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.uuid_request_id_config`
 
 Optional:
 
@@ -1220,12 +1220,12 @@ Optional:
 
 Optional:
 
-- `default_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--default_limit))
+- `default_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_local_ratelimit--default_limit))
 - `enable_x_ratelimit_headers` (Boolean)
 - `local_rate_limit_per_downstream_connection` (Boolean)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--default_limit"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.default_limit`
+<a id="nestedatt--spec--http_gateway--options--http_local_ratelimit--default_limit"></a>
+### Nested Schema for `spec.http_gateway.options.http_local_ratelimit.default_limit`
 
 Optional:
 
@@ -1265,21 +1265,21 @@ Optional:
 
 - `deny_on_fail` (Boolean)
 - `enable_x_ratelimit_headers` (Boolean)
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ratelimit_server--grpc_service))
 - `rate_limit_before_auth` (Boolean)
-- `ratelimit_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ratelimit_server_ref))
+- `ratelimit_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ratelimit_server--ratelimit_server_ref))
 - `request_timeout` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.grpc_service`
+<a id="nestedatt--spec--http_gateway--options--ratelimit_server--grpc_service"></a>
+### Nested Schema for `spec.http_gateway.options.ratelimit_server.grpc_service`
 
 Optional:
 
 - `authority` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--ratelimit_server_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.ratelimit_server_ref`
+<a id="nestedatt--spec--http_gateway--options--ratelimit_server--ratelimit_server_ref"></a>
+### Nested Schema for `spec.http_gateway.options.ratelimit_server.ratelimit_server_ref`
 
 Optional:
 
@@ -1302,25 +1302,25 @@ Optional:
 
 Optional:
 
-- `sinks` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks))
+- `sinks` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--sinks"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks`
-
-Optional:
-
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--grpc_service))
-- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--http_service))
-
-<a id="nestedatt--spec--http_gateway--options--wasm--sinks--grpc_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks.grpc_service`
+<a id="nestedatt--spec--http_gateway--options--tap--sinks"></a>
+### Nested Schema for `spec.http_gateway.options.tap.sinks`
 
 Optional:
 
-- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks--grpc_service))
+- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks--http_service))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service.tap_server`
+<a id="nestedatt--spec--http_gateway--options--tap--sinks--grpc_service"></a>
+### Nested Schema for `spec.http_gateway.options.tap.sinks.grpc_service`
+
+Optional:
+
+- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks--grpc_service--tap_server))
+
+<a id="nestedatt--spec--http_gateway--options--tap--sinks--grpc_service--tap_server"></a>
+### Nested Schema for `spec.http_gateway.options.tap.sinks.grpc_service.tap_server`
 
 Optional:
 
@@ -1329,16 +1329,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--sinks--http_service"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service`
+<a id="nestedatt--spec--http_gateway--options--tap--sinks--http_service"></a>
+### Nested Schema for `spec.http_gateway.options.tap.sinks.http_service`
 
 Optional:
 
-- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server))
+- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks--http_service--tap_server))
 - `timeout` (String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service.tap_server`
+<a id="nestedatt--spec--http_gateway--options--tap--sinks--http_service--tap_server"></a>
+### Nested Schema for `spec.http_gateway.options.tap.sinks.http_service.tap_server`
 
 Optional:
 
@@ -1354,17 +1354,17 @@ Optional:
 
 Optional:
 
-- `audit_logging` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--audit_logging))
-- `config_map_rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--config_map_rule_sets))
-- `core_rule_set` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--core_rule_set))
+- `audit_logging` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf--audit_logging))
+- `config_map_rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf--config_map_rule_sets))
+- `core_rule_set` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf--core_rule_set))
 - `custom_intervention_message` (String)
 - `disabled` (Boolean)
 - `request_headers_only` (Boolean)
 - `response_headers_only` (Boolean)
-- `rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--rule_sets))
+- `rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf--rule_sets))
 
-<a id="nestedatt--spec--http_gateway--options--wasm--audit_logging"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.audit_logging`
+<a id="nestedatt--spec--http_gateway--options--waf--audit_logging"></a>
+### Nested Schema for `spec.http_gateway.options.waf.audit_logging`
 
 Optional:
 
@@ -1372,16 +1372,16 @@ Optional:
 - `location` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--config_map_rule_sets"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.config_map_rule_sets`
+<a id="nestedatt--spec--http_gateway--options--waf--config_map_rule_sets"></a>
+### Nested Schema for `spec.http_gateway.options.waf.config_map_rule_sets`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--config_map_rule_sets--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf--config_map_rule_sets--config_map_ref))
 - `data_map_keys` (List of String)
 
-<a id="nestedatt--spec--http_gateway--options--wasm--config_map_rule_sets--config_map_ref"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.config_map_rule_sets.config_map_ref`
+<a id="nestedatt--spec--http_gateway--options--waf--config_map_rule_sets--config_map_ref"></a>
+### Nested Schema for `spec.http_gateway.options.waf.config_map_rule_sets.config_map_ref`
 
 Optional:
 
@@ -1390,8 +1390,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--core_rule_set"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.core_rule_set`
+<a id="nestedatt--spec--http_gateway--options--waf--core_rule_set"></a>
+### Nested Schema for `spec.http_gateway.options.waf.core_rule_set`
 
 Optional:
 
@@ -1399,8 +1399,8 @@ Optional:
 - `custom_settings_string` (String)
 
 
-<a id="nestedatt--spec--http_gateway--options--wasm--rule_sets"></a>
-### Nested Schema for `spec.http_gateway.options.wasm.rule_sets`
+<a id="nestedatt--spec--http_gateway--options--waf--rule_sets"></a>
+### Nested Schema for `spec.http_gateway.options.waf.rule_sets`
 
 Optional:
 
@@ -1507,9 +1507,9 @@ Optional:
 - `forward_client_cert_details` (String)
 - `generate_request_id` (Boolean)
 - `headers_with_underscores_action` (String)
-- `http2_protocol_options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--http2_protocol_options))
+- `http2_protocol_options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--http2_protocol_options))
 - `idle_timeout` (String)
-- `internal_address_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--internal_address_config))
+- `internal_address_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--internal_address_config))
 - `max_connection_duration` (String)
 - `max_headers_count` (Number)
 - `max_request_headers_kb` (Number)
@@ -1526,19 +1526,19 @@ Optional:
 - `request_timeout` (String)
 - `server_header_transformation` (String)
 - `server_name` (String)
-- `set_current_client_cert_details` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--set_current_client_cert_details))
+- `set_current_client_cert_details` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--set_current_client_cert_details))
 - `skip_xff_append` (Boolean)
 - `stream_idle_timeout` (String)
 - `strip_any_host_port` (Boolean)
-- `tracing` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing))
-- `upgrades` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--upgrades))
+- `tracing` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing))
+- `upgrades` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--upgrades))
 - `use_remote_address` (Boolean)
-- `uuid_request_id_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--uuid_request_id_config))
+- `uuid_request_id_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--uuid_request_id_config))
 - `via` (String)
 - `xff_num_trusted_hops` (Number)
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--http2_protocol_options"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.http2_protocol_options`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--http2_protocol_options"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.http2_protocol_options`
 
 Optional:
 
@@ -1548,16 +1548,16 @@ Optional:
 - `override_stream_error_on_invalid_http_message` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--internal_address_config"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.internal_address_config`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--internal_address_config"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.internal_address_config`
 
 Optional:
 
-- `cidr_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--internal_address_config--cidr_ranges))
+- `cidr_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--internal_address_config--cidr_ranges))
 - `unix_sockets` (Boolean)
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--internal_address_config--cidr_ranges"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.internal_address_config.cidr_ranges`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--internal_address_config--cidr_ranges"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.internal_address_config.cidr_ranges`
 
 Optional:
 
@@ -1566,8 +1566,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--set_current_client_cert_details"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.set_current_client_cert_details`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--set_current_client_cert_details"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.set_current_client_cert_details`
 
 Optional:
 
@@ -1578,32 +1578,32 @@ Optional:
 - `uri` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing`
 
 Optional:
 
-- `datadog_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--datadog_config))
-- `environment_variables_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--environment_variables_for_tags))
-- `literals_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--literals_for_tags))
-- `open_census_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--open_census_config))
-- `open_telemetry_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--open_telemetry_config))
+- `datadog_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--datadog_config))
+- `environment_variables_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--environment_variables_for_tags))
+- `literals_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--literals_for_tags))
+- `open_census_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config))
+- `open_telemetry_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_telemetry_config))
 - `request_headers_for_tags` (List of String)
-- `trace_percentages` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--trace_percentages))
+- `trace_percentages` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--trace_percentages))
 - `verbose` (Boolean)
-- `zipkin_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config))
+- `zipkin_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--zipkin_config))
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--datadog_config"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.datadog_config`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--datadog_config"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.datadog_config`
 
 Optional:
 
 - `cluster_name` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--datadog_config--collector_upstream_ref))
 - `service_name` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--datadog_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.datadog_config.collector_upstream_ref`
 
 Optional:
 
@@ -1612,8 +1612,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--environment_variables_for_tags"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.environment_variables_for_tags`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--environment_variables_for_tags"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.environment_variables_for_tags`
 
 Optional:
 
@@ -1622,8 +1622,8 @@ Optional:
 - `tag` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--literals_for_tags"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.literals_for_tags`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--literals_for_tags"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.literals_for_tags`
 
 Optional:
 
@@ -1631,20 +1631,20 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--open_census_config"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.open_census_config`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.open_census_config`
 
 Optional:
 
-- `grpc_address` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--grpc_address))
+- `grpc_address` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config--grpc_address))
 - `http_address` (String)
 - `incoming_trace_context` (List of String)
 - `ocagent_exporter_enabled` (Boolean)
 - `outgoing_trace_context` (List of String)
-- `trace_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--trace_config))
+- `trace_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config--trace_config))
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--grpc_address"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.zipkin_config.grpc_address`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config--grpc_address"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.open_census_config.grpc_address`
 
 Optional:
 
@@ -1652,37 +1652,37 @@ Optional:
 - `target_uri` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--trace_config"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.zipkin_config.trace_config`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config--trace_config"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.open_census_config.trace_config`
 
 Optional:
 
-- `constant_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--trace_config--constant_sampler))
+- `constant_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config--trace_config--constant_sampler))
 - `max_number_of_annotations` (Number)
 - `max_number_of_attributes` (Number)
 - `max_number_of_links` (Number)
 - `max_number_of_message_events` (Number)
-- `probability_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--trace_config--probability_sampler))
-- `rate_limiting_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--trace_config--rate_limiting_sampler))
+- `probability_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config--trace_config--probability_sampler))
+- `rate_limiting_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config--trace_config--rate_limiting_sampler))
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--trace_config--constant_sampler"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.zipkin_config.trace_config.constant_sampler`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config--trace_config--constant_sampler"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.open_census_config.trace_config.constant_sampler`
 
 Optional:
 
 - `decision` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--trace_config--probability_sampler"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.zipkin_config.trace_config.probability_sampler`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config--trace_config--probability_sampler"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.open_census_config.trace_config.probability_sampler`
 
 Optional:
 
 - `sampling_probability` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--trace_config--rate_limiting_sampler"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.zipkin_config.trace_config.rate_limiting_sampler`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_census_config--trace_config--rate_limiting_sampler"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.open_census_config.trace_config.rate_limiting_sampler`
 
 Optional:
 
@@ -1691,16 +1691,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--open_telemetry_config"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.open_telemetry_config`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_telemetry_config"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.open_telemetry_config`
 
 Optional:
 
 - `cluster_name` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_telemetry_config--collector_upstream_ref))
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--open_telemetry_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.open_telemetry_config.collector_upstream_ref`
 
 Optional:
 
@@ -1709,8 +1709,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--trace_percentages"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.trace_percentages`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--trace_percentages"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.trace_percentages`
 
 Optional:
 
@@ -1719,20 +1719,20 @@ Optional:
 - `random_sample_percentage` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.zipkin_config`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--zipkin_config"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.zipkin_config`
 
 Optional:
 
 - `cluster_name` (String)
 - `collector_endpoint` (String)
 - `collector_endpoint_version` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--zipkin_config--collector_upstream_ref))
 - `shared_span_context` (Boolean)
 - `trace_id128bit` (Boolean)
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--tracing--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.tracing.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--tracing--zipkin_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.tracing.zipkin_config.collector_upstream_ref`
 
 Optional:
 
@@ -1742,33 +1742,33 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--upgrades"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.upgrades`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--upgrades"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.upgrades`
 
 Optional:
 
-- `connect` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--upgrades--connect))
-- `websocket` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--upgrades--websocket))
+- `connect` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--upgrades--connect))
+- `websocket` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--upgrades--websocket))
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--upgrades--connect"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.upgrades.connect`
-
-Optional:
-
-- `enabled` (Boolean)
-
-
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--upgrades--websocket"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.upgrades.websocket`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--upgrades--connect"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.upgrades.connect`
 
 Optional:
 
 - `enabled` (Boolean)
 
 
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--upgrades--websocket"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.upgrades.websocket`
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--uuid_request_id_config"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.uuid_request_id_config`
+Optional:
+
+- `enabled` (Boolean)
+
+
+
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--http_connection_manager_settings--uuid_request_id_config"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.http_connection_manager_settings.uuid_request_id_config`
 
 Optional:
 
@@ -1791,12 +1791,12 @@ Optional:
 
 Optional:
 
-- `expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--expressions))
+- `expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--selector--expressions))
 - `labels` (Map of String)
 - `namespaces` (List of String)
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--expressions"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.expressions`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--selector--expressions"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.selector.expressions`
 
 Optional:
 
@@ -1850,10 +1850,10 @@ Optional:
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--sds--validation_context_name--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--sds--validation_context_name--file_credential_source"></a>
-### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.sds.validation_context_name.file_credential_source`
+<a id="nestedatt--spec--hybrid_gateway--delegated_http_gateways--ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.hybrid_gateway.delegated_http_gateways.ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 
@@ -1937,82 +1937,82 @@ Optional:
 
 Optional:
 
-- `options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options))
-- `virtual_service_expressions` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--virtual_service_expressions))
+- `options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options))
+- `virtual_service_expressions` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--virtual_service_expressions))
 - `virtual_service_namespaces` (List of String)
 - `virtual_service_selector` (Map of String)
-- `virtual_services` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--virtual_services))
+- `virtual_services` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--virtual_services))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options`
 
 Optional:
 
-- `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--buffer))
-- `caching` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--caching))
-- `connection_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--connection_limit))
-- `csrf` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--csrf))
+- `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--buffer))
+- `caching` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--caching))
+- `connection_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--connection_limit))
+- `csrf` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf))
 - `disable_ext_proc` (Boolean)
-- `dlp` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--dlp))
-- `dynamic_forward_proxy` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--dynamic_forward_proxy))
-- `ext_proc` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--ext_proc))
-- `extauth` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--extauth))
-- `extensions` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--extensions))
-- `grpc_json_transcoder` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--grpc_json_transcoder))
-- `grpc_web` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--grpc_web))
-- `gzip` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--gzip))
-- `health_check` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--health_check))
-- `http_connection_manager_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--http_connection_manager_settings))
-- `http_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--http_local_ratelimit))
+- `dlp` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp))
+- `dynamic_forward_proxy` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy))
+- `ext_proc` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc))
+- `extauth` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth))
+- `extensions` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extensions))
+- `grpc_json_transcoder` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--grpc_json_transcoder))
+- `grpc_web` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--grpc_web))
+- `gzip` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--gzip))
+- `health_check` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--health_check))
+- `http_connection_manager_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings))
+- `http_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_local_ratelimit))
 - `leftmost_xff_address` (Boolean)
-- `network_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--network_local_ratelimit))
-- `proxy_latency` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--proxy_latency))
-- `ratelimit_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--ratelimit_server))
-- `router` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--router))
+- `network_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--network_local_ratelimit))
+- `proxy_latency` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--proxy_latency))
+- `ratelimit_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ratelimit_server))
+- `router` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--router))
 - `sanitize_cluster_header` (Boolean)
-- `tap` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--tap))
-- `waf` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--waf))
-- `wasm` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm))
+- `tap` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap))
+- `waf` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf))
+- `wasm` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--wasm))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--buffer"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.buffer`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--buffer"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.buffer`
 
 Optional:
 
 - `max_request_bytes` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--caching"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.caching`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--caching"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.caching`
 
 Optional:
 
-- `allowed_vary_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--allowed_vary_headers))
-- `caching_service_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--caching_service_ref))
+- `allowed_vary_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--caching--allowed_vary_headers))
+- `caching_service_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--caching--caching_service_ref))
 - `max_payload_size` (Number)
 - `timeout` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--allowed_vary_headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.allowed_vary_headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--caching--allowed_vary_headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.caching.allowed_vary_headers`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--timeout--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--caching--allowed_vary_headers--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--timeout--safe_regex"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.timeout.safe_regex`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--caching--allowed_vary_headers--safe_regex"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.caching.allowed_vary_headers.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--timeout--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--caching--allowed_vary_headers--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--timeout--suffix--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.timeout.suffix.google_re2`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--caching--allowed_vary_headers--safe_regex--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.caching.allowed_vary_headers.safe_regex.google_re2`
 
 Optional:
 
@@ -2021,8 +2021,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--caching_service_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.caching_service_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--caching--caching_service_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.caching.caching_service_ref`
 
 Optional:
 
@@ -2031,8 +2031,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--connection_limit"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.connection_limit`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--connection_limit"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.connection_limit`
 
 Optional:
 
@@ -2040,36 +2040,36 @@ Optional:
 - `max_active_connections` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--csrf"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.csrf`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.csrf`
 
 Optional:
 
-- `additional_origins` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--additional_origins))
-- `filter_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--filter_enabled))
-- `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--shadow_enabled))
+- `additional_origins` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--additional_origins))
+- `filter_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--filter_enabled))
+- `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--shadow_enabled))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--additional_origins"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.additional_origins`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--additional_origins"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.csrf.additional_origins`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--shadow_enabled--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--additional_origins--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--shadow_enabled--safe_regex"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.shadow_enabled.safe_regex`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--additional_origins--safe_regex"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.csrf.additional_origins.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--shadow_enabled--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--additional_origins--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--shadow_enabled--suffix--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.shadow_enabled.suffix.google_re2`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--additional_origins--safe_regex--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.csrf.additional_origins.safe_regex.google_re2`
 
 Optional:
 
@@ -2078,16 +2078,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--filter_enabled"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.filter_enabled`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--filter_enabled"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.csrf.filter_enabled`
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--shadow_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--filter_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.shadow_enabled.default_value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--filter_enabled--default_value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.csrf.filter_enabled.default_value`
 
 Optional:
 
@@ -2096,16 +2096,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--shadow_enabled"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.shadow_enabled`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--shadow_enabled"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.csrf.shadow_enabled`
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--shadow_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--shadow_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.shadow_enabled.default_value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--csrf--shadow_enabled--default_value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.csrf.shadow_enabled.default_value`
 
 Optional:
 
@@ -2115,53 +2115,53 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--dlp"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.dlp`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp`
 
 Optional:
 
-- `dlp_rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--dlp_rules))
+- `dlp_rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules))
 - `enabled_for` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--dlp_rules"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.dlp_rules`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp.dlp_rules`
 
 Optional:
 
-- `actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--actions))
-- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher))
+- `actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions))
+- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--matcher))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--actions"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.enabled_for.actions`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp.dlp_rules.actions`
 
 Optional:
 
 - `action_type` (String)
-- `custom_action` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--custom_action))
-- `key_value_action` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--key_value_action))
+- `custom_action` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions--custom_action))
+- `key_value_action` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions--key_value_action))
 - `shadow` (Boolean)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--custom_action"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.enabled_for.matcher.custom_action`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions--custom_action"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp.dlp_rules.actions.custom_action`
 
 Optional:
 
 - `mask_char` (String)
 - `name` (String)
-- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--custom_action--percent))
+- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions--custom_action--percent))
 - `regex` (List of String)
-- `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--custom_action--regex_actions))
+- `regex_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions--custom_action--regex_actions))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--custom_action--percent"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.enabled_for.matcher.custom_action.percent`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions--custom_action--percent"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp.dlp_rules.actions.custom_action.percent`
 
 Optional:
 
 - `value` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--custom_action--regex_actions"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.enabled_for.matcher.custom_action.regex_actions`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions--custom_action--regex_actions"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp.dlp_rules.actions.custom_action.regex_actions`
 
 Optional:
 
@@ -2170,18 +2170,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--key_value_action"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.enabled_for.matcher.key_value_action`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions--key_value_action"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp.dlp_rules.actions.key_value_action`
 
 Optional:
 
 - `key_to_mask` (String)
 - `mask_char` (String)
 - `name` (String)
-- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--key_value_action--percent))
+- `percent` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions--key_value_action--percent))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--key_value_action--percent"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.enabled_for.matcher.key_value_action.percent`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--actions--key_value_action--percent"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp.dlp_rules.actions.key_value_action.percent`
 
 Optional:
 
@@ -2190,22 +2190,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.enabled_for.matcher`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--matcher"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp.dlp_rules.matcher`
 
 Optional:
 
 - `case_sensitive` (Boolean)
 - `connect_matcher` (Map of String)
 - `exact` (String)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--matcher--headers))
 - `methods` (List of String)
 - `prefix` (String)
-- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--query_parameters))
+- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--matcher--query_parameters))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.enabled_for.matcher.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--matcher--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp.dlp_rules.matcher.headers`
 
 Optional:
 
@@ -2215,8 +2215,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--enabled_for--matcher--query_parameters"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.enabled_for.matcher.query_parameters`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dlp--dlp_rules--matcher--query_parameters"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dlp.dlp_rules.matcher.query_parameters`
 
 Optional:
 
@@ -2228,41 +2228,41 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--dynamic_forward_proxy"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.dynamic_forward_proxy`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy`
 
 Optional:
 
-- `dns_cache_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--dns_cache_config))
+- `dns_cache_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config))
 - `save_upstream_address` (Boolean)
-- `ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config))
+- `ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--dns_cache_config"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.dns_cache_config`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.dns_cache_config`
 
 Optional:
 
 - `apple_dns` (Map of String)
-- `cares_dns` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--cares_dns))
-- `dns_cache_circuit_breaker` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--dns_cache_circuit_breaker))
-- `dns_failure_refresh_rate` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--dns_failure_refresh_rate))
+- `cares_dns` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns))
+- `dns_cache_circuit_breaker` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_cache_circuit_breaker))
+- `dns_failure_refresh_rate` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_failure_refresh_rate))
 - `dns_lookup_family` (String)
 - `dns_query_timeout` (String)
 - `dns_refresh_rate` (String)
 - `host_ttl` (String)
 - `max_hosts` (Number)
-- `preresolve_hostnames` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--preresolve_hostnames))
+- `preresolve_hostnames` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--preresolve_hostnames))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--cares_dns"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.cares_dns`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns`
 
 Optional:
 
-- `dns_resolver_options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--preresolve_hostnames--dns_resolver_options))
-- `resolvers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--preresolve_hostnames--resolvers))
+- `dns_resolver_options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--dns_resolver_options))
+- `resolvers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--preresolve_hostnames--dns_resolver_options"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.preresolve_hostnames.dns_resolver_options`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--dns_resolver_options"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.dns_resolver_options`
 
 Optional:
 
@@ -2270,16 +2270,16 @@ Optional:
 - `use_tcp_for_dns_lookups` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--preresolve_hostnames--resolvers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.preresolve_hostnames.resolvers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.resolvers`
 
 Optional:
 
-- `pipe` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--preresolve_hostnames--resolvers--pipe))
-- `socket_address` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--preresolve_hostnames--resolvers--socket_address))
+- `pipe` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--pipe))
+- `socket_address` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--socket_address))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--preresolve_hostnames--resolvers--pipe"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.preresolve_hostnames.resolvers.pipe`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--pipe"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.resolvers.pipe`
 
 Optional:
 
@@ -2287,8 +2287,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--preresolve_hostnames--resolvers--socket_address"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.preresolve_hostnames.resolvers.socket_address`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--cares_dns--resolvers--socket_address"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.dns_cache_config.cares_dns.resolvers.socket_address`
 
 Optional:
 
@@ -2302,16 +2302,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--dns_cache_circuit_breaker"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.dns_cache_circuit_breaker`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_cache_circuit_breaker"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.dns_cache_config.dns_cache_circuit_breaker`
 
 Optional:
 
 - `max_pending_requests` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--dns_failure_refresh_rate"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.dns_failure_refresh_rate`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--dns_failure_refresh_rate"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.dns_cache_config.dns_failure_refresh_rate`
 
 Optional:
 
@@ -2319,8 +2319,8 @@ Optional:
 - `max_interval` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--preresolve_hostnames"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.preresolve_hostnames`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--dns_cache_config--preresolve_hostnames"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.dns_cache_config.preresolve_hostnames`
 
 Optional:
 
@@ -2333,22 +2333,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.ssl_config`
 
 Optional:
 
 - `allow_renegotiation` (Boolean)
 - `alpn_protocols` (List of String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--parameters))
-- `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--sds))
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--secret_ref))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--parameters))
+- `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--sds))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--secret_ref))
 - `sni` (String)
-- `ssl_files` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--ssl_files))
+- `ssl_files` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--ssl_files))
 - `verify_subject_alt_name` (List of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--parameters"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.parameters`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--parameters"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.ssl_config.parameters`
 
 Optional:
 
@@ -2358,26 +2358,26 @@ Optional:
 - `minimum_protocol_version` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--sds"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.sds`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--sds"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.ssl_config.sds`
 
 Optional:
 
-- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--verify_subject_alt_name--call_credentials))
+- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials))
 - `certificates_secret_name` (String)
 - `cluster_name` (String)
 - `target_uri` (String)
 - `validation_context_name` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--verify_subject_alt_name--call_credentials"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.verify_subject_alt_name.call_credentials`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.ssl_config.sds.call_credentials`
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--verify_subject_alt_name--call_credentials--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--verify_subject_alt_name--call_credentials--file_credential_source"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.verify_subject_alt_name.call_credentials.file_credential_source`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 
@@ -2387,8 +2387,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--secret_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.secret_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--secret_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.ssl_config.secret_ref`
 
 Optional:
 
@@ -2396,8 +2396,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ssl_config--ssl_files"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ssl_config.ssl_files`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--ssl_files"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.dynamic_forward_proxy.ssl_config.ssl_files`
 
 Optional:
 
@@ -2409,8 +2409,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--ext_proc"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.ext_proc`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc`
 
 Optional:
 
@@ -2419,21 +2419,21 @@ Optional:
 - `disable_clear_route_cache` (Boolean)
 - `failure_mode_allow` (Boolean)
 - `filter_metadata` (Map of String)
-- `filter_stage` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--filter_stage))
-- `forward_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--forward_rules))
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--grpc_service))
+- `filter_stage` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--filter_stage))
+- `forward_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--grpc_service))
 - `max_message_timeout` (String)
 - `message_timeout` (String)
 - `metadata_context_namespaces` (List of String)
-- `mutation_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--mutation_rules))
-- `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--processing_mode))
+- `mutation_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--mutation_rules))
+- `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
 - `stat_prefix` (String)
 - `typed_metadata_context_namespaces` (List of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--filter_stage"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.filter_stage`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--filter_stage"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.filter_stage`
 
 Optional:
 
@@ -2441,42 +2441,42 @@ Optional:
 - `stage` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--forward_rules"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.forward_rules`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.forward_rules`
 
 Optional:
 
-- `allowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--allowed_headers))
-- `disallowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers))
+- `allowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--allowed_headers))
+- `disallowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--disallowed_headers))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--allowed_headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.allowed_headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--allowed_headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.forward_rules.allowed_headers`
 
 Optional:
 
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.forward_rules.allowed_headers.patterns`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns.safe_regex`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.forward_rules.allowed_headers.patterns.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns.suffix.google_re2`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--allowed_headers--patterns--safe_regex--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.forward_rules.allowed_headers.patterns.safe_regex.google_re2`
 
 Optional:
 
@@ -2486,34 +2486,34 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--disallowed_headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.forward_rules.disallowed_headers`
 
 Optional:
 
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.forward_rules.disallowed_headers.patterns`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns.safe_regex`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.forward_rules.disallowed_headers.patterns.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns.suffix.google_re2`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--forward_rules--disallowed_headers--patterns--safe_regex--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.forward_rules.disallowed_headers.patterns.safe_regex.google_re2`
 
 Optional:
 
@@ -2524,19 +2524,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--grpc_service"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.grpc_service`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--grpc_service"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.grpc_service`
 
 Optional:
 
 - `authority` (String)
-- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--ext_proc_server_ref))
-- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--initial_metadata))
-- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--retry_policy))
+- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--grpc_service--ext_proc_server_ref))
+- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--grpc_service--initial_metadata))
+- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--grpc_service--retry_policy))
 - `timeout` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--ext_proc_server_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.ext_proc_server_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--grpc_service--ext_proc_server_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.grpc_service.ext_proc_server_ref`
 
 Optional:
 
@@ -2544,8 +2544,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--initial_metadata"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.initial_metadata`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--grpc_service--initial_metadata"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.grpc_service.initial_metadata`
 
 Optional:
 
@@ -2553,16 +2553,16 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--retry_policy"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.retry_policy`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--grpc_service--retry_policy"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.grpc_service.retry_policy`
 
 Optional:
 
 - `num_retries` (Number)
-- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--timeout--retry_back_off))
+- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--grpc_service--retry_policy--retry_back_off))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--timeout--retry_back_off"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.timeout.retry_back_off`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--grpc_service--retry_policy--retry_back_off"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.grpc_service.retry_policy.retry_back_off`
 
 Optional:
 
@@ -2572,29 +2572,29 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--mutation_rules"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.mutation_rules`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--mutation_rules"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.mutation_rules`
 
 Optional:
 
 - `allow_all_routing` (Boolean)
 - `allow_envoy` (Boolean)
-- `allow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--allow_expression))
+- `allow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--mutation_rules--allow_expression))
 - `disallow_all` (Boolean)
-- `disallow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_expression))
+- `disallow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--mutation_rules--disallow_expression))
 - `disallow_is_error` (Boolean)
 - `disallow_system` (Boolean)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--allow_expression"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.allow_expression`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--mutation_rules--allow_expression"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.mutation_rules.allow_expression`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_system--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--mutation_rules--allow_expression--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_system--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallow_system.google_re2`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--mutation_rules--allow_expression--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.mutation_rules.allow_expression.google_re2`
 
 Optional:
 
@@ -2602,16 +2602,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_expression"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallow_expression`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--mutation_rules--disallow_expression"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.mutation_rules.disallow_expression`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_system--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--mutation_rules--disallow_expression--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_system--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallow_system.google_re2`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--mutation_rules--disallow_expression--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.mutation_rules.disallow_expression.google_re2`
 
 Optional:
 
@@ -2620,8 +2620,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--processing_mode"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.processing_mode`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ext_proc--processing_mode"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ext_proc.processing_mode`
 
 Optional:
 
@@ -2634,25 +2634,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--extauth"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.extauth`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.extauth`
 
 Optional:
 
 - `clear_route_cache` (Boolean)
-- `extauthz_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--extauthz_server_ref))
+- `extauthz_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--extauthz_server_ref))
 - `failure_mode_allow` (Boolean)
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--grpc_service))
-- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--http_service))
-- `request_body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--request_body))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--grpc_service))
+- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--http_service))
+- `request_body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--request_body))
 - `request_timeout` (String)
 - `stat_prefix` (String)
 - `status_on_error` (Number)
 - `transport_api_version` (String)
 - `user_id_header` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--extauthz_server_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.extauthz_server_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--extauthz_server_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.extauth.extauthz_server_ref`
 
 Optional:
 
@@ -2660,25 +2660,25 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--grpc_service"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.grpc_service`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--grpc_service"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.extauth.grpc_service`
 
 Optional:
 
 - `authority` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--http_service"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.http_service`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--http_service"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.extauth.http_service`
 
 Optional:
 
 - `path_prefix` (String)
-- `request` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--user_id_header--request))
-- `response` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--user_id_header--response))
+- `request` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--http_service--request))
+- `response` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--http_service--response))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--user_id_header--request"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.user_id_header.request`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--http_service--request"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.extauth.http_service.request`
 
 Optional:
 
@@ -2687,8 +2687,8 @@ Optional:
 - `headers_to_add` (Map of String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--user_id_header--response"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.user_id_header.response`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--http_service--response"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.extauth.http_service.response`
 
 Optional:
 
@@ -2698,8 +2698,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--request_body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.request_body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extauth--request_body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.extauth.request_body`
 
 Optional:
 
@@ -2709,16 +2709,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--extensions"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.extensions`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--extensions"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.extensions`
 
 Optional:
 
 - `configs` (Map of String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--grpc_json_transcoder"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.grpc_json_transcoder`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--grpc_json_transcoder"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.grpc_json_transcoder`
 
 Optional:
 
@@ -2727,14 +2727,14 @@ Optional:
 - `ignore_unknown_query_parameters` (Boolean)
 - `ignored_query_parameters` (List of String)
 - `match_incoming_request_route` (Boolean)
-- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--print_options))
+- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--grpc_json_transcoder--print_options))
 - `proto_descriptor` (String)
 - `proto_descriptor_bin` (String)
-- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--proto_descriptor_config_map))
+- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map))
 - `services` (List of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--print_options"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.print_options`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--grpc_json_transcoder--print_options"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.grpc_json_transcoder.print_options`
 
 Optional:
 
@@ -2744,16 +2744,16 @@ Optional:
 - `preserve_proto_field_names` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--proto_descriptor_config_map"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.proto_descriptor_config_map`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.grpc_json_transcoder.proto_descriptor_config_map`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--services--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref))
 - `key` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--services--config_map_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.services.config_map_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.grpc_json_transcoder.proto_descriptor_config_map.config_map_ref`
 
 Optional:
 
@@ -2763,16 +2763,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--grpc_web"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.grpc_web`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--grpc_web"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.grpc_web`
 
 Optional:
 
 - `disable` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--gzip"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.gzip`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--gzip"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.gzip`
 
 Optional:
 
@@ -2786,16 +2786,16 @@ Optional:
 - `window_bits` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--health_check"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.health_check`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--health_check"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.health_check`
 
 Optional:
 
 - `path` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--http_connection_manager_settings"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.http_connection_manager_settings`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings`
 
 Optional:
 
@@ -2810,9 +2810,9 @@ Optional:
 - `forward_client_cert_details` (String)
 - `generate_request_id` (Boolean)
 - `headers_with_underscores_action` (String)
-- `http2_protocol_options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--http2_protocol_options))
+- `http2_protocol_options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--http2_protocol_options))
 - `idle_timeout` (String)
-- `internal_address_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--internal_address_config))
+- `internal_address_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--internal_address_config))
 - `max_connection_duration` (String)
 - `max_headers_count` (Number)
 - `max_request_headers_kb` (Number)
@@ -2829,19 +2829,19 @@ Optional:
 - `request_timeout` (String)
 - `server_header_transformation` (String)
 - `server_name` (String)
-- `set_current_client_cert_details` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--set_current_client_cert_details))
+- `set_current_client_cert_details` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--set_current_client_cert_details))
 - `skip_xff_append` (Boolean)
 - `stream_idle_timeout` (String)
 - `strip_any_host_port` (Boolean)
-- `tracing` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--tracing))
-- `upgrades` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--upgrades))
+- `tracing` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing))
+- `upgrades` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--upgrades))
 - `use_remote_address` (Boolean)
-- `uuid_request_id_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--uuid_request_id_config))
+- `uuid_request_id_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--uuid_request_id_config))
 - `via` (String)
 - `xff_num_trusted_hops` (Number)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--http2_protocol_options"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.http2_protocol_options`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--http2_protocol_options"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.http2_protocol_options`
 
 Optional:
 
@@ -2851,16 +2851,16 @@ Optional:
 - `override_stream_error_on_invalid_http_message` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--internal_address_config"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.internal_address_config`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--internal_address_config"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.internal_address_config`
 
 Optional:
 
-- `cidr_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--cidr_ranges))
+- `cidr_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--internal_address_config--cidr_ranges))
 - `unix_sockets` (Boolean)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--cidr_ranges"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.cidr_ranges`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--internal_address_config--cidr_ranges"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.internal_address_config.cidr_ranges`
 
 Optional:
 
@@ -2869,8 +2869,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--set_current_client_cert_details"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.set_current_client_cert_details`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--set_current_client_cert_details"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.set_current_client_cert_details`
 
 Optional:
 
@@ -2881,32 +2881,32 @@ Optional:
 - `uri` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--tracing"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.tracing`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing`
 
 Optional:
 
-- `datadog_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--datadog_config))
-- `environment_variables_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--environment_variables_for_tags))
-- `literals_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--literals_for_tags))
-- `open_census_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--open_census_config))
-- `open_telemetry_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--open_telemetry_config))
+- `datadog_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--datadog_config))
+- `environment_variables_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--environment_variables_for_tags))
+- `literals_for_tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--literals_for_tags))
+- `open_census_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config))
+- `open_telemetry_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config))
 - `request_headers_for_tags` (List of String)
-- `trace_percentages` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--trace_percentages))
+- `trace_percentages` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--trace_percentages))
 - `verbose` (Boolean)
-- `zipkin_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config))
+- `zipkin_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--datadog_config"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.datadog_config`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--datadog_config"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.datadog_config`
 
 Optional:
 
 - `cluster_name` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--datadog_config--collector_upstream_ref))
 - `service_name` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--datadog_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.datadog_config.collector_upstream_ref`
 
 Optional:
 
@@ -2915,8 +2915,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--environment_variables_for_tags"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.environment_variables_for_tags`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--environment_variables_for_tags"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.environment_variables_for_tags`
 
 Optional:
 
@@ -2925,8 +2925,8 @@ Optional:
 - `tag` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--literals_for_tags"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.literals_for_tags`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--literals_for_tags"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.literals_for_tags`
 
 Optional:
 
@@ -2934,20 +2934,20 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--open_census_config"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.open_census_config`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.open_census_config`
 
 Optional:
 
-- `grpc_address` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--grpc_address))
+- `grpc_address` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--grpc_address))
 - `http_address` (String)
 - `incoming_trace_context` (List of String)
 - `ocagent_exporter_enabled` (Boolean)
 - `outgoing_trace_context` (List of String)
-- `trace_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--trace_config))
+- `trace_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--grpc_address"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.zipkin_config.grpc_address`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--grpc_address"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.grpc_address`
 
 Optional:
 
@@ -2955,37 +2955,37 @@ Optional:
 - `target_uri` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--trace_config"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.zipkin_config.trace_config`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config`
 
 Optional:
 
-- `constant_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--trace_config--constant_sampler))
+- `constant_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--constant_sampler))
 - `max_number_of_annotations` (Number)
 - `max_number_of_attributes` (Number)
 - `max_number_of_links` (Number)
 - `max_number_of_message_events` (Number)
-- `probability_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--trace_config--probability_sampler))
-- `rate_limiting_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--trace_config--rate_limiting_sampler))
+- `probability_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--probability_sampler))
+- `rate_limiting_sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--rate_limiting_sampler))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--trace_config--constant_sampler"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.zipkin_config.trace_config.constant_sampler`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--constant_sampler"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config.constant_sampler`
 
 Optional:
 
 - `decision` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--trace_config--probability_sampler"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.zipkin_config.trace_config.probability_sampler`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--probability_sampler"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config.probability_sampler`
 
 Optional:
 
 - `sampling_probability` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--trace_config--rate_limiting_sampler"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.zipkin_config.trace_config.rate_limiting_sampler`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_census_config--trace_config--rate_limiting_sampler"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.open_census_config.trace_config.rate_limiting_sampler`
 
 Optional:
 
@@ -2994,16 +2994,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--open_telemetry_config"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.open_telemetry_config`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.open_telemetry_config`
 
 Optional:
 
 - `cluster_name` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config--collector_upstream_ref))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--open_telemetry_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.open_telemetry_config.collector_upstream_ref`
 
 Optional:
 
@@ -3012,8 +3012,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--trace_percentages"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.trace_percentages`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--trace_percentages"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.trace_percentages`
 
 Optional:
 
@@ -3022,20 +3022,20 @@ Optional:
 - `random_sample_percentage` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.zipkin_config`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.zipkin_config`
 
 Optional:
 
 - `cluster_name` (String)
 - `collector_endpoint` (String)
 - `collector_endpoint_version` (String)
-- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--collector_upstream_ref))
+- `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config--collector_upstream_ref))
 - `shared_span_context` (Boolean)
 - `trace_id128bit` (Boolean)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--zipkin_config--collector_upstream_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.zipkin_config.collector_upstream_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--tracing--zipkin_config--collector_upstream_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.tracing.zipkin_config.collector_upstream_ref`
 
 Optional:
 
@@ -3045,33 +3045,33 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--upgrades"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.upgrades`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--upgrades"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.upgrades`
 
 Optional:
 
-- `connect` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--connect))
-- `websocket` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--websocket))
+- `connect` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--upgrades--connect))
+- `websocket` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--upgrades--websocket))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--connect"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.connect`
-
-Optional:
-
-- `enabled` (Boolean)
-
-
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--xff_num_trusted_hops--websocket"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.xff_num_trusted_hops.websocket`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--upgrades--connect"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.upgrades.connect`
 
 Optional:
 
 - `enabled` (Boolean)
 
 
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--upgrades--websocket"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.upgrades.websocket`
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--uuid_request_id_config"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.uuid_request_id_config`
+Optional:
+
+- `enabled` (Boolean)
+
+
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_connection_manager_settings--uuid_request_id_config"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_connection_manager_settings.uuid_request_id_config`
 
 Optional:
 
@@ -3080,17 +3080,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--http_local_ratelimit"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.http_local_ratelimit`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_local_ratelimit"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_local_ratelimit`
 
 Optional:
 
-- `default_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--default_limit))
+- `default_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_local_ratelimit--default_limit))
 - `enable_x_ratelimit_headers` (Boolean)
 - `local_rate_limit_per_downstream_connection` (Boolean)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--default_limit"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.default_limit`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--http_local_ratelimit--default_limit"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.http_local_ratelimit.default_limit`
 
 Optional:
 
@@ -3100,8 +3100,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--network_local_ratelimit"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.network_local_ratelimit`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--network_local_ratelimit"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.network_local_ratelimit`
 
 Optional:
 
@@ -3110,8 +3110,8 @@ Optional:
 - `tokens_per_fill` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--proxy_latency"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.proxy_latency`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--proxy_latency"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.proxy_latency`
 
 Optional:
 
@@ -3123,28 +3123,28 @@ Optional:
 - `response` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--ratelimit_server"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.ratelimit_server`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ratelimit_server"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ratelimit_server`
 
 Optional:
 
 - `deny_on_fail` (Boolean)
 - `enable_x_ratelimit_headers` (Boolean)
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--grpc_service))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ratelimit_server--grpc_service))
 - `rate_limit_before_auth` (Boolean)
-- `ratelimit_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ratelimit_server_ref))
+- `ratelimit_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ratelimit_server--ratelimit_server_ref))
 - `request_timeout` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--grpc_service"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.grpc_service`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ratelimit_server--grpc_service"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ratelimit_server.grpc_service`
 
 Optional:
 
 - `authority` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ratelimit_server_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.ratelimit_server_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--ratelimit_server--ratelimit_server_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.ratelimit_server.ratelimit_server_ref`
 
 Optional:
 
@@ -3153,8 +3153,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--router"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.router`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--router"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.router`
 
 Optional:
 
@@ -3162,30 +3162,30 @@ Optional:
 - `suppress_envoy_headers` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--tap"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.tap`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.tap`
 
 Optional:
 
-- `sinks` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks))
+- `sinks` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.sinks`
-
-Optional:
-
-- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--grpc_service))
-- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service))
-
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--grpc_service"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.sinks.grpc_service`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.tap.sinks`
 
 Optional:
 
-- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service--tap_server))
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks--grpc_service))
+- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks--http_service))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service--tap_server"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.sinks.http_service.tap_server`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks--grpc_service"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.tap.sinks.grpc_service`
+
+Optional:
+
+- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks--grpc_service--tap_server))
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks--grpc_service--tap_server"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.tap.sinks.grpc_service.tap_server`
 
 Optional:
 
@@ -3194,16 +3194,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.sinks.http_service`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks--http_service"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.tap.sinks.http_service`
 
 Optional:
 
-- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service--tap_server))
+- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks--http_service--tap_server))
 - `timeout` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service--tap_server"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.sinks.http_service.tap_server`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks--http_service--tap_server"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.tap.sinks.http_service.tap_server`
 
 Optional:
 
@@ -3214,22 +3214,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--waf"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.waf`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.waf`
 
 Optional:
 
-- `audit_logging` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--audit_logging))
-- `config_map_rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--config_map_rule_sets))
-- `core_rule_set` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--core_rule_set))
+- `audit_logging` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf--audit_logging))
+- `config_map_rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf--config_map_rule_sets))
+- `core_rule_set` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf--core_rule_set))
 - `custom_intervention_message` (String)
 - `disabled` (Boolean)
 - `request_headers_only` (Boolean)
 - `response_headers_only` (Boolean)
-- `rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--rule_sets))
+- `rule_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf--rule_sets))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--audit_logging"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.audit_logging`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf--audit_logging"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.waf.audit_logging`
 
 Optional:
 
@@ -3237,16 +3237,16 @@ Optional:
 - `location` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--config_map_rule_sets"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.config_map_rule_sets`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf--config_map_rule_sets"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.waf.config_map_rule_sets`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--rule_sets--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf--config_map_rule_sets--config_map_ref))
 - `data_map_keys` (List of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--rule_sets--config_map_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.rule_sets.config_map_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf--config_map_rule_sets--config_map_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.waf.config_map_rule_sets.config_map_ref`
 
 Optional:
 
@@ -3255,8 +3255,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--core_rule_set"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.core_rule_set`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf--core_rule_set"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.waf.core_rule_set`
 
 Optional:
 
@@ -3264,8 +3264,8 @@ Optional:
 - `custom_settings_string` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--rule_sets"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.rule_sets`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--waf--rule_sets"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.waf.rule_sets`
 
 Optional:
 
@@ -3275,29 +3275,29 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--wasm"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.wasm`
 
 Optional:
 
-- `filters` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--filters))
+- `filters` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--wasm--filters))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--filters"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.filters`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--wasm--filters"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.wasm.filters`
 
 Optional:
 
 - `config` (Map of String)
 - `fail_open` (Boolean)
 - `file_path` (String)
-- `filter_stage` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--filters--filter_stage))
+- `filter_stage` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--wasm--filters--filter_stage))
 - `image` (String)
 - `name` (String)
 - `root_id` (String)
 - `vm_type` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--filters--filter_stage"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.filters.filter_stage`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--wasm--filters--filter_stage"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.options.wasm.filters.filter_stage`
 
 Optional:
 
@@ -3308,15 +3308,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--virtual_service_expressions"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.virtual_service_expressions`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--virtual_service_expressions"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.virtual_service_expressions`
 
 Optional:
 
-- `expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--virtual_service_expressions--expressions))
+- `expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--virtual_service_expressions--expressions))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--virtual_service_expressions--expressions"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.virtual_service_expressions.expressions`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--virtual_service_expressions--expressions"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.virtual_service_expressions.expressions`
 
 Optional:
 
@@ -3326,8 +3326,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--virtual_services"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.virtual_services`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--virtual_services"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.http_gateway.virtual_services`
 
 Optional:
 
@@ -3342,11 +3342,11 @@ Optional:
 Optional:
 
 - `passthrough_cipher_suites` (List of String)
-- `source_prefix_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--source_prefix_ranges))
-- `ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config))
+- `source_prefix_ranges` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--matcher--source_prefix_ranges))
+- `ssl_config` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--source_prefix_ranges"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.source_prefix_ranges`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--matcher--source_prefix_ranges"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.matcher.source_prefix_ranges`
 
 Optional:
 
@@ -3354,8 +3354,8 @@ Optional:
 - `prefix_len` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.ssl_config`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.matcher.ssl_config`
 
 Optional:
 
@@ -3363,16 +3363,16 @@ Optional:
 - `disable_tls_session_resumption` (Boolean)
 - `ocsp_staple_policy` (String)
 - `one_way_tls` (Boolean)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--parameters))
-- `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--sds))
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--secret_ref))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--parameters))
+- `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--sds))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--secret_ref))
 - `sni_domains` (List of String)
-- `ssl_files` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--ssl_files))
+- `ssl_files` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--ssl_files))
 - `transport_socket_connect_timeout` (String)
 - `verify_subject_alt_name` (List of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--parameters"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.ssl_config.parameters`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--parameters"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.matcher.ssl_config.parameters`
 
 Optional:
 
@@ -3382,26 +3382,26 @@ Optional:
 - `minimum_protocol_version` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--sds"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.ssl_config.sds`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--sds"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.matcher.ssl_config.sds`
 
 Optional:
 
-- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--verify_subject_alt_name--call_credentials))
+- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--sds--call_credentials))
 - `certificates_secret_name` (String)
 - `cluster_name` (String)
 - `target_uri` (String)
 - `validation_context_name` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--verify_subject_alt_name--call_credentials"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.ssl_config.verify_subject_alt_name.call_credentials`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--sds--call_credentials"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.matcher.ssl_config.sds.call_credentials`
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--verify_subject_alt_name--validation_context_name--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--verify_subject_alt_name--validation_context_name--file_credential_source"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.ssl_config.verify_subject_alt_name.validation_context_name.file_credential_source`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.matcher.ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 
@@ -3411,8 +3411,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--secret_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.ssl_config.secret_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--secret_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.matcher.ssl_config.secret_ref`
 
 Optional:
 
@@ -3420,8 +3420,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--ssl_config--ssl_files"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.ssl_config.ssl_files`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--matcher--ssl_config--ssl_files"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.matcher.ssl_config.ssl_files`
 
 Optional:
 
@@ -3493,10 +3493,10 @@ Optional:
 Optional:
 
 - `append` (Boolean)
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--tcp_proxy_settings--tunneling_config--hostname--header))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--tcp_proxy_settings--tunneling_config--headers_to_add--header))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--tcp_proxy_settings--tunneling_config--hostname--header"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.tcp_proxy_settings.tunneling_config.hostname.header`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--tcp_proxy_settings--tunneling_config--headers_to_add--header"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.tcp_proxy_settings.tunneling_config.headers_to_add.header`
 
 Optional:
 
@@ -3523,39 +3523,39 @@ Optional:
 Optional:
 
 - `forward_sni_cluster_name` (Map of String)
-- `multi` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--multi))
-- `single` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--single))
-- `upstream_group` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group))
+- `multi` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi))
+- `single` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single))
+- `upstream_group` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--upstream_group))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--multi"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.multi`
-
-Optional:
-
-- `destinations` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations))
-
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi`
 
 Optional:
 
-- `destination` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination))
-- `options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options))
+- `destinations` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations))
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations`
+
+Optional:
+
+- `destination` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination))
+- `options` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options))
 - `weight` (Number)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination`
 
 Optional:
 
-- `consul` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--consul))
-- `destination_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--destination_spec))
-- `kube` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--kube))
-- `subset` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--subset))
-- `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream))
+- `consul` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--consul))
+- `destination_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec))
+- `kube` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--kube))
+- `subset` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--subset))
+- `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--upstream))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--consul"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.consul`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--consul"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.consul`
 
 Optional:
 
@@ -3564,18 +3564,18 @@ Optional:
 - `tags` (List of String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--destination_spec"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.destination_spec`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec`
 
 Optional:
 
-- `aws` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--aws))
-- `azure` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--azure))
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--grpc))
-- `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest))
+- `aws` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--aws))
+- `azure` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--azure))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--grpc))
+- `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--aws"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.aws`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--aws"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.aws`
 
 Optional:
 
@@ -3588,26 +3588,26 @@ Optional:
 - `wrap_as_api_gateway` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--azure"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.azure`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--azure"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.azure`
 
 Optional:
 
 - `function_name` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--grpc"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.grpc`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--grpc"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.grpc`
 
 Optional:
 
 - `function` (String)
 - `package` (String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--parameters))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--grpc--parameters))
 - `service` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--parameters"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest.parameters`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--grpc--parameters"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.grpc.parameters`
 
 Optional:
 
@@ -3616,17 +3616,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest`
 
 Optional:
 
 - `function_name` (String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--parameters))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--parameters))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--parameters"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest.parameters`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--parameters"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.parameters`
 
 Optional:
 
@@ -3634,43 +3634,43 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest.response_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest.response_transformation.body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest.response_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--dynamic_metadata_values"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest.response_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.dynamic_metadata_values.value`
 
 Optional:
 
@@ -3678,8 +3678,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--extractors"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest.response_transformation.extractors`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--extractors"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.extractors`
 
 Optional:
 
@@ -3691,24 +3691,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest.response_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--headers_to_append"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest.response_transformation.headers_to_append`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers_to_append"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers_to_append--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--rest--response_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.rest.response_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers_to_append--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.headers_to_append.value`
 
 Optional:
 
@@ -3719,16 +3719,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--kube"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.kube`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--kube"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.kube`
 
 Optional:
 
 - `port` (Number)
-- `ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--ref))
+- `ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--kube--ref))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream--ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream.ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--kube--ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.kube.ref`
 
 Optional:
 
@@ -3737,16 +3737,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--subset"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.subset`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--subset"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.subset`
 
 Optional:
 
 - `values` (Map of String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--destination--upstream"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.destination.upstream`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--upstream"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.upstream`
 
 Optional:
 
@@ -3755,29 +3755,29 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options`
 
 Optional:
 
-- `buffer_per_route` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--buffer_per_route))
-- `csrf` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--csrf))
-- `extauth` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--extauth))
-- `extensions` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--extensions))
-- `header_manipulation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--header_manipulation))
-- `staged_transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--staged_transformations))
-- `transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations))
+- `buffer_per_route` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--buffer_per_route))
+- `csrf` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf))
+- `extauth` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth))
+- `extensions` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extensions))
+- `header_manipulation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation))
+- `staged_transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations))
+- `transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--buffer_per_route"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.buffer_per_route`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--buffer_per_route"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.buffer_per_route`
 
 Optional:
 
-- `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--buffer))
+- `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--buffer_per_route--buffer))
 - `disabled` (Boolean)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--buffer"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.buffer`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--buffer_per_route--buffer"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.buffer_per_route.buffer`
 
 Optional:
 
@@ -3785,36 +3785,36 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--csrf"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.csrf`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf`
 
 Optional:
 
-- `additional_origins` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--additional_origins))
-- `filter_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--filter_enabled))
-- `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--shadow_enabled))
+- `additional_origins` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins))
+- `filter_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--filter_enabled))
+- `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--shadow_enabled))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--additional_origins"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.additional_origins`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.additional_origins`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--shadow_enabled--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--shadow_enabled--safe_regex"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.shadow_enabled.safe_regex`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins--safe_regex"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.additional_origins.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--shadow_enabled--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--shadow_enabled--suffix--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.shadow_enabled.suffix.google_re2`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins--safe_regex--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.additional_origins.safe_regex.google_re2`
 
 Optional:
 
@@ -3823,16 +3823,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--filter_enabled"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.filter_enabled`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--filter_enabled"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.filter_enabled`
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--shadow_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--filter_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.shadow_enabled.default_value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--filter_enabled--default_value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.filter_enabled.default_value`
 
 Optional:
 
@@ -3841,16 +3841,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--shadow_enabled"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.shadow_enabled`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--shadow_enabled"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.shadow_enabled`
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--shadow_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--shadow_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.shadow_enabled.default_value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--shadow_enabled--default_value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.shadow_enabled.default_value`
 
 Optional:
 
@@ -3860,17 +3860,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--extauth"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.extauth`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.extauth`
 
 Optional:
 
-- `config_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--config_ref))
-- `custom_auth` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--custom_auth))
+- `config_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth--config_ref))
+- `custom_auth` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth--custom_auth))
 - `disable` (Boolean)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--config_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.config_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth--config_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.extauth.config_ref`
 
 Optional:
 
@@ -3878,8 +3878,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--custom_auth"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.custom_auth`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth--custom_auth"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.extauth.custom_auth`
 
 Optional:
 
@@ -3888,35 +3888,35 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--extensions"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.extensions`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extensions"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.extensions`
 
 Optional:
 
 - `configs` (Map of String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--header_manipulation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.header_manipulation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation`
 
 Optional:
 
-- `request_headers_to_add` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--request_headers_to_add))
+- `request_headers_to_add` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add))
 - `request_headers_to_remove` (List of String)
-- `response_headers_to_add` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_headers_to_add))
+- `response_headers_to_add` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--response_headers_to_add))
 - `response_headers_to_remove` (List of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--request_headers_to_add"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.request_headers_to_add`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation.request_headers_to_add`
 
 Optional:
 
 - `append` (Boolean)
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_headers_to_remove--header))
-- `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_headers_to_remove--header_secret_ref))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add--header))
+- `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add--header_secret_ref))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_headers_to_remove--header"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_headers_to_remove.header`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add--header"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation.request_headers_to_add.header`
 
 Optional:
 
@@ -3924,8 +3924,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_headers_to_remove--header_secret_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_headers_to_remove.header_secret_ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add--header_secret_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation.request_headers_to_add.header_secret_ref`
 
 Optional:
 
@@ -3934,16 +3934,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_headers_to_add"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_headers_to_add`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--response_headers_to_add"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation.response_headers_to_add`
 
 Optional:
 
 - `append` (Boolean)
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_headers_to_remove--header))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--response_headers_to_add--header))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_headers_to_remove--header"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_headers_to_remove.header`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--response_headers_to_add--header"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation.response_headers_to_add.header`
 
 Optional:
 
@@ -3953,51 +3953,51 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--staged_transformations"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.staged_transformations`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations`
 
 Optional:
 
-- `early` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--early))
+- `early` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early))
 - `escape_characters` (Boolean)
 - `inherit_transformation` (Boolean)
 - `log_request_response_info` (Boolean)
-- `regular` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular))
+- `regular` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--early"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.early`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early`
 
 Optional:
 
-- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--request_transforms))
-- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms))
+- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms))
+- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--request_transforms"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.request_transforms`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms`
 
 Optional:
 
 - `clear_route_cache` (Boolean)
-- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--matcher))
-- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--request_transformation))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation))
+- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher))
+- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--matcher"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.matcher`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.matcher`
 
 Optional:
 
 - `case_sensitive` (Boolean)
 - `connect_matcher` (Map of String)
 - `exact` (String)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher--headers))
 - `methods` (List of String)
 - `prefix` (String)
-- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--query_parameters))
+- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher--query_parameters))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.matcher.headers`
 
 Optional:
 
@@ -4007,8 +4007,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.query_parameters`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher--query_parameters"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.matcher.query_parameters`
 
 Optional:
 
@@ -4018,61 +4018,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.request_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--header_body_transform"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -4080,8 +4080,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4093,24 +4093,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -4119,8 +4119,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.xslt_transformation`
 
 Optional:
 
@@ -4130,61 +4130,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -4192,8 +4192,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4205,24 +4205,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -4231,8 +4231,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -4243,17 +4243,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms`
 
 Optional:
 
-- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--matchers))
+- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--matchers))
 - `response_code_details` (String)
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.matchers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--matchers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.matchers`
 
 Optional:
 
@@ -4263,61 +4263,61 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -4325,8 +4325,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4338,24 +4338,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -4364,8 +4364,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -4377,40 +4377,40 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular`
 
 Optional:
 
-- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--request_transforms))
-- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms))
+- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms))
+- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--request_transforms"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.request_transforms`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms`
 
 Optional:
 
 - `clear_route_cache` (Boolean)
-- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--matcher))
-- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--request_transformation))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation))
+- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher))
+- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--matcher"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.matcher`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.matcher`
 
 Optional:
 
 - `case_sensitive` (Boolean)
 - `connect_matcher` (Map of String)
 - `exact` (String)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher--headers))
 - `methods` (List of String)
 - `prefix` (String)
-- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--query_parameters))
+- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher--query_parameters))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.matcher.headers`
 
 Optional:
 
@@ -4420,8 +4420,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.query_parameters`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher--query_parameters"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.matcher.query_parameters`
 
 Optional:
 
@@ -4431,61 +4431,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.request_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--header_body_transform"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -4493,8 +4493,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4506,24 +4506,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -4532,8 +4532,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.xslt_transformation`
 
 Optional:
 
@@ -4543,61 +4543,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -4605,8 +4605,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4618,24 +4618,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -4644,8 +4644,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -4656,17 +4656,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms`
 
 Optional:
 
-- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--matchers))
+- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--matchers))
 - `response_code_details` (String)
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.matchers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--matchers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.matchers`
 
 Optional:
 
@@ -4676,61 +4676,61 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -4738,8 +4738,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4751,24 +4751,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -4777,8 +4777,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -4791,70 +4791,70 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations`
 
 Optional:
 
 - `clear_route_cache` (Boolean)
-- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--request_transformation))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation))
+- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--request_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.request_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.header_body_transform`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--header_body_transform"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.transformation_template`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -4862,8 +4862,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4875,24 +4875,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -4901,8 +4901,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.xslt_transformation`
 
 Optional:
 
@@ -4912,61 +4912,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.header_body_transform`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.transformation_template`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -4974,8 +4974,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -4987,24 +4987,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -5013,8 +5013,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destinations--options--transformations--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destinations.options.transformations.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -5028,19 +5028,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--single"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.single`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single`
 
 Optional:
 
-- `consul` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--consul))
-- `destination_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destination_spec))
-- `kube` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--kube))
-- `subset` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--subset))
-- `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream))
+- `consul` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--consul))
+- `destination_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec))
+- `kube` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--kube))
+- `subset` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--subset))
+- `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--upstream))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--consul"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.consul`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--consul"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.consul`
 
 Optional:
 
@@ -5049,18 +5049,18 @@ Optional:
 - `tags` (List of String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--destination_spec"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.destination_spec`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec`
 
 Optional:
 
-- `aws` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--aws))
-- `azure` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--azure))
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--grpc))
-- `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest))
+- `aws` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--aws))
+- `azure` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--azure))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--grpc))
+- `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--aws"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.aws`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--aws"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.aws`
 
 Optional:
 
@@ -5073,26 +5073,26 @@ Optional:
 - `wrap_as_api_gateway` (Boolean)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--azure"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.azure`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--azure"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.azure`
 
 Optional:
 
 - `function_name` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--grpc"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.grpc`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--grpc"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.grpc`
 
 Optional:
 
 - `function` (String)
 - `package` (String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--grpc--parameters))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--grpc--parameters))
 - `service` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--grpc--parameters"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.grpc.parameters`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--grpc--parameters"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.grpc.parameters`
 
 Optional:
 
@@ -5101,17 +5101,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.rest`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest`
 
 Optional:
 
 - `function_name` (String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--parameters))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--parameters))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--parameters"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.rest.parameters`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--parameters"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.parameters`
 
 Optional:
 
@@ -5119,43 +5119,43 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.rest.response_transformation`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--body"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.rest.response_transformation.body`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--body"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.rest.response_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--dynamic_metadata_values"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.rest.response_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.dynamic_metadata_values.value`
 
 Optional:
 
@@ -5163,8 +5163,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--extractors"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.rest.response_transformation.extractors`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--extractors"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.extractors`
 
 Optional:
 
@@ -5176,24 +5176,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.rest.response_transformation.headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--headers_to_append"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.rest.response_transformation.headers_to_append`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers_to_append"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers_to_append--value))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--rest--response_transformation--passthrough--value"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.rest.response_transformation.passthrough.value`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers_to_append--value"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.headers_to_append.value`
 
 Optional:
 
@@ -5204,16 +5204,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--kube"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.kube`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--kube"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.kube`
 
 Optional:
 
 - `port` (Number)
-- `ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--ref))
+- `ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--kube--ref))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream--ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream.ref`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--kube--ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.kube.ref`
 
 Optional:
 
@@ -5222,16 +5222,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--subset"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.subset`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--subset"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.subset`
 
 Optional:
 
 - `values` (Map of String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group--upstream"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group.upstream`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--single--upstream"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.single.upstream`
 
 Optional:
 
@@ -5240,8 +5240,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--upstream_group"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.upstream_group`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--destination--upstream_group"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.destination.upstream_group`
 
 Optional:
 
@@ -5283,21 +5283,21 @@ Optional:
 
 Optional:
 
-- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--verify_subject_alt_name--call_credentials))
+- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--sds--call_credentials))
 - `certificates_secret_name` (String)
 - `cluster_name` (String)
 - `target_uri` (String)
 - `validation_context_name` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--verify_subject_alt_name--call_credentials"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.verify_subject_alt_name.call_credentials`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--sds--call_credentials"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.sds.call_credentials`
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--verify_subject_alt_name--validation_context_name--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--verify_subject_alt_name--validation_context_name--file_credential_source"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.verify_subject_alt_name.validation_context_name.file_credential_source`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--tcp_hosts--ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.tcp_hosts.ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 
@@ -5400,18 +5400,18 @@ Optional:
 
 Optional:
 
-- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--comparison))
+- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--duration_filter--comparison))
 
-<a id="nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--comparison"></a>
-### Nested Schema for `spec.options.access_logging_service.access_log.filter.traceable_filter.comparison`
+<a id="nestedatt--spec--options--access_logging_service--access_log--filter--duration_filter--comparison"></a>
+### Nested Schema for `spec.options.access_logging_service.access_log.filter.duration_filter.comparison`
 
 Optional:
 
 - `op` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--comparison--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--duration_filter--comparison--value))
 
-<a id="nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--comparison--value"></a>
-### Nested Schema for `spec.options.access_logging_service.access_log.filter.traceable_filter.comparison.value`
+<a id="nestedatt--spec--options--access_logging_service--access_log--filter--duration_filter--comparison--value"></a>
+### Nested Schema for `spec.options.access_logging_service.access_log.filter.duration_filter.comparison.value`
 
 Optional:
 
@@ -5435,10 +5435,10 @@ Optional:
 
 Optional:
 
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--header))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--header_filter--header))
 
-<a id="nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--header"></a>
-### Nested Schema for `spec.options.access_logging_service.access_log.filter.traceable_filter.header`
+<a id="nestedatt--spec--options--access_logging_service--access_log--filter--header_filter--header"></a>
+### Nested Schema for `spec.options.access_logging_service.access_log.filter.header_filter.header`
 
 Optional:
 
@@ -5447,12 +5447,12 @@ Optional:
 - `name` (String)
 - `prefix_match` (String)
 - `present_match` (Boolean)
-- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--header--range_match))
-- `safe_regex_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--header--safe_regex_match))
+- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--header_filter--header--range_match))
+- `safe_regex_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--header_filter--header--safe_regex_match))
 - `suffix_match` (String)
 
-<a id="nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--header--range_match"></a>
-### Nested Schema for `spec.options.access_logging_service.access_log.filter.traceable_filter.header.range_match`
+<a id="nestedatt--spec--options--access_logging_service--access_log--filter--header_filter--header--range_match"></a>
+### Nested Schema for `spec.options.access_logging_service.access_log.filter.header_filter.header.range_match`
 
 Optional:
 
@@ -5460,16 +5460,16 @@ Optional:
 - `start` (Number)
 
 
-<a id="nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--header--safe_regex_match"></a>
-### Nested Schema for `spec.options.access_logging_service.access_log.filter.traceable_filter.header.safe_regex_match`
+<a id="nestedatt--spec--options--access_logging_service--access_log--filter--header_filter--header--safe_regex_match"></a>
+### Nested Schema for `spec.options.access_logging_service.access_log.filter.header_filter.header.safe_regex_match`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--header--suffix_match--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--header_filter--header--safe_regex_match--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--header--suffix_match--google_re2"></a>
-### Nested Schema for `spec.options.access_logging_service.access_log.filter.traceable_filter.header.suffix_match.google_re2`
+<a id="nestedatt--spec--options--access_logging_service--access_log--filter--header_filter--header--safe_regex_match--google_re2"></a>
+### Nested Schema for `spec.options.access_logging_service.access_log.filter.header_filter.header.safe_regex_match.google_re2`
 
 Optional:
 
@@ -5492,12 +5492,12 @@ Optional:
 
 Optional:
 
-- `percent_sampled` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--percent_sampled))
+- `percent_sampled` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--runtime_filter--percent_sampled))
 - `runtime_key` (String)
 - `use_independent_randomness` (Boolean)
 
-<a id="nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--percent_sampled"></a>
-### Nested Schema for `spec.options.access_logging_service.access_log.filter.traceable_filter.percent_sampled`
+<a id="nestedatt--spec--options--access_logging_service--access_log--filter--runtime_filter--percent_sampled"></a>
+### Nested Schema for `spec.options.access_logging_service.access_log.filter.runtime_filter.percent_sampled`
 
 Optional:
 
@@ -5511,18 +5511,18 @@ Optional:
 
 Optional:
 
-- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--comparison))
+- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--status_code_filter--comparison))
 
-<a id="nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--comparison"></a>
-### Nested Schema for `spec.options.access_logging_service.access_log.filter.traceable_filter.comparison`
+<a id="nestedatt--spec--options--access_logging_service--access_log--filter--status_code_filter--comparison"></a>
+### Nested Schema for `spec.options.access_logging_service.access_log.filter.status_code_filter.comparison`
 
 Optional:
 
 - `op` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--comparison--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--access_logging_service--access_log--filter--status_code_filter--comparison--value))
 
-<a id="nestedatt--spec--options--access_logging_service--access_log--filter--traceable_filter--comparison--value"></a>
-### Nested Schema for `spec.options.access_logging_service.access_log.filter.traceable_filter.comparison.value`
+<a id="nestedatt--spec--options--access_logging_service--access_log--filter--status_code_filter--comparison--value"></a>
+### Nested Schema for `spec.options.access_logging_service.access_log.filter.status_code_filter.comparison.value`
 
 Optional:
 
@@ -5610,18 +5610,18 @@ Optional:
 
 Optional:
 
-- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--comparison))
+- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--duration_filter--comparison))
 
-<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--comparison"></a>
-### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.traceable_filter.comparison`
+<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--duration_filter--comparison"></a>
+### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.duration_filter.comparison`
 
 Optional:
 
 - `op` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--comparison--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--duration_filter--comparison--value))
 
-<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--comparison--value"></a>
-### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.traceable_filter.comparison.value`
+<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--duration_filter--comparison--value"></a>
+### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.duration_filter.comparison.value`
 
 Optional:
 
@@ -5645,10 +5645,10 @@ Optional:
 
 Optional:
 
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--header))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--header_filter--header))
 
-<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--header"></a>
-### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.traceable_filter.header`
+<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--header_filter--header"></a>
+### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.header_filter.header`
 
 Optional:
 
@@ -5657,12 +5657,12 @@ Optional:
 - `name` (String)
 - `prefix_match` (String)
 - `present_match` (Boolean)
-- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--header--range_match))
-- `safe_regex_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--header--safe_regex_match))
+- `range_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--header_filter--header--range_match))
+- `safe_regex_match` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--header_filter--header--safe_regex_match))
 - `suffix_match` (String)
 
-<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--header--range_match"></a>
-### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.traceable_filter.header.range_match`
+<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--header_filter--header--range_match"></a>
+### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.header_filter.header.range_match`
 
 Optional:
 
@@ -5670,16 +5670,16 @@ Optional:
 - `start` (Number)
 
 
-<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--header--safe_regex_match"></a>
-### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.traceable_filter.header.safe_regex_match`
+<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--header_filter--header--safe_regex_match"></a>
+### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.header_filter.header.safe_regex_match`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--header--suffix_match--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--header_filter--header--safe_regex_match--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--header--suffix_match--google_re2"></a>
-### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.traceable_filter.header.suffix_match.google_re2`
+<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--header_filter--header--safe_regex_match--google_re2"></a>
+### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.header_filter.header.safe_regex_match.google_re2`
 
 Optional:
 
@@ -5702,12 +5702,12 @@ Optional:
 
 Optional:
 
-- `percent_sampled` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--percent_sampled))
+- `percent_sampled` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--runtime_filter--percent_sampled))
 - `runtime_key` (String)
 - `use_independent_randomness` (Boolean)
 
-<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--percent_sampled"></a>
-### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.traceable_filter.percent_sampled`
+<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--runtime_filter--percent_sampled"></a>
+### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.runtime_filter.percent_sampled`
 
 Optional:
 
@@ -5721,18 +5721,18 @@ Optional:
 
 Optional:
 
-- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--comparison))
+- `comparison` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--status_code_filter--comparison))
 
-<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--comparison"></a>
-### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.traceable_filter.comparison`
+<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--status_code_filter--comparison"></a>
+### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.status_code_filter.comparison`
 
 Optional:
 
 - `op` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--comparison--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--options--listener_access_logging_service--access_log--filter--status_code_filter--comparison--value))
 
-<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--traceable_filter--comparison--value"></a>
-### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.traceable_filter.comparison.value`
+<a id="nestedatt--spec--options--listener_access_logging_service--access_log--filter--status_code_filter--comparison--value"></a>
+### Nested Schema for `spec.options.listener_access_logging_service.access_log.filter.status_code_filter.comparison.value`
 
 Optional:
 
@@ -5867,10 +5867,10 @@ Optional:
 Optional:
 
 - `append` (Boolean)
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--options--tcp_proxy_settings--tunneling_config--hostname--header))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--options--tcp_proxy_settings--tunneling_config--headers_to_add--header))
 
-<a id="nestedatt--spec--tcp_gateway--options--tcp_proxy_settings--tunneling_config--hostname--header"></a>
-### Nested Schema for `spec.tcp_gateway.options.tcp_proxy_settings.tunneling_config.hostname.header`
+<a id="nestedatt--spec--tcp_gateway--options--tcp_proxy_settings--tunneling_config--headers_to_add--header"></a>
+### Nested Schema for `spec.tcp_gateway.options.tcp_proxy_settings.tunneling_config.headers_to_add.header`
 
 Optional:
 
@@ -5897,39 +5897,39 @@ Optional:
 Optional:
 
 - `forward_sni_cluster_name` (Map of String)
-- `multi` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi))
-- `single` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single))
-- `upstream_group` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--upstream_group))
+- `multi` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi))
+- `single` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single))
+- `upstream_group` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--upstream_group))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi`
-
-Optional:
-
-- `destinations` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations))
-
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi`
 
 Optional:
 
-- `destination` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--destination))
-- `options` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--options))
+- `destinations` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations))
+
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations`
+
+Optional:
+
+- `destination` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination))
+- `options` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options))
 - `weight` (Number)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--destination"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.destination`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination`
 
 Optional:
 
-- `consul` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--consul))
-- `destination_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--destination_spec))
-- `kube` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--kube))
-- `subset` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--subset))
-- `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream))
+- `consul` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--consul))
+- `destination_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec))
+- `kube` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--kube))
+- `subset` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--subset))
+- `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--upstream))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--consul"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.consul`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--consul"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.consul`
 
 Optional:
 
@@ -5938,18 +5938,18 @@ Optional:
 - `tags` (List of String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--destination_spec"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.destination_spec`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec`
 
 Optional:
 
-- `aws` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--aws))
-- `azure` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--azure))
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--grpc))
-- `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest))
+- `aws` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--aws))
+- `azure` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--azure))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--grpc))
+- `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--aws"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.aws`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--aws"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.aws`
 
 Optional:
 
@@ -5962,26 +5962,26 @@ Optional:
 - `wrap_as_api_gateway` (Boolean)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--azure"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.azure`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--azure"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.azure`
 
 Optional:
 
 - `function_name` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--grpc"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.grpc`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--grpc"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.grpc`
 
 Optional:
 
 - `function` (String)
 - `package` (String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--grpc--parameters))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--grpc--parameters))
 - `service` (String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--grpc--parameters"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.grpc.parameters`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--grpc--parameters"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.grpc.parameters`
 
 Optional:
 
@@ -5990,17 +5990,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.rest`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest`
 
 Optional:
 
 - `function_name` (String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--parameters))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--parameters))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--parameters"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.rest.parameters`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--parameters"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.parameters`
 
 Optional:
 
@@ -6008,43 +6008,43 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.rest.response_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--body"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.rest.response_transformation.body`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--body"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.rest.response_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--dynamic_metadata_values"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.rest.response_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.dynamic_metadata_values.value`
 
 Optional:
 
@@ -6052,8 +6052,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--extractors"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.rest.response_transformation.extractors`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--extractors"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.extractors`
 
 Optional:
 
@@ -6065,24 +6065,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.rest.response_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--headers_to_append"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.rest.response_transformation.headers_to_append`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers_to_append"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers_to_append--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--rest--response_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.rest.response_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--destination_spec--rest--response_transformation--headers_to_append--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.destination_spec.rest.response_transformation.headers_to_append.value`
 
 Optional:
 
@@ -6093,16 +6093,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--kube"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.kube`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--kube"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.kube`
 
 Optional:
 
 - `port` (Number)
-- `ref` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--ref))
+- `ref` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--kube--ref))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream--ref"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream.ref`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--kube--ref"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.kube.ref`
 
 Optional:
 
@@ -6111,16 +6111,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--subset"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.subset`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--subset"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.subset`
 
 Optional:
 
 - `values` (Map of String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--upstream"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.upstream`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--destination--upstream"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.destination.upstream`
 
 Optional:
 
@@ -6129,29 +6129,29 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--options"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.options`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options`
 
 Optional:
 
-- `buffer_per_route` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--buffer_per_route))
-- `csrf` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--csrf))
-- `extauth` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--extauth))
-- `extensions` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--extensions))
-- `header_manipulation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--header_manipulation))
-- `staged_transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--staged_transformations))
-- `transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations))
+- `buffer_per_route` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--buffer_per_route))
+- `csrf` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf))
+- `extauth` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth))
+- `extensions` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extensions))
+- `header_manipulation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation))
+- `staged_transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations))
+- `transformations` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--buffer_per_route"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.buffer_per_route`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--buffer_per_route"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.buffer_per_route`
 
 Optional:
 
-- `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--buffer))
+- `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--buffer_per_route--buffer))
 - `disabled` (Boolean)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--buffer"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.buffer`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--buffer_per_route--buffer"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.buffer_per_route.buffer`
 
 Optional:
 
@@ -6159,36 +6159,36 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--csrf"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.csrf`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf`
 
 Optional:
 
-- `additional_origins` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--additional_origins))
-- `filter_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--filter_enabled))
-- `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--shadow_enabled))
+- `additional_origins` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins))
+- `filter_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--filter_enabled))
+- `shadow_enabled` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--shadow_enabled))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--additional_origins"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.additional_origins`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.additional_origins`
 
 Optional:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--additional_origins--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--additional_origins--safe_regex"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.additional_origins.safe_regex`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins--safe_regex"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.additional_origins.safe_regex`
 
 Optional:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--additional_origins--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins--safe_regex--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--additional_origins--suffix--google_re2"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.additional_origins.suffix.google_re2`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--additional_origins--safe_regex--google_re2"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.additional_origins.safe_regex.google_re2`
 
 Optional:
 
@@ -6197,16 +6197,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--filter_enabled"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.filter_enabled`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--filter_enabled"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.filter_enabled`
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--filter_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--filter_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--filter_enabled--default_value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.filter_enabled.default_value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--filter_enabled--default_value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.filter_enabled.default_value`
 
 Optional:
 
@@ -6215,16 +6215,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--shadow_enabled"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.shadow_enabled`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--shadow_enabled"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.shadow_enabled`
 
 Optional:
 
-- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--shadow_enabled--default_value))
+- `default_value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--shadow_enabled--default_value))
 - `runtime_key` (String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--shadow_enabled--default_value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.shadow_enabled.default_value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--csrf--shadow_enabled--default_value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.csrf.shadow_enabled.default_value`
 
 Optional:
 
@@ -6234,17 +6234,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--extauth"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.extauth`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.extauth`
 
 Optional:
 
-- `config_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--config_ref))
-- `custom_auth` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--custom_auth))
+- `config_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth--config_ref))
+- `custom_auth` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth--custom_auth))
 - `disable` (Boolean)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--config_ref"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.config_ref`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth--config_ref"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.extauth.config_ref`
 
 Optional:
 
@@ -6252,8 +6252,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--custom_auth"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.custom_auth`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extauth--custom_auth"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.extauth.custom_auth`
 
 Optional:
 
@@ -6262,35 +6262,35 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--extensions"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.extensions`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--extensions"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.extensions`
 
 Optional:
 
 - `configs` (Map of String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--header_manipulation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.header_manipulation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation`
 
 Optional:
 
-- `request_headers_to_add` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_headers_to_add))
+- `request_headers_to_add` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add))
 - `request_headers_to_remove` (List of String)
-- `response_headers_to_add` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_headers_to_add))
+- `response_headers_to_add` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--response_headers_to_add))
 - `response_headers_to_remove` (List of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_headers_to_add"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_headers_to_add`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation.request_headers_to_add`
 
 Optional:
 
 - `append` (Boolean)
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_headers_to_add--header))
-- `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_headers_to_add--header_secret_ref))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add--header))
+- `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add--header_secret_ref))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_headers_to_add--header"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_headers_to_add.header`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add--header"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation.request_headers_to_add.header`
 
 Optional:
 
@@ -6298,8 +6298,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_headers_to_add--header_secret_ref"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_headers_to_add.header_secret_ref`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--request_headers_to_add--header_secret_ref"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation.request_headers_to_add.header_secret_ref`
 
 Optional:
 
@@ -6308,16 +6308,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_headers_to_add"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_headers_to_add`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--response_headers_to_add"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation.response_headers_to_add`
 
 Optional:
 
 - `append` (Boolean)
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_headers_to_add--header))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--response_headers_to_add--header))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_headers_to_add--header"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_headers_to_add.header`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--header_manipulation--response_headers_to_add--header"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.header_manipulation.response_headers_to_add.header`
 
 Optional:
 
@@ -6327,51 +6327,51 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--staged_transformations"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.staged_transformations`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations`
 
 Optional:
 
-- `early` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early))
+- `early` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early))
 - `escape_characters` (Boolean)
 - `inherit_transformation` (Boolean)
 - `log_request_response_info` (Boolean)
-- `regular` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular))
+- `regular` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early`
 
 Optional:
 
-- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--request_transforms))
-- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms))
+- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms))
+- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--request_transforms"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.request_transforms`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms`
 
 Optional:
 
 - `clear_route_cache` (Boolean)
-- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--matcher))
-- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--request_transformation))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation))
+- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher))
+- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--matcher"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.matcher`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.matcher`
 
 Optional:
 
 - `case_sensitive` (Boolean)
 - `connect_matcher` (Map of String)
 - `exact` (String)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher--headers))
 - `methods` (List of String)
 - `prefix` (String)
-- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--query_parameters))
+- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher--query_parameters))
 - `regex` (String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.matcher.headers`
 
 Optional:
 
@@ -6381,8 +6381,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.query_parameters`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--matcher--query_parameters"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.matcher.query_parameters`
 
 Optional:
 
@@ -6392,61 +6392,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.request_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--header_body_transform"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -6454,8 +6454,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -6467,24 +6467,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -6493,8 +6493,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--request_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.request_transformation.xslt_transformation`
 
 Optional:
 
@@ -6504,61 +6504,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -6566,8 +6566,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -6579,24 +6579,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -6605,8 +6605,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--request_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.request_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -6617,17 +6617,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms`
 
 Optional:
 
-- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--matchers))
+- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--matchers))
 - `response_code_details` (String)
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--matchers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.matchers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--matchers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.matchers`
 
 Optional:
 
@@ -6637,61 +6637,61 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -6699,8 +6699,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -6712,24 +6712,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -6738,8 +6738,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--early--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.early.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--early--response_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.early.response_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -6751,40 +6751,40 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular`
 
 Optional:
 
-- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--request_transforms))
-- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms))
+- `request_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms))
+- `response_transforms` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--request_transforms"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.request_transforms`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms`
 
 Optional:
 
 - `clear_route_cache` (Boolean)
-- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--matcher))
-- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--request_transformation))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation))
+- `matcher` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher))
+- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--matcher"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.matcher`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.matcher`
 
 Optional:
 
 - `case_sensitive` (Boolean)
 - `connect_matcher` (Map of String)
 - `exact` (String)
-- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--headers))
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher--headers))
 - `methods` (List of String)
 - `prefix` (String)
-- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--query_parameters))
+- `query_parameters` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher--query_parameters))
 - `regex` (String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.matcher.headers`
 
 Optional:
 
@@ -6794,8 +6794,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--query_parameters"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.query_parameters`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--matcher--query_parameters"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.matcher.query_parameters`
 
 Optional:
 
@@ -6805,61 +6805,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--request_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.request_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--header_body_transform"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -6867,8 +6867,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -6880,24 +6880,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -6906,8 +6906,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--request_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.request_transformation.xslt_transformation`
 
 Optional:
 
@@ -6917,61 +6917,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -6979,8 +6979,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -6992,24 +6992,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -7018,8 +7018,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--request_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.request_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -7030,17 +7030,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms`
 
 Optional:
 
-- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--matchers))
+- `matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--matchers))
 - `response_code_details` (String)
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--matchers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.matchers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--matchers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.matchers`
 
 Optional:
 
@@ -7050,61 +7050,61 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.header_body_transform`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.transformation_template`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -7112,8 +7112,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -7125,24 +7125,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -7151,8 +7151,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.regular.response_transforms.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--staged_transformations--regular--response_transforms--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.staged_transformations.regular.response_transforms.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -7165,70 +7165,70 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations`
 
 Optional:
 
 - `clear_route_cache` (Boolean)
-- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation))
+- `request_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--header_body_transform"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation.header_body_transform`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--header_body_transform"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--transformation_template"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation.transformation_template`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -7236,8 +7236,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -7249,24 +7249,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -7275,8 +7275,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--request_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.request_transformation.xslt_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--request_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.request_transformation.xslt_transformation`
 
 Optional:
 
@@ -7286,61 +7286,61 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation`
 
 Optional:
 
-- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--header_body_transform))
+- `header_body_transform` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--header_body_transform))
 - `log_request_response_info` (Boolean)
-- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--transformation_template))
-- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation))
+- `transformation_template` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template))
+- `xslt_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--xslt_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--header_body_transform"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation.header_body_transform`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--header_body_transform"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.header_body_transform`
 
 Optional:
 
 - `add_request_metadata` (Boolean)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--transformation_template"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation.transformation_template`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--body"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation.xslt_transformation.body`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--body"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation.xslt_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--dynamic_metadata_values"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.dynamic_metadata_values.value`
 
 Optional:
 
@@ -7348,8 +7348,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--extractors"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation.xslt_transformation.extractors`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--extractors"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.extractors`
 
 Optional:
 
@@ -7361,24 +7361,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation.xslt_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--headers_to_append"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation.xslt_transformation.headers_to_append`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers_to_append"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers_to_append--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation--passthrough--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation.xslt_transformation.passthrough.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--transformation_template--headers_to_append--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.transformation_template.headers_to_append.value`
 
 Optional:
 
@@ -7387,8 +7387,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--multi--destinations--weight--transformations--response_transformation--xslt_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.multi.destinations.weight.transformations.response_transformation.xslt_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--multi--destinations--options--transformations--response_transformation--xslt_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.multi.destinations.options.transformations.response_transformation.xslt_transformation`
 
 Optional:
 
@@ -7402,19 +7402,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single`
 
 Optional:
 
-- `consul` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--consul))
-- `destination_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--destination_spec))
-- `kube` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--kube))
-- `subset` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--subset))
-- `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream))
+- `consul` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--consul))
+- `destination_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec))
+- `kube` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--kube))
+- `subset` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--subset))
+- `upstream` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--upstream))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--consul"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.consul`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--consul"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.consul`
 
 Optional:
 
@@ -7423,18 +7423,18 @@ Optional:
 - `tags` (List of String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--destination_spec"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.destination_spec`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec`
 
 Optional:
 
-- `aws` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--aws))
-- `azure` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--azure))
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--grpc))
-- `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest))
+- `aws` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--aws))
+- `azure` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--azure))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--grpc))
+- `rest` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--aws"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.aws`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--aws"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.aws`
 
 Optional:
 
@@ -7447,26 +7447,26 @@ Optional:
 - `wrap_as_api_gateway` (Boolean)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--azure"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.azure`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--azure"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.azure`
 
 Optional:
 
 - `function_name` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--grpc"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.grpc`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--grpc"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.grpc`
 
 Optional:
 
 - `function` (String)
 - `package` (String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--parameters))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--grpc--parameters))
 - `service` (String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--parameters"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest.parameters`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--grpc--parameters"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.grpc.parameters`
 
 Optional:
 
@@ -7475,17 +7475,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest`
 
 Optional:
 
 - `function_name` (String)
-- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--parameters))
-- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation))
+- `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--parameters))
+- `response_transformation` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--parameters"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest.parameters`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--parameters"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.parameters`
 
 Optional:
 
@@ -7493,43 +7493,43 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest.response_transformation`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation`
 
 Optional:
 
 - `advanced_templates` (Boolean)
-- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--body))
-- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--dynamic_metadata_values))
+- `body` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--body))
+- `dynamic_metadata_values` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--dynamic_metadata_values))
 - `escape_characters` (Boolean)
-- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--extractors))
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--headers))
-- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--headers_to_append))
+- `extractors` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--extractors))
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers))
+- `headers_to_append` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers_to_append))
 - `headers_to_remove` (List of String)
 - `ignore_error_on_parse` (Boolean)
 - `merge_extractors_to_body` (Map of String)
 - `parse_body_behavior` (String)
 - `passthrough` (Map of String)
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--body"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest.response_transformation.body`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--body"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.body`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--dynamic_metadata_values"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest.response_transformation.dynamic_metadata_values`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--dynamic_metadata_values"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.dynamic_metadata_values`
 
 Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--dynamic_metadata_values--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--dynamic_metadata_values--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest.response_transformation.dynamic_metadata_values.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.dynamic_metadata_values.value`
 
 Optional:
 
@@ -7537,8 +7537,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--extractors"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest.response_transformation.extractors`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--extractors"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.extractors`
 
 Optional:
 
@@ -7550,24 +7550,24 @@ Optional:
 - `subgroup` (Number)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--headers"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest.response_transformation.headers`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.headers`
 
 Optional:
 
 - `text` (String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--headers_to_append"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest.response_transformation.headers_to_append`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers_to_append"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.headers_to_append`
 
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--headers_to_append--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers_to_append--value))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--rest--response_transformation--headers_to_append--value"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.rest.response_transformation.headers_to_append.value`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--destination_spec--rest--response_transformation--headers_to_append--value"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.destination_spec.rest.response_transformation.headers_to_append.value`
 
 Optional:
 
@@ -7578,16 +7578,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--kube"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.kube`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--kube"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.kube`
 
 Optional:
 
 - `port` (Number)
-- `ref` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--ref))
+- `ref` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--kube--ref))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream--ref"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream.ref`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--kube--ref"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.kube.ref`
 
 Optional:
 
@@ -7596,16 +7596,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--subset"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.subset`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--subset"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.subset`
 
 Optional:
 
 - `values` (Map of String)
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--single--upstream"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.single.upstream`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--single--upstream"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.single.upstream`
 
 Optional:
 
@@ -7614,8 +7614,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--upstream_group"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.upstream_group`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--destination--upstream_group"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.destination.upstream_group`
 
 Optional:
 
@@ -7668,10 +7668,10 @@ Optional:
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--sds--validation_context_name--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--sds--validation_context_name--file_credential_source"></a>
-### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.sds.validation_context_name.file_credential_source`
+<a id="nestedatt--spec--tcp_gateway--tcp_hosts--ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.tcp_gateway.tcp_hosts.ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 

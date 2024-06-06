@@ -154,10 +154,10 @@ Optional:
 Optional:
 
 - `forward` (String)
-- `whitelisted_names` (Attributes) Contains a list of cookie names. (see [below for nested schema](#nestedatt--spec--distribution_config--cache_behaviors--items--forwarded_values--query_string_cache_keys--whitelisted_names))
+- `whitelisted_names` (Attributes) Contains a list of cookie names. (see [below for nested schema](#nestedatt--spec--distribution_config--cache_behaviors--items--forwarded_values--cookies--whitelisted_names))
 
-<a id="nestedatt--spec--distribution_config--cache_behaviors--items--forwarded_values--query_string_cache_keys--whitelisted_names"></a>
-### Nested Schema for `spec.distribution_config.cache_behaviors.items.forwarded_values.query_string_cache_keys.whitelisted_names`
+<a id="nestedatt--spec--distribution_config--cache_behaviors--items--forwarded_values--cookies--whitelisted_names"></a>
+### Nested Schema for `spec.distribution_config.cache_behaviors.items.forwarded_values.cookies.whitelisted_names`
 
 Optional:
 
@@ -285,11 +285,11 @@ Optional:
 
 Optional:
 
-- `cached_methods` (Attributes) A complex type that controls whether CloudFront caches the response to requestsusing the specified HTTP methods. There are two choices:   * CloudFront caches responses to GET and HEAD requests.   * CloudFront caches responses to GET, HEAD, and OPTIONS requests.If you pick the second choice for your Amazon S3 Origin, you may need toforward Access-Control-Request-Method, Access-Control-Request-Headers, andOrigin headers for the responses to be cached correctly. (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--cached_methods))
+- `cached_methods` (Attributes) A complex type that controls whether CloudFront caches the response to requestsusing the specified HTTP methods. There are two choices:   * CloudFront caches responses to GET and HEAD requests.   * CloudFront caches responses to GET, HEAD, and OPTIONS requests.If you pick the second choice for your Amazon S3 Origin, you may need toforward Access-Control-Request-Method, Access-Control-Request-Headers, andOrigin headers for the responses to be cached correctly. (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--allowed_methods--cached_methods))
 - `items` (List of String)
 
-<a id="nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--cached_methods"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy.cached_methods`
+<a id="nestedatt--spec--distribution_config--default_cache_behavior--allowed_methods--cached_methods"></a>
+### Nested Schema for `spec.distribution_config.default_cache_behavior.allowed_methods.cached_methods`
 
 Optional:
 
@@ -302,38 +302,38 @@ Optional:
 
 Optional:
 
-- `cookies` (Attributes) This field is deprecated. We recommend that you use a cache policy or anorigin request policy instead of this field.If you want to include cookies in the cache key, use CookiesConfig in a cachepolicy. See CachePolicy.If you want to send cookies to the origin but not include them in the cachekey, use CookiesConfig in an origin request policy. See OriginRequestPolicy.A complex type that specifies whether you want CloudFront to forward cookiesto the origin and, if so, which ones. For more information about forwardingcookies to the origin, see Caching Content Based on Cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Cookies.html)in the Amazon CloudFront Developer Guide. (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--cookies))
-- `headers` (Attributes) Contains a list of HTTP header names. (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--headers))
+- `cookies` (Attributes) This field is deprecated. We recommend that you use a cache policy or anorigin request policy instead of this field.If you want to include cookies in the cache key, use CookiesConfig in a cachepolicy. See CachePolicy.If you want to send cookies to the origin but not include them in the cachekey, use CookiesConfig in an origin request policy. See OriginRequestPolicy.A complex type that specifies whether you want CloudFront to forward cookiesto the origin and, if so, which ones. For more information about forwardingcookies to the origin, see Caching Content Based on Cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Cookies.html)in the Amazon CloudFront Developer Guide. (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--forwarded_values--cookies))
+- `headers` (Attributes) Contains a list of HTTP header names. (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--forwarded_values--headers))
 - `query_string` (Boolean)
-- `query_string_cache_keys` (Attributes) This field is deprecated. We recommend that you use a cache policy or anorigin request policy instead of this field.If you want to include query strings in the cache key, use QueryStringsConfigin a cache policy. See CachePolicy.If you want to send query strings to the origin but not include them in thecache key, use QueryStringsConfig in an origin request policy. See OriginRequestPolicy.A complex type that contains information about the query string parametersthat you want CloudFront to use for caching for a cache behavior. (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--query_string_cache_keys))
+- `query_string_cache_keys` (Attributes) This field is deprecated. We recommend that you use a cache policy or anorigin request policy instead of this field.If you want to include query strings in the cache key, use QueryStringsConfigin a cache policy. See CachePolicy.If you want to send query strings to the origin but not include them in thecache key, use QueryStringsConfig in an origin request policy. See OriginRequestPolicy.A complex type that contains information about the query string parametersthat you want CloudFront to use for caching for a cache behavior. (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--forwarded_values--query_string_cache_keys))
 
-<a id="nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--cookies"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy.cookies`
+<a id="nestedatt--spec--distribution_config--default_cache_behavior--forwarded_values--cookies"></a>
+### Nested Schema for `spec.distribution_config.default_cache_behavior.forwarded_values.cookies`
 
 Optional:
 
 - `forward` (String)
-- `whitelisted_names` (Attributes) Contains a list of cookie names. (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--cookies--whitelisted_names))
+- `whitelisted_names` (Attributes) Contains a list of cookie names. (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--forwarded_values--cookies--whitelisted_names))
 
-<a id="nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--cookies--whitelisted_names"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy.cookies.whitelisted_names`
-
-Optional:
-
-- `items` (List of String)
-
-
-
-<a id="nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--headers"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy.headers`
+<a id="nestedatt--spec--distribution_config--default_cache_behavior--forwarded_values--cookies--whitelisted_names"></a>
+### Nested Schema for `spec.distribution_config.default_cache_behavior.forwarded_values.cookies.whitelisted_names`
 
 Optional:
 
 - `items` (List of String)
 
 
-<a id="nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--query_string_cache_keys"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy.query_string_cache_keys`
+
+<a id="nestedatt--spec--distribution_config--default_cache_behavior--forwarded_values--headers"></a>
+### Nested Schema for `spec.distribution_config.default_cache_behavior.forwarded_values.headers`
+
+Optional:
+
+- `items` (List of String)
+
+
+<a id="nestedatt--spec--distribution_config--default_cache_behavior--forwarded_values--query_string_cache_keys"></a>
+### Nested Schema for `spec.distribution_config.default_cache_behavior.forwarded_values.query_string_cache_keys`
 
 Optional:
 
@@ -346,10 +346,10 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--function_associations--items))
 
-<a id="nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--items"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy.items`
+<a id="nestedatt--spec--distribution_config--default_cache_behavior--function_associations--items"></a>
+### Nested Schema for `spec.distribution_config.default_cache_behavior.function_associations.items`
 
 Optional:
 
@@ -363,10 +363,10 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--distribution_config--default_cache_behavior--lambda_function_associations--items))
 
-<a id="nestedatt--spec--distribution_config--default_cache_behavior--viewer_protocol_policy--items"></a>
-### Nested Schema for `spec.distribution_config.default_cache_behavior.viewer_protocol_policy.items`
+<a id="nestedatt--spec--distribution_config--default_cache_behavior--lambda_function_associations--items"></a>
+### Nested Schema for `spec.distribution_config.default_cache_behavior.lambda_function_associations.items`
 
 Optional:
 
@@ -572,10 +572,10 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--distribution_config--viewer_certificate--ssl_support_method--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--distribution_config--viewer_certificate--acm_certificate_ref--from))
 
-<a id="nestedatt--spec--distribution_config--viewer_certificate--ssl_support_method--from"></a>
-### Nested Schema for `spec.distribution_config.viewer_certificate.ssl_support_method.from`
+<a id="nestedatt--spec--distribution_config--viewer_certificate--acm_certificate_ref--from"></a>
+### Nested Schema for `spec.distribution_config.viewer_certificate.acm_certificate_ref.from`
 
 Optional:
 

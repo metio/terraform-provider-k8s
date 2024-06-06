@@ -298,10 +298,10 @@ Optional:
 
 Optional:
 
-- `endpoint` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--endpoint))
+- `endpoint` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--graphql--endpoint))
 
-<a id="nestedatt--spec--consul--service_spec--rest--endpoint"></a>
-### Nested Schema for `spec.consul.service_spec.rest.endpoint`
+<a id="nestedatt--spec--consul--service_spec--graphql--endpoint"></a>
+### Nested Schema for `spec.consul.service_spec.graphql.endpoint`
 
 Optional:
 
@@ -315,10 +315,10 @@ Optional:
 Optional:
 
 - `descriptors` (String)
-- `grpc_services` (Attributes List) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--grpc_services))
+- `grpc_services` (Attributes List) (see [below for nested schema](#nestedatt--spec--consul--service_spec--grpc--grpc_services))
 
-<a id="nestedatt--spec--consul--service_spec--rest--grpc_services"></a>
-### Nested Schema for `spec.consul.service_spec.rest.grpc_services`
+<a id="nestedatt--spec--consul--service_spec--grpc--grpc_services"></a>
+### Nested Schema for `spec.consul.service_spec.grpc.grpc_services`
 
 Optional:
 
@@ -338,14 +338,14 @@ Optional:
 - `ignore_unknown_query_parameters` (Boolean)
 - `ignored_query_parameters` (List of String)
 - `match_incoming_request_route` (Boolean)
-- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--print_options))
+- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--grpc_json_transcoder--print_options))
 - `proto_descriptor` (String)
 - `proto_descriptor_bin` (String)
-- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--proto_descriptor_config_map))
+- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--grpc_json_transcoder--proto_descriptor_config_map))
 - `services` (List of String)
 
-<a id="nestedatt--spec--consul--service_spec--rest--print_options"></a>
-### Nested Schema for `spec.consul.service_spec.rest.print_options`
+<a id="nestedatt--spec--consul--service_spec--grpc_json_transcoder--print_options"></a>
+### Nested Schema for `spec.consul.service_spec.grpc_json_transcoder.print_options`
 
 Optional:
 
@@ -355,16 +355,16 @@ Optional:
 - `preserve_proto_field_names` (Boolean)
 
 
-<a id="nestedatt--spec--consul--service_spec--rest--proto_descriptor_config_map"></a>
-### Nested Schema for `spec.consul.service_spec.rest.proto_descriptor_config_map`
+<a id="nestedatt--spec--consul--service_spec--grpc_json_transcoder--proto_descriptor_config_map"></a>
+### Nested Schema for `spec.consul.service_spec.grpc_json_transcoder.proto_descriptor_config_map`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--proto_descriptor_config_map--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref))
 - `key` (String)
 
-<a id="nestedatt--spec--consul--service_spec--rest--proto_descriptor_config_map--config_map_ref"></a>
-### Nested Schema for `spec.consul.service_spec.rest.proto_descriptor_config_map.config_map_ref`
+<a id="nestedatt--spec--consul--service_spec--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref"></a>
+### Nested Schema for `spec.consul.service_spec.grpc_json_transcoder.proto_descriptor_config_map.config_map_ref`
 
 Optional:
 
@@ -424,10 +424,10 @@ Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--transformations--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--transformations--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--consul--service_spec--rest--transformations--passthrough--value"></a>
-### Nested Schema for `spec.consul.service_spec.rest.transformations.passthrough.value`
+<a id="nestedatt--spec--consul--service_spec--rest--transformations--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.consul.service_spec.rest.transformations.dynamic_metadata_values.value`
 
 Optional:
 
@@ -462,10 +462,10 @@ Optional:
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--transformations--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--consul--service_spec--rest--transformations--headers_to_append--value))
 
-<a id="nestedatt--spec--consul--service_spec--rest--transformations--passthrough--value"></a>
-### Nested Schema for `spec.consul.service_spec.rest.transformations.passthrough.value`
+<a id="nestedatt--spec--consul--service_spec--rest--transformations--headers_to_append--value"></a>
+### Nested Schema for `spec.consul.service_spec.rest.transformations.headers_to_append.value`
 
 Optional:
 
@@ -569,21 +569,21 @@ Optional:
 
 Optional:
 
-- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--verify_subject_alt_name--call_credentials))
+- `call_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--sds--call_credentials))
 - `certificates_secret_name` (String)
 - `cluster_name` (String)
 - `target_uri` (String)
 - `validation_context_name` (String)
 
-<a id="nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--verify_subject_alt_name--call_credentials"></a>
-### Nested Schema for `spec.failover.prioritized_localities.locality_endpoints.lb_endpoints.upstream_ssl_config.verify_subject_alt_name.call_credentials`
+<a id="nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--sds--call_credentials"></a>
+### Nested Schema for `spec.failover.prioritized_localities.locality_endpoints.lb_endpoints.upstream_ssl_config.sds.call_credentials`
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--verify_subject_alt_name--validation_context_name--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--verify_subject_alt_name--validation_context_name--file_credential_source"></a>
-### Nested Schema for `spec.failover.prioritized_localities.locality_endpoints.lb_endpoints.upstream_ssl_config.verify_subject_alt_name.validation_context_name.file_credential_source`
+<a id="nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.failover.prioritized_localities.locality_endpoints.lb_endpoints.upstream_ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 
@@ -686,11 +686,11 @@ Optional:
 Optional:
 
 - `append` (Boolean)
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--grpc_health_check--service_name--header))
-- `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--grpc_health_check--service_name--header_secret_ref))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--grpc_health_check--initial_metadata--header))
+- `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--grpc_health_check--initial_metadata--header_secret_ref))
 
-<a id="nestedatt--spec--health_checks--grpc_health_check--service_name--header"></a>
-### Nested Schema for `spec.health_checks.grpc_health_check.service_name.header`
+<a id="nestedatt--spec--health_checks--grpc_health_check--initial_metadata--header"></a>
+### Nested Schema for `spec.health_checks.grpc_health_check.initial_metadata.header`
 
 Optional:
 
@@ -698,8 +698,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--health_checks--grpc_health_check--service_name--header_secret_ref"></a>
-### Nested Schema for `spec.health_checks.grpc_health_check.service_name.header_secret_ref`
+<a id="nestedatt--spec--health_checks--grpc_health_check--initial_metadata--header_secret_ref"></a>
+### Nested Schema for `spec.health_checks.grpc_health_check.initial_metadata.header_secret_ref`
 
 Optional:
 
@@ -739,11 +739,11 @@ Optional:
 Optional:
 
 - `append` (Boolean)
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--use_http2--header))
-- `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--use_http2--header_secret_ref))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--request_headers_to_add--header))
+- `header_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--request_headers_to_add--header_secret_ref))
 
-<a id="nestedatt--spec--health_checks--http_health_check--use_http2--header"></a>
-### Nested Schema for `spec.health_checks.http_health_check.use_http2.header`
+<a id="nestedatt--spec--health_checks--http_health_check--request_headers_to_add--header"></a>
+### Nested Schema for `spec.health_checks.http_health_check.request_headers_to_add.header`
 
 Optional:
 
@@ -751,8 +751,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--health_checks--http_health_check--use_http2--header_secret_ref"></a>
-### Nested Schema for `spec.health_checks.http_health_check.use_http2.header_secret_ref`
+<a id="nestedatt--spec--health_checks--http_health_check--request_headers_to_add--header_secret_ref"></a>
+### Nested Schema for `spec.health_checks.http_health_check.request_headers_to_add.header_secret_ref`
 
 Optional:
 
@@ -767,36 +767,36 @@ Optional:
 Optional:
 
 - `no_match_health` (String)
-- `response_matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--use_http2--response_matchers))
+- `response_matchers` (Attributes List) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--response_assertions--response_matchers))
 
-<a id="nestedatt--spec--health_checks--http_health_check--use_http2--response_matchers"></a>
-### Nested Schema for `spec.health_checks.http_health_check.use_http2.response_matchers`
+<a id="nestedatt--spec--health_checks--http_health_check--response_assertions--response_matchers"></a>
+### Nested Schema for `spec.health_checks.http_health_check.response_assertions.response_matchers`
 
 Optional:
 
 - `match_health` (String)
-- `response_match` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--use_http2--response_matchers--response_match))
+- `response_match` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--response_assertions--response_matchers--response_match))
 
-<a id="nestedatt--spec--health_checks--http_health_check--use_http2--response_matchers--response_match"></a>
-### Nested Schema for `spec.health_checks.http_health_check.use_http2.response_matchers.response_match`
+<a id="nestedatt--spec--health_checks--http_health_check--response_assertions--response_matchers--response_match"></a>
+### Nested Schema for `spec.health_checks.http_health_check.response_assertions.response_matchers.response_match`
 
 Optional:
 
 - `body` (Map of String)
 - `header` (String)
 - `ignore_error_on_parse` (Boolean)
-- `json_key` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--use_http2--response_matchers--response_match--json_key))
+- `json_key` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--response_assertions--response_matchers--response_match--json_key))
 - `regex` (String)
 
-<a id="nestedatt--spec--health_checks--http_health_check--use_http2--response_matchers--response_match--json_key"></a>
-### Nested Schema for `spec.health_checks.http_health_check.use_http2.response_matchers.response_match.json_key`
+<a id="nestedatt--spec--health_checks--http_health_check--response_assertions--response_matchers--response_match--json_key"></a>
+### Nested Schema for `spec.health_checks.http_health_check.response_assertions.response_matchers.response_match.json_key`
 
 Optional:
 
-- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--use_http2--response_matchers--response_match--regex--path))
+- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--health_checks--http_health_check--response_assertions--response_matchers--response_match--json_key--path))
 
-<a id="nestedatt--spec--health_checks--http_health_check--use_http2--response_matchers--response_match--regex--path"></a>
-### Nested Schema for `spec.health_checks.http_health_check.use_http2.response_matchers.response_match.regex.path`
+<a id="nestedatt--spec--health_checks--http_health_check--response_assertions--response_matchers--response_match--json_key--path"></a>
+### Nested Schema for `spec.health_checks.http_health_check.response_assertions.response_matchers.response_match.json_key.path`
 
 Optional:
 
@@ -884,10 +884,10 @@ Optional:
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--http_connect_ssl_config--sds--validation_context_name--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--http_connect_ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--http_connect_ssl_config--sds--validation_context_name--file_credential_source"></a>
-### Nested Schema for `spec.http_connect_ssl_config.sds.validation_context_name.file_credential_source`
+<a id="nestedatt--spec--http_connect_ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.http_connect_ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 
@@ -945,10 +945,10 @@ Optional:
 
 Optional:
 
-- `endpoint` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--endpoint))
+- `endpoint` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--graphql--endpoint))
 
-<a id="nestedatt--spec--kube--service_spec--rest--endpoint"></a>
-### Nested Schema for `spec.kube.service_spec.rest.endpoint`
+<a id="nestedatt--spec--kube--service_spec--graphql--endpoint"></a>
+### Nested Schema for `spec.kube.service_spec.graphql.endpoint`
 
 Optional:
 
@@ -962,10 +962,10 @@ Optional:
 Optional:
 
 - `descriptors` (String)
-- `grpc_services` (Attributes List) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--grpc_services))
+- `grpc_services` (Attributes List) (see [below for nested schema](#nestedatt--spec--kube--service_spec--grpc--grpc_services))
 
-<a id="nestedatt--spec--kube--service_spec--rest--grpc_services"></a>
-### Nested Schema for `spec.kube.service_spec.rest.grpc_services`
+<a id="nestedatt--spec--kube--service_spec--grpc--grpc_services"></a>
+### Nested Schema for `spec.kube.service_spec.grpc.grpc_services`
 
 Optional:
 
@@ -985,14 +985,14 @@ Optional:
 - `ignore_unknown_query_parameters` (Boolean)
 - `ignored_query_parameters` (List of String)
 - `match_incoming_request_route` (Boolean)
-- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--print_options))
+- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--grpc_json_transcoder--print_options))
 - `proto_descriptor` (String)
 - `proto_descriptor_bin` (String)
-- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--proto_descriptor_config_map))
+- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--grpc_json_transcoder--proto_descriptor_config_map))
 - `services` (List of String)
 
-<a id="nestedatt--spec--kube--service_spec--rest--print_options"></a>
-### Nested Schema for `spec.kube.service_spec.rest.print_options`
+<a id="nestedatt--spec--kube--service_spec--grpc_json_transcoder--print_options"></a>
+### Nested Schema for `spec.kube.service_spec.grpc_json_transcoder.print_options`
 
 Optional:
 
@@ -1002,16 +1002,16 @@ Optional:
 - `preserve_proto_field_names` (Boolean)
 
 
-<a id="nestedatt--spec--kube--service_spec--rest--proto_descriptor_config_map"></a>
-### Nested Schema for `spec.kube.service_spec.rest.proto_descriptor_config_map`
+<a id="nestedatt--spec--kube--service_spec--grpc_json_transcoder--proto_descriptor_config_map"></a>
+### Nested Schema for `spec.kube.service_spec.grpc_json_transcoder.proto_descriptor_config_map`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--proto_descriptor_config_map--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref))
 - `key` (String)
 
-<a id="nestedatt--spec--kube--service_spec--rest--proto_descriptor_config_map--config_map_ref"></a>
-### Nested Schema for `spec.kube.service_spec.rest.proto_descriptor_config_map.config_map_ref`
+<a id="nestedatt--spec--kube--service_spec--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref"></a>
+### Nested Schema for `spec.kube.service_spec.grpc_json_transcoder.proto_descriptor_config_map.config_map_ref`
 
 Optional:
 
@@ -1071,10 +1071,10 @@ Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--transformations--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--transformations--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--kube--service_spec--rest--transformations--passthrough--value"></a>
-### Nested Schema for `spec.kube.service_spec.rest.transformations.passthrough.value`
+<a id="nestedatt--spec--kube--service_spec--rest--transformations--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.kube.service_spec.rest.transformations.dynamic_metadata_values.value`
 
 Optional:
 
@@ -1109,10 +1109,10 @@ Optional:
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--transformations--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--kube--service_spec--rest--transformations--headers_to_append--value))
 
-<a id="nestedatt--spec--kube--service_spec--rest--transformations--passthrough--value"></a>
-### Nested Schema for `spec.kube.service_spec.rest.transformations.passthrough.value`
+<a id="nestedatt--spec--kube--service_spec--rest--transformations--headers_to_append--value"></a>
+### Nested Schema for `spec.kube.service_spec.rest.transformations.headers_to_append.value`
 
 Optional:
 
@@ -1274,10 +1274,10 @@ Optional:
 
 Optional:
 
-- `endpoint` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--endpoint))
+- `endpoint` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--graphql--endpoint))
 
-<a id="nestedatt--spec--pipe--service_spec--rest--endpoint"></a>
-### Nested Schema for `spec.pipe.service_spec.rest.endpoint`
+<a id="nestedatt--spec--pipe--service_spec--graphql--endpoint"></a>
+### Nested Schema for `spec.pipe.service_spec.graphql.endpoint`
 
 Optional:
 
@@ -1291,10 +1291,10 @@ Optional:
 Optional:
 
 - `descriptors` (String)
-- `grpc_services` (Attributes List) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--grpc_services))
+- `grpc_services` (Attributes List) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--grpc--grpc_services))
 
-<a id="nestedatt--spec--pipe--service_spec--rest--grpc_services"></a>
-### Nested Schema for `spec.pipe.service_spec.rest.grpc_services`
+<a id="nestedatt--spec--pipe--service_spec--grpc--grpc_services"></a>
+### Nested Schema for `spec.pipe.service_spec.grpc.grpc_services`
 
 Optional:
 
@@ -1314,14 +1314,14 @@ Optional:
 - `ignore_unknown_query_parameters` (Boolean)
 - `ignored_query_parameters` (List of String)
 - `match_incoming_request_route` (Boolean)
-- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--print_options))
+- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--grpc_json_transcoder--print_options))
 - `proto_descriptor` (String)
 - `proto_descriptor_bin` (String)
-- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--proto_descriptor_config_map))
+- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--grpc_json_transcoder--proto_descriptor_config_map))
 - `services` (List of String)
 
-<a id="nestedatt--spec--pipe--service_spec--rest--print_options"></a>
-### Nested Schema for `spec.pipe.service_spec.rest.print_options`
+<a id="nestedatt--spec--pipe--service_spec--grpc_json_transcoder--print_options"></a>
+### Nested Schema for `spec.pipe.service_spec.grpc_json_transcoder.print_options`
 
 Optional:
 
@@ -1331,16 +1331,16 @@ Optional:
 - `preserve_proto_field_names` (Boolean)
 
 
-<a id="nestedatt--spec--pipe--service_spec--rest--proto_descriptor_config_map"></a>
-### Nested Schema for `spec.pipe.service_spec.rest.proto_descriptor_config_map`
+<a id="nestedatt--spec--pipe--service_spec--grpc_json_transcoder--proto_descriptor_config_map"></a>
+### Nested Schema for `spec.pipe.service_spec.grpc_json_transcoder.proto_descriptor_config_map`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--proto_descriptor_config_map--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref))
 - `key` (String)
 
-<a id="nestedatt--spec--pipe--service_spec--rest--proto_descriptor_config_map--config_map_ref"></a>
-### Nested Schema for `spec.pipe.service_spec.rest.proto_descriptor_config_map.config_map_ref`
+<a id="nestedatt--spec--pipe--service_spec--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref"></a>
+### Nested Schema for `spec.pipe.service_spec.grpc_json_transcoder.proto_descriptor_config_map.config_map_ref`
 
 Optional:
 
@@ -1400,10 +1400,10 @@ Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--transformations--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--transformations--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--pipe--service_spec--rest--transformations--passthrough--value"></a>
-### Nested Schema for `spec.pipe.service_spec.rest.transformations.passthrough.value`
+<a id="nestedatt--spec--pipe--service_spec--rest--transformations--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.pipe.service_spec.rest.transformations.dynamic_metadata_values.value`
 
 Optional:
 
@@ -1438,10 +1438,10 @@ Optional:
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--transformations--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe--service_spec--rest--transformations--headers_to_append--value))
 
-<a id="nestedatt--spec--pipe--service_spec--rest--transformations--passthrough--value"></a>
-### Nested Schema for `spec.pipe.service_spec.rest.transformations.passthrough.value`
+<a id="nestedatt--spec--pipe--service_spec--rest--transformations--headers_to_append--value"></a>
+### Nested Schema for `spec.pipe.service_spec.rest.transformations.headers_to_append.value`
 
 Optional:
 
@@ -1503,10 +1503,10 @@ Optional:
 
 Optional:
 
-- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--ssl_config--sds--validation_context_name--file_credential_source))
+- `file_credential_source` (Attributes) (see [below for nested schema](#nestedatt--spec--ssl_config--sds--call_credentials--file_credential_source))
 
-<a id="nestedatt--spec--ssl_config--sds--validation_context_name--file_credential_source"></a>
-### Nested Schema for `spec.ssl_config.sds.validation_context_name.file_credential_source`
+<a id="nestedatt--spec--ssl_config--sds--call_credentials--file_credential_source"></a>
+### Nested Schema for `spec.ssl_config.sds.call_credentials.file_credential_source`
 
 Optional:
 
@@ -1583,10 +1583,10 @@ Optional:
 
 Optional:
 
-- `endpoint` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--endpoint))
+- `endpoint` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--graphql--endpoint))
 
-<a id="nestedatt--spec--static--service_spec--rest--endpoint"></a>
-### Nested Schema for `spec.static.service_spec.rest.endpoint`
+<a id="nestedatt--spec--static--service_spec--graphql--endpoint"></a>
+### Nested Schema for `spec.static.service_spec.graphql.endpoint`
 
 Optional:
 
@@ -1600,10 +1600,10 @@ Optional:
 Optional:
 
 - `descriptors` (String)
-- `grpc_services` (Attributes List) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--grpc_services))
+- `grpc_services` (Attributes List) (see [below for nested schema](#nestedatt--spec--static--service_spec--grpc--grpc_services))
 
-<a id="nestedatt--spec--static--service_spec--rest--grpc_services"></a>
-### Nested Schema for `spec.static.service_spec.rest.grpc_services`
+<a id="nestedatt--spec--static--service_spec--grpc--grpc_services"></a>
+### Nested Schema for `spec.static.service_spec.grpc.grpc_services`
 
 Optional:
 
@@ -1623,14 +1623,14 @@ Optional:
 - `ignore_unknown_query_parameters` (Boolean)
 - `ignored_query_parameters` (List of String)
 - `match_incoming_request_route` (Boolean)
-- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--print_options))
+- `print_options` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--grpc_json_transcoder--print_options))
 - `proto_descriptor` (String)
 - `proto_descriptor_bin` (String)
-- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--proto_descriptor_config_map))
+- `proto_descriptor_config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--grpc_json_transcoder--proto_descriptor_config_map))
 - `services` (List of String)
 
-<a id="nestedatt--spec--static--service_spec--rest--print_options"></a>
-### Nested Schema for `spec.static.service_spec.rest.print_options`
+<a id="nestedatt--spec--static--service_spec--grpc_json_transcoder--print_options"></a>
+### Nested Schema for `spec.static.service_spec.grpc_json_transcoder.print_options`
 
 Optional:
 
@@ -1640,16 +1640,16 @@ Optional:
 - `preserve_proto_field_names` (Boolean)
 
 
-<a id="nestedatt--spec--static--service_spec--rest--proto_descriptor_config_map"></a>
-### Nested Schema for `spec.static.service_spec.rest.proto_descriptor_config_map`
+<a id="nestedatt--spec--static--service_spec--grpc_json_transcoder--proto_descriptor_config_map"></a>
+### Nested Schema for `spec.static.service_spec.grpc_json_transcoder.proto_descriptor_config_map`
 
 Optional:
 
-- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--proto_descriptor_config_map--config_map_ref))
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref))
 - `key` (String)
 
-<a id="nestedatt--spec--static--service_spec--rest--proto_descriptor_config_map--config_map_ref"></a>
-### Nested Schema for `spec.static.service_spec.rest.proto_descriptor_config_map.config_map_ref`
+<a id="nestedatt--spec--static--service_spec--grpc_json_transcoder--proto_descriptor_config_map--config_map_ref"></a>
+### Nested Schema for `spec.static.service_spec.grpc_json_transcoder.proto_descriptor_config_map.config_map_ref`
 
 Optional:
 
@@ -1709,10 +1709,10 @@ Optional:
 
 - `key` (String)
 - `metadata_namespace` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--transformations--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--transformations--dynamic_metadata_values--value))
 
-<a id="nestedatt--spec--static--service_spec--rest--transformations--passthrough--value"></a>
-### Nested Schema for `spec.static.service_spec.rest.transformations.passthrough.value`
+<a id="nestedatt--spec--static--service_spec--rest--transformations--dynamic_metadata_values--value"></a>
+### Nested Schema for `spec.static.service_spec.rest.transformations.dynamic_metadata_values.value`
 
 Optional:
 
@@ -1747,10 +1747,10 @@ Optional:
 Optional:
 
 - `key` (String)
-- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--transformations--passthrough--value))
+- `value` (Attributes) (see [below for nested schema](#nestedatt--spec--static--service_spec--rest--transformations--headers_to_append--value))
 
-<a id="nestedatt--spec--static--service_spec--rest--transformations--passthrough--value"></a>
-### Nested Schema for `spec.static.service_spec.rest.transformations.passthrough.value`
+<a id="nestedatt--spec--static--service_spec--rest--transformations--headers_to_append--value"></a>
+### Nested Schema for `spec.static.service_spec.rest.transformations.headers_to_append.value`
 
 Optional:
 

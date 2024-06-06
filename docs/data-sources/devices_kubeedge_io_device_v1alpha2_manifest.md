@@ -159,13 +159,13 @@ Optional:
 Optional:
 
 - `end_index` (Number) Required: Specifies the end index of incoming byte stream to be considered to convert the data the value specified should be inclusive for example if 3 is specified it includes the third index
-- `order_of_operations` (Attributes List) Specifies in what order the operations(which are required to be performed to convert incoming data into understandable form) are performed (see [below for nested schema](#nestedatt--spec--property_visitors--bluetooth--data_write--order_of_operations))
+- `order_of_operations` (Attributes List) Specifies in what order the operations(which are required to be performed to convert incoming data into understandable form) are performed (see [below for nested schema](#nestedatt--spec--property_visitors--bluetooth--data_converter--order_of_operations))
 - `shift_left` (Number) Refers to the number of bits to shift left, if left-shift operation is necessary for conversion
 - `shift_right` (Number) Refers to the number of bits to shift right, if right-shift operation is necessary for conversion
 - `start_index` (Number) Required: Specifies the start index of the incoming byte stream to be considered to convert the data. For example: start-index:2, end-index:3 concatenates the value present at second and third index of the incoming byte stream. If we want to reverse the order we can give it as start-index:3, end-index:2
 
-<a id="nestedatt--spec--property_visitors--bluetooth--data_write--order_of_operations"></a>
-### Nested Schema for `spec.property_visitors.bluetooth.data_write.order_of_operations`
+<a id="nestedatt--spec--property_visitors--bluetooth--data_converter--order_of_operations"></a>
+### Nested Schema for `spec.property_visitors.bluetooth.data_converter.order_of_operations`
 
 Optional:
 

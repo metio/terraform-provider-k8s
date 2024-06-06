@@ -160,46 +160,36 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--node_affinity"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.node_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--istiod--deployment--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--istiod--deployment--affinity--node_affinity"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--istiod--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--istiod--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--istiod--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -208,35 +198,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--istiod--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--istiod--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -247,43 +210,80 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--istiod--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--istiod--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--istiod--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--istiod--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -293,16 +293,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -314,26 +314,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -343,16 +343,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -364,42 +364,42 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -409,16 +409,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -430,26 +430,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -459,16 +459,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--istiod--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -486,11 +486,11 @@ Optional:
 
 Optional:
 
-- `rolling_update` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--rolling_update))
+- `rolling_update` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--deployment_strategy--rolling_update))
 - `type` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--rolling_update"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.rolling_update`
+<a id="nestedatt--spec--istiod--deployment--deployment_strategy--rolling_update"></a>
+### Nested Schema for `spec.istiod.deployment.deployment_strategy.rolling_update`
 
 Optional:
 
@@ -506,29 +506,29 @@ Optional:
 
 - `name` (String)
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--env--value_from))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--value_from"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.value_from`
+<a id="nestedatt--spec--istiod--deployment--env--value_from"></a>
+### Nested Schema for `spec.istiod.deployment.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.value_from.config_map_key_ref`
+<a id="nestedatt--spec--istiod--deployment--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.istiod.deployment.env.value_from.config_map_key_ref`
 
 Optional:
 
 - `key` (String)
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--value_from--secret_key_ref--local_object_reference))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--env--value_from--config_map_key_ref--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--value_from--secret_key_ref--local_object_reference"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.value_from.secret_key_ref.local_object_reference`
+<a id="nestedatt--spec--istiod--deployment--env--value_from--config_map_key_ref--local_object_reference"></a>
+### Nested Schema for `spec.istiod.deployment.env.value_from.config_map_key_ref.local_object_reference`
 
 Optional:
 
@@ -536,8 +536,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--value_from--field_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.value_from.field_ref`
+<a id="nestedatt--spec--istiod--deployment--env--value_from--field_ref"></a>
+### Nested Schema for `spec.istiod.deployment.env.value_from.field_ref`
 
 Optional:
 
@@ -545,8 +545,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.value_from.resource_field_ref`
+<a id="nestedatt--spec--istiod--deployment--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.istiod.deployment.env.value_from.resource_field_ref`
 
 Optional:
 
@@ -555,17 +555,17 @@ Optional:
 - `resource` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.value_from.secret_key_ref`
+<a id="nestedatt--spec--istiod--deployment--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.istiod.deployment.env.value_from.secret_key_ref`
 
 Optional:
 
 - `key` (String)
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--value_from--secret_key_ref--local_object_reference))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--env--value_from--secret_key_ref--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--value_from--secret_key_ref--local_object_reference"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.value_from.secret_key_ref.local_object_reference`
+<a id="nestedatt--spec--istiod--deployment--env--value_from--secret_key_ref--local_object_reference"></a>
+### Nested Schema for `spec.istiod.deployment.env.value_from.secret_key_ref.local_object_reference`
 
 Optional:
 
@@ -588,27 +588,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--exec"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.exec`
+<a id="nestedatt--spec--istiod--deployment--liveness_probe--exec"></a>
+### Nested Schema for `spec.istiod.deployment.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--grpc"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.grpc`
+<a id="nestedatt--spec--istiod--deployment--liveness_probe--grpc"></a>
+### Nested Schema for `spec.istiod.deployment.liveness_probe.grpc`
 
 Optional:
 
@@ -616,19 +616,19 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--http_get"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.http_get`
+<a id="nestedatt--spec--istiod--deployment--liveness_probe--http_get"></a>
+### Nested Schema for `spec.istiod.deployment.liveness_probe.http_get`
 
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `port` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--http_get--http_headers"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.http_get.http_headers`
+<a id="nestedatt--spec--istiod--deployment--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.istiod.deployment.liveness_probe.http_get.http_headers`
 
 Optional:
 
@@ -637,8 +637,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--tcp_socket"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.tcp_socket`
+<a id="nestedatt--spec--istiod--deployment--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.istiod.deployment.liveness_probe.tcp_socket`
 
 Optional:
 
@@ -684,14 +684,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--pod_security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--pod_security_context--windows_options))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--se_linux_options"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.se_linux_options`
+<a id="nestedatt--spec--istiod--deployment--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.istiod.deployment.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -701,8 +701,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--seccomp_profile"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.seccomp_profile`
+<a id="nestedatt--spec--istiod--deployment--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.istiod.deployment.pod_security_context.seccomp_profile`
 
 Optional:
 
@@ -710,8 +710,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--sysctls"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.sysctls`
+<a id="nestedatt--spec--istiod--deployment--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.istiod.deployment.pod_security_context.sysctls`
 
 Optional:
 
@@ -719,8 +719,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--windows_options"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.windows_options`
+<a id="nestedatt--spec--istiod--deployment--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.istiod.deployment.pod_security_context.windows_options`
 
 Optional:
 
@@ -736,27 +736,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--exec"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.exec`
+<a id="nestedatt--spec--istiod--deployment--readiness_probe--exec"></a>
+### Nested Schema for `spec.istiod.deployment.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--grpc"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.grpc`
+<a id="nestedatt--spec--istiod--deployment--readiness_probe--grpc"></a>
+### Nested Schema for `spec.istiod.deployment.readiness_probe.grpc`
 
 Optional:
 
@@ -764,19 +764,19 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--http_get"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.http_get`
+<a id="nestedatt--spec--istiod--deployment--readiness_probe--http_get"></a>
+### Nested Schema for `spec.istiod.deployment.readiness_probe.http_get`
 
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `port` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--http_get--http_headers"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.http_get.http_headers`
+<a id="nestedatt--spec--istiod--deployment--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.istiod.deployment.readiness_probe.http_get.http_headers`
 
 Optional:
 
@@ -785,8 +785,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--tcp_socket"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.tcp_socket`
+<a id="nestedatt--spec--istiod--deployment--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.istiod.deployment.readiness_probe.tcp_socket`
 
 Optional:
 
@@ -821,19 +821,19 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--security_context--windows_options))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--capabilities"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.capabilities`
+<a id="nestedatt--spec--istiod--deployment--security_context--capabilities"></a>
+### Nested Schema for `spec.istiod.deployment.security_context.capabilities`
 
 Optional:
 
@@ -841,8 +841,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--se_linux_options"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.se_linux_options`
+<a id="nestedatt--spec--istiod--deployment--security_context--se_linux_options"></a>
+### Nested Schema for `spec.istiod.deployment.security_context.se_linux_options`
 
 Optional:
 
@@ -852,8 +852,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--seccomp_profile"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.seccomp_profile`
+<a id="nestedatt--spec--istiod--deployment--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.istiod.deployment.security_context.seccomp_profile`
 
 Optional:
 
@@ -861,8 +861,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--windows_options"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.windows_options`
+<a id="nestedatt--spec--istiod--deployment--security_context--windows_options"></a>
+### Nested Schema for `spec.istiod.deployment.security_context.windows_options`
 
 Optional:
 
@@ -890,21 +890,21 @@ Optional:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--topology_spread_constraints--label_selector))
 - `max_skew` (Number)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--label_selector"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.label_selector`
+<a id="nestedatt--spec--istiod--deployment--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.istiod.deployment.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--label_selector--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.label_selector.match_expressions`
+<a id="nestedatt--spec--istiod--deployment--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.topology_spread_constraints.label_selector.match_expressions`
 
 Optional:
 
@@ -1014,11 +1014,11 @@ Optional:
 - `path` (String)
 - `read_only` (Boolean)
 - `secret_file` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--cephfs--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--cephfs--secret_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.cephfs.secret_ref`
 
 Optional:
 
@@ -1033,11 +1033,11 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--cinder--secret_ref))
 - `volume_id` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--cinder--secret_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.cinder.secret_ref`
 
 Optional:
 
@@ -1051,12 +1051,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--local_object_reference))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--config_map--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--config_map--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--config_map--items"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.config_map.items`
 
 Optional:
 
@@ -1065,8 +1065,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--local_object_reference"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.local_object_reference`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--config_map--local_object_reference"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.config_map.local_object_reference`
 
 Optional:
 
@@ -1081,12 +1081,12 @@ Optional:
 
 - `driver` (String)
 - `fs_type` (String)
-- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--csi--node_publish_secret_ref))
 - `read_only` (Boolean)
 - `volume_attributes` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -1100,20 +1100,20 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--downward_api--items))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--downward_api--items"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.downward_api.items`
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--downward_api--items--field_ref))
 - `mode` (Number)
 - `path` (String)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.downward_api.items.field_ref`
 
 Optional:
 
@@ -1121,8 +1121,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.downward_api.items.resource_field_ref`
 
 Optional:
 
@@ -1147,40 +1147,40 @@ Optional:
 
 Optional:
 
-- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template`
 
 Optional:
 
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--metadata))
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.metadata`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata`
 
 Optional:
 
 - `annotations` (Map of String)
 - `cluster_name` (String)
-- `creation_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--creation_timestamp))
+- `creation_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--creation_timestamp))
 - `deletion_grace_period_seconds` (Number)
-- `deletion_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--deletion_timestamp))
+- `deletion_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--deletion_timestamp))
 - `finalizers` (List of String)
 - `generate_name` (String)
 - `generation` (Number)
 - `labels` (Map of String)
-- `managed_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields))
+- `managed_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields))
 - `name` (String)
 - `namespace` (String)
-- `owner_references` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--owner_references))
+- `owner_references` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--owner_references))
 - `resource_version` (String)
 - `self_link` (String)
 - `uid` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--creation_timestamp"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.creation_timestamp`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--creation_timestamp"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.creation_timestamp`
 
 Optional:
 
@@ -1188,8 +1188,8 @@ Optional:
 - `seconds` (Number)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--deletion_timestamp"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.deletion_timestamp`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--deletion_timestamp"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.deletion_timestamp`
 
 Optional:
 
@@ -1197,29 +1197,29 @@ Optional:
 - `seconds` (Number)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.managed_fields`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields`
 
 Optional:
 
 - `api_version` (String)
 - `fields_type` (String)
-- `fields_v1` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields--fields_v1))
+- `fields_v1` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--fields_v1))
 - `manager` (String)
 - `operation` (String)
 - `subresource` (String)
-- `time` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields--time))
+- `time` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--time))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields--fields_v1"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.managed_fields.fields_v1`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--fields_v1"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields.fields_v1`
 
 Optional:
 
 - `raw` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields--time"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.managed_fields.time`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--time"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields.time`
 
 Optional:
 
@@ -1228,8 +1228,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--owner_references"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.owner_references`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--owner_references"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.owner_references`
 
 Optional:
 
@@ -1242,22 +1242,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String)
-- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source))
-- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source_ref))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector))
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.data_source`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.data_source`
 
 Optional:
 
@@ -1266,8 +1266,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.data_source_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Optional:
 
@@ -1276,41 +1276,41 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.resources`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `limits` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources--limits))
-- `requests` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources--requests))
+- `limits` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--limits))
+- `requests` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--requests))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources--limits"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.resources.limits`
-
-Optional:
-
-- `string` (String)
-
-
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources--requests"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.resources.requests`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--limits"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.resources.limits`
 
 Optional:
 
 - `string` (String)
 
 
-
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.selector`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--requests"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.resources.requests`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector--match_expressions))
+- `string` (String)
+
+
+
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector--match_expressions"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.selector.match_expressions`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Optional:
 
@@ -1344,10 +1344,10 @@ Optional:
 - `fs_type` (String)
 - `options` (Map of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.flex_volume.secret_ref`
 
 Optional:
 
@@ -1418,11 +1418,11 @@ Optional:
 - `lun` (Number)
 - `portals` (List of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--iscsi--secret_ref))
 - `target_portal` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--iscsi--secret_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.iscsi.secret_ref`
 
 Optional:
 
@@ -1474,29 +1474,29 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources`
-
-Optional:
-
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token))
-
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--local_object_reference))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--config_map"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--config_map--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--config_map--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.config_map.items`
 
 Optional:
 
@@ -1505,8 +1505,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--local_object_reference"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.local_object_reference`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--config_map--local_object_reference"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.config_map.local_object_reference`
 
 Optional:
 
@@ -1514,25 +1514,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--downward_api"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.downward_api.items`
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
 - `path` (String)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.downward_api.items.field_ref`
 
 Optional:
 
@@ -1540,8 +1540,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.downward_api.items.resource_field_ref`
 
 Optional:
 
@@ -1552,17 +1552,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--secret"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--local_object_reference))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--secret--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--secret--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--secret--items"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.secret.items`
 
 Optional:
 
@@ -1571,8 +1571,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--local_object_reference"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.local_object_reference`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--secret--local_object_reference"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.secret.local_object_reference`
 
 Optional:
 
@@ -1580,8 +1580,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.projected.sources.service_account_token`
 
 Optional:
 
@@ -1616,11 +1616,11 @@ Optional:
 - `monitors` (List of String)
 - `pool` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--rbd--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--rbd--secret_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.rbd.secret_ref`
 
 Optional:
 
@@ -1637,15 +1637,15 @@ Optional:
 - `gateway` (String)
 - `protection_domain` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--scale_io--secret_ref))
 - `ssl_enabled` (Boolean)
 - `storage_mode` (String)
 - `storage_pool` (String)
 - `system` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--scale_io--secret_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.scale_io.secret_ref`
 
 Optional:
 
@@ -1659,12 +1659,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--secret--items"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.secret.items`
 
 Optional:
 
@@ -1681,12 +1681,12 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--istiod--deployment--volumes--volume_source--storageos--secret_ref))
 - `volume_name` (String)
 - `volume_namespace` (String)
 
-<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.istiod.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--istiod--deployment--volumes--volume_source--storageos--secret_ref"></a>
+### Nested Schema for `spec.istiod.deployment.volumes.volume_source.storageos.secret_ref`
 
 Optional:
 
@@ -1953,11 +1953,11 @@ Optional:
 Optional:
 
 - `address` (String)
-- `tcp_keepalive` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--tcp_keepalive))
-- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--tls_settings))
+- `tcp_keepalive` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--envoy_access_log_service--tcp_keepalive))
+- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--envoy_access_log_service--tls_settings))
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--tcp_keepalive"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.tcp_keepalive`
+<a id="nestedatt--spec--mesh_config--default_config--envoy_access_log_service--tcp_keepalive"></a>
+### Nested Schema for `spec.mesh_config.default_config.envoy_access_log_service.tcp_keepalive`
 
 Optional:
 
@@ -1966,8 +1966,8 @@ Optional:
 - `time` (String)
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--tls_settings"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.tls_settings`
+<a id="nestedatt--spec--mesh_config--default_config--envoy_access_log_service--tls_settings"></a>
+### Nested Schema for `spec.mesh_config.default_config.envoy_access_log_service.tls_settings`
 
 Required:
 
@@ -1991,11 +1991,11 @@ Optional:
 Optional:
 
 - `address` (String)
-- `tcp_keepalive` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--tcp_keepalive))
-- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--tls_settings))
+- `tcp_keepalive` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--envoy_metrics_service--tcp_keepalive))
+- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--envoy_metrics_service--tls_settings))
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--tcp_keepalive"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.tcp_keepalive`
+<a id="nestedatt--spec--mesh_config--default_config--envoy_metrics_service--tcp_keepalive"></a>
+### Nested Schema for `spec.mesh_config.default_config.envoy_metrics_service.tcp_keepalive`
 
 Optional:
 
@@ -2004,8 +2004,8 @@ Optional:
 - `time` (String)
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--tls_settings"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.tls_settings`
+<a id="nestedatt--spec--mesh_config--default_config--envoy_metrics_service--tls_settings"></a>
+### Nested Schema for `spec.mesh_config.default_config.envoy_metrics_service.tls_settings`
 
 Required:
 
@@ -2045,19 +2045,19 @@ Optional:
 
 Optional:
 
-- `cryptomb` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--cryptomb))
-- `qat` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--qat))
+- `cryptomb` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--private_key_provider--cryptomb))
+- `qat` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--private_key_provider--qat))
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--cryptomb"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.cryptomb`
+<a id="nestedatt--spec--mesh_config--default_config--private_key_provider--cryptomb"></a>
+### Nested Schema for `spec.mesh_config.default_config.private_key_provider.cryptomb`
 
 Optional:
 
 - `poll_delay` (String)
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--qat"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.qat`
+<a id="nestedatt--spec--mesh_config--default_config--private_key_provider--qat"></a>
+### Nested Schema for `spec.mesh_config.default_config.private_key_provider.qat`
 
 Optional:
 
@@ -2080,25 +2080,25 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--http_get))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--readiness_probe--tcp_socket))
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--exec"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.exec`
+<a id="nestedatt--spec--mesh_config--default_config--readiness_probe--exec"></a>
+### Nested Schema for `spec.mesh_config.default_config.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--http_get"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.http_get`
+<a id="nestedatt--spec--mesh_config--default_config--readiness_probe--http_get"></a>
+### Nested Schema for `spec.mesh_config.default_config.readiness_probe.http_get`
 
 Required:
 
@@ -2107,12 +2107,12 @@ Required:
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--http_get--http_headers"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.http_get.http_headers`
+<a id="nestedatt--spec--mesh_config--default_config--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.mesh_config.default_config.readiness_probe.http_get.http_headers`
 
 Optional:
 
@@ -2121,8 +2121,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--tcp_socket"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.tcp_socket`
+<a id="nestedatt--spec--mesh_config--default_config--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.mesh_config.default_config.readiness_probe.tcp_socket`
 
 Required:
 
@@ -2148,36 +2148,27 @@ Optional:
 
 Optional:
 
-- `custom_tags` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--custom_tags))
-- `datadog` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--datadog))
-- `lightstep` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--lightstep))
+- `custom_tags` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--tracing--custom_tags))
+- `datadog` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--tracing--datadog))
+- `lightstep` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--tracing--lightstep))
 - `max_path_tag_length` (Number)
-- `open_census_agent` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--open_census_agent))
+- `open_census_agent` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--tracing--open_census_agent))
 - `sampling` (Number)
-- `stackdriver` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--stackdriver))
-- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--tls_settings))
-- `zipkin` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--zipkin))
+- `stackdriver` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--tracing--stackdriver))
+- `tls_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--tracing--tls_settings))
+- `zipkin` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--tracing--zipkin))
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--custom_tags"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.custom_tags`
-
-Optional:
-
-- `environment` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--custom_tags--environment))
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--custom_tags--header))
-- `literal` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--zipkin_address--custom_tags--literal))
-
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--custom_tags--environment"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.custom_tags.environment`
+<a id="nestedatt--spec--mesh_config--default_config--tracing--custom_tags"></a>
+### Nested Schema for `spec.mesh_config.default_config.tracing.custom_tags`
 
 Optional:
 
-- `default_value` (String)
-- `name` (String)
+- `environment` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--tracing--custom_tags--environment))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--tracing--custom_tags--header))
+- `literal` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--default_config--tracing--custom_tags--literal))
 
-
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--custom_tags--header"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.custom_tags.header`
+<a id="nestedatt--spec--mesh_config--default_config--tracing--custom_tags--environment"></a>
+### Nested Schema for `spec.mesh_config.default_config.tracing.custom_tags.environment`
 
 Optional:
 
@@ -2185,8 +2176,17 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--custom_tags--literal"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.custom_tags.literal`
+<a id="nestedatt--spec--mesh_config--default_config--tracing--custom_tags--header"></a>
+### Nested Schema for `spec.mesh_config.default_config.tracing.custom_tags.header`
+
+Optional:
+
+- `default_value` (String)
+- `name` (String)
+
+
+<a id="nestedatt--spec--mesh_config--default_config--tracing--custom_tags--literal"></a>
+### Nested Schema for `spec.mesh_config.default_config.tracing.custom_tags.literal`
 
 Optional:
 
@@ -2194,16 +2194,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--datadog"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.datadog`
+<a id="nestedatt--spec--mesh_config--default_config--tracing--datadog"></a>
+### Nested Schema for `spec.mesh_config.default_config.tracing.datadog`
 
 Optional:
 
 - `address` (String)
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--lightstep"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.lightstep`
+<a id="nestedatt--spec--mesh_config--default_config--tracing--lightstep"></a>
+### Nested Schema for `spec.mesh_config.default_config.tracing.lightstep`
 
 Optional:
 
@@ -2211,8 +2211,8 @@ Optional:
 - `address` (String)
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--open_census_agent"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.open_census_agent`
+<a id="nestedatt--spec--mesh_config--default_config--tracing--open_census_agent"></a>
+### Nested Schema for `spec.mesh_config.default_config.tracing.open_census_agent`
 
 Optional:
 
@@ -2220,8 +2220,8 @@ Optional:
 - `context` (List of String)
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--stackdriver"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.stackdriver`
+<a id="nestedatt--spec--mesh_config--default_config--tracing--stackdriver"></a>
+### Nested Schema for `spec.mesh_config.default_config.tracing.stackdriver`
 
 Optional:
 
@@ -2231,8 +2231,8 @@ Optional:
 - `max_number_of_message_events` (Number)
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--tls_settings"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.tls_settings`
+<a id="nestedatt--spec--mesh_config--default_config--tracing--tls_settings"></a>
+### Nested Schema for `spec.mesh_config.default_config.tracing.tls_settings`
 
 Required:
 
@@ -2249,8 +2249,8 @@ Optional:
 - `subject_alt_names` (List of String)
 
 
-<a id="nestedatt--spec--mesh_config--default_config--zipkin_address--zipkin"></a>
-### Nested Schema for `spec.mesh_config.default_config.zipkin_address.zipkin`
+<a id="nestedatt--spec--mesh_config--default_config--tracing--zipkin"></a>
+### Nested Schema for `spec.mesh_config.default_config.tracing.zipkin`
 
 Optional:
 
@@ -2339,14 +2339,14 @@ Optional:
 Optional:
 
 - `fail_open` (Boolean)
-- `include_request_body_in_check` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--extension_providers--zipkin--include_request_body_in_check))
+- `include_request_body_in_check` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--extension_providers--envoy_ext_authz_grpc--include_request_body_in_check))
 - `port` (Number)
 - `service` (String)
 - `status_on_error` (String)
 - `timeout` (String)
 
-<a id="nestedatt--spec--mesh_config--extension_providers--zipkin--include_request_body_in_check"></a>
-### Nested Schema for `spec.mesh_config.extension_providers.zipkin.include_request_body_in_check`
+<a id="nestedatt--spec--mesh_config--extension_providers--envoy_ext_authz_grpc--include_request_body_in_check"></a>
+### Nested Schema for `spec.mesh_config.extension_providers.envoy_ext_authz_grpc.include_request_body_in_check`
 
 Optional:
 
@@ -2367,7 +2367,7 @@ Optional:
 - `headers_to_upstream_on_allow` (List of String)
 - `include_additional_headers_in_check` (Map of String)
 - `include_headers_in_check` (List of String)
-- `include_request_body_in_check` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--extension_providers--zipkin--include_request_body_in_check))
+- `include_request_body_in_check` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--extension_providers--envoy_ext_authz_http--include_request_body_in_check))
 - `include_request_headers_in_check` (List of String)
 - `path_prefix` (String)
 - `port` (Number)
@@ -2375,8 +2375,8 @@ Optional:
 - `status_on_error` (String)
 - `timeout` (String)
 
-<a id="nestedatt--spec--mesh_config--extension_providers--zipkin--include_request_body_in_check"></a>
-### Nested Schema for `spec.mesh_config.extension_providers.zipkin.include_request_body_in_check`
+<a id="nestedatt--spec--mesh_config--extension_providers--envoy_ext_authz_http--include_request_body_in_check"></a>
+### Nested Schema for `spec.mesh_config.extension_providers.envoy_ext_authz_http.include_request_body_in_check`
 
 Optional:
 
@@ -2391,11 +2391,11 @@ Optional:
 
 Optional:
 
-- `log_format` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--extension_providers--zipkin--log_format))
+- `log_format` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--extension_providers--envoy_file_access_log--log_format))
 - `path` (String)
 
-<a id="nestedatt--spec--mesh_config--extension_providers--zipkin--log_format"></a>
-### Nested Schema for `spec.mesh_config.extension_providers.zipkin.log_format`
+<a id="nestedatt--spec--mesh_config--extension_providers--envoy_file_access_log--log_format"></a>
+### Nested Schema for `spec.mesh_config.extension_providers.envoy_file_access_log.log_format`
 
 Optional:
 
@@ -2423,13 +2423,13 @@ Optional:
 
 Optional:
 
-- `log_format` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--extension_providers--zipkin--log_format))
+- `log_format` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--extension_providers--envoy_otel_als--log_format))
 - `log_name` (String)
 - `port` (Number)
 - `service` (String)
 
-<a id="nestedatt--spec--mesh_config--extension_providers--zipkin--log_format"></a>
-### Nested Schema for `spec.mesh_config.extension_providers.zipkin.log_format`
+<a id="nestedatt--spec--mesh_config--extension_providers--envoy_otel_als--log_format"></a>
+### Nested Schema for `spec.mesh_config.extension_providers.envoy_otel_als.log_format`
 
 Optional:
 
@@ -2497,14 +2497,14 @@ Optional:
 Optional:
 
 - `debug` (Boolean)
-- `logging` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--extension_providers--zipkin--logging))
+- `logging` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_config--extension_providers--stackdriver--logging))
 - `max_number_of_annotations` (Number)
 - `max_number_of_attributes` (Number)
 - `max_number_of_message_events` (Number)
 - `max_tag_length` (Number)
 
-<a id="nestedatt--spec--mesh_config--extension_providers--zipkin--logging"></a>
-### Nested Schema for `spec.mesh_config.extension_providers.zipkin.logging`
+<a id="nestedatt--spec--mesh_config--extension_providers--stackdriver--logging"></a>
+### Nested Schema for `spec.mesh_config.extension_providers.stackdriver.logging`
 
 Optional:
 
@@ -2639,73 +2639,63 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity))
-- `deployment_strategy` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--deployment_strategy))
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--env))
+- `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity))
+- `deployment_strategy` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--deployment_strategy))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--env))
 - `image` (String)
 - `image_pull_policy` (String)
-- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--image_pull_secrets))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--liveness_probe))
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--metadata))
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--image_pull_secrets))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--metadata))
 - `node_selector` (Map of String)
-- `pod_disruption_budget` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--pod_disruption_budget))
-- `pod_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--pod_metadata))
-- `pod_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--pod_security_context))
+- `pod_disruption_budget` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--pod_disruption_budget))
+- `pod_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--pod_metadata))
+- `pod_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--pod_security_context))
 - `priority_class_name` (String)
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--readiness_probe))
-- `replicas` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--replicas))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--resources))
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--security_context))
-- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--tolerations))
-- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--topology_spread_constraints))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volume_mounts))
-- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe))
+- `replicas` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--replicas))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--resources))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--security_context))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--topology_spread_constraints))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volume_mounts))
+- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity`
-
-Optional:
-
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity))
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--node_affinity"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.node_affinity`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -2714,35 +2704,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -2753,43 +2716,80 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_affinity"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -2799,16 +2799,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2820,26 +2820,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -2849,16 +2849,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2870,42 +2870,42 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -2915,16 +2915,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2936,26 +2936,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -2965,16 +2965,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -2987,16 +2987,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--deployment_strategy"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.deployment_strategy`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--deployment_strategy"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.deployment_strategy`
 
 Optional:
 
-- `rolling_update` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--deployment_strategy--rolling_update))
+- `rolling_update` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--deployment_strategy--rolling_update))
 - `type` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--deployment_strategy--rolling_update"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.deployment_strategy.rolling_update`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--deployment_strategy--rolling_update"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.deployment_strategy.rolling_update`
 
 Optional:
 
@@ -3005,36 +3005,36 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--env"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.env`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--env"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.env`
 
 Optional:
 
 - `name` (String)
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--env--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--env--value_from"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.env.value_from`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.env.value_from.config_map_key_ref`
 
 Optional:
 
 - `key` (String)
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--env--value_from--secret_key_ref--local_object_reference))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--config_map_key_ref--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--env--value_from--secret_key_ref--local_object_reference"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.env.value_from.secret_key_ref.local_object_reference`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--config_map_key_ref--local_object_reference"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.env.value_from.config_map_key_ref.local_object_reference`
 
 Optional:
 
@@ -3042,8 +3042,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--env--value_from--field_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.env.value_from.field_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--field_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.env.value_from.field_ref`
 
 Optional:
 
@@ -3051,8 +3051,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.env.value_from.resource_field_ref`
 
 Optional:
 
@@ -3061,17 +3061,17 @@ Optional:
 - `resource` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.env.value_from.secret_key_ref`
 
 Optional:
 
 - `key` (String)
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--env--value_from--secret_key_ref--local_object_reference))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--secret_key_ref--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--env--value_from--secret_key_ref--local_object_reference"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.env.value_from.secret_key_ref.local_object_reference`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--env--value_from--secret_key_ref--local_object_reference"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.env.value_from.secret_key_ref.local_object_reference`
 
 Optional:
 
@@ -3081,40 +3081,40 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--image_pull_secrets"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.image_pull_secrets`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--image_pull_secrets"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.image_pull_secrets`
 
 Optional:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--liveness_probe"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.liveness_probe`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--liveness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--liveness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--liveness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--liveness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--liveness_probe--exec"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.liveness_probe.exec`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe--exec"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--liveness_probe--grpc"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.liveness_probe.grpc`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe--grpc"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.liveness_probe.grpc`
 
 Optional:
 
@@ -3122,19 +3122,19 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--liveness_probe--http_get"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.liveness_probe.http_get`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe--http_get"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.liveness_probe.http_get`
 
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `port` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.liveness_probe.http_get.http_headers`
 
 Optional:
 
@@ -3143,8 +3143,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.liveness_probe.tcp_socket`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.liveness_probe.tcp_socket`
 
 Optional:
 
@@ -3153,8 +3153,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--metadata"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.metadata`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--metadata"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.metadata`
 
 Optional:
 
@@ -3162,8 +3162,8 @@ Optional:
 - `labels` (Map of String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--pod_disruption_budget"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.pod_disruption_budget`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--pod_disruption_budget"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.pod_disruption_budget`
 
 Optional:
 
@@ -3171,8 +3171,8 @@ Optional:
 - `min_available` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--pod_metadata"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.pod_metadata`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--pod_metadata"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.pod_metadata`
 
 Optional:
 
@@ -3180,8 +3180,8 @@ Optional:
 - `labels` (Map of String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--pod_security_context"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.pod_security_context`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--pod_security_context"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.pod_security_context`
 
 Optional:
 
@@ -3190,14 +3190,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--pod_security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--pod_security_context--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--pod_security_context--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--pod_security_context--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--pod_security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--pod_security_context--windows_options))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.pod_security_context.se_linux_options`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -3207,8 +3207,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.pod_security_context.seccomp_profile`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.pod_security_context.seccomp_profile`
 
 Optional:
 
@@ -3216,8 +3216,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.pod_security_context.sysctls`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.pod_security_context.sysctls`
 
 Optional:
 
@@ -3225,8 +3225,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--pod_security_context--windows_options"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.pod_security_context.windows_options`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.pod_security_context.windows_options`
 
 Optional:
 
@@ -3237,32 +3237,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--readiness_probe"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.readiness_probe`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--readiness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--readiness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--readiness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--readiness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--readiness_probe--exec"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.readiness_probe.exec`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe--exec"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--readiness_probe--grpc"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.readiness_probe.grpc`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe--grpc"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.readiness_probe.grpc`
 
 Optional:
 
@@ -3270,19 +3270,19 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--readiness_probe--http_get"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.readiness_probe.http_get`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe--http_get"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.readiness_probe.http_get`
 
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `port` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.readiness_probe.http_get.http_headers`
 
 Optional:
 
@@ -3291,8 +3291,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.readiness_probe.tcp_socket`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.readiness_probe.tcp_socket`
 
 Optional:
 
@@ -3301,8 +3301,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--replicas"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.replicas`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--replicas"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.replicas`
 
 Optional:
 
@@ -3312,8 +3312,8 @@ Optional:
 - `target_cpu_utilization_percentage` (Number)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--resources"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.resources`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--resources"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.resources`
 
 Optional:
 
@@ -3321,25 +3321,25 @@ Optional:
 - `requests` (Map of String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--security_context"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.security_context`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--security_context"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--security_context--windows_options))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--security_context--capabilities"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.security_context.capabilities`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--security_context--capabilities"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.security_context.capabilities`
 
 Optional:
 
@@ -3347,8 +3347,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--security_context--se_linux_options"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.security_context.se_linux_options`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--security_context--se_linux_options"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.security_context.se_linux_options`
 
 Optional:
 
@@ -3358,8 +3358,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.security_context.seccomp_profile`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.security_context.seccomp_profile`
 
 Optional:
 
@@ -3367,8 +3367,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--security_context--windows_options"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.security_context.windows_options`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--security_context--windows_options"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.security_context.windows_options`
 
 Optional:
 
@@ -3379,8 +3379,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--tolerations"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.tolerations`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--tolerations"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.tolerations`
 
 Optional:
 
@@ -3391,26 +3391,26 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--topology_spread_constraints"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.topology_spread_constraints`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--topology_spread_constraints"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.topology_spread_constraints`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--topology_spread_constraints--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--topology_spread_constraints--label_selector))
 - `max_skew` (Number)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.topology_spread_constraints.label_selector`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--topology_spread_constraints--when_unsatisfiable--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.topology_spread_constraints.when_unsatisfiable.match_expressions`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.topology_spread_constraints.label_selector.match_expressions`
 
 Optional:
 
@@ -3421,8 +3421,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volume_mounts"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volume_mounts`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volume_mounts"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volume_mounts`
 
 Optional:
 
@@ -3434,51 +3434,51 @@ Optional:
 - `sub_path_expr` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes`
 
 Optional:
 
 - `name` (String)
-- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source))
+- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source`
 
 Optional:
 
-- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--aws_elastic_block_store))
-- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--azure_disk))
-- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--azure_file))
-- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--cephfs))
-- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--cinder))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--config_map))
-- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--csi))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--downward_api))
-- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--empty_dir))
-- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--ephemeral))
-- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--fc))
-- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--flex_volume))
-- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--flocker))
-- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--gce_persistent_disk))
-- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--git_repo))
-- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--glusterfs))
-- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--host_path))
-- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--iscsi))
-- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--nfs))
-- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--persistent_volume_claim))
-- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--photon_persistent_disk))
-- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--portworx_volume))
-- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--projected))
-- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--quobyte))
-- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--rbd))
-- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--scale_io))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--secret))
-- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--storageos))
-- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume))
+- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--aws_elastic_block_store))
+- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--azure_disk))
+- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--azure_file))
+- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--cephfs))
+- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--cinder))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--config_map))
+- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--csi))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--downward_api))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--empty_dir))
+- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral))
+- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--fc))
+- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--flex_volume))
+- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--flocker))
+- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--gce_persistent_disk))
+- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--git_repo))
+- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--glusterfs))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--host_path))
+- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--iscsi))
+- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--nfs))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--photon_persistent_disk))
+- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--portworx_volume))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected))
+- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--quobyte))
+- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--rbd))
+- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--scale_io))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--secret))
+- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--storageos))
+- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--vsphere_volume))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--aws_elastic_block_store"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.aws_elastic_block_store`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--aws_elastic_block_store"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.aws_elastic_block_store`
 
 Optional:
 
@@ -3488,8 +3488,8 @@ Optional:
 - `volume_id` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--azure_disk"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.azure_disk`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--azure_disk"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.azure_disk`
 
 Optional:
 
@@ -3501,8 +3501,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--azure_file"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.azure_file`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--azure_file"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.azure_file`
 
 Optional:
 
@@ -3511,8 +3511,8 @@ Optional:
 - `share_name` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--cephfs"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.cephfs`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--cephfs"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.cephfs`
 
 Optional:
 
@@ -3520,11 +3520,11 @@ Optional:
 - `path` (String)
 - `read_only` (Boolean)
 - `secret_file` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--cephfs--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--cephfs--secret_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.cephfs.secret_ref`
 
 Optional:
 
@@ -3532,18 +3532,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--cinder"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.cinder`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--cinder"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.cinder`
 
 Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--cinder--secret_ref))
 - `volume_id` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--cinder--secret_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.cinder.secret_ref`
 
 Optional:
 
@@ -3551,18 +3551,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--config_map"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.config_map`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--config_map"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.config_map`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--local_object_reference))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--config_map--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--config_map--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--config_map--items"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.config_map.items`
 
 Optional:
 
@@ -3571,8 +3571,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--local_object_reference"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.local_object_reference`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--config_map--local_object_reference"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.config_map.local_object_reference`
 
 Optional:
 
@@ -3580,19 +3580,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--csi"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.csi`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--csi"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.csi`
 
 Optional:
 
 - `driver` (String)
 - `fs_type` (String)
-- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--csi--node_publish_secret_ref))
 - `read_only` (Boolean)
 - `volume_attributes` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -3600,26 +3600,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--downward_api"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.downward_api`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--downward_api"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.downward_api`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--downward_api--items))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--downward_api--items"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.downward_api.items`
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--downward_api--items--field_ref))
 - `mode` (Number)
 - `path` (String)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.downward_api.items.field_ref`
 
 Optional:
 
@@ -3627,8 +3627,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.downward_api.items.resource_field_ref`
 
 Optional:
 
@@ -3639,8 +3639,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--empty_dir"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.empty_dir`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--empty_dir"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.empty_dir`
 
 Optional:
 
@@ -3648,45 +3648,45 @@ Optional:
 - `size_limit` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--ephemeral"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.ephemeral`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral`
 
 Optional:
 
-- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template`
 
 Optional:
 
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata))
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.metadata`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata`
 
 Optional:
 
 - `annotations` (Map of String)
 - `cluster_name` (String)
-- `creation_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--creation_timestamp))
+- `creation_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--creation_timestamp))
 - `deletion_grace_period_seconds` (Number)
-- `deletion_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--deletion_timestamp))
+- `deletion_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--deletion_timestamp))
 - `finalizers` (List of String)
 - `generate_name` (String)
 - `generation` (Number)
 - `labels` (Map of String)
-- `managed_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--managed_fields))
+- `managed_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields))
 - `name` (String)
 - `namespace` (String)
-- `owner_references` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--owner_references))
+- `owner_references` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--owner_references))
 - `resource_version` (String)
 - `self_link` (String)
 - `uid` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--creation_timestamp"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.creation_timestamp`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--creation_timestamp"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.creation_timestamp`
 
 Optional:
 
@@ -3694,8 +3694,8 @@ Optional:
 - `seconds` (Number)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--deletion_timestamp"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.deletion_timestamp`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--deletion_timestamp"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.deletion_timestamp`
 
 Optional:
 
@@ -3703,29 +3703,29 @@ Optional:
 - `seconds` (Number)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--managed_fields"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.managed_fields`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields`
 
 Optional:
 
 - `api_version` (String)
 - `fields_type` (String)
-- `fields_v1` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--uid--fields_v1))
+- `fields_v1` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--fields_v1))
 - `manager` (String)
 - `operation` (String)
 - `subresource` (String)
-- `time` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--uid--time))
+- `time` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--time))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--uid--fields_v1"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.uid.fields_v1`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--fields_v1"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields.fields_v1`
 
 Optional:
 
 - `raw` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--uid--time"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.uid.time`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--time"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields.time`
 
 Optional:
 
@@ -3734,8 +3734,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--owner_references"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.owner_references`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--owner_references"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.owner_references`
 
 Optional:
 
@@ -3748,22 +3748,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String)
-- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source))
-- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source_ref))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector))
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.spec.data_source`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.data_source`
 
 Optional:
 
@@ -3772,8 +3772,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.spec.data_source_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Optional:
 
@@ -3782,41 +3782,41 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.spec.resources`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `limits` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--limits))
-- `requests` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--requests))
+- `limits` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--limits))
+- `requests` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--requests))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--limits"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.spec.volume_name.limits`
-
-Optional:
-
-- `string` (String)
-
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--requests"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.spec.volume_name.requests`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--limits"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.resources.limits`
 
 Optional:
 
 - `string` (String)
 
 
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.spec.selector`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--requests"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.resources.requests`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--match_expressions))
+- `string` (String)
+
+
+
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.volume_claim_template.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Optional:
 
@@ -3829,8 +3829,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--fc"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.fc`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--fc"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.fc`
 
 Optional:
 
@@ -3841,8 +3841,8 @@ Optional:
 - `wwids` (List of String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--flex_volume"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.flex_volume`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--flex_volume"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.flex_volume`
 
 Optional:
 
@@ -3850,10 +3850,10 @@ Optional:
 - `fs_type` (String)
 - `options` (Map of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.flex_volume.secret_ref`
 
 Optional:
 
@@ -3861,8 +3861,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--flocker"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.flocker`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--flocker"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.flocker`
 
 Optional:
 
@@ -3870,8 +3870,8 @@ Optional:
 - `dataset_uuid` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--gce_persistent_disk"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.gce_persistent_disk`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--gce_persistent_disk"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.gce_persistent_disk`
 
 Optional:
 
@@ -3881,8 +3881,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--git_repo"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.git_repo`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--git_repo"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.git_repo`
 
 Optional:
 
@@ -3891,8 +3891,8 @@ Optional:
 - `revision` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--glusterfs"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.glusterfs`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--glusterfs"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.glusterfs`
 
 Optional:
 
@@ -3901,8 +3901,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--host_path"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.host_path`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--host_path"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.host_path`
 
 Optional:
 
@@ -3910,8 +3910,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--iscsi"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.iscsi`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--iscsi"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.iscsi`
 
 Optional:
 
@@ -3924,11 +3924,11 @@ Optional:
 - `lun` (Number)
 - `portals` (List of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--iscsi--secret_ref))
 - `target_portal` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--iscsi--secret_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.iscsi.secret_ref`
 
 Optional:
 
@@ -3936,8 +3936,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--nfs"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.nfs`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--nfs"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.nfs`
 
 Optional:
 
@@ -3946,8 +3946,8 @@ Optional:
 - `server` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--persistent_volume_claim"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.persistent_volume_claim`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--persistent_volume_claim"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.persistent_volume_claim`
 
 Optional:
 
@@ -3955,8 +3955,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--photon_persistent_disk"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.photon_persistent_disk`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--photon_persistent_disk"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.photon_persistent_disk`
 
 Optional:
 
@@ -3964,8 +3964,8 @@ Optional:
 - `pd_id` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--portworx_volume"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.portworx_volume`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--portworx_volume"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.portworx_volume`
 
 Optional:
 
@@ -3974,35 +3974,35 @@ Optional:
 - `volume_id` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--projected"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.projected`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected`
 
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources`
-
-Optional:
-
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--service_account_token))
-
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--config_map--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--config_map--local_object_reference))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--config_map"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--config_map--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--config_map--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--config_map--items"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.config_map.items`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.config_map.items`
 
 Optional:
 
@@ -4011,8 +4011,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--config_map--local_object_reference"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.config_map.local_object_reference`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--config_map--local_object_reference"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.config_map.local_object_reference`
 
 Optional:
 
@@ -4020,25 +4020,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--downward_api"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--downward_api--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--downward_api--items"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.downward_api.items`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.downward_api.items`
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--downward_api--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
 - `path` (String)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--downward_api--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.downward_api.items.field_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.downward_api.items.field_ref`
 
 Optional:
 
@@ -4046,8 +4046,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--downward_api--items--resource_field_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.downward_api.items.resource_field_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.downward_api.items.resource_field_ref`
 
 Optional:
 
@@ -4058,17 +4058,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--secret"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--secret--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--secret--local_object_reference))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--secret--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--secret--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--secret--items"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.secret.items`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--secret--items"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.secret.items`
 
 Optional:
 
@@ -4077,8 +4077,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--secret--local_object_reference"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.secret.local_object_reference`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--secret--local_object_reference"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.secret.local_object_reference`
 
 Optional:
 
@@ -4086,8 +4086,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.projected.sources.service_account_token`
 
 Optional:
 
@@ -4098,8 +4098,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--quobyte"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.quobyte`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--quobyte"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.quobyte`
 
 Optional:
 
@@ -4111,8 +4111,8 @@ Optional:
 - `volume` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--rbd"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.rbd`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--rbd"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.rbd`
 
 Optional:
 
@@ -4122,11 +4122,11 @@ Optional:
 - `monitors` (List of String)
 - `pool` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--rbd--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--rbd--secret_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.rbd.secret_ref`
 
 Optional:
 
@@ -4134,8 +4134,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--scale_io"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.scale_io`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--scale_io"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.scale_io`
 
 Optional:
 
@@ -4143,15 +4143,15 @@ Optional:
 - `gateway` (String)
 - `protection_domain` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--scale_io--secret_ref))
 - `ssl_enabled` (Boolean)
 - `storage_mode` (String)
 - `storage_pool` (String)
 - `system` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--scale_io--secret_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.scale_io.secret_ref`
 
 Optional:
 
@@ -4159,18 +4159,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--secret"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.secret`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--secret"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.secret`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--secret--items"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.secret.items`
 
 Optional:
 
@@ -4180,19 +4180,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--storageos"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.storageos`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--storageos"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.storageos`
 
 Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--storageos--secret_ref))
 - `volume_name` (String)
 - `volume_namespace` (String)
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--storageos--secret_ref"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.storageos.secret_ref`
 
 Optional:
 
@@ -4200,8 +4200,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--volumes--volume_source--vsphere_volume"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.volumes.volume_source.vsphere_volume`
+<a id="nestedatt--spec--mesh_expansion--gateway--deployment--volumes--volume_source--vsphere_volume"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.deployment.volumes.volume_source.vsphere_volume`
 
 Optional:
 
@@ -4219,12 +4219,12 @@ Optional:
 
 Optional:
 
-- `group_version_kind` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--group_version_kind))
-- `object_key` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--object_key))
-- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--service--patches))
+- `group_version_kind` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--k8s_resource_overlays--group_version_kind))
+- `object_key` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--k8s_resource_overlays--object_key))
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--mesh_expansion--gateway--k8s_resource_overlays--patches))
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--group_version_kind"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.group_version_kind`
+<a id="nestedatt--spec--mesh_expansion--gateway--k8s_resource_overlays--group_version_kind"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.k8s_resource_overlays.group_version_kind`
 
 Optional:
 
@@ -4233,8 +4233,8 @@ Optional:
 - `version` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--object_key"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.object_key`
+<a id="nestedatt--spec--mesh_expansion--gateway--k8s_resource_overlays--object_key"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.k8s_resource_overlays.object_key`
 
 Optional:
 
@@ -4242,8 +4242,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--mesh_expansion--gateway--service--patches"></a>
-### Nested Schema for `spec.mesh_expansion.gateway.service.patches`
+<a id="nestedatt--spec--mesh_expansion--gateway--k8s_resource_overlays--patches"></a>
+### Nested Schema for `spec.mesh_expansion.gateway.k8s_resource_overlays.patches`
 
 Optional:
 
@@ -4376,31 +4376,31 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--lifecycle--pre_stop--exec))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--lifecycle--pre_stop--http_get))
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--lifecycle--pre_stop--tcp_socket))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--lifecycle--post_start--exec))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--lifecycle--post_start--http_get))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--lifecycle--post_start--tcp_socket))
 
-<a id="nestedatt--spec--proxy--lifecycle--pre_stop--exec"></a>
-### Nested Schema for `spec.proxy.lifecycle.pre_stop.exec`
+<a id="nestedatt--spec--proxy--lifecycle--post_start--exec"></a>
+### Nested Schema for `spec.proxy.lifecycle.post_start.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--proxy--lifecycle--pre_stop--http_get"></a>
-### Nested Schema for `spec.proxy.lifecycle.pre_stop.http_get`
+<a id="nestedatt--spec--proxy--lifecycle--post_start--http_get"></a>
+### Nested Schema for `spec.proxy.lifecycle.post_start.http_get`
 
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--lifecycle--pre_stop--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--lifecycle--post_start--http_get--http_headers))
 - `path` (String)
 - `port` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--proxy--lifecycle--pre_stop--http_get--http_headers"></a>
-### Nested Schema for `spec.proxy.lifecycle.pre_stop.http_get.http_headers`
+<a id="nestedatt--spec--proxy--lifecycle--post_start--http_get--http_headers"></a>
+### Nested Schema for `spec.proxy.lifecycle.post_start.http_get.http_headers`
 
 Optional:
 
@@ -4409,8 +4409,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy--lifecycle--pre_stop--tcp_socket"></a>
-### Nested Schema for `spec.proxy.lifecycle.pre_stop.tcp_socket`
+<a id="nestedatt--spec--proxy--lifecycle--post_start--tcp_socket"></a>
+### Nested Schema for `spec.proxy.lifecycle.post_start.tcp_socket`
 
 Optional:
 
@@ -4511,73 +4511,63 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity))
-- `deployment_strategy` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--deployment_strategy))
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--env))
+- `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity))
+- `deployment_strategy` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--deployment_strategy))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--env))
 - `image` (String)
 - `image_pull_policy` (String)
-- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--image_pull_secrets))
-- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--liveness_probe))
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--metadata))
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--image_pull_secrets))
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--liveness_probe))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--metadata))
 - `node_selector` (Map of String)
-- `pod_disruption_budget` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--pod_disruption_budget))
-- `pod_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--pod_metadata))
-- `pod_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--pod_security_context))
+- `pod_disruption_budget` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--pod_disruption_budget))
+- `pod_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--pod_metadata))
+- `pod_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--pod_security_context))
 - `priority_class_name` (String)
-- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--readiness_probe))
-- `replicas` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--replicas))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--resources))
-- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--security_context))
-- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--tolerations))
-- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--topology_spread_constraints))
-- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volume_mounts))
-- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes))
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--readiness_probe))
+- `replicas` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--replicas))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--resources))
+- `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--security_context))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--topology_spread_constraints))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volume_mounts))
+- `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity`
-
-Optional:
-
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity))
-
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--node_affinity"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.node_affinity`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -4586,35 +4576,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -4625,43 +4588,80 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_affinity"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -4671,16 +4671,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -4692,26 +4692,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -4721,16 +4721,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -4742,42 +4742,42 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_expressions`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -4787,16 +4787,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_expressions`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -4808,26 +4808,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -4837,16 +4837,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -4859,16 +4859,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--deployment_strategy"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.deployment_strategy`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--deployment_strategy"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.deployment_strategy`
 
 Optional:
 
-- `rolling_update` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--deployment_strategy--rolling_update))
+- `rolling_update` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--deployment_strategy--rolling_update))
 - `type` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--deployment_strategy--rolling_update"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.deployment_strategy.rolling_update`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--deployment_strategy--rolling_update"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.deployment_strategy.rolling_update`
 
 Optional:
 
@@ -4877,36 +4877,36 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--env"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.env`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--env"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.env`
 
 Optional:
 
 - `name` (String)
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--env--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--env--value_from))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--env--value_from"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.env.value_from`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--env--value_from"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.env.value_from.config_map_key_ref`
 
 Optional:
 
 - `key` (String)
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--env--value_from--secret_key_ref--local_object_reference))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--env--value_from--config_map_key_ref--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--env--value_from--secret_key_ref--local_object_reference"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.env.value_from.secret_key_ref.local_object_reference`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--env--value_from--config_map_key_ref--local_object_reference"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.env.value_from.config_map_key_ref.local_object_reference`
 
 Optional:
 
@@ -4914,8 +4914,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--env--value_from--field_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.env.value_from.field_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--env--value_from--field_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.env.value_from.field_ref`
 
 Optional:
 
@@ -4923,8 +4923,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.env.value_from.resource_field_ref`
 
 Optional:
 
@@ -4933,17 +4933,17 @@ Optional:
 - `resource` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.env.value_from.secret_key_ref`
 
 Optional:
 
 - `key` (String)
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--env--value_from--secret_key_ref--local_object_reference))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--env--value_from--secret_key_ref--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--env--value_from--secret_key_ref--local_object_reference"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.env.value_from.secret_key_ref.local_object_reference`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--env--value_from--secret_key_ref--local_object_reference"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.env.value_from.secret_key_ref.local_object_reference`
 
 Optional:
 
@@ -4953,40 +4953,40 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--image_pull_secrets"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.image_pull_secrets`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--image_pull_secrets"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.image_pull_secrets`
 
 Optional:
 
 - `name` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--liveness_probe"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.liveness_probe`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--liveness_probe"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.liveness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--liveness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--liveness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--liveness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--liveness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--liveness_probe--exec"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.liveness_probe.exec`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--liveness_probe--exec"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--liveness_probe--grpc"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.liveness_probe.grpc`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--liveness_probe--grpc"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.liveness_probe.grpc`
 
 Optional:
 
@@ -4994,19 +4994,19 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--liveness_probe--http_get"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.liveness_probe.http_get`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--liveness_probe--http_get"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.liveness_probe.http_get`
 
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--liveness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `port` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--liveness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.liveness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.liveness_probe.http_get.http_headers`
 
 Optional:
 
@@ -5015,8 +5015,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--liveness_probe--tcp_socket"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.liveness_probe.tcp_socket`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.liveness_probe.tcp_socket`
 
 Optional:
 
@@ -5025,8 +5025,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--metadata"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.metadata`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--metadata"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.metadata`
 
 Optional:
 
@@ -5034,8 +5034,8 @@ Optional:
 - `labels` (Map of String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--pod_disruption_budget"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.pod_disruption_budget`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--pod_disruption_budget"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.pod_disruption_budget`
 
 Optional:
 
@@ -5043,8 +5043,8 @@ Optional:
 - `min_available` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--pod_metadata"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.pod_metadata`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--pod_metadata"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.pod_metadata`
 
 Optional:
 
@@ -5052,8 +5052,8 @@ Optional:
 - `labels` (Map of String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--pod_security_context"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.pod_security_context`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--pod_security_context"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.pod_security_context`
 
 Optional:
 
@@ -5062,14 +5062,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--pod_security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--pod_security_context--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--pod_security_context--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--pod_security_context--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--pod_security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--pod_security_context--windows_options))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--pod_security_context--se_linux_options"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.pod_security_context.se_linux_options`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -5079,8 +5079,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--pod_security_context--seccomp_profile"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.pod_security_context.seccomp_profile`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.pod_security_context.seccomp_profile`
 
 Optional:
 
@@ -5088,8 +5088,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.pod_security_context.sysctls`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.pod_security_context.sysctls`
 
 Optional:
 
@@ -5097,8 +5097,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--pod_security_context--windows_options"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.pod_security_context.windows_options`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.pod_security_context.windows_options`
 
 Optional:
 
@@ -5109,32 +5109,32 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--readiness_probe"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.readiness_probe`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--readiness_probe"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.readiness_probe`
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--readiness_probe--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--readiness_probe--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--readiness_probe--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--readiness_probe--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--readiness_probe--exec"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.readiness_probe.exec`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--readiness_probe--exec"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--readiness_probe--grpc"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.readiness_probe.grpc`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--readiness_probe--grpc"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.readiness_probe.grpc`
 
 Optional:
 
@@ -5142,19 +5142,19 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--readiness_probe--http_get"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.readiness_probe.http_get`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--readiness_probe--http_get"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.readiness_probe.http_get`
 
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--readiness_probe--timeout_seconds--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `port` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--readiness_probe--timeout_seconds--http_headers"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.readiness_probe.timeout_seconds.http_headers`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.readiness_probe.http_get.http_headers`
 
 Optional:
 
@@ -5163,8 +5163,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--readiness_probe--tcp_socket"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.readiness_probe.tcp_socket`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.readiness_probe.tcp_socket`
 
 Optional:
 
@@ -5173,8 +5173,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--replicas"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.replicas`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--replicas"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.replicas`
 
 Optional:
 
@@ -5184,8 +5184,8 @@ Optional:
 - `target_cpu_utilization_percentage` (Number)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--resources"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.resources`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--resources"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.resources`
 
 Optional:
 
@@ -5193,25 +5193,25 @@ Optional:
 - `requests` (Map of String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--security_context"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.security_context`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--security_context"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.security_context`
 
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--security_context--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--security_context--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--security_context--windows_options))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--security_context--capabilities"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.security_context.capabilities`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--security_context--capabilities"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.security_context.capabilities`
 
 Optional:
 
@@ -5219,8 +5219,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--security_context--se_linux_options"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.security_context.se_linux_options`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--security_context--se_linux_options"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.security_context.se_linux_options`
 
 Optional:
 
@@ -5230,8 +5230,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.security_context.seccomp_profile`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.security_context.seccomp_profile`
 
 Optional:
 
@@ -5239,8 +5239,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--security_context--windows_options"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.security_context.windows_options`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--security_context--windows_options"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.security_context.windows_options`
 
 Optional:
 
@@ -5251,8 +5251,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--tolerations"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.tolerations`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--tolerations"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.tolerations`
 
 Optional:
 
@@ -5263,26 +5263,26 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--topology_spread_constraints"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.topology_spread_constraints`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--topology_spread_constraints"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.topology_spread_constraints`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--topology_spread_constraints--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--topology_spread_constraints--label_selector))
 - `max_skew` (Number)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.topology_spread_constraints.label_selector`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--topology_spread_constraints--when_unsatisfiable--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.topology_spread_constraints.when_unsatisfiable.match_expressions`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.topology_spread_constraints.label_selector.match_expressions`
 
 Optional:
 
@@ -5293,8 +5293,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volume_mounts"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volume_mounts`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volume_mounts"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volume_mounts`
 
 Optional:
 
@@ -5306,51 +5306,51 @@ Optional:
 - `sub_path_expr` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes`
 
 Optional:
 
 - `name` (String)
-- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source))
+- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source`
 
 Optional:
 
-- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--aws_elastic_block_store))
-- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--azure_disk))
-- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--azure_file))
-- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--cephfs))
-- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--cinder))
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--config_map))
-- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--csi))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--downward_api))
-- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--empty_dir))
-- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--ephemeral))
-- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--fc))
-- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--flex_volume))
-- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--flocker))
-- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--gce_persistent_disk))
-- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--git_repo))
-- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--glusterfs))
-- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--host_path))
-- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--iscsi))
-- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--nfs))
-- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--persistent_volume_claim))
-- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--photon_persistent_disk))
-- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--portworx_volume))
-- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--projected))
-- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--quobyte))
-- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--rbd))
-- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--scale_io))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--secret))
-- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--storageos))
-- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume))
+- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--aws_elastic_block_store))
+- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--azure_disk))
+- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--azure_file))
+- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--cephfs))
+- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--cinder))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--config_map))
+- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--csi))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--downward_api))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--empty_dir))
+- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral))
+- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--fc))
+- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--flex_volume))
+- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--flocker))
+- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--gce_persistent_disk))
+- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--git_repo))
+- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--glusterfs))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--host_path))
+- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--iscsi))
+- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--nfs))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--photon_persistent_disk))
+- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--portworx_volume))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected))
+- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--quobyte))
+- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--rbd))
+- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--scale_io))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--secret))
+- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--storageos))
+- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--vsphere_volume))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--aws_elastic_block_store"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.aws_elastic_block_store`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--aws_elastic_block_store"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.aws_elastic_block_store`
 
 Optional:
 
@@ -5360,8 +5360,8 @@ Optional:
 - `volume_id` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--azure_disk"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.azure_disk`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--azure_disk"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.azure_disk`
 
 Optional:
 
@@ -5373,8 +5373,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--azure_file"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.azure_file`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--azure_file"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.azure_file`
 
 Optional:
 
@@ -5383,8 +5383,8 @@ Optional:
 - `share_name` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--cephfs"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.cephfs`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--cephfs"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.cephfs`
 
 Optional:
 
@@ -5392,11 +5392,11 @@ Optional:
 - `path` (String)
 - `read_only` (Boolean)
 - `secret_file` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--cephfs--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--cephfs--secret_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.cephfs.secret_ref`
 
 Optional:
 
@@ -5404,18 +5404,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--cinder"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.cinder`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--cinder"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.cinder`
 
 Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--cinder--secret_ref))
 - `volume_id` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--cinder--secret_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.cinder.secret_ref`
 
 Optional:
 
@@ -5423,18 +5423,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--config_map"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.config_map`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--config_map"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.config_map`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--local_object_reference))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--config_map--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--config_map--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--config_map--items"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.config_map.items`
 
 Optional:
 
@@ -5443,8 +5443,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--local_object_reference"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.local_object_reference`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--config_map--local_object_reference"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.config_map.local_object_reference`
 
 Optional:
 
@@ -5452,19 +5452,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--csi"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.csi`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--csi"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.csi`
 
 Optional:
 
 - `driver` (String)
 - `fs_type` (String)
-- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--csi--node_publish_secret_ref))
 - `read_only` (Boolean)
 - `volume_attributes` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -5472,26 +5472,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--downward_api"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.downward_api`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--downward_api"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.downward_api`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--downward_api--items))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--downward_api--items"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.downward_api.items`
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--downward_api--items--field_ref))
 - `mode` (Number)
 - `path` (String)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.downward_api.items.field_ref`
 
 Optional:
 
@@ -5499,8 +5499,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.downward_api.items.resource_field_ref`
 
 Optional:
 
@@ -5511,8 +5511,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--empty_dir"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.empty_dir`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--empty_dir"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.empty_dir`
 
 Optional:
 
@@ -5520,45 +5520,45 @@ Optional:
 - `size_limit` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--ephemeral"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.ephemeral`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral`
 
 Optional:
 
-- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template`
 
 Optional:
 
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata))
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.metadata`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.metadata`
 
 Optional:
 
 - `annotations` (Map of String)
 - `cluster_name` (String)
-- `creation_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--creation_timestamp))
+- `creation_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--creation_timestamp))
 - `deletion_grace_period_seconds` (Number)
-- `deletion_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--deletion_timestamp))
+- `deletion_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--deletion_timestamp))
 - `finalizers` (List of String)
 - `generate_name` (String)
 - `generation` (Number)
 - `labels` (Map of String)
-- `managed_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--managed_fields))
+- `managed_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields))
 - `name` (String)
 - `namespace` (String)
-- `owner_references` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--owner_references))
+- `owner_references` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--owner_references))
 - `resource_version` (String)
 - `self_link` (String)
 - `uid` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--creation_timestamp"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.creation_timestamp`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--creation_timestamp"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.metadata.creation_timestamp`
 
 Optional:
 
@@ -5566,8 +5566,8 @@ Optional:
 - `seconds` (Number)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--deletion_timestamp"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.deletion_timestamp`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--deletion_timestamp"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.metadata.deletion_timestamp`
 
 Optional:
 
@@ -5575,29 +5575,29 @@ Optional:
 - `seconds` (Number)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--managed_fields"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.managed_fields`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields`
 
 Optional:
 
 - `api_version` (String)
 - `fields_type` (String)
-- `fields_v1` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--uid--fields_v1))
+- `fields_v1` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--fields_v1))
 - `manager` (String)
 - `operation` (String)
 - `subresource` (String)
-- `time` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--uid--time))
+- `time` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--time))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--uid--fields_v1"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.uid.fields_v1`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--fields_v1"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields.fields_v1`
 
 Optional:
 
 - `raw` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--uid--time"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.uid.time`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--time"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields.time`
 
 Optional:
 
@@ -5606,8 +5606,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--metadata--owner_references"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.metadata.owner_references`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--metadata--owner_references"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.metadata.owner_references`
 
 Optional:
 
@@ -5620,22 +5620,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String)
-- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source))
-- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source_ref))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector))
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.spec.data_source`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.spec.data_source`
 
 Optional:
 
@@ -5644,8 +5644,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.spec.data_source_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Optional:
 
@@ -5654,41 +5654,41 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.spec.resources`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `limits` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--limits))
-- `requests` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--requests))
+- `limits` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--limits))
+- `requests` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--requests))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--limits"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.spec.volume_name.limits`
-
-Optional:
-
-- `string` (String)
-
-
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--requests"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.spec.volume_name.requests`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--limits"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.spec.resources.limits`
 
 Optional:
 
 - `string` (String)
 
 
-
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.spec.selector`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--requests"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.spec.resources.requests`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--match_expressions))
+- `string` (String)
+
+
+
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.spec.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--volume_claim_template--spec--volume_name--match_expressions"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.volume_claim_template.spec.volume_name.match_expressions`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Optional:
 
@@ -5701,8 +5701,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--fc"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.fc`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--fc"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.fc`
 
 Optional:
 
@@ -5713,8 +5713,8 @@ Optional:
 - `wwids` (List of String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--flex_volume"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.flex_volume`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--flex_volume"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.flex_volume`
 
 Optional:
 
@@ -5722,10 +5722,10 @@ Optional:
 - `fs_type` (String)
 - `options` (Map of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.flex_volume.secret_ref`
 
 Optional:
 
@@ -5733,8 +5733,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--flocker"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.flocker`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--flocker"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.flocker`
 
 Optional:
 
@@ -5742,8 +5742,8 @@ Optional:
 - `dataset_uuid` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--gce_persistent_disk"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.gce_persistent_disk`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--gce_persistent_disk"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.gce_persistent_disk`
 
 Optional:
 
@@ -5753,8 +5753,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--git_repo"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.git_repo`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--git_repo"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.git_repo`
 
 Optional:
 
@@ -5763,8 +5763,8 @@ Optional:
 - `revision` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--glusterfs"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.glusterfs`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--glusterfs"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.glusterfs`
 
 Optional:
 
@@ -5773,8 +5773,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--host_path"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.host_path`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--host_path"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.host_path`
 
 Optional:
 
@@ -5782,8 +5782,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--iscsi"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.iscsi`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--iscsi"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.iscsi`
 
 Optional:
 
@@ -5796,11 +5796,11 @@ Optional:
 - `lun` (Number)
 - `portals` (List of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--iscsi--secret_ref))
 - `target_portal` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--iscsi--secret_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.iscsi.secret_ref`
 
 Optional:
 
@@ -5808,8 +5808,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--nfs"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.nfs`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--nfs"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.nfs`
 
 Optional:
 
@@ -5818,8 +5818,8 @@ Optional:
 - `server` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--persistent_volume_claim"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.persistent_volume_claim`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--persistent_volume_claim"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.persistent_volume_claim`
 
 Optional:
 
@@ -5827,8 +5827,8 @@ Optional:
 - `read_only` (Boolean)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--photon_persistent_disk"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.photon_persistent_disk`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--photon_persistent_disk"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.photon_persistent_disk`
 
 Optional:
 
@@ -5836,8 +5836,8 @@ Optional:
 - `pd_id` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--portworx_volume"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.portworx_volume`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--portworx_volume"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.portworx_volume`
 
 Optional:
 
@@ -5846,35 +5846,35 @@ Optional:
 - `volume_id` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--projected"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.projected`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected`
 
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources`
-
-Optional:
-
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--service_account_token))
-
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--config_map--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--config_map--local_object_reference))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--config_map"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--config_map--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--config_map--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--config_map--items"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.config_map.items`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.config_map.items`
 
 Optional:
 
@@ -5883,8 +5883,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--config_map--local_object_reference"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.config_map.local_object_reference`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--config_map--local_object_reference"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.config_map.local_object_reference`
 
 Optional:
 
@@ -5892,25 +5892,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--downward_api"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--downward_api--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--downward_api--items"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.downward_api.items`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.downward_api.items`
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--downward_api--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
 - `path` (String)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--downward_api--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--downward_api--items--field_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.downward_api.items.field_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.downward_api.items.field_ref`
 
 Optional:
 
@@ -5918,8 +5918,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--downward_api--items--resource_field_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.downward_api.items.resource_field_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.downward_api.items.resource_field_ref`
 
 Optional:
 
@@ -5930,17 +5930,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--secret"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--secret--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--secret--local_object_reference))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--secret--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--secret--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--secret--items"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.secret.items`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--secret--items"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.secret.items`
 
 Optional:
 
@@ -5949,8 +5949,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--secret--local_object_reference"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.secret.local_object_reference`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--secret--local_object_reference"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.secret.local_object_reference`
 
 Optional:
 
@@ -5958,8 +5958,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.projected.sources.service_account_token`
 
 Optional:
 
@@ -5970,8 +5970,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--quobyte"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.quobyte`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--quobyte"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.quobyte`
 
 Optional:
 
@@ -5983,8 +5983,8 @@ Optional:
 - `volume` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--rbd"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.rbd`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--rbd"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.rbd`
 
 Optional:
 
@@ -5994,11 +5994,11 @@ Optional:
 - `monitors` (List of String)
 - `pool` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--rbd--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--rbd--secret_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.rbd.secret_ref`
 
 Optional:
 
@@ -6006,8 +6006,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--scale_io"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.scale_io`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--scale_io"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.scale_io`
 
 Optional:
 
@@ -6015,15 +6015,15 @@ Optional:
 - `gateway` (String)
 - `protection_domain` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--scale_io--secret_ref))
 - `ssl_enabled` (Boolean)
 - `storage_mode` (String)
 - `storage_pool` (String)
 - `system` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--scale_io--secret_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.scale_io.secret_ref`
 
 Optional:
 
@@ -6031,18 +6031,18 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--secret"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.secret`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--secret"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.secret`
 
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--secret--items"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.secret.items`
 
 Optional:
 
@@ -6052,19 +6052,19 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--storageos"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.storageos`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--storageos"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.storageos`
 
 Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--storageos--secret_ref))
 - `volume_name` (String)
 - `volume_namespace` (String)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--storageos--secret_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.storageos.secret_ref`
 
 Optional:
 
@@ -6072,8 +6072,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--volumes--volume_source--vsphere_volume"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.volumes.volume_source.vsphere_volume`
+<a id="nestedatt--spec--proxy_init--cni--daemonset--volumes--volume_source--vsphere_volume"></a>
+### Nested Schema for `spec.proxy_init.cni.daemonset.volumes.volume_source.vsphere_volume`
 
 Optional:
 
@@ -6135,29 +6135,29 @@ Optional:
 
 - `name` (String)
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--env--value_from))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.value_from`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--env--value_from"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.value_from.config_map_key_ref`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.env.value_from.config_map_key_ref`
 
 Optional:
 
 - `key` (String)
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--secret_key_ref--local_object_reference))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--env--value_from--config_map_key_ref--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--secret_key_ref--local_object_reference"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.value_from.secret_key_ref.local_object_reference`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--env--value_from--config_map_key_ref--local_object_reference"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.env.value_from.config_map_key_ref.local_object_reference`
 
 Optional:
 
@@ -6165,8 +6165,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--field_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.value_from.field_ref`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--env--value_from--field_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.env.value_from.field_ref`
 
 Optional:
 
@@ -6174,8 +6174,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.value_from.resource_field_ref`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.env.value_from.resource_field_ref`
 
 Optional:
 
@@ -6184,17 +6184,17 @@ Optional:
 - `resource` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.value_from.secret_key_ref`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.env.value_from.secret_key_ref`
 
 Optional:
 
 - `key` (String)
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--secret_key_ref--local_object_reference))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--env--value_from--secret_key_ref--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--value_from--secret_key_ref--local_object_reference"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.value_from.secret_key_ref.local_object_reference`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--env--value_from--secret_key_ref--local_object_reference"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.env.value_from.secret_key_ref.local_object_reference`
 
 Optional:
 
@@ -6219,19 +6219,19 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy_init--cni--taint--container--security_context--windows_options))
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--capabilities"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.capabilities`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--security_context--capabilities"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.security_context.capabilities`
 
 Optional:
 
@@ -6239,8 +6239,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--se_linux_options"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.se_linux_options`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.security_context.se_linux_options`
 
 Optional:
 
@@ -6250,8 +6250,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--seccomp_profile"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.seccomp_profile`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.security_context.seccomp_profile`
 
 Optional:
 
@@ -6259,8 +6259,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--proxy_init--cni--taint--container--volume_mounts--windows_options"></a>
-### Nested Schema for `spec.proxy_init.cni.taint.container.volume_mounts.windows_options`
+<a id="nestedatt--spec--proxy_init--cni--taint--container--security_context--windows_options"></a>
+### Nested Schema for `spec.proxy_init.cni.taint.container.security_context.windows_options`
 
 Optional:
 
@@ -6354,46 +6354,36 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.node_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.node_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.node_affinity`
 
 Optional:
 
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
 - `weight` (Number)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.preference`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
 
 Optional:
 
@@ -6402,35 +6392,8 @@ Optional:
 - `values` (List of String)
 
 
-
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
 
 Optional:
 
@@ -6441,43 +6404,80 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -6487,16 +6487,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -6508,26 +6508,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -6537,16 +6537,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -6558,42 +6558,42 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
 - `weight` (Number)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Optional:
 
@@ -6603,16 +6603,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
 
 Optional:
 
@@ -6624,26 +6624,26 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Optional:
 
@@ -6653,16 +6653,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+<a id="nestedatt--spec--sidecar_injector--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
 
 Optional:
 
@@ -6680,11 +6680,11 @@ Optional:
 
 Optional:
 
-- `rolling_update` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--rolling_update))
+- `rolling_update` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--deployment_strategy--rolling_update))
 - `type` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--rolling_update"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.rolling_update`
+<a id="nestedatt--spec--sidecar_injector--deployment--deployment_strategy--rolling_update"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.deployment_strategy.rolling_update`
 
 Optional:
 
@@ -6700,29 +6700,29 @@ Optional:
 
 - `name` (String)
 - `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--value_from))
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--env--value_from))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--value_from"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.value_from`
+<a id="nestedatt--spec--sidecar_injector--deployment--env--value_from"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--value_from--config_map_key_ref))
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--value_from--field_ref))
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.value_from.config_map_key_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.env.value_from.config_map_key_ref`
 
 Optional:
 
 - `key` (String)
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--value_from--secret_key_ref--local_object_reference))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--env--value_from--config_map_key_ref--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--value_from--secret_key_ref--local_object_reference"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.value_from.secret_key_ref.local_object_reference`
+<a id="nestedatt--spec--sidecar_injector--deployment--env--value_from--config_map_key_ref--local_object_reference"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.env.value_from.config_map_key_ref.local_object_reference`
 
 Optional:
 
@@ -6730,8 +6730,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--value_from--field_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.value_from.field_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--env--value_from--field_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.env.value_from.field_ref`
 
 Optional:
 
@@ -6739,8 +6739,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.value_from.resource_field_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.env.value_from.resource_field_ref`
 
 Optional:
 
@@ -6749,17 +6749,17 @@ Optional:
 - `resource` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.value_from.secret_key_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.env.value_from.secret_key_ref`
 
 Optional:
 
 - `key` (String)
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--value_from--secret_key_ref--local_object_reference))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--env--value_from--secret_key_ref--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--value_from--secret_key_ref--local_object_reference"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.value_from.secret_key_ref.local_object_reference`
+<a id="nestedatt--spec--sidecar_injector--deployment--env--value_from--secret_key_ref--local_object_reference"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.env.value_from.secret_key_ref.local_object_reference`
 
 Optional:
 
@@ -6782,27 +6782,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--liveness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--liveness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--liveness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--exec"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.exec`
+<a id="nestedatt--spec--sidecar_injector--deployment--liveness_probe--exec"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.liveness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--grpc"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.grpc`
+<a id="nestedatt--spec--sidecar_injector--deployment--liveness_probe--grpc"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.liveness_probe.grpc`
 
 Optional:
 
@@ -6810,19 +6810,19 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--http_get"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.http_get`
+<a id="nestedatt--spec--sidecar_injector--deployment--liveness_probe--http_get"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.liveness_probe.http_get`
 
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--liveness_probe--http_get--http_headers))
 - `path` (String)
 - `port` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--http_get--http_headers"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.http_get.http_headers`
+<a id="nestedatt--spec--sidecar_injector--deployment--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.liveness_probe.http_get.http_headers`
 
 Optional:
 
@@ -6831,8 +6831,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--tcp_socket"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.tcp_socket`
+<a id="nestedatt--spec--sidecar_injector--deployment--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.liveness_probe.tcp_socket`
 
 Optional:
 
@@ -6878,14 +6878,14 @@ Optional:
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--seccomp_profile))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--windows_options))
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--pod_security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--pod_security_context--windows_options))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--se_linux_options"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.se_linux_options`
+<a id="nestedatt--spec--sidecar_injector--deployment--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.pod_security_context.se_linux_options`
 
 Optional:
 
@@ -6895,8 +6895,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--seccomp_profile"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.seccomp_profile`
+<a id="nestedatt--spec--sidecar_injector--deployment--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.pod_security_context.seccomp_profile`
 
 Optional:
 
@@ -6904,8 +6904,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--sysctls"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.sysctls`
+<a id="nestedatt--spec--sidecar_injector--deployment--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.pod_security_context.sysctls`
 
 Optional:
 
@@ -6913,8 +6913,8 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--windows_options"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.windows_options`
+<a id="nestedatt--spec--sidecar_injector--deployment--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.pod_security_context.windows_options`
 
 Optional:
 
@@ -6930,27 +6930,27 @@ Optional:
 
 Optional:
 
-- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--exec))
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--readiness_probe--exec))
 - `failure_threshold` (Number)
-- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--grpc))
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--http_get))
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--readiness_probe--http_get))
 - `initial_delay_seconds` (Number)
 - `period_seconds` (Number)
 - `success_threshold` (Number)
-- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--tcp_socket))
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--readiness_probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--exec"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.exec`
+<a id="nestedatt--spec--sidecar_injector--deployment--readiness_probe--exec"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.readiness_probe.exec`
 
 Optional:
 
 - `command` (List of String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--grpc"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.grpc`
+<a id="nestedatt--spec--sidecar_injector--deployment--readiness_probe--grpc"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.readiness_probe.grpc`
 
 Optional:
 
@@ -6958,19 +6958,19 @@ Optional:
 - `service` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--http_get"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.http_get`
+<a id="nestedatt--spec--sidecar_injector--deployment--readiness_probe--http_get"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.readiness_probe.http_get`
 
 Optional:
 
 - `host` (String)
-- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--http_get--http_headers))
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--readiness_probe--http_get--http_headers))
 - `path` (String)
 - `port` (String)
 - `scheme` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--http_get--http_headers"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.http_get.http_headers`
+<a id="nestedatt--spec--sidecar_injector--deployment--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.readiness_probe.http_get.http_headers`
 
 Optional:
 
@@ -6979,8 +6979,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--tcp_socket"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.tcp_socket`
+<a id="nestedatt--spec--sidecar_injector--deployment--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.readiness_probe.tcp_socket`
 
 Optional:
 
@@ -7015,19 +7015,19 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--capabilities))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
 - `read_only_root_filesystem` (Boolean)
 - `run_as_group` (Number)
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--windows_options))
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--security_context--windows_options))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--capabilities"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.capabilities`
+<a id="nestedatt--spec--sidecar_injector--deployment--security_context--capabilities"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.security_context.capabilities`
 
 Optional:
 
@@ -7035,8 +7035,8 @@ Optional:
 - `drop` (List of String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--se_linux_options"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.se_linux_options`
+<a id="nestedatt--spec--sidecar_injector--deployment--security_context--se_linux_options"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.security_context.se_linux_options`
 
 Optional:
 
@@ -7046,8 +7046,8 @@ Optional:
 - `user` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--seccomp_profile"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.seccomp_profile`
+<a id="nestedatt--spec--sidecar_injector--deployment--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.security_context.seccomp_profile`
 
 Optional:
 
@@ -7055,8 +7055,8 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--windows_options"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.windows_options`
+<a id="nestedatt--spec--sidecar_injector--deployment--security_context--windows_options"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.security_context.windows_options`
 
 Optional:
 
@@ -7084,21 +7084,21 @@ Optional:
 
 Optional:
 
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--label_selector))
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--topology_spread_constraints--label_selector))
 - `max_skew` (Number)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--label_selector"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.label_selector`
+<a id="nestedatt--spec--sidecar_injector--deployment--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--topology_spread_constraints--label_selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--label_selector--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.label_selector.match_expressions`
+<a id="nestedatt--spec--sidecar_injector--deployment--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.topology_spread_constraints.label_selector.match_expressions`
 
 Optional:
 
@@ -7208,11 +7208,11 @@ Optional:
 - `path` (String)
 - `read_only` (Boolean)
 - `secret_file` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--cephfs--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--cephfs--secret_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.cephfs.secret_ref`
 
 Optional:
 
@@ -7227,11 +7227,11 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--cinder--secret_ref))
 - `volume_id` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--cinder--secret_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.cinder.secret_ref`
 
 Optional:
 
@@ -7245,12 +7245,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--local_object_reference))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--config_map--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--config_map--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--config_map--items"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.config_map.items`
 
 Optional:
 
@@ -7259,8 +7259,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--local_object_reference"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.local_object_reference`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--config_map--local_object_reference"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.config_map.local_object_reference`
 
 Optional:
 
@@ -7275,12 +7275,12 @@ Optional:
 
 - `driver` (String)
 - `fs_type` (String)
-- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--csi--node_publish_secret_ref))
 - `read_only` (Boolean)
 - `volume_attributes` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -7294,20 +7294,20 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--downward_api--items))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--downward_api--items"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.downward_api.items`
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--downward_api--items--field_ref))
 - `mode` (Number)
 - `path` (String)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.downward_api.items.field_ref`
 
 Optional:
 
@@ -7315,8 +7315,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.downward_api.items.resource_field_ref`
 
 Optional:
 
@@ -7341,40 +7341,40 @@ Optional:
 
 Optional:
 
-- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template))
+- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template`
 
 Optional:
 
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--metadata))
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec))
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.metadata`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata`
 
 Optional:
 
 - `annotations` (Map of String)
 - `cluster_name` (String)
-- `creation_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--creation_timestamp))
+- `creation_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--creation_timestamp))
 - `deletion_grace_period_seconds` (Number)
-- `deletion_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--deletion_timestamp))
+- `deletion_timestamp` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--deletion_timestamp))
 - `finalizers` (List of String)
 - `generate_name` (String)
 - `generation` (Number)
 - `labels` (Map of String)
-- `managed_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields))
+- `managed_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields))
 - `name` (String)
 - `namespace` (String)
-- `owner_references` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--owner_references))
+- `owner_references` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--owner_references))
 - `resource_version` (String)
 - `self_link` (String)
 - `uid` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--creation_timestamp"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.creation_timestamp`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--creation_timestamp"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.creation_timestamp`
 
 Optional:
 
@@ -7382,8 +7382,8 @@ Optional:
 - `seconds` (Number)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--deletion_timestamp"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.deletion_timestamp`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--deletion_timestamp"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.deletion_timestamp`
 
 Optional:
 
@@ -7391,29 +7391,29 @@ Optional:
 - `seconds` (Number)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.managed_fields`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields`
 
 Optional:
 
 - `api_version` (String)
 - `fields_type` (String)
-- `fields_v1` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields--fields_v1))
+- `fields_v1` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--fields_v1))
 - `manager` (String)
 - `operation` (String)
 - `subresource` (String)
-- `time` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields--time))
+- `time` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--time))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields--fields_v1"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.managed_fields.fields_v1`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--fields_v1"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields.fields_v1`
 
 Optional:
 
 - `raw` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--managed_fields--time"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.managed_fields.time`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--managed_fields--time"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.managed_fields.time`
 
 Optional:
 
@@ -7422,8 +7422,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--owner_references"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.owner_references`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--metadata--owner_references"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.metadata.owner_references`
 
 Optional:
 
@@ -7436,22 +7436,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String)
-- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source))
-- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source_ref))
-- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector))
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.data_source`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.data_source`
 
 Optional:
 
@@ -7460,8 +7460,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--data_source_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.data_source_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.data_source_ref`
 
 Optional:
 
@@ -7470,41 +7470,41 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.resources`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.resources`
 
 Optional:
 
-- `limits` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources--limits))
-- `requests` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources--requests))
+- `limits` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--limits))
+- `requests` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--requests))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources--limits"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.resources.limits`
-
-Optional:
-
-- `string` (String)
-
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--resources--requests"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.resources.requests`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--limits"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.resources.limits`
 
 Optional:
 
 - `string` (String)
 
 
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.selector`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--resources--requests"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.resources.requests`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector--match_expressions))
+- `string` (String)
+
+
+
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--volume_claim_template--spec--selector--match_expressions"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.volume_claim_template.spec.selector.match_expressions`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--ephemeral--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.ephemeral.volume_claim_template.spec.selector.match_expressions`
 
 Optional:
 
@@ -7538,10 +7538,10 @@ Optional:
 - `fs_type` (String)
 - `options` (Map of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.flex_volume.secret_ref`
 
 Optional:
 
@@ -7612,11 +7612,11 @@ Optional:
 - `lun` (Number)
 - `portals` (List of String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--iscsi--secret_ref))
 - `target_portal` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--iscsi--secret_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.iscsi.secret_ref`
 
 Optional:
 
@@ -7668,29 +7668,29 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources))
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources`
-
-Optional:
-
-- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token))
-
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--local_object_reference))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--config_map"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--config_map--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--config_map--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.config_map.items`
 
 Optional:
 
@@ -7699,8 +7699,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--local_object_reference"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.local_object_reference`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--config_map--local_object_reference"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.config_map.local_object_reference`
 
 Optional:
 
@@ -7708,25 +7708,25 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--downward_api"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.downward_api.items`
 
 Optional:
 
-- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--downward_api--items--field_ref))
 - `mode` (Number)
 - `path` (String)
-- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.downward_api.items.field_ref`
 
 Optional:
 
@@ -7734,8 +7734,8 @@ Optional:
 - `field_path` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.downward_api.items.resource_field_ref`
 
 Optional:
 
@@ -7746,17 +7746,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--secret"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items))
-- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--local_object_reference))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--secret--items))
+- `local_object_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--secret--local_object_reference))
 - `optional` (Boolean)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--secret--items"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.secret.items`
 
 Optional:
 
@@ -7765,8 +7765,8 @@ Optional:
 - `path` (String)
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token--local_object_reference"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token.local_object_reference`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--secret--local_object_reference"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.secret.local_object_reference`
 
 Optional:
 
@@ -7774,8 +7774,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.projected.sources.service_account_token`
 
 Optional:
 
@@ -7810,11 +7810,11 @@ Optional:
 - `monitors` (List of String)
 - `pool` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--rbd--secret_ref))
 - `user` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--rbd--secret_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.rbd.secret_ref`
 
 Optional:
 
@@ -7831,15 +7831,15 @@ Optional:
 - `gateway` (String)
 - `protection_domain` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--scale_io--secret_ref))
 - `ssl_enabled` (Boolean)
 - `storage_mode` (String)
 - `storage_pool` (String)
 - `system` (String)
 - `volume_name` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--scale_io--secret_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.scale_io.secret_ref`
 
 Optional:
 
@@ -7853,12 +7853,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number)
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--secret--items))
 - `optional` (Boolean)
 - `secret_name` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--items"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.items`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--secret--items"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.secret.items`
 
 Optional:
 
@@ -7875,12 +7875,12 @@ Optional:
 
 - `fs_type` (String)
 - `read_only` (Boolean)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--storageos--secret_ref))
 - `volume_name` (String)
 - `volume_namespace` (String)
 
-<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--sidecar_injector--deployment--volumes--volume_source--storageos--secret_ref"></a>
+### Nested Schema for `spec.sidecar_injector.deployment.volumes.volume_source.storageos.secret_ref`
 
 Optional:
 

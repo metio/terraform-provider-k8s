@@ -129,20 +129,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--sidecar--secrets--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--sidecar--env--value_from))
 
-<a id="nestedatt--spec--components--sidecar--secrets--value_from"></a>
-### Nested Schema for `spec.components.sidecar.secrets.value_from`
+<a id="nestedatt--spec--components--sidecar--env--value_from"></a>
+### Nested Schema for `spec.components.sidecar.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--sidecar--secrets--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--sidecar--secrets--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--sidecar--secrets--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--sidecar--secrets--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--sidecar--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--sidecar--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--sidecar--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--sidecar--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--components--sidecar--secrets--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.components.sidecar.secrets.value_from.config_map_key_ref`
+<a id="nestedatt--spec--components--sidecar--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.components.sidecar.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -154,8 +154,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--components--sidecar--secrets--value_from--field_ref"></a>
-### Nested Schema for `spec.components.sidecar.secrets.value_from.field_ref`
+<a id="nestedatt--spec--components--sidecar--env--value_from--field_ref"></a>
+### Nested Schema for `spec.components.sidecar.env.value_from.field_ref`
 
 Required:
 
@@ -166,8 +166,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--components--sidecar--secrets--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.components.sidecar.secrets.value_from.resource_field_ref`
+<a id="nestedatt--spec--components--sidecar--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.components.sidecar.env.value_from.resource_field_ref`
 
 Required:
 
@@ -179,8 +179,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--components--sidecar--secrets--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.components.sidecar.secrets.value_from.secret_key_ref`
+<a id="nestedatt--spec--components--sidecar--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.components.sidecar.env.value_from.secret_key_ref`
 
 Required:
 
@@ -199,12 +199,12 @@ Optional:
 
 Optional:
 
-- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--components--sidecar--secrets--config_map_ref))
+- `config_map_ref` (Attributes) The ConfigMap to select from (see [below for nested schema](#nestedatt--spec--components--sidecar--env_from--config_map_ref))
 - `prefix` (String) An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
-- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--components--sidecar--secrets--secret_ref))
+- `secret_ref` (Attributes) The Secret to select from (see [below for nested schema](#nestedatt--spec--components--sidecar--env_from--secret_ref))
 
-<a id="nestedatt--spec--components--sidecar--secrets--config_map_ref"></a>
-### Nested Schema for `spec.components.sidecar.secrets.config_map_ref`
+<a id="nestedatt--spec--components--sidecar--env_from--config_map_ref"></a>
+### Nested Schema for `spec.components.sidecar.env_from.config_map_ref`
 
 Optional:
 
@@ -212,8 +212,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
-<a id="nestedatt--spec--components--sidecar--secrets--secret_ref"></a>
-### Nested Schema for `spec.components.sidecar.secrets.secret_ref`
+<a id="nestedatt--spec--components--sidecar--env_from--secret_ref"></a>
+### Nested Schema for `spec.components.sidecar.env_from.secret_ref`
 
 Optional:
 
@@ -254,17 +254,17 @@ Optional:
 
 Optional:
 
-- `config_maps` (Attributes List) (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--config_maps))
-- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--env))
+- `config_maps` (Attributes List) (see [below for nested schema](#nestedatt--spec--experiments--spec--components--config_maps))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--experiments--spec--components--env))
 - `experiment_annotations` (Map of String)
 - `experiment_image` (String)
 - `node_selector` (Map of String)
-- `secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--secrets))
-- `status_check_timeouts` (Attributes) (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--status_check_timeouts))
-- `tolerations` (Attributes List) Pod's tolerations. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--tolerations))
+- `secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--experiments--spec--components--secrets))
+- `status_check_timeouts` (Attributes) (see [below for nested schema](#nestedatt--spec--experiments--spec--components--status_check_timeouts))
+- `tolerations` (Attributes List) Pod's tolerations. (see [below for nested schema](#nestedatt--spec--experiments--spec--components--tolerations))
 
-<a id="nestedatt--spec--experiments--spec--probe--config_maps"></a>
-### Nested Schema for `spec.experiments.spec.probe.config_maps`
+<a id="nestedatt--spec--experiments--spec--components--config_maps"></a>
+### Nested Schema for `spec.experiments.spec.components.config_maps`
 
 Optional:
 
@@ -272,8 +272,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--experiments--spec--probe--env"></a>
-### Nested Schema for `spec.experiments.spec.probe.env`
+<a id="nestedatt--spec--experiments--spec--components--env"></a>
+### Nested Schema for `spec.experiments.spec.components.env`
 
 Required:
 
@@ -282,20 +282,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--env--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--experiments--spec--components--env--value_from))
 
-<a id="nestedatt--spec--experiments--spec--probe--env--value_from"></a>
-### Nested Schema for `spec.experiments.spec.probe.env.value_from`
+<a id="nestedatt--spec--experiments--spec--components--env--value_from"></a>
+### Nested Schema for `spec.experiments.spec.components.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--experiments--spec--components--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP. (see [below for nested schema](#nestedatt--spec--experiments--spec--components--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--components--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--experiments--spec--components--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--experiments--spec--probe--env--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.env.value_from.config_map_key_ref`
+<a id="nestedatt--spec--experiments--spec--components--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.experiments.spec.components.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -307,8 +307,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--experiments--spec--probe--env--value_from--field_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.env.value_from.field_ref`
+<a id="nestedatt--spec--experiments--spec--components--env--value_from--field_ref"></a>
+### Nested Schema for `spec.experiments.spec.components.env.value_from.field_ref`
 
 Required:
 
@@ -319,8 +319,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--experiments--spec--probe--env--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.env.value_from.resource_field_ref`
+<a id="nestedatt--spec--experiments--spec--components--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.experiments.spec.components.env.value_from.resource_field_ref`
 
 Required:
 
@@ -332,8 +332,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--experiments--spec--probe--env--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.env.value_from.secret_key_ref`
+<a id="nestedatt--spec--experiments--spec--components--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.experiments.spec.components.env.value_from.secret_key_ref`
 
 Required:
 
@@ -347,8 +347,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--experiments--spec--probe--secrets"></a>
-### Nested Schema for `spec.experiments.spec.probe.secrets`
+<a id="nestedatt--spec--experiments--spec--components--secrets"></a>
+### Nested Schema for `spec.experiments.spec.components.secrets`
 
 Optional:
 
@@ -356,8 +356,8 @@ Optional:
 - `name` (String)
 
 
-<a id="nestedatt--spec--experiments--spec--probe--status_check_timeouts"></a>
-### Nested Schema for `spec.experiments.spec.probe.status_check_timeouts`
+<a id="nestedatt--spec--experiments--spec--components--status_check_timeouts"></a>
+### Nested Schema for `spec.experiments.spec.components.status_check_timeouts`
 
 Optional:
 
@@ -365,8 +365,8 @@ Optional:
 - `timeout` (Number)
 
 
-<a id="nestedatt--spec--experiments--spec--probe--tolerations"></a>
-### Nested Schema for `spec.experiments.spec.probe.tolerations`
+<a id="nestedatt--spec--experiments--spec--components--tolerations"></a>
+### Nested Schema for `spec.experiments.spec.components.tolerations`
 
 Optional:
 
@@ -473,20 +473,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--env--value_from))
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--value_from"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.value_from`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--env--value_from"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--env--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.value_from.config_map_key_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.env.value_from.config_map_key_ref`
 
 Required:
 
@@ -498,8 +498,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--value_from--field_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.value_from.field_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--env--value_from--field_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.env.value_from.field_ref`
 
 Required:
 
@@ -510,8 +510,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.value_from.resource_field_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.env.value_from.resource_field_ref`
 
 Required:
 
@@ -523,8 +523,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.value_from.secret_key_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.env.value_from.secret_key_ref`
 
 Required:
 
@@ -667,11 +667,11 @@ Optional:
 - `path` (String) Optional: Used as the mounted root, rather than the full Ceph tree, default is /
 - `read_only` (Boolean) Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 - `secret_file` (String) Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
-- `secret_ref` (Attributes) Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--cephfs--secret_ref))
 - `user` (String) Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.cephfs.secret_ref`
 
 Optional:
 
@@ -690,10 +690,10 @@ Optional:
 
 - `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
 - `read_only` (Boolean) Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
-- `secret_ref` (Attributes) Optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) Optional: points to a secret object containing parameters used to connect to OpenStack. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--cinder--secret_ref))
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.cinder.secret_ref`
 
 Optional:
 
@@ -707,12 +707,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--items))
+- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--config_map--items"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.config_map.items`
 
 Required:
 
@@ -735,12 +735,12 @@ Required:
 Optional:
 
 - `fs_type` (String) Filesystem type to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
-- `node_publish_secret_ref` (Attributes) NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--node_publish_secret_ref))
+- `node_publish_secret_ref` (Attributes) NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--csi--node_publish_secret_ref))
 - `read_only` (Boolean) Specifies a read-only configuration for the volume. Defaults to false (read/write).
 - `volume_attributes` (Map of String) VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--node_publish_secret_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.node_publish_secret_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.csi.node_publish_secret_ref`
 
 Optional:
 
@@ -754,10 +754,10 @@ Optional:
 Optional:
 
 - `default_mode` (Number) Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--items))
+- `items` (Attributes List) Items is a list of downward API volume file (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--downward_api--items))
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--downward_api--items"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.downward_api.items`
 
 Required:
 
@@ -765,12 +765,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--items--field_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.items.field_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.downward_api.items.field_ref`
 
 Required:
 
@@ -781,8 +781,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--items--resource_field_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.items.resource_field_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -829,10 +829,10 @@ Optional:
 - `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.
 - `options` (Map of String) Optional: Extra command options if any.
 - `read_only` (Boolean) Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--flex_volume--secret_ref))
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.flex_volume.secret_ref`
 
 Optional:
 
@@ -919,10 +919,10 @@ Optional:
 - `iscsi_interface` (String) iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
 - `portals` (List of String) iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
 - `read_only` (Boolean) ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
-- `secret_ref` (Attributes) CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) CHAP Secret for iSCSI target and initiator authentication (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--iscsi--secret_ref))
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.iscsi.secret_ref`
 
 Optional:
 
@@ -985,33 +985,33 @@ Optional:
 
 Required:
 
-- `sources` (Attributes List) list of volume projections (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources))
+- `sources` (Attributes List) list of volume projections (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources))
 
 Optional:
 
 - `default_mode` (Number) Mode bits to use on created files by default. Must be a value between 0 and 0777. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.sources`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.projected.sources`
 
 Optional:
 
-- `config_map` (Attributes) information about the configMap data to project (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--config_map))
-- `downward_api` (Attributes) information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--downward_api))
-- `secret` (Attributes) information about the secret data to project (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--secret))
-- `service_account_token` (Attributes) information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token))
+- `config_map` (Attributes) information about the configMap data to project (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--config_map))
+- `downward_api` (Attributes) information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--downward_api))
+- `secret` (Attributes) information about the secret data to project (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--secret))
+- `service_account_token` (Attributes) information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--service_account_token))
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--config_map"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.sources.config_map`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.projected.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--config_map--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its keys must be defined
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.projected.sources.config_map.items`
 
 Required:
 
@@ -1024,15 +1024,15 @@ Optional:
 
 
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--downward_api"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.sources.downward_api`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.projected.sources.downward_api`
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--downward_api--items))
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.projected.sources.downward_api.items`
 
 Required:
 
@@ -1040,12 +1040,12 @@ Required:
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token--items--field_ref))
+- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--downward_api--items--field_ref))
 - `mode` (Number) Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--downward_api--items--resource_field_ref))
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token--items--field_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.sources.service_account_token.items.field_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.projected.sources.downward_api.items.field_ref`
 
 Required:
 
@@ -1056,8 +1056,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token--items--resource_field_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.sources.service_account_token.items.resource_field_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.projected.sources.downward_api.items.resource_field_ref`
 
 Required:
 
@@ -1071,17 +1071,17 @@ Optional:
 
 
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--secret"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.sources.secret`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.projected.sources.secret`
 
 Optional:
 
-- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token--items))
+- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--secret--items))
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token--items"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.sources.service_account_token.items`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.projected.sources.secret.items`
 
 Required:
 
@@ -1094,8 +1094,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--sources--service_account_token"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.sources.service_account_token`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.projected.sources.service_account_token`
 
 Required:
 
@@ -1139,11 +1139,11 @@ Optional:
 - `keyring` (String) Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `pool` (String) The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `read_only` (Boolean) ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
-- `secret_ref` (Attributes) SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--rbd--secret_ref))
 - `user` (String) The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.rbd.secret_ref`
 
 Optional:
 
@@ -1157,7 +1157,7 @@ Optional:
 Required:
 
 - `gateway` (String) The host address of the ScaleIO API Gateway.
-- `secret_ref` (Attributes) SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--scale_io--secret_ref))
 - `system` (String) The name of the storage system as configured in ScaleIO.
 
 Optional:
@@ -1170,8 +1170,8 @@ Optional:
 - `storage_pool` (String) The ScaleIO Storage Pool associated with the protection domain.
 - `volume_name` (String) The name of a volume already created in the ScaleIO system that is associated with this volume source.
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.scale_io.secret_ref`
 
 Optional:
 
@@ -1185,12 +1185,12 @@ Optional:
 Optional:
 
 - `default_mode` (Number) Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--items))
+- `items` (Attributes List) If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--secret--items))
 - `optional` (Boolean) Specify whether the Secret or its keys must be defined
 - `secret_name` (String) Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--items"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.items`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--secret--items"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.secret.items`
 
 Required:
 
@@ -1210,12 +1210,12 @@ Optional:
 
 - `fs_type` (String) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 - `read_only` (Boolean) Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
-- `secret_ref` (Attributes) SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref))
+- `secret_ref` (Attributes) SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--storageos--secret_ref))
 - `volume_name` (String) VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
 - `volume_namespace` (String) VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
-<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--vsphere_volume--secret_ref"></a>
-### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.vsphere_volume.secret_ref`
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes.storageos.secret_ref`
 
 Optional:
 
@@ -1257,11 +1257,11 @@ Optional:
 
 Optional:
 
-- `get` (Attributes) (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--http_probe_inputs--insecure_skip_verify--get))
-- `post` (Attributes) (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--http_probe_inputs--insecure_skip_verify--post))
+- `get` (Attributes) (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--http_probe_inputs--method--get))
+- `post` (Attributes) (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--http_probe_inputs--method--post))
 
-<a id="nestedatt--spec--experiments--spec--probe--http_probe_inputs--insecure_skip_verify--get"></a>
-### Nested Schema for `spec.experiments.spec.probe.http_probe_inputs.insecure_skip_verify.get`
+<a id="nestedatt--spec--experiments--spec--probe--http_probe_inputs--method--get"></a>
+### Nested Schema for `spec.experiments.spec.probe.http_probe_inputs.method.get`
 
 Required:
 
@@ -1269,8 +1269,8 @@ Required:
 - `response_code` (String)
 
 
-<a id="nestedatt--spec--experiments--spec--probe--http_probe_inputs--insecure_skip_verify--post"></a>
-### Nested Schema for `spec.experiments.spec.probe.http_probe_inputs.insecure_skip_verify.post`
+<a id="nestedatt--spec--experiments--spec--probe--http_probe_inputs--method--post"></a>
+### Nested Schema for `spec.experiments.spec.probe.http_probe_inputs.method.post`
 
 Required:
 
@@ -1361,10 +1361,10 @@ Optional:
 Required:
 
 - `api_token_secret` (String) APITokenSecret for authenticating with the platform service
-- `scope` (Attributes) Scope required for fetching details (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--slo_probe_inputs--insecure_skip_verify--scope))
+- `scope` (Attributes) Scope required for fetching details (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--slo_probe_inputs--slo_source_metadata--scope))
 
-<a id="nestedatt--spec--experiments--spec--probe--slo_probe_inputs--insecure_skip_verify--scope"></a>
-### Nested Schema for `spec.experiments.spec.probe.slo_probe_inputs.insecure_skip_verify.scope`
+<a id="nestedatt--spec--experiments--spec--probe--slo_probe_inputs--slo_source_metadata--scope"></a>
+### Nested Schema for `spec.experiments.spec.probe.slo_probe_inputs.slo_source_metadata.scope`
 
 Required:
 

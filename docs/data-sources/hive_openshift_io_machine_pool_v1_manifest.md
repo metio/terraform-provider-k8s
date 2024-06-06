@@ -157,11 +157,11 @@ Required:
 
 Optional:
 
-- `disk_encryption_set` (Attributes) DiskEncryptionSet defines a disk encryption set. (see [below for nested schema](#nestedatt--spec--platform--azure--zones--disk_encryption_set))
+- `disk_encryption_set` (Attributes) DiskEncryptionSet defines a disk encryption set. (see [below for nested schema](#nestedatt--spec--platform--azure--os_disk--disk_encryption_set))
 - `disk_type` (String) DiskType defines the type of disk. For control plane nodes, the valid values are Premium_LRS and StandardSSD_LRS. Default is Premium_LRS.
 
-<a id="nestedatt--spec--platform--azure--zones--disk_encryption_set"></a>
-### Nested Schema for `spec.platform.azure.zones.disk_encryption_set`
+<a id="nestedatt--spec--platform--azure--os_disk--disk_encryption_set"></a>
+### Nested Schema for `spec.platform.azure.os_disk.disk_encryption_set`
 
 Required:
 
@@ -208,18 +208,18 @@ Optional:
 
 - `disk_size_gb` (Number) DiskSizeGB defines the size of disk in GB. Defaulted internally to 128.
 - `disk_type` (String) DiskType defines the type of disk. The valid values are pd-standard and pd-ssd. Defaulted internally to pd-ssd.
-- `encryption_key` (Attributes) EncryptionKey defines the KMS key to be used to encrypt the disk. (see [below for nested schema](#nestedatt--spec--platform--gcp--zones--encryption_key))
+- `encryption_key` (Attributes) EncryptionKey defines the KMS key to be used to encrypt the disk. (see [below for nested schema](#nestedatt--spec--platform--gcp--os_disk--encryption_key))
 
-<a id="nestedatt--spec--platform--gcp--zones--encryption_key"></a>
-### Nested Schema for `spec.platform.gcp.zones.encryption_key`
+<a id="nestedatt--spec--platform--gcp--os_disk--encryption_key"></a>
+### Nested Schema for `spec.platform.gcp.os_disk.encryption_key`
 
 Optional:
 
-- `kms_key` (Attributes) KMSKey is a reference to a KMS Key to use for the encryption. (see [below for nested schema](#nestedatt--spec--platform--gcp--zones--encryption_key--kms_key))
+- `kms_key` (Attributes) KMSKey is a reference to a KMS Key to use for the encryption. (see [below for nested schema](#nestedatt--spec--platform--gcp--os_disk--encryption_key--kms_key))
 - `kms_key_service_account` (String) KMSKeyServiceAccount is the service account being used for the encryption request for the given KMS key. If absent, the Compute Engine default service account is used. See https://cloud.google.com/compute/docs/access/service-accounts#compute_engine_service_account for details on the default service account.
 
-<a id="nestedatt--spec--platform--gcp--zones--encryption_key--kms_key"></a>
-### Nested Schema for `spec.platform.gcp.zones.encryption_key.kms_key`
+<a id="nestedatt--spec--platform--gcp--os_disk--encryption_key--kms_key"></a>
+### Nested Schema for `spec.platform.gcp.os_disk.encryption_key.kms_key`
 
 Required:
 

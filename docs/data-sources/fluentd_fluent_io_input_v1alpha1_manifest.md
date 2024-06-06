@@ -122,33 +122,33 @@ Optional:
 - `allow_anonymous_source` (String) Allows the anonymous source. <client> sections are required, if disabled.
 - `self_hostname` (String) The hostname.
 - `shared_key` (String) The shared key for authentication.
-- `user` (Attributes) Defines user section directly. (see [below for nested schema](#nestedatt--spec--inputs--forward--user--user))
+- `user` (Attributes) Defines user section directly. (see [below for nested schema](#nestedatt--spec--inputs--forward--security--user))
 - `user_auth` (String) If true, user-based authentication is used.
 
-<a id="nestedatt--spec--inputs--forward--user--user"></a>
-### Nested Schema for `spec.inputs.forward.user.user`
+<a id="nestedatt--spec--inputs--forward--security--user"></a>
+### Nested Schema for `spec.inputs.forward.security.user`
 
 Optional:
 
-- `password` (Attributes) Secret defines the key of a value. (see [below for nested schema](#nestedatt--spec--inputs--forward--user--user--password))
-- `username` (Attributes) Secret defines the key of a value. (see [below for nested schema](#nestedatt--spec--inputs--forward--user--user--username))
+- `password` (Attributes) Secret defines the key of a value. (see [below for nested schema](#nestedatt--spec--inputs--forward--security--user--password))
+- `username` (Attributes) Secret defines the key of a value. (see [below for nested schema](#nestedatt--spec--inputs--forward--security--user--username))
 
-<a id="nestedatt--spec--inputs--forward--user--user--password"></a>
-### Nested Schema for `spec.inputs.forward.user.user.password`
-
-Optional:
-
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--inputs--forward--user--user--username--value_from))
-
-<a id="nestedatt--spec--inputs--forward--user--user--username--value_from"></a>
-### Nested Schema for `spec.inputs.forward.user.user.username.value_from`
+<a id="nestedatt--spec--inputs--forward--security--user--password"></a>
+### Nested Schema for `spec.inputs.forward.security.user.password`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--inputs--forward--user--user--username--value_from--secret_key_ref))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--inputs--forward--security--user--password--value_from))
 
-<a id="nestedatt--spec--inputs--forward--user--user--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.inputs.forward.user.user.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--inputs--forward--security--user--password--value_from"></a>
+### Nested Schema for `spec.inputs.forward.security.user.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--inputs--forward--security--user--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--inputs--forward--security--user--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.inputs.forward.security.user.password.value_from.secret_key_ref`
 
 Required:
 
@@ -162,22 +162,22 @@ Optional:
 
 
 
-<a id="nestedatt--spec--inputs--forward--user--user--username"></a>
-### Nested Schema for `spec.inputs.forward.user.user.username`
+<a id="nestedatt--spec--inputs--forward--security--user--username"></a>
+### Nested Schema for `spec.inputs.forward.security.user.username`
 
 Optional:
 
-- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--inputs--forward--user--user--username--value_from))
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--inputs--forward--security--user--username--value_from))
 
-<a id="nestedatt--spec--inputs--forward--user--user--username--value_from"></a>
-### Nested Schema for `spec.inputs.forward.user.user.username.value_from`
+<a id="nestedatt--spec--inputs--forward--security--user--username--value_from"></a>
+### Nested Schema for `spec.inputs.forward.security.user.username.value_from`
 
 Optional:
 
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--inputs--forward--user--user--username--value_from--secret_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--inputs--forward--security--user--username--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--inputs--forward--user--user--username--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.inputs.forward.user.user.username.value_from.secret_key_ref`
+<a id="nestedatt--spec--inputs--forward--security--user--username--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.inputs.forward.security.user.username.value_from.secret_key_ref`
 
 Required:
 
@@ -310,7 +310,7 @@ Optional:
 - `custom_pattern_path` (String) Path to the file that includes custom grok patterns.
 - `estimate_current_event` (Boolean) If true, use Fluent::Eventnow(current time) as a timestamp when time_key is specified.
 - `expression` (String) Specifies the regular expression for matching logs. Regular expression also supports i and m suffix.
-- `grok` (Attributes List) Grok Sections (see [below for nested schema](#nestedatt--spec--inputs--http--transport--grok))
+- `grok` (Attributes List) Grok Sections (see [below for nested schema](#nestedatt--spec--inputs--http--parse--grok))
 - `grok_failure_key` (String) The key has grok failure reason.
 - `grok_pattern` (String) The pattern of grok.
 - `grok_pattern_series` (String) Specify grok pattern series set.
@@ -328,8 +328,8 @@ Optional:
 - `types` (String) Specify types for converting field into another, i.e: types user_id:integer,paid:bool,paid_usd_amount:float
 - `utc` (Boolean) If true, uses UTC.
 
-<a id="nestedatt--spec--inputs--http--transport--grok"></a>
-### Nested Schema for `spec.inputs.http.transport.grok`
+<a id="nestedatt--spec--inputs--http--parse--grok"></a>
+### Nested Schema for `spec.inputs.http.parse.grok`
 
 Optional:
 
@@ -435,7 +435,7 @@ Optional:
 - `custom_pattern_path` (String) Path to the file that includes custom grok patterns.
 - `estimate_current_event` (Boolean) If true, use Fluent::Eventnow(current time) as a timestamp when time_key is specified.
 - `expression` (String) Specifies the regular expression for matching logs. Regular expression also supports i and m suffix.
-- `grok` (Attributes List) Grok Sections (see [below for nested schema](#nestedatt--spec--inputs--tail--skip_refresh_on_startup--grok))
+- `grok` (Attributes List) Grok Sections (see [below for nested schema](#nestedatt--spec--inputs--tail--parse--grok))
 - `grok_failure_key` (String) The key has grok failure reason.
 - `grok_pattern` (String) The pattern of grok.
 - `grok_pattern_series` (String) Specify grok pattern series set.
@@ -453,8 +453,8 @@ Optional:
 - `types` (String) Specify types for converting field into another, i.e: types user_id:integer,paid:bool,paid_usd_amount:float
 - `utc` (Boolean) If true, uses UTC.
 
-<a id="nestedatt--spec--inputs--tail--skip_refresh_on_startup--grok"></a>
-### Nested Schema for `spec.inputs.tail.skip_refresh_on_startup.grok`
+<a id="nestedatt--spec--inputs--tail--parse--grok"></a>
+### Nested Schema for `spec.inputs.tail.parse.grok`
 
 Optional:
 
@@ -472,15 +472,15 @@ Optional:
 
 Required:
 
-- `rule` (Attributes) Grouping rules for log files. (see [below for nested schema](#nestedatt--spec--inputs--tail--skip_refresh_on_startup--rule))
+- `rule` (Attributes) Grouping rules for log files. (see [below for nested schema](#nestedatt--spec--inputs--tail--group--rule))
 
 Optional:
 
 - `pattern` (String) Specifies the regular expression for extracting metadata (namespace, podname) from log file path. Default value of the pattern regexp extracts information about namespace, podname, docker_id, container of the log (K8s specific).
 - `rate_period` (Number) Time period in which the group line limit is applied. in_tail resets the counter after every rate_period interval.
 
-<a id="nestedatt--spec--inputs--tail--skip_refresh_on_startup--rule"></a>
-### Nested Schema for `spec.inputs.tail.skip_refresh_on_startup.rule`
+<a id="nestedatt--spec--inputs--tail--group--rule"></a>
+### Nested Schema for `spec.inputs.tail.group.rule`
 
 Optional:
 

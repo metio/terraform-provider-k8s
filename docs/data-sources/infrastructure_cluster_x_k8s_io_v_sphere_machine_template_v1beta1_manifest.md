@@ -107,15 +107,15 @@ Optional:
 
 Required:
 
-- `devices` (Attributes List) Devices is the list of network devices used by the virtual machine. TODO(akutz) Make sure at least one network matches the ClusterSpec.CloudProviderConfiguration.Network.Name (see [below for nested schema](#nestedatt--spec--template--spec--thumbprint--devices))
+- `devices` (Attributes List) Devices is the list of network devices used by the virtual machine. TODO(akutz) Make sure at least one network matches the ClusterSpec.CloudProviderConfiguration.Network.Name (see [below for nested schema](#nestedatt--spec--template--spec--network--devices))
 
 Optional:
 
 - `preferred_api_server_cidr` (String) PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine  Deprecated: This field is going to be removed in a future release.
-- `routes` (Attributes List) Routes is a list of optional, static routes applied to the virtual machine. (see [below for nested schema](#nestedatt--spec--template--spec--thumbprint--routes))
+- `routes` (Attributes List) Routes is a list of optional, static routes applied to the virtual machine. (see [below for nested schema](#nestedatt--spec--template--spec--network--routes))
 
-<a id="nestedatt--spec--template--spec--thumbprint--devices"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices`
+<a id="nestedatt--spec--template--spec--network--devices"></a>
+### Nested Schema for `spec.template.spec.network.devices`
 
 Required:
 
@@ -123,24 +123,24 @@ Required:
 
 Optional:
 
-- `addresses_from_pools` (Attributes List) AddressesFromPools is a list of IPAddressPools that should be assigned to IPAddressClaims. The machine's cloud-init metadata will be populated with IPAddresses fulfilled by an IPAM provider. (see [below for nested schema](#nestedatt--spec--template--spec--thumbprint--devices--addresses_from_pools))
+- `addresses_from_pools` (Attributes List) AddressesFromPools is a list of IPAddressPools that should be assigned to IPAddressClaims. The machine's cloud-init metadata will be populated with IPAddresses fulfilled by an IPAM provider. (see [below for nested schema](#nestedatt--spec--template--spec--network--devices--addresses_from_pools))
 - `device_name` (String) DeviceName may be used to explicitly assign a name to the network device as it exists in the guest operating system.
 - `dhcp4` (Boolean) DHCP4 is a flag that indicates whether or not to use DHCP for IPv4 on this device. If true then IPAddrs should not contain any IPv4 addresses.
-- `dhcp4_overrides` (Attributes) DHCP4Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides) (see [below for nested schema](#nestedatt--spec--template--spec--thumbprint--devices--dhcp4_overrides))
+- `dhcp4_overrides` (Attributes) DHCP4Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides) (see [below for nested schema](#nestedatt--spec--template--spec--network--devices--dhcp4_overrides))
 - `dhcp6` (Boolean) DHCP6 is a flag that indicates whether or not to use DHCP for IPv6 on this device. If true then IPAddrs should not contain any IPv6 addresses.
-- `dhcp6_overrides` (Attributes) DHCP6Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides) (see [below for nested schema](#nestedatt--spec--template--spec--thumbprint--devices--dhcp6_overrides))
+- `dhcp6_overrides` (Attributes) DHCP6Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides) (see [below for nested schema](#nestedatt--spec--template--spec--network--devices--dhcp6_overrides))
 - `gateway4` (String) Gateway4 is the IPv4 gateway used by this device. Required when DHCP4 is false.
 - `gateway6` (String) Gateway4 is the IPv4 gateway used by this device.
 - `ip_addrs` (List of String) IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device. IP addresses must also specify the segment length in CIDR notation. Required when DHCP4, DHCP6 and SkipIPAllocation are false.
 - `mac_addr` (String) MACAddr is the MAC address used by this device. It is generally a good idea to omit this field and allow a MAC address to be generated. Please note that this value must use the VMware OUI to work with the in-tree vSphere cloud provider.
 - `mtu` (Number) MTU is the device’s Maximum Transmission Unit size in bytes.
 - `nameservers` (List of String) Nameservers is a list of IPv4 and/or IPv6 addresses used as DNS nameservers. Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).
-- `routes` (Attributes List) Routes is a list of optional, static routes applied to the device. (see [below for nested schema](#nestedatt--spec--template--spec--thumbprint--devices--routes))
+- `routes` (Attributes List) Routes is a list of optional, static routes applied to the device. (see [below for nested schema](#nestedatt--spec--template--spec--network--devices--routes))
 - `search_domains` (List of String) SearchDomains is a list of search domains used when resolving IP addresses with DNS.
 - `skip_ip_allocation` (Boolean) SkipIPAllocation allows the device to not have IP address or DHCP configured. This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI. If true, CAPV will not verify IP address allocation.
 
-<a id="nestedatt--spec--template--spec--thumbprint--devices--addresses_from_pools"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices.addresses_from_pools`
+<a id="nestedatt--spec--template--spec--network--devices--addresses_from_pools"></a>
+### Nested Schema for `spec.template.spec.network.devices.addresses_from_pools`
 
 Required:
 
@@ -152,8 +152,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--template--spec--thumbprint--devices--dhcp4_overrides"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices.dhcp4_overrides`
+<a id="nestedatt--spec--template--spec--network--devices--dhcp4_overrides"></a>
+### Nested Schema for `spec.template.spec.network.devices.dhcp4_overrides`
 
 Optional:
 
@@ -168,8 +168,8 @@ Optional:
 - `use_routes` (String) UseRoutes when 'true', the routes from the DHCP server will be installed in the routing table.
 
 
-<a id="nestedatt--spec--template--spec--thumbprint--devices--dhcp6_overrides"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices.dhcp6_overrides`
+<a id="nestedatt--spec--template--spec--network--devices--dhcp6_overrides"></a>
+### Nested Schema for `spec.template.spec.network.devices.dhcp6_overrides`
 
 Optional:
 
@@ -184,8 +184,8 @@ Optional:
 - `use_routes` (String) UseRoutes when 'true', the routes from the DHCP server will be installed in the routing table.
 
 
-<a id="nestedatt--spec--template--spec--thumbprint--devices--routes"></a>
-### Nested Schema for `spec.template.spec.thumbprint.devices.routes`
+<a id="nestedatt--spec--template--spec--network--devices--routes"></a>
+### Nested Schema for `spec.template.spec.network.devices.routes`
 
 Required:
 
@@ -195,8 +195,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--template--spec--thumbprint--routes"></a>
-### Nested Schema for `spec.template.spec.thumbprint.routes`
+<a id="nestedatt--spec--template--spec--network--routes"></a>
+### Nested Schema for `spec.template.spec.network.routes`
 
 Required:
 

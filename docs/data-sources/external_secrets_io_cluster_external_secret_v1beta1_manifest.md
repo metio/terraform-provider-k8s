@@ -172,12 +172,12 @@ Optional:
 
 - `conversion_strategy` (String) Used to define a conversion Strategy
 - `decoding_strategy` (String) Used to define a decoding Strategy
-- `name` (Attributes) Finds secrets based on the name. (see [below for nested schema](#nestedatt--spec--external_secret_spec--data_from--source_ref--name))
+- `name` (Attributes) Finds secrets based on the name. (see [below for nested schema](#nestedatt--spec--external_secret_spec--data_from--find--name))
 - `path` (String) A root path to start the find operations.
 - `tags` (Map of String) Find secrets based on tags.
 
-<a id="nestedatt--spec--external_secret_spec--data_from--source_ref--name"></a>
-### Nested Schema for `spec.external_secret_spec.data_from.source_ref.name`
+<a id="nestedatt--spec--external_secret_spec--data_from--find--name"></a>
+### Nested Schema for `spec.external_secret_spec.data_from.find.name`
 
 Optional:
 
@@ -190,11 +190,11 @@ Optional:
 
 Optional:
 
-- `regexp` (Attributes) Used to rewrite with regular expressions.The resulting key will be the output of a regexp.ReplaceAll operation. (see [below for nested schema](#nestedatt--spec--external_secret_spec--data_from--source_ref--regexp))
-- `transform` (Attributes) Used to apply string transformation on the secrets.The resulting key will be the output of the template applied by the operation. (see [below for nested schema](#nestedatt--spec--external_secret_spec--data_from--source_ref--transform))
+- `regexp` (Attributes) Used to rewrite with regular expressions.The resulting key will be the output of a regexp.ReplaceAll operation. (see [below for nested schema](#nestedatt--spec--external_secret_spec--data_from--rewrite--regexp))
+- `transform` (Attributes) Used to apply string transformation on the secrets.The resulting key will be the output of the template applied by the operation. (see [below for nested schema](#nestedatt--spec--external_secret_spec--data_from--rewrite--transform))
 
-<a id="nestedatt--spec--external_secret_spec--data_from--source_ref--regexp"></a>
-### Nested Schema for `spec.external_secret_spec.data_from.source_ref.regexp`
+<a id="nestedatt--spec--external_secret_spec--data_from--rewrite--regexp"></a>
+### Nested Schema for `spec.external_secret_spec.data_from.rewrite.regexp`
 
 Required:
 
@@ -202,8 +202,8 @@ Required:
 - `target` (String) Used to define the target pattern of a ReplaceAll operation.
 
 
-<a id="nestedatt--spec--external_secret_spec--data_from--source_ref--transform"></a>
-### Nested Schema for `spec.external_secret_spec.data_from.source_ref.transform`
+<a id="nestedatt--spec--external_secret_spec--data_from--rewrite--transform"></a>
+### Nested Schema for `spec.external_secret_spec.data_from.rewrite.transform`
 
 Required:
 
@@ -305,11 +305,11 @@ Optional:
 
 Required:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--external_secret_spec--target--template--template_from--target--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--external_secret_spec--target--template--template_from--config_map--items))
 - `name` (String)
 
-<a id="nestedatt--spec--external_secret_spec--target--template--template_from--target--items"></a>
-### Nested Schema for `spec.external_secret_spec.target.template.template_from.target.items`
+<a id="nestedatt--spec--external_secret_spec--target--template--template_from--config_map--items"></a>
+### Nested Schema for `spec.external_secret_spec.target.template.template_from.config_map.items`
 
 Required:
 
@@ -326,11 +326,11 @@ Optional:
 
 Required:
 
-- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--external_secret_spec--target--template--template_from--target--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--external_secret_spec--target--template--template_from--secret--items))
 - `name` (String)
 
-<a id="nestedatt--spec--external_secret_spec--target--template--template_from--target--items"></a>
-### Nested Schema for `spec.external_secret_spec.target.template.template_from.target.items`
+<a id="nestedatt--spec--external_secret_spec--target--template--template_from--secret--items"></a>
+### Nested Schema for `spec.external_secret_spec.target.template.template_from.secret.items`
 
 Required:
 

@@ -107,28 +107,28 @@ Optional:
 
 Optional:
 
-- `acm` (Attributes) A reference to an object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--acm))
-- `file` (Attributes) An object that represents a TLS validation context trust for a local file. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--file))
-- `sds` (Attributes) An object that represents a TLS validation context trust for a SDS certificate (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--sds))
+- `acm` (Attributes) A reference to an object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--acm))
+- `file` (Attributes) An object that represents a TLS validation context trust for a local file. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--file))
+- `sds` (Attributes) An object that represents a TLS validation context trust for a SDS certificate (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--sds))
 
-<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--acm"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.acm`
+<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--acm"></a>
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.trust.acm`
 
 Required:
 
 - `certificate_authority_ar_ns` (List of String) One or more ACM Amazon Resource Name (ARN)s.
 
 
-<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--file"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.file`
+<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--file"></a>
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.trust.file`
 
 Required:
 
 - `certificate_chain` (String) The certificate trust chain for a certificate stored on the file system of the virtual Gateway.
 
 
-<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--sds"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.sds`
+<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--sds"></a>
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.trust.sds`
 
 Required:
 
@@ -298,20 +298,20 @@ Optional:
 
 Optional:
 
-- `acm` (Attributes) A reference to an object that represents an AWS Certificate Manager (ACM) certificate. (see [below for nested schema](#nestedatt--spec--listeners--tls--validation--acm))
-- `file` (Attributes) A reference to an object that represents a local file certificate. (see [below for nested schema](#nestedatt--spec--listeners--tls--validation--file))
-- `sds` (Attributes) A reference to an object that represents an SDS issued certificate (see [below for nested schema](#nestedatt--spec--listeners--tls--validation--sds))
+- `acm` (Attributes) A reference to an object that represents an AWS Certificate Manager (ACM) certificate. (see [below for nested schema](#nestedatt--spec--listeners--tls--certificate--acm))
+- `file` (Attributes) A reference to an object that represents a local file certificate. (see [below for nested schema](#nestedatt--spec--listeners--tls--certificate--file))
+- `sds` (Attributes) A reference to an object that represents an SDS issued certificate (see [below for nested schema](#nestedatt--spec--listeners--tls--certificate--sds))
 
-<a id="nestedatt--spec--listeners--tls--validation--acm"></a>
-### Nested Schema for `spec.listeners.tls.validation.acm`
+<a id="nestedatt--spec--listeners--tls--certificate--acm"></a>
+### Nested Schema for `spec.listeners.tls.certificate.acm`
 
 Required:
 
 - `certificate_arn` (String) The Amazon Resource Name (ARN) for the certificate.
 
 
-<a id="nestedatt--spec--listeners--tls--validation--file"></a>
-### Nested Schema for `spec.listeners.tls.validation.file`
+<a id="nestedatt--spec--listeners--tls--certificate--file"></a>
+### Nested Schema for `spec.listeners.tls.certificate.file`
 
 Required:
 
@@ -319,8 +319,8 @@ Required:
 - `private_key` (String) The private key for a certificate stored on the file system of the virtual Gateway.
 
 
-<a id="nestedatt--spec--listeners--tls--validation--sds"></a>
-### Nested Schema for `spec.listeners.tls.validation.sds`
+<a id="nestedatt--spec--listeners--tls--certificate--sds"></a>
+### Nested Schema for `spec.listeners.tls.certificate.sds`
 
 Required:
 

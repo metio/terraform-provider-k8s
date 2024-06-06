@@ -108,28 +108,28 @@ Optional:
 
 Optional:
 
-- `acm` (Attributes) A reference to an object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--acm))
-- `file` (Attributes) An object that represents a TLS validation context trust for a local file. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--file))
-- `sds` (Attributes) An object that represents a TLS validation context trust for a SDS. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--sds))
+- `acm` (Attributes) A reference to an object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--acm))
+- `file` (Attributes) An object that represents a TLS validation context trust for a local file. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--file))
+- `sds` (Attributes) An object that represents a TLS validation context trust for a SDS. (see [below for nested schema](#nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--sds))
 
-<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--acm"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.acm`
+<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--acm"></a>
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.trust.acm`
 
 Required:
 
 - `certificate_authority_ar_ns` (List of String) One or more ACM Amazon Resource Name (ARN)s.
 
 
-<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--file"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.file`
+<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--file"></a>
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.trust.file`
 
 Required:
 
 - `certificate_chain` (String) The certificate trust chain for a certificate stored on the file system of the virtual node that the proxy is running on.
 
 
-<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--subject_alternative_names--sds"></a>
-### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.subject_alternative_names.sds`
+<a id="nestedatt--spec--backend_defaults--client_policy--tls--validation--trust--sds"></a>
+### Nested Schema for `spec.backend_defaults.client_policy.tls.validation.trust.sds`
 
 Required:
 
@@ -216,59 +216,59 @@ Optional:
 
 Optional:
 
-- `tls` (Attributes) A reference to an object that represents a Transport Layer Security (TLS) client policy. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls))
+- `tls` (Attributes) A reference to an object that represents a Transport Layer Security (TLS) client policy. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls))
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls`
 
 Required:
 
-- `validation` (Attributes) A reference to an object that represents a TLS validation context. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--validation))
+- `validation` (Attributes) A reference to an object that represents a TLS validation context. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls--validation))
 
 Optional:
 
-- `certificate` (Attributes) A reference to an object that represents TLS certificate. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--certificate))
+- `certificate` (Attributes) A reference to an object that represents TLS certificate. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls--certificate))
 - `enforce` (Boolean) Whether the policy is enforced. If unspecified, default settings from AWS API will be applied. Refer to AWS Docs for default settings.
 - `ports` (List of String) The range of ports that the policy is enforced for.
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--validation"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.validation`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls--validation"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls.validation`
 
 Required:
 
-- `trust` (Attributes) A reference to an object that represents a TLS validation context trust (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--trust))
+- `trust` (Attributes) A reference to an object that represents a TLS validation context trust (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls--validation--trust))
 
 Optional:
 
-- `subject_alternative_names` (Attributes) Possible Alternative names to consider (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names))
+- `subject_alternative_names` (Attributes) Possible Alternative names to consider (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls--validation--subject_alternative_names))
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--trust"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.trust`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls--validation--trust"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls.validation.trust`
 
 Optional:
 
-- `acm` (Attributes) A reference to an object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--acm))
-- `file` (Attributes) An object that represents a TLS validation context trust for a local file. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--file))
-- `sds` (Attributes) An object that represents a TLS validation context trust for a SDS. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--sds))
+- `acm` (Attributes) A reference to an object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls--validation--trust--acm))
+- `file` (Attributes) An object that represents a TLS validation context trust for a local file. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls--validation--trust--file))
+- `sds` (Attributes) An object that represents a TLS validation context trust for a SDS. (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls--validation--trust--sds))
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--acm"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.subject_alternative_names.acm`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls--validation--trust--acm"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls.validation.trust.acm`
 
 Required:
 
 - `certificate_authority_ar_ns` (List of String) One or more ACM Amazon Resource Name (ARN)s.
 
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--file"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.subject_alternative_names.file`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls--validation--trust--file"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls.validation.trust.file`
 
 Required:
 
 - `certificate_chain` (String) The certificate trust chain for a certificate stored on the file system of the virtual node that the proxy is running on.
 
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--sds"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.subject_alternative_names.sds`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls--validation--trust--sds"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls.validation.trust.sds`
 
 Required:
 
@@ -276,15 +276,15 @@ Required:
 
 
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.subject_alternative_names`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls--validation--subject_alternative_names"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls.validation.subject_alternative_names`
 
 Required:
 
-- `match` (Attributes) Match is a required field (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--match))
+- `match` (Attributes) Match is a required field (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls--validation--subject_alternative_names--match))
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--subject_alternative_names--match"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.subject_alternative_names.match`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls--validation--subject_alternative_names--match"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls.validation.subject_alternative_names.match`
 
 Required:
 
@@ -293,16 +293,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--certificate"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.certificate`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls--certificate"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls.certificate`
 
 Optional:
 
-- `file` (Attributes) An object that represents a TLS cert via a local file (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--file))
-- `sds` (Attributes) An object that represents a TLS cert via SDS entry (see [below for nested schema](#nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--sds))
+- `file` (Attributes) An object that represents a TLS cert via a local file (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls--certificate--file))
+- `sds` (Attributes) An object that represents a TLS cert via SDS entry (see [below for nested schema](#nestedatt--spec--backends--virtual_service--client_policy--tls--certificate--sds))
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--file"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.file`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls--certificate--file"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls.certificate.file`
 
 Required:
 
@@ -310,8 +310,8 @@ Required:
 - `private_key` (String) The private key for a certificate stored on the file system of the virtual node that the proxy is running on.
 
 
-<a id="nestedatt--spec--backends--virtual_service--virtual_service_ref--tls--ports--sds"></a>
-### Nested Schema for `spec.backends.virtual_service.virtual_service_ref.tls.ports.sds`
+<a id="nestedatt--spec--backends--virtual_service--client_policy--tls--certificate--sds"></a>
+### Nested Schema for `spec.backends.virtual_service.client_policy.tls.certificate.sds`
 
 Required:
 
@@ -467,11 +467,11 @@ Optional:
 
 Optional:
 
-- `idle` (Attributes) An object that represents idle timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--tcp--idle))
-- `per_request` (Attributes) An object that represents per request timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--tcp--per_request))
+- `idle` (Attributes) An object that represents idle timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--grpc--idle))
+- `per_request` (Attributes) An object that represents per request timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--grpc--per_request))
 
-<a id="nestedatt--spec--listeners--timeout--tcp--idle"></a>
-### Nested Schema for `spec.listeners.timeout.tcp.idle`
+<a id="nestedatt--spec--listeners--timeout--grpc--idle"></a>
+### Nested Schema for `spec.listeners.timeout.grpc.idle`
 
 Required:
 
@@ -479,8 +479,8 @@ Required:
 - `value` (Number) A number of time units.
 
 
-<a id="nestedatt--spec--listeners--timeout--tcp--per_request"></a>
-### Nested Schema for `spec.listeners.timeout.tcp.per_request`
+<a id="nestedatt--spec--listeners--timeout--grpc--per_request"></a>
+### Nested Schema for `spec.listeners.timeout.grpc.per_request`
 
 Required:
 
@@ -494,11 +494,11 @@ Required:
 
 Optional:
 
-- `idle` (Attributes) An object that represents idle timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--tcp--idle))
-- `per_request` (Attributes) An object that represents per request timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--tcp--per_request))
+- `idle` (Attributes) An object that represents idle timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--http--idle))
+- `per_request` (Attributes) An object that represents per request timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--http--per_request))
 
-<a id="nestedatt--spec--listeners--timeout--tcp--idle"></a>
-### Nested Schema for `spec.listeners.timeout.tcp.idle`
+<a id="nestedatt--spec--listeners--timeout--http--idle"></a>
+### Nested Schema for `spec.listeners.timeout.http.idle`
 
 Required:
 
@@ -506,8 +506,8 @@ Required:
 - `value` (Number) A number of time units.
 
 
-<a id="nestedatt--spec--listeners--timeout--tcp--per_request"></a>
-### Nested Schema for `spec.listeners.timeout.tcp.per_request`
+<a id="nestedatt--spec--listeners--timeout--http--per_request"></a>
+### Nested Schema for `spec.listeners.timeout.http.per_request`
 
 Required:
 
@@ -521,11 +521,11 @@ Required:
 
 Optional:
 
-- `idle` (Attributes) An object that represents idle timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--tcp--idle))
-- `per_request` (Attributes) An object that represents per request timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--tcp--per_request))
+- `idle` (Attributes) An object that represents idle timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--http2--idle))
+- `per_request` (Attributes) An object that represents per request timeout duration. (see [below for nested schema](#nestedatt--spec--listeners--timeout--http2--per_request))
 
-<a id="nestedatt--spec--listeners--timeout--tcp--idle"></a>
-### Nested Schema for `spec.listeners.timeout.tcp.idle`
+<a id="nestedatt--spec--listeners--timeout--http2--idle"></a>
+### Nested Schema for `spec.listeners.timeout.http2.idle`
 
 Required:
 
@@ -533,8 +533,8 @@ Required:
 - `value` (Number) A number of time units.
 
 
-<a id="nestedatt--spec--listeners--timeout--tcp--per_request"></a>
-### Nested Schema for `spec.listeners.timeout.tcp.per_request`
+<a id="nestedatt--spec--listeners--timeout--http2--per_request"></a>
+### Nested Schema for `spec.listeners.timeout.http2.per_request`
 
 Required:
 
@@ -578,20 +578,20 @@ Optional:
 
 Optional:
 
-- `acm` (Attributes) A reference to an object that represents an AWS Certificate Manager (ACM) certificate. (see [below for nested schema](#nestedatt--spec--listeners--tls--validation--acm))
-- `file` (Attributes) A reference to an object that represents a local file certificate. (see [below for nested schema](#nestedatt--spec--listeners--tls--validation--file))
-- `sds` (Attributes) A reference to an object that represents an SDS certificate. (see [below for nested schema](#nestedatt--spec--listeners--tls--validation--sds))
+- `acm` (Attributes) A reference to an object that represents an AWS Certificate Manager (ACM) certificate. (see [below for nested schema](#nestedatt--spec--listeners--tls--certificate--acm))
+- `file` (Attributes) A reference to an object that represents a local file certificate. (see [below for nested schema](#nestedatt--spec--listeners--tls--certificate--file))
+- `sds` (Attributes) A reference to an object that represents an SDS certificate. (see [below for nested schema](#nestedatt--spec--listeners--tls--certificate--sds))
 
-<a id="nestedatt--spec--listeners--tls--validation--acm"></a>
-### Nested Schema for `spec.listeners.tls.validation.acm`
+<a id="nestedatt--spec--listeners--tls--certificate--acm"></a>
+### Nested Schema for `spec.listeners.tls.certificate.acm`
 
 Required:
 
 - `certificate_arn` (String) The Amazon Resource Name (ARN) for the certificate.
 
 
-<a id="nestedatt--spec--listeners--tls--validation--file"></a>
-### Nested Schema for `spec.listeners.tls.validation.file`
+<a id="nestedatt--spec--listeners--tls--certificate--file"></a>
+### Nested Schema for `spec.listeners.tls.certificate.file`
 
 Required:
 
@@ -599,8 +599,8 @@ Required:
 - `private_key` (String) The private key for a certificate stored on the file system of the virtual node that the proxy is running on.
 
 
-<a id="nestedatt--spec--listeners--tls--validation--sds"></a>
-### Nested Schema for `spec.listeners.tls.validation.sds`
+<a id="nestedatt--spec--listeners--tls--certificate--sds"></a>
+### Nested Schema for `spec.listeners.tls.certificate.sds`
 
 Required:
 

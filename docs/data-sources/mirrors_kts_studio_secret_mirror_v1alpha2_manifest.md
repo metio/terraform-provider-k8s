@@ -83,21 +83,21 @@ Optional:
 
 Optional:
 
-- `approle` (Attributes) VaultAppRoleAuthSpec specifies approle-specific auth data (see [below for nested schema](#nestedatt--spec--destination--vault--path--approle))
-- `token` (Attributes) VaultTokenAuthSpec specifies token-specific auth data (see [below for nested schema](#nestedatt--spec--destination--vault--path--token))
+- `approle` (Attributes) VaultAppRoleAuthSpec specifies approle-specific auth data (see [below for nested schema](#nestedatt--spec--destination--vault--auth--approle))
+- `token` (Attributes) VaultTokenAuthSpec specifies token-specific auth data (see [below for nested schema](#nestedatt--spec--destination--vault--auth--token))
 
-<a id="nestedatt--spec--destination--vault--path--approle"></a>
-### Nested Schema for `spec.destination.vault.path.approle`
+<a id="nestedatt--spec--destination--vault--auth--approle"></a>
+### Nested Schema for `spec.destination.vault.auth.approle`
 
 Optional:
 
 - `app_role_path` (String) approle Vault prefix. Default: approle
 - `role_id_key` (String) A key in the SecretRef which contains role-id value. Default: role-id
 - `secret_id_key` (String) A key in the SecretRef which contains secret-id value. Default: secret-id
-- `secret_ref` (Attributes) Reference to a Secret containing role-id and secret-id (see [below for nested schema](#nestedatt--spec--destination--vault--path--approle--secret_ref))
+- `secret_ref` (Attributes) Reference to a Secret containing role-id and secret-id (see [below for nested schema](#nestedatt--spec--destination--vault--auth--approle--secret_ref))
 
-<a id="nestedatt--spec--destination--vault--path--approle--secret_ref"></a>
-### Nested Schema for `spec.destination.vault.path.approle.secret_ref`
+<a id="nestedatt--spec--destination--vault--auth--approle--secret_ref"></a>
+### Nested Schema for `spec.destination.vault.auth.approle.secret_ref`
 
 Optional:
 
@@ -106,16 +106,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--destination--vault--path--token"></a>
-### Nested Schema for `spec.destination.vault.path.token`
+<a id="nestedatt--spec--destination--vault--auth--token"></a>
+### Nested Schema for `spec.destination.vault.auth.token`
 
 Optional:
 
-- `secret_ref` (Attributes) Reference to a Secret containing token (see [below for nested schema](#nestedatt--spec--destination--vault--path--token--secret_ref))
+- `secret_ref` (Attributes) Reference to a Secret containing token (see [below for nested schema](#nestedatt--spec--destination--vault--auth--token--secret_ref))
 - `token_key` (String) A key in the SecretRef which contains token value. Default: token
 
-<a id="nestedatt--spec--destination--vault--path--token--secret_ref"></a>
-### Nested Schema for `spec.destination.vault.path.token.secret_ref`
+<a id="nestedatt--spec--destination--vault--auth--token--secret_ref"></a>
+### Nested Schema for `spec.destination.vault.auth.token.secret_ref`
 
 Optional:
 
@@ -150,21 +150,21 @@ Optional:
 
 Optional:
 
-- `approle` (Attributes) VaultAppRoleAuthSpec specifies approle-specific auth data (see [below for nested schema](#nestedatt--spec--source--vault--path--approle))
-- `token` (Attributes) VaultTokenAuthSpec specifies token-specific auth data (see [below for nested schema](#nestedatt--spec--source--vault--path--token))
+- `approle` (Attributes) VaultAppRoleAuthSpec specifies approle-specific auth data (see [below for nested schema](#nestedatt--spec--source--vault--auth--approle))
+- `token` (Attributes) VaultTokenAuthSpec specifies token-specific auth data (see [below for nested schema](#nestedatt--spec--source--vault--auth--token))
 
-<a id="nestedatt--spec--source--vault--path--approle"></a>
-### Nested Schema for `spec.source.vault.path.approle`
+<a id="nestedatt--spec--source--vault--auth--approle"></a>
+### Nested Schema for `spec.source.vault.auth.approle`
 
 Optional:
 
 - `app_role_path` (String) approle Vault prefix. Default: approle
 - `role_id_key` (String) A key in the SecretRef which contains role-id value. Default: role-id
 - `secret_id_key` (String) A key in the SecretRef which contains secret-id value. Default: secret-id
-- `secret_ref` (Attributes) Reference to a Secret containing role-id and secret-id (see [below for nested schema](#nestedatt--spec--source--vault--path--approle--secret_ref))
+- `secret_ref` (Attributes) Reference to a Secret containing role-id and secret-id (see [below for nested schema](#nestedatt--spec--source--vault--auth--approle--secret_ref))
 
-<a id="nestedatt--spec--source--vault--path--approle--secret_ref"></a>
-### Nested Schema for `spec.source.vault.path.approle.secret_ref`
+<a id="nestedatt--spec--source--vault--auth--approle--secret_ref"></a>
+### Nested Schema for `spec.source.vault.auth.approle.secret_ref`
 
 Optional:
 
@@ -173,16 +173,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--source--vault--path--token"></a>
-### Nested Schema for `spec.source.vault.path.token`
+<a id="nestedatt--spec--source--vault--auth--token"></a>
+### Nested Schema for `spec.source.vault.auth.token`
 
 Optional:
 
-- `secret_ref` (Attributes) Reference to a Secret containing token (see [below for nested schema](#nestedatt--spec--source--vault--path--token--secret_ref))
+- `secret_ref` (Attributes) Reference to a Secret containing token (see [below for nested schema](#nestedatt--spec--source--vault--auth--token--secret_ref))
 - `token_key` (String) A key in the SecretRef which contains token value. Default: token
 
-<a id="nestedatt--spec--source--vault--path--token--secret_ref"></a>
-### Nested Schema for `spec.source.vault.path.token.secret_ref`
+<a id="nestedatt--spec--source--vault--auth--token--secret_ref"></a>
+### Nested Schema for `spec.source.vault.auth.token.secret_ref`
 
 Optional:
 

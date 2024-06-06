@@ -104,12 +104,12 @@ Required:
 
 Optional:
 
-- `communities` (Attributes) Communities defines a set of community values advertised in the supported BGP Communities path attributes. If nil / not set, no BGP Communities path attribute will be advertised. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--peer_port--communities))
+- `communities` (Attributes) Communities defines a set of community values advertised in the supported BGP Communities path attributes. If nil / not set, no BGP Communities path attribute will be advertised. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--communities))
 - `local_preference` (Number) LocalPreference defines the preference value advertised in the BGP Local Preference path attribute. As Local Preference is only valid for iBGP peers, this value will be ignored for eBGP peers (no Local Preference path attribute will be advertised). If nil / not set, the default Local Preference of 100 will be advertised in the Local Preference path attribute for iBGP peers.
-- `selector` (Attributes) Selector selects a group of objects of the SelectorType resulting into routes that will be announced with the configured Attributes. If nil / not set, all objects of the SelectorType are selected. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--peer_port--selector))
+- `selector` (Attributes) Selector selects a group of objects of the SelectorType resulting into routes that will be announced with the configured Attributes. If nil / not set, all objects of the SelectorType are selected. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--selector))
 
-<a id="nestedatt--spec--virtual_routers--neighbors--peer_port--communities"></a>
-### Nested Schema for `spec.virtual_routers.neighbors.peer_port.communities`
+<a id="nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--communities"></a>
+### Nested Schema for `spec.virtual_routers.neighbors.advertised_path_attributes.communities`
 
 Optional:
 
@@ -118,16 +118,16 @@ Optional:
 - `well_known` (List of String) WellKnown holds a list 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as well-known string aliases to their numeric values.
 
 
-<a id="nestedatt--spec--virtual_routers--neighbors--peer_port--selector"></a>
-### Nested Schema for `spec.virtual_routers.neighbors.peer_port.selector`
+<a id="nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--selector"></a>
+### Nested Schema for `spec.virtual_routers.neighbors.advertised_path_attributes.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--peer_port--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--virtual_routers--neighbors--peer_port--selector--match_expressions"></a>
-### Nested Schema for `spec.virtual_routers.neighbors.peer_port.selector.match_expressions`
+<a id="nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--selector--match_expressions"></a>
+### Nested Schema for `spec.virtual_routers.neighbors.advertised_path_attributes.selector.match_expressions`
 
 Required:
 

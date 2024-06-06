@@ -160,20 +160,20 @@ Required:
 
 Optional:
 
-- `condition` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--unset--condition))
+- `condition` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--group_unset--condition))
 
-<a id="nestedatt--spec--filters--rewrite--unset--condition"></a>
-### Nested Schema for `spec.filters.rewrite.unset.condition`
+<a id="nestedatt--spec--filters--rewrite--group_unset--condition"></a>
+### Nested Schema for `spec.filters.rewrite.group_unset.condition`
 
 Optional:
 
 - `and` (Map of String)
 - `not` (Map of String)
 - `or` (Map of String)
-- `regexp` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--unset--condition--regexp))
+- `regexp` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--group_unset--condition--regexp))
 
-<a id="nestedatt--spec--filters--rewrite--unset--condition--regexp"></a>
-### Nested Schema for `spec.filters.rewrite.unset.condition.regexp`
+<a id="nestedatt--spec--filters--rewrite--group_unset--condition--regexp"></a>
+### Nested Schema for `spec.filters.rewrite.group_unset.condition.regexp`
 
 Required:
 
@@ -199,20 +199,20 @@ Required:
 
 Optional:
 
-- `condition` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--unset--condition))
+- `condition` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--rename--condition))
 
-<a id="nestedatt--spec--filters--rewrite--unset--condition"></a>
-### Nested Schema for `spec.filters.rewrite.unset.condition`
+<a id="nestedatt--spec--filters--rewrite--rename--condition"></a>
+### Nested Schema for `spec.filters.rewrite.rename.condition`
 
 Optional:
 
 - `and` (Map of String)
 - `not` (Map of String)
 - `or` (Map of String)
-- `regexp` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--unset--condition--regexp))
+- `regexp` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--rename--condition--regexp))
 
-<a id="nestedatt--spec--filters--rewrite--unset--condition--regexp"></a>
-### Nested Schema for `spec.filters.rewrite.unset.condition.regexp`
+<a id="nestedatt--spec--filters--rewrite--rename--condition--regexp"></a>
+### Nested Schema for `spec.filters.rewrite.rename.condition.regexp`
 
 Required:
 
@@ -238,20 +238,20 @@ Required:
 
 Optional:
 
-- `condition` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--unset--condition))
+- `condition` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--set--condition))
 
-<a id="nestedatt--spec--filters--rewrite--unset--condition"></a>
-### Nested Schema for `spec.filters.rewrite.unset.condition`
+<a id="nestedatt--spec--filters--rewrite--set--condition"></a>
+### Nested Schema for `spec.filters.rewrite.set.condition`
 
 Optional:
 
 - `and` (Map of String)
 - `not` (Map of String)
 - `or` (Map of String)
-- `regexp` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--unset--condition--regexp))
+- `regexp` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--set--condition--regexp))
 
-<a id="nestedatt--spec--filters--rewrite--unset--condition--regexp"></a>
-### Nested Schema for `spec.filters.rewrite.unset.condition.regexp`
+<a id="nestedatt--spec--filters--rewrite--set--condition--regexp"></a>
+### Nested Schema for `spec.filters.rewrite.set.condition.regexp`
 
 Required:
 
@@ -278,22 +278,22 @@ Required:
 
 Optional:
 
-- `condition` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--unset--condition))
+- `condition` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--subst--condition))
 - `flags` (List of String)
 - `type` (String)
 
-<a id="nestedatt--spec--filters--rewrite--unset--condition"></a>
-### Nested Schema for `spec.filters.rewrite.unset.condition`
+<a id="nestedatt--spec--filters--rewrite--subst--condition"></a>
+### Nested Schema for `spec.filters.rewrite.subst.condition`
 
 Optional:
 
 - `and` (Map of String)
 - `not` (Map of String)
 - `or` (Map of String)
-- `regexp` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--unset--condition--regexp))
+- `regexp` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--rewrite--subst--condition--regexp))
 
-<a id="nestedatt--spec--filters--rewrite--unset--condition--regexp"></a>
-### Nested Schema for `spec.filters.rewrite.unset.condition.regexp`
+<a id="nestedatt--spec--filters--rewrite--subst--condition--regexp"></a>
+### Nested Schema for `spec.filters.rewrite.subst.condition.regexp`
 
 Required:
 

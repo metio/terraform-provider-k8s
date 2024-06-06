@@ -115,14 +115,14 @@ Optional:
 
 Optional:
 
-- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--context--variable--data))
+- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--context--api_call--data))
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
-- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--context--variable--service))
+- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--context--api_call--service))
 - `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
 
-<a id="nestedatt--spec--rules--context--variable--data"></a>
-### Nested Schema for `spec.rules.context.variable.data`
+<a id="nestedatt--spec--rules--context--api_call--data"></a>
+### Nested Schema for `spec.rules.context.api_call.data`
 
 Required:
 
@@ -130,8 +130,8 @@ Required:
 - `value` (Map of String) Value is the data value
 
 
-<a id="nestedatt--spec--rules--context--variable--service"></a>
-### Nested Schema for `spec.rules.context.variable.service`
+<a id="nestedatt--spec--rules--context--api_call--service"></a>
+### Nested Schema for `spec.rules.context.api_call.service`
 
 Required:
 
@@ -173,11 +173,11 @@ Required:
 
 Optional:
 
-- `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--context--variable--image_registry_credentials))
+- `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--context--image_registry--image_registry_credentials))
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.
 
-<a id="nestedatt--spec--rules--context--variable--image_registry_credentials"></a>
-### Nested Schema for `spec.rules.context.variable.image_registry_credentials`
+<a id="nestedatt--spec--rules--context--image_registry--image_registry_credentials"></a>
+### Nested Schema for `spec.rules.context.image_registry.image_registry_credentials`
 
 Optional:
 
@@ -216,12 +216,12 @@ Optional:
 Optional:
 
 - `cluster_roles` (List of String) ClusterRoles is the list of cluster-wide role names for the user.
-- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources))
+- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--exclude--all--resources))
 - `roles` (List of String) Roles is the list of namespaced role names for the user.
-- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--subjects))
+- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--exclude--all--subjects))
 
-<a id="nestedatt--spec--rules--exclude--subjects--resources"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources`
+<a id="nestedatt--spec--rules--exclude--all--resources"></a>
+### Nested Schema for `spec.rules.exclude.all.resources`
 
 Optional:
 
@@ -229,21 +229,21 @@ Optional:
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
 - `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--all--resources--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--all--resources--selector))
 
-<a id="nestedatt--spec--rules--exclude--subjects--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.namespace_selector`
+<a id="nestedatt--spec--rules--exclude--all--resources--namespace_selector"></a>
+### Nested Schema for `spec.rules.exclude.all.resources.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--all--resources--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_expressions`
+<a id="nestedatt--spec--rules--exclude--all--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.exclude.all.resources.namespace_selector.match_expressions`
 
 Required:
 
@@ -256,16 +256,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--exclude--subjects--resources--selector"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector`
+<a id="nestedatt--spec--rules--exclude--all--resources--selector"></a>
+### Nested Schema for `spec.rules.exclude.all.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--all--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_expressions`
+<a id="nestedatt--spec--rules--exclude--all--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.exclude.all.resources.selector.match_expressions`
 
 Required:
 
@@ -279,8 +279,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--exclude--subjects--subjects"></a>
-### Nested Schema for `spec.rules.exclude.subjects.subjects`
+<a id="nestedatt--spec--rules--exclude--all--subjects"></a>
+### Nested Schema for `spec.rules.exclude.all.subjects`
 
 Required:
 
@@ -300,12 +300,12 @@ Optional:
 Optional:
 
 - `cluster_roles` (List of String) ClusterRoles is the list of cluster-wide role names for the user.
-- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources))
+- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources))
 - `roles` (List of String) Roles is the list of namespaced role names for the user.
-- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--subjects))
+- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--subjects))
 
-<a id="nestedatt--spec--rules--exclude--subjects--resources"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources`
+<a id="nestedatt--spec--rules--exclude--any--resources"></a>
+### Nested Schema for `spec.rules.exclude.any.resources`
 
 Optional:
 
@@ -313,21 +313,21 @@ Optional:
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
 - `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--selector))
 
-<a id="nestedatt--spec--rules--exclude--subjects--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.namespace_selector`
+<a id="nestedatt--spec--rules--exclude--any--resources--namespace_selector"></a>
+### Nested Schema for `spec.rules.exclude.any.resources.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_expressions`
+<a id="nestedatt--spec--rules--exclude--any--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.exclude.any.resources.namespace_selector.match_expressions`
 
 Required:
 
@@ -340,16 +340,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--exclude--subjects--resources--selector"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector`
+<a id="nestedatt--spec--rules--exclude--any--resources--selector"></a>
+### Nested Schema for `spec.rules.exclude.any.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--any--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--exclude--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.resources.selector.match_expressions`
+<a id="nestedatt--spec--rules--exclude--any--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.exclude.any.resources.selector.match_expressions`
 
 Required:
 
@@ -363,8 +363,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--exclude--subjects--subjects"></a>
-### Nested Schema for `spec.rules.exclude.subjects.subjects`
+<a id="nestedatt--spec--rules--exclude--any--subjects"></a>
+### Nested Schema for `spec.rules.exclude.any.subjects`
 
 Required:
 
@@ -387,21 +387,21 @@ Optional:
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
 - `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--resources--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--exclude--resources--selector))
 
-<a id="nestedatt--spec--rules--exclude--subjects--namespace_selector"></a>
-### Nested Schema for `spec.rules.exclude.subjects.namespace_selector`
+<a id="nestedatt--spec--rules--exclude--resources--namespace_selector"></a>
+### Nested Schema for `spec.rules.exclude.resources.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--resources--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--exclude--subjects--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.namespace_selector.match_expressions`
+<a id="nestedatt--spec--rules--exclude--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.exclude.resources.namespace_selector.match_expressions`
 
 Required:
 
@@ -414,16 +414,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--exclude--subjects--selector"></a>
-### Nested Schema for `spec.rules.exclude.subjects.selector`
+<a id="nestedatt--spec--rules--exclude--resources--selector"></a>
+### Nested Schema for `spec.rules.exclude.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--subjects--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--exclude--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--exclude--subjects--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.exclude.subjects.selector.match_expressions`
+<a id="nestedatt--spec--rules--exclude--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.exclude.resources.selector.match_expressions`
 
 Required:
 
@@ -484,18 +484,18 @@ Optional:
 
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `namespace` (String) Namespace specifies source resource namespace.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels'.wildcard characters are not supported. (see [below for nested schema](#nestedatt--spec--rules--generate--uid--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels'.wildcard characters are not supported. (see [below for nested schema](#nestedatt--spec--rules--generate--clone_list--selector))
 
-<a id="nestedatt--spec--rules--generate--uid--selector"></a>
-### Nested Schema for `spec.rules.generate.uid.selector`
+<a id="nestedatt--spec--rules--generate--clone_list--selector"></a>
+### Nested Schema for `spec.rules.generate.clone_list.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--generate--uid--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--generate--clone_list--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--generate--uid--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.generate.uid.selector.match_expressions`
+<a id="nestedatt--spec--rules--generate--clone_list--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.generate.clone_list.selector.match_expressions`
 
 Required:
 
@@ -528,12 +528,12 @@ Optional:
 Optional:
 
 - `cluster_roles` (List of String) ClusterRoles is the list of cluster-wide role names for the user.
-- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources))
+- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources))
 - `roles` (List of String) Roles is the list of namespaced role names for the user.
-- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--subjects))
+- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--all--subjects))
 
-<a id="nestedatt--spec--rules--match--subjects--resources"></a>
-### Nested Schema for `spec.rules.match.subjects.resources`
+<a id="nestedatt--spec--rules--match--all--resources"></a>
+### Nested Schema for `spec.rules.match.all.resources`
 
 Optional:
 
@@ -541,21 +541,21 @@ Optional:
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
 - `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--selector))
 
-<a id="nestedatt--spec--rules--match--subjects--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.namespace_selector`
+<a id="nestedatt--spec--rules--match--all--resources--namespace_selector"></a>
+### Nested Schema for `spec.rules.match.all.resources.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--match--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector.match_expressions`
+<a id="nestedatt--spec--rules--match--all--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.all.resources.namespace_selector.match_expressions`
 
 Required:
 
@@ -568,16 +568,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--match--subjects--resources--selector"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector`
+<a id="nestedatt--spec--rules--match--all--resources--selector"></a>
+### Nested Schema for `spec.rules.match.all.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--match--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector.match_expressions`
+<a id="nestedatt--spec--rules--match--all--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.all.resources.selector.match_expressions`
 
 Required:
 
@@ -591,8 +591,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--match--subjects--subjects"></a>
-### Nested Schema for `spec.rules.match.subjects.subjects`
+<a id="nestedatt--spec--rules--match--all--subjects"></a>
+### Nested Schema for `spec.rules.match.all.subjects`
 
 Required:
 
@@ -612,12 +612,12 @@ Optional:
 Optional:
 
 - `cluster_roles` (List of String) ClusterRoles is the list of cluster-wide role names for the user.
-- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources))
+- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources))
 - `roles` (List of String) Roles is the list of namespaced role names for the user.
-- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--subjects))
+- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--any--subjects))
 
-<a id="nestedatt--spec--rules--match--subjects--resources"></a>
-### Nested Schema for `spec.rules.match.subjects.resources`
+<a id="nestedatt--spec--rules--match--any--resources"></a>
+### Nested Schema for `spec.rules.match.any.resources`
 
 Optional:
 
@@ -625,21 +625,21 @@ Optional:
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
 - `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector))
 
-<a id="nestedatt--spec--rules--match--subjects--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.namespace_selector`
+<a id="nestedatt--spec--rules--match--any--resources--namespace_selector"></a>
+### Nested Schema for `spec.rules.match.any.resources.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--match--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector.match_expressions`
+<a id="nestedatt--spec--rules--match--any--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.any.resources.namespace_selector.match_expressions`
 
 Required:
 
@@ -652,16 +652,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--match--subjects--resources--selector"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector`
+<a id="nestedatt--spec--rules--match--any--resources--selector"></a>
+### Nested Schema for `spec.rules.match.any.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--resources--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--match--subjects--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.resources.selector.match_expressions`
+<a id="nestedatt--spec--rules--match--any--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.any.resources.selector.match_expressions`
 
 Required:
 
@@ -675,8 +675,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--match--subjects--subjects"></a>
-### Nested Schema for `spec.rules.match.subjects.subjects`
+<a id="nestedatt--spec--rules--match--any--subjects"></a>
+### Nested Schema for `spec.rules.match.any.subjects`
 
 Required:
 
@@ -699,21 +699,21 @@ Optional:
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
 - `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--resources--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
 - `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--resources--selector))
 
-<a id="nestedatt--spec--rules--match--subjects--namespace_selector"></a>
-### Nested Schema for `spec.rules.match.subjects.namespace_selector`
+<a id="nestedatt--spec--rules--match--resources--namespace_selector"></a>
+### Nested Schema for `spec.rules.match.resources.namespace_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--namespace_selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--resources--namespace_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--match--subjects--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.namespace_selector.match_expressions`
+<a id="nestedatt--spec--rules--match--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.resources.namespace_selector.match_expressions`
 
 Required:
 
@@ -726,16 +726,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--match--subjects--selector"></a>
-### Nested Schema for `spec.rules.match.subjects.selector`
+<a id="nestedatt--spec--rules--match--resources--selector"></a>
+### Nested Schema for `spec.rules.match.resources.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--subjects--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--resources--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--match--subjects--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.subjects.selector.match_expressions`
+<a id="nestedatt--spec--rules--match--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.resources.selector.match_expressions`
 
 Required:
 
@@ -779,39 +779,39 @@ Optional:
 
 Optional:
 
-- `context` (Attributes List) Context defines variables and data sources that can be used during rule execution. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context))
+- `context` (Attributes List) Context defines variables and data sources that can be used during rule execution. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context))
 - `foreach` (Map of String) Foreach declares a nested foreach iterator
 - `list` (String) List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.
 - `order` (String) Order defines the iteration order on the list.Can be Ascending to iterate from first to last element or Descending to iterate in from last to first element.
 - `patch_strategic_merge` (Map of String) PatchStrategicMerge is a strategic merge patch used to modify resources.See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.
 - `patches_json6902` (String) PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources.See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.
-- `preconditions` (Attributes) AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--preconditions))
+- `preconditions` (Attributes) AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--preconditions))
 
-<a id="nestedatt--spec--rules--mutate--targets--context"></a>
-### Nested Schema for `spec.rules.mutate.targets.context`
+<a id="nestedatt--spec--rules--mutate--foreach--context"></a>
+### Nested Schema for `spec.rules.mutate.foreach.context`
 
 Optional:
 
-- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call))
-- `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--config_map))
-- `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--global_reference))
-- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--image_registry))
+- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--api_call))
+- `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--config_map))
+- `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--global_reference))
+- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--image_registry))
 - `name` (String) Name is the variable name.
-- `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable))
+- `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--variable))
 
-<a id="nestedatt--spec--rules--mutate--targets--context--api_call"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.api_call`
+<a id="nestedatt--spec--rules--mutate--foreach--context--api_call"></a>
+### Nested Schema for `spec.rules.mutate.foreach.context.api_call`
 
 Optional:
 
-- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--data))
+- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--api_call--data))
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
-- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--service))
+- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--api_call--service))
 - `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
 
-<a id="nestedatt--spec--rules--mutate--targets--context--variable--data"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.data`
+<a id="nestedatt--spec--rules--mutate--foreach--context--api_call--data"></a>
+### Nested Schema for `spec.rules.mutate.foreach.context.api_call.data`
 
 Required:
 
@@ -819,8 +819,8 @@ Required:
 - `value` (Map of String) Value is the data value
 
 
-<a id="nestedatt--spec--rules--mutate--targets--context--variable--service"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.service`
+<a id="nestedatt--spec--rules--mutate--foreach--context--api_call--service"></a>
+### Nested Schema for `spec.rules.mutate.foreach.context.api_call.service`
 
 Required:
 
@@ -832,8 +832,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--mutate--targets--context--config_map"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.config_map`
+<a id="nestedatt--spec--rules--mutate--foreach--context--config_map"></a>
+### Nested Schema for `spec.rules.mutate.foreach.context.config_map`
 
 Required:
 
@@ -844,8 +844,8 @@ Optional:
 - `namespace` (String) Namespace is the ConfigMap namespace.
 
 
-<a id="nestedatt--spec--rules--mutate--targets--context--global_reference"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.global_reference`
+<a id="nestedatt--spec--rules--mutate--foreach--context--global_reference"></a>
+### Nested Schema for `spec.rules.mutate.foreach.context.global_reference`
 
 Optional:
 
@@ -853,8 +853,8 @@ Optional:
 - `name` (String) Name of the global context entry
 
 
-<a id="nestedatt--spec--rules--mutate--targets--context--image_registry"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.image_registry`
+<a id="nestedatt--spec--rules--mutate--foreach--context--image_registry"></a>
+### Nested Schema for `spec.rules.mutate.foreach.context.image_registry`
 
 Required:
 
@@ -862,11 +862,11 @@ Required:
 
 Optional:
 
-- `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--image_registry_credentials))
+- `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--image_registry--image_registry_credentials))
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.
 
-<a id="nestedatt--spec--rules--mutate--targets--context--variable--image_registry_credentials"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.image_registry_credentials`
+<a id="nestedatt--spec--rules--mutate--foreach--context--image_registry--image_registry_credentials"></a>
+### Nested Schema for `spec.rules.mutate.foreach.context.image_registry.image_registry_credentials`
 
 Optional:
 
@@ -876,8 +876,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--mutate--targets--context--variable"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable`
+<a id="nestedatt--spec--rules--mutate--foreach--context--variable"></a>
+### Nested Schema for `spec.rules.mutate.foreach.context.variable`
 
 Optional:
 
@@ -887,16 +887,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--mutate--targets--preconditions"></a>
-### Nested Schema for `spec.rules.mutate.targets.preconditions`
+<a id="nestedatt--spec--rules--mutate--foreach--preconditions"></a>
+### Nested Schema for `spec.rules.mutate.foreach.preconditions`
 
 Optional:
 
-- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--preconditions--all))
-- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--preconditions--any))
+- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--preconditions--all))
+- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--preconditions--any))
 
-<a id="nestedatt--spec--rules--mutate--targets--preconditions--all"></a>
-### Nested Schema for `spec.rules.mutate.targets.preconditions.all`
+<a id="nestedatt--spec--rules--mutate--foreach--preconditions--all"></a>
+### Nested Schema for `spec.rules.mutate.foreach.preconditions.all`
 
 Optional:
 
@@ -906,8 +906,8 @@ Optional:
 - `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
-<a id="nestedatt--spec--rules--mutate--targets--preconditions--any"></a>
-### Nested Schema for `spec.rules.mutate.targets.preconditions.any`
+<a id="nestedatt--spec--rules--mutate--foreach--preconditions--any"></a>
+### Nested Schema for `spec.rules.mutate.foreach.preconditions.any`
 
 Optional:
 
@@ -949,14 +949,14 @@ Optional:
 
 Optional:
 
-- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--data))
+- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call--data))
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
-- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--service))
+- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call--service))
 - `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
 
-<a id="nestedatt--spec--rules--mutate--targets--context--variable--data"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.data`
+<a id="nestedatt--spec--rules--mutate--targets--context--api_call--data"></a>
+### Nested Schema for `spec.rules.mutate.targets.context.api_call.data`
 
 Required:
 
@@ -964,8 +964,8 @@ Required:
 - `value` (Map of String) Value is the data value
 
 
-<a id="nestedatt--spec--rules--mutate--targets--context--variable--service"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.service`
+<a id="nestedatt--spec--rules--mutate--targets--context--api_call--service"></a>
+### Nested Schema for `spec.rules.mutate.targets.context.api_call.service`
 
 Required:
 
@@ -1007,11 +1007,11 @@ Required:
 
 Optional:
 
-- `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable--image_registry_credentials))
+- `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--image_registry--image_registry_credentials))
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.
 
-<a id="nestedatt--spec--rules--mutate--targets--context--variable--image_registry_credentials"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.variable.image_registry_credentials`
+<a id="nestedatt--spec--rules--mutate--targets--context--image_registry--image_registry_credentials"></a>
+### Nested Schema for `spec.rules.mutate.targets.context.image_registry.image_registry_credentials`
 
 Optional:
 
@@ -1053,14 +1053,14 @@ Optional:
 
 Optional:
 
-- `audit_annotations` (Attributes List) AuditAnnotations contains CEL expressions which are used to produce audit annotations for the audit event of the API request. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--audit_annotations))
-- `expressions` (Attributes List) Expressions is a list of CELExpression types. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--expressions))
-- `param_kind` (Attributes) ParamKind is a tuple of Group Kind and Version. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--param_kind))
-- `param_ref` (Attributes) ParamRef references a parameter resource. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--param_ref))
-- `variables` (Attributes List) Variables contain definitions of variables that can be used in composition of other expressions.Each variable is defined as a named CEL expression.The variables defined here will be available under 'variables' in other expressions of the policy. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--variables))
+- `audit_annotations` (Attributes List) AuditAnnotations contains CEL expressions which are used to produce audit annotations for the audit event of the API request. (see [below for nested schema](#nestedatt--spec--rules--validate--cel--audit_annotations))
+- `expressions` (Attributes List) Expressions is a list of CELExpression types. (see [below for nested schema](#nestedatt--spec--rules--validate--cel--expressions))
+- `param_kind` (Attributes) ParamKind is a tuple of Group Kind and Version. (see [below for nested schema](#nestedatt--spec--rules--validate--cel--param_kind))
+- `param_ref` (Attributes) ParamRef references a parameter resource. (see [below for nested schema](#nestedatt--spec--rules--validate--cel--param_ref))
+- `variables` (Attributes List) Variables contain definitions of variables that can be used in composition of other expressions.Each variable is defined as a named CEL expression.The variables defined here will be available under 'variables' in other expressions of the policy. (see [below for nested schema](#nestedatt--spec--rules--validate--cel--variables))
 
-<a id="nestedatt--spec--rules--validate--pod_security--audit_annotations"></a>
-### Nested Schema for `spec.rules.validate.pod_security.audit_annotations`
+<a id="nestedatt--spec--rules--validate--cel--audit_annotations"></a>
+### Nested Schema for `spec.rules.validate.cel.audit_annotations`
 
 Required:
 
@@ -1068,8 +1068,8 @@ Required:
 - `value_expression` (String) valueExpression represents the expression which is evaluated by CEL toproduce an audit annotation value. The expression must evaluate to eithera string or null value. If the expression evaluates to a string, theaudit annotation is included with the string value. If the expressionevaluates to null or empty string the audit annotation will be omitted.The valueExpression may be no longer than 5kb in length.If the result of the valueExpression is more than 10kb in length, itwill be truncated to 10kb.If multiple ValidatingAdmissionPolicyBinding resources match anAPI request, then the valueExpression will be evaluated foreach binding. All unique values produced by the valueExpressionswill be joined together in a comma-separated list.Required.
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--expressions"></a>
-### Nested Schema for `spec.rules.validate.pod_security.expressions`
+<a id="nestedatt--spec--rules--validate--cel--expressions"></a>
+### Nested Schema for `spec.rules.validate.cel.expressions`
 
 Required:
 
@@ -1082,8 +1082,8 @@ Optional:
 - `reason` (String) Reason represents a machine-readable description of why this validation failed.If this is the first validation in the list to fail, this reason, as well as thecorresponding HTTP response code, are used in theHTTP response to the client.The currently supported reasons are: 'Unauthorized', 'Forbidden', 'Invalid', 'RequestEntityTooLarge'.If not set, StatusReasonInvalid is used in the response to the client.
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--param_kind"></a>
-### Nested Schema for `spec.rules.validate.pod_security.param_kind`
+<a id="nestedatt--spec--rules--validate--cel--param_kind"></a>
+### Nested Schema for `spec.rules.validate.cel.param_kind`
 
 Optional:
 
@@ -1091,26 +1091,26 @@ Optional:
 - `kind` (String) Kind is the API kind the resources belong to.Required.
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--param_ref"></a>
-### Nested Schema for `spec.rules.validate.pod_security.param_ref`
+<a id="nestedatt--spec--rules--validate--cel--param_ref"></a>
+### Nested Schema for `spec.rules.validate.cel.param_ref`
 
 Optional:
 
 - `name` (String) 'name' is the name of the resource being referenced.'name' and 'selector' are mutually exclusive properties. If one is set,the other must be unset.
 - `namespace` (String) namespace is the namespace of the referenced resource. Allows limitingthe search for params to a specific namespace. Applies to both 'name' and'selector' fields.A per-namespace parameter may be used by specifying a namespace-scoped'paramKind' in the policy and leaving this field empty.- If 'paramKind' is cluster-scoped, this field MUST be unset. Setting thisfield results in a configuration error.- If 'paramKind' is namespace-scoped, the namespace of the object beingevaluated for admission will be used when this field is left unset. Takecare that if this is left empty the binding must not match any cluster-scopedresources, which will result in an error.
 - `parameter_not_found_action` (String) 'parameterNotFoundAction' controls the behavior of the binding when the resourceexists, and name or selector is valid, but there are no parametersmatched by the binding. If the value is set to 'Allow', then nomatched parameters will be treated as successful validation by the binding.If set to 'Deny', then no matched parameters will be subject to the'failurePolicy' of the policy.Allowed values are 'Allow' or 'Deny'Default to 'Deny'
-- `selector` (Attributes) selector can be used to match multiple param objects based on their labels.Supply selector: {} to match all resources of the ParamKind.If multiple params are found, they are all evaluated with the policy expressionsand the results are ANDed together.One of 'name' or 'selector' must be set, but 'name' and 'selector' aremutually exclusive properties. If one is set, the other must be unset. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--param_ref--selector))
+- `selector` (Attributes) selector can be used to match multiple param objects based on their labels.Supply selector: {} to match all resources of the ParamKind.If multiple params are found, they are all evaluated with the policy expressionsand the results are ANDed together.One of 'name' or 'selector' must be set, but 'name' and 'selector' aremutually exclusive properties. If one is set, the other must be unset. (see [below for nested schema](#nestedatt--spec--rules--validate--cel--param_ref--selector))
 
-<a id="nestedatt--spec--rules--validate--pod_security--param_ref--selector"></a>
-### Nested Schema for `spec.rules.validate.pod_security.param_ref.selector`
+<a id="nestedatt--spec--rules--validate--cel--param_ref--selector"></a>
+### Nested Schema for `spec.rules.validate.cel.param_ref.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--param_ref--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--validate--cel--param_ref--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--validate--pod_security--param_ref--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.validate.pod_security.param_ref.selector.match_expressions`
+<a id="nestedatt--spec--rules--validate--cel--param_ref--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.validate.cel.param_ref.selector.match_expressions`
 
 Required:
 
@@ -1124,8 +1124,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--variables"></a>
-### Nested Schema for `spec.rules.validate.pod_security.variables`
+<a id="nestedatt--spec--rules--validate--cel--variables"></a>
+### Nested Schema for `spec.rules.validate.cel.variables`
 
 Required:
 
@@ -1148,39 +1148,39 @@ Optional:
 Optional:
 
 - `any_pattern` (Map of String) AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.
-- `context` (Attributes List) Context defines variables and data sources that can be used during rule execution. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context))
-- `deny` (Attributes) Deny defines conditions used to pass or fail a validation rule. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--deny))
+- `context` (Attributes List) Context defines variables and data sources that can be used during rule execution. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context))
+- `deny` (Attributes) Deny defines conditions used to pass or fail a validation rule. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--deny))
 - `element_scope` (Boolean) ElementScope specifies whether to use the current list element as the scope for validation. Defaults to 'true' if not specified.When set to 'false', 'request.object' is used as the validation scope within the foreachblock to allow referencing other elements in the subtree.
 - `foreach` (Map of String) Foreach declares a nested foreach iterator
 - `list` (String) List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.
 - `pattern` (Map of String) Pattern specifies an overlay-style pattern used to check resources.
-- `preconditions` (Attributes) AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--preconditions))
+- `preconditions` (Attributes) AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--preconditions))
 
-<a id="nestedatt--spec--rules--validate--pod_security--context"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context`
+<a id="nestedatt--spec--rules--validate--foreach--context"></a>
+### Nested Schema for `spec.rules.validate.foreach.context`
 
 Optional:
 
-- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--api_call))
-- `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--config_map))
-- `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--global_reference))
-- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--image_registry))
+- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--api_call))
+- `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--config_map))
+- `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--global_reference))
+- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--image_registry))
 - `name` (String) Name is the variable name.
-- `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable))
+- `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--variable))
 
-<a id="nestedatt--spec--rules--validate--pod_security--context--api_call"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.api_call`
+<a id="nestedatt--spec--rules--validate--foreach--context--api_call"></a>
+### Nested Schema for `spec.rules.validate.foreach.context.api_call`
 
 Optional:
 
-- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable--data))
+- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--api_call--data))
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
-- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable--service))
+- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--api_call--service))
 - `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
 
-<a id="nestedatt--spec--rules--validate--pod_security--context--variable--data"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.variable.data`
+<a id="nestedatt--spec--rules--validate--foreach--context--api_call--data"></a>
+### Nested Schema for `spec.rules.validate.foreach.context.api_call.data`
 
 Required:
 
@@ -1188,8 +1188,8 @@ Required:
 - `value` (Map of String) Value is the data value
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--context--variable--service"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.variable.service`
+<a id="nestedatt--spec--rules--validate--foreach--context--api_call--service"></a>
+### Nested Schema for `spec.rules.validate.foreach.context.api_call.service`
 
 Required:
 
@@ -1201,8 +1201,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--context--config_map"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.config_map`
+<a id="nestedatt--spec--rules--validate--foreach--context--config_map"></a>
+### Nested Schema for `spec.rules.validate.foreach.context.config_map`
 
 Required:
 
@@ -1213,8 +1213,8 @@ Optional:
 - `namespace` (String) Namespace is the ConfigMap namespace.
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--context--global_reference"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.global_reference`
+<a id="nestedatt--spec--rules--validate--foreach--context--global_reference"></a>
+### Nested Schema for `spec.rules.validate.foreach.context.global_reference`
 
 Optional:
 
@@ -1222,8 +1222,8 @@ Optional:
 - `name` (String) Name of the global context entry
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--context--image_registry"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.image_registry`
+<a id="nestedatt--spec--rules--validate--foreach--context--image_registry"></a>
+### Nested Schema for `spec.rules.validate.foreach.context.image_registry`
 
 Required:
 
@@ -1231,11 +1231,11 @@ Required:
 
 Optional:
 
-- `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--context--variable--image_registry_credentials))
+- `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--image_registry--image_registry_credentials))
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.
 
-<a id="nestedatt--spec--rules--validate--pod_security--context--variable--image_registry_credentials"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.variable.image_registry_credentials`
+<a id="nestedatt--spec--rules--validate--foreach--context--image_registry--image_registry_credentials"></a>
+### Nested Schema for `spec.rules.validate.foreach.context.image_registry.image_registry_credentials`
 
 Optional:
 
@@ -1245,8 +1245,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--context--variable"></a>
-### Nested Schema for `spec.rules.validate.pod_security.context.variable`
+<a id="nestedatt--spec--rules--validate--foreach--context--variable"></a>
+### Nested Schema for `spec.rules.validate.foreach.context.variable`
 
 Optional:
 
@@ -1256,24 +1256,24 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--deny"></a>
-### Nested Schema for `spec.rules.validate.pod_security.deny`
+<a id="nestedatt--spec--rules--validate--foreach--deny"></a>
+### Nested Schema for `spec.rules.validate.foreach.deny`
 
 Optional:
 
 - `conditions` (Map of String) Multiple conditions can be declared under an 'any' or 'all' statement. A direct listof conditions (without 'any' or 'all' statements) is also supported for backwards compatibilitybut will be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/validate/#deny-rules
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--preconditions"></a>
-### Nested Schema for `spec.rules.validate.pod_security.preconditions`
+<a id="nestedatt--spec--rules--validate--foreach--preconditions"></a>
+### Nested Schema for `spec.rules.validate.foreach.preconditions`
 
 Optional:
 
-- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--preconditions--all))
-- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--preconditions--any))
+- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--preconditions--all))
+- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--preconditions--any))
 
-<a id="nestedatt--spec--rules--validate--pod_security--preconditions--all"></a>
-### Nested Schema for `spec.rules.validate.pod_security.preconditions.all`
+<a id="nestedatt--spec--rules--validate--foreach--preconditions--all"></a>
+### Nested Schema for `spec.rules.validate.foreach.preconditions.all`
 
 Optional:
 
@@ -1283,8 +1283,8 @@ Optional:
 - `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--preconditions--any"></a>
-### Nested Schema for `spec.rules.validate.pod_security.preconditions.any`
+<a id="nestedatt--spec--rules--validate--foreach--preconditions--any"></a>
+### Nested Schema for `spec.rules.validate.foreach.preconditions.any`
 
 Optional:
 
@@ -1302,43 +1302,43 @@ Optional:
 Optional:
 
 - `annotation_domain` (String) AnnotationDomain is custom domain of annotation for message and signature. Default is 'cosign.sigstore.dev'.
-- `attestors` (Attributes List) Attestors specified the required attestors (i.e. authorities) (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors))
-- `dry_run` (Attributes) DryRun configuration (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--dry_run))
-- `ignore_fields` (Attributes List) Fields which will be ignored while comparing manifests. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--ignore_fields))
+- `attestors` (Attributes List) Attestors specified the required attestors (i.e. authorities) (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors))
+- `dry_run` (Attributes) DryRun configuration (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--dry_run))
+- `ignore_fields` (Attributes List) Fields which will be ignored while comparing manifests. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--ignore_fields))
 - `repository` (String) Repository is an optional alternate OCI repository to use for resource bundle reference.The repository can be overridden per Attestor or Attestation.
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors`
+<a id="nestedatt--spec--rules--validate--manifests--attestors"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors`
 
 Optional:
 
 - `count` (Number) Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.
-- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries))
+- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries))
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries`
 
 Optional:
 
 - `annotations` (Map of String) Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.
 - `attestor` (Map of String) Attestor is a nested set of Attestor used to specify a more complex set of match authorities.
-- `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--certificates))
-- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--keyless))
-- `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--keys))
+- `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--certificates))
+- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keyless))
+- `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keys))
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--certificates"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.certificates`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries--certificates"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries.certificates`
 
 Optional:
 
 - `cert` (String) Cert is an optional PEM-encoded public certificate.
 - `cert_chain` (String) CertChain is an optional PEM encoded set of certificates used to verify.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--certificates--ctlog))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--certificates--rekor))
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.ctlog`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries--certificates--ctlog"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries.certificates.ctlog`
 
 Optional:
 
@@ -1347,8 +1347,8 @@ Optional:
 - `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.rekor`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries--certificates--rekor"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries.certificates.rekor`
 
 Optional:
 
@@ -1358,20 +1358,20 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--keyless"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.keyless`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries--keyless"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries.keyless`
 
 Optional:
 
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keyless--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keyless--rekor))
 - `roots` (String) Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.ctlog`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries--keyless--ctlog"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries.keyless.ctlog`
 
 Optional:
 
@@ -1380,8 +1380,8 @@ Optional:
 - `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.rekor`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries--keyless--rekor"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries.keyless.rekor`
 
 Optional:
 
@@ -1391,20 +1391,20 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--keys"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.keys`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries--keys"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries.keys`
 
 Optional:
 
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keys--ctlog))
 - `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md
 - `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
-- `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--secret))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keys--rekor))
+- `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keys--secret))
 - `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.ctlog`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries--keys--ctlog"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries.keys.ctlog`
 
 Optional:
 
@@ -1413,8 +1413,8 @@ Optional:
 - `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.rekor`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries--keys--rekor"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries.keys.rekor`
 
 Optional:
 
@@ -1423,8 +1423,8 @@ Optional:
 - `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--secret"></a>
-### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.secret`
+<a id="nestedatt--spec--rules--validate--manifests--attestors--entries--keys--secret"></a>
+### Nested Schema for `spec.rules.validate.manifests.attestors.entries.keys.secret`
 
 Required:
 
@@ -1435,8 +1435,8 @@ Required:
 
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--dry_run"></a>
-### Nested Schema for `spec.rules.validate.pod_security.dry_run`
+<a id="nestedatt--spec--rules--validate--manifests--dry_run"></a>
+### Nested Schema for `spec.rules.validate.manifests.dry_run`
 
 Optional:
 
@@ -1444,16 +1444,16 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--rules--validate--pod_security--ignore_fields"></a>
-### Nested Schema for `spec.rules.validate.pod_security.ignore_fields`
+<a id="nestedatt--spec--rules--validate--manifests--ignore_fields"></a>
+### Nested Schema for `spec.rules.validate.manifests.ignore_fields`
 
 Optional:
 
 - `fields` (List of String)
-- `objects` (Attributes List) (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--ignore_fields--objects))
+- `objects` (Attributes List) (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--ignore_fields--objects))
 
-<a id="nestedatt--spec--rules--validate--pod_security--ignore_fields--objects"></a>
-### Nested Schema for `spec.rules.validate.pod_security.ignore_fields.objects`
+<a id="nestedatt--spec--rules--validate--manifests--ignore_fields--objects"></a>
+### Nested Schema for `spec.rules.validate.manifests.ignore_fields.objects`
 
 Optional:
 
@@ -1520,43 +1520,43 @@ Optional:
 
 Optional:
 
-- `attestors` (Attributes List) Attestors specify the required attestors (i.e. authorities). (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors))
-- `conditions` (Attributes List) Conditions are used to verify attributes within a Predicate. If no Conditions are specifiedthe attestation check is satisfied as long there are predicates that match the predicate type. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions))
+- `attestors` (Attributes List) Attestors specify the required attestors (i.e. authorities). (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors))
+- `conditions` (Attributes List) Conditions are used to verify attributes within a Predicate. If no Conditions are specifiedthe attestation check is satisfied as long there are predicates that match the predicate type. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--conditions))
 - `predicate_type` (String) Deprecated in favour of 'Type', to be removed soon
 - `type` (String) Type defines the type of attestation contained within the Statement.
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors`
 
 Optional:
 
 - `count` (Number) Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.
-- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries))
+- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries))
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries`
 
 Optional:
 
 - `annotations` (Map of String) Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.
 - `attestor` (Map of String) Attestor is a nested set of Attestor used to specify a more complex set of match authorities.
-- `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--certificates))
-- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keyless))
-- `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keys))
+- `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--certificates))
+- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keyless))
+- `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys))
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--certificates"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.certificates`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--certificates"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.certificates`
 
 Optional:
 
 - `cert` (String) Cert is an optional PEM-encoded public certificate.
 - `cert_chain` (String) CertChain is an optional PEM encoded set of certificates used to verify.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--certificates--ctlog))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--certificates--rekor))
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.ctlog`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--certificates--ctlog"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.certificates.ctlog`
 
 Optional:
 
@@ -1565,8 +1565,8 @@ Optional:
 - `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.rekor`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--certificates--rekor"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.certificates.rekor`
 
 Optional:
 
@@ -1576,20 +1576,20 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keyless"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.keyless`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--keyless"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.keyless`
 
 Optional:
 
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keyless--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keyless--rekor))
 - `roots` (String) Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.ctlog`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--keyless--ctlog"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.keyless.ctlog`
 
 Optional:
 
@@ -1598,8 +1598,8 @@ Optional:
 - `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.rekor`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--keyless--rekor"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.keyless.rekor`
 
 Optional:
 
@@ -1609,20 +1609,20 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keys"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.keys`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.keys`
 
 Optional:
 
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys--ctlog))
 - `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md
 - `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
-- `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--secret))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys--rekor))
+- `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys--secret))
 - `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.ctlog`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys--ctlog"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.keys.ctlog`
 
 Optional:
 
@@ -1631,8 +1631,8 @@ Optional:
 - `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.rekor`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys--rekor"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.keys.rekor`
 
 Optional:
 
@@ -1641,8 +1641,8 @@ Optional:
 - `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--secret"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.secret`
+<a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys--secret"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.keys.secret`
 
 Required:
 
@@ -1653,16 +1653,16 @@ Required:
 
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--conditions"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.conditions`
+<a id="nestedatt--spec--rules--verify_images--attestations--conditions"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.conditions`
 
 Optional:
 
-- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions--all))
-- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions--any))
+- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--conditions--all))
+- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--conditions--any))
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--conditions--all"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.conditions.all`
+<a id="nestedatt--spec--rules--verify_images--attestations--conditions--all"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.conditions.all`
 
 Optional:
 
@@ -1672,8 +1672,8 @@ Optional:
 - `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--conditions--any"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.conditions.any`
+<a id="nestedatt--spec--rules--verify_images--attestations--conditions--any"></a>
+### Nested Schema for `spec.rules.verify_images.attestations.conditions.any`
 
 Optional:
 
@@ -1691,32 +1691,32 @@ Optional:
 Optional:
 
 - `count` (Number) Count specifies the required number of entries that must match. If the count is null, all entries must match(a logical AND). If the count is 1, at least one entry must match (a logical OR). If the count contains avalue N, then N must be less than or equal to the size of entries, and at least N entries must match.
-- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries))
+- `entries` (Attributes List) Entries contains the available attestors. An attestor can be a static key,attributes for keyless verification, or a nested attestor declaration. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries))
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries`
 
 Optional:
 
 - `annotations` (Map of String) Annotations are used for image verification.Every specified key-value pair must exist and match in the verified payload.The payload may contain other key-value pairs.
 - `attestor` (Map of String) Attestor is a nested set of Attestor used to specify a more complex set of match authorities.
-- `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--certificates))
-- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--keyless))
-- `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--keys))
+- `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--certificates))
+- `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keyless))
+- `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keys))
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries--certificates"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.certificates`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries--certificates"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries.certificates`
 
 Optional:
 
 - `cert` (String) Cert is an optional PEM-encoded public certificate.
 - `cert_chain` (String) CertChain is an optional PEM encoded set of certificates used to verify.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--certificates--ctlog))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--certificates--rekor))
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.ctlog`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries--certificates--ctlog"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries.certificates.ctlog`
 
 Optional:
 
@@ -1725,8 +1725,8 @@ Optional:
 - `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.rekor`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries--certificates--rekor"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries.certificates.rekor`
 
 Optional:
 
@@ -1736,20 +1736,20 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries--keyless"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.keyless`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries--keyless"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries.keyless`
 
 Optional:
 
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keyless--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keyless--rekor))
 - `roots` (String) Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.ctlog`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries--keyless--ctlog"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries.keyless.ctlog`
 
 Optional:
 
@@ -1758,8 +1758,8 @@ Optional:
 - `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.rekor`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries--keyless--rekor"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries.keyless.rekor`
 
 Optional:
 
@@ -1769,20 +1769,20 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries--keys"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.keys`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries--keys"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries.keys`
 
 Optional:
 
-- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keys--ctlog))
 - `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See:https://github.com/sigstore/cosign/blob/main/KMS.md
 - `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
-- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
-- `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--secret))
+- `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keys--rekor))
+- `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keys--secret))
 - `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.ctlog`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries--keys--ctlog"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries.keys.ctlog`
 
 Optional:
 
@@ -1791,8 +1791,8 @@ Optional:
 - `tsa_cert_chain` (String) TSACertChain, if set, is the PEM-encoded certificate chain file for the RFC3161 timestamp authority. Mustcontain the root CA certificate. Optionally may contain intermediate CA certificates, andmay contain the leaf TSA certificate if not present in the timestamurce.
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.rekor`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries--keys--rekor"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries.keys.rekor`
 
 Optional:
 
@@ -1801,8 +1801,8 @@ Optional:
 - `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 
-<a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--secret"></a>
-### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.secret`
+<a id="nestedatt--spec--rules--verify_images--attestors--entries--keys--secret"></a>
+### Nested Schema for `spec.rules.verify_images.attestors.entries.keys.secret`
 
 Required:
 
